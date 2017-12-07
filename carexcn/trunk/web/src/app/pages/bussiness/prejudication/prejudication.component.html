@@ -1,0 +1,16 @@
+<nb-card size="xlarge">
+  <nb-card-header>
+    <div class="cameras-card-header">
+      <span class="cameras-card-title">预审业务</span>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="camera col-sm-6 float-left" *ngFor="let camera of cameras" [style.background-image]="'url(' + camera.source + ')'"
+         (click)="selectCamera(camera.linkto)">
+      <span>{{ camera.title }}</span>
+    </div>
+  </nb-card-body>
+  <nb-card-footer>
+    <span> &nbsp; &nbsp; * 请UI修改图片 </span>
+  </nb-card-footer>
+</nb-card>
