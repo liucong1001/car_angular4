@@ -1,0 +1,35 @@
+<table class="ngx-table">
+  <thead>
+    <tr><th *ngFor="let col of columns" [ngClass]="col.titleClass">{{col.title}}</th></tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let row of pageContent.content">
+      <td *ngFor="let col of columns" [ngSwitch]="col.cell.type" [attr.class]="col.cell.cellClass">
+        <ngx-text-cell *ngSwitchCase="'TextCell'" [data]="row" [property]="col.cell.property"></ngx-text-cell>
+        <ngx-menu-cell *ngSwitchCase="'MenuCell'" [data]="row" [menus]="col.cell.menus" [default]="col.cell.def"></ngx-menu-cell>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+  <tr>
+    <td [attr.colspan]="columns.length" class="">
+      <div class="container-fluid">
+        <div class="row">
+          <span *ngIf="!pageContent.totalElements" class="pull-middle text-warning">未找符合条件的结果</span>
+          <nav *ngIf="pageContent.totalPages" class="col-md-auto mr-md-auto">
+            <ul class="pagination">
+              <li class="page-item" [ngClass]="{'disabled':pageContent.first}"><a class="page-link clickable"  (click)="prev()">&laquo;</a></li>
+              <li class="page-item"
+                  *ngFor="let p of pageButtons()" [ngClass]="{'active':p == this.page.page + 1,'clickable': p != this.page.page + 1}">
+                <a class="page-link" (click)="goto(p-1)">{{p}}</a>
+              </li>
+              <li class="page-item" [ngClass]="{'disabled':pageContent.last}"><a class="page-link clickable"  (click)="next()">&raquo;</a></li>
+            </ul>
+          </nav>
+          <span class="text-info col-md-auto">共找到{{pageContent.totalElements}}个符合条件的结果，当前页{{pageContent.numberOfElements}}条结果</span>
+        </div>
+      </div>
+    </td>
+  </tr>
+  </tfoot>
+</table>

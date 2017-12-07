@@ -1,0 +1,47 @@
+<form [formGroup]="form" (ngSubmit)="save()">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <input type="text" class="form-control" formControlName="code" placeholder="代码项代码"
+               [ngClass]="{'form-control-danger':form.get('code').hasError('required') && form.get('code').touched}">
+      </div>
+      <div class="text-danger" *ngIf="form.get('code').hasError('required') && form.get('code').touched">
+        -- 必须输入代码项代码
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <input type="text" class="form-control" formControlName="name" placeholder="代码项描述"
+               [ngClass]="{'form-control-danger':form.get('name').hasError('required') && form.get('name').touched}">
+      </div>
+      <div class="text-danger" *ngIf="form.get('name').hasError('required') && form.get('name').touched">
+        -- 必须输入代码项描述
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <input type="text" class="form-control" formControlName="value" placeholder="代码项值"
+               [ngClass]="{'form-control-danger':form.get('value').hasError('required') && form.get('value').touched}">
+      </div>
+      <div class="text-danger" *ngIf="form.get('value').hasError('maxLength') && form.get('value').touched">
+        -- 代码项值超过32位
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <input type="text" class="form-control" formControlName="sort" placeholder="排序码"
+               [ngClass]="{'form-control-danger':form.get('sort').hasError('pattern') && form.get('sort').touched}">
+      </div>
+      <div class="text-danger" *ngIf="form.get('sort').hasError('pattern') && form.get('sort').touched">
+        -- 排序码必须为整数
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <button type="submit" class="btn btn-info btn-block" [disabled]="form.invalid">保存</button>
+    </div>
+  </div>
+</form>
