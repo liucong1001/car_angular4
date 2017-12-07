@@ -1,0 +1,46 @@
+.ngx-table{
+  line-height: 1.5em;
+  border-collapse: collapse;
+  border-spacing: 0;
+  display: table;
+  width: 100%;
+  max-width: 100%;
+  overflow: auto;
+  word-break: normal;
+  word-break: keep-all;
+  th,td{
+    position: relative;
+    padding: 0.875rem 1.25rem;
+    border: 1px solid #342e73;
+    vertical-align: middle;
+
+  }
+  tbody tr:nth-child(2n){
+    background-color: #3a347a;
+  }
+  .pagination{
+    font-family: Exo;
+    font-size: 1rem;
+    line-height: 1.25;
+    border: #7659ff solid 2px;
+    border-radius: 0.5rem;
+    padding:0;
+    li:not(:last-child) {
+      border-right: 1px solid #342e73;
+    }
+    li.active .page-link{
+      color: #ffffff;
+      background-color: #7659ff;
+    }
+    .page-item.disabled .page-link:hover{
+      background-color: rgba(0, 0, 0, 0.2);
+      color: #ffffff;
+    }
+    .page-item .page-link,.page-item{
+      background: transparent;
+      color: #ffffff;
+      //padding: 0.75rem 1.25rem;
+      border: none;
+    }
+  }
+}

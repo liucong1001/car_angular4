@@ -1,0 +1,66 @@
+<nb-card>
+  <nb-card-header class="d-flex">
+    <div class="p-2 mr-auto">{{saved?'修改':'新增'}}代码</div>
+    <div class="p2">
+      <a [routerLink]="'..'" class="btn btn-secondary btn-sm">返回</a>
+    </div>
+  </nb-card-header>
+
+  <nb-card-body>
+    <form [formGroup]="form" (ngSubmit)="save()" >
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="form-group">
+            <select class="form-control" formControlName="cloudUser"
+                    [ngClass]="{'form-control-danger':form.get('cloudUser').invalid && form.get('cloudUser').touched}">
+              <option>公用代码集</option>
+              <option value="0003">长丰二手车市场</option>
+              <option value="0002">汉口北二手车市场</option>
+              <option value="0005">保定二手车市场</option>
+            </select>
+          </div>
+          <div class="text-danger" *ngIf="form.get('cloudUser').touched && form.get('cloudUser').hasError('required')">
+            -- 必须选择市场
+          </div>
+        </div>
+        <div class="col-sm-3">
+      <div class="form-group">
+        <input type="text" class="form-control" formControlName="code" placeholder="代码集"
+               [ngClass]="{'form-control-danger':form.get('code').invalid && form.get('code').touched}">
+      </div>
+          <div class="text-danger" *ngIf="form.get('code').hasError('required') && form.get('code').touched">
+            -- 必须输入代码集代码
+          </div>
+          <div class="text-danger" *ngIf="form.get('code').hasError('minLength') && form.get('code').touched">
+            -- 代码集代码不够3位
+          </div>
+        </div>
+        <div class="col-sm-3">
+      <div class="form-group">
+        <input type="text" class="form-control" id="name" name="name" formControlName="name" placeholder="代码集描述"
+               [ngClass]="{'form-control-danger':form.get('name').hasError('required') && form.get('name').touched}">
+      </div>
+          <div class="text-danger" *ngIf="form.get('name').hasError('required') && form.get('name').touched">
+            -- 必须输入代码集名称
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <button type="submit" class="btn btn-primary btn-block" [disabled]="form.invalid">保存</button>
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+</nb-card>
+<nb-card *ngIf="saved">
+  <nb-card-header>
+    <div class="p-2 mr-auto">代码项列表</div>
+    <div class="p2">
+      <button type="button" class="btn btn-success btn-sm" (click)="showForm()" *ngIf="!showItemForm">新增代码项</button>
+      <button type="button" class="btn btn-warning btn-sm" (click)="hideForm()" *ngIf="showItemForm">关闭</button>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <ngx-codeitem-edit [codeitem]="curItem" [codemap]="form.value.code" *ngIf="showItemForm"></ngx-codeitem-edit>
+    <ngx-table [url]="'/rest/sys/codeitem/pager'" [columns]="columns" #itemList [filter]="filter" *ngIf="!showItemForm"></ngx-table>
+  </nb-card-body>
+</nb-card>
