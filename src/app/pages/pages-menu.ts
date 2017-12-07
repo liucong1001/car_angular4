@@ -31,7 +31,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: '公车拍卖',
         link: '/pages/bussiness/transfer',
       },
-    ]
+    ],
   },
   {
     title: '备案',
@@ -45,7 +45,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: '商户员工备案',
         link: '/pages/bussiness/transfer',
       },
-    ]
+    ],
   },
   {
     title: 'IC卡管理',

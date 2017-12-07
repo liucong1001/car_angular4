@@ -1,0 +1,50 @@
+<nb-card>
+  <nb-card-header>
+    <div class="cameras-card-header">
+      <span class="cameras-card-title">预审业务 - 预审录入 2 - 车商与卖方</span>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+      <div class="input-group">
+        <input type="text" placeholder="请输入以选择备案车商" class="form-control" />
+        <input type="text" placeholder="是否委托" class="form-control" />
+        <select class="form-control">
+          <option>请选择卖方证件类型</option>
+          <option>身份证</option>
+          <option>组织机构代码</option>
+          <option>军官证</option>
+          <option>港澳通行证</option>
+        </select>
+      </div>
+      <div class="camera col-sm-6 float-left" [style.background-image]="'url(assets/images/camera1.jpg)'">
+        <span>身份证正面</span>
+      </div>
+      <div class="camera col-sm-6 float-left" [style.background-image]="'url(assets/images/camera2.jpg)'">
+        <span>身份证反面</span>
+      </div>
+      <div class="input-group">
+        <input type="text" placeholder="卖方姓名" class="form-control" />
+        <input type="text" placeholder="卖方身份证号" class="form-control" />
+        <button class="btn btn-primary btn-sm" (click)="delete(RecordModel)">读卖方身份证</button>
+      </div>
+      <div class="input-group">
+        <input type="text" placeholder="卖方手机" class="form-control" />
+        <input type="text" placeholder="卖方地址" class="form-control" />
+        <input type="text" placeholder="卖方身份有效期" class="form-control" />
+      </div>
+
+      <div class="input-group">
+        <input type="text" placeholder="受托人姓名" class="form-control" />
+        <input type="text" placeholder="受托人身份证号" class="form-control" />
+        <button class="btn btn-primary btn-sm" (click)="delete(RecordModel)">读受托人身份证</button>
+      </div>
+      <div class="input-group">
+        <input type="text" placeholder="受托人手机" class="form-control" />
+        <input type="text" placeholder="受托人地址" class="form-control" />
+        <input type="text" placeholder="受托人身份有效期" class="form-control" />
+      </div>
+      <div class="float-right">
+        <button class="btn btn-primary btn-lg" (click)="onSubmit()">下一步</button>
+      </div>
+  </nb-card-body>
+</nb-card>
