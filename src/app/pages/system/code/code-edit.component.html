@@ -60,7 +60,7 @@
     </div>
   </nb-card-header>
   <nb-card-body>
-    <ngx-codeitem-edit [codeitem]="curItem" [codemap]="form.value.code" *ngIf="showItemForm"></ngx-codeitem-edit>
-    <ngx-table [url]="'/rest/sys/codeitem/pager'" [columns]="columns" #itemList [filter]="filter" *ngIf="!showItemForm"></ngx-table>
+    <ngx-codeitem-edit [(codeitem)]="curItem" [codemap]="form.value.code" *ngIf="showItemForm"></ngx-codeitem-edit>
+    <ngx-table [url]="'/rest/sys/codeitem/pager'" [columns]="columns" #itemList [filter]="filter" [hidden]="showItemForm"></ngx-table>
   </nb-card-body>
 </nb-card>

@@ -10,6 +10,7 @@ import {ActivatedRoute} from '@angular/router';
 import {Column, TableComponent} from '../../../@core/ui/table/table.component';
 import {TextCell} from '../../../@core/ui/table/cell.text.component';
 import {Menu, MenuCell} from '../../../@core/ui/table/cell.menu.component';
+import {Codeitem} from "../../../@core/model/system/codeitem";
 
 @Component({
   selector: 'ngx-code-edit',
@@ -101,6 +102,7 @@ export class CodeEditComponent implements OnInit {
    */
   hideForm() {
     this.showItemForm = false;
+    this.itemList.reload();
   }
 
   /**
@@ -113,15 +115,23 @@ export class CodeEditComponent implements OnInit {
    * @type {[Column , Column , Column]}
    */
   columns: Column[] = [
-    {title: '代码集', titleClass: '', cell: new TextCell('code')} as Column,
+    {title: '代码集', titleClass: '', cell: new TextCell('codemap')} as Column,
+    {title: '代码项ID', titleClass: '', cell: new TextCell('code')} as Column,
     {title: '描述', titleClass: '', cell: new TextCell('name')} as Column,
+    {title: '代码项值', titleClass: '', cell: new TextCell('value')} as Column,
+    {title: '序号', titleClass: '', cell: new TextCell('sort')} as Column,
     {title: '操作', titleClass: 'w-25 text-center', cell: new MenuCell(
       [
-        new Menu('编辑', '', 'edit'),
+        new Menu('修改', '', (row) => this.edit(row)),
       ],
-      new Menu('查看', '', this.view), 'text-center',
+      new Menu('查看', '', (row) => this.view(row)), 'text-center',
     )} as Column,
   ];
+  curItem: Codeitem;
+  edit(row) {
+    this.curItem = row;
+    this.showForm();
+  }
   view(data) {
   }
 }
