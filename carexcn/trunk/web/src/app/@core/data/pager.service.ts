@@ -35,7 +35,7 @@ export class PagerService {
     return this.http.get(this._path, {params: params}).toPromise().then(res => {
       return res.json() as PageContent;
     }).catch(err => {
-      // console.log(err);
+      return Promise.reject(err);
     });
   }
 }
