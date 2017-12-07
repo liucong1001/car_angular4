@@ -3,13 +3,97 @@ import { NbMenuItem } from '@nebular/theme';
 export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'Dashboard',
-    icon: 'nb-home',
+    icon: 'ion-ios-home-outline',
     link: '/pages/dashboard',
     home: true,
   },
   {
+    title: '业务',
+    icon: 'ion-ios-briefcase-outline',
+    children: [
+      {
+        title: '预审业务',
+        link: '/pages/bussiness/prejudication',
+      },
+      {
+        title: '过户业务',
+        link: '/pages/bussiness/transfer',
+      },
+      {
+        title: '交易变更',
+        link: '/pages/bussiness/transfer',
+      },
+      {
+        title: '缴费撤销',
+        link: '/pages/bussiness/transfer',
+      },
+      {
+        title: '公车拍卖',
+        link: '/pages/bussiness/transfer',
+      },
+    ]
+  },
+  {
+    title: '备案',
+    icon: 'ion-ios-bookmarks-outline',
+    children: [
+      {
+        title: '商户备案',
+        link: '/pages/bussiness/transfer',
+      },
+      {
+        title: '商户员工备案',
+        link: '/pages/bussiness/transfer',
+      },
+    ]
+  },
+  {
+    title: 'IC卡管理',
+    icon: 'ion-ios-barcode-outline',
+    children: [
+      {
+        title: '充值与记录',
+        link: '/pages/bussiness/transfer',
+      },
+      {
+        title: '绑卡与卡片管理',
+        link: '/pages/bussiness/transfer',
+      },
+      {
+        title: '密码重置',
+        link: '/pages/bussiness/transfer',
+      },
+      {
+        title: '冲红与转账',
+        link: '/pages/bussiness/transfer',
+      },
+      {
+        title: '挂失与解绑',
+        link: '/pages/bussiness/transfer',
+      },
+    ],
+  },
+  {
+    title: '缴费支付',
+    icon: 'ion-social-usd-outline',
+    children: [
+      {
+        title: '开具发票',
+        link: '/pages/bussiness/transfer',
+      },
+      {
+        title: '订单管理',
+        link: '/pages/bussiness/transfer',
+      },
+      {
+        title: '转账与转账记录',
+        link: '/pages/bussiness/transfer',
+      },
+    ],
+  },
+  {
     title: '系统',
-    icon: 'nb-gear',
+    icon: 'ion-ios-settings',
     link: '/pages/system',
     children: [
       {title: '代码集', link: '/pages/system/code'},
