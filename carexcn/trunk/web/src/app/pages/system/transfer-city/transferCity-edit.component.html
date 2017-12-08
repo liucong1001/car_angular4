@@ -1,0 +1,115 @@
+<nb-card>
+        <nb-card-header>车管所信息维护</nb-card-header>
+        <nb-card-body>
+            <form [formGroup]="form" (ngSubmit)="save()">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <select name="province" class="form-control" id="province" formControlName="province" required 
+                              [ngClass]="{'form-control-danger':form.get('province').hasError('required') && form.get('province').touched}" >
+                                <option [ngValue]=null>--请选择省份--</option>
+                            
+                                <option value="01">北京</option>
+                            
+                                <option value="02">上海</option>
+                            
+                                <option value="03">天津</option>
+                            
+                                <option value="04">重庆</option>
+                            
+                                <option value="05">湖北省</option>
+                            
+                                <option value="06">湖南省</option>
+                            
+                                <option value="07">河南省</option>
+                            
+                                <option value="08">安徽省</option>
+                            
+                                <option value="09">江西省</option>
+                            
+                                <option value="10">浙江省</option>
+                            
+                                <option value="11">江苏省</option>
+                            
+                                <option value="12">广东省</option>
+                            
+                                <option value="13">山东省</option>
+                            
+                                <option value="14">山西省</option>
+                            
+                                <option value="15">四川省</option>
+                            
+                                <option value="16">河北省</option>
+                            
+                                <option value="17">陕西省</option>
+                            
+                                <option value="18">福建省</option>
+                            
+                                <option value="19">贵州省</option>
+                            
+                                <option value="20">广西省</option>
+                            
+                                <option value="21">云南省</option>
+                            
+                                <option value="22">辽宁省</option>
+                            
+                                <option value="23">黑龙江省</option>
+                            
+                                <option value="24">甘肃省</option>
+                            
+                                <option value="25">青海省</option>
+                            
+                                <option value="26">宁夏回族自治区</option>
+                            
+                                <option value="27">新疆维吾尔自治区</option>
+                            
+                                <option value="28">内蒙古自治区</option>
+                            
+                                <option value="29">西藏自治区</option>
+                            
+                                <option value="30">海南省</option>
+                            
+                                <option value="31">吉林省</option>
+                            </select>
+                        </div>
+                        <div class="text-danger" *ngIf="form.get('province').hasError('required') && form.get('province').touched">
+                                -- 必须选择省份
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>车管所:</label>
+                            <input type="text" class="form-control" formControlName="name" placeholder="车管所城市名" [ngClass]="{'form-control-danger':form.get('name').hasError('required') && form.get('name').touched}">
+                        </div>
+                        <div class="text-danger" *ngIf="form.get('name').hasError('required') && form.get('name').touched">
+                            -- 必须输入车管所
+                        </div>
+                    </div>
+                </div>
+             
+                <div class="row">
+                    <div class="col-sm-1">
+                        <button type="submit" class="btn btn-info btn-block" [disabled]="form.invalid">保存</button>
+                    </div>
+                    <div class="col-sm-1">
+                        <button type="button" class="btn btn-default btn-block" (click)='back()' >返回</button>
+                    </div>
+                </div>
+            </form>
+        </nb-card-body>
+    </nb-card>
+    <nb-card >
+        <nb-card-header>
+            <div class="p-2 mr-auto">所属城市列表</div>
+            <div >
+                <button type="button" class="btn btn-success btn-sm" (click)="showForm()" *ngIf="!showItemForm">新增城市</button>
+                <button type="button" class="btn btn-warning btn-sm" (click)="hideForm()" *ngIf="showItemForm">关闭</button>
+            </div>
+        </nb-card-header>
+        <nb-card-body>
+            <ngx-transfer-cityitem-edit *ngIf="showItemForm"></ngx-transfer-cityitem-edit>
+            <ngx-table [url]="'/rest/sys/codeitem/pager'" [columns]="columns" #itemList [filter]="filter" [hidden]="showItemForm"></ngx-table>
+        </nb-card-body>
+    </nb-card>
