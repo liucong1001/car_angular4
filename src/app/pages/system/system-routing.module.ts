@@ -1,3 +1,6 @@
+import { CartypeComponent } from './cartype/cartype.component';
+import { BlacklistEditComponent } from './blacklist/blacklist-edit.component';
+import { BlacklistComponent } from './blacklist/blacklist.component';
 import { TransferCityEditComponent } from './transfer-city/transferCity-edit.component';
 import { TransfercityComponent } from './transfer-city/transferCity.component';
 import { NgModule } from '@angular/core';
@@ -18,6 +21,9 @@ const routes: Routes = [{
     {path: 'manager/edit', component: ManageritemEditComponent},
     {path: 'transfercity', component: TransfercityComponent},
     {path: 'transfercity/edit', component: TransferCityEditComponent},
+    {path: 'blacklist', component: BlacklistComponent},
+    {path: 'blacklist/edit', component: BlacklistEditComponent},
+    {path: 'cartype', component: CartypeComponent},
   ],
 }];
 
@@ -29,5 +35,6 @@ export class SystemRoutingModule { }
 
 export const routedComponents = [
   SystemComponent, CodeComponent, CodeEditComponent, ManagerComponent, ManageritemEditComponent,
-  TransfercityComponent, TransferCityEditComponent,
+  TransfercityComponent, TransferCityEditComponent, BlacklistComponent, BlacklistEditComponent,
+  CartypeComponent,
 ];

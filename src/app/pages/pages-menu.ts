@@ -99,6 +99,8 @@ export const MENU_ITEMS: NbMenuItem[] = [
       {title: '代码集', link: '/pages/system/code'},
       {title: '用户管理', link: '/pages/system/manager'},
       {title: '提档所在地管理', link: '/pages/system/transfercity'},
+      {title: '车辆类型管理', link: '/pages/system/cartype'},
+      {title: '车辆黑名单', link: '/pages/system/blacklist'},
     ],
   },
   {
