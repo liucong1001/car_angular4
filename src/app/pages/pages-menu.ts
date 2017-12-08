@@ -97,6 +97,8 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/system',
     children: [
       {title: '代码集', link: '/pages/system/code'},
+      {title: '用户管理', link: '/pages/system/manager'},
+      {title: '提档所在地管理', link: '/pages/system/transfercity'},
     ],
   },
   {

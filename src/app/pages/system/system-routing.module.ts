@@ -1,9 +1,12 @@
+import { TransferCityEditComponent } from './transfer-city/transferCity-edit.component';
+import { TransfercityComponent } from './transfer-city/transferCity.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {SystemComponent} from './system.component';
 import {CodeComponent} from './code/code.component';
 import {CodeEditComponent} from './code/code-edit.component';
-
+import { ManagerComponent } from './manager/manager.component';
+import { ManageritemEditComponent } from './manager/manageritem-edit.component';
 
 const routes: Routes = [{
   path: '',
@@ -11,6 +14,10 @@ const routes: Routes = [{
   children: [
     {path: 'code', component: CodeComponent},
     {path: 'code/edit', component: CodeEditComponent},
+    {path: 'manager', component: ManagerComponent},
+    {path: 'manager/edit', component: ManageritemEditComponent},
+    {path: 'transfercity', component: TransfercityComponent},
+    {path: 'transfercity/edit', component: TransferCityEditComponent},
   ],
 }];
 
@@ -21,5 +28,6 @@ const routes: Routes = [{
 export class SystemRoutingModule { }
 
 export const routedComponents = [
- SystemComponent, CodeComponent, CodeEditComponent,
+  SystemComponent, CodeComponent, CodeEditComponent, ManagerComponent, ManageritemEditComponent,
+  TransfercityComponent, TransferCityEditComponent,
 ];
