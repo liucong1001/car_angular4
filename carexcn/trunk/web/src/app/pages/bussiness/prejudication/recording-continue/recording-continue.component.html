@@ -17,6 +17,6 @@
   </nb-card-body>
 </nb-card>
 
-<ngx-car-list></ngx-car-list>
+<ngx-car-list [cars]="carsData"  (_selectCar)='onChangeSelectingCar($event)'></ngx-car-list>
 
-<ngx-car-detail></ngx-car-detail>
+<ngx-car-detail [(car)]="carData"></ngx-car-detail>
