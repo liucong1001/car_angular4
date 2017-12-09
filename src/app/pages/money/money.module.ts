@@ -12,6 +12,7 @@ import {RouterModule} from '@angular/router';
 import { TransferRecordComponent } from './transfer-record/transfer-record.component';
 import { PaymentDetailComponent } from './payment-detail/payment-detail.component';
 import { TurnoverDetailComponent } from './turnover-detail/turnover-detail.component';
+import { PrintInvoiceComponent } from './print-invoice/print-invoice.component';
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import { TurnoverDetailComponent } from './turnover-detail/turnover-detail.compo
     TransferRecordComponent,
     PaymentDetailComponent,
     TurnoverDetailComponent,
+    PrintInvoiceComponent,
   ],
 })
 export class MoneyModule { }

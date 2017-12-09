@@ -8,12 +8,12 @@ import {Column} from '../../../@core/ui/table/table.component';
   selector: 'ngx-payment',
   templateUrl: './payment.component.html',
   styleUrls: ['./payment.component.scss'],
-  styles: [`
+  /*styles: [`
         form{
           overflow: hidden;
         }
     `,
-  ],
+  ],*/
   // 定义动画
   animations: [
     trigger('visibilityChanged', [
@@ -44,21 +44,21 @@ export class PaymentComponent implements OnInit, OnChanges {
   // 列表搜索条件对象
   filter: any = {};
   // 列表列定义
-  columns: Column[] = [
+  /*columns: Column[] = [
     {title: '发票号', titleClass: '', cell: new TextCell('code')} as Column,
     {title: '车牌号', titleClass: '', cell: new TextCell('name')} as Column,
     {title: '流水号', titleClass: '', cell: new TextCell('name')} as Column,
     {title: '类型', titleClass: '', cell: new TextCell('name')} as Column,
     {title: '手续费', titleClass: '', cell: new TextCell('name')} as Column,
     {title: '开票时间', titleClass: '', cell: new TextCell('name')} as Column,
-    /*{title: '操作', titleClass: 'w-25 text-center', cell: new MenuCell(
+    {title: '操作', titleClass: 'w-25 text-center', cell: new MenuCell(
         [
           new Menu('编辑', '', 'edit'),
           new Menu('禁用', '', this.disable),
         ],
         new Menu('查看', '', this.view), 'text-center',
-      )} as Column,*/
-  ];
+      )} as Column,
+  ];*/
   // 列表菜单回调
   view(row: any, drop: any) {
   }

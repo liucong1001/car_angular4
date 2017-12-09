@@ -6,7 +6,14 @@
   nb-card-body {
     overflow: visible;
   }
-
+  span {
+    display: inline-block;
+    width: 125px;
+    text-align: right;
+    font-size: 1rem;
+    line-height: 40px;
+    //color: black;
+  }
   .input-group {
     margin-bottom: 1rem;
   }

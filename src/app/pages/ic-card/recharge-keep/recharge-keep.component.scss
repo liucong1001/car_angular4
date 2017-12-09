@@ -9,12 +9,14 @@
       display: inline-block;
       width: 300px;
       text-align: right;
-      color: black;
+      font-size: 1rem;
+      line-height: 40px;
+      //color: black;
     }
   }
-  nb-card-body button {
+  /*nb-card-body button {
     padding: 0.75rem  0 !important;
-  }
+  }*/
   .height {
     height: 20px;
   }

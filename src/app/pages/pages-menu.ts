@@ -64,10 +64,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/ic-card/transfer-accounts',
       },
       {
-        title: '新开具发票',
-        link: '/pages/ic-card/print-invoice',
-      },
-      {
         title: '卡片管理',
         link: '/pages/ic-card/card-manage',
       },
