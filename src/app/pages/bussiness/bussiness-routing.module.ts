@@ -9,6 +9,7 @@ import {Recording3Component} from './prejudication/recording3/recording3.compone
 import {Recording4Component} from './prejudication/recording4/recording4.component';
 import {RecordingLastComponent} from './prejudication/recording-last/recording-last.component';
 import {RecordingContinueComponent} from './prejudication/recording-continue/recording-continue.component';
+import {JudicationPhotoComponent} from './prejudication/judication-photo/judication-photo.component';
 
 const routes: Routes = [
   {
@@ -46,6 +47,10 @@ const routes: Routes = [
   {
     path: 'prejudication/judication',
     component: JudicationComponent,
+  },
+  {
+    path: 'prejudication/judication-photo',
+    component: JudicationPhotoComponent,
   },
   {
     path: '',

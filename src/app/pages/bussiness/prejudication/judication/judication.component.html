@@ -1,1 +1,20 @@
-<h1>预审业务 之 预审审核</h1>
+<nb-card>
+  <nb-card-header>
+    <div class="cameras-card-header">
+      <span class="cameras-card-title">预审业务 - 预审审核 - 核对信息</span>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="input-group">
+      <input type="text" placeholder="请输入车牌号" readonly class="form-control" [(ngModel)]="carid" />
+      <input type="text" placeholder="请输入代办商户以搜索" readonly class="form-control" [(ngModel)]="carid" />
+    </div>
+    <div class="input-group">
+      <input type="text" placeholder="请输入代办联系人以搜索" readonly class="form-control" [(ngModel)]="mobile" />
+      <input type="text" placeholder="请输入手机号" readonly class="form-control" [(ngModel)]="mobile" />
+    </div>
+    <div class="camera col-sm-6 float-left" [style.background-image]="'url(assets/images/camera1.jpg)'">
+      <span>行驶证正本 <div class="webcam_btn float-right"><strong (click)="showCamera()">显示</strong> <strong (click)="paizhao()">拍照</strong> <strong (click)="upload()">上传</strong> <strong (click)="clear()">清空</strong></div></span>
+    </div>
+  </nb-card-body>
+</nb-card>
