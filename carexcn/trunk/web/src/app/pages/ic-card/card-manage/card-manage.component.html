@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="col-md-12">
+    <nb-card size="small" id="tabs-height">
+      <nb-tabset>
+        <nb-tab tabTitle="IC卡管理">
+          <nb-card-header class="d-flex">
+            <!--<div class="p-2 mr-auto">代码管理</div>-->
+            <div class="p2">
+              <!--<a [routerLink]="'edit'" class="btn btn-primary btn-sm">新增</a>-->
+              <button type="button" class="btn btn-sm btn-outline-success" (click)="toggle()" [ngClass]="{'active':showFilter}" ><i class="ion-funnel"></i></button>
+            </div>
+          </nb-card-header>
+          <nb-card-body>
+            <form [@visibilityChanged]="visibility" (submit)="codeList.reload()">
+              <div class="row">
+                <div class="col-sm-3">
+                  <div class="form-group form-group-sm">
+                    <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="卡号 - 模糊匹配"/>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="form-group form-group-sm">
+                    <input class="form-control" [(ngModel)]="filter.name" name="name" type="text" placeholder="商户编号"/>
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group form-group-sm">
+                    <input class="form-control" [(ngModel)]="filter.name" name="name" type="text" placeholder="账户名称"/>
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="form-group form-group-sm">
+                    <select class="form-control">
+                      <option value="">卡片状态</option>
+                      <option value="">未绑卡</option>
+                      <option value="">已绑卡</option>
+                      <option value="">已挂失</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-1">
+                  <button type="submit" class="btn btn btn-primary btn-block">搜索</button>
+                </div>
+                <div class="col-sm-1">
+                  <button type="reset" class="btn btn-outline-primary btn-block">重置</button>
+                </div>
+              </div>
+            </form>
+            <ngx-table #codeList [url]="'/rest/sys/codemap/pager'" [columns]="columns" [filter]="filter"></ngx-table>
+
+          </nb-card-body>
+        </nb-tab>
+        <nb-tab tabTitle="IC卡消费记录">
+          <span>Content #2</span>
+        </nb-tab>
+      </nb-tabset>
+    </nb-card>
+  </div>
+</div>
