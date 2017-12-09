@@ -49,7 +49,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
   {
     title: 'IC卡管理',
-    icon: 'nb-card-manage',
+    icon: 'ion-ios-barcode-outline',
     children: [
       {
         title: '充值与记录',
@@ -75,7 +75,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
   {
     title: '缴费支付',
-    icon: 'money',
+    icon: 'ion-social-usd-outline',
     children: [
       {
         title: '开具发票',
