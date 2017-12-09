@@ -3,6 +3,14 @@
 @import '~@nebular/theme/styles/global/bootstrap/breakpoints';
 
 @include nb-install-component() {
+  //使整体UI更紧凑 create by clh021@gmail.com -----end
+  .main-content {
+    padding: 0.55rem 0.55rem 0 !important;
+  }
+  .menu-sidebar {
+    margin-top: 0.55rem !important;
+  }
+  //使整体UI更紧凑 create by clh021@gmail.com -----end
   nb-layout-column.small {
     flex: 0.15 !important;
   }
