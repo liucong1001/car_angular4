@@ -14,6 +14,7 @@ import {RecordingContinueComponent} from './prejudication/recording-continue/rec
 import {CarListComponent} from './prejudication/recording-continue/car-list/car-list.component';
 import {CarDetailComponent} from './prejudication/recording-continue/car-detail/car-detail.component';
 import {ThemeModule} from '../../@theme/theme.module';
+import {JudicationPhotoComponent} from './prejudication/judication-photo/judication-photo.component';
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import {ThemeModule} from '../../@theme/theme.module';
     RecordingContinueComponent,
     CarListComponent,
     CarDetailComponent,
-  ]
+    JudicationPhotoComponent,
+  ],
 })
 export class BussinessModule {
 }
