@@ -58,7 +58,10 @@ export class TransfercityComponent implements OnInit, OnChanges {
     // {title: '修改', titleClass: '', cell: new TextCell('name')} as Column,
     {title: '修改', titleClass: '', cell: new TextCell('name')} as Column,
   ];
-  // 列表菜单回调
+  /**
+   * 列表菜单回调
+   * @row any
+   */
   view(row: any, drop: any) {
   }
   edit(row: any) {

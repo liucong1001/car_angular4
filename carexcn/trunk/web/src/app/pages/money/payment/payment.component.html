@@ -32,6 +32,27 @@
         </div>-->
       </div>
     </form>
-    <ngx-table #codeList [url]="'/rest/sys/codemap/pager'" [columns]="columns" [filter]="filter"></ngx-table>
+    <div class="height"></div>
+
+    <!--<ngx-table #codeList [url]="'/rest/sys/codemap/pager'" [columns]="columns" [filter]="filter"></ngx-table>-->
+  </nb-card-body>
+  <nb-card-header>订单详情</nb-card-header>
+  <nb-card-body>
+    <table border="1">
+      <!--<tr><th colspan="7">消费报表</th></tr>-->
+      <tr>
+        <td>发票号</td>
+        <td>车牌号</td>
+        <td>流水号</td>
+        <td>类型</td>
+        <td>手续费</td>
+        <td>开票时间</td>
+      </tr>
+
+    </table>
+  </nb-card-body>
+  <div class="height"></div>
+  <nb-card-body>
+    <button class="btn btn-primary right">提交</button>
   </nb-card-body>
 </nb-card>

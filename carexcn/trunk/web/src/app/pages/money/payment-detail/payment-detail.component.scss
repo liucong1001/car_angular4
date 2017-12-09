@@ -1,0 +1,19 @@
+nb-card-body table {
+  width: 100% !important;
+  border-collapse: collapse; /*相邻边被合并;separate: 边框独立*/
+  //border: none;
+  tr {
+    width: 100%;
+    td {
+      text-align: center;
+      padding: 10px;
+    }
+    th {
+      text-align: center;
+      padding: 10px;
+    }
+  }
+};
+.height {
+  height: 20px;
+}
