@@ -14,6 +14,12 @@ const routes: Routes = [{
     path: 'bussiness',
     loadChildren: './bussiness/bussiness.module#BussinessModule',
   }, {
+    path: 'ic-card',
+    loadChildren: './ic-card/ic-card.module#IcCardModule',
+  }, {
+    path: 'money',
+    loadChildren: './money/money.module#MoneyModule',
+  }, {
     path: 'system',
     loadChildren: './system/system.module#SystemModule',
   }, {

@@ -49,45 +49,61 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
   {
     title: 'IC卡管理',
-    icon: 'ion-ios-barcode-outline',
+    icon: 'nb-card-manage',
     children: [
       {
         title: '充值与记录',
-        link: '/pages/bussiness/transfer',
-      },
-      {
-        title: '绑卡与卡片管理',
-        link: '/pages/bussiness/transfer',
+        link: '/pages/ic-card/recharge-keep',
       },
       {
         title: '密码重置',
-        link: '/pages/bussiness/transfer',
+        link: '/pages/ic-card/password-reset',
       },
       {
-        title: '冲红与转账',
-        link: '/pages/bussiness/transfer',
+        title: 'IC卡冲红与转账',
+        link: '/pages/ic-card/transfer-accounts',
       },
       {
-        title: '挂失与解绑',
-        link: '/pages/bussiness/transfer',
+        title: '新开具发票',
+        link: '/pages/ic-card/print-invoice',
+      },
+      {
+        title: '卡片管理',
+        link: '/pages/ic-card/card-manage',
       },
     ],
   },
   {
     title: '缴费支付',
-    icon: 'ion-social-usd-outline',
+    icon: 'money',
     children: [
       {
         title: '开具发票',
-        link: '/pages/bussiness/transfer',
+        link: '/pages/money/print-invoice',
       },
       {
         title: '订单管理',
-        link: '/pages/bussiness/transfer',
+        link: '/pages/money/order-manage',
       },
       {
-        title: '转账与转账记录',
-        link: '/pages/bussiness/transfer',
+        title: '缴费支付',
+        link: '/pages/money/payment',
+      },
+      {
+        title: 'IC卡消费记录',
+        link: '/pages/money/consume-record',
+      },
+      {
+        title: 'IC卡转账记录',
+        link: '/pages/money/transfer-record',
+      },
+      {
+        title: '支付详情查询',
+        link: '/pages/money/payment-detail',
+      },
+      {
+        title: 'IC卡流水查询',
+        link: '/pages/money/turnover-detail',
       },
     ],
   },
