@@ -20,3 +20,14 @@ nb-card-body table {
 .reader {
   width: 40% !important;
 }
+nb-card-body {
+  position: relative;
+  span {
+    position: absolute;
+    right: 5%;
+    em {
+      font-size: 50px;
+    }
+  }
+}
+

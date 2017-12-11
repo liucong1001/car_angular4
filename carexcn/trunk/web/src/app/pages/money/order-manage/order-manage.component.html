@@ -53,4 +53,7 @@
     </form>
     <ngx-table #codeList [url]="'/rest/sys/codemap/pager'" [columns]="columns" [filter]="filter"></ngx-table>
   </nb-card-body>
+  <nb-card-body>
+    <button class="btn btn-primary" (click)="viewpage()">查看</button>
+  </nb-card-body>
 </nb-card>

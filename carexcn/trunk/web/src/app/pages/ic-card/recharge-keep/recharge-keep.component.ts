@@ -14,7 +14,6 @@ export class RechargeComponent {}/*位置很重要*/
   selector: 'ngx-recharge-record',
   template: '',
 })
-
 export class RechargeRecordComponent {}
 
 @Component({
