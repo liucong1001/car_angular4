@@ -13,6 +13,7 @@ import { TransferRecordComponent } from './transfer-record/transfer-record.compo
 import { PaymentDetailComponent } from './payment-detail/payment-detail.component';
 import { TurnoverDetailComponent } from './turnover-detail/turnover-detail.component';
 import { PrintInvoiceComponent } from './print-invoice/print-invoice.component';
+import {CheckComponent} from './order-manage/check.component';
 
 @NgModule({
   imports: [
@@ -22,13 +23,20 @@ import { PrintInvoiceComponent } from './print-invoice/print-invoice.component';
     UiTableModule,
     HttpModule,
     RouterModule,
+    /*RouterModule.forChild([
+      {
+        path: 'check',
+        component: CheckComponent,
+      },
+    ]),*/
   ],
   declarations: [
     ...routedComponents,
-    TransferRecordComponent,
+    /*TransferRecordComponent,
     PaymentDetailComponent,
     TurnoverDetailComponent,
     PrintInvoiceComponent,
+    CheckComponent,*/
   ],
 })
 export class MoneyModule { }

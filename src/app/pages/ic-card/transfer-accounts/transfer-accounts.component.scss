@@ -8,11 +8,14 @@
   }
   span {
     display: inline-block;
-    width: 125px;
+    width: 135px;
     text-align: right;
     font-size: 1rem;
     line-height: 40px;
     //color: black;
+  }
+  .reader {
+    width: 40% !important;
   }
   .input-group {
     margin-bottom: 1rem;
