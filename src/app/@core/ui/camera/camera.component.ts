@@ -40,7 +40,7 @@ export class CameraComponent implements OnInit {
 
   /**
    * 拍照并自动上传
-   * 目前暂时只适配了开发环境[自己搭建的线上调试环境]
+   * 目前暂时只适配了开发环境[自己搭建的调试环境]
    * TODO: 需要在后端完成时进一步适配线上环境，对接后端程序
    */
   paizhao() {
@@ -52,8 +52,6 @@ export class CameraComponent implements OnInit {
 
   /**
    * 上传客户端本地图片
-   * 目前暂时只适配了开发环境[自己搭建的线上调试环境]
-   * TODO: 需要在后端完成时进一步适配线上环境，对接后端程序
    */
   upload() {
     this.message.info('摄像头', '上传');
