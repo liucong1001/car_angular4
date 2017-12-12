@@ -25,6 +25,10 @@
 h2 {
   margin: auto 20px;
   text-align: center;
+  letter-spacing: 5px;
+  span {
+    letter-spacing: 30px;
+  }
 }
 table {
   width: 100%;

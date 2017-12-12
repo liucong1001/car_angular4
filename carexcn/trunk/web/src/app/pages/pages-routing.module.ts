@@ -20,6 +20,9 @@ const routes: Routes = [{
     path: 'money',
     loadChildren: './money/money.module#MoneyModule',
   }, {
+    path: 'archives-manage',
+    loadChildren: './archives-manage/archives-manage.module#ArchivesManageModule',
+  }, {
     path: 'system',
     loadChildren: './system/system.module#SystemModule',
   }, {

@@ -2,19 +2,17 @@ import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {Column} from '../../../@core/ui/table/table.component';
 import {TextCell} from '../../../@core/ui/table/cell.text.component';
-import {Menu, MenuCell} from '../../../@core/ui/table/cell.menu.component';
-import {Router} from '@angular/router';
 
 @Component({
-  selector: 'ngx-order-manage',
-  templateUrl: './order-manage.component.html',
-  styleUrls: ['./order-manage.component.scss'],
-  styles: [`
+  selector: 'ngx-old-licence',
+  templateUrl: './old-licence.component.html',
+  styleUrls: ['./old-licence.component.scss'],
+  /*styles: [`
     form {
       overflow: hidden;
     }
   `,
-  ],
+  ],*/
   // 定义动画
   animations: [
     trigger('visibilityChanged', [
@@ -26,10 +24,9 @@ import {Router} from '@angular/router';
     ]),
   ],
 })
-export class OrderManageComponent implements OnInit, OnChanges {
+export class OldLicenceComponent implements OnInit, OnChanges {
 
-  constructor(private router: Router) {
-  }
+  constructor() { }
 
   visibility = 'hidden';
   showFilter = false;
@@ -52,19 +49,21 @@ export class OrderManageComponent implements OnInit, OnChanges {
   filter: any = {};
   // 列表列定义
   columns: Column[] = [
-    {title: '订单号', titleClass: 'w-25 text-center', cell: new TextCell('code')} as Column,
-    {title: '金额', titleClass: 'w-10 text-center', cell: new TextCell('name')} as Column,
-    {title: '业务类型', titleClass: 'w-15 text-center', cell: new TextCell('name')} as Column,
-    {title: '状态', titleClass: 'w-10 text-center', cell: new TextCell('name')} as Column,
-    {title: '创建时间', titleClass: 'w-20 text-center', cell: new TextCell('name')} as Column,
-    {
+    {title: '序号', titleClass: 'w-25 text-center', cell: new TextCell('code')} as Column,
+    {title: '黄牌', titleClass: 'w-10 text-center', cell: new TextCell('name')} as Column,
+    {title: '蓝牌', titleClass: 'w-15 text-center', cell: new TextCell('name')} as Column,
+    {title: '摩托车', titleClass: 'w-10 text-center', cell: new TextCell('name')} as Column,
+    {title: '车牌号', titleClass: 'w-20 text-center', cell: new TextCell('name')} as Column,
+    {title: '市场经手人', titleClass: 'w-20 text-center', cell: new TextCell('name')} as Column,
+    {title: '车管所接收', titleClass: 'w-20 text-center', cell: new TextCell('name')} as Column,
+    /*{
       title: '', titleClass: 'w-15 text-center', cell: new MenuCell(
         [
           new Menu('编辑', '', 'edit'),
           new Menu('禁用', '', this.disable),
         ],
         new Menu('查看', '', this.view), 'text-center',
-        )} as Column,
+      )} as Column,
     {
       title: '', titleClass: 'w-15 text-center', cell: new MenuCell(
         [
@@ -72,7 +71,7 @@ export class OrderManageComponent implements OnInit, OnChanges {
           new Menu('禁用', '', this.disable),
         ],
         new Menu('撤销订单', '', this.view), 'text-center',
-      )} as Column,
+      )} as Column,*/
   ];
 
   // 列表菜单回调
@@ -85,8 +84,5 @@ export class OrderManageComponent implements OnInit, OnChanges {
   disable(row: any) {
 
   }
-  /*跳转*/
-  viewpage() {
-    this.router.navigateByUrl('/pages/money/check');
-  }
+
 }

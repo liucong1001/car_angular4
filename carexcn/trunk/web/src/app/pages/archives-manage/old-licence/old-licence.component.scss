@@ -1,0 +1,11 @@
+form .input-custom {
+  display: inline-block !important;
+  width: 60% !important;
+}
+.span-padding {
+  height: 100%;
+  span {
+    display: inline-block;
+    padding: 1rem;
+  }
+}
