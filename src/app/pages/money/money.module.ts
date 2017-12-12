@@ -17,26 +17,15 @@ import {CheckComponent} from './order-manage/check.component';
 
 @NgModule({
   imports: [
-    ThemeModule,
+    ThemeModule,  /*标签*/
     CommonModule,
     MoneyRoutingModule,
     UiTableModule,
     HttpModule,
     RouterModule,
-    /*RouterModule.forChild([
-      {
-        path: 'check',
-        component: CheckComponent,
-      },
-    ]),*/
   ],
   declarations: [
     ...routedComponents,
-    /*TransferRecordComponent,
-    PaymentDetailComponent,
-    TurnoverDetailComponent,
-    PrintInvoiceComponent,
-    CheckComponent,*/
   ],
 })
 export class MoneyModule { }

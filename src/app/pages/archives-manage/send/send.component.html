@@ -1,0 +1,40 @@
+<nb-card>
+  <nb-card-header class="d-flex">
+    <div class="p-2 mr-auto">档案送出</div>
+  </nb-card-header>
+  <nb-card-body>
+    <form (submit)="codeList.reload()">
+      <div class="row">
+        <!--<div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <span>请输入号码：</span>
+            &lt;!&ndash;<input class="form-control" name="code" type="text" placeholder="请扫码车管所业务流水号后再扫描交易流水号"/>&ndash;&gt;
+          </div>
+        </div>-->
+        <div class="col-sm-7">
+          <div class="form-group form-group-sm">
+            请输入号码：
+            <input class="form-control input-custom" name="code" type="text" placeholder="请扫码车管所业务流水号后再扫描交易流水号"/>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <button type="submit" class="btn btn btn-primary btn-block">档案自提</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+  <nb-card-body>
+    <table border="1">
+      <tr>
+        <th>序号</th>
+        <th>车管流水号</th>
+        <th>流水号</th>
+        <th>车牌号</th>
+        <th>状态</th>
+      </tr>
+      <tr></tr>
+    </table>
+  </nb-card-body>
+</nb-card>

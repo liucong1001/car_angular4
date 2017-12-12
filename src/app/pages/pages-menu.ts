@@ -104,6 +104,28 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ],
   },
   {
+    title: '档案管理',
+    icon: 'ion-social-usd-outline',
+    children: [
+      {
+        title: '档案查询',
+        link: '/pages/archives-manage/inquiry',
+      }, {
+        title: '档案送出',
+        link: '/pages/archives-manage/send',
+      }, {
+        title: '档案到达',
+        link: '/pages/archives-manage/arrive',
+      }, {
+        title: '档案签收',
+        link: '/pages/archives-manage/sign',
+      }, {
+        title: '废旧车牌统计',
+        link: '/pages/archives-manage/old-licence',
+      },
+    ],
+  },
+  {
     title: '系统',
     icon: 'ion-ios-settings',
     link: '/pages/system',

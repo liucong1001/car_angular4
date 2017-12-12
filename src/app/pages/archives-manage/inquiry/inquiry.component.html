@@ -1,6 +1,6 @@
 <nb-card>
   <nb-card-header class="d-flex">
-    <div class="p-2 mr-auto">订单管理</div>
+    <div class="p-2 mr-auto">档案查询</div>
     <div class="p2">
       <!--<a [routerLink]="'edit'" class="btn btn-primary btn-sm">新增</a>-->
       <button type="button" class="btn btn-sm btn-outline-success" (click)="toggle()" [ngClass]="{'active':showFilter}" ><i class="ion-funnel"></i></button>
@@ -9,31 +9,37 @@
   <nb-card-body>
     <form [@visibilityChanged]="visibility" (submit)="codeList.reload()">
       <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-3">
           <div class="form-group form-group-sm">
-            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="订单号 - 模糊搜索"/>
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="流水号"/>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="车牌号"/>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="商户编号"/>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="商户名称"/>
           </div>
         </div>
         <div class="col-sm-2">
           <div class="form-group form-group-sm">
             <select class="form-control">
-              <option value="">业务类型</option>
-              <option value="">市场业务</option>
-              <option value="">二手车业务</option>
+              <option value="">已送出档案</option>
+              <option value="">未到达档案</option>
+              <option value="">已到达档案</option>
+              <option value="">已签收档案</option>
+              <option value="">未签收档案</option>
             </select>
           </div>
         </div>
-        <div class="col-sm-2">
-          <div class="form-group form-group-sm">
-            <select class="form-control">
-              <option value="">订单状态</option>
-              <option value="">待支付</option>
-              <option value="">已支付</option>
-              <option value="">已撤销</option>
-            </select>
-          </div>
-        </div>
-        <div class="col-sm-4"></div>
         <div class="col-sm-2">
           <div class="form-group form-group-sm">
             <input class="form-control" [(ngModel)]="filter.name" name="name" type="text" placeholder="起始日期"/>
@@ -45,16 +51,13 @@
           </div>
         </div>
         <div class="col-sm-2">
-          <button type="submit" class="btn btn btn-primary btn-block">搜索</button>
+          <button type="submit" class="btn btn btn-primary btn-block">查询</button>
         </div>
         <div class="col-sm-2">
-          <button type="reset" class="btn btn-outline-primary btn-block">重置</button>
+          <button type="reset" class="btn btn-outline-primary btn-block">导出报表</button>
         </div>
       </div>
     </form>
     <ngx-table #codeList [url]="'/rest/sys/codemap/pager'" [columns]="columns" [filter]="filter"></ngx-table>
-  </nb-card-body>
-  <nb-card-body>
-    <button class="btn btn-primary" (click)="viewpage()">查看</button>
   </nb-card-body>
 </nb-card>
