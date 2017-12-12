@@ -4,7 +4,7 @@ import {Router} from '@angular/router';
 @Component({
   selector: 'ngx-recording2',
   templateUrl: './recording2.component.html',
-  styleUrls: ['./recording2.component.scss']
+  styleUrls: ['./recording2.component.scss'],
 })
 export class Recording2Component implements OnInit {
   cameras: any[] = [{
@@ -19,7 +19,6 @@ export class Recording2Component implements OnInit {
   ngOnInit() {
   }
   onSubmit() {
-    // console.log('/pages/bussiness/prejudication/recording3');
     this._router.navigateByUrl('/pages/bussiness/prejudication/recording3');
   }
 }
