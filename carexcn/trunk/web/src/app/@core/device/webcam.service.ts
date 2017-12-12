@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable, isDevMode} from '@angular/core';
 import {DeviceService} from './device.service';
 
 @Injectable()
@@ -16,11 +16,16 @@ export class WebcamService {
   }
 
   snapshot(rotate: boolean, user: string, mac: string): Promise<any> {
-    let args = location.protocol + '//' + location.host + '/files/upload?user=' + user + '&mac=' + mac;
+    let args: string;
+    if (isDevMode()) {
+      args = 'http://dongshenghuo.com/test.php?u=' + '/files/upload/user=' + user + '&mac=' + mac;
+    } else {
+      args = location.protocol + '//' + location.host + '/files/upload?user=' + user + '&mac=' + mac;
+    }
     if (rotate) {
       args += '&xuanzhuan=true';
     }
-    let self = this;
+    const self = this;
     return new Promise(function(resolve, reject){
       self.device.sendCommond('WebCam', 'snapshot', args).then(function (result) {
         resolve(JSON.parse(result));

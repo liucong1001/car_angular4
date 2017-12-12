@@ -42,7 +42,7 @@ export class TableComponent implements OnInit {
   goto(page: number) {
     this.page.page = page;
     this.pageService.getPage(this.page, null, this.filter).then(result => {
-      this.pageContent = result
+      this.pageContent = result;
     }).catch(() => {
         this.pageContent = new PageContent();
       });
