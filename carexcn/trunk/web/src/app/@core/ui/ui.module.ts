@@ -6,7 +6,7 @@ import { CameraComponent } from './camera/camera.component';
 @NgModule({
   entryComponents: [],
   exports: [UiTableModule],
-  imports: [UiTableModule, RouterModule],
+  imports: [UiTableModule, RouterModule, CameraComponent],
   declarations: [CameraComponent],
 })
 export class UiModule {
