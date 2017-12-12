@@ -4,7 +4,7 @@ import {Router} from '@angular/router';
 @Component({
   selector: 'ngx-recording3',
   templateUrl: './recording3.component.html',
-  styleUrls: ['./recording3.component.scss']
+  styleUrls: ['./recording3.component.scss'],
 })
 export class Recording3Component implements OnInit {
 
@@ -14,7 +14,6 @@ export class Recording3Component implements OnInit {
   }
 
   onSubmit() {
-    // console.log('/pages/bussiness/prejudication/recording4');
     this._router.navigateByUrl('/pages/bussiness/prejudication/recording4');
   }
 }

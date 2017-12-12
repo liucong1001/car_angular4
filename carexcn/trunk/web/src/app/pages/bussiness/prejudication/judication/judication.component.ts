@@ -13,45 +13,45 @@ import {WebcamService} from '../../../../@core/device/webcam.service';
   providers: [CarService, WebcamService, DeviceService],
 })
 export class JudicationComponent implements OnInit {
-  /*
-  TODO: 用命令行创建两个子组件，暂时不考虑重用的问题(方法与变量的传递，不同场景的适配，需要更多时间)，先让业务尽快开展
-  * */
+  /**
+   * 定义
+   * @type {{title: string; source: string}[]}
+   */
+  photos: any[] = [{
+    title: '身份证正面',
+    source: 'assets/images/camera1.jpg',
+  }, {
+    title: '身份证反面',
+    source: 'assets/images/camera2.jpg',
+  }, {
+    title: '代办联系人头像',
+    source: 'assets/images/camera3.jpg',
+  }, {
+    title: '商户联系人确认单',
+    source: 'assets/images/camera4.jpg',
+  }];
+  /**
+   * 车辆单辆数据
+   */
   public carData: CarModel;
+  /**
+   * 车辆多辆数据集
+   */
   public carsData: CarModel[];
-  public webcam_has_show = false;
 
+  /**
+   * 数据初始化
+   * @param {MessageService} message
+   * @param {CarService} carService
+   * @param {WebcamService} webcam
+   */
   constructor(private message: MessageService, private carService: CarService, private webcam: WebcamService) {
+    /**
+     * 不能写在 ngOnInit 中，因为必须在渲染子组件之前就要传递数据给子组件
+     */
     this.carService.getCar('1').then((res) => this.carData = res as CarModel);
     this.carService.getCars('1').then((res) => this.carsData = res as CarModel[]);
   }
-
-  onChangeSelectingCar(car: CarModel): void {
-    this.carData = car;
-    this.message.info(this.carData.lsnum, '当前车辆');
-  }
-
   ngOnInit() {
-  }
-
-  showCamera() {
-    if (this.webcam_has_show) {
-      this.webcam.hideWebcam();
-      console.log('hideWebcam');
-      this.webcam_has_show = false;
-    } else {
-      this.webcam.showWebcam();
-      console.log('showWebcam');
-      this.webcam_has_show = true;
-    }
-  }
-  paizhao() {
-    this.webcam.snapshot(false, 'a', 'b');
-    console.log('paizhao');
-  }
-  upload() {
-    console.log('upload');
-  }
-  clear() {
-    console.log('clear');
   }
 }
