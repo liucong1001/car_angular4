@@ -1,14 +1,14 @@
 import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import {Column} from '../../../@core/ui/table/table.component';
+import {Column} from '../../../../@core/ui/table/table.component';
+import {TextCell} from '../../../../@core/ui/table/cell.text.component';
+import {Menu, MenuCell} from '../../../../@core/ui/table/cell.menu.component';
 import {Router} from '@angular/router';
-import {TextCell} from '../../../@core/ui/table/cell.text.component';
-import {Menu, MenuCell} from '../../../@core/ui/table/cell.menu.component';
 
 @Component({
-  selector: 'ngx-auction-manage',
-  templateUrl: './auction-manage.component.html',
-  styleUrls: ['./auction-manage.component.scss'],
+  selector: 'ngx-cars-manage',
+  templateUrl: './cars-manage.component.html',
+  styleUrls: ['./cars-manage.component.scss'],
   styles: [`
     form {
       overflow: hidden;
@@ -26,7 +26,7 @@ import {Menu, MenuCell} from '../../../@core/ui/table/cell.menu.component';
     ]),
   ],
 })
-export class AuctionManageComponent implements OnInit, OnChanges {
+export class CarsManageComponent implements OnInit, OnChanges {
 
   constructor(private router: Router) { }
 
@@ -53,19 +53,19 @@ export class AuctionManageComponent implements OnInit, OnChanges {
   columns: Column[] = [
     {title: '项目名称', titleClass: 'w-25 text-center', cell: new TextCell('code')} as Column,
     {title: '项目编号', titleClass: 'w-10 text-center', cell: new TextCell('name')} as Column,
-    {title: '状态', titleClass: 'w-15 text-center', cell: new TextCell('name')} as Column,
-    {title: '商户', titleClass: 'w-10 text-center', cell: new TextCell('name')} as Column,
-    {title: '已返现/总返现', titleClass: 'w-20 text-center', cell: new TextCell('name')} as Column,
-    {title: '已过户/总台数', titleClass: 'w-20 text-center', cell: new TextCell('name')} as Column,
-    {title: '创建人', titleClass: 'w-20 text-center', cell: new TextCell('name')} as Column,
-    {title: '创建时间', titleClass: 'w-20 text-center', cell: new TextCell('name')} as Column,
+    {title: '车牌号', titleClass: 'w-15 text-center', cell: new TextCell('name')} as Column,
+    {title: '流水号', titleClass: 'w-10 text-center', cell: new TextCell('name')} as Column,
+    {title: '总费用', titleClass: 'w-20 text-center', cell: new TextCell('name')} as Column,
+    {title: '金额三', titleClass: 'w-20 text-center', cell: new TextCell('name')} as Column,
+    {title: '发票号', titleClass: 'w-20 text-center', cell: new TextCell('name')} as Column,
+    {title: '状态', titleClass: 'w-20 text-center', cell: new TextCell('name')} as Column,
     {
-      title: '', titleClass: 'w-25 text-center', cell: new MenuCell(
+      title: '操作', titleClass: 'w-25 text-center', cell: new MenuCell(
         [
           new Menu('编辑', '', 'edit'),
           new Menu('禁用', '', this.disable),
         ],
-        new Menu('车辆管理', '', this.view), 'text-center',
+        new Menu('修改', '', this.view), 'text-center',
       )} as Column,
   ];
 
@@ -81,7 +81,8 @@ export class AuctionManageComponent implements OnInit, OnChanges {
   }
   /*跳转*/
   banlance() {
-    this.router.navigateByUrl('/pages/common-auction/auction-manage/add-project');
+    this.router.navigateByUrl('/pages/common-auction/auction-manage/add-car');
   }
+
 
 }

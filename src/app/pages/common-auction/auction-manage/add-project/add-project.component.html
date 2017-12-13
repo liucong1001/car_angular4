@@ -1,0 +1,57 @@
+<nb-card>
+  <nb-card-header class="d-flex">
+    <div class="p-2 mr-auto">新建项目（公车拍卖）</div>
+  </nb-card-header>
+  <nb-card-body>
+    <form  (submit)="codeList.reload()">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group form-group-sm">
+            <label>项目名称</label>
+            <input class="form-control" type="text" placeholder="项目名称"/>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group form-group-sm">
+            <label>商户</label>
+            <input class="form-control"  type="text" placeholder="模糊匹配商户"/>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group form-group-sm">
+            <label>受托人</label>
+            <select class="form-control" name="summary">
+              <option value="">--请选择受托人--</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group form-group-sm">
+            <label>优惠方式</label>
+            <select class="form-control" name="summary">
+              <option value="">--请选择优惠方式--</option>
+              <option value="">返现</option>
+              <option value="">减免</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group form-group-sm">
+            <label>优惠率</label>
+            <input class="form-control"  type="number" placeholder="请输入优惠率"/>
+          </div>
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-sm-2">
+        <button type="submit" class="btn btn-primary btn-block">保存</button>
+      </div>
+      <div class="col-sm-2">
+        <button type="submit" class="btn btn-primary" (click)="goBack()">返回</button>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
