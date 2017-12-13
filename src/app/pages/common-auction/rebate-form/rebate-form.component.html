@@ -1,0 +1,62 @@
+<nb-card>
+  <nb-card-header class="d-flex">
+    <div class="p-2 mr-auto">返点报表</div>
+    <div class="p2">
+      <!--<a [routerLink]="'edit'" class="btn btn-primary btn-sm">新增</a>-->
+      <button type="button" class="btn btn-sm btn-outline-success" (click)="toggle(visibility)" [ngClass]="{'active':showFilter}" ><i class="ion-funnel"></i></button>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <form [@visibilityChanged]="visibility" (submit)="codeList.reload()">
+      <div class="row">
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <select class="form-control" name="summary">
+              <option value="">汇总方式</option>
+              <option value="1">日</option>
+              <option value="2">月</option>
+              <option value="3">任意时间</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <input class="form-control" name="code" type="text" placeholder="日"/>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <input class="form-control" name="code" type="text" placeholder="月"/>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <input class="form-control" name="code" type="text" placeholder="开始时间"/>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <input class="form-control" name="code" type="text" placeholder="结束时间"/>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <button type="submit" class="btn btn btn-primary btn-block">查询</button>
+        </div>
+        <div class="col-sm-2">
+          <button type="reset" class="btn btn-outline-primary btn-block">导出</button>
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+  <nb-card-body>
+    <table border="1">
+      <tr>
+        <th>项目名称</th>
+        <th>项目编号</th>
+        <th>返现金额</th>
+        <th>车辆台数(/台)</th>
+      </tr>
+      <tr></tr>
+    </table>
+  </nb-card-body>
+</nb-card>

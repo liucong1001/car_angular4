@@ -126,6 +126,24 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ],
   },
   {
+    title: '公车拍卖',
+    icon: 'ion-ios-settings',
+    children: [
+      {
+        title: '公车拍卖管理',
+        link: '/pages/common-auction/auction-manage',
+      },
+      {
+        title: '返点报表',
+        link: '/pages/common-auction/rebate-form',
+      },
+      {
+        title: '优惠结算',
+        link: '/pages/common-auction/discount-balance',
+      },
+    ],
+  },
+  {
     title: '系统',
     icon: 'ion-ios-settings',
     link: '/pages/system',

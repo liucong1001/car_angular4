@@ -23,6 +23,9 @@ const routes: Routes = [{
     path: 'archives-manage',
     loadChildren: './archives-manage/archives-manage.module#ArchivesManageModule',
   }, {
+    path: 'common-auction',
+    loadChildren: './common-auction/common-auction.module#CommonAuctionModule',
+  }, {
     path: 'system',
     loadChildren: './system/system.module#SystemModule',
   }, {

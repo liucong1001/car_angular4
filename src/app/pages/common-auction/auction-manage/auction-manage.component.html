@@ -1,0 +1,62 @@
+<nb-card>
+  <nb-card-header class="d-flex">
+    <div class="p-2 mr-auto">公车拍卖</div>
+    <div class="p2">
+      <!--<a [routerLink]="'edit'" class="btn btn-primary btn-sm">新增</a>-->
+      <button type="button" class="btn btn-sm btn-outline-success" (click)="toggle()" [ngClass]="{'active':showFilter}" ><i class="ion-funnel"></i></button>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-sm-3">
+        <button type="submit" class="btn btn-primary btn-block"><i class="ion-plus-round"></i><span>添加公车拍卖项目</span></button>
+      </div>
+      <div class="col-sm-9"></div>
+    </div>
+  </nb-card-body>
+  <nb-card-body>
+    <form [@visibilityChanged]="visibility" (submit)="codeList.reload()">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="项目名称"/>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="项目编号"/>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="商户名称"/>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="创建日期"/>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group form-group-sm">
+            <select class="form-control" name="summary">
+              <option value="">--选择状态--</option>
+              <option value="1">未开始</option>
+              <option value="2">未完成</option>
+              <option value="3">已完成</option>
+              <option value="4">已结清</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-5"></div>
+        <div class="col-sm-2">
+          <button type="submit" class="btn btn btn-primary btn-block">查询</button>
+        </div>
+        <div class="col-sm-2">
+          <button type="reset" class="btn btn-outline-primary btn-block" (click)="banlance()">结算</button>
+        </div>
+      </div>
+    </form>
+    <ngx-table #codeList [url]="'/rest/sys/codemap/pager'" [columns]="columns" [filter]="filter"></ngx-table>
+  </nb-card-body>
+</nb-card>
