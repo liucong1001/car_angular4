@@ -1,0 +1,40 @@
+<nb-card>
+  <nb-card-header class="d-flex">
+    <div class="p-2 mr-auto">车辆维护</div>
+  </nb-card-header>
+  <nb-card-body>
+    <form  (submit)="codeList.reload()">
+      <div class="row">
+        <div class="col-sm-7">
+          <div class="form-group form-group-sm">
+            <label>车牌号（必填项）：</label>
+            <input class="form-control" type="text" placeholder="项目名称"/>
+          </div>
+        </div>
+        <div class="col-sm-7">
+          <div class="form-group form-group-sm">
+            <label>总费用：</label>
+            <input class="form-control"  type="text" placeholder="模糊匹配商户"/>
+          </div>
+        </div>
+        <div class="col-sm-7">
+          <div class="form-group form-group-sm">
+            <label>金额三：</label>
+            <input class="form-control"  type="text" placeholder="模糊匹配商户"/>
+          </div>
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-2">
+        <button type="submit" class="btn btn-primary btn-block">保存</button>
+      </div>
+      <div class="col-sm-2">
+        <button type="submit" class="btn btn-primary" (click)="goBack()">返回</button>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

@@ -6,7 +6,6 @@ import {ThemeModule} from '../../@theme/theme.module';
 import {RouterModule} from '@angular/router';
 import {UiTableModule} from '../../@core/ui/table/table.module';
 import {HttpModule} from '@angular/http';
-import { BalanceDetailsComponent } from './discount-balance/balance-details/balance-details.component';
 
 @NgModule({
   imports: [
