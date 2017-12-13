@@ -144,6 +144,19 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ],
   },
   {
+    title: '统计查询',
+    icon: 'nb-keypad',
+    children: [
+      {title: '交易查询', link: '/pages/query-count/trade-query'},
+      {title: '批量交易查询', link: '/pages/query-count/trades-query'},
+      {title: '月结统计', link: '/pages/query-count/month-count'},
+      {title: '报表管理', link: '/pages/query-count/report-manage'},
+      {title: '绩效考核', link: '/pages/query-count/performance-check'},
+      {title: '附件查询', link: '/pages/query-count/appendix-query'},
+      {title: '转出地区交易查询', link: '/pages/query-count/area-query'},
+    ],
+  },
+  {
     title: '系统',
     icon: 'ion-ios-settings',
     link: '/pages/system',

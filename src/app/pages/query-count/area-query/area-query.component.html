@@ -1,0 +1,49 @@
+<nb-card>
+  <nb-card-header class="d-flex">
+    <div class="p-2 mr-auto">特殊转出地区交易查询</div>
+    <div class="p2">
+      <!--<a [routerLink]="'edit'" class="btn btn-primary btn-sm">新增</a>-->
+      <button type="button" class="btn btn-sm btn-outline-success" (click)="toggle()" [ngClass]="{'active':showFilter}" ><i class="ion-funnel"></i></button>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <form [@visibilityChanged]="visibility" (submit)="codeList.reload()">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="开始日期"/>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="结束日期"/>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group form-group-sm">
+            <select class="form-control" name="summary">
+              <option value="">--查询方式--</option>
+              <option value="1">买卖地址</option>
+              <option value="2">转出地</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group form-group-sm">
+            <select class="form-control" name="summary">
+              <option value="">--请选择地区--</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-8"></div>
+        <div class="col-sm-2 form-group">
+          <button type="submit" class="btn btn btn-primary"><i class="ion-search"></i>查询</button>
+        </div>
+        <div class="col-sm-2 form-group">
+          <button type="reset" class="btn btn-outline-primary" >导出</button>
+        </div>
+      </div>
+    </form>
+    <ngx-table #codeList [url]="'/rest/sys/codemap/pager'" [columns]="columns" [filter]="filter"></ngx-table>
+  </nb-card-body>
+</nb-card>
