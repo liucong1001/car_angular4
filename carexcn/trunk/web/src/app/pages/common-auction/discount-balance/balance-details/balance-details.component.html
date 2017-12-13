@@ -1,0 +1,66 @@
+<nb-card>
+  <nb-card-header class="d-flex">
+    <div class="p-2 mr-auto">结算详情</div>
+  </nb-card-header>
+  <nb-card-body>
+    <form (submit)="codeList.reload()">
+      <div class="row">
+        <!--<div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <span>请输入号码：</span>
+            &lt;!&ndash;<input class="form-control" name="code" type="text" placeholder="请扫码车管所业务流水号后再扫描交易流水号"/>&ndash;&gt;
+          </div>
+        </div>-->
+        <!--<div class="col-sm-7">-->
+          <!--<div class="form-group form-group-sm">-->
+            <!--请输入号码：-->
+            <!--<input class="form-control input-custom" name="code" type="text" placeholder="请扫码车管所业务流水号后再扫描交易流水号"/>-->
+          <!--</div>-->
+        <!--</div>-->
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <button type="submit" class="btn btn btn-primary btn-block">结算</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+  <nb-card-body>
+    <table border="1">
+      <tr>
+        <th>序号</th>
+        <th>结算金额</th>
+        <th>操作员</th>
+        <th>操作时间</th>
+        <th>支付状态</th>
+        <th>结算车辆</th>
+      </tr>
+      <tr></tr>
+    </table>
+  </nb-card-body>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-8">
+        <table border="1">
+          <tr>
+            <td>已结算</td>
+            <td>已支付</td>
+            <td>待支付</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-sm-2"></div>
+    </div>
+  </nb-card-body>
+  <nb-card-body>
+    <button class="btn btn-primary" (click)="goBack()">返回</button>
+  </nb-card-body>
+</nb-card>
