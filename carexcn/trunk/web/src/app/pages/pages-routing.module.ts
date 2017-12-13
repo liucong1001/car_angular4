@@ -26,6 +26,9 @@ const routes: Routes = [{
     path: 'common-auction',
     loadChildren: './common-auction/common-auction.module#CommonAuctionModule',
   }, {
+    path: 'query-count',
+    loadChildren: './query-count/query-count.module#QueryCountModule',
+  }, {
     path: 'system',
     loadChildren: './system/system.module#SystemModule',
   }, {
