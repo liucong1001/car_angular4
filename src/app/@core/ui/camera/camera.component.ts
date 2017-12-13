@@ -1,11 +1,14 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, isDevMode, OnInit} from '@angular/core';
 import {MessageService} from '../../utils/message.service';
 import {WebcamService} from '../../device/webcam.service';
+import {FileUploadModule} from 'primeng/primeng';
+import {DeviceService} from '../../device/device.service';
 
 @Component({
   selector: 'ngx-ys-camera',
   templateUrl: './camera.component.html',
   styleUrls: ['./camera.component.scss'],
+  providers: [WebcamService, DeviceService, FileUploadModule],
 })
 export class CameraComponent implements OnInit {
   /**
@@ -17,12 +20,29 @@ export class CameraComponent implements OnInit {
   @Input() title;
   @Input() source;
   private webcam_has_show = false;
-  constructor(private message: MessageService, private webcam: WebcamService) {
+  public upload_url: string;
+
+  /**
+   * 构造函数
+   * @param {MessageService} message
+   * @param {WebcamService} webcam
+   * @param {FileUploadModule} upld
+   */
+  constructor(private message: MessageService, private webcam: WebcamService, private upld: FileUploadModule) {
+    const self = this;
+    // this.upld.progress.subscribe( data => {
+    //   // console.log('progress = ' + data);
+    //   self.message.info('当前上传:' + data, '上传');
+    // });
+    if (isDevMode()) {
+      this.upload_url = 'http://dongshenghuo.com/test.php';
+    } else {
+      this.upload_url = location.protocol + '//' + location.host + '/files/upload';
+    }
   }
 
   ngOnInit() {
   }
-
   /**
    *  显示或隐藏摄像头窗口
    */
@@ -49,11 +69,11 @@ export class CameraComponent implements OnInit {
       this.source = res.file[0];
     });
   }
-
   /**
-   * 上传客户端本地图片
+   * 本地照片上传成功时显示
+   * @param source
    */
-  upload() {
-    this.message.info('摄像头', '上传');
+  onUploadComplete(source) {
+    this.source = source;
   }
 }
