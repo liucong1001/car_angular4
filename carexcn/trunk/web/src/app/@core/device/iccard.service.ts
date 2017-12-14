@@ -97,12 +97,12 @@ export class IccardService {
         if(result.code == "success"){
           resolve(JSON.parse((result)));
         } else {
-          reject(plugin + ' - ' + method + ' - 获取密码失败');
+          reject('ICCard - GetPassword - 获取密码失败');
         }
         resolve(JSON.parse(result));
       }, function (error) {
         reject(error);
-        console.log(error_message, error);
+        console.log(error);
       });
     });
   }
