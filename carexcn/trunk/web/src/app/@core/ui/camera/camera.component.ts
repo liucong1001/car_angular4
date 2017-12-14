@@ -1,13 +1,12 @@
 import {Component, Input, isDevMode, OnInit} from '@angular/core';
 import {MessageService} from '../../utils/message.service';
 import {WebcamService} from '../../device/webcam.service';
-import {DeviceService} from '../../device/device.service';
 
 @Component({
   selector: 'ngx-ys-camera',
   templateUrl: './camera.component.html',
   styleUrls: ['./camera.component.scss'],
-  providers: [WebcamService, DeviceService],
+  providers: [WebcamService],
 })
 export class CameraComponent implements OnInit {
   /**
@@ -19,7 +18,6 @@ export class CameraComponent implements OnInit {
   @Input() title;
   @Input() source;
   private webcam_has_show = false;
-  public upload_url: string;
 
   /**
    * 构造函数
@@ -28,12 +26,6 @@ export class CameraComponent implements OnInit {
    * @param {FileUploadModule} upld
    */
   constructor(private message: MessageService, private webcam: WebcamService) {
-    const self = this;
-    if (isDevMode()) {
-      this.upload_url = 'http://dongshenghuo.com/test.php';
-    } else {
-      this.upload_url = location.protocol + '//' + location.host + '/files/upload';
-    }
   }
 
   ngOnInit() {
