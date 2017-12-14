@@ -32,7 +32,7 @@ export class RecordingComponent implements OnInit {
     title: '商户联系人确认单',
     source: 'assets/images/camera4.jpg',
   }];
-  public car: CarModel;
+  public car = new CarModel();
   constructor(private _router: Router) { }
   ngOnInit() {
   }
