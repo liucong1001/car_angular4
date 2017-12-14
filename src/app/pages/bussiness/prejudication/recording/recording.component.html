@@ -6,12 +6,12 @@
   </nb-card-header>
   <nb-card-body>
     <div class="input-group">
-      <input type="text" placeholder="请输入车牌号" class="form-control" [(ngModel)]="carid" />
-      <input type="text" placeholder="请输入代办商户以搜索" class="form-control" [(ngModel)]="carid" />
+      <input type="text" placeholder="请输入车牌号" class="form-control" [(ngModel)]="car.lsnum"/>
+      <input type="text" placeholder="请输入代办商户以搜索" class="form-control"/>
     </div>
     <div class="input-group">
-      <input type="text" placeholder="请输入代办联系人以搜索" class="form-control" [(ngModel)]="mobile" />
-      <input type="text" placeholder="请输入手机号" class="form-control" [(ngModel)]="mobile" />
+      <input type="text" placeholder="请输入代办联系人以搜索" class="form-control" />
+      <input type="text" placeholder="请输入手机号" class="form-control" readonly/>
     </div>
     <div class="camera col-sm-6 float-left" *ngFor="let camera of cameras" [style.background-image]="'url(' + camera.source + ')'"
          (click)="selectCamera(camera)">
@@ -19,7 +19,7 @@
     </div>
   </nb-card-body>
   <nb-card-footer>
-    <span> &nbsp; &nbsp; * 请UI修改图片
+    <span> &nbsp; &nbsp; * 请UI修改默认图片
   <div class="size-container">
     <div class="float-right">
       <button class="btn btn-primary btn-lg" (click)="onSubmit()">下一步</button>
