@@ -24,8 +24,8 @@ import {FileUploadModule} from 'primeng/primeng';
   encapsulation: ViewEncapsulation.None,
 })
 export class CameraUploadComponent implements OnInit {
+  @Input('upload_url') upload_url;
   @Output('_new_img_url') private _new_img_url = new EventEmitter();
-  public upload_url: string;
 
   /**
    * 构造函数
@@ -35,12 +35,6 @@ export class CameraUploadComponent implements OnInit {
    * @param {FileUploadModule} upld
    */
   constructor(private message: MessageService, private upld: FileUploadModule) {
-    const self = this;
-    if (isDevMode()) {
-      this.upload_url = 'http://dongshenghuo.com/test.php';
-    } else {
-      this.upload_url = location.protocol + '//' + location.host + '/files/upload';
-    }
   }
   ngOnInit() {
   }
