@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, isDevMode, OnInit, Output, ViewEncapsulation} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
 import {MessageService} from '../../utils/message.service';
 import {FileUploadModule} from 'primeng/primeng';
 
@@ -8,7 +8,9 @@ import {FileUploadModule} from 'primeng/primeng';
   styles: [`
     p-fileupload input {
       position: absolute;
-      top: 3px;
+      z-index: 1;
+      direction: rtl;
+      top: 5px;
       right: 5px;
       margin: 0;
       opacity: 0;
@@ -45,5 +47,8 @@ export class CameraUploadComponent implements OnInit {
     const res = JSON.parse($event.xhr.responseText);
     this._new_img_url.emit(res.file[0]);
     this.message.info('上传', '上传完成');
+  }
+  triggerFileselect($event) {
+    this.message.info('文件选择', '点了我');
   }
 }

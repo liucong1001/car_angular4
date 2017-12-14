@@ -3,6 +3,17 @@
 @import '~bootstrap/scss/mixins/breakpoints';
 
 @include nb-install-component() {
+  .fa-camera, .fa-camera-retro {
+    position: absolute;
+    z-index: 2;
+    top: 10px;
+  }
+  .fa-camera {
+    right: 60px;
+  }
+  .fa-camera-retro {
+    right: 110px;
+  }
   nb-card-header {
     padding: 0;
     border: none;
