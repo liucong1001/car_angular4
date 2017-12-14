@@ -3,6 +3,9 @@
 @import '~bootstrap/scss/mixins/breakpoints';
 
 @include nb-install-component() {
+  ngx-ys-calendar {
+    width: 100%;
+  }
   nb-card-header {
     padding: 0;
     border: none;
