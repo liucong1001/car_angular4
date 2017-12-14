@@ -1,4 +1,7 @@
-import {Injectable, isDevMode} from '@angular/core';
+/**
+ * Create by clh021@gmail.com On 2017.12.11
+ */
+import {Injectable} from '@angular/core';
 import {DeviceService} from './device.service';
 
 @Injectable()
@@ -13,21 +16,32 @@ export class WebcamService {
    * @param {DeviceService} device
    */
   constructor(private device: DeviceService) {
-    if (isDevMode()) {
-      this.api_url = 'http://dongshenghuo.com/test.php/files/upload';
-    } else {
-      this.api_url = location.protocol + '//' + location.host + '/files/upload';
-    }
+    this.api_url = this.device.pre_api_url + '/files/upload';
   }
 
+  /**
+   * 显示摄像头
+   * @returns {Promise<any>}
+   */
   showWebcam(): Promise<any> {
     return this.device.sendCommond('WebCam', 'show');
   }
 
+  /**
+   * 隐藏摄像头
+   * @returns {Promise<any>}
+   */
   hideWebcam(): Promise<any> {
     return this.device.sendCommond('WebCam', 'hide');
   }
 
+  /**
+   * 摄像头拍照
+   * @param {boolean} rotate  是否旋转,可扩展为其他参数
+   * @param {string} user     对应用户验证信息,如果接口要求的话
+   * @param {string} mac      对应其他验证信息,如果接口要求的话
+   * @returns {Promise<any>}
+   */
   snapshot(rotate: boolean, user: string, mac: string): Promise<any> {
     this.api_url += '?user=' + user + '&mac=' + mac;
     if (rotate) {

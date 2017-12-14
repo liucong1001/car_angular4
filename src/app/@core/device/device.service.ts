@@ -1,20 +1,43 @@
-import {Injectable} from '@angular/core';
+/**
+ * Create by clh021@gmail.com On 2017.12.11
+ */
+import {Injectable, isDevMode} from '@angular/core';
 
 @Injectable()
 export class DeviceService {
   ws: WebSocket;
+  /**
+   * 初始化默认摄像头是否显示的状态值
+   * @type {boolean}
+   */
   opened = false;
   promiseMap = {};
+  /**
+   * 所有设备服务对接口地址的统一调度
+   * @type {string}
+   */
+  pre_api_url = location.protocol + '//' + location.host;
 
+  /**
+   * 构造函数
+   * 设备连接代理
+   * 接口地址统一调度
+   */
   constructor() {
     this.conectAgent();
+    if (isDevMode()) {
+      this.pre_api_url = 'http://dongshenghuo.com/test.php';
+    }
   }
 
+  /**
+   * 设备连接代理
+   */
   conectAgent() {
     if (this.opened) {
       return;
     }
-    let self = this;
+    const self = this;
     this.ws = new WebSocket('ws://127.0.0.1:18181');
     this.ws.onopen = function () {
       self.opened = true;
@@ -39,15 +62,15 @@ export class DeviceService {
                 }
                 delete self.promiseMap[result.id];
               } else {
-                //不处理 promiseMap 则空
+                // 不处理 promiseMap 则空
               }
             }
           } else if ('event' === result.Command) {
-            console.log(result);
+            // console.log(result);
             // $rootScope.$broadcast(result.Type, result);
           }
         } catch (err) {
-          console.log('无法解析的消息', err, e);
+          // console.log('无法解析的消息', err, e);
           // console.log('无法解析的消息', e.data, e);
         }
       }
@@ -66,16 +89,31 @@ export class DeviceService {
     };
   }
 
+  /**
+   * 发送命令
+   * @param plugin      对应功能插件
+   * @param method      发送命令的方法
+   * @param args        命令对应的参数
+   * @returns {Promise<any>}
+   */
   sendCommond(plugin, method, args?: any): Promise<any> {
-    let self = this;
+    const self = this;
     return new Promise(function(resolve, reject){
-      let id = plugin + method + new Date().getTime();
+      const id = plugin + method + new Date().getTime();
       self.promiseMap[id] = {resolve, reject};
       self.sendCommondImpl(id, plugin, method, args);
     });
   }
-  sendCommondImpl(id,plugin, method, args?: any) {
-    let self = this;
+
+  /**
+   * 发送命令接口
+   * @param id
+   * @param plugin
+   * @param method
+   * @param args
+   */
+  sendCommondImpl(id, plugin, method, args?: any) {
+    const self = this;
     if (!this.opened) {
       setTimeout(function () {
         self.sendCommondImpl(id, plugin, method, args)
@@ -83,10 +121,14 @@ export class DeviceService {
       return
     }
 
-    let str = JSON.stringify({id, plugin, method, args});
+    const str = JSON.stringify({id, plugin, method, args});
     console.log('send', {id, plugin, method, args});
     this.ws.send(str);
   }
+
+  /**
+   * 关闭socket链接
+   */
   close() {
     this.ws.close()
   }
