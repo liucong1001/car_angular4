@@ -11,10 +11,9 @@
     </div>
     <div class="input-group">
       <input type="text" placeholder="请输入代办联系人以搜索" class="form-control" />
-      <input type="text" placeholder="请输入手机号" class="form-control" readonly/>
+      <input type="text" placeholder="联系人手机号" class="form-control" readonly/>
     </div>
-    <div class="camera col-sm-6 float-left" *ngFor="let camera of cameras" [style.background-image]="'url(' + camera.source + ')'"
-         (click)="selectCamera(camera)">
+    <div class="camera col-sm-6 float-left" *ngFor="let camera of cameras" [style.background-image]="'url(' + camera.source + ')'">
       <span>{{ camera.title }}</span>
     </div>
   </nb-card-body>
