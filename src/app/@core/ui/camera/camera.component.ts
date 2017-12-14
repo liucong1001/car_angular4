@@ -1,14 +1,13 @@
 import {Component, Input, isDevMode, OnInit} from '@angular/core';
 import {MessageService} from '../../utils/message.service';
 import {WebcamService} from '../../device/webcam.service';
-import {FileUploadModule} from 'primeng/primeng';
 import {DeviceService} from '../../device/device.service';
 
 @Component({
   selector: 'ngx-ys-camera',
   templateUrl: './camera.component.html',
   styleUrls: ['./camera.component.scss'],
-  providers: [WebcamService, DeviceService, FileUploadModule],
+  providers: [WebcamService, DeviceService],
 })
 export class CameraComponent implements OnInit {
   /**
@@ -28,12 +27,8 @@ export class CameraComponent implements OnInit {
    * @param {WebcamService} webcam
    * @param {FileUploadModule} upld
    */
-  constructor(private message: MessageService, private webcam: WebcamService, private upld: FileUploadModule) {
+  constructor(private message: MessageService, private webcam: WebcamService) {
     const self = this;
-    // this.upld.progress.subscribe( data => {
-    //   // console.log('progress = ' + data);
-    //   self.message.info('当前上传:' + data, '上传');
-    // });
     if (isDevMode()) {
       this.upload_url = 'http://dongshenghuo.com/test.php';
     } else {
