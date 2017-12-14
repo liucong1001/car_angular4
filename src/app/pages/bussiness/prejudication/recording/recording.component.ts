@@ -20,10 +20,10 @@ export class RecordingComponent implements OnInit {
    *  搜索确认商户联系人时调取对应信息
    */
   cameras: any[] = [{
-    title: '身份证正面',
+    title: '联系人身份证正面',
     source: 'assets/images/camera1.jpg',
   }, {
-    title: '身份证反面',
+    title: '联系人身份证反面',
     source: 'assets/images/camera2.jpg',
   }, {
     title: '代办联系人头像',
