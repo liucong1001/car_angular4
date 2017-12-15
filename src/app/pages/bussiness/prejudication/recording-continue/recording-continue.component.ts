@@ -3,13 +3,17 @@ import {MessageService} from '../../../../@core/utils/message.service';
 import {CarModel} from '../../../../@core/model/bussiness/car.model';
 import {CarService} from '../../../../@core/data/bussiness/car.service';
 
+/**
+ * 预审录入 继续录入/批量录入 --接口与页面的交互逻辑
+ * 1、请求接口(通过批次号)，或者要求接收的参数包含：商户编号，联系人姓名，手机号
+ * 2、用户点击不同的车辆则调用后台接口获取不同车辆的信息
+ */
 @Component({
   selector: 'ngx-recording-continue',
   templateUrl: './recording-continue.component.html',
   styleUrls: ['./recording-continue.component.scss'],
   providers: [CarService],
 })
-
 export class RecordingContinueComponent implements OnInit {
   public carData: CarModel;
   public carsData: CarModel[];
