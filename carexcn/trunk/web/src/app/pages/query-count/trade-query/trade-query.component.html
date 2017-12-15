@@ -1,3 +1,230 @@
-<p>
-  trade-query works!
-</p>
+<nb-card>
+  <nb-card-header class="d-flex">
+    <div class="p-2 mr-auto">交易查询</div>
+    <div class="p2">
+      <!--<a [routerLink]="'edit'" class="btn btn-primary btn-sm">新增</a>-->
+      <button type="button" class="btn btn-sm btn-outline-success" (click)="toggle()" [ngClass]="{'active':showFilter}" ><i class="ion-funnel"></i></button>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <form [@visibilityChanged]="visibility" (submit)="codeList.reload()">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="流水号(模糊匹配)"/>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="车牌号"/>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <button type="reset" class="btn btn-outline-primary btn-block">重置</button>
+        </div>
+        <div class="col-sm-3"></div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="卖家姓名"/>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="买家姓名"/>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="卖家受托人姓名"/>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="买家受托人姓名"/>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="入库操作员"/>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="出库操作员"/>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="入库审核员"/>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="出库审核员"/>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="商户编号"/>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="商户名称"/>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="车辆厂牌"/>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="车架号"/>
+          </div>
+        </div>
+
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <select class="form-control" name="summary">
+              <option value="">车辆类型</option>
+              <option value="">轿车</option>
+              <option value="">客车</option>
+              <option value="">货车</option>
+              <option value="">低速车</option>
+              <option value="">专项作业车</option>
+              <option value="">特种车</option>
+              <option value="">摩托车</option>
+              <option value="">三轮汽车</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <select class="form-control" name="summary">
+              <option value="">审核状态</option>
+              <option value="">卖方未审核</option>
+              <option value="">双方已审核</option>
+              <option value="">卖方已审核</option>
+              <option value="">买家未录入</option>
+              <option value="">买方未审核</option>
+              <option value="">卖方已审核</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="成交起始日期"/>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="成交截止日期"/>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="入库审核起始日期"/>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="入库审核截止日期"/>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="成交日期"/>
+          </div>
+        </div>
+        <!--<div class="col-sm-2 form-group">
+          <button type="submit" class="btn btn btn-primary"><i class="ion-search"></i>查询</button>
+        </div>-->
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <select class="form-control" name="summary">
+              <option value="">开票状态</option>
+              <option value="">未开票</option>
+              <option value="">已开票</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="发票号"/>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <select class="form-control" name="summary">
+              <option value="">资料状态</option>
+              <option value="">待补资料</option>
+              <option value="">资料齐全</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <select class="form-control" name="summary">
+              <option value="">入库来源</option>
+              <option value="">PC</option>
+              <option value="">APP</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <select class="form-control" name="summary">
+              <option value="">出库来源</option>
+              <option value="">PC</option>
+              <option value="">APP</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <select class="form-control" name="summary">
+              <option value="">车辆使用性质</option>
+              <option value="">私用</option>
+              <option value="">公用</option>
+              <option value="">政府</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <select class="form-control" name="summary">
+              <option value="">--委托状态--</option>
+              <option value="">个人委托</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <select class="form-control" name="summary">
+              <option value="">--公证状态--</option>
+              <option value="">有公证书</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <select class="form-control" name="summary">
+              <option value="">提档退回状态</option>
+              <option value="">仅提档</option>
+              <option value="">提档退回流水</option>
+            </select>
+          </div>
+        </div>
+        <!--<div class="col-sm-8"></div>-->
+        <div class="col-sm-2 form-group">
+          <button type="submit" class="btn btn btn-primary"><i class="ion-search"></i>查询</button>
+        </div>
+        <!--<div class="col-sm-2 form-group">
+          <button type="reset" class="btn btn-outline-primary" >导出</button>
+        </div>-->
+      </div>
+    </form>
+    <ngx-table #codeList [url]="'/rest/sys/codemap/pager'" [columns]="columns" [filter]="filter"></ngx-table>
+  </nb-card-body>
+</nb-card>

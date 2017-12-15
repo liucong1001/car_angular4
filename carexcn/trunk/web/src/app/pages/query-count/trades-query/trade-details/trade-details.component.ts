@@ -1,14 +1,15 @@
 import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {animate, state, style, transition, trigger} from '@angular/animations';
-import {TextCell} from '../../../@core/ui/table/cell.text.component';
-import {Column} from '../../../@core/ui/table/table.component';
-import {MenuCell, Menu} from '../../../@core/ui/table/cell.menu.component';
+import {TextCell} from '../../../../@core/ui/table/cell.text.component';
 import {Router} from '@angular/router';
+import {Menu, MenuCell} from '../../../../@core/ui/table/cell.menu.component';
+import {Column} from '../../../../@core/ui/table/table.component';
+import {animate, state, style, transition, trigger} from '@angular/animations';
+import {Location} from '@angular/common';
 
 @Component({
-  selector: 'ngx-trade-query',
-  templateUrl: './trade-query.component.html',
-  styleUrls: ['./trade-query.component.scss'],
+  selector: 'ngx-trade-details',
+  templateUrl: './trade-details.component.html',
+  styleUrls: ['./trade-details.component.scss'],
   styles: [`
     form {
       overflow: hidden;
@@ -26,9 +27,11 @@ import {Router} from '@angular/router';
     ]),
   ],
 })
-export class TradeQueryComponent implements OnInit, OnChanges {
-
-  constructor(private router: Router) { }
+export class TradeDetailsComponent implements OnInit, OnChanges {
+  constructor(
+    private router: Router,
+    private location: Location,
+  ) { }
 
   visibility = 'hidden';
   showFilter = false;
@@ -55,14 +58,11 @@ export class TradeQueryComponent implements OnInit, OnChanges {
     {title: '车牌号', titleClass: 'w-10 text-center', cell: new TextCell('name')} as Column,
     {title: '厂牌型号', titleClass: 'w-15 text-center', cell: new TextCell('name')} as Column,
     {title: '车辆类型', titleClass: 'w-10 text-center', cell: new TextCell('name')} as Column,
-    {title: '卖家状态', titleClass: 'w-20 text-center', cell: new TextCell('name')} as Column,
-    {title: '买家状态', titleClass: 'w-20 text-center', cell: new TextCell('name')} as Column,
-    {title: '商户编号', titleClass: 'w-20 text-center', cell: new TextCell('name')} as Column,
-    {title: '资料', titleClass: 'w-15 text-center', cell: new TextCell('name')} as Column,
-    {title: '开票状态', titleClass: 'w-10 text-center', cell: new TextCell('name')} as Column,
-    {title: '发票号', titleClass: 'w-20 text-center', cell: new TextCell('name')} as Column,
-    {title: '入库', titleClass: 'w-20 text-center', cell: new TextCell('name')} as Column,
-    {title: '出库', titleClass: 'w-20 text-center', cell: new TextCell('name')} as Column,
+    {title: '使用年限', titleClass: 'w-20 text-center', cell: new TextCell('name')} as Column,
+    {title: '累计里程', titleClass: 'w-20 text-center', cell: new TextCell('name')} as Column,
+    {title: '交易价格', titleClass: 'w-20 text-center', cell: new TextCell('name')} as Column,
+    {title: '卖家状态', titleClass: 'w-15 text-center', cell: new TextCell('name')} as Column,
+    {title: '买家状态', titleClass: 'w-10 text-center', cell: new TextCell('name')} as Column,
     {
       title: '查看', titleClass: 'w-15 text-center', cell: new MenuCell(
         [
@@ -86,5 +86,9 @@ export class TradeQueryComponent implements OnInit, OnChanges {
   /*跳转*/
   banlance() {
     this.router.navigateByUrl('/pages/query-count/trade-query/see-message');
+  }
+  /*返回*/
+  goBack() {
+    this.location.back();
   }
 }

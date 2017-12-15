@@ -1,3 +1,34 @@
-<p>
-  trades-query works!
-</p>
+<nb-card>
+  <nb-card-header class="d-flex">
+    <div class="p-2 mr-auto">批量交易查询</div>
+    <div class="p2">
+      <!--<a [routerLink]="'edit'" class="btn btn-primary btn-sm">新增</a>-->
+      <button type="button" class="btn btn-sm btn-outline-success" (click)="toggle()" [ngClass]="{'active':showFilter}" ><i class="ion-funnel"></i></button>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <form [@visibilityChanged]="visibility" (submit)="codeList.reload()">
+      <div class="row">
+        <div class="col-sm-5">
+          <div class="form-group form-group-sm">
+            <span>批量流水号：</span>
+            <input class="form-control input-custom" [(ngModel)]="filter.code" name="code" type="text" placeholder="批量流水号"/>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="创建时间"/>
+          </div>
+        </div>
+        <!--<div class="col-sm-8"></div>-->
+        <div class="col-sm-2 form-group">
+          <button type="submit" class="btn btn btn-primary"><i class="ion-search"></i>查询</button>
+        </div>
+        <!--<div class="col-sm-2 form-group">
+          <button type="reset" class="btn btn-outline-primary" >导出</button>
+        </div>-->
+      </div>
+    </form>
+    <ngx-table #codeList [url]="'/rest/sys/codemap/pager'" [columns]="columns" [filter]="filter"></ngx-table>
+  </nb-card-body>
+</nb-card>

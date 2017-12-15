@@ -14,13 +14,19 @@ import {YearTradeComponent} from './report-manage/year-trade/year-trade.componen
 import {DayTradeComponent} from './report-manage/day-trade/day-trade.component';
 import {TradeListComponent} from './report-manage/trade-list/trade-list.component';
 import {VehicleDaytradeComponent} from './report-manage/vehicle-daytrade/vehicle-daytrade.component';
+import { SeeMessageComponent } from './trade-query/see-message/see-message.component';
+import {TradeDetailsComponent} from './trades-query/trade-details/trade-details.component';
+import { CarDetailComponent } from './trades-query/car-detail/car-detail.component';
 
 const routes: Routes = [{
   path: '',
   component: QueryCountComponent,
   children: [
     {path: 'trade-query', component: TradeQueryComponent},
+    {path: 'trade-query/see-message', component: SeeMessageComponent},
     {path: 'trades-query', component: TradesQueryComponent},
+    {path: 'trades-query/trade-details', component: TradeDetailsComponent},
+    {path: 'trades-query/car-detail', component: CarDetailComponent},
     {path: 'month-count', component: MonthCountComponent},
     {path: 'report-manage', component: ReportManageComponent},
     {path: 'report-manage/sales-rank', component: SalesRankComponent},
@@ -55,5 +61,8 @@ export const routedComponents = [
   YearTradeComponent,
   DayTradeComponent,
   VehicleDaytradeComponent,
+  SeeMessageComponent,
+  TradeDetailsComponent,
+  CarDetailComponent,
 ];
 
