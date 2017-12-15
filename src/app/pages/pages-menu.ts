@@ -12,6 +12,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'ion-ios-briefcase-outline',
     children: [
       {
+        title: '控件示例',
+        link: '/pages/bussiness/example',
+      },
+      {
         title: '预审业务',
         link: '/pages/bussiness/prejudication',
       },

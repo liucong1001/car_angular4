@@ -1,0 +1,16 @@
+<nb-card size="xlarge">
+  <nb-card-header>
+    <div class="cameras-card-header">
+      <span class="cameras-card-title">控件示例</span>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="input-group">
+      <ngx-ys-calendar [placeholder]="'截至日期'" (_selectValue)="getYsCalendarValue($event)"></ngx-ys-calendar>
+      <button class="btn btn-primary btn-sm" (click)="showYsCalendarValue()">从父组件获取时间</button>
+    </div>
+  </nb-card-body>
+  <nb-card-footer>
+    <span> &nbsp; &nbsp; * 本示例用于前端开发组编写包含控件功能页面时参考 </span>
+  </nb-card-footer>
+</nb-card>
