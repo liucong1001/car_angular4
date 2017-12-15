@@ -21,11 +21,10 @@ export class IdcardService {
     return new Promise(function(resolve, reject){
       self.device.sendCommond(plugin, method, args).then(function (result) {
         if (result) {
-          resolve(JSON.parse((result)));
+          resolve(result);
         } else {
           reject(plugin + ' - ' + method + ' - 无返回,无数据,操作失败');
         }
-        resolve(JSON.parse(result));
       }, function (error) {
         reject(error);
         console.log(error_message, error);

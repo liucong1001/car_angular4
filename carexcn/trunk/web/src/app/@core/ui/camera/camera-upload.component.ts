@@ -49,6 +49,6 @@ export class CameraUploadComponent implements OnInit {
     this.message.info('上传', '上传完成');
   }
   triggerFileselect($event) {
-    this.message.info('文件选择', '点了我');
+    // this.message.info('文件选择', '点了我');
   }
 }

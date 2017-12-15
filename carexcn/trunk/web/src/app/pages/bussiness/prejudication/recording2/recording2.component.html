@@ -18,25 +18,25 @@
       </div>
       <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source"></ngx-ys-camera>
       <div class="input-group">
-        <input type="text" placeholder="卖方姓名" class="form-control" />
-        <input type="text" placeholder="卖方身份证号" class="form-control" />
-        <button class="btn btn-primary btn-sm" (click)="readIdCard('seller')">读卖方身份证</button>
+        <input type="text" placeholder="卖方姓名" class="form-control" [ngModel]="sellerIdcardData.Name"/>
+        <input type="text" placeholder="卖方身份证号" class="form-control" [ngModel]="sellerIdcardData.IdCardNo"/>
+        <button class="btn btn-primary btn-sm" (click)="readSellerIdCard()">读卖方身份证</button>
       </div>
       <div class="input-group">
         <input type="text" placeholder="卖方手机" class="form-control" />
-        <input type="text" placeholder="卖方地址" class="form-control" />
-        <input type="text" placeholder="卖方身份有效期" class="form-control" />
+        <input type="text" placeholder="卖方地址" class="form-control" [ngModel]="sellerIdcardData.Address"/>
+        <input type="text" placeholder="卖方身份有效期" class="form-control" [ngModel]="sellerIdcardData.UseEnd"/>
       </div>
 
       <div class="input-group">
-        <input type="text" placeholder="受托人姓名" class="form-control" />
-        <input type="text" placeholder="受托人身份证号" class="form-control" />
-        <button class="btn btn-primary btn-sm" (click)="readIdCard('truster')">读受托人身份证</button>
+        <input type="text" placeholder="受托人姓名" class="form-control" [ngModel]="trusterIdcardData.Name"/>
+        <input type="text" placeholder="受托人身份证号" class="form-control" [ngModel]="trusterIdcardData.IdCardNo"/>
+        <button class="btn btn-primary btn-sm" (click)="readTrusterIdCard()">读受托人身份证</button>
       </div>
       <div class="input-group">
         <input type="text" placeholder="受托人手机" class="form-control" />
-        <input type="text" placeholder="受托人地址" class="form-control" />
-        <input type="text" placeholder="受托人身份有效期" class="form-control" />
+        <input type="text" placeholder="受托人地址" class="form-control" [ngModel]="trusterIdcardData.Address"/>
+        <input type="text" placeholder="受托人身份有效期" class="form-control" [ngModel]="trusterIdcardData.UseEnd"/>
       </div>
       <div class="float-right">
         <button class="btn btn-primary btn-lg" (click)="onSubmit()">下一步</button>
