@@ -1,0 +1,16 @@
+nb-card-body table {
+  width: 100% !important;
+  border-collapse: collapse;
+  tr {
+    width: 100%;
+    td {
+      //text-align: center;
+      padding: 10px;
+    }
+    th {
+      //text-align: center;
+      padding: 10px;
+    }
+  }
+}
+

@@ -1,0 +1,113 @@
+<nb-card>
+  <nb-card-header class="d-flex">
+    <div class="p-2 mr-auto"></div>
+    <div class="p2">
+      <!--<a [routerLink]="'edit'" class="btn btn-primary btn-sm">新增</a>-->
+      <button type="button" class="btn btn-sm btn-outline-success" (click)="toggle()" [ngClass]="{'active':showFilter}" ><i class="ion-funnel"></i></button>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <form [@visibilityChanged]="visibility" (submit)="codeList.reload()">
+      <div class="row">
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="卖家姓名"/>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="买家姓名"/>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="商户名称"/>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="车牌号码"/>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="流水号码"/>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="车辆厂牌"/>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <select class="form-control" name="summary">
+              <option value="">不限类型</option>
+              <option value="">轿车</option>
+              <option value="">客车</option>
+              <option value="">货车</option>
+              <option value="">低速车</option>
+              <option value="">专项作业车</option>
+              <option value="">特种车</option>
+              <option value="">摩托车</option>
+              <option value="">三轮汽车</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <select class="form-control" name="summary">
+              <option value="">不限状态</option>
+              <option value="">卖方未审核</option>
+              <option value="">双方已审核</option>
+              <option value="">卖方已审核</option>
+              <option value="">买家未录入</option>
+              <option value="">买方未审核</option>
+              <option value="">卖方已审核</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="起始日期"/>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="截止日期"/>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="成交日期"/>
+          </div>
+        </div>
+        <div class="col-sm-8"></div>
+        <div class="col-sm-2 form-group">
+          <button type="submit" class="btn btn btn-primary"><i class="ion-search"></i>查询</button>
+        </div>
+        <div class="col-sm-2 form-group">
+          <button type="reset" class="btn btn-outline-primary"><i class="ion-archive"></i>导出</button>
+        </div>
+      </div>
+    </form>
+    <ngx-table #codeList [url]="'/rest/sys/codemap/pager'" [columns]="columns" [filter]="filter"></ngx-table>
+  </nb-card-body>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-sm-2 form-group"></div>
+      <div class="col-sm-2 form-group">
+        <button type="submit" class="btn btn btn-primary">批量出库</button>
+      </div>
+      <div class="col-sm-2 form-group">
+        <button type="reset" class="btn btn-primary">批量入库审核</button>
+      </div>
+      <div class="col-sm-2 form-group">
+        <button type="submit" class="btn btn btn-primary">批量出库审核</button>
+      </div>
+      <div class="col-sm-2 form-group">
+        <button type="reset" class="btn btn-primary" (click)="goBack()">返回</button>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
