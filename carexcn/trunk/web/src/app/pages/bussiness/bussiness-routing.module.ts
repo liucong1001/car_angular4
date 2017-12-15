@@ -10,8 +10,13 @@ import {Recording4Component} from './prejudication/recording4/recording4.compone
 import {RecordingLastComponent} from './prejudication/recording-last/recording-last.component';
 import {RecordingContinueComponent} from './prejudication/recording-continue/recording-continue.component';
 import {JudicationPhotoComponent} from './prejudication/judication-photo/judication-photo.component';
+import {UiExampleComponent} from './ui-example/ui-example.component';
 
 const routes: Routes = [
+  {
+    path: 'example',
+    component: UiExampleComponent,
+  },
   {
     path: 'prejudication',
     component: PrejudicationComponent,

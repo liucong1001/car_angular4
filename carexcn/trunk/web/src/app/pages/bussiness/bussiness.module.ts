@@ -16,6 +16,7 @@ import {CarDetailComponent} from './prejudication/recording-continue/car-detail/
 import {ThemeModule} from '../../@theme/theme.module';
 import {JudicationPhotoComponent} from './prejudication/judication-photo/judication-photo.component';
 import {UiModule} from '../../@core/ui/ui.module';
+import { UiExampleComponent } from './ui-example/ui-example.component';
 
 @NgModule({
   imports: [
@@ -37,6 +38,7 @@ import {UiModule} from '../../@core/ui/ui.module';
     CarListComponent,
     CarDetailComponent,
     JudicationPhotoComponent,
+    UiExampleComponent,
   ],
 })
 export class BussinessModule {

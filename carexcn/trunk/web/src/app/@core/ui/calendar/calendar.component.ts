@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'ngx-ys-calendar',
@@ -14,6 +14,8 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
  * TODO: 在做相应功能时一一定制
  */
 export class CalendarComponent implements OnInit {
+  @Input() placeholder;
+  @Output('_selectValue') private _calendarValue = new EventEmitter();
   /**
    * 本地化
    */
@@ -37,5 +39,7 @@ export class CalendarComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  _onSelect($event) {
+    this._calendarValue.emit($event);
+  }
 }
