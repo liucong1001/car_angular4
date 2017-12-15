@@ -1,3 +1,114 @@
-<p>
-  appendix-query works!
-</p>
+<nb-card>
+  <nb-card-header class="d-flex">
+    <div class="p-2 mr-auto">附件查询</div>
+    <div class="p2">
+      <!--<a [routerLink]="'edit'" class="btn btn-primary btn-sm">新增</a>-->
+      <button type="button" class="btn btn-sm btn-outline-success" (click)="toggle()" [ngClass]="{'active':showFilter}" ><i class="ion-funnel"></i></button>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <form [@visibilityChanged]="visibility" (submit)="codeList.reload()">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="流水号(模糊匹配)"/>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="车牌号"/>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group form-group-sm">
+            <select class="form-control" name="summary">
+              <option value="">开票状态</option>
+              <option value="">已开票</option>
+              <option value="">未开票</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-2 form-group">
+          <button type="submit" class="btn btn btn-primary"><i class="ion-search"></i>查询</button>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="成交起始日期"/>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="成交截止日期"/>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="入库审核起始日期"/>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="入库审核截止日期"/>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="成交日期"/>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="入库操作员"/>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="出库操作员"/>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="入库审核员"/>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="出库审核员"/>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="商户编号"/>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="商户名称"/>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group form-group-sm">
+            <select class="form-control" name="summary">
+              <option value="">卖家</option>
+              <option value="">卖家受托人</option>
+              <option value="">买家</option>
+              <option value="">买家受托人</option>
+              <option value="">车辆</option>
+              <option value="">公证书</option>
+              <option value="">增值税发票</option>
+              <option value="">其他</option>
+            </select>
+          </div>
+        </div>
+        <!--<div class="col-sm-8"></div>
+        <div class="col-sm-2 form-group">
+          <button type="submit" class="btn btn btn-primary"><i class="ion-search"></i>查询</button>
+        </div>
+        <div class="col-sm-2 form-group">
+          <button type="reset" class="btn btn-outline-primary" >导出</button>
+        </div>-->
+      </div>
+    </form>
+    <ngx-table #codeList [url]="'/rest/sys/codemap/pager'" [columns]="columns" [filter]="filter"></ngx-table>
+  </nb-card-body>
+</nb-card>

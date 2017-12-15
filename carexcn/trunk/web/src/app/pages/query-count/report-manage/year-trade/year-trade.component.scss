@@ -14,27 +14,8 @@ nb-card-body table {
     }
   }
 };
-.right {
-  float: right;
-}
 .reader {
   width: 40% !important;
-}
-h3 {
-  text-align: center;
-}
-.time-area {
-  text-align: center;
-}
-.height {
-  height: 10px;
-}
-.span-padding {
-  height: 100%;
-  span {
-    display: inline-block;
-    padding: 1rem;
-  }
 }
 /*nb-card-body {
   position: relative;
@@ -46,3 +27,27 @@ h3 {
     }
   }
 }*/
+.input-custom {
+  display: inline-block !important;
+  width: 60% !important;
+}
+.form-group span {
+  display: inline-block;
+  padding: 1rem;
+}
+.span-padding select {
+  display: inline-block !important;
+  width: 40% !important;
+}
+h3 {
+  text-align: center;
+}
+.time-area {
+  text-align: center;
+}
+.height {
+  height: 10px;
+}
+form {
+  overflow: hidden;
+}

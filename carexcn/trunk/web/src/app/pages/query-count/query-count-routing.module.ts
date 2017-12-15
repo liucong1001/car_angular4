@@ -8,6 +8,12 @@ import {TradesQueryComponent} from './trades-query/trades-query.component';
 import {ReportManageComponent} from './report-manage/report-manage.component';
 import {AreaQueryComponent} from './area-query/area-query.component';
 import {AppendixQueryComponent} from './appendix-query/appendix-query.component';
+import {MonthTradeComponent} from './report-manage/month-trade/month-trade.component';
+import {SalesRankComponent} from './report-manage/sales-rank/sales-rank.component';
+import {YearTradeComponent} from './report-manage/year-trade/year-trade.component';
+import {DayTradeComponent} from './report-manage/day-trade/day-trade.component';
+import {TradeListComponent} from './report-manage/trade-list/trade-list.component';
+import {VehicleDaytradeComponent} from './report-manage/vehicle-daytrade/vehicle-daytrade.component';
 
 const routes: Routes = [{
   path: '',
@@ -17,6 +23,12 @@ const routes: Routes = [{
     {path: 'trades-query', component: TradesQueryComponent},
     {path: 'month-count', component: MonthCountComponent},
     {path: 'report-manage', component: ReportManageComponent},
+    {path: 'report-manage/sales-rank', component: SalesRankComponent},
+    {path: 'report-manage/month-trade', component: MonthTradeComponent},
+    {path: 'report-manage/trade-list', component: TradeListComponent},
+    {path: 'report-manage/year-trade', component: YearTradeComponent},
+    {path: 'report-manage/day-trade', component: DayTradeComponent},
+    {path: 'report-manage/vehicle-daytrade', component: VehicleDaytradeComponent},
     {path: 'performance-check', component: PerformanceCheckComponent},
     {path: 'appendix-query', component: AppendixQueryComponent},
     {path: 'area-query', component: AreaQueryComponent},
@@ -37,5 +49,11 @@ export const routedComponents = [
   PerformanceCheckComponent,
   AppendixQueryComponent,
   AreaQueryComponent,
+  SalesRankComponent,
+  MonthTradeComponent,
+  TradeListComponent,
+  YearTradeComponent,
+  DayTradeComponent,
+  VehicleDaytradeComponent,
 ];
 

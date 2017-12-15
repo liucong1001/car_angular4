@@ -1,3 +1,72 @@
-<p>
-  performance-check works!
-</p>
+<nb-card xmlns="http://www.w3.org/1999/html">
+  <nb-card-header class="d-flex">
+    <div class="p-2 mr-auto">绩效考核</div>
+    <div class="p2">
+      <!--<a [routerLink]="'edit'" class="btn btn-primary btn-sm">新增</a>-->
+      <button type="button" class="btn btn-sm btn-outline-success" (click)="toggle(visibility)" [ngClass]="{'active':showFilter}" ><i class="ion-funnel"></i></button>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <form [@visibilityChanged]="visibility" (submit)="codeList.reload()">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="time.start"  name="start" type="text" placeholder="选择报表开始时间"/>
+          </div>
+        </div>
+        <div class="col-sm-1">
+          <div class="form-group form-group-sm span-padding">
+            <span>至</span>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group form-group-sm">
+            <input class="form-control" name="end" [(ngModel)]="time.end" type="text" placeholder="选择报表结束时间"/>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <button type="submit" class="btn btn btn-primary btn-block"><i class="ion-search"></i>查询</button>
+        </div>
+        <div class="col-sm-2">
+          <button type="reset" class="btn btn-outline-primary btn-block"><i class="ion-archive"></i>导出</button>
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+  <nb-card-body>
+    <h3>员工KPI考核表</h3>
+    <div class="time-area">
+      <span>{{time.start}}</span>
+      <span>至</span>
+      <span>{{time.end}}</span>
+    </div>
+    <div class="height"></div>
+    <table border="1">
+      <tr>
+        <th rowspan="2">员工姓名</th>
+        <th colspan="8">绩效统计（单位：笔）</th>
+      </tr>
+      <tr>
+        <th>卖家录入</th>
+        <th>卖家录入</th>
+        <th>卖家审核</th>
+        <th>买家审核</th>
+        <th>商户录入</th>
+        <th>联系人录入</th>
+        <th>商贩录入</th>
+        <th>个人合计</th>
+      </tr>
+      <tr>
+        <th>总计</th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+  </nb-card-body>
+</nb-card>

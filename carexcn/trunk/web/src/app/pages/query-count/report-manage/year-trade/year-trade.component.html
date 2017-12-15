@@ -1,0 +1,69 @@
+<nb-card>
+  <nb-card-header class="d-flex">
+    <div class="p-2 mr-auto">年交易情况汇总表报表</div>
+    <div class="p2">
+      <!--<a [routerLink]="'edit'" class="btn btn-primary btn-sm">新增</a>-->
+      <button type="button" class="btn btn-sm btn-outline-success" (click)="toggle(visibility)" [ngClass]="{'active':showFilter}" ><i class="ion-funnel"></i></button>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <form [@visibilityChanged]="visibility" (submit)="codeList.reload()">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="form-group form-group-sm">
+            <span>报表年份：</span>
+            <input class="form-control input-custom" name="years" [(ngModel)]="time.years" type="text" placeholder=""/>
+          </div>
+        </div>
+        <div class="col-sm-2 form-group">
+          <button type="submit" class="btn btn btn-primary"><i class="ion-search"></i>查询</button>
+        </div>
+        <div class="col-sm-2 form-group">
+          <button type="reset" class="btn btn-outline-primary" ><i class="ion-archive"></i>导出</button>
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+  <nb-card-body>
+    <h3>年交易情况汇总表报表</h3>
+    <div class="time-area">
+      <span>{{time.years}}</span>
+      <span>年</span>
+    </div>
+    <div class="height"></div>
+    <table border="1">
+      <tr>
+        <th rowspan="2">月份</th>
+        <th rowspan="2">合计</th>
+        <th colspan="4">交易额</th>
+        <th colspan="5">手续费</th>
+        <th colspan="2">按转移登记性质</th>
+      </tr>
+      <tr>
+        <td>轿车</td>
+        <td>客车</td>
+        <td>货车</td>
+        <td>其他</td>
+        <td>1年以内</td>
+        <td>1-3年</td>
+        <td>3-5年</td>
+        <td>5-10年</td>
+        <td>10年以上</td>
+        <td>本地过户</td>
+        <td>转籍交易</td>
+      </tr>
+      <tr>
+      </tr>
+    </table>
+  </nb-card-body>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-sm-5"></div>
+      <div class="col-sm-2">
+        <button type="submit" class="btn btn-primary" (click)="goBack()">返回</button>
+      </div>
+      <div class="col-sm-5"></div>
+    </div>
+  </nb-card-body>
+</nb-card>
+
