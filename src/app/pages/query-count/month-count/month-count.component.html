@@ -1,3 +1,61 @@
-<p>
-  month-count works!
-</p>
+<nb-card>
+  <nb-card-header class="d-flex">
+    <div class="p-2 mr-auto">月结统计</div>
+    <div class="p2">
+      <!--<a [routerLink]="'edit'" class="btn btn-primary btn-sm">新增</a>-->
+      <button type="button" class="btn btn-sm btn-outline-success" (click)="toggle()" [ngClass]="{'active':showFilter}" ><i class="ion-funnel"></i></button>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <form [@visibilityChanged]="visibility" (submit)="codeList.reload()">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="选择统计开始时间"/>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="选择统计结束时间"/>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="选择发票日期查询"/>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group form-group-sm span-padding">
+            <span>发票状态</span>
+            <select class="form-control" name="summary">
+              <option value="">所有</option>
+              <option value="">正常</option>
+              <option value="">作废</option>
+              <option value="">退票</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group form-group-sm span-padding">
+            <span>开票类型</span>
+            <select class="form-control" name="summary">
+              <option value="">所有</option>
+              <option value="">开票</option>
+              <option value="">重开</option>
+              <option value="">收费换票</option>
+              <option value="">免费换票</option>
+              <option value="">仅作废</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-2 form-group">
+          <button type="submit" class="btn btn btn-primary btn-block"><i class="ion-search"></i>查询</button>
+        </div>
+        <div class="col-sm-2 form-group">
+          <button type="reset" class="btn btn-outline-primary btn-block" >结算</button>
+        </div>
+      </div>
+    </form>
+    <ngx-table #codeList [url]="'/rest/sys/codemap/pager'" [columns]="columns" [filter]="filter"></ngx-table>
+  </nb-card-body>
+</nb-card>
