@@ -5,6 +5,7 @@
     </div>
   </nb-card-header>
   <nb-card-body>
+    <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source"></ngx-ys-camera>
     <div class="input-group">
       <input type="text" placeholder="车牌号" class="form-control" [(ngModel)]="car.lsnum"/>
       <input type="text" placeholder="车架号" class="form-control" />
@@ -34,18 +35,6 @@
       <input type="text" placeholder="年审有效期" class="form-control" />
       <input type="text" placeholder="保险有效期" class="form-control" />
       <input type="text" placeholder="路桥有效期" class="form-control" />
-    </div>
-    <div class="camera col-sm-6 float-left" [style.background-image]="'url(assets/images/camera1.jpg)'">
-      <span>行驶证正本</span>
-    </div>
-    <div class="camera col-sm-6 float-left" [style.background-image]="'url(assets/images/camera2.jpg)'">
-      <span>行驶证副本</span>
-    </div>
-    <div class="camera col-sm-6 float-left" [style.background-image]="'url(assets/images/camera3.jpg)'">
-      <span>登记证书首页</span>
-    </div>
-    <div class="camera col-sm-6 float-left" [style.background-image]="'url(assets/images/camera4.jpg)'">
-      <span>登记证书末页</span>
     </div>
     <div class="float-right">
       <button class="btn btn-primary btn-lg" (click)="onSubmit()">保存</button> &nbsp;
