@@ -7,12 +7,12 @@ import {TextCell} from '../../../@core/ui/table/cell.text.component';
   selector: 'ngx-appendix-query',
   templateUrl: './appendix-query.component.html',
   styleUrls: ['./appendix-query.component.scss'],
-  styles: [`
+  /*styles: [`
     form {
       overflow: hidden;
     }
   `,
-  ],
+  ],*/
   // 定义动画
   animations: [
     trigger('visibilityChanged', [

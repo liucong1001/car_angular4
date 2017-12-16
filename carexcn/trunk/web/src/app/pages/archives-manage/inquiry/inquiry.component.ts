@@ -8,12 +8,12 @@ import {Menu, MenuCell} from '../../../@core/ui/table/cell.menu.component';
   selector: 'ngx-inquiry',
   templateUrl: './inquiry.component.html',
   styleUrls: ['./inquiry.component.scss'],
-  styles: [`
+  /*styles: [`
     form {
       overflow: hidden;
     }
   `,
-  ],
+  ],*/
   // 定义动画
   animations: [
     trigger('visibilityChanged', [

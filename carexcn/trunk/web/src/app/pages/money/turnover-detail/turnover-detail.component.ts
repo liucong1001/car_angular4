@@ -7,12 +7,12 @@ import {TextCell} from '../../../@core/ui/table/cell.text.component';
   selector: 'ngx-turnover-detail',
   templateUrl: './turnover-detail.component.html',
   styleUrls: ['./turnover-detail.component.scss'],
-  styles: [`
+  /*styles: [`
         form{
           overflow: hidden;
         }
     `,
-  ],
+  ],*/
   // 定义动画
   animations: [
     trigger('visibilityChanged', [

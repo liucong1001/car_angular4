@@ -12,12 +12,14 @@
         <div class="col-sm-4">
           <div class="form-group form-group-sm">
             <span>报表时间：</span>
-            <input class="form-control input-custom" name="years" [(ngModel)]="time.start" type="text" placeholder=""/>
+            <ngx-ys-calendar class="input-custom"></ngx-ys-calendar>
+            <!--<input class="form-control input-custom" name="years" [(ngModel)]="time.start" type="text" placeholder=""/>-->
           </div>
         </div>
         <div class="col-sm-4">
           <div class="form-group form-group-sm">
-            <input class="form-control input-custom" name="years" [(ngModel)]="time.end" type="text" placeholder=""/>
+            <ngx-ys-calendar class="input-custom"></ngx-ys-calendar>
+            <!--<input class="form-control input-custom" name="years" [(ngModel)]="time.end" type="text" placeholder=""/>-->
           </div>
         </div>
         <div class="col-sm-2 form-group">
@@ -28,33 +30,34 @@
         </div>
       </div>
     </form>
-  </nb-card-body>
-  <nb-card-body>
-    <h3>商户交易明细表</h3>
     <div class="height"></div>
-    <table border="1">
-      <tr>
-        <th rowspan="2">序号</th>
-        <th rowspan="2">编号</th>
-        <th rowspan="2">商户名称</th>
-        <th>交易量</th>
-        <th>预审量</th>
-        <th>作废发票</th>
-        <th>交易额</th>
-        <th>手续费</th>
-        <th>其他费用</th>
-      </tr>
-      <tr>
-        <td>（辆）</td>
-        <td>（辆）</td>
-        <td>（张）</td>
-        <td>（万元）</td>
-        <td>（元）</td>
-        <td>（元）</td>
-      </tr>
-      <tr>
-      </tr>
-    </table>
+    <div class="padding">
+      <h3>商户交易明细表</h3>
+      <div class="height"></div>
+      <table border="1">
+        <tr>
+          <th rowspan="2">序号</th>
+          <th rowspan="2">编号</th>
+          <th rowspan="2">商户名称</th>
+          <th>交易量</th>
+          <th>预审量</th>
+          <th>作废发票</th>
+          <th>交易额</th>
+          <th>手续费</th>
+          <th>其他费用</th>
+        </tr>
+        <tr>
+          <td>（辆）</td>
+          <td>（辆）</td>
+          <td>（张）</td>
+          <td>（万元）</td>
+          <td>（元）</td>
+          <td>（元）</td>
+        </tr>
+        <tr>
+        </tr>
+      </table>
+    </div>
   </nb-card-body>
   <nb-card-body>
     <div class="row">
