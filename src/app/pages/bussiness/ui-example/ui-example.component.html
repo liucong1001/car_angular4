@@ -11,7 +11,7 @@
       <ngx-ys-calendar [placeholder]="'某个月'" [dateFormat]="'yy-mm'" (_calendarValue)="getYsCalendarValue2($event)"></ngx-ys-calendar>
       <button class="btn btn-primary btn-sm" (click)="showYsCalendarValue2()">只选月份</button>
     </div>
-    <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source"></ngx-ys-camera>
+    <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)"></ngx-ys-camera>
     <div class="input-group">
       <input type="text" placeholder="车牌号" class="form-control" [(ngModel)]="car.lsnum"/>
       <input type="text" placeholder="车架号" class="form-control" />
