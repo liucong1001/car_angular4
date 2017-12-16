@@ -25,7 +25,6 @@ export class ScannerService {
         } else {
           reject(plugin + ' - ' + method + ' - 无返回,无数据,操作失败');
         }
-        resolve(JSON.parse(result));
       }, function (error) {
         reject(error);
         console.log(error_message, error);

@@ -4,12 +4,13 @@ import {DeviceService} from '../../../@core/device/device.service';
 import {CarModel} from '../../../@core/model/bussiness/car.model';
 import {IdcardModel} from '../../../@core/model/bussiness/idcard.model';
 import {IdcardService} from '../../../@core/device/idcard.service';
+import {IccardService} from '../../../@core/device/iccard.service';
 
 @Component({
   selector: 'ngx-ui-example',
   templateUrl: './ui-example.component.html',
   styleUrls: ['./ui-example.component.scss'],
-  providers: [DeviceService, IdcardService],
+  providers: [DeviceService, IdcardService, IccardService],
 })
 export class UiExampleComponent implements OnInit {
   private current_calendar_value: string;
@@ -23,7 +24,7 @@ export class UiExampleComponent implements OnInit {
     title: '测试图二',
     source: 'assets/images/camera2.jpg',
   }];
-  constructor(private message: MessageService, private idcard: IdcardService) { }
+  constructor(private message: MessageService, private idcard: IdcardService, private iccard: IccardService) { }
 
   ngOnInit() {
   }
@@ -74,7 +75,34 @@ export class UiExampleComponent implements OnInit {
       }
     });
   }
-  readCard() {
 
+  /**
+   * 设置文本
+   */
+  setIccardText(iccardText) {
+    const self = this;
+    this.iccard.writerInit('0001', '云石科技', 18).then((res) => {
+      if (true === res) {
+        this.message.info('IC卡操作', '设备已连接！');
+        this.iccard.showText(iccardText);
+      } else {
+        this.message.info('IC卡操作', '设备连接失败！');
+      }
+    });
+  }
+
+  /**
+   * 读取IC卡信息
+   */
+  readIcCard() {
+    const self = this;
+    this.iccard.writerInit('0001', '云石科技', 18).then((res) => {
+      if (true === res) {
+        this.message.info('IC卡操作', '设备已连接！');
+        this.iccard.showText('你好！  hahha哈哈哈哈!');
+      } else {
+        this.message.info('IC卡操作', '设备连接失败！');
+      }
+    });
   }
 }

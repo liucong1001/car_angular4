@@ -23,11 +23,10 @@ export class IccardService {
     return new Promise(function(resolve, reject){
       self.device.sendCommond(plugin, method, args).then(function (result) {
         if (result) {
-          resolve(JSON.parse((result)));
+          resolve(result);
         } else {
           reject(plugin + ' - ' + method + ' - 无返回,无数据,操作失败');
         }
-        resolve(JSON.parse(result));
       }, function (error) {
         reject(error);
         console.log(error_message, error);
@@ -37,9 +36,12 @@ export class IccardService {
 
   /**
    * IC卡初始化操作
+   * @param market
+   * @param maker
+   * @param txnSlot
    * @returns {Promise<any>}
    */
-  writerInit(market, maker, txnSlot): Promise<any> {
+  writerInit(market: string, maker: string, txnSlot: number): Promise<any> {
     return this.doCommond('ICCard', 'Init', '初始化失败', {market, maker, txnSlot});
   }
 
@@ -71,6 +73,7 @@ export class IccardService {
    * @param index 1、请插卡 2、请刷卡 3、读卡错误 4、请输入密码 5、密码错误
    *  6、操作成功 7、操作超时 8、操作失败 9、请取回卡
    *  10、请重新输入密码 11、请再次输入密码 12、请输入新密码 13、请输入旧密码 14、请确认新密码
+   * @returns {Promise<any>}
    */
   playSound(index): Promise<any> {
     return this.doCommond('ICCard', 'PlaySound', '播放语音异常', index);
