@@ -12,7 +12,7 @@
         <div class="col-sm-4">
           <div class="form-group form-group-sm">
             <span>报表时间：</span>
-            <input class="form-control input-custom" name="years" [(ngModel)]="time.years" type="text" placeholder=""/>
+            <ngx-ys-calendar class="input-custom" ></ngx-ys-calendar>
           </div>
         </div>
         <div class="col-sm-2 form-group">
@@ -23,29 +23,30 @@
         </div>
       </div>
     </form>
-  </nb-card-body>
-  <nb-card-body>
-    <h3>月交易情况汇总表</h3>
-    <div class="time-area">
-      <span>{{time.years}}</span>
-      <span>年</span>
-    </div>
     <div class="height"></div>
-    <table border="1">
-      <tr>
-        <th rowspan="2">月份</th>
-        <th rowspan="2">交易量</th>
-        <th rowspan="2">交易额<br>（万元）</th>
-        <th colspan="3">手续费<br>（元）</th>
-      </tr>
-      <tr>
-        <td>公司</td>
-        <td>市场</td>
-        <td>合计</td>
-      </tr>
-      <tr>
-      </tr>
-    </table>
+    <div class="padding">
+      <h3>月交易情况汇总表</h3>
+      <div class="time-area">
+        <span>{{time.years}}</span>
+        <span>年</span>
+      </div>
+      <div class="height"></div>
+      <table border="1">
+        <tr>
+          <th rowspan="2">月份</th>
+          <th rowspan="2">交易量</th>
+          <th rowspan="2">交易额<br>（万元）</th>
+          <th colspan="3">手续费<br>（元）</th>
+        </tr>
+        <tr>
+          <td>公司</td>
+          <td>市场</td>
+          <td>合计</td>
+        </tr>
+        <tr>
+        </tr>
+      </table>
+    </div>
   </nb-card-body>
   <nb-card-body>
     <div class="row">

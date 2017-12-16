@@ -11,7 +11,7 @@
       <div class="row">
         <div class="col-sm-2">
           <div class="form-group form-group-sm">
-            <select class="form-control" name="summary">
+            <select class="form-control" name="type" [(ngModel)]="time.type">
               <option value="">汇总方式</option>
               <option value="1">日</option>
               <option value="2">月</option>
@@ -19,24 +19,24 @@
             </select>
           </div>
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-2" *ngIf="time.type == '1'">
           <div class="form-group form-group-sm">
-            <input class="form-control" name="code" type="text" placeholder="日"/>
+            <ngx-ys-calendar [placeholder]="'日'"></ngx-ys-calendar>
           </div>
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-2"  *ngIf="time.type == '2'">
           <div class="form-group form-group-sm">
-            <input class="form-control" name="code" type="text" placeholder="月"/>
+            <ngx-ys-calendar [placeholder]="'月'"></ngx-ys-calendar>
           </div>
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-2"  *ngIf="time.type == '3'">
           <div class="form-group form-group-sm">
-            <input class="form-control" name="code" type="text" placeholder="开始时间"/>
+            <ngx-ys-calendar [placeholder]="'开始时间'"></ngx-ys-calendar>
           </div>
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-2"  *ngIf="time.type == '3'">
           <div class="form-group form-group-sm">
-            <input class="form-control" name="code" type="text" placeholder="结束时间"/>
+            <ngx-ys-calendar [placeholder]="'结束时间'"></ngx-ys-calendar>
           </div>
         </div>
         <div class="col-sm-2">
@@ -47,16 +47,17 @@
         </div>
       </div>
     </form>
-  </nb-card-body>
-  <nb-card-body>
-    <table border="1">
-      <tr>
-        <th>项目名称</th>
-        <th>项目编号</th>
-        <th>返现金额</th>
-        <th>车辆台数(/台)</th>
-      </tr>
-      <tr></tr>
-    </table>
+    <div class="height"></div>
+    <div>
+      <table border="1">
+        <tr>
+          <th>项目名称</th>
+          <th>项目编号</th>
+          <th>返现金额</th>
+          <th>车辆台数(/台)</th>
+        </tr>
+        <tr></tr>
+      </table>
+    </div>
   </nb-card-body>
 </nb-card>

@@ -5,9 +5,9 @@
 
 @include nb-install-component() {
 
-  form {
+  /*form {
     overflow: hidden;
-  }
+  }*/
   nb-tabset {
     height: 100%;
     display: flex;

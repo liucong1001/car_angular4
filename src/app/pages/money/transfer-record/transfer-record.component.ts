@@ -8,12 +8,12 @@ import {Menu, MenuCell} from '../../../@core/ui/table/cell.menu.component';
   selector: 'ngx-transfer-record',
   templateUrl: './transfer-record.component.html',
   styleUrls: ['./transfer-record.component.scss'],
-  styles: [`
+  /*styles: [`
         form{
           overflow: hidden;
         }
     `,
-  ],
+  ],*/
   // 定义动画
   animations: [
     trigger('visibilityChanged', [

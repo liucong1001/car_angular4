@@ -12,13 +12,13 @@
         <div class="col-sm-4">
           <div class="form-group form-group-sm">
             <span>起始日期：</span>
-            <input class="form-control input-custom" name="years" [(ngModel)]="time.start" type="text" placeholder=""/>
+            <ngx-ys-calendar class="input-custom" [placeholder]="'起始日期'"></ngx-ys-calendar>
           </div>
         </div>
         <div class="col-sm-4">
           <div class="form-group form-group-sm">
             <span>截止日期：</span>
-            <input class="form-control input-custom" name="years" [(ngModel)]="time.end" type="text" placeholder=""/>
+            <ngx-ys-calendar class="input-custom" [placeholder]="'截止日期'"></ngx-ys-calendar>
           </div>
         </div>
         <div class="col-sm-2 form-group">
@@ -29,22 +29,23 @@
         </div>
       </div>
     </form>
-  </nb-card-body>
-  <nb-card-body>
-    <h3>汉口北当日金额对账表车管综合业务</h3>
     <div class="height"></div>
-    <table border="1">
-      <tr>
-        <th>类别</th>
-        <th>数量</th>
-        <th>金额一</th>
-        <th>金额二</th>
-        <th>金额三</th>
-        <th>总额</th>
-      </tr>
-      <tr>
-      </tr>
-    </table>
+    <div class="padding">
+      <h3>汉口北当日金额对账表车管综合业务</h3>
+      <div class="height"></div>
+      <table border="1">
+        <tr>
+          <th>类别</th>
+          <th>数量</th>
+          <th>金额一</th>
+          <th>金额二</th>
+          <th>金额三</th>
+          <th>总额</th>
+        </tr>
+        <tr>
+        </tr>
+      </table>
+    </div>
   </nb-card-body>
   <nb-card-body>
     <div class="row">

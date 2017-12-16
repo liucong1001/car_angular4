@@ -9,12 +9,12 @@ import {Menu, MenuCell} from '../../../@core/ui/table/cell.menu.component';
   selector: 'ngx-auction-manage',
   templateUrl: './auction-manage.component.html',
   styleUrls: ['./auction-manage.component.scss'],
-  styles: [`
+ /* styles: [`
     form {
       overflow: hidden;
     }
   `,
-  ],
+  ],*/
   // 定义动画
   animations: [
     trigger('visibilityChanged', [

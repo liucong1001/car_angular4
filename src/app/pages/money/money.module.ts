@@ -9,11 +9,6 @@ import {ThemeModule} from '../../@theme/theme.module';
 import {UiTableModule} from '../../@core/ui/table/table.module';
 import {HttpModule} from '@angular/http';
 import {RouterModule} from '@angular/router';
-import { TransferRecordComponent } from './transfer-record/transfer-record.component';
-import { PaymentDetailComponent } from './payment-detail/payment-detail.component';
-import { TurnoverDetailComponent } from './turnover-detail/turnover-detail.component';
-import { PrintInvoiceComponent } from './print-invoice/print-invoice.component';
-import {CheckComponent} from './order-manage/check.component';
 import {UiModule} from '../../@core/ui/ui.module';
 
 @NgModule({

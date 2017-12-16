@@ -12,13 +12,13 @@
         <div class="col-sm-4">
           <div class="form-group form-group-sm">
             <span>起始日期：</span>
-            <input class="form-control input-custom" name="code" type="text" placeholder="选择报表开始时间"/>
+            <ngx-ys-calendar class="input-custom" [placeholder]="'选择报表开始时间'"></ngx-ys-calendar>
           </div>
         </div>
         <div class="col-sm-4">
           <div class="form-group form-group-sm">
             <span>截止日期：</span>
-            <input class="form-control input-custom" name="code" type="text" placeholder="选择报表截止时间"/>
+            <ngx-ys-calendar class="input-custom" [placeholder]="'选择报表截止时间'"></ngx-ys-calendar>
           </div>
         </div>
         <div class="col-sm-3">
@@ -40,78 +40,81 @@
         </div>
       </div>
     </form>
-  </nb-card-body>
-  <nb-card-body>
-    <h3>二手车销售排行</h3>
-    <div class="time-area">
-      <span>车种：轿车</span>
-      <span></span>
+    <div class="height"></div>
+    <div class="margin-top">
+      <h3>二手车销售排行</h3>
+      <div class="time-area">
+        <span>车种：轿车</span>
+        <span></span>
+      </div>
+      <div class="height"></div>
+      <table border="1">
+        <tr>
+          <th rowspan="2">排行</th>
+          <th rowspan="2">厂牌型号</th>
+          <th>销售量</th>
+          <th>最高价</th>
+          <th>最低价</th>
+          <th>平均价</th>
+        </tr>
+        <tr>
+          <td>（台）</td>
+          <td>（元）</td>
+          <td>（元）</td>
+          <td>（元）</td>
+        </tr>
+      </table>
     </div>
     <div class="height"></div>
-    <table border="1">
-      <tr>
-        <th rowspan="2">排行</th>
-        <th rowspan="2">厂牌型号</th>
-        <th>销售量</th>
-        <th>最高价</th>
-        <th>最低价</th>
-        <th>平均价</th>
-      </tr>
-      <tr>
-        <td>（台）</td>
-        <td>（元）</td>
-        <td>（元）</td>
-        <td>（元）</td>
-      </tr>
-    </table>
-  </nb-card-body>
-  <nb-card-body>
-    <h3>二手车销售排行</h3>
-    <div class="time-area">
-      <span>车种：客车</span>
-      <span></span>
+    <div class="margin-top">
+      <h3>二手车销售排行</h3>
+      <div class="time-area">
+        <span>车种：客车</span>
+        <span></span>
+      </div>
+      <div class="height"></div>
+      <table border="1">
+        <tr>
+          <th rowspan="2">排行</th>
+          <th rowspan="2">厂牌型号</th>
+          <th>销售量</th>
+          <th>最高价</th>
+          <th>最低价</th>
+          <th>平均价</th>
+        </tr>
+        <tr>
+          <td>（台）</td>
+          <td>（元）</td>
+          <td>（元）</td>
+          <td>（元）</td>
+        </tr>
+      </table>
     </div>
     <div class="height"></div>
-    <table border="1">
-      <tr>
-        <th rowspan="2">排行</th>
-        <th rowspan="2">厂牌型号</th>
-        <th>销售量</th>
-        <th>最高价</th>
-        <th>最低价</th>
-        <th>平均价</th>
-      </tr>
-      <tr>
-        <td>（台）</td>
-        <td>（元）</td>
-        <td>（元）</td>
-        <td>（元）</td>
-      </tr>
-    </table>
-  </nb-card-body>
-  <nb-card-body>
-    <h3>二手车销售排行</h3>
-    <div class="time-area">
-      <span>车种：货车</span>
-      <span></span>
+    <div class="margin-top">
+      <h3>二手车销售排行</h3>
+      <div class="time-area">
+        <span>车种：货车</span>
+        <span></span>
+      </div>
+      <div class="height"></div>
+      <table border="1">
+        <tr>
+          <th rowspan="2">排行</th>
+          <th rowspan="2">厂牌型号</th>
+          <th>销售量</th>
+          <th>最高价</th>
+          <th>最低价</th>
+          <th>平均价</th>
+        </tr>
+        <tr>
+          <td>（台）</td>
+          <td>（元）</td>
+          <td>（元）</td>
+          <td>（元）</td>
+        </tr>
+      </table>
     </div>
-    <div class="height"></div>
-    <table border="1">
-      <tr>
-        <th rowspan="2">排行</th>
-        <th rowspan="2">厂牌型号</th>
-        <th>销售量</th>
-        <th>最高价</th>
-        <th>最低价</th>
-        <th>平均价</th>
-      </tr>
-      <tr>
-        <td>（台）</td>
-        <td>（元）</td>
-        <td>（元）</td>
-        <td>（元）</td>
-      </tr>
-    </table>
   </nb-card-body>
   <nb-card-body>
     <div class="row">

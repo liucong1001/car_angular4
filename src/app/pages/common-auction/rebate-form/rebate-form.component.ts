@@ -32,8 +32,11 @@ export class RebateFormComponent implements OnInit, OnChanges {
   }
   // 组件初始华
   ngOnInit(): void {
+    this.time = {type: ''};
   }
   // 列表搜索条件对象
   filter: any = {};
-
+  time: {
+    type: string;
+  };
 }

@@ -9,12 +9,12 @@ import {Router} from '@angular/router';
   selector: 'ngx-trade-query',
   templateUrl: './trade-query.component.html',
   styleUrls: ['./trade-query.component.scss'],
-  styles: [`
+  /*styles: [`
     form {
       overflow: hidden;
     }
   `,
-  ],
+  ],*/
   // 定义动画
   animations: [
     trigger('visibilityChanged', [
