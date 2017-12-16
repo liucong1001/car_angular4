@@ -18,8 +18,8 @@ import {CarService} from '../../../../@core/data/bussiness/car.service';
   providers: [CarService],
 })
 export class RecordingContinueComponent implements OnInit {
-  public test='';
-  public carData: CarModel;
+  public test= '';
+  public carData: CarModel = new CarModel();
   public carsData: CarModel[];
   constructor(private message: MessageService, private carService: CarService) {
     this.carService.getCar('1').then((res) => this.carData = res as CarModel);
