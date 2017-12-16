@@ -14,6 +14,7 @@ import { PaymentDetailComponent } from './payment-detail/payment-detail.componen
 import { TurnoverDetailComponent } from './turnover-detail/turnover-detail.component';
 import { PrintInvoiceComponent } from './print-invoice/print-invoice.component';
 import {CheckComponent} from './order-manage/check.component';
+import {UiModule} from '../../@core/ui/ui.module';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import {CheckComponent} from './order-manage/check.component';
     UiTableModule,
     HttpModule,
     RouterModule,
+    UiModule,
   ],
   declarations: [
     ...routedComponents,

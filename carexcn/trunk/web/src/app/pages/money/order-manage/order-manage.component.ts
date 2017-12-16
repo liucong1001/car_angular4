@@ -9,12 +9,12 @@ import {Router} from '@angular/router';
   selector: 'ngx-order-manage',
   templateUrl: './order-manage.component.html',
   styleUrls: ['./order-manage.component.scss'],
-  styles: [`
+  /*styles: [`
     form {
       overflow: hidden;
     }
   `,
-  ],
+  ],*/
   // 定义动画
   animations: [
     trigger('visibilityChanged', [
