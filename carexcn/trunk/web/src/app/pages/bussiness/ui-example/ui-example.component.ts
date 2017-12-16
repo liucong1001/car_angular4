@@ -56,6 +56,9 @@ export class UiExampleComponent implements OnInit {
   showYsCalendarValue2() {
     this.message.info('月份控件示例', '当前选择的月份是:' + this.current_calendar_value2);
   }
+  onChangeSource($event, photo) {
+    this.message.info(photo.title + ' 的新图片地址', $event);
+  }
   readCard() {
 
   }

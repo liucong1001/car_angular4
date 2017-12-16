@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MessageService} from '../../utils/message.service';
 import {WebcamService} from '../../device/webcam.service';
 
@@ -17,6 +17,7 @@ export class CameraComponent implements OnInit {
    */
   @Input() title;
   @Input() source;
+  @Output() _changeSource = new EventEmitter();
   private webcam_has_show = false;
 
   /**
@@ -54,6 +55,7 @@ export class CameraComponent implements OnInit {
     this.message.info('摄像头', '拍照并上传');
     this.webcam.snapshot(false, 'a', 'b').then((res) => {
       this.source = res.file[0];
+      this._changeSource.emit(res.file[0]);
     });
   }
   /**
@@ -62,5 +64,6 @@ export class CameraComponent implements OnInit {
    */
   onUploadComplete(source) {
     this.source = source;
+    this._changeSource.emit(source);
   }
 }
