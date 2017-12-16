@@ -12,6 +12,18 @@
       <button class="btn btn-primary btn-sm" (click)="showYsCalendarValue2()">只选月份</button>
     </div>
     <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)"></ngx-ys-camera>
+
+    <div class="input-group">
+      <input type="text" placeholder="姓名" class="form-control" [ngModel]="idcardData.Name"/>
+      <input type="text" placeholder="身份证号" class="form-control" [ngModel]="idcardData.IdCardNo"/>
+      <button class="btn btn-primary btn-sm" (click)="readIdCard()">读身份证</button>
+    </div>
+    <div class="input-group">
+      <input type="text" placeholder="手机" class="form-control" />
+      <input type="text" placeholder="地址" class="form-control" [ngModel]="idcardData.Address"/>
+      <input type="text" placeholder="身份有效期" class="form-control" [ngModel]="idcardData.UseEnd"/>
+    </div>
+
     <div class="input-group">
       <input type="text" placeholder="车牌号" class="form-control" [(ngModel)]="car.lsnum"/>
       <input type="text" placeholder="车架号" class="form-control" />

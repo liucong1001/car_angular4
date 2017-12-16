@@ -2,17 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import {MessageService} from '../../../@core/utils/message.service';
 import {DeviceService} from '../../../@core/device/device.service';
 import {CarModel} from '../../../@core/model/bussiness/car.model';
+import {IdcardModel} from '../../../@core/model/bussiness/idcard.model';
+import {IdcardService} from '../../../@core/device/idcard.service';
 
 @Component({
   selector: 'ngx-ui-example',
   templateUrl: './ui-example.component.html',
   styleUrls: ['./ui-example.component.scss'],
-  providers: [DeviceService],
+  providers: [DeviceService, IdcardService],
 })
 export class UiExampleComponent implements OnInit {
   private current_calendar_value: string;
   private current_calendar_value2: string;
   public car: CarModel = new CarModel();
+  public idcardData = new IdcardModel;
   photos: any[] = [{
     title: '测试图一',
     source: 'assets/images/camera1.jpg',
@@ -20,7 +23,7 @@ export class UiExampleComponent implements OnInit {
     title: '测试图二',
     source: 'assets/images/camera2.jpg',
   }];
-  constructor(private message: MessageService) { }
+  constructor(private message: MessageService, private idcard: IdcardService) { }
 
   ngOnInit() {
   }
@@ -58,6 +61,18 @@ export class UiExampleComponent implements OnInit {
   }
   onChangeSource($event, photo) {
     this.message.info(photo.title + ' 的新图片地址', $event);
+  }
+  /**
+   * 读取身份证信息
+   */
+  readIdCard() {
+    this.message.info('身份证', '读取卖方身份证');
+    const self = this;
+    this.idcard.prepare().then((res) => {
+      if (res) { // 初始化读卡器正常
+        self.idcard.read().then((idcardData) => this.idcardData = idcardData as IdcardModel);
+      }
+    });
   }
   readCard() {
 
