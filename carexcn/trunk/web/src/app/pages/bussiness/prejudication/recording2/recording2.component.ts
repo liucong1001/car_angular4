@@ -50,6 +50,7 @@ export class Recording2Component implements OnInit {
       }
     });
   }
+
   /**
    * 读取卖方身份证信息
    * @param {string} who 谁的身份证
@@ -57,9 +58,8 @@ export class Recording2Component implements OnInit {
   readTrusterIdCard() {
     this.message.info('身份证', '读取委托人身份证');
     const self = this;
-    this.idcard.prepare().then((res)=>{
-      console.log(res);
-      if(res){ // 初始化读卡器正常
+    this.idcard.prepare().then((res) => {
+      if (res) { // 初始化读卡器正常
         self.idcard.read().then((idcardData) => this.trusterIdcardData = idcardData as IdcardModel);
       }
     });
