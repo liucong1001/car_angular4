@@ -10,12 +10,12 @@ import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from 
  * 目前完成为基本可用
  * 编写完成了独立控件，适配Cosmic主题样式，可选择日期
  * 但估计后期还有很多更细的定制化功能
- * 比如选择时分秒，指定默认日期，制定提示文字，限制选中日期范围，获取时间值，获取多个时间等。。。
- * TODO: 在做相应功能时一一定制
  */
 export class CalendarComponent implements OnInit {
-  @Input() placeholder;
-  @Output('_selectValue') private _calendarValue = new EventEmitter();
+  @Input() placeholder = '日历';
+  @Input() dateFormat = 'yy-mm-dd';
+  @Input() defaultDate = '';
+  @Output() _calendarValue = new EventEmitter();
   /**
    * 本地化
    */
