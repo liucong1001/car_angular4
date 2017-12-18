@@ -2,6 +2,7 @@
  * Create by clh021@gmail.com On 2017.12.11
  */
 import {Injectable, isDevMode} from '@angular/core';
+import {MessageService} from '../utils/message.service';
 
 @Injectable()
 export class DeviceService {
@@ -17,13 +18,14 @@ export class DeviceService {
    * @type {string}
    */
   pre_api_url = location.protocol + '//' + location.host;
-
+  _message: MessageService;
   /**
    * 构造函数
    * 设备连接代理
    * 接口地址统一调度
    */
-  constructor() {
+  constructor(message: MessageService) {
+    this._message = message;
     this.conectAgent();
     if (isDevMode()) {
       this.pre_api_url = 'http://dongshenghuo.com/test.php';
@@ -62,7 +64,19 @@ export class DeviceService {
                 }
                 delete self.promiseMap[result.id];
               } else {
+                /**
+                 * 如果是初始化操作时为空，则抛出异常
+                 * =====================================clh021@gmail.com ===== BEGIN
+                 */
+                if ('Init' === result.method) {
+                  self.promiseMap[result.id].reject({Error: false, i: result.id, 'Message': '设备链接异常，请检查设备。'});
+                  delete self.promiseMap[result.id];
+                }
+                /**
+                 * =====================================clh021@gmail.com ===== END
+                 */
                 // 不处理 promiseMap 则空
+                // console.log('没有 result 不处理的情况');
               }
             }
           } else if ('event' === result.Command) {
@@ -70,7 +84,7 @@ export class DeviceService {
             // $rootScope.$broadcast(result.Type, result);
           }
         } catch (err) {
-          // console.log('无法解析的消息', err, e);
+          console.log('无法解析的消息', err, e);
           // console.log('无法解析的消息', e.data, e);
         }
       }
@@ -81,7 +95,9 @@ export class DeviceService {
       this.opened = false;
       setTimeout(self.conectAgent, 5000);
     };
+    const messageService = this._message;
     this.ws.onerror = function (e) {
+      messageService.error('设备链接超时', '请链接好设备并刷新页面。');
       console.log('error', e);
       if (!self.opened) {
         setTimeout(self.conectAgent, 5000);
@@ -116,9 +132,9 @@ export class DeviceService {
     const self = this;
     if (!this.opened) {
       setTimeout(function () {
-        self.sendCommondImpl(id, plugin, method, args)
+        self.sendCommondImpl(id, plugin, method, args);
       }, 100);
-      return
+      return null;
     }
 
     const str = JSON.stringify({id, plugin, method, args});
@@ -130,6 +146,6 @@ export class DeviceService {
    * 关闭socket链接
    */
   close() {
-    this.ws.close()
+    this.ws.close();
   }
 }

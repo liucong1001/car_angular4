@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
 import {DeviceService} from './device.service';
-import {reject} from "q";
+import {reject} from 'q';
+import {IccardOperaModel} from '../model/bussiness/iccard.model';
+import {MessageService} from '../utils/message.service';
 
 @Injectable()
 export class IccardService {
@@ -29,7 +31,6 @@ export class IccardService {
         }
       }, function (error) {
         reject(error);
-        console.log(error_message, error);
       });
     });
   }
@@ -42,7 +43,9 @@ export class IccardService {
    * @returns {Promise<any>}
    */
   writerInit(market: string, maker: string, txnSlot: number): Promise<any> {
-    return this.doCommond('ICCard', 'Init', '初始化失败', {market, maker, txnSlot});
+    return this.doCommond('ICCard', 'Init', '初始化失败', {market, maker, txnSlot}).catch((res) => {
+      this.device._message.error('IC读卡器连接异常', '请检查IC读卡器和与计算机的连接是否完好。');
+    });
   }
 
   /**
@@ -96,8 +99,8 @@ export class IccardService {
   getPassword(timeout): Promise<any> {
     const self = this;
     return new Promise(function(resolve, reject){
-      self.device.sendCommond('ICCard', 'GetPassword', timeout||300).then(function (result) {
-        if(result.code == "success"){
+      self.device.sendCommond('ICCard', 'GetPassword', timeout || 300).then(function (result) {
+        if ('success' === result.code) {
           resolve(JSON.parse((result)));
         } else {
           reject('ICCard - GetPassword - 获取密码失败');
@@ -117,8 +120,11 @@ export class IccardService {
    * @param time
    * @returns {Promise<any>}
    */
-  recharge(amount,date,time): Promise<any> {
-    return this.doCommond('ICCard', 'Recharge', '充值失败', {amount,date,time});
+  recharge(recharge: IccardOperaModel): Promise<any> {
+    const amount = recharge.amount;
+    const date = (new Date()).toLocaleDateString().replace(/\//g, '');
+    const time = (new Date()).toLocaleTimeString('zh-guoyu', {'timeZone': 'Asia/Shanghai', 'hour12': false}).replace(/:/g, '');
+    return this.doCommond('ICCard', 'Recharge', '充值失败', {amount, date, time});
   }
 
   /**
@@ -128,7 +134,10 @@ export class IccardService {
    * @param time
    * @returns {Promise<any>}
    */
-  pay(amount,date,time): Promise<any> {
-    return this.doCommond('ICCard', 'Pay', '扣款失败', {amount,date,time});
+  pay(pay: IccardOperaModel): Promise<any> {
+    const amount = pay.amount;
+    const date = (new Date()).toLocaleDateString().replace(/\//g, '');
+    const time = (new Date()).toLocaleTimeString('zh-guoyu', {'timeZone': 'Asia/Shanghai', 'hour12': false}).replace(/:/g, '');
+    return this.doCommond('ICCard', 'Pay', '扣款失败', {amount, date, time});
   }
 }

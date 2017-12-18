@@ -5,6 +5,7 @@ import {CarModel} from '../../../@core/model/bussiness/car.model';
 import {IdcardModel} from '../../../@core/model/bussiness/idcard.model';
 import {IdcardService} from '../../../@core/device/idcard.service';
 import {IccardService} from '../../../@core/device/iccard.service';
+import {IccardModel, IccardOperaModel} from '../../../@core/model/bussiness/iccard.model';
 
 @Component({
   selector: 'ngx-ui-example',
@@ -16,7 +17,10 @@ export class UiExampleComponent implements OnInit {
   private current_calendar_value: string;
   private current_calendar_value2: string;
   public car: CarModel = new CarModel();
-  public idcardData = new IdcardModel;
+  public idcardData = new IdcardModel();
+  public iccardData = new IccardModel('云石科技', '0001', 18);
+  public iccardPayData = new IccardOperaModel();
+  public iccardRechargeData = new IccardOperaModel();
   photos: any[] = [{
     title: '测试图一',
     source: 'assets/images/camera1.jpg',
@@ -24,8 +28,18 @@ export class UiExampleComponent implements OnInit {
     title: '测试图二',
     source: 'assets/images/camera2.jpg',
   }];
+
+  /**
+   * 构造函数
+   * @param {MessageService} message
+   * @param {IdcardService} idcard
+   * @param {IccardService} iccard
+   */
   constructor(private message: MessageService, private idcard: IdcardService, private iccard: IccardService) { }
 
+  /**
+   * 组件初始化接口函数
+   */
   ngOnInit() {
   }
 
@@ -50,8 +64,8 @@ export class UiExampleComponent implements OnInit {
    */
   getYsCalendarValue2($event) {
     this.message.info('月份控件示例', '刚刚选择了:' + $event);
-    const today = new Date($event);
-    this.current_calendar_value2 = today.getFullYear() + '年' + (today.getMonth() + 1).toLocaleString() + '月'; // 一月是0
+    const selectTime = new Date($event);
+    this.current_calendar_value2 = selectTime.getFullYear() + '年' + (selectTime.getMonth() + 1).toLocaleString() + '月'; // 一月是0
   }
 
   /**
@@ -60,6 +74,12 @@ export class UiExampleComponent implements OnInit {
   showYsCalendarValue2() {
     this.message.info('月份控件示例', '当前选择的月份是:' + this.current_calendar_value2);
   }
+
+  /**
+   * 新的图片地址事件
+   * @param $event
+   * @param photo
+   */
   onChangeSource($event, photo) {
     this.message.info(photo.title + ' 的新图片地址', $event);
   }
@@ -77,32 +97,100 @@ export class UiExampleComponent implements OnInit {
   }
 
   /**
-   * 设置文本
+   * IC卡文本写入
    */
-  setIccardText(iccardText) {
+  iccardText() {
     const self = this;
-    this.iccard.writerInit('0001', '云石科技', 18).then((res) => {
+    this.iccard.writerInit(this.iccardData.market, this.iccardData.maker, this.iccardData.txnSlot).then((res) => {
       if (true === res) {
-        this.message.info('IC卡操作', '设备已连接！');
-        this.iccard.showText(iccardText);
-      } else {
-        this.message.info('IC卡操作', '设备连接失败！');
+        self.iccard.showText(this.iccardData.Text);
+        this.message.info('IC卡操作', '文本已写入！');
       }
+    });
+  }
+
+  /**
+   * IC卡充值
+   */
+  iccardRecharge() {
+    const self = this;
+    this.iccardRechargeData.amount = this.iccardRechargeData.amountDisplay * 100; // 单位转换
+    this.iccard.writerInit(this.iccardData.market, this.iccardData.maker, this.iccardData.txnSlot).then((res) => {
+      console.log(res);
+      if (true === res) {
+        self.iccard.recharge(self.iccardRechargeData).then((r) => {
+          if (r) {
+            self.iccard.scanCard().then((s) => {
+              self.iccardData.Banlance = s.Banlance;
+              self.iccardData.BanlanceDisplay = (s.Banlance) / 100 ;
+            }).catch((e) => {
+              console.log(e);
+              self.message.success('IC卡操作', 'IC卡连接不稳定。未能获取到余额');
+            });
+            self.message.success('IC卡操作', '充值 ' + this.iccardRechargeData.amountDisplay + '元 成功！');
+          }
+        }).catch((e) => {
+          console.log(e);
+          self.message.error('IC卡操作', '充值失败！请检查IC卡是否完好，链接是否正常。');
+        });
+      }
+    }).catch((e) => {
+      console.log(e);
+      this.message.error('IC卡操作', '设备连接失败！请检查设备链接是否成功。');
+    });
+  }
+
+  /**
+   * IC卡付款
+   */
+  iccardPay() {
+    const self = this;
+    this.iccardPayData.amount = this.iccardPayData.amountDisplay * 100; // 单位转换
+    this.iccard.writerInit(this.iccardData.market, this.iccardData.maker, this.iccardData.txnSlot).then((res) => {
+      console.log(res);
+      if (true === res) {
+        self.iccard.pay(self.iccardPayData).then((r) => {
+          if (r) {
+            self.iccard.scanCard().then((s) => {
+              self.iccardData.Banlance = s.Banlance;
+              self.iccardData.BanlanceDisplay = (s.Banlance) / 100 ;
+            }).catch((e) => {
+              console.log(e);
+              self.message.success('IC卡操作', 'IC卡连接不稳定。未能获取到余额');
+            });
+            self.message.success('IC卡操作', '扣款 ' + this.iccardPayData.amountDisplay + '元 成功！');
+          }
+        }).catch((e) => {
+          console.log(e);
+          self.message.error('扣款失败！', 'IC卡有误或余额不足。');
+        });
+      }
+    }).catch((e) => {
+      console.log(e);
+      this.message.error('IC卡连接失败！', '设备或IC卡不正常或连接有误。');
     });
   }
 
   /**
    * 读取IC卡信息
    */
-  readIcCard() {
+  readIccard() {
     const self = this;
-    this.iccard.writerInit('0001', '云石科技', 18).then((res) => {
+    this.iccardPayData.amount = this.iccardPayData.amountDisplay * 100; // 单位转换
+    this.iccard.writerInit(this.iccardData.market, this.iccardData.maker, this.iccardData.txnSlot).then((res) => {
+      console.log(res);
       if (true === res) {
-        this.message.info('IC卡操作', '设备已连接！');
-        this.iccard.showText('你好！  hahha哈哈哈哈!');
-      } else {
-        this.message.info('IC卡操作', '设备连接失败！');
+        self.iccard.scanCard().then((s) => {
+          self.iccardData.Banlance = s.Banlance;
+          self.iccardData.BanlanceDisplay = (s.Banlance) / 100 ;
+        }).catch((e) => {
+          console.log(e);
+          self.message.success('IC卡操作', 'IC卡连接不稳定。未能获取到余额');
+        });
       }
+    }).catch((e) => {
+      console.log(e);
+      this.message.error('IC卡连接失败！', '设备或IC卡不正常或连接有误。');
     });
   }
 }

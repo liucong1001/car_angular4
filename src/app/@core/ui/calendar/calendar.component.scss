@@ -129,8 +129,8 @@
   border-collapse: collapse;
   margin: 0 0 0.4em;
 }
-.input-group .form-control,.input-group .form-control span, .ui-calendar {
-  width: 100%;
+.ui-calendar input {
+  width: 100% !important;
 }
 .ui-calendar {
   position: relative;
