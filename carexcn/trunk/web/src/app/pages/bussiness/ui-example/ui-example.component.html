@@ -5,13 +5,85 @@
     </div>
   </nb-card-header>
   <nb-card-body>
+
+    <div class="col-md-12">
+      <nb-card>
+        <nb-tabset fullWidth  style="min-height: 400px">
+          <nb-tab tabTitle="日历控件">
+            <div class="input-group">
+              <ngx-ys-calendar [placeholder]="'截至日期'" (_calendarValue)="getYsCalendarValue($event)"></ngx-ys-calendar>
+              <button class="btn btn-primary btn-sm" (click)="showYsCalendarValue()">从父组件获取时间</button>
+              <ngx-ys-calendar [placeholder]="'某个月'" [dateFormat]="'yy-mm'" (_calendarValue)="getYsCalendarValue2($event)"></ngx-ys-calendar>
+              <button class="btn btn-primary btn-sm" (click)="showYsCalendarValue2()">只选月份</button>
+            </div>
+          </nb-tab>
+          <nb-tab tabTitle="拍照与上传控件">
+            <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)"></ngx-ys-camera>
+          </nb-tab>
+          <nb-tab tabTitle="身份证控件">
+            <div class="input-group">
+              <input type="text" placeholder="姓名" class="form-control" [ngModel]="idcardData.Name"/>
+              <input type="text" placeholder="性别" class="form-control" [ngModel]="idcardData.Sex"/>
+              <input type="text" placeholder="生日" class="form-control" [ngModel]="idcardData.Birthday"/>
+              <button class="btn btn-primary btn-sm" (click)="readIdCard()">读身份证</button>
+            </div>
+            <div class="input-group">
+              <input type="text" placeholder="身份证号" class="form-control" [ngModel]="idcardData.IdCardNo"/>
+              <input type="text" placeholder="地址" class="form-control" [ngModel]="idcardData.Address"/>
+              <input type="text" placeholder="身份有效期" class="form-control" [ngModel]="idcardData.UseEnd"/>
+            </div>
+          </nb-tab>
+          <nb-tab tabTitle="IC卡控件">
+            <div class="input-group">
+              <input type="text" placeholder="IC卡充值金额" class="form-control" [(ngModel)]="iccardRechargeData.amountDisplay"/>
+              <button class="btn btn-primary btn-sm" (click)="iccardRecharge()">充值</button>
+              <input type="text" placeholder="IC卡扣款金额" class="form-control" [(ngModel)]="iccardPayData.amountDisplay"/>
+              <button class="btn btn-primary btn-sm" (click)="iccardPay()">扣款</button>
+            </div>
+            <div class="input-group">
+              <label class="form-control">IC卡余额：{{iccardData.BanlanceDisplay || 0}}元</label>
+              <button class="btn btn-primary btn-sm" (click)="readIccard()">读取IC卡</button>
+              <input type="text" placeholder="输入此处的文本写入IC卡屏幕" class="form-control" [(ngModel)]="iccardData.Text"/>
+              <button class="btn btn-primary btn-sm" (click)="iccardText()">IC卡写入文本</button>
+            </div>
+          </nb-tab>
+          <nb-tab tabTitle="指纹控件">
+            <div class="input-group">
+              <button class="btn btn-primary btn-sm" (click)="fingerRead()">指纹读取</button>
+              <button class="btn btn-primary btn-sm" (click)="fingerVerify()">指纹验证</button>
+            </div>
+            <div class="input-group">
+              <img [src]="fingerImgUrl" alt="指纹照片" style="max-width: 256px;max-height: 288px;">
+            </div>
+          </nb-tab>
+        </nb-tabset>
+      </nb-card>
+    </div>
+
+    <div class="input-group">
+      <div class="cameras-card-header">
+        <span class="cameras-card-title">日历控件</span>
+      </div>
+    </div>
     <div class="input-group">
       <ngx-ys-calendar [placeholder]="'截至日期'" (_calendarValue)="getYsCalendarValue($event)"></ngx-ys-calendar>
       <button class="btn btn-primary btn-sm" (click)="showYsCalendarValue()">从父组件获取时间</button>
       <ngx-ys-calendar [placeholder]="'某个月'" [dateFormat]="'yy-mm'" (_calendarValue)="getYsCalendarValue2($event)"></ngx-ys-calendar>
       <button class="btn btn-primary btn-sm" (click)="showYsCalendarValue2()">只选月份</button>
     </div>
+
+    <div class="input-group">
+      <div class="cameras-card-header">
+        <span class="cameras-card-title">拍照与上传控件</span>
+      </div>
+    </div>
     <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)"></ngx-ys-camera>
+
+    <div class="input-group">
+      <div class="cameras-card-header">
+        <span class="cameras-card-title">身份证读取控件</span>
+      </div>
+    </div>
 
     <div class="input-group">
       <input type="text" placeholder="姓名" class="form-control" [ngModel]="idcardData.Name"/>
@@ -26,6 +98,11 @@
     </div>
 
     <div class="input-group">
+      <div class="cameras-card-header">
+        <span class="cameras-card-title">IC卡控件</span>
+      </div>
+    </div>
+    <div class="input-group">
       <input type="text" placeholder="IC卡充值金额" class="form-control" [(ngModel)]="iccardRechargeData.amountDisplay"/>
       <button class="btn btn-primary btn-sm" (click)="iccardRecharge()">充值</button>
       <input type="text" placeholder="IC卡扣款金额" class="form-control" [(ngModel)]="iccardPayData.amountDisplay"/>
@@ -37,6 +114,20 @@
       <input type="text" placeholder="输入此处的文本写入IC卡屏幕" class="form-control" [(ngModel)]="iccardData.Text"/>
       <button class="btn btn-primary btn-sm" (click)="iccardText()">IC卡写入文本</button>
     </div>
+
+    <div class="input-group">
+      <div class="cameras-card-header">
+        <span class="cameras-card-title">指纹控件</span>
+      </div>
+    </div>
+    <div class="input-group">
+      <button class="btn btn-primary btn-sm" (click)="fingerRead()">指纹读取</button>
+      <button class="btn btn-primary btn-sm" (click)="fingerVerify()">指纹验证</button>
+    </div>
+    <div class="input-group">
+      <img [src]="fingerImgUrl" alt="指纹照片" style="max-width: 256px;max-height: 288px;">
+    </div>
+
   </nb-card-body>
   <nb-card-footer>
     <span> &nbsp; &nbsp; * 本示例用于前端开发组编写包含控件功能页面时参考 </span>

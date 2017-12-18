@@ -6,12 +6,13 @@ import {IdcardModel} from '../../../@core/model/bussiness/idcard.model';
 import {IdcardService} from '../../../@core/device/idcard.service';
 import {IccardService} from '../../../@core/device/iccard.service';
 import {IccardModel, IccardOperaModel} from '../../../@core/model/bussiness/iccard.model';
+import {FingerService} from '../../../@core/device/finger.service';
 
 @Component({
   selector: 'ngx-ui-example',
   templateUrl: './ui-example.component.html',
   styleUrls: ['./ui-example.component.scss'],
-  providers: [DeviceService, IdcardService, IccardService],
+  providers: [DeviceService, IdcardService, IccardService, FingerService],
 })
 export class UiExampleComponent implements OnInit {
   private current_calendar_value: string;
@@ -21,6 +22,8 @@ export class UiExampleComponent implements OnInit {
   public iccardData = new IccardModel('云石科技', '0001', 18);
   public iccardPayData = new IccardOperaModel();
   public iccardRechargeData = new IccardOperaModel();
+  public fingerImgUrl = '/assets/images/camera1.jpg';
+  public fingerBase64 = '';
   photos: any[] = [{
     title: '测试图一',
     source: 'assets/images/camera1.jpg',
@@ -35,7 +38,7 @@ export class UiExampleComponent implements OnInit {
    * @param {IdcardService} idcard
    * @param {IccardService} iccard
    */
-  constructor(private message: MessageService, private idcard: IdcardService, private iccard: IccardService) { }
+  constructor(private message: MessageService, private idcard: IdcardService, private iccard: IccardService, private finger: FingerService) { }
 
   /**
    * 组件初始化接口函数
@@ -191,6 +194,23 @@ export class UiExampleComponent implements OnInit {
     }).catch((e) => {
       console.log(e);
       this.message.error('IC卡连接失败！', '设备或IC卡不正常或连接有误。');
+    });
+  }
+  fingerRead() {
+    this.message.info('指纹读取', '读取指纹');
+    this.finger.read().then((data) => {
+      const response = JSON.parse(data.File);
+      console.log(response.file[0]);
+      this.fingerImgUrl = response.file[0];
+      this.fingerBase64 = data.Base64;
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
+  fingerVerify() {
+    this.message.info('指纹验证', '验证指纹');
+    this.finger.verify(this.fingerBase64).then((verify) => {
+      console.log(verify);
     });
   }
 }

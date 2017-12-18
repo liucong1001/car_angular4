@@ -28,7 +28,7 @@ export class DeviceService {
     this._message = message;
     this.conectAgent();
     if (isDevMode()) {
-      this.pre_api_url = 'http://dongshenghuo.com/test.php';
+      this.pre_api_url = 'https://dongshenghuo.com/test.php';
     }
   }
 
