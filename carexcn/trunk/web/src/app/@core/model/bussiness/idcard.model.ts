@@ -1,7 +1,7 @@
 /**
  * 身份证芯片识别数据结构
  */
-export class IdcardModel{
+export class IdcardModel {
   /**
    * 身份证家住地址
    */

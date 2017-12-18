@@ -15,18 +15,27 @@
 
     <div class="input-group">
       <input type="text" placeholder="姓名" class="form-control" [ngModel]="idcardData.Name"/>
-      <input type="text" placeholder="身份证号" class="form-control" [ngModel]="idcardData.IdCardNo"/>
+      <input type="text" placeholder="性别" class="form-control" [ngModel]="idcardData.Sex"/>
+      <input type="text" placeholder="生日" class="form-control" [ngModel]="idcardData.Birthday"/>
       <button class="btn btn-primary btn-sm" (click)="readIdCard()">读身份证</button>
     </div>
     <div class="input-group">
-      <input type="text" placeholder="手机" class="form-control" />
+      <input type="text" placeholder="身份证号" class="form-control" [ngModel]="idcardData.IdCardNo"/>
       <input type="text" placeholder="地址" class="form-control" [ngModel]="idcardData.Address"/>
       <input type="text" placeholder="身份有效期" class="form-control" [ngModel]="idcardData.UseEnd"/>
     </div>
 
     <div class="input-group">
-      <input type="text" placeholder="输入此处的文本写入IC卡屏幕" class="form-control" #iccardText/>
-      <button class="btn btn-primary btn-sm" (click)="setIccardText(iccardText.value)">IC卡写入文本</button>
+      <input type="text" placeholder="IC卡充值金额" class="form-control" [(ngModel)]="iccardRechargeData.amountDisplay"/>
+      <button class="btn btn-primary btn-sm" (click)="iccardRecharge()">充值</button>
+      <input type="text" placeholder="IC卡扣款金额" class="form-control" [(ngModel)]="iccardPayData.amountDisplay"/>
+      <button class="btn btn-primary btn-sm" (click)="iccardPay()">扣款</button>
+    </div>
+    <div class="input-group">
+      <label class="form-control">IC卡余额：{{iccardData.BanlanceDisplay || 0}}元</label>
+      <button class="btn btn-primary btn-sm" (click)="readIccard()">读取IC卡</button>
+      <input type="text" placeholder="输入此处的文本写入IC卡屏幕" class="form-control" [(ngModel)]="iccardData.Text"/>
+      <button class="btn btn-primary btn-sm" (click)="iccardText()">IC卡写入文本</button>
     </div>
   </nb-card-body>
   <nb-card-footer>
