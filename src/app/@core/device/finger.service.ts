@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {DeviceService} from './device.service';
-import {reject} from 'q';
 
 @Injectable()
 export class FingerService {
@@ -52,18 +51,23 @@ export class FingerService {
   read(): Promise<any> {
     const self =  this;
     return  new Promise(function(resolve, reject) {
-      this.isBusy().then(() => {
-        self.device.sendCommond('Finger', 'Read', self.device.pre_api_url + '/common/upload/single').then(function (result) {
-          if (0 === result.Code) {
-            resolve(JSON.parse(result));
-          } else {
-            reject(JSON.parse(result));
-          }
-        }, function (error) {
-          reject(error);
-        });
+      self.isBusy().then((busy) => {
+        if (true === busy) {
+          self.device.sendCommond('Finger', 'Read', self.device.pre_api_url + '').then(function (result) {
+            if (0 === result.Code) {
+              resolve(result);
+            } else {
+              reject(result);
+            }
+          }, function (error) {
+            reject(error);
+          });
+        } else {
+          this.device._message.error('指纹仪', '当前设备正在使用中');
+        }
       }, () => {
         reject({Message: '设备正在使用中'});
+        // 只要开启了硬件助手，就会返回busy。
       });
     });
   }
@@ -75,18 +79,24 @@ export class FingerService {
   verify(base64): Promise<any> {
     const self =  this;
     return  new Promise(function(resolve, reject) {
-      this.isBusy().then(() => {
-        self.device.sendCommond('Finger', 'Verify', base64).then(function (result) {
-          if (0 === result.Code) {
-            resolve(JSON.parse(result));
-          } else {
-            reject(JSON.parse(result));
-          }
-        }, function (error) {
-          reject(error);
-        });
+      self.isBusy().then((busy) => {
+        if (true === busy) {
+          self.device.sendCommond('Finger', 'Verify', base64).then(function (result) {
+            if (0 === result.Code) {
+              // resolve(result);
+              self.device._message.success('指纹比对成功', '当前指纹匹配成功！');
+            } else {
+              self.device._message.error('指纹比对失败', '当前指纹不匹配。');
+            }
+          }, function (error) {
+            reject(error);
+          });
+        } else {
+          this.device._message.error('指纹仪', '当前设备正在使用中');
+        }
       }, () => {
         reject({Message: '设备正在使用中'});
+        // 只要开启了硬件助手，就会返回busy。
       });
     });
   }
