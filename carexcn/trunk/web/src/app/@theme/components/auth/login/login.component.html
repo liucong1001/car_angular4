@@ -1,0 +1,42 @@
+<nb-auth-block>
+  <h2 class="title">登录</h2>
+  <small class="form-text sub-title">你好！ 请用您的用户名登录！</small>
+  <form autocomplete="nope" [formGroup]="form" (ngSubmit)="login()">
+    <div class="form-group">
+      <label class="sr-only" for="input-user">登录ID</label>
+      <input autofocus="" type="text" class="form-control" id="input-user" placeholder="登录ID" formControlName="loginName"
+             [ngClass]="{'form-control-danger':form.get('loginName').invalid && form.get('loginName').touched}">
+    </div>
+    <div class="text-danger" *ngIf="form.get('loginName').touched && form.get('loginName').hasError('required')">
+      -- 请输入登录ID
+    </div>
+    <div class="text-danger" *ngIf="form.get('loginName').touched && form.get('loginName').hasError('pattern')">
+      -- 请输正确的登录ID
+    </div>
+
+
+    <div class="form-group">
+      <label class="sr-only" for="input-password">密码</label>
+      <input class="form-control" id="input-password" placeholder="密码" type="password" formControlName="password"
+             [ngClass]="{'form-control-danger':form.get('password').invalid && form.get('password').touched}">
+    </div>
+    <div class="text-danger" *ngIf="form.get('password').touched && form.get('password').hasError('required')">
+      -- 请输入密码
+    </div>
+    <div class="text-danger" *ngIf="form.get('password').touched && form.get('password').hasError('minlength')">
+      -- 密码最少6个字符
+    </div>
+    <div class="text-danger" *ngIf="form.get('password').touched && form.get('password').hasError('maxlength')">
+      -- 密码最多32个字符
+    </div>
+
+    <div class="form-group accept-group col-sm-12">
+      <nb-checkbox>Remember me!</nb-checkbox>
+      <a class="forgot-password" routerlink="../request-password" href="#/auth/request-password">Forgot Password?</a>
+    </div>
+
+    <button class="btn btn-block btn-hero-success" [disabled]="form.invalid">
+      登入
+    </button>
+  </form>
+</nb-auth-block>
