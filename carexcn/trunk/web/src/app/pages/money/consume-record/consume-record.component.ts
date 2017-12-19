@@ -1,5 +1,7 @@
 import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import {IcCardServise} from '../../../@core/data/ic-card/ic-card.servise';
+import {CardModel} from '../../../@core/model/bussiness/card.model';
 
 @Component({
   selector: 'ngx-consume-record',
@@ -24,7 +26,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 })
 export class ConsumeRecordComponent implements OnInit, OnChanges {
 
-  constructor() { }
+  constructor(private icCardService: IcCardServise) { }
 
   visibility = 'hidden';
   showFilter = false;
@@ -36,8 +38,10 @@ export class ConsumeRecordComponent implements OnInit, OnChanges {
   // ngOnChanges 可监控组件变量
   ngOnChanges(changes: SimpleChanges): void {
   }
+  card: CardModel;
   // 组件初始华
   ngOnInit(): void {
+    this.icCardService.getCard().then(cards => this.card = cards as CardModel);
   }
   // 列表搜索条件对象
   filter: any = {};

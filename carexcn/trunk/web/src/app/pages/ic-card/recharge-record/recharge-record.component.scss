@@ -4,7 +4,7 @@
 
 @include nb-install-component() {
   nb-card {
-    //height: 100% !important;
+    height: 100% !important;
     span {
       display: inline-block;
       width: 250px;
