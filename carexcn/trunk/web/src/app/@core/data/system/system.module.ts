@@ -1,8 +1,7 @@
 import {ModuleWithProviders, NgModule} from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {CodeService} from "./code.service";
-import {CodeitemService} from "./codeitem.service";
-import {ManagerService} from "./manager.service";
+import {CodeService} from './code.service';
+import {CodeitemService} from './codeitem.service';
+import {ManagerService} from './manager.service';
 
 /**
  * 导出服务
@@ -12,15 +11,12 @@ const SERVICES = [
   CodeService,
   CodeitemService,
   ManagerService,
-]
+];
 
 /**
  *
  */
 @NgModule({
-  imports: [
-    CommonModule,
-  ],
   declarations: [],
 })
 export class SystemModule {
