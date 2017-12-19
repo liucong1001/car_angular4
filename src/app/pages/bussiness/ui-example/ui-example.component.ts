@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {MessageService} from '../../../@core/utils/message.service';
-import {DeviceService} from '../../../@core/device/device.service';
 import {CarModel} from '../../../@core/model/bussiness/car.model';
 import {IdcardModel} from '../../../@core/model/bussiness/idcard.model';
 import {IdcardService} from '../../../@core/device/idcard.service';
@@ -12,7 +11,6 @@ import {FingerService} from '../../../@core/device/finger.service';
   selector: 'ngx-ui-example',
   templateUrl: './ui-example.component.html',
   styleUrls: ['./ui-example.component.scss'],
-  providers: [DeviceService, IdcardService, IccardService, FingerService],
 })
 export class UiExampleComponent implements OnInit {
   private current_calendar_value: string;
@@ -38,7 +36,12 @@ export class UiExampleComponent implements OnInit {
    * @param {IdcardService} idcard
    * @param {IccardService} iccard
    */
-  constructor(private message: MessageService, private idcard: IdcardService, private iccard: IccardService, private finger: FingerService) { }
+  constructor(
+    private message: MessageService,
+    private idcard: IdcardService,
+    private iccard: IccardService,
+    private finger: FingerService
+  ) { }
 
   /**
    * 组件初始化接口函数
