@@ -19,7 +19,7 @@ import {UiModule} from '../../@core/ui/ui.module';
     UiTableModule,
     HttpModule,
     RouterModule,
-    UiModule,
+    UiModule, /*ngx-ys-calendar标签*/
   ],
   declarations: [
     ...routedComponents,

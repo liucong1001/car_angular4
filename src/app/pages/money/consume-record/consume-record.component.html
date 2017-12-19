@@ -20,7 +20,7 @@
         </div>
         <div class="col-sm-2">
           <div class="form-group form-group-sm">
-            <input class="form-control" [(ngModel)]="cards.num" name="num" type="text" placeholder="商户编号"/>
+            <input class="form-control" type="text" placeholder="商户编号"/>
           </div>
         </div>
         <div class="col-sm-2">
@@ -43,10 +43,18 @@
         <td>撤销消费</td>
         <td>结算</td>
       </tr>
-      <tr></tr>
+      <tr *ngFor="let card of cards">
+        <td>{{card.number}}</td>
+        <td>{{card.id}}</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
       <tr>
         <td colspan="2">总计</td>
-        <td>{{cards.num}}</td>
+        <td></td>
         <td>0</td>
         <td>0</td>
         <td>0</td>

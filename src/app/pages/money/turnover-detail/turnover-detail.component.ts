@@ -2,11 +2,14 @@ import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {Column} from '../../../@core/ui/table/table.component';
 import {TextCell} from '../../../@core/ui/table/cell.text.component';
+import {IccardService} from '../../../@core/device/iccard.service';
+import {DeviceService} from '../../../@core/device/device.service';
 
 @Component({
   selector: 'ngx-turnover-detail',
   templateUrl: './turnover-detail.component.html',
   styleUrls: ['./turnover-detail.component.scss'],
+  // providers: [IccardService, DeviceService],
   /*styles: [`
         form{
           overflow: hidden;
