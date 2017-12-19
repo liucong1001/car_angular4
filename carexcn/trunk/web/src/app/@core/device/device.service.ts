@@ -18,7 +18,7 @@ export class DeviceService {
    * @type {string}
    */
   pre_api_url = location.protocol + '//' + location.host;
-  _message: MessageService;
+  public _message: MessageService;
   /**
    * 构造函数
    * 设备连接代理
@@ -97,7 +97,9 @@ export class DeviceService {
     };
     const messageService = this._message;
     this.ws.onerror = function (e) {
-      messageService.error('设备链接超时', '请链接好设备并刷新页面。');
+      if ( undefined !== messageService) {
+        messageService.error('设备链接超时', '请链接好设备并刷新页面。');
+      }
       console.log('error', e);
       if (!self.opened) {
         setTimeout(self.conectAgent, 5000);
