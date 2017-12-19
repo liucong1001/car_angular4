@@ -1,32 +1,11 @@
-import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {animate, state, style, transition, trigger} from '@angular/animations';
-import {TextCell} from '../../../@core/ui/table/cell.text.component';
-import {Column} from '../../../@core/ui/table/table.component';
-import {Menu, MenuCell} from '../../../@core/ui/table/cell.menu.component';
+import {Component, OnInit} from '@angular/core';
 import {IccardService} from '../../../@core/device/iccard.service';
 import {IccardModel, IccardOperaModel} from '../../../@core/model/bussiness/iccard.model';
 import {MessageService} from '../../../@core/utils/message.service';
-import {DeviceService} from '../../../@core/device/device.service';
-
-/*@Component({
-  selector: 'ngx-recharge',
-  templateUrl: './recharge-keep.component.html',
-})
-export class RechargeComponent {}/!*位置很重要*!/*/
-
-/*
-@Component({
-  selector: 'ngx-recharge-record',
-  templateUrl: './recharge-keep.component.html',
-})
-export class RechargeRecordComponent {}
-*/
-
 @Component({
   selector: 'ngx-recharge-keep',
   templateUrl: './recharge-keep.component.html',
   styleUrls: ['./recharge-keep.component.scss'],
-  providers: [IccardService, DeviceService],
 })
 
 export class RechargeKeepComponent implements OnInit {

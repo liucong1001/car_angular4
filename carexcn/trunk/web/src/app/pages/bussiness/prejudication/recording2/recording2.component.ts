@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {IdcardService} from '../../../../@core/device/idcard.service';
 import {MessageService} from '../../../../@core/utils/message.service';
-import {DeviceService} from '../../../../@core/device/device.service';
 import {IdcardModel} from '../../../../@core/model/bussiness/idcard.model';
 
 /**
@@ -17,7 +16,6 @@ import {IdcardModel} from '../../../../@core/model/bussiness/idcard.model';
   selector: 'ngx-recording2',
   templateUrl: './recording2.component.html',
   styleUrls: ['./recording2.component.scss'],
-  providers: [DeviceService, IdcardService],
 })
 export class Recording2Component implements OnInit {
   cheshang = '上页选定的车商';

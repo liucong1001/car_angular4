@@ -3,7 +3,6 @@ import {Router} from '@angular/router';
 import {CarService} from '../../../../@core/data/bussiness/car.service';
 import {CarModel} from '../../../../@core/model/bussiness/car.model';
 import {MessageService} from '../../../../@core/utils/message.service';
-import {DeviceService} from '../../../../@core/device/device.service';
 import {WebcamService} from '../../../../@core/device/webcam.service';
 
 /**
@@ -17,7 +16,6 @@ import {WebcamService} from '../../../../@core/device/webcam.service';
   selector: 'ngx-judication',
   templateUrl: './judication.component.html',
   styleUrls: ['./judication.component.scss'],
-  providers: [CarService, WebcamService, DeviceService],
 })
 export class JudicationComponent implements OnInit {
   public test= '';

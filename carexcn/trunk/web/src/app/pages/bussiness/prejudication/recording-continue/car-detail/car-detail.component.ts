@@ -1,11 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {DeviceService} from '../../../../../@core/device/device.service';
 
 @Component({
   selector: 'ngx-car-detail',
   templateUrl: './car-detail.component.html',
   styleUrls: ['./car-detail.component.scss'],
-  providers: [DeviceService],
 })
 export class CarDetailComponent implements OnInit {
   @Input() car;
