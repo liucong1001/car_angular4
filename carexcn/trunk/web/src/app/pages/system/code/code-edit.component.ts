@@ -10,12 +10,11 @@ import {ActivatedRoute} from '@angular/router';
 import {Column, TableComponent} from '../../../@core/ui/table/table.component';
 import {TextCell} from '../../../@core/ui/table/cell.text.component';
 import {Menu, MenuCell} from '../../../@core/ui/table/cell.menu.component';
-import {Codeitem} from "../../../@core/model/system/codeitem";
+import {Codeitem} from '../../../@core/model/system/codeitem';
 
 @Component({
   selector: 'ngx-code-edit',
   templateUrl: 'code-edit.component.html',
-  providers: [CodeService, MessageService],
 })
 export class CodeEditComponent implements OnInit {
   /**
