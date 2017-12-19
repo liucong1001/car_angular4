@@ -30,7 +30,7 @@ export class CarService {
   }, {
     lsnum: '鄂A09010',
   }];
-  private car: CarModel = {
+  public car: CarModel = {
     lsnum: '',
   };
 

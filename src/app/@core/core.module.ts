@@ -5,10 +5,14 @@ import {NbAuthModule, NbEmailPassAuthProvider} from '@nebular/auth';
 import { throwIfAlreadyLoaded } from './module-import-guard';
 import { DataModule } from './data/data.module';
 import { AnalyticsService } from './utils/analytics.service';
-import {MessageService} from './utils/message.service';
+import { MessageService } from './utils/message.service';
+import { DeviceModule } from './device/device.module';
+import {UtilsModule} from './utils/utils.module';
 
 const NB_CORE_PROVIDERS = [
   ...DataModule.forRoot().providers,
+  ...DeviceModule.forRoot().providers,
+  ...UtilsModule.forRoot().providers,
   ...NbAuthModule.forRoot({
     providers: {
         email: {
