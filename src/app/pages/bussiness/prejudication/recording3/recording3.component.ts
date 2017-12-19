@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import {DeviceService} from "../../../../@core/device/device.service";
 
 /**
  * 预审录入3--接口与页面的交互逻辑
@@ -13,7 +12,6 @@ import {DeviceService} from "../../../../@core/device/device.service";
   selector: 'ngx-recording3',
   templateUrl: './recording3.component.html',
   styleUrls: ['./recording3.component.scss'],
-  providers: [DeviceService],
 })
 export class Recording3Component implements OnInit {
   photos: any[] = [{

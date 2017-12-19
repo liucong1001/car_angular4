@@ -7,7 +7,6 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 @Component({
   selector: 'ngx-codeitem-edit',
   templateUrl: './codeitem-edit.component.html',
-  providers: [CodeitemService],
 })
 export class CodeitemEditComponent implements OnInit {
   ngOnInit(): void {

@@ -16,7 +16,6 @@ import {Router} from '@angular/router';
   selector: 'ngx-recording-continue',
   templateUrl: './recording-continue.component.html',
   styleUrls: ['./recording-continue.component.scss'],
-  providers: [CarService],
 })
 export class RecordingContinueComponent implements OnInit {
   public test= '';
