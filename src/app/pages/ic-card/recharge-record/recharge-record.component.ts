@@ -1,14 +1,13 @@
 import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {TextCell} from '../../../@core/ui/table/cell.text.component';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 import {Column} from '../../../@core/ui/table/table.component';
 import {Menu, MenuCell} from '../../../@core/ui/table/cell.menu.component';
-import {animate, state, style, transition, trigger} from '@angular/animations';
-import {IcCardServise} from '../../../@core/data/ic-card/ic-card.servise';
+import {TextCell} from '../../../@core/ui/table/cell.text.component';
 
 @Component({
-  selector: 'ngx-card-manage',
-  templateUrl: './card-manage.component.html',
-  styleUrls: ['./card-manage.component.scss'],
+  selector: 'ngx-recharge-record',
+  templateUrl: './recharge-record.component.html',
+  styleUrls: ['./recharge-record.component.scss'],
   // 定义动画
   animations: [
     trigger('visibilityChanged', [
@@ -20,18 +19,10 @@ import {IcCardServise} from '../../../@core/data/ic-card/ic-card.servise';
     ]),
   ],
 })
-export class CardManageComponent implements OnInit, OnChanges {
-  /*tabs: any[] = [
-    {
-      title: 'IC卡管理',
-      route: '/pages/ic-card/card-manage/ic-manage',
-    },
-    {
-      title: 'IC卡消费记录',
-      route: '/pages/ic-card/card-manage/consume-record',
-    },
-  ];*/
+export class RechargeRecordComponent implements OnInit, OnChanges {
+
   constructor() { }
+
   visibility = 'hidden';
   showFilter = false;
   // 列表搜索表单隐藏显示切换
@@ -49,15 +40,16 @@ export class CardManageComponent implements OnInit, OnChanges {
   filter: any = {};
   // 列表列定义
   columns: Column[] = [
-    {title: '卡号', titleClass: 'cards.number', cell: new TextCell('code')} as Column,
+    {title: '卡号', titleClass: '', cell: new TextCell('code')} as Column,
     {title: '商户编号', titleClass: '', cell: new TextCell('code')} as Column,
     {title: '商户名称', titleClass: '', cell: new TextCell('code')} as Column,
-    {title: '账户名称', titleClass: '', cell: new TextCell('code')} as Column,
-    {title: '账户余额', titleClass: '', cell: new TextCell('code')} as Column,
-    {title: '充值余额', titleClass: '', cell: new TextCell('code')} as Column,
-    {title: '赠送余额', titleClass: '', cell: new TextCell('code')} as Column,
-    {title: '状态', titleClass: '', cell: new TextCell('code')} as Column,
-    {title: '账户详情', titleClass: '', cell: new TextCell('name')} as Column,
+    {title: '充值金额', titleClass: '', cell: new TextCell('code')} as Column,
+    {title: '赠送金额', titleClass: '', cell: new TextCell('code')} as Column,
+    {title: '余额', titleClass: '', cell: new TextCell('code')} as Column,
+    {title: '充值时间', titleClass: '', cell: new TextCell('code')} as Column,
+    {title: '取消时间', titleClass: '', cell: new TextCell('code')} as Column,
+    {title: '原因', titleClass: '', cell: new TextCell('name')} as Column,
+    {title: '状态', titleClass: '', cell: new TextCell('name')} as Column,
     {title: '操作', titleClass: 'w-25 text-center', cell: new MenuCell(
         [
           new Menu('编辑', '', 'edit'),
@@ -73,24 +65,5 @@ export class CardManageComponent implements OnInit, OnChanges {
   }
   disable(row: any) {
   }
-}
 
-/*
-@Component({
-  selector: 'ngx-ic-manage',
-  template: '',
-  styleUrls: [],
-  styles: [`
-        form{
-          overflow: hidden;
-        }
-    `,
-  ],
-})
-export class IcManageComponent {}
-@Component({
-  selector: 'ngx-consume-record',
-  template: '',
-})
-export class ConsumeRecordComponent {}
-*/
+}

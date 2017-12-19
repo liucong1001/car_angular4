@@ -1,11 +1,12 @@
 import {NgModule, Pipe} from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { RechargeComponent, RechargeKeepComponent, RechargeRecordComponent } from './recharge-keep/recharge-keep.component';
+import { RechargeKeepComponent } from './recharge-keep/recharge-keep.component';
 import {IcCardComponent} from './ic-card.component';
-import {PasswordResetComponent, ResetComponent, TabComponent} from './password-reset/password-reset.component';
-import {TransferAccountsComponent, RefundComponent, TransferComponent} from './transfer-accounts/transfer-accounts.component';
-import {CardManageComponent, IcManageComponent, ConsumeRecordComponent} from './card-manage/card-manage.component';
-
+import {PasswordResetComponent} from './password-reset/password-reset.component';
+import {TransferAccountsComponent} from './transfer-accounts/transfer-accounts.component';
+import {CardManageComponent} from './card-manage/card-manage.component';
+import {RefundComponent} from './refund/refund.component';
+import {RechargeRecordComponent} from './recharge-record/recharge-record.component';
 
 const routes: Routes = [{
     path: '',
@@ -13,21 +14,13 @@ const routes: Routes = [{
     children: [{
         path: 'recharge-keep',
         component: RechargeKeepComponent,
-        children: [{
-            path: '',
-            redirectTo: 'recharge',
-            pathMatch: 'full',
-          }, {
-            path: 'recharge',
-            component: RechargeComponent,
-        }, {
-            path: 'recharge-record',
-            component: RechargeRecordComponent,
-          }],
+      }, {
+      path: 'recharge-record',
+      component: RechargeRecordComponent,
       }, {
       path: 'password-reset',
       component: PasswordResetComponent,
-      children: [{
+      /*children: [{
         path: '',
         redirectTo: 'reset',
         pathMatch: 'full',
@@ -37,35 +30,16 @@ const routes: Routes = [{
       }, {
         path: 'tab',
         component: TabComponent,
-      }],
+      }],*/
     }, {
       path: 'transfer-accounts',
       component: TransferAccountsComponent,
-      children: [{
-        path: '',
-        redirectTo: 'refund',
-        pathMatch: 'full',
-      }, {
-        path: 'refund',
-        component: RefundComponent,
-      }, {
-        path: 'transfer',
-        component: TransferComponent,
-      }],
+    }, {
+      path: 'refund',
+      component: RefundComponent,
     }, {
       path: 'card-manage',
       component: CardManageComponent,
-      children: [{
-        path: '',
-        redirectTo: 'ic-manage',
-        pathMatch: 'full',
-      }, {
-        path: 'ic-manage',
-        component: IcManageComponent,
-      }, {
-        path: 'consume-record',
-        component: ConsumeRecordComponent,
-      }],
     }],
   }];
 

@@ -56,16 +56,24 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'ion-ios-barcode-outline',
     children: [
       {
-        title: '充值与记录',
+        title: 'IC卡充值',
         link: '/pages/ic-card/recharge-keep',
+      },
+      {
+        title: 'IC卡充值记录',
+        link: '/pages/ic-card/recharge-record',
       },
       {
         title: '密码重置',
         link: '/pages/ic-card/password-reset',
       },
       {
-        title: 'IC卡冲红与转账',
+        title: 'IC卡转账',
         link: '/pages/ic-card/transfer-accounts',
+      },
+      {
+        title: 'IC卡冲红',
+        link: '/pages/ic-card/refund',
       },
       {
         title: '卡片管理',

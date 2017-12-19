@@ -6,23 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./password-reset.component.scss'],
 })
 export class PasswordResetComponent implements OnInit {
-  tabs: any[] = [
-    {
-      title: '密码重置',
-      route: '/pages/ic-card/password-reset/reset',
-    },
-    {
-      title: 'IC卡充值记录',
-      route: '/pages/ic-card/password-reset/tab',
-    },
-  ];
   constructor() { }
 
   ngOnInit() {
   }
 
 }
-@Component({
+/*@Component({
   selector: 'ngx-tab',
   template: `
     <p>Tab 2 works!</p>
@@ -35,4 +25,4 @@ export class TabComponent {
   template: '',
 })
 export class ResetComponent {
-}
+}*/

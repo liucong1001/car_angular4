@@ -20,7 +20,7 @@
         </div>
         <div class="col-sm-2">
           <div class="form-group form-group-sm">
-            <input class="form-control" [(ngModel)]="filter.name" name="name" type="text" placeholder="商户编号"/>
+            <input class="form-control" [(ngModel)]="cards.num" name="num" type="text" placeholder="商户编号"/>
           </div>
         </div>
         <div class="col-sm-2">
@@ -46,7 +46,7 @@
       <tr></tr>
       <tr>
         <td colspan="2">总计</td>
-        <td>0</td>
+        <td>{{cards.num}}</td>
         <td>0</td>
         <td>0</td>
         <td>0</td>

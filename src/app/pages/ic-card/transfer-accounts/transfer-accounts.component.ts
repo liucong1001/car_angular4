@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./transfer-accounts.component.scss'],
 })
 export class TransferAccountsComponent implements OnInit {
-  tabs: any[] = [
+  /*tabs: any[] = [
     {
       title: 'IC冲红',
       route: '/pages/ic-card/transfer-accounts/refund',
@@ -15,21 +15,23 @@ export class TransferAccountsComponent implements OnInit {
       title: 'IC转账',
       route: '/pages/ic-card/transfer-accounts/transfer',
     },
-  ];
+  ];*/
   constructor() { }
   ngOnInit() {
   }
 }
 
-@Component ({
+/*@Component ({
   selector: 'ngx-refund',
   template: '',
 })
 export class RefundComponent {
-}
+}*/
+/*
 @Component ({
   selector: 'ngx-transfer',
   template: '',
 })
 export class TransferComponent {
 }
+*/
