@@ -1,8 +1,13 @@
-import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, isDevMode, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {Column} from '../../../@core/ui/table/table.component';
 import {Menu, MenuCell} from '../../../@core/ui/table/cell.menu.component';
 import {TextCell} from '../../../@core/ui/table/cell.text.component';
+import {CARDS} from '../../../@core/data/ic-card/iccard';
+import {Card} from '../../../@core/model/bussiness/card';
+// import {CarModel} from "../../../@core/model/bussiness/car.model";
+import 'rxjs/add/observable/of';
+import {Http} from '@angular/http';
 
 @Component({
   selector: 'ngx-recharge-record',
@@ -21,7 +26,7 @@ import {TextCell} from '../../../@core/ui/table/cell.text.component';
 })
 export class RechargeRecordComponent implements OnInit, OnChanges {
 
-  constructor() { }
+  constructor(private http: Http) { }
 
   visibility = 'hidden';
   showFilter = false;
@@ -40,8 +45,8 @@ export class RechargeRecordComponent implements OnInit, OnChanges {
   filter: any = {};
   // 列表列定义
   columns: Column[] = [
-    {title: '卡号', titleClass: '', cell: new TextCell('code')} as Column,
-    {title: '商户编号', titleClass: '', cell: new TextCell('code')} as Column,
+    {title: '卡号', titleClass: '', cell: new TextCell('row.number')} as Column,
+    {title: '商户编号', titleClass: '', cell: new TextCell('row.id')} as Column,
     {title: '商户名称', titleClass: '', cell: new TextCell('code')} as Column,
     {title: '充值金额', titleClass: '', cell: new TextCell('code')} as Column,
     {title: '赠送金额', titleClass: '', cell: new TextCell('code')} as Column,
@@ -65,5 +70,19 @@ export class RechargeRecordComponent implements OnInit, OnChanges {
   }
   disable(row: any) {
   }
-
+  row: Card = {
+    number: '000000',
+    id: 'A0000',
+  };
+  content = CARDS;
+  private api_url_base = '/@core/data/ic-card/iccard';
+  getCars(cid: string): Promise<Card> {
+    let result: Promise<Card>;
+    if (isDevMode()) {
+      result = Promise.resolve(this.row).then((res) => res as Card);
+    } else {
+      result = this.http.get(this.api_url_base + 'cid/' + cid).toPromise().then((res) => res.json() as Card);
+    }
+    return result;
+  }
 }

@@ -3,7 +3,7 @@ import {TextCell} from '../../../@core/ui/table/cell.text.component';
 import {Column} from '../../../@core/ui/table/table.component';
 import {Menu, MenuCell} from '../../../@core/ui/table/cell.menu.component';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import {IcCardServise} from '../../../@core/data/ic-card/ic-card.servise';
+// import {IcCardServise} from '../../../@core/data/ic-card/ic-card.servise';
 
 @Component({
   selector: 'ngx-card-manage',

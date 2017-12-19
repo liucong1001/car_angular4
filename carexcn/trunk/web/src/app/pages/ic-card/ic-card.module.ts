@@ -13,6 +13,7 @@ import {UiTableModule} from '../../@core/ui/table/table.module';
 import {RouterModule} from '@angular/router';
 import { RefundComponent } from './refund/refund.component';
 import { RechargeRecordComponent } from './recharge-record/recharge-record.component';
+import {UiModule} from '../../@core/ui/ui.module';
 // import Direction = L.Direction;
 
 export const components = [
@@ -32,6 +33,7 @@ export const components = [
     CommonModule,
     UiTableModule,
     RouterModule,
+    UiModule,
   ],
   declarations: [
     ...components,

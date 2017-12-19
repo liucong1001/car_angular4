@@ -1,7 +1,9 @@
 import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import {IcCardServise} from '../../../@core/data/ic-card/ic-card.servise';
-import {CardModel} from '../../../@core/model/bussiness/card.model';
+// import {CardModel} from '../../../@core/model/bussiness/card.model';
+import {DeviceService} from '../../../@core/device/device.service';
+import {Card} from '../../../@core/model/bussiness/card';
+import {CARDS} from '../../../@core/data/ic-card/iccard';
 
 @Component({
   selector: 'ngx-consume-record',
@@ -26,7 +28,7 @@ import {CardModel} from '../../../@core/model/bussiness/card.model';
 })
 export class ConsumeRecordComponent implements OnInit, OnChanges {
 
-  constructor(private icCardService: IcCardServise) { }
+  constructor() { }
 
   visibility = 'hidden';
   showFilter = false;
@@ -38,12 +40,20 @@ export class ConsumeRecordComponent implements OnInit, OnChanges {
   // ngOnChanges 可监控组件变量
   ngOnChanges(changes: SimpleChanges): void {
   }
-  card: CardModel;
+  // cards: CardModel[];
   // 组件初始华
   ngOnInit(): void {
-    this.icCardService.getCard().then(cards => this.card = cards as CardModel);
+    // this.icCardService.getCard().then(cards => this.cards = cards as CardModel[]);
   }
   // 列表搜索条件对象
   filter: any = {};
-
+  card: Card = {
+    number: '000000',
+    id: 'A0000',
+  };
+  cards = CARDS;
+  // selectCard: Card; /*定义一个selectCard作为展示详情的变量*/
+  // onSelect (card: Card): void {
+  //   this.selectCard = card; /*通过参数赋值*/
+  // }
 }
