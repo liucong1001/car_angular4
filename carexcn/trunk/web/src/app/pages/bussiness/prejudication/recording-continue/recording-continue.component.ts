@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MessageService} from '../../../../@core/utils/message.service';
 import {CarModel} from '../../../../@core/model/bussiness/car.model';
 import {CarService} from '../../../../@core/data/bussiness/car.service';
+import {Router} from '@angular/router';
 
 /**
  * 预审录入 继续录入/批量录入 --接口与页面的交互逻辑
@@ -21,7 +22,7 @@ export class RecordingContinueComponent implements OnInit {
   public test= '';
   public carData: CarModel = new CarModel();
   public carsData: CarModel[];
-  constructor(private message: MessageService, private carService: CarService) {
+  constructor(private message: MessageService, private carService: CarService, private _router: Router) {
     this.carService.getCar('1').then((res) => this.carData = res as CarModel);
     this.carService.getCars('1').then((res) => this.carsData = res as CarModel[]);
   }
@@ -30,5 +31,11 @@ export class RecordingContinueComponent implements OnInit {
   onChangeSelectingCar(car: CarModel): void {
     this.carData = car;
     this.message.info(this.carData.lsnum, '当前车辆');
+  }
+  onSubmit() {
+    this._router.navigateByUrl('/pages/bussiness/prejudication/recording-last');
+  }
+  reBack() {
+    this._router.navigateByUrl('/pages/bussiness/prejudication');
   }
 }

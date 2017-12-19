@@ -1,23 +1,21 @@
 import { Component, OnInit } from '@angular/core';
+import {DeviceService} from '../../../../@core/device/device.service';
 
+/**
+ * 预审业务 - 预审审核 - 卖方拍照 --—接口与页面的交互逻辑
+ * 1、拍照卖家头像，录入卖家指纹
+ * 2、
+ */
 @Component({
   selector: 'ngx-judication-photo',
   templateUrl: './judication-photo.component.html',
   styleUrls: ['./judication-photo.component.scss'],
+  providers: [DeviceService],
 })
 export class JudicationPhotoComponent implements OnInit {
   cameras: any[] = [{
-    title: '身份证正面',
+    title: '卖家头像拍照',
     source: 'assets/images/camera1.jpg',
-  }, {
-    title: '身份证反面',
-    source: 'assets/images/camera2.jpg',
-  }, {
-    title: '代办联系人头像',
-    source: 'assets/images/camera3.jpg',
-  }, {
-    title: '商户联系人确认单',
-    source: 'assets/images/camera4.jpg',
   }];
   constructor() { }
   ngOnInit() {

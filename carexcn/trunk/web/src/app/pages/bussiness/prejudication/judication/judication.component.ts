@@ -6,6 +6,13 @@ import {MessageService} from '../../../../@core/utils/message.service';
 import {DeviceService} from '../../../../@core/device/device.service';
 import {WebcamService} from '../../../../@core/device/webcam.service';
 
+/**
+ * 预审业务 - 预审审核 - 核对信息 --—接口与页面的交互逻辑
+ * 1、用户输入流水号或批次号
+ * 2、通过后台接口获取该号所属所有车辆列表以及车辆详情
+ * 3、加载用户选择的任一车辆详情供用户查看（不允许修改任何信息）
+ * 4、用户点击审核通过后，跳转入拍照录入页面
+ */
 @Component({
   selector: 'ngx-judication',
   templateUrl: './judication.component.html',
@@ -13,45 +20,35 @@ import {WebcamService} from '../../../../@core/device/webcam.service';
   providers: [CarService, WebcamService, DeviceService],
 })
 export class JudicationComponent implements OnInit {
-  /**
-   * 定义
-   * @type {{title: string; source: string}[]}
-   */
-  photos: any[] = [{
-    title: '身份证正面',
-    source: 'assets/images/camera1.jpg',
-  }, {
-    title: '身份证反面',
-    source: 'assets/images/camera2.jpg',
-  }, {
-    title: '代办联系人头像',
-    source: 'assets/images/camera3.jpg',
-  }, {
-    title: '商户联系人确认单',
-    source: 'assets/images/camera4.jpg',
-  }];
+  public test= '';
   /**
    * 车辆单辆数据
    */
-  public carData: CarModel;
+  public carData: CarModel = new CarModel();
   /**
    * 车辆多辆数据集
    */
   public carsData: CarModel[];
-
   /**
    * 数据初始化
    * @param {MessageService} message
    * @param {CarService} carService
    * @param {WebcamService} webcam
    */
-  constructor(private message: MessageService, private carService: CarService, private webcam: WebcamService) {
-    /**
-     * 不能写在 ngOnInit 中，因为必须在渲染子组件之前就要传递数据给子组件
-     */
+  constructor(private message: MessageService, private carService: CarService, private webcam: WebcamService, private _router: Router) {
     this.carService.getCar('1').then((res) => this.carData = res as CarModel);
     this.carService.getCars('1').then((res) => this.carsData = res as CarModel[]);
   }
-  ngOnInit() {
+  ngOnInit(): void {
+  }
+  onChangeSelectingCar(car: CarModel): void {
+    this.carData = car;
+    this.message.info(this.carData.lsnum, '当前车辆');
+  }
+  onSubmit() {
+    this._router.navigateByUrl('/pages/bussiness/prejudication/judication-photo');
+  }
+  reBack() {
+    this._router.navigateByUrl('/pages/bussiness/prejudication');
   }
 }

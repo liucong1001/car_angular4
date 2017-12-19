@@ -18,3 +18,8 @@
 <ngx-car-list [cars]="carsData"  (_selectCar)='onChangeSelectingCar($event)'></ngx-car-list>
 
 <ngx-car-detail [(car)]="carData"></ngx-car-detail>
+
+<div class="float-right">
+  <button class="btn btn-primary btn-lg" (click)="onSubmit()">保存</button> &nbsp;
+  <button class="btn btn-primary btn-lg" (click)="reBack()">返回</button>
+</div>
