@@ -6,7 +6,6 @@ import {WebcamService} from '../../device/webcam.service';
   selector: 'ngx-ys-camera',
   templateUrl: './camera.component.html',
   styleUrls: ['./camera.component.scss'],
-  providers: [WebcamService],
 })
 export class CameraComponent implements OnInit {
   /**

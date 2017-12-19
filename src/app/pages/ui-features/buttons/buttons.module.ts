@@ -37,6 +37,5 @@ const components = [
   declarations: [
     ...components,
   ],
-  providers: [],
 })
 export class ButtonsModule { }

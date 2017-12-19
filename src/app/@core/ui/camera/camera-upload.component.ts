@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
 import {MessageService} from '../../utils/message.service';
-import {FileUploadModule} from 'primeng/primeng';
 
 @Component({
   selector: 'ngx-ys-camera-upload',
@@ -22,7 +21,6 @@ import {FileUploadModule} from 'primeng/primeng';
       cursor: pointer;
     }
     `],
-  providers: [FileUploadModule],
   encapsulation: ViewEncapsulation.None,
 })
 export class CameraUploadComponent implements OnInit {
@@ -34,9 +32,8 @@ export class CameraUploadComponent implements OnInit {
    * 目前暂时只适配了开发环境[自己搭建的调试环境]
    * TODO: 需要在后端完成时进一步适配线上环境，对接后端程序
    * @param {MessageService} message
-   * @param {FileUploadModule} upld
    */
-  constructor(private message: MessageService, private upld: FileUploadModule) {
+  constructor(private message: MessageService) {
   }
   ngOnInit() {
   }
