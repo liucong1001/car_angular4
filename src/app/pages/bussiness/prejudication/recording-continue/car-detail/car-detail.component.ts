@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
 import {DeviceService} from '../../../../../@core/device/device.service';
 
 @Component({
@@ -23,16 +22,10 @@ export class CarDetailComponent implements OnInit {
     title: '登记证书末页',
     source: 'assets/images/camera4.jpg',
   }];
-  constructor(private _router: Router) { }
+  constructor() { }
 
   ngOnInit() {
   }
   readCard() {
-  }
-  onSubmit() {
-    this._router.navigateByUrl('/pages/bussiness/prejudication/recording-last');
-  }
-  reBack() {
-    this._router.navigateByUrl('/pages/bussiness/prejudication');
   }
 }

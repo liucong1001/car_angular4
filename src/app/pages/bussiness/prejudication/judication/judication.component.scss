@@ -3,9 +3,6 @@
 @import '~bootstrap/scss/mixins/breakpoints';
 
 @include nb-install-component() {
-  ngx-ys-calendar {
-    width: 100%;
-  }
   nb-card-header {
     padding: 0;
     border: none;
@@ -123,12 +120,6 @@
     .camera {
       span {
         background: rgba(88, 73, 184, 0.5);
-        webcam_btn {
-          display: none;
-        }
-        webcam_btn:hover {
-          display: block;
-        }
       }
 
       &::before {

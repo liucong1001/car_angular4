@@ -8,6 +8,7 @@ import {MessageService} from '../../../../../@core/utils/message.service';
 })
 export class CarListComponent implements OnInit {
   @Input() cars;
+  @Input() car_list_title;
   @Output('_selectCar') private _selectCar = new EventEmitter();
   constructor(private message: MessageService) { }
 

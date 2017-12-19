@@ -3,6 +3,7 @@
     <div class="cameras-card-header">
       <span class="cameras-card-title">预审业务 - 预审审核 - 卖方拍照</span>
     </div>
+    <ngx-ys-camera *ngFor="let photo of cameras" [title]="photo.title" [source]="photo.source"></ngx-ys-camera>
     <div class="camera col-sm-6 float-left" *ngFor="let camera of cameras" [style.background-image]="'url(' + camera.source + ')'"
          (click)="selectCamera(camera)">
       <span>{{ camera.title }}</span>

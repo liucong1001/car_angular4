@@ -6,17 +6,17 @@
   </nb-card-header>
   <nb-card-body>
     <div class="input-group">
-      <ngx-ys-calendar></ngx-ys-calendar>
+      <input type="text" placeholder="批次号" class="form-control" [(ngModel)]="test" readonly/>
+      <input type="text" placeholder="商户编码" class="form-control" />
+      <input type="text" placeholder="联系人" readonly class="form-control" [(ngModel)]="test" />
+      <input type="text" placeholder="手机号" readonly class="form-control" [(ngModel)]="test" />
     </div>
-    <div class="input-group">
-      <input type="text" placeholder="请输入车牌号" readonly class="form-control" />
-      <input type="text" placeholder="请输入代办商户以搜索" readonly class="form-control" />
-      <ngx-ys-calendar></ngx-ys-calendar>
-    </div>
-    <div class="input-group">
-      <input type="text" placeholder="请输入代办联系人以搜索" readonly class="form-control" />
-      <input type="text" placeholder="请输入手机号" readonly class="form-control" />
-    </div>
-    <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source"></ngx-ys-camera>
   </nb-card-body>
 </nb-card>
+<ngx-car-list [cars]="carsData"  (_selectCar)='onChangeSelectingCar($event)' [car_list_title]="'已提交的车辆'"></ngx-car-list>
+<ngx-car-detail [(car)]="carData"></ngx-car-detail>
+
+<div class="float-right">
+  <button class="btn btn-primary btn-lg" (click)="onSubmit()">审核</button> &nbsp;
+  <button class="btn btn-primary btn-lg" (click)="reBack()">返回</button>
+</div>
