@@ -3,24 +3,30 @@ import { NgModule } from '@angular/core';
 
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import {AuthGuardService} from '../@core/data/security/auth-guard.service';
 
 const routes: Routes = [{
   path: '',
   component: PagesComponent,
   children: [{
     path: 'dashboard',
+    canActivate: [AuthGuardService],
     component: DashboardComponent,
   }, {
     path: 'bussiness',
+    canActivate: [AuthGuardService],
     loadChildren: './bussiness/bussiness.module#BussinessModule',
   }, {
     path: 'ic-card',
     loadChildren: './ic-card/ic-card.module#IcCardModule',
+    canActivate: [AuthGuardService],
   }, {
     path: 'money',
     loadChildren: './money/money.module#MoneyModule',
+    canActivate: [AuthGuardService],
   }, {
     path: 'archives-manage',
+    canActivate: [AuthGuardService],
     loadChildren: './archives-manage/archives-manage.module#ArchivesManageModule',
   }, {
     path: 'common-auction',
@@ -30,6 +36,7 @@ const routes: Routes = [{
     loadChildren: './query-count/query-count.module#QueryCountModule',
   }, {
     path: 'system',
+    canActivate: [AuthGuardService],
     loadChildren: './system/system.module#SystemModule',
   }, {
     path: 'ui-features',

@@ -18,6 +18,7 @@ import {ToasterModule} from 'angular2-toaster';
 
 import 'style-loader!angular2-toaster/toaster.css';
 import {ReactiveFormsModule} from '@angular/forms';
+import {AuthGuardService} from "./@core/data/security/auth-guard.service";
 
 @NgModule({
   declarations: [AppComponent],
@@ -36,7 +37,7 @@ import {ReactiveFormsModule} from '@angular/forms';
   ],
   bootstrap: [AppComponent],
   providers: [
-    { provide: APP_BASE_HREF, useValue: '/' },
+    { provide: APP_BASE_HREF, useValue: '/'}, AuthGuardService,
   ],
 })
 export class AppModule {
