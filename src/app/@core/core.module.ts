@@ -14,6 +14,13 @@ const NB_CORE_PROVIDERS = [
         email: {
           service: NbEmailPassAuthProvider,
           config: {
+            login: {
+              endpoint: '/rest/login',
+            },
+            redirect: {
+              success: '/',
+              failure: null,
+            },
           },
         },
     },
