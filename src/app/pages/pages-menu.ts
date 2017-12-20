@@ -23,18 +23,18 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: '过户业务',
         link: '/pages/bussiness/transfer',
       },
-      {
+      /*{
         title: '交易变更',
         link: '/pages/bussiness/transfer',
-      },
-      {
+      },*/
+      /*{
         title: '缴费撤销',
         link: '/pages/bussiness/transfer',
       },
       {
         title: '公车拍卖',
         link: '/pages/bussiness/transfer',
-      },
+      },*/
     ],
   },
   {
@@ -166,6 +166,13 @@ export const MENU_ITEMS: NbMenuItem[] = [
       {title: '绩效考核', link: '/pages/query-count/performance-check'},
       {title: '附件查询', link: '/pages/query-count/appendix-query'},
       {title: '转出地区交易查询', link: '/pages/query-count/area-query'},
+    ],
+  }, {
+    title: '交易变更',
+    icon: 'ion-ios-settings',
+    children: [
+      {title: '交易修改', link: '/pages/trade-change/trade-revise'},
+      {title: '交易状态修改', link: '/pages/trade-change/state-revise'},
     ],
   },
   {

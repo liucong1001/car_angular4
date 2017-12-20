@@ -49,5 +49,11 @@ export class PaymentDetailComponent implements OnInit, OnChanges {
   // 列表搜索条件对象
   filter: any = {};
 
-
+  /*添加*/
+  /*add(number: string): void {
+    number = number.trim();
+    if (!number) {return ; }
+    this.cardService.create(number).then(card => {this.cardsData.push(card) ; });
+  }
+*/
 }
