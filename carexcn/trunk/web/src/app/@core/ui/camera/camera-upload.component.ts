@@ -37,14 +37,29 @@ export class CameraUploadComponent implements OnInit {
   }
   ngOnInit() {
   }
+
+  /**
+   * 上传进度支持
+   * @param $event
+   */
   uploadProgress($event) {
     // this.message.info('上传进度', $event.progress + '%');
   }
+
+  /**
+   * 上传完成事件提醒
+   * @param $event
+   */
   uploadComplete($event) {
     const res = JSON.parse($event.xhr.responseText);
     this._new_img_url.emit(res.file[0]);
     this.message.info('上传', '上传完成');
   }
+
+  /**
+   * 选中文件事件提醒
+   * @param $event
+   */
   triggerFileselect($event) {
     // this.message.info('文件选择', '点了我');
   }

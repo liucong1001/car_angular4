@@ -1,4 +1,5 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
+import {RestService} from '../../utils/rest.service';
 
 @Component({
   selector: 'ngx-ys-autoinput',
@@ -7,25 +8,19 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
   encapsulation: ViewEncapsulation.None,
 })
 export class AutoinputComponent implements OnInit {
-  text: string;
+  @Output() _value = new EventEmitter();
+  @Input() results_resource_url: string;
+  value: string;
   results: string[];
-  results_resource: string[] = [];
-  constructor() {
+  constructor(private rest: RestService) {
   }
 
   ngOnInit() {
-    /**
-     * 如果没有给出数据，则模拟数据
-     */
-    if (this.results_resource.length < 1) {
-      let max = 20;
-      do {
-        this.results_resource.push(Math.random().toString(36).substring(2) + Math.random().toString(36).substring(2));
-        max--;
-      } while (max > 0);
-    }
   }
   search(_event) {
-    this.results = this.results_resource.filter((item) => item.indexOf(_event.query) > 0);
+    this.rest.get(this.results_resource_url + _event.query).subscribe((res) => this.results = res as string[]);
+  }
+  selectedValue(_event) {
+    this._value.emit(_event);
   }
 }

@@ -2,8 +2,10 @@ import {ModuleWithProviders, NgModule} from '@angular/core';
 import {AnalyticsService} from './analytics.service';
 import {MessageService} from './message.service';
 import {UploadService} from './upload.service';
+import {RestService} from './rest.service';
 
 const SERVICES = [
+  RestService,
   AnalyticsService,
   MessageService,
   UploadService,
