@@ -1,6 +1,9 @@
 <nb-card>
   <nb-card-header class="d-flex">
     <div class="p-2 mr-auto">IC转账</div>
+    <div class="p2">
+      <button type="button" class="btn btn-outline-success" (click)="readIccard()">启用读卡器</button>
+    </div>
   </nb-card-header>
   <nb-card-body>
     <div class="row">
@@ -27,27 +30,27 @@
             </div>
             <div class="input-group">
               <span class="input-group-addon">商户名称：</span>
-              <input type="text" class="form-control" placeholder=""/>
+              <label class="form-control" ></label>
             </div>
             <div class="input-group">
               <span class="input-group-addon">账户名称：</span>
-              <input type="text" class="form-control" placeholder=""/>
+              <label class="form-control" ></label>
             </div>
             <div class="input-group">
               <span class="input-group-addon">账户号：</span>
-              <input type="text" class="form-control" placeholder=""/>
+              <label class="form-control" ></label>
             </div>
             <div class="input-group">
               <span class="input-group-addon">当前余额：</span>
-              <input type="text" class="form-control" placeholder=""/>
+              <label class="form-control" ></label>
             </div>
             <div class="input-group">
               <span class="input-group-addon">充值余额：</span>
-              <input type="text" class="form-control" placeholder=""/>
+              <label class="form-control" ></label>
             </div>
             <div class="input-group">
               <span class="input-group-addon">赠送余额：</span>
-              <input type="text" class="form-control" placeholder=""/>
+              <label class="form-control" ></label>
             </div>
           </nb-card-body>
         </nb-card>
@@ -62,27 +65,27 @@
             </div>
             <div class="input-group">
               <span class="input-group-addon">商户名称：</span>
-              <input type="text" class="form-control" placeholder=""/>
+              <label class="form-control" ></label>
             </div>
             <div class="input-group">
               <span class="input-group-addon">账户名称：</span>
-              <input type="text" class="form-control" placeholder=""/>
+              <label class="form-control" ></label>
             </div>
             <div class="input-group">
               <span class="input-group-addon">账户号：</span>
-              <input type="text" class="form-control" placeholder=""/>
+              <label class="form-control" ></label>
             </div>
             <div class="input-group">
               <span class="input-group-addon">当前余额：</span>
-              <input type="text" class="form-control" placeholder=""/>
+              <label class="form-control" ></label>
             </div>
             <div class="input-group">
               <span class="input-group-addon">充值余额：</span>
-              <input type="text" class="form-control" placeholder=""/>
+              <label class="form-control" ></label>
             </div>
             <div class="input-group">
               <span class="input-group-addon">赠送余额：</span>
-              <input type="text" class="form-control" placeholder=""/>
+              <label class="form-control" ></label>
             </div>
           </nb-card-body>
         </nb-card>
@@ -98,11 +101,11 @@
           <nb-card-body>
             <div class="input-group">
               <span class="input-group-addon">转账充值金额：</span>
-              <input type="text" class="form-control" placeholder=""/>
+              <input type="text" class="form-control" placeholder="" (click)="iccardText()"/>
             </div>
             <div class="input-group">
               <span class="input-group-addon">转账赠送金额：</span>
-              <input type="text" class="form-control" placeholder=""/>
+              <input type="text" class="form-control" (click)="iccardText()" placeholder=""/>
             </div>
           </nb-card-body>
         </nb-card>
@@ -113,7 +116,7 @@
       <div class="col-lg-12">
         <nb-card>
           <nb-card-body >
-            <button class="btn btn-success">转账</button>
+            <button class="btn btn-success" (click)="iccardRecharge()">转账</button>
           </nb-card-body>
         </nb-card>
       </div>
