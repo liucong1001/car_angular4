@@ -39,6 +39,9 @@ const routes: Routes = [{
     canActivate: [AuthGuardService],
     loadChildren: './system/system.module#SystemModule',
   }, {
+    path: 'merchant',
+    loadChildren: './merchant/merchant.module#MerchantModule',
+  }, {
     path: 'ui-features',
     loadChildren: './ui-features/ui-features.module#UiFeaturesModule',
   }, {

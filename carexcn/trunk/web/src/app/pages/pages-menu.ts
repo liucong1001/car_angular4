@@ -2,7 +2,7 @@ import { NbMenuItem } from '@nebular/theme';
 
 export const MENU_ITEMS: NbMenuItem[] = [
   {
-    title: 'Dashboard',
+    title: '首页',
     icon: 'ion-ios-home-outline',
     link: '/pages/dashboard',
     home: true,
@@ -43,11 +43,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: '商户备案',
-        link: '/pages/bussiness/transfer',
+        link: '/pages/merchant/dealers',
       },
       {
         title: '商户员工备案',
-        link: '/pages/bussiness/transfer',
+        link: '/pages/merchant/contacts',
       },
     ],
   },
@@ -178,6 +178,9 @@ export const MENU_ITEMS: NbMenuItem[] = [
       {title: '提档所在地管理', link: '/pages/system/transfercity'},
       {title: '车辆类型管理', link: '/pages/system/cartype'},
       {title: '车辆黑名单', link: '/pages/system/blacklist'},
+      {title: '许可权限', link: '/pages/system/perm'},
+      {title: '行政区划', link: '/pages/system/area'},
+      {title: '市场配置', link: '/pages/system/market'},
     ],
   },
   {

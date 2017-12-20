@@ -1,0 +1,34 @@
+<nb-card>
+    <nb-card-header>权限许可</nb-card-header>
+    <nb-card-body>
+      <div class="row">
+        <div class="col-sm-6">
+            <button (click)='Root()' class="btn btn-sm " [ngClass]="{'btn-success':selectedNode==undefind}" >Root</button>
+            <p-tree [value]="orgTree | permTreeNode" selectionMode="single"   [(selection)]="selectedNode" (onNodeSelect)="nodeSelect($event)" (click)="null" onNodeUnselect='nodeUnselect($event)'></p-tree>
+        </div>
+        <div class="col-sm-6">
+            <form #Form="ngForm" (ngSubmit)="onSubmit()"   novalidate>
+                <div class="form-group">
+                    <label>许可代码</label>
+                    <input class="form-control" type="text" size="30" pInputText  [(ngModel)]="item.code" [disabled]="disabled" name='code'  #code="ngModel" />
+                </div>
+                <div class="form-group">
+                    <label>许可名称</label>
+                    <input class="form-control" type="text" size="30" pInputText  [(ngModel)]="item.name" [disabled]="disabled" name='name'  #name="ngModel" />
+                </div>
+                <div class="form-group">
+                  <label>访问路径</label>
+                  <input class="form-control" type="text" size="30" pInputText  [(ngModel)]="item.path"  [disabled]="disabled" name='path'  #path="ngModel" />
+                </div>
+                <div class="form-group">
+                  <label>图标</label>
+                  <input class="form-control" type="text" size="30" pInputText  [(ngModel)]="item.icon"  [disabled]="disabled" name='icon'  #icon="ngModel" />
+                </div>
+                <button type="button" class="btn {{disabled?'btn-primary':'btn-success'}}" (click)="editOrSave()">{{disabled?'编辑':'保存'}}</button>
+                <button type="button" class="btn btn-success" (click)="prepareForNewOrg()" >新建</button>
+                <button type="button" class="btn btn-danger" (click)="confirmDelete()">删除</button>
+            </form>
+        </div>
+     </div>
+    </nb-card-body>
+</nb-card>

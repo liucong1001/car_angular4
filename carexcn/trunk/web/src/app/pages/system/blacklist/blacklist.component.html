@@ -1,17 +1,24 @@
 <nb-card>
-    <nb-card-header class="d-flex">
-      <div class="p-2 mr-auto">车辆黑名单管理</div>
-      <div class="p2">
-        <a [routerLink]="'edit'" class="btn btn-primary btn-sm">新增</a>
-        <button type="button" class="btn btn-sm btn-outline-success" (click)="toggle()" [ngClass]="{'active':showFilter}" ><i class="ion-funnel"></i></button>
-      </div>
-    </nb-card-header>
-    <nb-card-body>
+  <nb-card-header class="d-flex">
+    <div class="p-2 mr-auto">车辆黑名单管理</div>
+    <div class="p2">
+      <a [routerLink]="'edit'" class="btn btn-primary btn-sm">新增</a>
+      <button type="button" class="btn btn-sm btn-outline-success" (click)="toggle()" [ngClass]="{'active':showFilter}">
+        <i class="ion-funnel"></i>
+      </button>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
       <form [@visibilityChanged]="visibility" (submit)="codeList.reload()">
         <div class="row">
-          <div class="col-sm-4">
+          <div class="col-sm-2">
             <div class="form-group form-group-sm">
-              <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="车牌号 - 模糊搜索"/>
+              <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="车牌号 - 模糊搜索" />
+            </div>
+          </div>
+          <div class="col-sm-2">
+            <div class="form-group">
+              <p-calendar [(ngModel)]="createTime"  [locale]="ch" name='createTime' [showIcon]="true" ></p-calendar>
             </div>
           </div>
           <div class="col-sm-2">
@@ -23,6 +30,14 @@
         </div>
       </form>
       <ngx-table #codeList [url]="'/rest/sys/codemap/pager'" [columns]="columns" [filter]="filter"></ngx-table>
-    </nb-card-body>
-  </nb-card>
-  
+      <hr>
+      <div class="row">
+        <div class="col-sm-2"> 
+          <p-calendar [(ngModel)]="createTime" [locale]="ch"  dateFormat="yy年mm月dd日" showButtonBar="true" [showIcon]="true" [inline]="false" [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030"></p-calendar>
+        </div>
+      </div>
+      <hr>
+      <h3>{{createTime | date}}</h3>
+    <p-lightbox [images]="images" styleClass='img'></p-lightbox>
+  </nb-card-body>
+</nb-card>

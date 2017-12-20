@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        var data=[
+    {
+        "cloudUser": null,
+        "id": "4028f2c7604df5e501604df6cd420000",
+        "name": "4324",
+        "code": "3213",
+        "path": "32432",
+        "status": "1",
+        "icon": "324",
+        "type": null,
+        "seq": 1,
+        "subPermissons": []
+    },
+    {
+        "cloudUser": null,
+        "id": "4028f2c7604df5e501604dfd637e0001",
+        "name": "系统管理",
+        "code": "99",
+        "path": "sys/setting",
+        "status": "1",
+        "icon": "icon-set",
+        "type": null,
+        "seq": 1,
+        "subPermissons": [
+            {
+                "cloudUser": null,
+                "id": "4028f2c760531171016054cddce50005",
+                "name": "代码管理",
+                "code": "000012",
+                "path": "sys/pages/code",
+                "status": "1",
+                "icon": "icon-code",
+                "type": null,
+                "seq": 1,
+                "subPermissons": [
+                    {
+                        "cloudUser": null,
+                        "id": "4028f2c7605311710160550ccad60007",
+                        "name": "代码管理son1",
+                        "code": "0000111",
+                        "path": "sys/code/son1",
+                        "status": "1",
+                        "icon": "icon-code-son1",
+                        "type": null,
+                        "seq": 1,
+                        "subPermissons": []
+                    }
+                ]
+            },
+            {
+                "cloudUser": null,
+                "id": "4028f2c760531171016054d173060006",
+                "name": "车辆黑名单",
+                "code": "0092",
+                "path": "sys/blacklist",
+                "status": "1",
+                "icon": "icon-car",
+                "type": null,
+                "seq": 1,
+                "subPermissons": []
+            }
+        ]
+    },
+    {
+        "cloudUser": null,
+        "id": "4028f2c760531171016053de14ec0000",
+        "name": "213",
+        "code": "321",
+        "path": "123",
+        "status": "1",
+        "icon": "123123",
+        "type": null,
+        "seq": 1,
+        "subPermissons": []
+    },
+    {
+        "cloudUser": null,
+        "id": "4028f2c760531171016054213a210001",
+        "name": "IC卡管理",
+        "code": "001",
+        "path": "sys/pages/iccard",
+        "status": "1",
+        "icon": "icon-card",
+        "type": null,
+        "seq": 1,
+        "subPermissons": []
+    },
+    {
+        "cloudUser": null,
+        "id": "4028f2c7605311710160542146a50002",
+        "name": "IC卡管理",
+        "code": "001",
+        "path": "sys/pages/iccard",
+        "status": "1",
+        "icon": "icon-card",
+        "type": null,
+        "seq": 1,
+        "subPermissons": []
+    },
+    {
+        "cloudUser": null,
+        "id": "4028f2c7605311710160543513160003",
+        "name": "用户管理",
+        "code": "0091",
+        "path": "sys/pages/manager",
+        "status": "1",
+        "icon": "icon-persion",
+        "type": null,
+        "seq": 1,
+        "subPermissons": []
+    }
+]
+
+function tree(json){
+    var item=[];
+    json.forEach((p) => {
+              item.push({
+                ...p,
+                label: p.name,
+                data: p.code,
+                children: tree(p.subPermissons),
+                expandedIcon: 'fa-folder-open',
+                collapsedIcon: 'fa-folder',
+            });
+         });
+         return item;
+}
+ var  da=tree(data);
+console.log("循环之前",data);
+console.log("循环后的数据",da);
+
+        
+     </script>
+</body>
+</html>

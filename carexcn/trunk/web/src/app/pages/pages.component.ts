@@ -10,6 +10,7 @@ import {ToasterConfig} from 'angular2-toaster';
         <router-outlet></router-outlet>
     </ngx-sample-layout>
   `,
+  styleUrls: ['./pages.component.scss'],
 })
 export class PagesComponent {
   toastConfig: ToasterConfig = new ToasterConfig({
