@@ -17,7 +17,7 @@ import {UiModule} from '../../@core/ui/ui.module';
     UiTableModule,
     HttpModule,
     RouterModule,
-    UiModule,
+    UiModule, /*日历*/
   ],
   declarations: [...routedComponents],
 })

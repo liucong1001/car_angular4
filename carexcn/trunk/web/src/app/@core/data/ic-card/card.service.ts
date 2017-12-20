@@ -29,4 +29,13 @@ export class CardService {
     return result;
   }
 
+  /*create(number: string): Promise<CardModel[]> {
+    if (isDevMode()) {
+      return Promise.resolve(this.cards).then((res) => res as CardModel[]);
+    } else {
+      return this.http
+        .get(this.api_url_base, JSON.stringify({number: number}))
+        .toPromise().then(res => res.json().data as CardModel[]);
+    }
+  }*/
 }

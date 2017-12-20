@@ -1,13 +1,13 @@
 import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 import {Column} from '../../../@core/ui/table/table.component';
 import {Menu, MenuCell} from '../../../@core/ui/table/cell.menu.component';
 import {TextCell} from '../../../@core/ui/table/cell.text.component';
-import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
-  selector: 'ngx-month-count',
-  templateUrl: './month-count.component.html',
-  styleUrls: ['./month-count.component.scss'],
+  selector: 'ngx-trade-revise',
+  templateUrl: './trade-revise.component.html',
+  styleUrls: ['./trade-revise.component.scss'],
   // 定义动画
   animations: [
     trigger('visibilityChanged', [
@@ -19,7 +19,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
     ]),
   ],
 })
-export class MonthCountComponent implements OnInit, OnChanges {
+export class TradeReviseComponent implements OnInit, OnChanges {
 
   constructor() { }
 
@@ -44,26 +44,27 @@ export class MonthCountComponent implements OnInit, OnChanges {
   filter: any = {};
   // 列表列定义
   columns: Column[] = [
-    {title: '发票号', titleClass: 'w-10 text-center', cell: new TextCell('code')} as Column,
-    {title: '发票日期', titleClass: 'w-10 text-center', cell: new TextCell('name')} as Column,
-    {title: '交易流水号', titleClass: 'w-10 text-center', cell: new TextCell('name')} as Column,
+    {title: '流水号', titleClass: 'w-10 text-center', cell: new TextCell('code')} as Column,
     {title: '车牌号', titleClass: 'w-10 text-center', cell: new TextCell('name')} as Column,
-    {title: '车种', titleClass: 'w-10 text-center', cell: new TextCell('name')} as Column,
-    {title: '车价', titleClass: 'w-10 text-center', cell: new TextCell('name')} as Column,
-    {title: '过户手续费', titleClass: 'w-10 text-center', cell: new TextCell('name')} as Column,
-    {title: '车辆评估费', titleClass: 'w-10 text-center', cell: new TextCell('name')} as Column,
-    {title: '开票时间', titleClass: 'w-10 text-center', cell: new TextCell('name')} as Column,
-    {title: '发票状态', titleClass: 'w-5 text-center', cell: new TextCell('name')} as Column,
-    {title: '发票类型', titleClass: 'w-5 text-center', cell: new TextCell('name')} as Column,
+    {title: '厂牌型号', titleClass: 'w-10 text-center', cell: new TextCell('name')} as Column,
+    {title: '车辆类型', titleClass: 'w-10 text-center', cell: new TextCell('name')} as Column,
+    {title: '使用性质', titleClass: 'w-10 text-center', cell: new TextCell('name')} as Column,
+    {title: '手续费', titleClass: 'w-10 text-center', cell: new TextCell('name')} as Column,
+    {title: '交易价格', titleClass: 'w-10 text-center', cell: new TextCell('name')} as Column,
+    {title: '卖家状态', titleClass: 'w-10 text-center', cell: new TextCell('name')} as Column,
+    {title: '买家状态', titleClass: 'w-10 text-center', cell: new TextCell('name')} as Column,
     {
       title: '', titleClass: 'w-15 text-center', cell: new MenuCell(
         [
-          new Menu('编辑', '', 'edit'),
-          new Menu('禁用', '', this.disable),
+          new Menu('交易信息', '', 'edit'),
+          new Menu('车辆信息', '', 'edit'),
+          new Menu('卖方信息', '', 'edit'),
+          new Menu('买方信息', '', this.disable),
         ],
-        new Menu('结算', '', this.view), 'text-center',
+        new Menu('修改', '', this.view), 'text-center',
       )} as Column,
   ];
+
 
   // 列表菜单回调
   view(row: any, drop: any) {

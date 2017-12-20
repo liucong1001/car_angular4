@@ -30,10 +30,16 @@ const routes: Routes = [{
     loadChildren: './archives-manage/archives-manage.module#ArchivesManageModule',
   }, {
     path: 'common-auction',
+    canActivate: [AuthGuardService],
     loadChildren: './common-auction/common-auction.module#CommonAuctionModule',
   }, {
     path: 'query-count',
+    canActivate: [AuthGuardService],
     loadChildren: './query-count/query-count.module#QueryCountModule',
+  }, {
+      path: 'trade-change',
+      canActivate: [AuthGuardService],
+      loadChildren: './trade-change/trade-change.module#TradeChangeModule',
   }, {
     path: 'system',
     canActivate: [AuthGuardService],

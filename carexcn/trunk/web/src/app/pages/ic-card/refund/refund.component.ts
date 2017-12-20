@@ -44,18 +44,18 @@ export class RefundComponent implements OnInit {
               self.iccardData.Banlance = s.Banlance;
               self.iccardData.BanlanceDisplay = (s.Banlance) / 100 ;
             }).catch((e) => {
-              console.log(e);
+              console.error(e);
               self.message.success('IC卡操作', 'IC卡连接不稳定。未能获取到余额');
             });
             self.message.success('IC卡操作', '充值 ' + this.iccardRechargeData.amountDisplay + '元 成功！');
           }
         }).catch((e) => {
-          console.log(e);
+          console.error(e);
           self.message.error('IC卡操作', '充值失败！请检查IC卡是否完好，链接是否正常。');
         });
       }
     }).catch((e) => {
-      console.log(e);
+      console.error(e);
       this.message.error('IC卡操作', '设备连接失败！请检查设备链接是否成功。');
     });
   }
@@ -72,12 +72,12 @@ export class RefundComponent implements OnInit {
           self.iccardData.Banlance = s.Banlance;
           self.iccardData.BanlanceDisplay = (s.Banlance) / 100 ;
         }).catch((e) => {
-          console.log(e);
+          console.error(e);
           self.message.success('IC卡操作', 'IC卡连接不稳定。未能获取到余额');
         });
       }
     }).catch((e) => {
-      console.log(e);
+      console.error(e);
       this.message.error('IC卡连接失败！', '设备或IC卡不正常或连接有误。');
     });
   }
