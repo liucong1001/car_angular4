@@ -8,6 +8,7 @@ import { AnalyticsService } from './utils/analytics.service';
 import { MessageService } from './utils/message.service';
 import { DeviceModule } from './device/device.module';
 import {UtilsModule} from './utils/utils.module';
+import {UiModule} from './ui/ui.module';
 
 const NB_CORE_PROVIDERS = [
   ...DataModule.forRoot().providers,
@@ -36,6 +37,7 @@ const NB_CORE_PROVIDERS = [
 @NgModule({
   imports: [
     CommonModule,
+    UiModule,
   ],
   exports: [
   ],
