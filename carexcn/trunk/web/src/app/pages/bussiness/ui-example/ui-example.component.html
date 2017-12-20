@@ -9,15 +9,17 @@
     <div class="col-md-12">
       <nb-card>
         <nb-tabset fullWidth  style="min-height: 400px">
+          <nb-tab tabTitle="输入提示" style="min-height: 400px">
+            <div>
+              <ngx-ys-autoinput></ngx-ys-autoinput>
+            </div>
+          </nb-tab>
           <nb-tab tabTitle="日历控件" style="min-height: 400px">
             <div class="input-group">
               <ngx-ys-calendar [placeholder]="'截至日期'" (_calendarValue)="getYsCalendarValue($event)"></ngx-ys-calendar>
               <button class="btn btn-primary btn-sm" (click)="showYsCalendarValue()">从父组件获取时间</button>
               <ngx-ys-calendar [placeholder]="'某个月'" [dateFormat]="'yy-mm'" (_calendarValue)="getYsCalendarValue2($event)"></ngx-ys-calendar>
               <button class="btn btn-primary btn-sm" (click)="showYsCalendarValue2()">只选月份</button>
-            </div>
-            <div>
-              <ngx-ys-autoinput></ngx-ys-autoinput>
             </div>
           </nb-tab>
           <nb-tab tabTitle="拍照与上传控件">
@@ -63,6 +65,14 @@
       </nb-card>
     </div>
 
+
+    <div class="cameras-card-header">
+      <span class="cameras-card-title">输入提示控件</span>
+    </div>
+    <div>
+      <ngx-ys-autoinput></ngx-ys-autoinput>
+    </div>
+
     <div>
       <div class="cameras-card-header">
         <span class="cameras-card-title">日历控件</span>
@@ -73,10 +83,6 @@
       <button class="btn btn-primary btn-sm" (click)="showYsCalendarValue()">从父组件获取时间</button>
       <ngx-ys-calendar [placeholder]="'某个月'" [dateFormat]="'yy-mm'" (_calendarValue)="getYsCalendarValue2($event)"></ngx-ys-calendar>
       <button class="btn btn-primary btn-sm" (click)="showYsCalendarValue2()">只选月份</button>
-    </div>
-
-    <div>
-      <ngx-ys-autoinput></ngx-ys-autoinput>
     </div>
 
     <div class="input-group">

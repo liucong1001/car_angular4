@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'ngx-ys-autoinput',
   templateUrl: './autoinput.component.html',
   styleUrls: ['./autoinput.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class AutoinputComponent implements OnInit {
   text: string;
@@ -14,17 +15,17 @@ export class AutoinputComponent implements OnInit {
 
   ngOnInit() {
     /**
-     * 建立搜索结果的模拟数据
+     * 如果没有给出数据，则模拟数据
      */
-    let max = 20;
-    do {
-      this.results_resource.push(Math.random().toString(36).substring(7));
-      max--;
-    } while (max > 0);
+    if (this.results_resource.length < 1) {
+      let max = 20;
+      do {
+        this.results_resource.push(Math.random().toString(36).substring(2) + Math.random().toString(36).substring(2));
+        max--;
+      } while (max > 0);
+    }
   }
   search(_event) {
-    this.results = this.results_resource;
-    // console.log(this.results_resource);
-    // this.results = this.results_resource.filter((item) => item.indexOf(_event));
+    this.results = this.results_resource.filter((item) => item.indexOf(_event.query) > 0);
   }
 }
