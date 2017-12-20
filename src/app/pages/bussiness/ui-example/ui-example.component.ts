@@ -22,6 +22,8 @@ export class UiExampleComponent implements OnInit {
   public iccardRechargeData = new IccardOperaModel();
   public fingerImgUrl = '/assets/images/camera1.jpg';
   public fingerBase64 = '';
+  public autoinput_source_url = 'https://dongshenghuo.com/test.php?r=stringArr&q=';
+  public auto_input_value_tmp = '';
   photos: any[] = [{
     title: '测试图一',
     source: 'assets/images/camera1.jpg',
@@ -35,13 +37,15 @@ export class UiExampleComponent implements OnInit {
    * @param {MessageService} message
    * @param {IdcardService} idcard
    * @param {IccardService} iccard
+   * @param {FingerService} finger
    */
   constructor(
     private message: MessageService,
     private idcard: IdcardService,
     private iccard: IccardService,
-    private finger: FingerService
-  ) { }
+    private finger: FingerService,
+  ) {
+  }
 
   /**
    * 组件初始化接口函数
@@ -122,7 +126,7 @@ export class UiExampleComponent implements OnInit {
     const self = this;
     this.iccardRechargeData.amount = this.iccardRechargeData.amountDisplay * 100; // 单位转换
     this.iccard.writerInit(this.iccardData.market, this.iccardData.maker, this.iccardData.txnSlot).then((res) => {
-      console.log(res);
+      // console.log(res);
       if (true === res) {
         self.iccard.recharge(self.iccardRechargeData).then((r) => {
           if (r) {
@@ -130,18 +134,18 @@ export class UiExampleComponent implements OnInit {
               self.iccardData.Banlance = s.Banlance;
               self.iccardData.BanlanceDisplay = (s.Banlance) / 100 ;
             }).catch((e) => {
-              console.log(e);
+              // console.log(e);
               self.message.success('IC卡操作', 'IC卡连接不稳定。未能获取到余额');
             });
             self.message.success('IC卡操作', '充值 ' + this.iccardRechargeData.amountDisplay + '元 成功！');
           }
         }).catch((e) => {
-          console.log(e);
+          // console.log(e);
           self.message.error('IC卡操作', '充值失败！请检查IC卡是否完好，链接是否正常。');
         });
       }
     }).catch((e) => {
-      console.log(e);
+      // console.log(e);
       this.message.error('IC卡操作', '设备连接失败！请检查设备链接是否成功。');
     });
   }
@@ -153,7 +157,7 @@ export class UiExampleComponent implements OnInit {
     const self = this;
     this.iccardPayData.amount = this.iccardPayData.amountDisplay * 100; // 单位转换
     this.iccard.writerInit(this.iccardData.market, this.iccardData.maker, this.iccardData.txnSlot).then((res) => {
-      console.log(res);
+      // console.log(res);
       if (true === res) {
         self.iccard.pay(self.iccardPayData).then((r) => {
           if (r) {
@@ -161,18 +165,18 @@ export class UiExampleComponent implements OnInit {
               self.iccardData.Banlance = s.Banlance;
               self.iccardData.BanlanceDisplay = (s.Banlance) / 100 ;
             }).catch((e) => {
-              console.log(e);
+              // console.log(e);
               self.message.success('IC卡操作', 'IC卡连接不稳定。未能获取到余额');
             });
             self.message.success('IC卡操作', '扣款 ' + this.iccardPayData.amountDisplay + '元 成功！');
           }
         }).catch((e) => {
-          console.log(e);
+          // console.log(e);
           self.message.error('扣款失败！', 'IC卡有误或余额不足。');
         });
       }
     }).catch((e) => {
-      console.log(e);
+      // console.log(e);
       this.message.error('IC卡连接失败！', '设备或IC卡不正常或连接有误。');
     });
   }
@@ -184,18 +188,18 @@ export class UiExampleComponent implements OnInit {
     const self = this;
     this.iccardPayData.amount = this.iccardPayData.amountDisplay * 100; // 单位转换
     this.iccard.writerInit(this.iccardData.market, this.iccardData.maker, this.iccardData.txnSlot).then((res) => {
-      console.log(res);
+      // console.log(res);
       if (true === res) {
         self.iccard.scanCard().then((s) => {
           self.iccardData.Banlance = s.Banlance;
           self.iccardData.BanlanceDisplay = (s.Banlance) / 100 ;
         }).catch((e) => {
-          console.log(e);
+          // console.log(e);
           self.message.success('IC卡操作', 'IC卡连接不稳定。未能获取到余额');
         });
       }
     }).catch((e) => {
-      console.log(e);
+      // console.log(e);
       this.message.error('IC卡连接失败！', '设备或IC卡不正常或连接有误。');
     });
   }
@@ -203,17 +207,23 @@ export class UiExampleComponent implements OnInit {
     this.message.info('指纹读取', '读取指纹');
     this.finger.read().then((data) => {
       const response = JSON.parse(data.File);
-      console.log(response.file[0]);
+      // console.log(response.file[0]);
       this.fingerImgUrl = response.file[0];
       this.fingerBase64 = data.Base64;
     }).catch((error) => {
-      console.log(error);
+      // console.log(error);
     });
   }
   fingerVerify() {
     this.message.info('指纹验证', '验证指纹');
     this.finger.verify(this.fingerBase64).then((verify) => {
-      console.log(verify);
+      // console.log(verify);
     });
+  }
+  getAutoInputValue(event) {
+    if (this.auto_input_value_tmp !== event) {
+      this.auto_input_value_tmp = event;
+      this.message.info('输入提示', '您选择了：' + event);
+    }
   }
 }

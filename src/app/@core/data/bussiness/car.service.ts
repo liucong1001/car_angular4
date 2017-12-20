@@ -3,33 +3,36 @@ import {Observable} from 'rxjs/Observable';
 import {CarModel} from '../../model/bussiness/car.model';
 import {Http} from '@angular/http';
 import 'rxjs/add/observable/of';
+import {RestService} from '../../utils/rest.service';
 
 @Injectable()
 export class CarService {
-  constructor(private http: Http) {
+  constructor(private http: Http, private rest: RestService) {
   }
   private api_url_base = 'rest/car/';
-  private cars: CarModel[] = [{
-    lsnum: '鄂A09001',
-  }, {
-    lsnum: '鄂A09002',
-  }, {
-    lsnum: '鄂A09003',
-  }, {
-    lsnum: '鄂A09004',
-  }, {
-    lsnum: '鄂A09005',
-  }, {
-    lsnum: '鄂A09006',
-  }, {
-    lsnum: '鄂A09007',
-  }, {
-    lsnum: '鄂A09008',
-  }, {
-    lsnum: '鄂A09009',
-  }, {
-    lsnum: '鄂A09010',
-  }];
+  private cars: CarModel[] = [
+    {
+      lsnum: '鄂A09001',
+    }, {
+      lsnum: '鄂A09002',
+    }, {
+      lsnum: '鄂A09003',
+    }, {
+      lsnum: '鄂A09004',
+    }, {
+      lsnum: '鄂A09005',
+    }, {
+      lsnum: '鄂A09006',
+    }, {
+      lsnum: '鄂A09007',
+    }, {
+      lsnum: '鄂A09008',
+    }, {
+      lsnum: '鄂A09009',
+    }, {
+      lsnum: '鄂A09010',
+    },
+   ];
   public car: CarModel = {
     lsnum: '',
   };
