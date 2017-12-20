@@ -12,14 +12,14 @@ export class AuthGuardService implements CanActivate , CanActivateChild {
     return undefined;
   }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> {
-    return true;
-    // return this.authService.isAuthenticated()
-    //   .do(authenticated => {
-    //     return true;
-    //     if (!authenticated) {
-    //       this.router.navigate(['auth/login']);
-    //     }
-    //   });
+    // return true;
+    return this.authService.isAuthenticated()
+      .do(authenticated => {
+        if (!authenticated) {
+          this.router.navigate(['auth/login']);
+        }
+        return true;
+      });
   }
 
   constructor(private authService: NbAuthService, private router: Router) { }
