@@ -3,6 +3,8 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 import {Column} from '../../../@core/ui/table/table.component';
 import {TextCell} from '../../../@core/ui/table/cell.text.component';
 import {Menu, MenuCell} from '../../../@core/ui/table/cell.menu.component';
+import {CardModel} from '../../../@core/model/bussiness/card.model';
+import {CardService} from '../../../@core/data/ic-card/card.service';
 
 @Component({
   selector: 'ngx-transfer-record',
@@ -27,7 +29,8 @@ import {Menu, MenuCell} from '../../../@core/ui/table/cell.menu.component';
 })
 export class TransferRecordComponent implements OnInit, OnChanges {
 
-  constructor() { }
+  constructor() {
+  }
 
   visibility = 'hidden';
   showFilter = false;
@@ -46,8 +49,8 @@ export class TransferRecordComponent implements OnInit, OnChanges {
   filter: any = {};
   // 列表列定义
   columns: Column[] = [
-    {title: '转出卡', titleClass: '', cell: new TextCell('code')} as Column,
-    {title: '转入卡', titleClass: '', cell: new TextCell('name')} as Column,
+    {title: '转出卡', titleClass: '', cell: new TextCell('card.number')} as Column,
+    {title: '转入卡', titleClass: '', cell: new TextCell('card.num')} as Column,
     {title: '金额', titleClass: '', cell: new TextCell('code')} as Column,
     {title: '转账时间', titleClass: '', cell: new TextCell('code')} as Column,
     {title: '转账操作人', titleClass: '', cell: new TextCell('code')} as Column,

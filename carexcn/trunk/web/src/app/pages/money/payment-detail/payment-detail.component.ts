@@ -1,5 +1,7 @@
 import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {animate, state, style, transition, trigger} from "@angular/animations";
+import {animate, state, style, transition, trigger} from '@angular/animations';
+import {CardModel} from '../../../@core/model/bussiness/card.model';
+import {CardService} from '../../../@core/data/ic-card/card.service';
 
 @Component({
   selector: 'ngx-payment-detail',
@@ -24,7 +26,12 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 })
 export class PaymentDetailComponent implements OnInit, OnChanges {
 
-  constructor() { }
+  // public cardData: CardModel = new CardModel();
+  public cardsData: CardModel[];
+  constructor(private cardService: CardService) {
+    this.cardService.getCards('1').then((res) => this.cardsData = res as CardModel[]);
+
+  }
 
   visibility = 'hidden';
   showFilter = false;
