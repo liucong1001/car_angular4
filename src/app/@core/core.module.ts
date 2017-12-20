@@ -1,6 +1,6 @@
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {NbAuthModule, NbEmailPassAuthProvider} from '@nebular/auth';
+import {NbAuthJWTToken, NbAuthModule, NbEmailPassAuthProvider} from '@nebular/auth';
 
 import { throwIfAlreadyLoaded } from './module-import-guard';
 import { DataModule } from './data/data.module';
@@ -8,6 +8,7 @@ import { AnalyticsService } from './utils/analytics.service';
 import { MessageService } from './utils/message.service';
 import { DeviceModule } from './device/device.module';
 import {UtilsModule} from './utils/utils.module';
+import {PagerService} from './data/pager.service';
 
 const NB_CORE_PROVIDERS = [
   ...DataModule.forRoot().providers,
@@ -19,11 +20,27 @@ const NB_CORE_PROVIDERS = [
           service: NbEmailPassAuthProvider,
           config: {
             login: {
-              endpoint: '/rest/login',
+              endpoint: '/rest/market/staff/login',
+              redirect: {
+                success: '/',
+                failure: null,
+              },
             },
-            redirect: {
-              success: '/',
-              failure: null,
+            logout: {
+              alwaysFail: false,
+              endpoint: '/rest/logout',
+              method: 'get',
+              redirect: {
+                success: '/',
+                failure: null,
+              },
+              defaultErrors: ['Something went wrong, please try again.'],
+              defaultMessages: ['You have been successfully logged out.'],
+            },
+            token: {
+              getter(module, res) {
+                return res.body.loginName;
+              },
             },
           },
         },
@@ -31,6 +48,7 @@ const NB_CORE_PROVIDERS = [
   }).providers,
   AnalyticsService,
   MessageService,
+  PagerService,
 ];
 
 @NgModule({

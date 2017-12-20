@@ -4,6 +4,7 @@
 import {Http} from '@angular/http';
 import {Injectable} from '@angular/core';
 import {Page, PageContent, Sort} from '../model/page.model';
+import {HttpClient} from "@angular/common/http";
 
 @Injectable()
 export class PagerService {
@@ -17,7 +18,7 @@ export class PagerService {
   private _path: string;
 
 
-  constructor(private http: Http) {
+  constructor(private http: HttpClient) {
   }
 
   /**
@@ -33,7 +34,7 @@ export class PagerService {
       'p:size': page.pageSize,
     };
     return this.http.get(this._path, {params: params}).toPromise().then(res => {
-      return res.json() as PageContent;
+      return res as PageContent;
     }).catch(err => {
       return Promise.reject(err);
     });
