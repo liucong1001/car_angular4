@@ -1,0 +1,47 @@
+.ui-autocomplete-panel .ui-autocomplete-list-item {
+  border: 0 none;
+  cursor: pointer;
+  font-weight: 400;
+  margin: 1px 0;
+  padding: .186em .313em;
+  text-align: left;
+}
+.ui-autocomplete-panel .ui-autocomplete-list {
+  padding: .4em;
+  border: 0 none;
+}
+.ui-helper-reset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  line-height: 1.3;
+  text-decoration: none;
+  font-size: 100%;
+  list-style: none;
+}
+.ui-corner-all {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+.ui-widget, .ui-widget * {
+  box-sizing: border-box;
+}
+.ui-corner-all {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+.ui-widget-content {
+  border: 1px solid #D5D5D5;
+  background: #ffffff;
+  color: #222222;
+}
+.ui-autocomplete-panel {
+  position: absolute;
+  overflow: auto;
+}
+.ui-autocomplete .ui-autocomplete-panel {
+  min-width: 100%;
+}
