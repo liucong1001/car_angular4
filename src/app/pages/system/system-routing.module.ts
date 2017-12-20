@@ -1,3 +1,5 @@
+import { MarketEditComponent } from './market/market-edit.component';
+import { MarketComponent } from './market/market.component';
 import { CartypeComponent } from './cartype/cartype.component';
 import { BlacklistEditComponent } from './blacklist/blacklist-edit.component';
 import { BlacklistComponent } from './blacklist/blacklist.component';
@@ -10,6 +12,9 @@ import {CodeComponent} from './code/code.component';
 import {CodeEditComponent} from './code/code-edit.component';
 import { ManagerComponent } from './manager/manager.component';
 import { ManageritemEditComponent } from './manager/manageritem-edit.component';
+import { PermissionComponent } from './permission/permission.component';
+import { AreaComponent } from './area/area.component';
+// import  MarketEditComponent
 
 const routes: Routes = [{
   path: '',
@@ -24,6 +29,10 @@ const routes: Routes = [{
     {path: 'blacklist', component: BlacklistComponent},
     {path: 'blacklist/edit', component: BlacklistEditComponent},
     {path: 'cartype', component: CartypeComponent},
+    {path: 'perm', component: PermissionComponent},
+    {path: 'area', component: AreaComponent},
+    {path: 'market', component: MarketComponent},
+    {path: 'market/edit', component: MarketEditComponent},
   ],
 }];
 
@@ -36,5 +45,5 @@ export class SystemRoutingModule { }
 export const routedComponents = [
   SystemComponent, CodeComponent, CodeEditComponent, ManagerComponent, ManageritemEditComponent,
   TransfercityComponent, TransferCityEditComponent, BlacklistComponent, BlacklistEditComponent,
-  CartypeComponent,
+  CartypeComponent, PermissionComponent, AreaComponent , MarketComponent, MarketEditComponent,
 ];

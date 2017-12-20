@@ -18,6 +18,17 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
+                        <label>员工编号:</label>
+                        <input type="text" class="form-control" formControlName="name" placeholder="员工编号" [ngClass]="{'form-control-danger':form.get('name').hasError('required') && form.get('name').touched}">
+                    </div>
+                    <div class="text-danger" *ngIf="form.get('name').hasError('required') && form.get('name').touched">
+                        -- 必须输入员工编号
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
                         <label>用户名称:</label>
                         <input type="text" class="form-control" formControlName="name" placeholder="用户名称" [ngClass]="{'form-control-danger':form.get('name').hasError('required') && form.get('name').touched}">
                     </div>
@@ -82,3 +93,5 @@
         </form>
     </nb-card-body>
 </nb-card>
+
+<!-- 员工编号，岗位， sys/manager/staff -->
