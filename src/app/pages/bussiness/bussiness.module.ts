@@ -15,8 +15,8 @@ import {CarListComponent} from './prejudication/recording-continue/car-list/car-
 import {CarDetailComponent} from './prejudication/recording-continue/car-detail/car-detail.component';
 import {ThemeModule} from '../../@theme/theme.module';
 import {JudicationPhotoComponent} from './prejudication/judication-photo/judication-photo.component';
-import {UiModule} from '../../@core/ui/ui.module';
 import {UiExampleComponent} from './ui-example/ui-example.component';
+import {UiModule} from '../../@core/ui/ui.module';
 
 @NgModule({
   imports: [

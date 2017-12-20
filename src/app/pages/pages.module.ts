@@ -4,6 +4,7 @@ import { PagesComponent } from './pages.component';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { ThemeModule } from '../@theme/theme.module';
+import {UiModule} from '../@core/ui/ui.module';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -13,6 +14,7 @@ const PAGES_COMPONENTS = [
   imports: [
     PagesRoutingModule,
     ThemeModule,
+    UiModule,
     DashboardModule,
   ],
   declarations: [
