@@ -9,7 +9,6 @@ import {PagerService} from '../../data/pager.service';
   selector: 'ngx-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
-  providers: [PagerService],
 })
 export class TableComponent implements OnInit {
   protected pageContent: PageContent = new PageContent();

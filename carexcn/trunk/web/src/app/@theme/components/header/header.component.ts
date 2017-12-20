@@ -1,8 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 
 import { NbMenuService, NbSidebarService } from '@nebular/theme';
 import { UserService } from '../../../@core/data/users.service';
 import { AnalyticsService } from '../../../@core/utils/analytics.service';
+import {NbAuthService} from '@nebular/auth';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'ngx-header',
@@ -16,13 +18,16 @@ export class HeaderComponent implements OnInit {
 
   user: any;
 
-  userMenu = [{ title: 'Profile' }, { title: 'Log out' }];
+  userMenu = [{ title: 'Profile' }, { title: '注销' , url: '/auth/login'}];
 
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
               private userService: UserService,
-              private analyticsService: AnalyticsService) {
+              private analyticsService: AnalyticsService,
+              private authService: NbAuthService,
+              private router: Router) {
   }
+
 
   ngOnInit() {
     this.userService.getUsers()
@@ -45,5 +50,15 @@ export class HeaderComponent implements OnInit {
 
   startSearch() {
     this.analyticsService.trackEvent('startSearch');
+  }
+
+  menuClick(e) {
+    // if (e.title === '注销') {
+    //   // this.authService.logout('email').map(ret => {
+    //   //   this.router.navigate(['/auth/login'])
+    //   // }).catch(err => {
+    //   //
+    //   // });
+    // }
   }
 }
