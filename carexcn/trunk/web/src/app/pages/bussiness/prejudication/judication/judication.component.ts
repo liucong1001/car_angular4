@@ -32,6 +32,7 @@ export class JudicationComponent implements OnInit {
    * @param {MessageService} message
    * @param {CarService} carService
    * @param {WebcamService} webcam
+   * @param {Router} _router
    */
   constructor(private message: MessageService, private carService: CarService, private webcam: WebcamService, private _router: Router) {
     this.carService.getCar('1').then((res) => this.carData = res as CarModel);

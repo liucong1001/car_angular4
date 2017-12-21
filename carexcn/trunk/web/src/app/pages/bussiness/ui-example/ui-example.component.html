@@ -70,7 +70,7 @@
       <span class="cameras-card-title">输入提示控件</span>
     </div>
     <div>
-      <ngx-ys-autoinput></ngx-ys-autoinput>
+      <ngx-ys-autoinput [results_resource_url]="autoinput_source_url" (_value)="getAutoInputValue($event)"></ngx-ys-autoinput>
     </div>
 
     <div>
