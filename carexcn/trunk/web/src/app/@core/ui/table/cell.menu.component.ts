@@ -32,13 +32,13 @@ export class MenuCellComponent extends CellComponent implements OnInit {
   }
 }
 
-export class MenuCell extends Cell{
+export class MenuCell extends Cell {
   /**
    * 菜单定义
    * @param {Menu[]} menus 子菜单
    * @param {Menu} def 默认菜单
    */
-  constructor(public menus: Menu[], public def?: Menu, public cellClass?: string){
+  constructor(public menus: Menu[], public def?: Menu, public cellClass?: string) {
     super('MenuCell', cellClass);
   }
 }

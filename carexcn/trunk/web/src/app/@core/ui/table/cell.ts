@@ -1,6 +1,6 @@
 import {Input, OnInit, Type} from '@angular/core';
 
-export class CellComponent{
+export class CellComponent {
   @Input() cellClass: string;
 }
 
@@ -11,5 +11,5 @@ export class Cell implements OnInit {
     }
   }
 
-  constructor(public type: string, public cellClass?: string){}
+  constructor(public type: string, public cellClass?: string) {}
 }

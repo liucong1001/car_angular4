@@ -1,10 +1,9 @@
 /**
  * rest服务基础类
  */
-import {Http} from '@angular/http';
 import {Injectable} from '@angular/core';
 import {Page, PageContent, Sort} from '../model/page.model';
-import {HttpClient} from "@angular/common/http";
+import {RestService} from '../utils/rest.service';
 
 @Injectable()
 export class PagerService {
@@ -18,7 +17,7 @@ export class PagerService {
   private _path: string;
 
 
-  constructor(private http: HttpClient) {
+  constructor(private rest: RestService) {
   }
 
   /**
@@ -33,7 +32,7 @@ export class PagerService {
       'p:page': page.page,
       'p:size': page.pageSize,
     };
-    return this.http.get(this._path, {params: params}).toPromise().then(res => {
+    return this.rest.get(this._path, {params: this.rest.json2httpparam(params)}).toPromise().then(res => {
       return res as PageContent;
     }).catch(err => {
       return Promise.reject(err);
