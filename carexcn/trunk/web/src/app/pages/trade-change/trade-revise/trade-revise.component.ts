@@ -3,7 +3,11 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 import {Column} from '../../../@core/ui/table/table.component';
 import {Menu, MenuCell} from '../../../@core/ui/table/cell.menu.component';
 import {TextCell} from '../../../@core/ui/table/cell.text.component';
-
+import {Router} from '@angular/router';
+/*
+按条件搜索查询
+对应流水号的交易信息、车辆信息、卖方信息、买方信息修改保存
+*/
 @Component({
   selector: 'ngx-trade-revise',
   templateUrl: './trade-revise.component.html',
@@ -21,7 +25,7 @@ import {TextCell} from '../../../@core/ui/table/cell.text.component';
 })
 export class TradeReviseComponent implements OnInit, OnChanges {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   visibility = 'hidden';
   showFilter = false;
@@ -56,10 +60,10 @@ export class TradeReviseComponent implements OnInit, OnChanges {
     {
       title: '', titleClass: 'w-15 text-center', cell: new MenuCell(
         [
-          new Menu('交易信息', '', 'edit'),
-          new Menu('车辆信息', '', 'edit'),
-          new Menu('卖方信息', '', 'edit'),
-          new Menu('买方信息', '', this.disable),
+          new Menu('交易信息', '', 'trade'),
+          new Menu('车辆信息', '', 'car'),
+          new Menu('卖方信息', '', 'seller'),
+          new Menu('买方信息', '', 'buyer'),
         ],
         new Menu('修改', '', this.view), 'text-center',
       )} as Column,
@@ -69,10 +73,19 @@ export class TradeReviseComponent implements OnInit, OnChanges {
   // 列表菜单回调
   view(row: any, drop: any) {
   }
-
-  edit(row: any) {
+  car(row: any) {
+    // this.router.navigateByUrl('/pages/trade-change/trade-revise/trade-info/' + row.name);
+    // this.banlance('trade-info/' + row.name);
+    // console.log(row.name);
   }
-
+  trade(row: any) {
+    // console.log("111");
+    // this.banlance('trade-info');
+  }
+  /*跳转*/
+  banlance(report: string) {
+    this.router.navigateByUrl('/pages/trade-change/trade-revise/' + report);
+  }
   disable(row: any) {
 
   }

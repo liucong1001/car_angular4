@@ -1,3 +1,218 @@
-<p>
-  seller-info works!
-</p>
+<nb-card>
+  <nb-card-header class="d-flex">
+    <div class="p-2 mr-auto">保存卖方基本信息</div>
+  </nb-card-header>
+  <nb-card-body>
+    <form action="">
+      <table>
+        <tr>
+          <th colspan="3">卖方基本信息</th>
+        </tr>
+        <tr>
+          <td>
+            <div class="margin-bottom">
+              <label>档案编号</label>
+              <div>
+                <input class="form-control" type="text" placeholder="档案编号">
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="margin-bottom">
+              <label>卖方名称</label>
+              <div>
+                <input class="form-control" type="text" placeholder="卖方名称">
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="margin-bottom">
+              <label>证件号码</label>
+              <div>
+                <input class="form-control" type="text" placeholder="证件号码">
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="margin-bottom">
+              <label>卖方属性</label>
+              <div>
+                <select name="" class="form-control">
+                  <option value="">卖方属性</option>
+                  <option value="">个人</option>
+                  <option value="">单位</option>
+                </select>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="margin-bottom">
+              <label>证件有效期</label>
+              <div>
+                <input class="form-control" type="text" placeholder="证件有效期">
+              </div>
+            </div>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="margin-bottom">
+              <label>电话</label>
+              <div>
+                <input class="form-control" type="text" placeholder="电话">
+              </div>
+            </div>
+          </td>
+          <td colspan="2">
+            <div class="margin-bottom">
+              <label>地址</label>
+              <div>
+                <input class="form-control" type="text" placeholder="地址">
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="margin-bottom">
+              <label>身份证正面</label>
+              <div>
+                <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="margin-bottom">
+              <label>身份证反面</label>
+              <div>
+                <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
+              </div>
+            </div>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="margin-bottom">
+              <label>机构证正面</label>
+              <div>
+                <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="margin-bottom">
+              <label>机构证反面</label>
+              <div>
+                <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
+              </div>
+            </div>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="margin-bottom">
+              <label>卖方头像</label>
+              <div>
+                <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="margin-bottom">
+              <label>卖方指纹</label>
+              <div>
+                <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
+              </div>
+            </div>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <th colspan="3">受托人基本信息</th>
+        </tr>
+        <tr>
+          <td>
+            <div class="margin-bottom">
+              <label>受托人姓名</label>
+              <div>
+                <input class="form-control" type="text" placeholder="受托人姓名">
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="margin-bottom">
+              <label>受托人证件有效期</label>
+              <div>
+                <input class="form-control" type="text" placeholder="受托人证件有效期">
+              </div>
+            </div>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="margin-bottom">
+              <label>受托人证件正面</label>
+              <div>
+                <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="margin-bottom">
+              <label>受托人证件反面</label>
+              <div>
+                <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="margin-bottom">
+              <label>卖方委托书</label>
+              <div>
+                <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="margin-bottom">
+              <label>受托人头像</label>
+              <div>
+                <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="margin-bottom">
+              <label>受托人指纹</label>
+              <div>
+                <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
+              </div>
+            </div>
+          </td>
+          <td></td>
+        </tr>
+      </table>
+    </form>
+  </nb-card-body>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-sm-4"></div>
+      <div class="col-sm-2">
+        <button type="submit" class="btn btn-info">保存</button>
+      </div>
+      <div class="col-sm-2">
+        <button type="submit" class="btn btn-primary" (click)="goBack()">返回</button>
+      </div>
+      <div class="col-sm-4"></div>
+    </div>
+  </nb-card-body>
+</nb-card>

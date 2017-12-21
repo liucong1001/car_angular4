@@ -1,3 +1,418 @@
-<p>
-  trade-info works!
-</p>
+<nb-card>
+  <nb-card-header class="d-flex">
+    <div class="p-2 mr-auto">保存交易基本信息</div>
+  </nb-card-header>
+  <nb-card-body>
+    <form action="">
+      <table>
+        <tr>
+          <th colspan="3">交易基本信息</th>
+        </tr>
+        <tr>
+          <td>
+            <div class="margin-bottom">
+              <label>档案编号</label>
+              <div>
+                <input class="form-control" type="text" placeholder="档案编号">
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="margin-bottom">
+              <label>手续费</label>
+              <div>
+                <input class="form-control" type="text" placeholder="手续费">
+              </div>
+            </div>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="margin-bottom">
+              <label>选择入库商户</label>
+              <div>
+                <select name="" class="form-control">
+                  <option value="">请选择入库商户</option>
+                </select>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="margin-bottom">
+              <label>选择入库联系人</label>
+              <div>
+                <select name="" class="form-control">
+                  <option value="">请选择入库联系人</option>
+                </select>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="margin-bottom">
+              <label>出售价格</label>
+              <div>
+                <input class="form-control" type="text" placeholder="出售价格">
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="margin-bottom">
+              <label>选择出库商户</label>
+              <div>
+                <select name="" class="form-control">
+                  <option value="">请选择出库商户</option>
+                </select>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="margin-bottom">
+              <label>选择出库联系人</label>
+              <div>
+                <select name="" class="form-control">
+                  <option value="">请选择出库联系人</option>
+                </select>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="margin-bottom">
+              <label>交易价格</label>
+              <div>
+                <input class="form-control" type="text" placeholder="交易价格">
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="margin-bottom">
+              <label>累计里程</label>
+              <div>
+                <input class="form-control" type="text" placeholder="累计里程">
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="margin-bottom">
+              <label>使用年份</label>
+              <div>
+                <select name="" class="form-control">
+                  <option value="">使用年份</option>
+                  <option value="">1年以内</option>
+                  <option value="">1-3年</option>
+                  <option value="">3-5年</option>
+                  <option value="">5-10年</option>
+                  <option value="">10年以上</option>
+                </select>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="margin-bottom">
+              <label>发票号</label>
+              <div>
+                <input class="form-control" type="text" placeholder="发票号">
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="margin-bottom">
+              <label>年审有效期</label>
+              <div>
+                <input class="form-control" type="text" placeholder="年审有效期">
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="margin-bottom">
+              <label>保险有效期</label>
+              <div>
+                <input class="form-control" type="text" placeholder="保险有效期">
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="margin-bottom">
+              <label>路桥有效期</label>
+              <div>
+                <input class="form-control" type="text" placeholder="路桥有效期">
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3">
+            <div class="margin-bottom">
+              <label>行驶证地址</label>
+              <div>
+                <input class="form-control" type="text" placeholder="行驶证地址">
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="margin-bottom">
+              <label>行驶证正面</label>
+              <div>
+                <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="margin-bottom">
+              <label>行驶证反面</label>
+              <div>
+                <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="margin-bottom">
+              <label>商户车辆转让协议</label>
+              <div>
+                <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th colspan="3">公证书</th>
+        </tr>
+        <tr>
+          <td>
+            <div class="margin-bottom">
+              <label>公证书第一页</label>
+              <div>
+                <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="margin-bottom">
+              <label>公证书第二页</label>
+              <div>
+                <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
+              </div>
+            </div>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="margin-bottom">
+              <label>公证书第三页</label>
+              <div>
+                <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="margin-bottom">
+              <label>公证书第四页</label>
+              <div>
+                <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
+              </div>
+            </div>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="margin-bottom">
+              <label>公证书第五页</label>
+              <div>
+                <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="margin-bottom">
+              <label>公证书第六页</label>
+              <div>
+                <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
+              </div>
+            </div>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <th colspan="3">增值税发票</th>
+        </tr>
+        <tr>
+          <td>
+            <div class="margin-bottom">
+              <label>增值税发票起始号</label>
+              <div>
+                <input class="form-control" type="text" placeholder="增值税发票起始号">
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="margin-bottom">
+              <label>增值税发票截止号</label>
+              <div>
+                <input class="form-control" type="text" placeholder="增值税发票截止号">
+              </div>
+            </div>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="margin-bottom">
+              <label>增值税发票第一页</label>
+              <div>
+                <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="margin-bottom">
+              <label>增值税发票第二页</label>
+              <div>
+                <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
+              </div>
+            </div>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="margin-bottom">
+              <label>增值税发票第三页</label>
+              <div>
+                <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="margin-bottom">
+              <label>增值税发票第四页</label>
+              <div>
+                <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
+              </div>
+            </div>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="margin-bottom">
+              <label>增值税发票第五页</label>
+              <div>
+                <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="margin-bottom">
+              <label>增值税发票第六页</label>
+              <div>
+                <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
+              </div>
+            </div>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <th colspan="3">消费税发票</th>
+        </tr>
+        <tr>
+          <td>
+            <div class="margin-bottom">
+              <label>消费税发票起始号</label>
+              <div>
+                <input class="form-control" type="text" placeholder="消费税发票起始号">
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="margin-bottom">
+              <label>消费税发票截止号</label>
+              <div>
+                <input class="form-control" type="text" placeholder="消费税发票截止号">
+              </div>
+            </div>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="margin-bottom">
+              <label>消费税发票第一页</label>
+              <div>
+                <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="margin-bottom">
+              <label>消费税发票第二页</label>
+              <div>
+                <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
+              </div>
+            </div>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="margin-bottom">
+              <label>消费税发票第三页</label>
+              <div>
+                <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="margin-bottom">
+              <label>消费税发票第四页</label>
+              <div>
+                <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
+              </div>
+            </div>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <div class="margin-bottom">
+              <label>消费税发票第五页</label>
+              <div>
+                <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="margin-bottom">
+              <label>消费税发票第六页</label>
+              <div>
+                <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
+              </div>
+            </div>
+          </td>
+          <td></td>
+        </tr>
+      </table>
+    </form>
+  </nb-card-body>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-sm-4"></div>
+      <div class="col-sm-2">
+        <button type="submit" class="btn btn-info">保存</button>
+      </div>
+      <div class="col-sm-2">
+        <button type="submit" class="btn btn-primary" (click)="goBack()">返回</button>
+      </div>
+      <div class="col-sm-4"></div>
+    </div>
+  </nb-card-body>
+</nb-card>
