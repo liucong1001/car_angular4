@@ -16,6 +16,7 @@ export class CameraComponent implements OnInit {
    */
   @Input() title;
   @Input() source;
+  @Input() col_sm_6 = 'col-sm-6';
   @Output() _changeSource = new EventEmitter();
   private webcam_has_show = false;
 
