@@ -203,6 +203,10 @@ export class UiExampleComponent implements OnInit {
       this.message.error('IC卡连接失败！', '设备或IC卡不正常或连接有误。');
     });
   }
+
+  /**
+   * 指纹读取
+   */
   fingerRead() {
     this.message.info('指纹读取', '读取指纹');
     this.finger.read().then((data) => {
@@ -214,12 +218,21 @@ export class UiExampleComponent implements OnInit {
       // console.log(error);
     });
   }
+
+  /**
+   * 指纹验证
+   */
   fingerVerify() {
     this.message.info('指纹验证', '验证指纹');
     this.finger.verify(this.fingerBase64).then((verify) => {
       // console.log(verify);
     });
   }
+
+  /**
+   * 输入提示，模糊搜索
+   * @param event
+   */
   getAutoInputValue(event) {
     if (this.auto_input_value_tmp !== event) {
       this.auto_input_value_tmp = event;
