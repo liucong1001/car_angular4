@@ -1,0 +1,21 @@
+nb-card-body table {
+  width: 100% !important;
+  border-collapse: collapse;
+  tr {
+    width: 100%;
+    padding: 10px;
+    td {
+      //text-align: center;
+      padding: 10px;
+      border-top: 1px solid #342e73;
+    }
+    th {
+      //text-align: center;
+      padding: 10px;
+    }
+  }
+  .margin-bottom {
+    margin-bottom: 10px;
+  }
+}
+

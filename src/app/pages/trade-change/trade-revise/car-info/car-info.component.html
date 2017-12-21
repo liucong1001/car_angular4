@@ -1,3 +1,160 @@
-<p>
-  car-info works!
-</p>
+<nb-card>
+  <nb-card-header class="d-flex">
+    <div class="p-2 mr-auto">保存车辆基本信息</div>
+  </nb-card-header>
+  <nb-card-body>
+    <form action="">
+      <table>
+        <tr>
+          <th colspan="3">车辆基本信息</th>
+        </tr>
+        <tr>
+          <td>
+            <div class="margin-bottom">
+              <label>车牌号</label>
+              <div>
+                <input class="form-control" type="text" placeholder="车牌号">
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="margin-bottom">
+              <label>登记证号</label>
+              <div>
+                <input class="form-control" type="text" placeholder="登记证号">
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="margin-bottom">
+              <label>车辆类型</label>
+              <div>
+                <select name="" class="form-control">
+                  <option value="">请选择车辆类型</option>
+                  <option value="">轿车</option>
+                  <option value="">客车</option>
+                  <option value="">货车</option>
+                  <option value="">低速车</option>
+                  <option value="">专项作业车</option>
+                  <option value="">特种车</option>
+                  <option value="">摩托车</option>
+                  <option value="">三轮汽车</option>
+                </select>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="margin-bottom">
+              <label>发动机号</label>
+              <div>
+                <input class="form-control" type="text" placeholder="发动机号">
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="margin-bottom">
+              <label>车架号/车辆识别号</label>
+              <div>
+                <input class="form-control" type="text" placeholder="车架号/车辆识别号">
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="margin-bottom">
+              <label>厂牌型号</label>
+              <div>
+                <input class="form-control" type="text" placeholder="厂牌型号">
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="margin-bottom">
+              <label>车辆大小</label>
+              <div>
+                <select name="" class="form-control">
+                  <option value="">请选择车辆大小</option>
+                  <option value="">小</option>
+                  <option value="">中</option>
+                  <option value="">大</option>
+                  <option value="">中型、轻型</option>
+                  <option value="">重型</option>
+                </select>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="margin-bottom">
+              <label>车辆使用性质</label>
+              <div>
+                <select name="" class="form-control">
+                  <option value="">请选择车辆使用性质</option>
+                  <option value="">私用</option>
+                  <option value="">公用</option>
+                  <option value="">政府</option>
+                </select>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="margin-bottom">
+              <label>其他状况</label>
+              <div>
+                <input class="form-control" type="text" placeholder="其他状况">
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="margin-bottom">
+              <label>车辆管理所（非办理转移提档无需填写）</label>
+              <div>
+                <select name="" class="form-control">
+                  <option value=""></option>
+                </select>
+              </div>
+            </div>
+          </td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="margin-bottom">
+              <label>登记证书首页</label>
+              <div>
+                <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="margin-bottom">
+              <label>登记证书末页</label>
+              <div>
+                <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
+              </div>
+            </div>
+          </td>
+          <td></td>
+        </tr>
+      </table>
+    </form>
+  </nb-card-body>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-sm-4"></div>
+      <div class="col-sm-2">
+        <button type="submit" class="btn btn-info">保存</button>
+      </div>
+      <div class="col-sm-2">
+        <button type="submit" class="btn btn-primary" (click)="goBack()">返回</button>
+      </div>
+      <div class="col-sm-4"></div>
+    </div>
+  </nb-card-body>
+</nb-card>
