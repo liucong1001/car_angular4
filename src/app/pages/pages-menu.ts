@@ -23,18 +23,14 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: '过户业务',
         link: '/pages/bussiness/transfer',
       },
-      /*{
-        title: '交易变更',
-        link: '/pages/bussiness/transfer',
-      },*/
-      /*{
-        title: '缴费撤销',
-        link: '/pages/bussiness/transfer',
+      {
+        title: '过户录入',
+        link: '/pages/bussiness/transfer/recording',
       },
       {
-        title: '公车拍卖',
-        link: '/pages/bussiness/transfer',
-      },*/
+        title: '过户审核',
+        link: '/pages/bussiness/transfer/judication',
+      },
     ],
   },
   {
@@ -139,7 +135,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
   {
     title: '公车拍卖',
-    icon: 'ion-ios-settings',
+    icon: 'nb-title',
     children: [
       {
         title: '公车拍卖管理',
@@ -157,7 +153,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
   {
     title: '统计查询',
-    icon: 'nb-keypad',
+    icon: 'nb-bar-chart',
     children: [
       {title: '交易查询', link: '/pages/query-count/trade-query'},
       {title: '批量交易查询', link: '/pages/query-count/trades-query'},
