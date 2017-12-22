@@ -6,17 +6,32 @@
   </nb-card-header>
   <nb-card-body>
     <div class="input-group">
-      <input type="text" placeholder="批次号" class="form-control" [(ngModel)]="test" readonly/>
-      <!--<input type="text" placeholder="商户编码" class="form-control" />
-      <input type="text" placeholder="联系人" readonly class="form-control" [(ngModel)]="test" />
-      <input type="text" placeholder="手机号" readonly class="form-control" [(ngModel)]="test" />-->
+      <input type="text" placeholder="批次号" class="form-control" [(ngModel)]="batch" />
+      <button class="btn btn-primary btn-sm" >开启扫描仪</button>
     </div>
-
+    <div class="prompt">*若有流水号/批次号，请直接扫描流水号/批次号，即可获取卖方信息与车辆信息*</div>
   </nb-card-body>
 </nb-card>
-
-
-<!--<ngx-car-list [cars]="carsData"  (_selectCar)='onChangeSelectingCar($event)'></ngx-car-list>-->
+<nb-card>
+  <nb-card-header>
+    <div class="cameras-card-header">
+      <span class="cameras-card-title">卖方</span>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="input-group">
+      <input type="text" placeholder="姓名" class="form-control"  [(readonly)]="read" (click)="readWrite()"/>
+      <input type="text" placeholder="身份证号码" class="form-control" [(readonly)]="read" (click)="readWrite()"/>
+      <input type="text" placeholder="证件有效期" [(readonly)]="read" (click)="readWrite()" class="form-control" />
+    </div>
+    <div class="input-group">
+      <input type="text" placeholder="地址" class="form-control"  [(readonly)]="read" (click)="readWrite()"/>
+      <input type="text" placeholder="手机号" class="form-control" [(readonly)]="read" (click)="readWrite()"/>
+    </div>
+  </nb-card-body>
+</nb-card>
+<ngx-car-list [cars]="carsData" *ngIf="batch !==''" (_selectCar)='onChangeSelectingCar($event)' [car_list_title]="'已预审车辆信息'"></ngx-car-list>
+<ngx-car-detail [(car)]="carData"></ngx-car-detail>
 
 <nb-card>
   <nb-card-header>

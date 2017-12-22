@@ -21,6 +21,8 @@ import { TrecordingComponent } from './transfer/trecording/trecording.component'
 import { TjudicationComponent } from './transfer/tjudication/tjudication.component';
 import { Trecording2Component } from './transfer/trecording2/trecording2.component';
 import { TrecordingLastComponent } from './transfer/trecording-last/trecording-last.component';
+import { TjudicationPhotoComponent } from './transfer/tjudication-photo/tjudication-photo.component';
+import { TjudicationFingerComponent } from './transfer/tjudication-finger/tjudication-finger.component';
 
 @NgModule({
   imports: [
@@ -49,6 +51,8 @@ import { TrecordingLastComponent } from './transfer/trecording-last/trecording-l
     TjudicationComponent,
     Trecording2Component,
     TrecordingLastComponent,
+    TjudicationPhotoComponent,
+    TjudicationFingerComponent,
   ],
 })
 export class BussinessModule {
