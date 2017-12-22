@@ -1,50 +1,96 @@
 <nb-card>
-    <nb-card-header>用户管理信息维护</nb-card-header>
+    <nb-card-header>商户管理信息维护</nb-card-header>
     <nb-card-body>
         <form [formGroup]="form" (ngSubmit)="save()" class="container">
             <div class="row">
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label>用户编号:</label>
-                        <input type="text" class="form-control" formControlName="name" placeholder="员工编号" [ngClass]="{'form-control-danger':form.get('name').hasError('required') && form.get('name').touched}">
+                        <label>商户名称:</label>
+                        <input type="text" class="form-control" formControlName="name" placeholder="商户名称" [ngClass]="{'form-control-danger':form.get('name').hasError('required') && form.get('name').touched}">
                     </div>
                     <div class="text-danger" *ngIf="form.get('name').hasError('required') && form.get('name').touched">
-                        -- 必须输入用户编号
+                        --必须输入商户名称
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
-                        <label>名称:</label>
-                        <input type="text" class="form-control" formControlName="name" placeholder="名称" [ngClass]="{'form-control-danger':form.get('name').hasError('required') && form.get('name').touched}">
+                        <label>商户编号:</label>
+                        <input type="text" class="form-control" formControlName="code" placeholder="商户编号" [ngClass]="{'form-control-danger':form.get('code').hasError('required') && form.get('code').touched}">
                     </div>
-                    <div class="text-danger" *ngIf="form.get('name').hasError('required') && form.get('name').touched">
-                        -- 必须输入名称
+                    <div class="text-danger" *ngIf="form.get('code').hasError('required') && form.get('code').touched">
+                        --必须输入商户编号
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
                         <label>证件有效期:</label>
-                        <input type="password" class="form-control" formControlName="password" placeholder="密码" [ngClass]="{'form-control-danger':form.get('password').hasError('pattern') && form.get('password').touched}">
+                        <input type="text" class="form-control" formControlName="endTime" placeholder="证件有效期" [ngClass]="{'form-control-danger':form.get('endTime').hasError('required') && form.get('endTime').touched}">
                     </div>
-                    <div class="text-danger" *ngIf="form.get('password').hasError('required') && form.get('password').touched">
-                        -- 必须证件有效期
+                    <div class="text-danger" *ngIf="form.get('endTime').hasError('required') && form.get('endTime').touched">
+                        -- 必须输入证件有效期
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-sm-4">
+                      <div class="form-group">
+                          <label for="">组织机构代码</label>    
+                          <input type="text" class="form-control" formControlName="certCode" placeholder="组织机构代码" [ngClass]="{'form-control-danger':form.get('certCode').hasError('required') && form.get('certCode').touched}">
+                      </div>
+                      <div class="text-danger" *ngIf="form.get('certCode').hasError('required') && form.get('certCode').touched">
+                            -- 必须输入组织机构代码
+                      </div>    
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="">交易折扣</label>
+                        <input type="number" class="form-control" formControlName="discount" placeholder="交易折扣">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="">是否租车位</label>
+                        <select name="" id="" class="form-control" formControlName="isCarRental"  >
+                            <option value="0">场外</option>
+                            <option value="1">场内</option>
+                        </select>
+                    </div>
+                </div>
 
+            </div> 
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="">是否交易</label>
+                        <select name="" id="" class="form-control" formControlName="isDeal">
+                            <option value="0">否</option>
+                            <option value="1">是</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="">是否个人</label>
+                        <select name="" id="" class="form-control" formControlName="isPersonal">
+                            <option value="0">否</option>
+                            <option value="1">是</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                  <div class="col-sm-4">
                      <div class="form-group">
-                        <label for="">电话</label>
-                        <input type="password" class="form-control" formControlName="repassword" placeholder="再次输入密码" [ngClass]="{'form-control-danger':form.get('repassword').hasError('pattern') && form.get('repassword').touched}">                        
+                        <label for="">联系方式</label>
+                        <input type="text" class="form-control" formControlName="phone" placeholder="联系方式" [ngClass]="{'form-control-danger':form.get('phone').hasError('pattern') && form.get('phone').touched}">                        
                      </div>
                  </div> 
                  <div class="col-sm-6">
                     <div class="form-group">
                          <label for="">地址</label>  
-                         <input type="text"  class="form-control" formControlName="telephone" placeholder="手机号码" [ngClass]="{'form-control-danger':form.get('telephone').hasError('pattern') && form.get('telephone').touched}" >
+                         <input type="text"  class="form-control" formControlName="address" placeholder="地址" [ngClass]="{'form-control-danger':form.get('address').hasError('pattern') && form.get('address').touched}" >
                     </div>
-                    <div class="text-danger" *ngIf="form.get('telephone').hasError('pattern') && form.get('telephone').touched">
+                    <div class="text-danger" *ngIf="form.get('address').hasError('pattern') && form.get('address').touched">
                            -- 请输入地址
                     </div>
                 </div> 
