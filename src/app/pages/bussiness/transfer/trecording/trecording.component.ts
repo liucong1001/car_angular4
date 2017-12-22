@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MessageService} from '../../../../@core/utils/message.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'ngx-trecording',
@@ -10,6 +11,7 @@ export class TrecordingComponent implements OnInit {
 
   constructor(
     private message: MessageService,
+    private router: Router,
   ) { }
   photos: any[] = [{
     title: '',
@@ -30,5 +32,8 @@ export class TrecordingComponent implements OnInit {
   credentials: {
     type: string;
   };
-
+  /*跳转*/
+  gotoNext() {
+    this.router.navigateByUrl('/pages/bussiness/transfer/trecording2');
+  }
 }

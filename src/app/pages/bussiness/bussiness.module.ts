@@ -17,6 +17,10 @@ import {ThemeModule} from '../../@theme/theme.module';
 import {JudicationPhotoComponent} from './prejudication/judication-photo/judication-photo.component';
 import {UiExampleComponent} from './ui-example/ui-example.component';
 import {UiModule} from '../../@core/ui/ui.module';
+import { TrecordingComponent } from './transfer/trecording/trecording.component';
+import { TjudicationComponent } from './transfer/tjudication/tjudication.component';
+import { Trecording2Component } from './transfer/trecording2/trecording2.component';
+import { TrecordingLastComponent } from './transfer/trecording-last/trecording-last.component';
 
 @NgModule({
   imports: [
@@ -39,6 +43,12 @@ import {UiModule} from '../../@core/ui/ui.module';
     CarDetailComponent,
     JudicationPhotoComponent,
     UiExampleComponent,
+    TrecordingComponent,
+    TjudicationComponent,
+    TrecordingComponent,
+    TjudicationComponent,
+    Trecording2Component,
+    TrecordingLastComponent,
   ],
 })
 export class BussinessModule {
