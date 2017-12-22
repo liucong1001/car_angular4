@@ -20,15 +20,24 @@ export class DealersEditComponent implements OnInit {
   ngOnInit() {
   }
   form: FormGroup = this.fb.group({
-    type: ['', [Validators.required]],
     name: ['', [Validators.required, Validators.maxLength(64)]],
-    loginName: ['', [Validators.required]],
-    password: ['', [Validators.required ]],
-    repassword: ['', [ Validators.required]],
-    telephone: ['', [Validators.required]],
+    code: ['', [Validators.required]],
+    certCode: ['', [Validators.required ]],
+    address: ['', [ Validators.required]],
+    phone: ['', [Validators.required]],
+    endTime: ['', [Validators.required]],
+    discount: ['', [Validators.required]],
+    isDeal: ['', [Validators.required]],
+    isCarRental: ['', [Validators.required]],
+    isPersonal: ['', [Validators.required]],
   });
   public back() {
     this.router.navigateByUrl('/pages/merchant/dealers');
   }
+
+ save() {
+  const market = this.form.value;
+  this.http.post('/rest/merchant/create', market).toPromise().then((res) => res.json());
+ }
 
 }

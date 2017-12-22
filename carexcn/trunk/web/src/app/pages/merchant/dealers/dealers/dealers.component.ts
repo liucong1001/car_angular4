@@ -42,13 +42,13 @@ export class DealersComponent implements OnInit {
   filter: any = {};
   // 列表列定义
   columns: Column[] = [
-    {title: '商户编号', titleClass: '', cell: new TextCell('loginName')} as Column,
-    {title: '名称', titleClass: '', cell: new TextCell('name')} as Column,
-    {title: '电话', titleClass: '', cell: new TextCell('name')} as Column,
-    {title: '地址', titleClass: '', cell: new TextCell('name')} as Column,
-    {title: '资料', titleClass: '', cell: new TextCell('name')} as Column,
-    {title: '证件有效期', titleClass: '', cell: new TextCell('name')} as Column,
-    {title: '备案日期', titleClass: '', cell: new TextCell('name')} as Column,
+    {title: '商户名', titleClass: '', cell: new TextCell('name')} as Column,
+    {title: '编码', titleClass: '', cell: new TextCell('code')} as Column,
+    {title: '组织机构代码', titleClass: '', cell: new TextCell('certCode')} as Column,
+    {title: '联系方式', titleClass: '', cell: new TextCell('phone')} as Column,
+    {title: '地址', titleClass: '', cell: new TextCell('address')} as Column,
+    {title: '交易折扣', titleClass: '', cell: new TextCell('discount')} as Column,
+    {title: '证件有效期', titleClass: '', cell: new TextCell('endDate')} as Column,
     {title: '操作', titleClass: 'w-25 text-center', cell: new MenuCell(
       [
         new Menu('编辑', '', 'edit'),
