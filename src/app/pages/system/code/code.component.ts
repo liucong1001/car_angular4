@@ -51,13 +51,14 @@ export class CodeComponent implements OnInit, OnChanges {
     {title: '操作', titleClass: 'w-25 text-center', cell: new MenuCell(
       [
         new Menu('编辑', '', 'edit'),
-        new Menu('禁用', '', this.disable),
+        new Menu('禁用', '', this.disable.bind(this)),
       ],
-      new Menu('查看', '', this.view), 'text-center',
+      new Menu('查看', '', this.view.bind(this)), 'text-center',
     )} as Column,
   ];
   // 列表菜单回调
   view(row: any, drop: any) {
+    console.log(this.visibility);
   }
   edit(row: any) {
   }
