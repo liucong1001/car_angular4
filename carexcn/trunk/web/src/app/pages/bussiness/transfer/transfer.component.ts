@@ -48,7 +48,7 @@ export class TransferComponent implements OnInit {
     this.message.info(this.carData.lsnum, '当前车辆');
   }
   gotoNext() {
-    // this._router.navigateByUrl('/pages/bussiness/prejudication/judication-photo');
+    this._router.navigateByUrl('/pages/bussiness/transfer/trecording');
     // this._get();
     this._post();
   }

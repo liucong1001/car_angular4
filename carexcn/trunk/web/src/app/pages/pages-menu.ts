@@ -25,11 +25,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
       {
         title: '过户录入',
-        link: '/pages/bussiness/transfer/recording',
+        link: '/pages/bussiness/transfer/trecording',
       },
       {
         title: '过户审核',
-        link: '/pages/bussiness/transfer/judication',
+        link: '/pages/bussiness/transfer/tjudication',
       },
     ],
   },

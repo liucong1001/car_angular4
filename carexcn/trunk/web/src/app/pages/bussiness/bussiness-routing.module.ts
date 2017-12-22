@@ -11,11 +11,27 @@ import {RecordingLastComponent} from './prejudication/recording-last/recording-l
 import {RecordingContinueComponent} from './prejudication/recording-continue/recording-continue.component';
 import {JudicationPhotoComponent} from './prejudication/judication-photo/judication-photo.component';
 import {UiExampleComponent} from './ui-example/ui-example.component';
+import {TrecordingComponent} from './transfer/trecording/trecording.component';
+import {TjudicationComponent} from './transfer/tjudication/tjudication.component';
+import {Trecording2Component} from './transfer/trecording2/trecording2.component';
+import {TrecordingLastComponent} from './transfer/trecording-last/trecording-last.component';
 
 const routes: Routes = [
   {
     path: 'example',
     component: UiExampleComponent,
+  }, {
+    path: 'transfer/trecording',
+    component: TrecordingComponent,
+  }, {
+    path: 'transfer/trecording2',
+    component: Trecording2Component,
+  }, {
+    path: 'transfer/trecording-last',
+    component: TrecordingLastComponent,
+  }, {
+    path: 'transfer/tjudication',
+    component: TjudicationComponent,
   },
   {
     path: 'prejudication',
