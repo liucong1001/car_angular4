@@ -1,3 +1,83 @@
-<p>
-  tjudication works!
-</p>
+<nb-card>
+  <nb-card-header>
+    <div class="cameras-card-header">
+      <span class="cameras-card-title">过户业务 - 过户审核 - 买方审核</span>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="input-group">
+      <input type="text" placeholder="批次号" class="form-control" [(ngModel)]="test" readonly/>
+      <input type="text" placeholder="商户编码" class="form-control" />
+      <input type="text" placeholder="联系人" readonly class="form-control" [(ngModel)]="test" />
+      <input type="text" placeholder="手机号" readonly class="form-control" [(ngModel)]="test" />
+    </div>
+  </nb-card-body>
+</nb-card>
+<nb-card>
+  <nb-card-header>
+    <div class="cameras-card-header">
+      <span class="cameras-card-title">卖方</span>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="input-group">
+      <input type="text" placeholder="姓名" class="form-control"  readonly/>
+      <input type="text" placeholder="身份证号码" class="form-control" readonly/>
+      <input type="text" placeholder="证件有效期" readonly class="form-control" />
+    </div>
+    <div class="input-group">
+      <input type="text" placeholder="地址" class="form-control"  readonly/>
+      <input type="text" placeholder="手机号" class="form-control" readonly/>
+    </div>
+  </nb-card-body>
+</nb-card>
+<ngx-car-list [cars]="carsData"  (_selectCar)='onChangeSelectingCar($event)' [car_list_title]="'已预审车辆信息'"></ngx-car-list>
+<ngx-car-detail [(car)]="carData"></ngx-car-detail>
+<nb-card>
+  <nb-card-header>
+    <div class="cameras-card-header">
+      <span class="cameras-card-title">交易信息</span>
+      <!--<button class="btn btn-primary btn-sm" >修改</button>-->
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="input-group">
+      <input type="text" placeholder="车牌号" class="form-control" />
+      <input type="text" placeholder="商户编号" class="form-control" />
+      <input type="text" placeholder="转出地" class="form-control" />
+      <input type="text" placeholder="交易金额" class="form-control" />
+    </div>
+  </nb-card-body>
+</nb-card>
+<nb-card>
+  <nb-card-header>
+    <div class="cameras-card-header">
+      <span class="cameras-card-title">买方信息</span>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="camera col-sm-6 float-left" [style.background-image]="'url(assets/images/camera1.jpg)'">
+      <span>身份证正面</span>
+    </div>
+    <div class="camera col-sm-6 float-left" [style.background-image]="'url(assets/images/camera2.jpg)'">
+      <span>身份证反面</span>
+    </div>
+    <div class="input-group">
+      <input type="text" placeholder="买方姓名" class="form-control" />
+      <input type="text" placeholder="买方身份证号" class="form-control" />
+      <!--<button class="btn btn-primary btn-sm" (click)="delete(RecordModel)">读卖方身份证</button>-->
+    </div>
+    <div class="input-group">
+      <input type="text" placeholder="买方手机" class="form-control" />
+      <input type="text" placeholder="买方地址" class="form-control" />
+      <input type="text" placeholder="买方身份有效期" class="form-control" />
+    </div>
+    <!--<div class="float-right">
+      <button class="btn btn-primary btn-lg" (click)="onSubmit()">确认提交</button>
+    </div>-->
+  </nb-card-body>
+</nb-card>
+<div class="float-right">
+  <button class="btn btn-primary btn-lg" (click)="onSubmit()">审核</button> &nbsp;
+  <button class="btn btn-primary btn-lg" (click)="reBack()">返回</button>
+</div>
