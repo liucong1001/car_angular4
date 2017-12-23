@@ -76,8 +76,9 @@
     </div>
     <div class="input-group">
       <label class="btn">'001' | code_trans: '002' => {{ '001' | code_trans: '002' | async }}</label>
-      <input type="text" placeholder="选中的代码元素值" class="form-control" [(ngModel)]="codeTransSeleted"/>
-      <ngx-ys-codeitem-droplist></ngx-ys-codeitem-droplist>
+      <input type="text" placeholder="选中的值" class="form-control" [(ngModel)]="codeTransSeleted"/>
+      <ngx-ys-codeitem-droplist (_selectedValue)="getDropListSelectItem($event)" [codeMap]="'002'" (pleaseSelect)="'性别'" ></ngx-ys-codeitem-droplist>
+      <ngx-ys-droplist (_selectedValue)="getDropListSelect($event)" [selectItems]="dropListItems" ></ngx-ys-droplist>
     </div>
     <div class="cameras-card-header">
       <span class="cameras-card-title">输入提示控件</span>
