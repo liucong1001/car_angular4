@@ -75,6 +75,7 @@ export class CodeEditComponent implements OnInit {
       return false;
     }
     const codemap = this.form.value as Codemap;
+    console.log('代码集', codemap);
     this.codeService.save(codemap).then(res => {
       this.message.success('保存成功', '代码集保存成功');
       this.saved = true;

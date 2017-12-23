@@ -21,7 +21,6 @@ import { ToPermTreeNode } from './permission/permission-pipe';
 import { AreaComponent } from './area/area.component';
 import { ToAreaTreeNode } from './area/area-pipe';
 
-// import ToPermTreeNode
 
 const components = [
   CodeitemEditComponent, TransferCityitemEditComponent, ToPermTreeNode, ToAreaTreeNode,

@@ -31,7 +31,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-sm-4"></div> 
+          <div class="col-sm-4"></div>
           <div class="col-sm-2">
             <button type="submit" class="btn btn btn-primary btn-block">搜索</button>
           </div>
@@ -40,7 +40,6 @@
           </div>
         </div>
       </form>
-      <ngx-table #codeList [url]="'/rest/sys/marketmap/pager'" [columns]="columns" [filter]="filter"></ngx-table>
+      <ngx-table #codeList [url]="'/rest/sys/market/pager'" [columns]="columns" [filter]="filter"></ngx-table>
     </nb-card-body>
   </nb-card>
-  
