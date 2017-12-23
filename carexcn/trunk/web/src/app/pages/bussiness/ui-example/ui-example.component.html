@@ -64,8 +64,17 @@
         </nb-tabset>
       </nb-card>
     </div>
-
-
+    <div class="input-group">
+      <input type="text" placeholder="URL地址测试" class="form-control" #url/>
+      <button class="btn btn-primary btn-sm" (click)="test1Click(url.value)">测试1</button>
+    </div>
+    <div class="input-group">
+      <input type="text" placeholder="代码类" class="form-control" #codeMap/>
+      <input type="text" placeholder="代码" class="form-control" #code/>
+      <input type="text" placeholder="转换的代码值" class="form-control" [(ngModel)]="codeTransValue"/>
+      <button class="btn btn-primary btn-sm" (click)="test2Pipe(codeMap.value, code.value)">代码转换管道测试</button>
+      <label class="btn">{{ '001' | code_trans: '002' | async }}</label>
+    </div>
     <div class="cameras-card-header">
       <span class="cameras-card-title">输入提示控件</span>
     </div>
