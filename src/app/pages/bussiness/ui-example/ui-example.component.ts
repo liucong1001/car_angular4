@@ -35,6 +35,21 @@ export class UiExampleComponent implements OnInit {
   }];
   public codeTransValue = '';
   public codeTransSeleted = '';
+
+  public dropListItems = [
+    {label: '请选择城市', value: null},
+    {label: '北京', value: {id: 1, name: '北京', code: 'beijing'}},
+    {label: '上海', value: {name: '上海市', code: 'shanghai'}},
+    {label: '汉口', value: 'hankoubei'},
+  ];
+  getDropListSelect(event) {
+    console.log(event);
+    this.codeTransSeleted = JSON.stringify(event);
+  }
+  getDropListSelectItem(event) {
+    console.log(event);
+    this.codeTransSeleted = JSON.stringify(event);
+  }
   test2Pipe(code: string, codemap: string) {
     this.codetrans.transform(codemap, code).then(res => this.codeTransValue = res);
   }
