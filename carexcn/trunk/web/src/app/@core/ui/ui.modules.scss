@@ -7,6 +7,9 @@
 .ui-autocomplete-panel {
   overflow: auto;
 }
+.ui-autocomplete-panel-ys {
+  width: 100%;
+}
 .ui-autocomplete-panel-ys ul {
   list-style: none;
   color: #c0c0c0;
@@ -87,7 +90,8 @@
 .ui-corner-all {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
-  border-radius: 3px;
+  border-radius: 0px;
+  border-color: #37317a;
 }
 .ui-datepicker table {
   width: 100%;
@@ -206,4 +210,8 @@
 .ui-datepicker.ui-widget .ui-datepicker-calendar td a.ui-state-highlight {
   background-color: #7659ff;
   color: #ffffff;
+}
+.ui-dropdown .ui-dropdown-trigger {
+  background: #37317a;
+  border-color: #37317a;
 }
