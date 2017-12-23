@@ -1,0 +1,87 @@
+<nb-card>
+  <nb-card-header class="d-flex">
+    <div class="p-2 mr-auto">{{saved?'修改':'新增'}}商户</div>
+    <div class="p2">
+      <a [routerLink]="'..'" class="btn btn-secondary btn-sm">返回</a>
+    </div>
+  </nb-card-header>
+
+  <nb-card-body>
+    <form [formGroup]="form" (ngSubmit)="save()" >
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="form-group">
+            <input type="text" class="form-control" formControlName="code" placeholder="商户名"
+                   [ngClass]="{'form-control-danger':form.get('code').invalid && form.get('code').touched}">
+          </div>
+          <div class="text-danger" *ngIf="form.get('code').hasError('required') && form.get('code').touched">
+            -- 必须输入商户名
+          </div>
+          <!--<div class="text-danger" *ngIf="form.get('code').hasError('minLength') && form.get('code').touched">
+            &#45;&#45; 代码集代码不够3位
+          </div>-->
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group">
+            <input type="text" class="form-control" id="name" name="name" formControlName="name" placeholder="商户编号">
+                   <!--[ngClass]="{'form-control-danger':form.get('name').hasError('required') && form.get('name').touched}">-->
+          </div>
+         <!-- <div class="text-danger" *ngIf="form.get('name').hasError('required') && form.get('name').touched">
+            &#45;&#45; 必须输入商户编号
+          </div>-->
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="证件有效期" >
+          </div>
+          <!--<div class="text-danger" *ngIf="form.get('code').hasError('required') && form.get('code').touched">
+            &#45;&#45; 必须输入证件有效期
+          </div>-->
+          <!--<div class="text-danger" *ngIf="form.get('code').hasError('minLength') && form.get('code').touched">
+            &#45;&#45; 代码集代码不够3位
+          </div>-->
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="电话" >
+          </div>
+          <!--<div class="text-danger" *ngIf="form.get('code').hasError('required') && form.get('code').touched">
+            &#45;&#45; 必须输入商户电话
+          </div>-->
+          <!--<div class="text-danger" *ngIf="form.get('code').hasError('minLength') && form.get('code').touched">
+            &#45;&#45; 代码集代码不够3位
+          </div>-->
+        </div>
+        <div class="col-sm-3">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="地址">
+        </div>
+        <!--<div class="text-danger" *ngIf="form.get('code').hasError('required') && form.get('code').touched">
+          &#45;&#45; 必须输入地址
+        </div>-->
+        <!--<div class="text-danger" *ngIf="form.get('code').hasError('minLength') && form.get('code').touched">
+          &#45;&#45; 代码集代码不够3位
+        </div>-->
+      </div>
+        <div class="col-sm-2">
+          <button type="submit" class="btn btn-primary btn-block" [disabled]="form.invalid">保存</button>
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+</nb-card>
+<nb-card *ngIf="saved">
+  <nb-card-header>
+    <div class="p-2 mr-auto">联系人列表</div>
+    <div class="p2">
+      <button type="button" class="btn btn-success btn-sm" (click)="showForm()" *ngIf="!showItemForm">新增联系人</button>
+      <button type="button" class="btn btn-warning btn-sm" (click)="hideForm()" *ngIf="showItemForm">关闭</button>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+
+    <!--<ngx-codeitem-edit [(codeitem)]="curItem" [codemap]="form.value.code" *ngIf="showItemForm"></ngx-codeitem-edit>-->
+    <ngx-table [url]="'/rest/sys/codemap/pager'" [columns]="columns" #itemList [filter]="filter" [hidden]="showItemForm"></ngx-table>
+  </nb-card-body>
+</nb-card>

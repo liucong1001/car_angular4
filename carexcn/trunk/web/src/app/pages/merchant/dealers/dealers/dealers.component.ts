@@ -51,7 +51,7 @@ export class DealersComponent implements OnInit {
     {title: '证件有效期', titleClass: '', cell: new TextCell('endDate')} as Column,
     {title: '操作', titleClass: 'w-25 text-center', cell: new MenuCell(
       [
-        new Menu('编辑', '', 'edit'),
+        new Menu('编辑', '', 'linkman'),
         new Menu('禁用', '', this.disable),
       ],
       new Menu('查看', '', this.view), 'text-center',
@@ -60,7 +60,7 @@ export class DealersComponent implements OnInit {
   // 列表菜单回调
   view(row: any, drop: any) {
   }
-  edit(row: any) {
+  linkman(row: any) {
   }
   disable(row: any) {
 

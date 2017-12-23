@@ -34,12 +34,12 @@
             <div class="row">
                 <div class="col-sm-4">
                       <div class="form-group">
-                          <label for="">组织机构代码</label>    
+                          <label for="">组织机构代码</label>
                           <input type="text" class="form-control" formControlName="certCode" placeholder="组织机构代码" [ngClass]="{'form-control-danger':form.get('certCode').hasError('required') && form.get('certCode').touched}">
                       </div>
                       <div class="text-danger" *ngIf="form.get('certCode').hasError('required') && form.get('certCode').touched">
                             -- 必须输入组织机构代码
-                      </div>    
+                      </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
@@ -57,12 +57,12 @@
                     </div>
                 </div>
 
-            </div> 
+            </div>
             <div class="row">
                 <div class="col-sm-4">
                     <div class="form-group">
                         <label for="">是否交易</label>
-                        <select name="" id="" class="form-control" formControlName="isDeal">
+                        <select name="" class="form-control" formControlName="isDeal">
                             <option value="0">否</option>
                             <option value="1">是</option>
                         </select>
@@ -71,7 +71,7 @@
                 <div class="col-sm-4">
                     <div class="form-group">
                         <label for="">是否个人</label>
-                        <select name="" id="" class="form-control" formControlName="isPersonal">
+                        <select name="" class="form-control" formControlName="isPersonal">
                             <option value="0">否</option>
                             <option value="1">是</option>
                         </select>
@@ -82,37 +82,37 @@
                  <div class="col-sm-4">
                      <div class="form-group">
                         <label for="">联系方式</label>
-                        <input type="text" class="form-control" formControlName="phone" placeholder="联系方式" [ngClass]="{'form-control-danger':form.get('phone').hasError('pattern') && form.get('phone').touched}">                        
+                        <input type="text" class="form-control" formControlName="phone" placeholder="联系方式" [ngClass]="{'form-control-danger':form.get('phone').hasError('pattern') && form.get('phone').touched}">
                      </div>
-                 </div> 
+                 </div>
                  <div class="col-sm-6">
                     <div class="form-group">
-                         <label for="">地址</label>  
+                         <label for="">地址</label>
                          <input type="text"  class="form-control" formControlName="address" placeholder="地址" [ngClass]="{'form-control-danger':form.get('address').hasError('pattern') && form.get('address').touched}" >
                     </div>
                     <div class="text-danger" *ngIf="form.get('address').hasError('pattern') && form.get('address').touched">
                            -- 请输入地址
                     </div>
-                </div> 
+                </div>
             </div>
             <div class="row">
                 <div class="col-sm-4">
                     <div class="form-group">
                        <label for="">机构证正面</label>
                     </div>
-                </div> 
+                </div>
                 <div class="col-sm-6">
                    <div class="form-group">
-                        <label for="">机构证反面</label>  
+                        <label for="">机构证反面</label>
                    </div>
-               </div> 
+               </div>
            </div>
             <div class="row">
                 <div class="col-sm-1">
-                    <button type="submit" class="btn btn-info btn-block" [disabled]="form.invalid">保存</button>
+                    <button type="submit" class="btn btn-info" [disabled]="form.invalid">保存</button>
                 </div>
                 <div class="col-sm-1">
-                    <button type="button" class="btn btn-default btn-block" (click)='back()' >返回</button>
+                    <button type="button" class="btn btn-default" (click)='back()' >返回</button>
                 </div>
             </div>
         </form>

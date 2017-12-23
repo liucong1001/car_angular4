@@ -11,6 +11,7 @@ import { DealersEditComponent } from './dealers/dealers-edit/dealers-edit.compon
 import { DealersContactsComponent } from './dealers/dealers-contacts/dealers-contacts.component';
 import { DealersContactsFormComponent } from './dealers/dealers-contacts-form/dealers-contacts-form.component';
 import { MiddleManComponent } from './middle-man/middle-man/middle-man.component';
+import { LinkmanComponent } from './dealers/linkman/linkman.component';
 
 @NgModule({
   imports: [
@@ -23,6 +24,13 @@ import { MiddleManComponent } from './middle-man/middle-man/middle-man.component
     UiTableModule,
     RouterModule,
   ],
-  declarations: [...routedComponents, DealersEditComponent, DealersContactsComponent, DealersContactsFormComponent, MiddleManComponent],
+  declarations: [
+    ...routedComponents,
+    DealersEditComponent,
+    DealersContactsComponent,
+    DealersContactsFormComponent,
+    MiddleManComponent,
+    LinkmanComponent,
+  ],
 })
 export class MerchantModule { }
