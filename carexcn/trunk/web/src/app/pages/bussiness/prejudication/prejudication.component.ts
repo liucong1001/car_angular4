@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 
+/**
+ * API_URL:/rest/bussiness/trade/prejudication POST
+ *
+ */
 @Component({
   selector: 'ngx-prejudication',
   templateUrl: './prejudication.component.html',
