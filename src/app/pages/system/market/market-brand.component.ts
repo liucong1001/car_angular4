@@ -1,5 +1,5 @@
 import { CodeComponent } from './../code/code.component';
-import { Marketmap } from './../../../@core/model/system/marketmap';
+import { MarketBrandmap } from './../../../@core/model/system/marketbrand';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {Menu, MenuCell} from '../../../@core/ui/table/cell.menu.component';
 import {TextCell} from '../../../@core/ui/table/cell.text.component';
@@ -12,20 +12,14 @@ import { MessageService } from '../../../@core/utils/message.service';
 
 
 @Component({
-    selector: 'ngx-market-edit',
-    templateUrl: './market-edit.component.html',
+    selector: 'ngx-market-brand',
+    templateUrl: './market-brand.component.html',
     providers: [MarketService, MessageService],
 })
 
-export class MarketEditComponent implements OnInit {
-    public jobList: Array<any>;
-     // 业务费用模态框
-     display = false;
-     invoice = false;
-     discount = false;
-     required = false;
-     // 厂牌型号模态框
-     brandModel = false;
+export class MarketBrandComponent implements OnInit {
+        // 厂牌型号模态框
+        brandModel = false;
 
     constructor(private fb: FormBuilder,
         public router: Router,
@@ -45,25 +39,7 @@ export class MarketEditComponent implements OnInit {
         });
     }
 
-
     form: FormGroup = this.fb.group({
-        name: ['', [Validators.required]],
-        code: ['', [Validators.required]],
-        // area: [{id: null, name: '江夏'}],
-        memo: [''],
-    });
-
-    // feeForm: FormGroup = this.fb.group({
-    //     name: ['', [Validators.required]],
-    //     business_type: ['', [Validators.required]],
-    //     money: ['', [Validators.required]],
-    //     invoice: ['', [Validators.required]],
-    //     discount: ['', [Validators.required]],
-    //     required: ['', [Validators.required]],
-    //     price_type: ['', [Validators.required]],
-    //     memo: [''],
-    // });
-    brandForm: FormGroup = this.fb.group({
         name: ['', [Validators.required]],
         range: ['', [Validators.required]],
         origin: ['', [Validators.required]],
@@ -108,24 +84,14 @@ export class MarketEditComponent implements OnInit {
     ngOnInit() {
     }
 
-    showDialog() {
-        this.display = true;
-    }
+    closeModal() {
+        // this.activeModal.close();
+     }
 
-
-  //    厂牌型号
+  //   厂牌型号
   showBrandModel() {
     this.brandModel = true;
   }
-
-  saveBrand() {
-   console.log('厂牌型号对象', this.brandForm.value);
-   this.brandForm.reset();
-   this.brandModel = false;
-  }
-
-
-
 
     /**
   * 已保存标志
@@ -142,10 +108,10 @@ export class MarketEditComponent implements OnInit {
             return false;
         }
         window.console.log('保存的对象', this.form.value);
-        const marketmap = this.form.value as Marketmap;
-        window.console.log('市场', marketmap);
-        this.marketService.save(marketmap).then(res => {
-            this.message.success('保存成功', '市场保存成功');
+        const brandmap = this.form.value as MarketBrandmap;
+        window.console.log('市场', brandmap);
+        this.marketService.saveBrand(brandmap).then(res => {
+            this.message.success('保存成功', '厂牌型号保存成功');
             this.saved = true;
         }).catch(err => {
             this.message.error('保存失败', err.json().message);

@@ -1,0 +1,106 @@
+<nb-card>
+  <nb-card-header class="d-flex">
+    <div class="p-2 mr-auto">市场证件</div>
+    <div class="p4">
+      <button type="button" class="btn btn-info btn-block" (click)='show()'>添加</button>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <ngx-table #codeList [url]="'/rest/sys/market/photo/config/pager'"  [columns]="columns" [filter]="filter"></ngx-table>
+  </nb-card-body>
+  <nb-card-footer>
+    <div class="row">
+      <div class="col-sm-1 col-sm-offset-11">
+        <button type="button" class="btn btn-default btn-block" (click)='back()'>返回</button>
+      </div>
+    </div>
+  </nb-card-footer>
+</nb-card>
+<p-dialog header="市场证件信息" [(visible)]="display" width='800'>
+  <form [formGroup]="form"  class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label>证件名称:</label>
+          <input type="text" class="form-control" formControlName="name" placeholder="证件名称">
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label>业务类型:</label>
+          <input type="text" class="form-control" formControlName="business" placeholder="业务类型">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <!--<div class="col-sm-4">-->
+        <!--<div class="form-group">-->
+          <!--<label>代号:</label>-->
+          <!--<input type="text" class="form-control" formControlName="cloudUser" placeholder="代号">-->
+        <!--</div>-->
+      <!--</div>-->
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label>证件类型代码集:</label>
+          <input type="code" class="form-control" formControlName="certificateCode" placeholder="证件类型代码集">
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label>备注:</label>
+          <input type="text" class="form-control" formControlName="memo" placeholder="备注">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label>拍摄张数</label>
+          <input type="number" class="form-control" formControlName="photoCode" placeholder="拍摄张数">
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group">
+          选择状态
+          <select name="" formControlName="status" class="form-control">
+            <option value="">--选择状态--</option>
+            <option value="01">必拍</option>
+            <option value="02">不拍</option>
+            <option value="03">选拍</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group">
+          拍照顺序
+          <input type="text" class="form-control" formControlName="sort" placeholder="拍照顺序">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="form-group">
+          最大张数
+          <input type="number" class="form-control" formControlName="max" placeholder="最大张数">
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="form-group">
+          最小张数
+          <input type="number" class="form-control" formControlName="min" placeholder="最小张数">
+        </div>
+      </div>
+    </div>
+    <p-footer>
+      <div class="row">
+        <div class="col-sm-6"></div>
+        <div class="col-sm-3">
+          <button class="btn btn-info btn-block" (click)='save()'>保存</button>
+        </div>
+        <div class="col-sm-3">
+          <button class="btn  btn-default btn-block" (click)="close()">关闭</button>
+        </div>
+      </div>
+    </p-footer>
+  </form>
+</p-dialog>

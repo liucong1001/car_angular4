@@ -1,0 +1,79 @@
+<nb-card>
+    <nb-card-header class="d-flex">
+        <div class="p-2 mr-auto">厂牌型号</div>
+        <div class="p4">
+            <button type="button" class="btn btn-info btn-block" (click)='showBrandModel()'>添加厂牌型号</button>
+        </div>
+    </nb-card-header>
+    <nb-card-body>
+        <ngx-table #codeList [url]="'/rest/sys/market/findPage'" [columns]="columns" [filter]="filter"></ngx-table>
+    </nb-card-body>
+    <nb-card-footer>
+      <div class="row">
+        <div class="col-sm-1 col-sm-offset-11">
+          <button type="button" class="btn btn-default btn-block" (click)='back()'>返回</button>
+        </div>
+      </div>
+    </nb-card-footer>
+</nb-card>
+<p-dialog header="厂牌型号信息" [(visible)]="brandModel" width='800'>
+    <form [formGroup]="form" (ngSubmit)="save()" class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>厂牌型号名称:</label>
+                    <input type="text" class="form-control" formControlName="name" placeholder="费用名">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>车辆排量代码集:</label>
+                    <input type="text" class="form-control" formControlName="range" placeholder="车辆排量代码集">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>国产/进口/合资:</label>
+                    <input type="text" class="form-control" formControlName="origin" placeholder="来源">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>车辆类型代码集:</label>
+                    <input type="code" class="form-control" formControlName="vehicleTypeCode" placeholder="车辆类型代码集">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>备注:</label>
+                    <input type="text" class="form-control" formControlName="memo" placeholder="备注">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>车辆大小:</label>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label>停用标记:</label>
+                </div>
+            </div>
+        </div>
+        <p-footer>
+            <div class="row">
+                <div class="col-sm-6"></div>
+                <div class="col-sm-3">
+                    <button class="btn btn-info btn-block" (click)='save()'>保存</button>
+                </div>
+                <div class="col-sm-3">
+                    <button class="btn  btn-default btn-block">关闭</button>
+                </div>
+            </div>
+        </p-footer>
+    </form>
+</p-dialog>

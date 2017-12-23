@@ -15,9 +15,9 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label>市场代码:</label>
-                        <input type="text" class="form-control" formControlName="number" placeholder="市场代码" [ngClass]="{'form-control-danger':form.get('number').hasError('required') && form.get('number').touched}">
+                        <input type="text" class="form-control" formControlName="code" placeholder="市场代码" [ngClass]="{'form-control-danger':form.get('code').hasError('required') && form.get('code').touched}">
                     </div>
-                    <div class="text-danger" *ngIf="form.get('number').hasError('required') && form.get('number').touched">
+                    <div class="text-danger" *ngIf="form.get('code').hasError('required') && form.get('code').touched">
                         -- 必须输入市场代码
                     </div>
                 </div>
@@ -27,11 +27,11 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label>地区代码:</label>
-                        <input type="text" class="form-control" formControlName="areaNumber" placeholder="地区代码" [ngClass]="{'form-control-danger':form.get('areaNumber').hasError('required') && form.get('areaNumber').touched}">
+                        <!-- <input type="text" class="form-control" formControlName="area" placeholder="地区代码" [ngClass]="{'form-control-danger':form.get('area').hasError('required') && form.get('area').touched}"> -->
                     </div>
-                    <div class="text-danger" *ngIf="form.get('areaNumber').hasError('required') && form.get('areaNumber').touched">
-                        -- 必须输入地区代码
-                    </div>
+                    <!-- <div class="text-danger" *ngIf="form.get('area').hasError('required') && form.get('area').touched">
+                        -- 必须输入地区
+                    </div> -->
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
@@ -41,20 +41,7 @@
                 </div>
             </div>
             <div class="row">
-                  <div class="col-sm-2"> <h4>市场业务费用</h4></div>
-                  <div class="col-sm-1"> <button type="button" class="btn btn-info btn-block" (click)='showDialog()'>添加</button> </div>
-            </div>
-            <div class="row">
-                 分页列表
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-sm-2">
-                    <h4>厂牌型号</h4>
-                </div>
-                <div class="col-sm-1">
-                    <button type="button" class="btn btn-info btn-block" (click)='showBrandModel()'>添加</button>
-                </div>
+                <ngx-table  [url]="'/rest/sys/marketmap/pager'" [columns]="columns" ></ngx-table>
             </div>
 
             <div class="row">
@@ -68,145 +55,3 @@
         </form>
     </nb-card-body>
 </nb-card>
-<p-dialog header="Title" [(visible)]="display" width='800'>
-        <p-header>
-            业务费用信息
-        </p-header>
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <label>费用名:</label>
-                    <input type="text" class="form-control" [(ngModel)]="fee.name"  placeholder="费用名">
-                </div>
-            </div>
-            <div class="col-sm-6">
-                    <div class="form-group">
-                        <label>业务类型:</label>
-                        <input type="text" class="form-control"  [(ngModel)]="fee.business_type" placeholder="业务类型">
-                    </div>
-                </div>
-        </div>
-        <div class="row">   
-             <div class="col-sm-4">
-                 <div class="form-group">
-                      <label>价格类型:</label>
-                      <select name="" id="" [(ngModel)]="fee.price_type"  class="form-control" >
-                          <option value="">--选择价格类型--</option>
-                          <option value="">固定</option>
-                          <option value="">可选</option> 
-                          <option value="">计算</option> 
-                          <option value="">手填</option>     
-                      </select>       
-                 </div>
-             </div>
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <label>费用:</label>
-                    <input type="number" class="form-control" [(ngModel)]="fee.money" placeholder="费用">
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <label>备注:</label>
-                    <input type="text" class="form-control" [(ngModel)]="fee.memo" placeholder="备注">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        计入开票
-                        <p-checkbox [(ngModel)]="fee.invoice" binary="true" ></p-checkbox>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        考虑折扣
-                        <p-checkbox [(ngModel)]="fee.discount" binary="true" ></p-checkbox>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        必选
-                        <p-checkbox [(ngModel)]="fee.required" binary="true" ></p-checkbox>
-                    </div>
-                </div>
-            </div>
-        <p-footer>
-            <div class="row">
-                <div class="col-sm-6"></div>
-                <div class="col-sm-3">
-                     <button class="btn btn-info btn-block" (click)='saveFee()'>保存</button>
-                </div>
-                <div class="col-sm-3">
-                     <button class="btn  btn-default btn-block">关闭</button>
-                </div>
-            </div>
-        </p-footer>
-  </p-dialog>
-  <p-dialog header="Title" [(visible)]="brandModel" width='800'>
-     <form [formGroup]="brandForm" (ngSubmit)="save()" class="container"> 
-        <p-header>
-            厂牌型号信息
-        </p-header>
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <label>厂牌型号名称:</label>
-                    <input type="text" class="form-control" formControlName="name"  placeholder="费用名">
-                </div>
-            </div>
-            <div class="col-sm-6">
-                    <div class="form-group">
-                        <label>车辆排量代码集:</label>
-                        <input type="text" class="form-control"  formControlName="range" placeholder="车辆排量代码集">
-                    </div>
-                </div>
-        </div>
-        <div class="row">   
-             <div class="col-sm-4">
-                 <div class="form-group">
-                      <label>国产/进口/合资:</label>
-                      <input type="text" class="form-control"  formControlName="origin" placeholder="来源">
-                 </div>
-             </div>
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <label>车辆类型代码集:</label>
-                    <input type="number" class="form-control" formControlName="vehicleTypeCode" placeholder="车辆类型代码集">
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="form-group">
-                    <label>备注:</label>
-                    <input type="text" class="form-control" formControlName="memo" placeholder="备注">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label>车辆大小:</label>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label>停用标记:</label>
-                    </div>
-                </div>
-            </div>
-        <p-footer>
-            <div class="row">
-                <div class="col-sm-6"></div>
-                <div class="col-sm-3">
-                     <button class="btn btn-info btn-block" (click)='saveBrand()'>保存</button>
-                </div>
-                <div class="col-sm-3">
-                     <button class="btn  btn-default btn-block">关闭</button>
-                </div>
-            </div>
-        </p-footer>
-    </form>  
-  </p-dialog>
-
-<!-- 照片配置，收费配置， sys/manager/staff -->

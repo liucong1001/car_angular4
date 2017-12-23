@@ -1,10 +1,40 @@
-export class Marketfee {
-    public   name: string;
-    public   business_type: any;
-    public   money: number ;
-    public   invoice: any;
-    public   discount: any;
-    public   required: any;
-    public   price_type: any;
-    public   memo: string;
+/**
+ * 市场业务费用模型
+ */
+export class Marketfeemap {
+  public id: string;
+  public name: string;
+  /**
+   * 代号
+   */
+  public cloudUser: string;
+  /**
+   * 备注
+   */
+  public memo: string;
+  /**
+   * 业务类型
+   */
+  public businessType: any;
+  /**
+   * 费用金额
+   */
+  public money: number;
+  /**
+   * 是否计入开票
+   */
+  public invoice: any;
+  /**
+   * 是否考虑折扣
+   */
+  public discount: any;
+  /**
+   * 是否必选
+   */
+  public required: any;
+  /**
+   * 价格类型
+   */
+  public priceType: any;
+
 }
