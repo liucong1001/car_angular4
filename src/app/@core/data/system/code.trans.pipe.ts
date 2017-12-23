@@ -7,9 +7,9 @@ export class CodeTransPipe implements PipeTransform {
   }
   /**
    * 管道服务 code_trans
-   * @param {string} codeMap
    * @param {string} code
-   * @returns {string}
+   * @param {string} codeMap
+   * @returns {Promise<string>}
    */
   transform(code: string, codeMap: string): Promise<string> {
     return this.codeitem.convert(codeMap).then((res) => {

@@ -1,11 +1,10 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {RestService} from '../../utils/rest.service';
 
 @Component({
   selector: 'ngx-ys-autoinput',
   templateUrl: './autoinput.component.html',
   styleUrls: ['./autoinput.component.scss'],
-  encapsulation: ViewEncapsulation.None,
 })
 export class AutoinputComponent implements OnInit {
   @Output() _value = new EventEmitter();

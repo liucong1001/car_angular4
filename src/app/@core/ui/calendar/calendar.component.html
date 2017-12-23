@@ -1,1 +1,10 @@
-<p-calendar dateFormat="{{dateFormat}}" defaultDate="{{defaultDate}}" placeholder="{{placeholder}}" [locale]="zh_CN" inputStyleClass="form-control" [monthNavigator]="true" (onSelect)="_onSelect($event)"></p-calendar>
+<p-calendar
+  dateFormat="{{dateFormat}}"
+  defaultDate="{{defaultDate}}"
+  placeholder="{{placeholder}}"
+  [locale]="zh_CN"
+  [monthNavigator]="true"
+  [yearNavigator]="true"
+  yearRange="{{yearRange}}"
+  (onSelect)="_onSelect($event)"
+></p-calendar>
