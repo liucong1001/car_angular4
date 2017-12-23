@@ -10,43 +10,43 @@ export class MerchantModel {
   /**
    * 编码
    */
-  code: string;
+  code?: string;
   /**
    * 组织机构代码
    */
-  certCode: string;
+  certCode?: string;
   /**
    * 地址
    */
-  address: string;
+  address?: string;
   /**
    * 联系电话
    */
-  phone: string;
+  phone?: string;
   /**
    * 证件有效期
    */
-  endDate: string;
+  endDate?: string;
   /**
    * 交易折扣
    */
-  discount: string;
+  discount?: string;
   /**
    * 是否租车位（1场内，0场外）
    */
-  isCarRental: string;
+  isCarRental?: string;
   /**
    * 是否交易（1是，0否）
    */
-  isDeal: string;
+  isDeal?: string;
   /**
    * 是否个人（1是，0否）
    */
-  isPersonal: string;
+  isPersonal?: string;
   /**
    * 停用标记（1启用，0停用）
    */
-  disableSign: string;
-  invalid: string;
-  cloudUser: string;
+  disableSign?: string;
+  invalid?: string;
+  cloudUser?: string;
 }
