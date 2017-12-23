@@ -6,6 +6,8 @@ import {IdcardService} from '../../../@core/device/idcard.service';
 import {IccardService} from '../../../@core/device/iccard.service';
 import {IccardModel, IccardOperaModel} from '../../../@core/model/bussiness/iccard.model';
 import {FingerService} from '../../../@core/device/finger.service';
+import {RestService} from '../../../@core/utils/rest.service';
+import {CodeTransPipe} from '../../../@core/data/system/code.trans.pipe';
 
 @Component({
   selector: 'ngx-ui-example',
@@ -31,7 +33,15 @@ export class UiExampleComponent implements OnInit {
     title: '测试图二',
     source: 'assets/images/camera2.jpg',
   }];
-
+  public codeTransValue = '';
+  test2Pipe(code: string, codemap: string) {
+    this.codetrans.transform(codemap, code).then(res => this.codeTransValue = res);
+  }
+  test1Click(url) {
+    this.rest.get(url).subscribe(res => {
+      console.log(res);
+    });
+  }
   /**
    * 构造函数
    * @param {MessageService} message
@@ -44,6 +54,8 @@ export class UiExampleComponent implements OnInit {
     private idcard: IdcardService,
     private iccard: IccardService,
     private finger: FingerService,
+    private rest: RestService,
+    private codetrans: CodeTransPipe,
   ) {
   }
 
