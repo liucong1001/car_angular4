@@ -23,6 +23,7 @@ import { Trecording2Component } from './transfer/trecording2/trecording2.compone
 import { TrecordingLastComponent } from './transfer/trecording-last/trecording-last.component';
 import { TjudicationPhotoComponent } from './transfer/tjudication-photo/tjudication-photo.component';
 import { TjudicationFingerComponent } from './transfer/tjudication-finger/tjudication-finger.component';
+import {CodeTransPipe} from '../../@core/data/system/code.trans.pipe';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { TjudicationFingerComponent } from './transfer/tjudication-finger/tjudic
     UiModule,
   ],
   declarations: [
+    CodeTransPipe,
     PrejudicationComponent,
     TransferComponent,
     JudicationComponent,
