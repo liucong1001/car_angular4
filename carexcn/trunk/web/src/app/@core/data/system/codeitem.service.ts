@@ -47,7 +47,6 @@ export class CodeitemService {
             this.codemapTemplateData[_v_codemap][_v_code] = _v_value;
           }
         }
-        console.log(this.codemapTemplateData);
         return this.codemapTemplateData[codemap];
       });
     }

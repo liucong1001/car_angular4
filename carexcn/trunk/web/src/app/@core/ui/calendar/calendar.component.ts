@@ -4,7 +4,6 @@ import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from 
   selector: 'ngx-ys-calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss'],
-  encapsulation: ViewEncapsulation.None,
 })
 /**
  * 目前完成为基本可用
@@ -15,6 +14,7 @@ export class CalendarComponent implements OnInit {
   @Input() placeholder = '日历';
   @Input() dateFormat = 'yy-mm-dd';
   @Input() defaultDate = '';
+  @Input() yearRange = '2010:2050';
   @Output() _calendarValue = new EventEmitter();
   /**
    * 本地化

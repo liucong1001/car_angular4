@@ -1,0 +1,16 @@
+.ui-state-highlight  {
+  background-color: rgba(0, 255, 170, 0.25) !important;
+  color: #ffffff;
+  border: 0.125rem solid #00f9a6;
+  box-shadow: 0 2px 12px 0 rgba(0, 255, 170, 0.25);
+}
+.ui-autocomplete-panel {
+  overflow: auto;
+}
+.ui-autocomplete-panel-ys ul{
+  list-style: none;
+  color: #c0c0c0;
+}
+.ui-autocomplete-panel-ys ul li{
+  line-height: 1.5;
+}

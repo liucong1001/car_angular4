@@ -34,6 +34,7 @@ export class UiExampleComponent implements OnInit {
     source: 'assets/images/camera2.jpg',
   }];
   public codeTransValue = '';
+  public codeTransSeleted = '';
   test2Pipe(code: string, codemap: string) {
     this.codetrans.transform(codemap, code).then(res => this.codeTransValue = res);
   }
