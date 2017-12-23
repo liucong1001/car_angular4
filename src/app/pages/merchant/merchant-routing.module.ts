@@ -6,6 +6,7 @@ import { DealersComponent } from './dealers/dealers/dealers.component';
 import { MerchantComponent } from './merchant.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import {LinkmanComponent} from './dealers/linkman/linkman.component';
 // import MiddleManComponent
 
 const routes: Routes = [{
@@ -17,6 +18,7 @@ const routes: Routes = [{
     {path: 'contacts', component: DealersContactsComponent},
     {path: 'contacts/form', component: DealersContactsFormComponent},
     {path: 'dealers/middleman', component: MiddleManComponent},
+    {path: 'dealers/linkman', component: LinkmanComponent},
 ],
 }];
 
