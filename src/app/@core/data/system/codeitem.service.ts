@@ -39,9 +39,11 @@ export class CodeitemService {
       _return = this.codemapTemplateData[codemap] = this.rest.get(url).map(res => {
         let _map = {};
         for (let key in res) {
-          let _v_code = res[key]['code'];
-          let _v_value = res[key]['value'];
-          _map[_v_code] = _v_value;
+          if (res[key]) {
+            let _v_code = res[key]['code'];
+            let _v_value = res[key]['name'];
+            _map[_v_code] = _v_value;
+          }
         }
         return _map;
       }).toPromise();
