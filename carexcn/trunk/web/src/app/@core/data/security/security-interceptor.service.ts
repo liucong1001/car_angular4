@@ -12,10 +12,13 @@ export class SecurityInterceptorService implements HttpInterceptor {
     return next.handle(req).catch(err => {
       if (err.status === 401) {
         this.router.navigate(['/auth/login']);
+        return;
       }
-      return err;
+       if (err.error) {
+        return Observable.throw(err.error);
+       }
+       return Observable.throw(err);
     });
-    // return next.handle(req);
   }
 
   constructor(private router: Router) {
