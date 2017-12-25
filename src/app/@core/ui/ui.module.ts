@@ -23,8 +23,8 @@ const COMPONENTS = [
 ];
 
 @NgModule({
-  entryComponents: [],
-  exports: [...COMPONENTS],
+entryComponents: [],
+  exports: [...COMPONENTS, UiTableModule],
   imports: [CommonModule, FormsModule, UiTableModule, RouterModule, FileUploadModule, CalendarModule, AutoCompleteModule, DropdownModule],
   declarations: [...COMPONENTS],
 })
