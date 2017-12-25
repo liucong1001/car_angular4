@@ -6,7 +6,8 @@ import {RestService} from '../../utils/rest.service';
 @Injectable()
 export class CodeitemService {
   path = '/rest/sys/codeitem';
-  private codemapTemplateData: Array<Array<string>> = [];
+  // private codemapTemplateData: Array<Array<string>> = [];
+  private codemapTemplateData: any = {};
   constructor(private http: Http, private rest: RestService) {
   }
   /**
@@ -32,24 +33,20 @@ export class CodeitemService {
   public convert(codemap: string): Promise<any> {
     const url = `${this.path}/convert/${codemap}`;
     let _return: Promise<any>;
-    if (undefined !== this.codemapTemplateData && undefined !== this.codemapTemplateData[codemap]) {
-      _return = Promise.resolve(this.codemapTemplateData[codemap]);
+    if (this.codemapTemplateData[codemap]) {
+      _return = this.codemapTemplateData[codemap];
     } else {
-      _return = this.rest.get(url).toPromise().then(res => {
+      _return = this.codemapTemplateData[codemap] = this.rest.get(url).map(res => {
+        let _map = {};
         for (let key in res) {
-          let _v_codemap = res[key]['codemap'];
           let _v_code = res[key]['code'];
           let _v_value = res[key]['value'];
-          if (this.codemapTemplateData[_v_codemap]) {
-            this.codemapTemplateData[_v_codemap][_v_code] = _v_value;
-          } else {
-            this.codemapTemplateData[_v_codemap] = [];
-            this.codemapTemplateData[_v_codemap][_v_code] = _v_value;
-          }
+          _map[_v_code] = _v_value;
         }
-        return this.codemapTemplateData[codemap];
-      });
+        return _map;
+      }).toPromise();
     }
     return _return;
   }
+
 }
