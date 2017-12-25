@@ -24,9 +24,23 @@ const COMPONENTS = [
 
 @NgModule({
 entryComponents: [],
-  exports: [...COMPONENTS, UiTableModule],
-  imports: [CommonModule, FormsModule, UiTableModule, RouterModule, FileUploadModule, CalendarModule, AutoCompleteModule, DropdownModule],
-  declarations: [...COMPONENTS],
+  exports: [
+    ...COMPONENTS,
+    UiTableModule,
+  ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    UiTableModule,
+    RouterModule,
+    FileUploadModule,
+    CalendarModule,
+    AutoCompleteModule,
+    DropdownModule,
+  ],
+  declarations: [
+    ...COMPONENTS,
+  ],
 })
 export class UiModule {
 }
