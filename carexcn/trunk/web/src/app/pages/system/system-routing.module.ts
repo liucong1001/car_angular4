@@ -1,5 +1,3 @@
-import { MarketFeeComponent } from './market/market-fee.component';
-import { MarketBrandComponent } from './market/market-brand.component';
 import { MarketEditComponent } from './market/market-edit.component';
 import { MarketComponent } from './market/market.component';
 import { CartypeComponent } from './cartype/cartype.component';
@@ -16,7 +14,11 @@ import { ManagerComponent } from './manager/manager.component';
 import { ManageritemEditComponent } from './manager/manageritem-edit.component';
 import { PermissionComponent } from './permission/permission.component';
 import { AreaComponent } from './area/area.component';
-import  {MarketPhotoComponent} from './market/market-photo.component'
+import {MarketStaffComponent} from './market-staff/market-staff.component';
+import {MarketStaffAddComponent} from './market-staff/market-staff-add/market-staff-add.component';
+import {MarketPhotoComponent} from './market/market-photo.component';
+import {MarketBrandComponent} from './market/market-brand.component';
+import {MarketFeeComponent} from './market/market-fee.component';
 
 const routes: Routes = [{
   path: '',
@@ -35,6 +37,8 @@ const routes: Routes = [{
     {path: 'area', component: AreaComponent},
     {path: 'market', component: MarketComponent},
     {path: 'market/edit', component: MarketEditComponent},
+    {path: 'market/staff', component: MarketStaffComponent},
+    {path: 'market/staff/add', component: MarketStaffAddComponent},
     {path: 'market/brand', component: MarketBrandComponent},
     {path: 'market/fee', component: MarketFeeComponent},
     {path: 'market/photo', component: MarketPhotoComponent},
@@ -51,5 +55,5 @@ export const routedComponents = [
   SystemComponent, CodeComponent, CodeEditComponent, ManagerComponent, ManageritemEditComponent,
   TransfercityComponent, TransferCityEditComponent, BlacklistComponent, BlacklistEditComponent,
   CartypeComponent, PermissionComponent, AreaComponent , MarketComponent, MarketEditComponent,
-  MarketBrandComponent, MarketFeeComponent,MarketPhotoComponent
+  MarketBrandComponent, MarketFeeComponent, MarketPhotoComponent,
 ];
