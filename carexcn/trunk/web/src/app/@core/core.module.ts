@@ -9,6 +9,7 @@ import { MessageService } from './utils/message.service';
 import { DeviceModule } from './device/device.module';
 import {UtilsModule} from './utils/utils.module';
 import {PagerService} from './data/pager.service';
+import {UiModule} from "./ui/ui.module";
 
 const NB_CORE_PROVIDERS = [
   ...DataModule.forRoot().providers,
@@ -56,6 +57,7 @@ const NB_CORE_PROVIDERS = [
     CommonModule,
   ],
   exports: [
+    UiModule,
   ],
   declarations: [],
 })
