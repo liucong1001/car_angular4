@@ -1,16 +1,22 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
+import {Component, EventEmitter, forwardRef, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 @Component({
   selector: 'ngx-ys-calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss'],
+  providers: [{
+    provide: NG_VALUE_ACCESSOR,
+    multi: true,
+    useExisting: forwardRef(() => CalendarComponent),
+  }],
 })
 /**
  * 目前完成为基本可用
  * 编写完成了独立控件，适配Cosmic主题样式，可选择日期
  * 但估计后期还有很多更细的定制化功能
  */
-export class CalendarComponent implements OnInit {
+export class CalendarComponent implements OnInit, ControlValueAccessor {
   @Input() placeholder = '日历';
   @Input() dateFormat = 'yy-mm-dd';
   @Input() defaultDate = '';
@@ -36,10 +42,20 @@ export class CalendarComponent implements OnInit {
       clear: '清除',
     };
   }
+  writeValue(obj: any): void {
+    this.dateFormat = obj;
+  }
+  registFunc(value: any) {}
+  registerOnChange(fn: any): void {
+    this.registFunc = fn;
+  }
+  registerOnTouched(fn: any): void {
+  }
 
   ngOnInit() {
   }
-  _onSelect($event) {
-    this._calendarValue.emit($event);
+  _onSelect(_event) {
+    this.registFunc(_event);
+    this._calendarValue.emit(_event);
   }
 }
