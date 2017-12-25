@@ -23,7 +23,7 @@ export class CodeitemEditComponent implements OnInit {
   form: FormGroup = this.fb.group({
     cloudUser: [''],
     codemap: [''],
-    code: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(32)]],
+    code: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(32)]],
     name: ['', [Validators.required, Validators.maxLength(64)]],
     value: ['', [Validators.maxLength(32)]],
     sort: ['', [Validators.pattern(/^\d*$/)]],
