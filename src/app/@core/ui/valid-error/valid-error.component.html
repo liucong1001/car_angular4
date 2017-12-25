@@ -1,0 +1,5 @@
+<div *ngIf="(control.touched || control.dirty)&& control.invalid" class="text-danger">
+  <p *ngFor="let err of errors">
+    <span *ngIf="control.hasError(err.type)">-- {{ err.message }}</span>
+  </p>
+</div>
