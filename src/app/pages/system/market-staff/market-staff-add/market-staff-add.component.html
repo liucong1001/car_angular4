@@ -1,0 +1,46 @@
+<nb-card>
+  <nb-card-header>新增员工</nb-card-header>
+  <nb-card-body>
+    <form class="container" [formGroup]="form">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="form-group">
+            <label>手机号</label>
+            <div class="input-group" formGroupName="marketStaff">
+              <input type="text" class="form-control" formControlName="telephone" placeholder="员工手机号"
+                     [ngClass]="{'form-control-danger':marketStaff.get('telephone').invalid && marketStaff.get('telephone').touched}" />
+              <div class="input-group-btn">
+                <button type="button" class="btn btn-info" (click)="sendCode()" [disabled]="marketStaff.get('telephone').invalid">发送验证码</button>
+              </div>
+            </div>
+            <ngx-valid-error [errors]="errors.telephone" [control]="marketStaff.get('telephone')"></ngx-valid-error>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group" *ngIf="marketStaff.get('telephone').valid">
+            <label>验证码</label>
+            <input type="text" class="form-control " formControlName="code" placeholder="请输入手机验证码" />
+          </div>
+          <div>{{form.pending}}</div>
+          <ngx-valid-error [errors]="errors.code" [control]="form.get('code')"></ngx-valid-error>
+        </div>
+      </div>
+      <div *ngIf="phoneValid" formGroupName="marketStaff">
+      <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+              <label>登录ID</label>
+              <input type="text" class="form-control" formControlName="loginName" placeholder="登录用的ID" />
+            </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>电子邮箱</label>
+            <input type="text" class="form-control" formControlName="email" placeholder="员工的电子邮箱" />
+          </div>
+        </div>
+      </div>
+      </div>
+    </form>
+  </nb-card-body>
+</nb-card>

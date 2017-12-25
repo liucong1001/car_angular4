@@ -1,0 +1,35 @@
+<nb-card>
+  <nb-card-header class="d-flex">
+  <div class="p-2 mr-auto">市场员工管理</div>
+  <div class="p2">
+    <a [routerLink]="'add'" class="btn btn-primary btn-sm">新增</a>
+    <button type="button" class="btn btn-sm btn-outline-success" (click)="toggle()" [ngClass]="{'active':showFilter}" ><i class="ion-funnel"></i></button>
+  </div>
+  </nb-card-header>
+  <nb-card-body>
+    <form [@visibilityChanged]="visibility" (submit)="staffList.reload()">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.username" name="username" type="text" placeholder="姓名 - 模糊搜索"/>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group form-group-sm">
+            <select class="form-control" [(ngModel)]="filter.position" name="position">
+              <option value="01">录入审核</option>
+              <option value="02">开票收费</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <button type="submit" class="btn btn btn-primary btn-block">搜索</button>
+        </div>
+        <div class="col-sm-2">
+          <button type="reset" class="btn btn-outline-primary btn-block">重置</button>
+        </div>
+      </div>
+    </form>
+    <ngx-table #staffList [url]="'/rest/sys/market/staff/pager'" [columns]="columns" [filter]="filter"></ngx-table>
+  </nb-card-body>
+</nb-card>

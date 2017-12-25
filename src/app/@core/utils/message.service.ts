@@ -14,8 +14,13 @@ export class MessageService {
    * @param {string} title 标题
    * @param {string} body 描述
    */
-  public success(title: string, body: string) {
-    this.toasterService.popAsync('success', title, body);
+  public success(title: string, body: string, timeout?: number) {
+    this.toasterService.popAsync({
+      type: 'success',
+      title,
+      body,
+      timeout,
+    } as Toast);
   }
 
   /**
@@ -23,11 +28,12 @@ export class MessageService {
    * @param {string} title 标题
    * @param {string} body 描述
    */
-  public error(title: string, body: string) {
+  public error(title: string, body: string, timeout?: number) {
     const toast: Toast = {
       type: 'error',
-      title: title,
-      body: body,
+      title,
+      body,
+      timeout,
       showCloseButton: true,
       bodyOutputType: BodyOutputType.TrustedHtml,
     };
@@ -39,23 +45,38 @@ export class MessageService {
    * @param {string} title 标题
    * @param {string} body 描述
    */
-  public warning(title: string, body: string) {
-    this.toasterService.popAsync('warning', title, body );
+  public warning(title: string, body: string, timeout?: number) {
+    this.toasterService.popAsync({
+      type: 'warning',
+      title,
+      body,
+      timeout,
+    } as Toast);
   }
   /**
    * 提示info消息
    * @param {string} title 标题
    * @param {string} body 描述
    */
-  public info(title: string, body: string) {
-    this.toasterService.popAsync('info', title, body );
+  public info(title: string, body: string, timeout?: number) {
+    this.toasterService.popAsync({
+      type: 'info',
+      title,
+      body,
+      timeout,
+    } as Toast);
   }
   /**
    * 提示一般消息
    * @param {string} title 标题
    * @param {string} body 描述
    */
-  public normal(title: string, body: string) {
-    this.toasterService.popAsync('default', title, body );
+  public normal(title: string, body: string, timeout?: number) {
+    this.toasterService.popAsync({
+      type: 'default',
+      title,
+      body,
+      timeout,
+    } as Toast);
   }
 }

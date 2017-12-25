@@ -177,13 +177,14 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/system',
     children: [
       {title: '代码集', link: '/pages/system/code'},
-      {title: '用户管理', link: '/pages/system/manager'},
+      // {title: '用户管理', link: '/pages/system/manager'},
       {title: '提档所在地管理', link: '/pages/system/transfercity'},
       {title: '车辆类型管理', link: '/pages/system/cartype'},
       {title: '车辆黑名单', link: '/pages/system/blacklist'},
       {title: '许可权限', link: '/pages/system/perm'},
       {title: '行政区划', link: '/pages/system/area'},
       {title: '市场配置', link: '/pages/system/market'},
+      {title: '市场员工', link: '/pages/system/market/staff'},
     ],
   },
   {

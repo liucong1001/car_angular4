@@ -16,20 +16,31 @@ import {CalendarModule} from 'primeng/primeng';
 import {LightboxModule} from 'primeng/primeng';
 import { TreeModule, TreeNode, DialogModule , CheckboxModule, TabViewModule, DataTableModule, SharedModule } from 'primeng/primeng';
 import { InputTextModule } from 'primeng/primeng';
-import { PermissionComponent } from './permission/permission.component';
 import { ToPermTreeNode } from './permission/permission-pipe';
-import { AreaComponent } from './area/area.component';
-import { ToAreaTreeNode } from './area/area-pipe';
+import { MarketStaffComponent } from './market-staff/market-staff.component';
+import {ToAreaTreeNode} from './area/area-pipe';
+import {MarketStaffAddComponent} from './market-staff/market-staff-add/market-staff-add.component';
+import {MarketStaffEditComponent} from './market-staff/market-staff-edit/market-staff-edit.component';
+import {UiModule} from "../../@core/ui/ui.module";
 
 
 const components = [
-  CodeitemEditComponent, TransferCityitemEditComponent, ToPermTreeNode, ToAreaTreeNode,
+  CodeitemEditComponent,
+  TransferCityitemEditComponent,
+  ToPermTreeNode,
+  ToAreaTreeNode,
+  MarketStaffComponent,
+  MarketStaffAddComponent,
+  MarketStaffEditComponent,
 ];
 
 @NgModule({
-  imports: [ThemeModule, SystemRoutingModule,  HttpModule, UiTableModule, CommonModule, RouterModule , FormsModule, CalendarModule,
+  imports: [ThemeModule, SystemRoutingModule,  HttpModule, UiModule, CommonModule, RouterModule , FormsModule, CalendarModule,
     LightboxModule, TreeModule, DialogModule, CheckboxModule, TabViewModule, DataTableModule, SharedModule,
     InputTextModule, HttpClientModule],
-  declarations: [...routedComponents, ...components],
+  declarations: [
+    ...routedComponents,
+    ...components,
+  ],
 })
 export class SystemModule {}
