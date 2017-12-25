@@ -12,6 +12,7 @@ import { DealersContactsComponent } from './dealers/dealers-contacts/dealers-con
 import { DealersContactsFormComponent } from './dealers/dealers-contacts-form/dealers-contacts-form.component';
 import { MiddleManComponent } from './middle-man/middle-man/middle-man.component';
 import { LinkmanComponent } from './dealers/linkman/linkman.component';
+import {UiModule} from '../../@core/ui/ui.module';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import { LinkmanComponent } from './dealers/linkman/linkman.component';
     HttpClientModule,
     UiTableModule,
     RouterModule,
+    UiModule,
   ],
   declarations: [
     ...routedComponents,
