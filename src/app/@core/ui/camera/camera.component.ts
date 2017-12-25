@@ -1,13 +1,19 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
 import {MessageService} from '../../utils/message.service';
 import {WebcamService} from '../../device/webcam.service';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 @Component({
   selector: 'ngx-ys-camera',
   templateUrl: './camera.component.html',
   styleUrls: ['./camera.component.scss'],
+  providers: [{
+    provide: NG_VALUE_ACCESSOR,
+    multi: true,
+    useExisting: forwardRef(() => CameraComponent),
+  }],
 })
-export class CameraComponent implements OnInit {
+export class CameraComponent implements OnInit, ControlValueAccessor {
   /**
    * 传入参数
    * example:
@@ -29,6 +35,17 @@ export class CameraComponent implements OnInit {
   constructor(private message: MessageService, private webcam: WebcamService) {
   }
 
+  writeValue(obj: any): void {
+    this.source = obj;
+  }
+
+  registFunc(value: any) {}
+  registerOnChange(fn: any): void {
+    this.registFunc = fn;
+  }
+
+  registerOnTouched(fn: any): void {
+  }
   ngOnInit() {
   }
   /**
@@ -64,6 +81,7 @@ export class CameraComponent implements OnInit {
    */
   onUploadComplete(source) {
     this.source = source;
+    this.registFunc(source);
     this._changeSource.emit(source);
   }
 }

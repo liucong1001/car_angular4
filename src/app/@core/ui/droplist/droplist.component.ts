@@ -1,16 +1,20 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
 import {SelectItem} from 'primeng/primeng';
-import {ControlValueAccessor, FormControl} from '@angular/forms';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 @Component({
   selector: 'ngx-ys-droplist',
   templateUrl: './droplist.component.html',
   styleUrls: ['./droplist.component.scss'],
+  providers: [{
+    provide: NG_VALUE_ACCESSOR,
+    multi: true,
+    useExisting: forwardRef(() => DroplistComponent),
+  }],
 })
-export class DroplistComponent implements ControlValueAccessor {
+export class DroplistComponent implements OnInit, ControlValueAccessor {
   @Input() selectItems: SelectItem[] = [];
   @Output() _selectedValue = new EventEmitter();
-  @Input() _fromControl = FormControl;
   _value: any;
   constructor() {
   }
@@ -18,8 +22,7 @@ export class DroplistComponent implements ControlValueAccessor {
   writeValue(obj: any): void {
     this._value = obj;
   }
-  registFunc(value: any) {
-  }
+  registFunc(value: any) {}
   registerOnChange(fn: any): void {
     this.registFunc = fn;
   }
