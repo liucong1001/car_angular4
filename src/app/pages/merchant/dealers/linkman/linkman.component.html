@@ -53,19 +53,31 @@
             &#45;&#45; 代码集代码不够3位
           </div>-->
         </div>
-        <div class="col-sm-3">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="地址">
-        </div>
+        <div class="col-sm-7">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="地址">
+          </div>
         <!--<div class="text-danger" *ngIf="form.get('code').hasError('required') && form.get('code').touched">
           &#45;&#45; 必须输入地址
         </div>-->
         <!--<div class="text-danger" *ngIf="form.get('code').hasError('minLength') && form.get('code').touched">
           &#45;&#45; 代码集代码不够3位
         </div>-->
-      </div>
+        </div>
         <div class="col-sm-2">
           <button type="submit" class="btn btn-primary btn-block" [disabled]="form.invalid">保存</button>
+        </div>
+        <div class="col-sm-4"  [hidden]="saved" >
+          <label>机构证正面</label>
+          <div>
+            <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
+          </div>
+        </div>
+        <div class="col-sm-4"  [hidden]="saved">
+          <label>机构证反面</label>
+          <div>
+            <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
+          </div>
         </div>
       </div>
     </form>
@@ -80,7 +92,58 @@
     </div>
   </nb-card-header>
   <nb-card-body>
-
+    <div class="row" *ngIf="showItemForm">
+      <div class="col-sm-4">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="姓名" >
+        </div>
+        <!--<div class="text-danger" *ngIf="form.get('code').hasError('required') && form.get('code').touched">
+          &#45;&#45; 必须输入商户名
+        </div>-->
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <input type="text" class="form-control"  placeholder="电话">
+        </div>
+        <!--<div class="text-danger" *ngIf="form.get('code').hasError('required') && form.get('code').touched">
+          &#45;&#45; 必须输入商户名
+        </div>-->
+      </div>
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="身份证号码">
+        </div>
+        <!--<div class="text-danger" *ngIf="form.get('code').hasError('required') && form.get('code').touched">
+          &#45;&#45; 必须输入商户名
+        </div>-->
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <input type="text" class="form-control"  placeholder="证件有效期">
+        </div>
+        <!--<div class="text-danger" *ngIf="form.get('code').hasError('required') && form.get('code').touched">
+          &#45;&#45; 必须输入商户名
+        </div>-->
+      </div>
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4">
+        <label>身份证正面</label>
+        <div>
+          <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <label>身份证反面</label>
+        <div>
+          <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
+        </div>
+      </div>
+      <div class="col-sm-4"></div>
+      <div class="col-sm-2">
+        <button type="submit" class="btn btn-primary btn-block" [disabled]="form.invalid">保存</button>
+      </div>
+    </div>
     <!--<ngx-codeitem-edit [(codeitem)]="curItem" [codemap]="form.value.code" *ngIf="showItemForm"></ngx-codeitem-edit>-->
     <ngx-table [url]="'/rest/sys/codemap/pager'" [columns]="columns" #itemList [filter]="filter" [hidden]="showItemForm"></ngx-table>
   </nb-card-body>

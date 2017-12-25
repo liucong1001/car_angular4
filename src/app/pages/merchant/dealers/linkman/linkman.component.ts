@@ -31,6 +31,18 @@ export class LinkmanComponent implements OnInit {
     });
   }
 
+  photos: any[] = [{
+    title: '',
+    source: 'assets/images/camera1.jpg',
+  }];
+  /**
+   * 新的图片地址事件
+   * @param $event
+   * @param photo
+   */
+  onChangeSource($event, photo) {
+    this.message.info(photo.title + ' 的新图片地址', $event);
+  }
   /**
    * 构造方法，依赖服务注入
    * @param {CodeService} codeService 代码服务
