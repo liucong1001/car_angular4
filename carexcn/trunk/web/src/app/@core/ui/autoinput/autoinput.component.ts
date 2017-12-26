@@ -10,8 +10,10 @@ import {ControlValueAccessor, FormControl} from '@angular/forms';
 export class AutoinputComponent implements OnInit, ControlValueAccessor {
   @Output() _value = new EventEmitter();
   @Input() results_resource_url: string;
-  value: string;
-  results: string[];
+  @Input() showProperty: string;
+  @Input() getProperty: string;
+  value: any;
+  results: any[];
   constructor(private rest: RestService) {
   }
   writeValue(obj: any): void {
@@ -28,9 +30,14 @@ export class AutoinputComponent implements OnInit, ControlValueAccessor {
   ngOnInit() {
   }
   search(_event) {
-    this.rest.get(this.results_resource_url + _event.query).subscribe((res) => this.results = res as string[]);
+    if (_event) {
+      this.rest.get(this.results_resource_url + _event.query).subscribe((res) => this.results = res as any[]);
+    }
   }
   selectedValue(_event) {
+    if ( undefined !== this.getProperty ) {
+      _event = _event[this.getProperty];
+    }
     this.registFunc(_event);
     this._value.emit(_event);
   }
