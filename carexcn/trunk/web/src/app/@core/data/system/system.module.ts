@@ -21,7 +21,8 @@ const SERVICES = [
  *
  */
 @NgModule({
-  declarations: [],
+  exports: [CodeTransPipe],
+  declarations: [CodeTransPipe],
 })
 export class SystemModule {
   static forRoot(): ModuleWithProviders {
