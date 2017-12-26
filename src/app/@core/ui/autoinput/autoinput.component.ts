@@ -28,6 +28,12 @@ export class AutoinputComponent implements OnInit, ControlValueAccessor {
   }
 
   ngOnInit() {
+    if (this.showProperty == null || this.showProperty === undefined) {
+      throw new Error('showProperty 是必须的。');
+    }
+    if (this.results_resource_url == null || this.results_resource_url === undefined) {
+      throw new Error('results_resource_url 是必须的。');
+    }
   }
   search(_event) {
     if (_event) {
