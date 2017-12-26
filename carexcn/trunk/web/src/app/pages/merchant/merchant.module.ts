@@ -7,12 +7,14 @@ import {HttpModule} from '@angular/http';
 import {HttpClientModule} from '@angular/common/http';
 import {UiTableModule} from '../../@core/ui/table/table.module';
 import {RouterModule} from '@angular/router';
-import { DealersEditComponent } from './dealers/dealers-edit/dealers-edit.component';
-import { DealersContactsComponent } from './dealers/dealers-contacts/dealers-contacts.component';
-import { DealersContactsFormComponent } from './dealers/dealers-contacts-form/dealers-contacts-form.component';
-import { MiddleManComponent } from './middle-man/middle-man/middle-man.component';
 import { LinkmanComponent } from './dealers/linkman/linkman.component';
 import {UiModule} from '../../@core/ui/ui.module';
+import { AddDealerComponent } from './dealers/add-dealer/add-dealer.component';
+import { ReviseDealerComponent } from './dealers/revise-dealer/revise-dealer.component';
+import { SonComponent } from './dealers/son/son.component';
+import { AddSonComponent } from './dealers/add-son/add-son.component';
+import { BussinessmanComponent } from './dealers/bussinessman/bussinessman.component';
+import { AddLinkmanComponent } from './dealers/add-linkman/add-linkman.component';
 
 @NgModule({
   imports: [
@@ -28,11 +30,13 @@ import {UiModule} from '../../@core/ui/ui.module';
   ],
   declarations: [
     ...routedComponents,
-    DealersEditComponent,
-    DealersContactsComponent,
-    DealersContactsFormComponent,
-    MiddleManComponent,
     LinkmanComponent,
+    AddDealerComponent,
+    ReviseDealerComponent,
+    SonComponent,
+    AddSonComponent,
+    BussinessmanComponent,
+    AddLinkmanComponent,
   ],
 })
 export class MerchantModule { }

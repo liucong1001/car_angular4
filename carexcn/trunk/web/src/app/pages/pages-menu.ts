@@ -39,7 +39,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: '商户备案',
-        link: '/pages/merchant/dealers',
+        link: '/pages/merchant/bussinessman',
       },
       {
         title: '商户员工备案',
