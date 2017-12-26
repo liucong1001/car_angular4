@@ -34,8 +34,6 @@ export class MarketStaffComponent implements OnInit {
   }
   filter: any = {};
 
-  @ViewChild('staffPositionTemplate') staffPositionTemplate: TemplateRef<any>;
-
   columns: Column[];
   ngOnInit() {
     this.columns = [
