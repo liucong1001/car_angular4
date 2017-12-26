@@ -11,7 +11,7 @@
         <nb-tabset fullWidth  style="min-height: 400px">
           <nb-tab tabTitle="输入提示" style="min-height: 400px">
             <div>
-              <ngx-ys-autoinput [results_resource_url]="autoinput_source_url" (_value)="getAutoInputValue($event)"></ngx-ys-autoinput>
+              <ngx-ys-autoinput [results_resource_url]="autoinput_source_url" (_value)="getAutoInputValue($event)" [showProperty]="'name'" [getProperty]="'value'"></ngx-ys-autoinput>
             </div>
             <div class="input-group">
 
