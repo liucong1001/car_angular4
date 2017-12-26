@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {Column} from "../../../@core/ui/table/table.component";
-import {animate, state, style, transition, trigger} from "@angular/animations";
-import {TextCell} from "../../../@core/ui/table/cell.text.component";
+import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {Column} from '../../../@core/ui/table/table.component';
+import {animate, state, style, transition, trigger} from '@angular/animations';
+import {TextCell} from '../../../@core/ui/table/cell.text.component';
+import {CodemapCell} from '../../../@core/ui/table/cell';
 
 /**
  * 市场员工管理组件
@@ -31,13 +32,17 @@ export class MarketStaffComponent implements OnInit {
     this.showFilter = !this.showFilter;
     this.visibility = this.showFilter ? 'shown' : 'hidden';
   }
-  filter: any = {}
+  filter: any = {};
 
-  columns: Column[] = [
-    {title: '员工姓名', titleClass: '', cell: new TextCell('userName')} as Column,
-    {title: '登录ID', titleClass: '', cell: new TextCell('loginName')} as Column,
-    {title: '市场', titleClass: '', cell: new TextCell('market.name')} as Column,
-  ];
+  @ViewChild('staffPositionTemplate') staffPositionTemplate: TemplateRef<any>;
+
+  columns: Column[];
   ngOnInit() {
+    this.columns = [
+      {title: '员工姓名', titleClass: '', cell: new TextCell('userName')} as Column,
+      {title: '登录ID', titleClass: '', cell: new TextCell('loginName')} as Column,
+      {title: '市场', titleClass: '', cell: new TextCell('market.name')} as Column,
+      {title: '岗位', titleClass: '', cell: new CodemapCell('staffPosition')} as Column,
+    ];
   }
 }
