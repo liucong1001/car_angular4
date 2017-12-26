@@ -20,6 +20,20 @@ import {MessageService} from '../../utils/message.service';
       filter: alpha(opacity=0);
       cursor: pointer;
     }
+    .ui-button-icon-left {
+      left: 0em !important;
+    }
+    .ui-button-text {
+      padding: .25em 1em .25em 0 !important;
+    }
+    .ui-button {
+      background: rgba(68, 59, 113, 0) !important;
+      height: 20px;
+      border: none !important;
+    }
+    .ui-button-icon-only .fa, .ui-button-text-icon-left .fa, .ui-button-text-icon-right .fa {
+      margin-top: -.35em !important;
+    }
     `],
   encapsulation: ViewEncapsulation.None,
 })
