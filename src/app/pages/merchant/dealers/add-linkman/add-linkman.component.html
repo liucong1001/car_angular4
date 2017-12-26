@@ -1,0 +1,119 @@
+<nb-card>
+  <nb-card-header class="d-flex">
+    <div class="p-2 mr-auto">新增备案人</div>
+    <div class="p2">
+      <a (click)="goBack()" class="btn btn-secondary btn-sm">返回</a>
+    </div>
+  </nb-card-header>
+
+  <nb-card-body>
+    <form>
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="form-group">
+            <!--<label>商户名</label>-->
+            <input type="text" class="form-control" name="name" placeholder="姓名">
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group">
+            <!--<label>商户编号</label>-->
+            <input type="text" class="form-control" id="code" name="code"  placeholder="电话">
+            <!--[ngClass]="{'form-control-danger':form.get('name').hasError('required') && form.get('name').touched}">-->
+          </div>
+          <!-- <div class="text-danger" *ngIf="form.get('name').hasError('required') && form.get('name').touched">
+             &#45;&#45; 必须输入商户编号
+           </div>-->
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group">
+            <!--<label>证件号</label>-->
+            <input type="text" class="form-control"  name="certCode" placeholder="证件号">
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group">
+            <!--<label>证件有效期</label>-->
+            <input type="text" class="form-control" name="endTime" placeholder="证件有效期" >
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group">
+            <!--<label>是否个人</label>-->
+            <select name="isPersonal" class="form-control">
+              <option value="">是否可代办</option>
+              <option value="1">是</option>
+              <option value="0">否</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group">
+            <!--<label></label>-->
+            <select name="isPersonal" class="form-control">
+              <option value="">是否可交易</option>
+              <option value="1">是</option>
+              <option value="0">否</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group">
+            <!--<label></label>-->
+            <select name="isPersonal" class="form-control">
+              <option value="">是否使用APP</option>
+              <option value="1">是</option>
+              <option value="0">否</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group">
+            <select name="isPersonal" class="form-control">
+              <option value="">所属商户</option>
+              <option value="1"></option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-5">
+          <div class="form-group">
+            <!--<label>地址</label>-->
+            <input type="text" class="form-control" name="address" placeholder="地址">
+          </div>
+        </div>
+        <div class="col-sm-5"></div>
+        <div class="col-sm-2">
+          <button type="submit" class="btn btn-primary btn-block">保存</button>
+        </div>
+        <div class="col-sm-4">
+          <label>身份证正面</label>
+          <div>
+            <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
+          </div>
+        </div>
+        <div class="col-sm-4" >
+          <label>身份证反面</label>
+          <div>
+            <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
+          </div>
+        </div>
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+          <label>联系人信息确认单</label>
+          <div>
+            <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="input-group">
+            <button class="btn btn-primary btn-sm" (click)="fingerRead()">指纹读取</button>
+            <button class="btn btn-primary btn-sm" (click)="fingerVerify()">指纹验证</button>
+          </div>
+          <div class="input-group">
+            <img [src]="fingerImgUrl" alt="指纹照片" style="max-width: 256px;max-height: 288px;">
+          </div>
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+</nb-card>
