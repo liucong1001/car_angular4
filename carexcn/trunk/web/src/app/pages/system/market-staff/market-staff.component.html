@@ -33,3 +33,4 @@
     <ngx-table #staffList [url]="'/rest/sys/market/staff/pager'" [columns]="columns" [filter]="filter"></ngx-table>
   </nb-card-body>
 </nb-card>
+<ng-template #staffPositionTemplate let-data>{{data.row.position | code_trans:'staffPosition' | async}}</ng-template>

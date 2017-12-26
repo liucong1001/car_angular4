@@ -6,7 +6,6 @@ import {ThemeModule} from '../../@theme/theme.module';
 import {routedComponents, SystemRoutingModule} from './system-routing.module';
 import {HttpModule} from '@angular/http';
 import {HttpClientModule} from '@angular/common/http';
-import {UiTableModule} from '../../@core/ui/table/table.module';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
 import {CodeitemEditComponent} from './code/codeitem-edit.component';
@@ -21,7 +20,8 @@ import { MarketStaffComponent } from './market-staff/market-staff.component';
 import {ToAreaTreeNode} from './area/area-pipe';
 import {MarketStaffAddComponent} from './market-staff/market-staff-add/market-staff-add.component';
 import {MarketStaffEditComponent} from './market-staff/market-staff-edit/market-staff-edit.component';
-import {UiModule} from "../../@core/ui/ui.module";
+import {UiModule} from '../../@core/ui/ui.module';
+import {SystemModule as CoreSystemModule} from '../../@core/data/system/system.module';
 
 
 const components = [
@@ -37,7 +37,7 @@ const components = [
 @NgModule({
   imports: [ThemeModule, SystemRoutingModule,  HttpModule, UiModule, CommonModule, RouterModule , FormsModule, CalendarModule,
     LightboxModule, TreeModule, DialogModule, CheckboxModule, TabViewModule, DataTableModule, SharedModule,
-    InputTextModule, HttpClientModule],
+    InputTextModule, HttpClientModule, CoreSystemModule],
   declarations: [
     ...routedComponents,
     ...components,

@@ -58,7 +58,6 @@ export class CodeComponent implements OnInit, OnChanges {
   ];
   // 列表菜单回调
   view(row: any, drop: any) {
-    console.log(this.visibility);
   }
   edit(row: any) {
   }
