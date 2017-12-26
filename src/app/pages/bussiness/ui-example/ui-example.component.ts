@@ -264,7 +264,7 @@ export class UiExampleComponent implements OnInit {
   getAutoInputValue(event) {
     if (this.auto_input_value_tmp !== event) {
       this.auto_input_value_tmp = event;
-      this.message.info('输入提示', '您选择了：' + event);
+      this.message.info('输入提示', '您选择了：' + JSON.stringify(event));
     }
   }
 }
