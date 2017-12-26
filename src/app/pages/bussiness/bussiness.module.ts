@@ -11,8 +11,6 @@ import {Recording3Component} from './prejudication/recording3/recording3.compone
 import {Recording4Component} from './prejudication/recording4/recording4.component';
 import {RecordingLastComponent} from './prejudication/recording-last/recording-last.component';
 import {RecordingContinueComponent} from './prejudication/recording-continue/recording-continue.component';
-import {CarListComponent} from './prejudication/recording-continue/car-list/car-list.component';
-import {CarDetailComponent} from './prejudication/recording-continue/car-detail/car-detail.component';
 import {ThemeModule} from '../../@theme/theme.module';
 import {JudicationPhotoComponent} from './prejudication/judication-photo/judication-photo.component';
 import {UiExampleComponent} from './ui-example/ui-example.component';
@@ -43,8 +41,6 @@ import {CodeTransPipe} from '../../@core/data/system/code.trans.pipe';
     Recording4Component,
     RecordingLastComponent,
     RecordingContinueComponent,
-    CarListComponent,
-    CarDetailComponent,
     JudicationPhotoComponent,
     UiExampleComponent,
     TrecordingComponent,

@@ -1,11 +1,11 @@
 import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'ngx-car-detail',
-  templateUrl: './car-detail.component.html',
-  styleUrls: ['./car-detail.component.scss'],
+  selector: 'ngx-ys-cardetail',
+  templateUrl: './cardetail.component.html',
+  styleUrls: ['./cardetail.component.scss'],
 })
-export class CarDetailComponent implements OnInit {
+export class CardetailComponent implements OnInit {
   @Input() car;
   photos: any[] = [{
     title: '行驶证正本',

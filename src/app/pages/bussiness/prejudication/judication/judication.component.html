@@ -13,8 +13,8 @@
     </div>
   </nb-card-body>
 </nb-card>
-<ngx-car-list [cars]="carsData"  (_selectCar)='onChangeSelectingCar($event)' [car_list_title]="'已提交的车辆'"></ngx-car-list>
-<ngx-car-detail [(car)]="carData"></ngx-car-detail>
+<ngx-ys-carlist [cars]="carsData"  (_selectCar)='onChangeSelectingCar($event)' [car_list_title]="'已提交的车辆'"></ngx-ys-carlist>
+<ngx-ys-cardetail [(car)]="carData"></ngx-ys-cardetail>
 
 <div class="float-right">
   <button class="btn btn-primary btn-lg" (click)="onSubmit()">审核</button> &nbsp;

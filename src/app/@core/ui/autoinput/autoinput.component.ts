@@ -1,16 +1,11 @@
-import {Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {RestService} from '../../utils/rest.service';
-import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {ControlValueAccessor, FormControl} from '@angular/forms';
 
 @Component({
   selector: 'ngx-ys-autoinput',
   templateUrl: './autoinput.component.html',
   styleUrls: ['./autoinput.component.scss'],
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    multi: true,
-    useExisting: forwardRef(() => AutoinputComponent),
-  }],
 })
 export class AutoinputComponent implements OnInit, ControlValueAccessor {
   @Output() _value = new EventEmitter();
