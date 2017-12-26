@@ -4,7 +4,9 @@ import {MarketStaff} from '../../model/system/market-staff';
 import {MarketStaffForm} from '../../model/system/market-staff-form';
 import {RestMessage} from '../../model/common/RestMessage';
 import {Observable} from 'rxjs/Observable';
-
+import {forEach} from '@angular/router/src/utils/collection';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 /**
  * 市场员工服务
  */
@@ -40,5 +42,14 @@ export class MarketStaffService {
    */
   public validCode(phone: string, code: string): Promise<any> {
     return this.http.post(`${this.url}/valid/phone/${phone}/${code}`, {}).toPromise();
+  }
+
+  /**
+   * 后台检查登录ID是否存在，不存在HTTP状态200，存在返回500
+   * @param {string} loginName
+   * @return {Promise<any>}
+   */
+  public checkLoginName(loginName: string): Promise<any> {
+    return this.http.get(`${this.url}/not/found?loginName=${loginName}`).toPromise();
   }
 }
