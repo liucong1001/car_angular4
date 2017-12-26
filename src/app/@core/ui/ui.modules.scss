@@ -120,6 +120,7 @@
 }
 .ui-datepicker.ui-widget .ui-datepicker-calendar thead th {
   padding: 8px;
+  background: #3d3780;
 }
 .ui-datepicker th {
   padding: 0.7em 0.3em;
@@ -215,3 +216,16 @@
   background: #37317a;
   border-color: #37317a;
 }
+ngx-ys-calendar table {
+  //border: 1px solid red;
+  background: #3d3780;
+}
+.ui-datepicker td span, .ui-datepicker td a {
+  background: #3d3780;
+  color: white;
+}
+/*
+.ui-datepicker td {
+  background: red;
+}
+*/
