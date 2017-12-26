@@ -16,7 +16,7 @@
 </nb-card>
 
 
-<ngx-car-list [cars]="carsData"  (_selectCar)='onChangeSelectingCar($event)'></ngx-car-list>
+<ngx-ys-carlist [cars]="carsData"  (_selectCar)='onChangeSelectingCar($event)'></ngx-ys-carlist>
 
 <nb-card>
   <nb-card-header>
@@ -44,7 +44,7 @@
   </nb-card-body>
 </nb-card>
 
-<ngx-car-detail [(car)]="carData"></ngx-car-detail>
+<ngx-ys-cardetail [(car)]="carData"></ngx-ys-cardetail>
 
 <div class="float-right">
   <button class="btn btn-primary btn-lg" (click)="gotoNext()">下一步</button>

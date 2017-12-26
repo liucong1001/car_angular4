@@ -31,8 +31,8 @@
     </div>
   </nb-card-body>
 </nb-card>
-<ngx-car-list [cars]="carsData"  (_selectCar)='onChangeSelectingCar($event)' [car_list_title]="'已预审车辆信息'"></ngx-car-list>
-<ngx-car-detail [(car)]="carData"></ngx-car-detail>
+<ngx-ys-carlist [cars]="carsData"  (_selectCar)='onChangeSelectingCar($event)' [car_list_title]="'已预审车辆信息'"></ngx-ys-carlist>
+<ngx-ys-cardetail [(car)]="carData"></ngx-ys-cardetail>
 <nb-card>
   <nb-card-header>
     <div class="cameras-card-header">

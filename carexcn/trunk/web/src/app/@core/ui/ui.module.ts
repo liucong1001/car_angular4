@@ -11,6 +11,9 @@ import { ValidErrorComponent } from './valid-error/valid-error.component';
 import {CommonModule} from '@angular/common';
 import { CodeitemDroplistComponent } from './codeitem-droplist/codeitem-droplist.component';
 import { DroplistComponent } from './droplist/droplist.component';
+import { CarlistComponent } from './carlist/carlist.component';
+import { CardetailComponent } from './cardetail/cardetail.component';
+import {ThemeModule} from '../../@theme/theme.module';
 
 const COMPONENTS = [
   CameraComponent,
@@ -20,6 +23,8 @@ const COMPONENTS = [
   ValidErrorComponent,
   CodeitemDroplistComponent,
   DroplistComponent,
+  CarlistComponent,
+  CardetailComponent,
 ];
 
 @NgModule({
@@ -29,6 +34,7 @@ entryComponents: [],
     UiTableModule,
   ],
   imports: [
+    ThemeModule,
     CommonModule,
     FormsModule,
     UiTableModule,

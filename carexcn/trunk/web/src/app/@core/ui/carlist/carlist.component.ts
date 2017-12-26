@@ -1,12 +1,12 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {MessageService} from '../../../../../@core/utils/message.service';
+import {MessageService} from '../../utils/message.service';
 
 @Component({
-  selector: 'ngx-car-list',
-  templateUrl: './car-list.component.html',
-  styleUrls: ['./car-list.component.scss'],
+  selector: 'ngx-ys-carlist',
+  templateUrl: './carlist.component.html',
+  styleUrls: ['./carlist.component.scss'],
 })
-export class CarListComponent implements OnInit {
+export class CarlistComponent implements OnInit {
   @Input() cars;
   @Input() car_list_title;
   @Output('_selectCar') private _selectCar = new EventEmitter();
