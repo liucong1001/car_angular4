@@ -1,4 +1,7 @@
-<p-autoComplete [(ngModel)]="value" [suggestions]="results" (completeMethod)="search($event)"
+<p-autoComplete [(ngModel)]="value" [suggestions]="results"
+                (completeMethod)="search($event)"
+                [forceSelection]="true"
                 [styleClass]="'ui-autocomplete-panel-ys'"
                 [emptyMessage]="'没有可选的结果'"
+                [field]="showProperty"
                 (onSelect)="selectedValue($event)"></p-autoComplete>
