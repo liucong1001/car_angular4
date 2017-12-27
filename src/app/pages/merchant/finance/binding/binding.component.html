@@ -1,0 +1,43 @@
+<nb-card>
+  <nb-card-header class="d-flex">
+    <div class="p-2 mr-auto">IC卡绑卡</div>
+    <div class="p2">
+      <button type="button" class="btn btn-outline-success" (click)="readIccard()">启用读卡器</button>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="input-group">
+      <span class="input-group-addon">商户：</span>
+      <label class="form-control"></label>
+    </div>
+    <div class="input-group">
+      <span class="input-group-addon">账户编号：</span>
+      <select class="form-control" >
+        <option value=""></option>
+      </select>
+    </div>
+    <div class="input-group">
+      <span class="input-group-addon">账户名称：</span>
+      <select class="form-control" >
+        <option value=""></option>
+      </select>
+    </div>
+    <div class="input-group">
+      <span class="input-group-addon">IC卡卡号：</span>
+      <label class="form-control">{{iccardData.CardNumber}}</label>
+    </div>
+    <div class="input-group">
+      <span class="input-group-addon">联系人：</span>
+      <select class="form-control" >
+        <option value=""></option>
+      </select>
+    </div>
+  </nb-card-body>
+  <div class="height"></div>
+  <nb-card-body>
+    <button class="btn btn-success ">确定绑卡</button>
+    <button class="btn btn-success " (click)="readIccard()">读取</button>
+    <button class="btn btn-success " (click)="goBack()">返回</button>
+  </nb-card-body>
+</nb-card>
+

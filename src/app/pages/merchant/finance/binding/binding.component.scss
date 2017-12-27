@@ -1,20 +1,34 @@
-@import '../../../@theme/styles/themes';
+@import '../../../../@theme/styles/themes';
 @import '~bootstrap/scss/mixins/breakpoints';
 @import '~@nebular/theme/styles/global/bootstrap/breakpoints';
 
 @include nb-install-component() {
-
-  /*form {
-    overflow: hidden;
+  nb-card {
+    //height: 100% !important;
+    span {
+      display: inline-block;
+      width: 250px;
+      text-align: right;
+      font-size: 1rem;
+      line-height: 40px;
+      //color: black;
+    }
+  }
+  /*nb-card-body button {
+    padding: 0.75rem  0 !important;
   }*/
+  .height {
+    height: 20px;
+  }
+  span,label {
+    border: none;
+  }
   nb-tabset {
     height: 100%;
     display: flex;
     flex-direction: column;
   }
-  /*nb-card-body button {
-    padding: 0.75rem  0 !important;
-  }*/
+
   nb-tab {
     padding: nb-theme(padding);
   }
@@ -23,6 +37,7 @@
     display: block;
     padding: nb-theme(padding);
   }
+
   @include media-breakpoint-down(xs) {
     nb-tabset /deep/ul {
       font-size: 1rem;
@@ -30,5 +45,3 @@
     }
   }
 }
-
-

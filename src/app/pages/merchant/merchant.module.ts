@@ -16,6 +16,10 @@ import { SonComponent } from './dealers/son/son.component';
 import { AddSonComponent } from './dealers/add-son/add-son.component';
 import { BussinessmanComponent } from './dealers/bussinessman/bussinessman.component';
 import { AddLinkmanComponent } from './dealers/add-linkman/add-linkman.component';
+import { FinanceComponent } from './finance/finance.component';
+import { DetailsComponent } from './finance/details/details.component';
+import { BindingComponent } from './finance/binding/binding.component';
+import { AddComponent } from './finance/add/add.component';
 
 @NgModule({
   imports: [
@@ -39,6 +43,10 @@ import { AddLinkmanComponent } from './dealers/add-linkman/add-linkman.component
     AddSonComponent,
     BussinessmanComponent,
     AddLinkmanComponent,
+    FinanceComponent,
+    DetailsComponent,
+    BindingComponent,
+    AddComponent,
   ],
 })
 export class MerchantModule { }

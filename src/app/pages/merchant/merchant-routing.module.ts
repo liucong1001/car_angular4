@@ -9,6 +9,10 @@ import {AddDealerComponent} from './dealers/add-dealer/add-dealer.component';
 import {EditDealerComponent} from './dealers/edit-dealer/edit-dealer.component';
 import {BussinessmanComponent} from './dealers/bussinessman/bussinessman.component';
 import {AddLinkmanComponent} from './dealers/add-linkman/add-linkman.component';
+import {FinanceComponent} from './finance/finance.component';
+import {DetailsComponent} from './finance/details/details.component';
+import {BindingComponent} from './finance/binding/binding.component';
+import {AddComponent} from './finance/add/add.component';
 // import MiddleManComponent
 
 const routes: Routes = [{
@@ -16,10 +20,10 @@ const routes: Routes = [{
   component: MerchantComponent,
   children: [
     {path: 'bussinessman', component: BussinessmanComponent},
-    /*{path: 'dealers/edit', component: DealersEditComponent},
-    {path: 'contacts', component: DealersContactsComponent},
-    {path: 'contacts/form', component: DealersContactsFormComponent},
-    {path: 'dealers/middleman', component: MiddleManComponent},*/
+    {path: 'finance', component: FinanceComponent},
+    {path: 'finance/see', component: DetailsComponent},
+    {path: 'finance/binding', component: BindingComponent},
+    {path: 'finance/adds', component: AddComponent},
     {path: 'bussinessman/linkman', component: LinkmanComponent},
     {path: 'bussinessman/add-linkman', component: AddLinkmanComponent},
     {path: 'bussinessman/add', component: AddDealerComponent},

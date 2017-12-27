@@ -9,10 +9,10 @@ import {SellerInfoComponent} from './trade-revise/seller-info/seller-info.compon
 
 const routes: Routes = [
   {path: 'trade-revise', component: TradeReviseComponent},
-  {path: 'trade-revise/trade-info', component: TradeInfoComponent},
-  {path: 'trade-revise/car-info', component: CarInfoComponent},
-  {path: 'trade-revise/buyer-info', component: BuyerInfoComponent},
-  {path: 'trade-revise/seller-info', component: SellerInfoComponent},
+  {path: 'trade-revise/trade', component: TradeInfoComponent},
+  {path: 'trade-revise/car', component: CarInfoComponent},
+  {path: 'trade-revise/buyer', component: BuyerInfoComponent},
+  {path: 'trade-revise/seller', component: SellerInfoComponent},
   {path: 'state-revise', component: StateReviseComponent},
 ];
 

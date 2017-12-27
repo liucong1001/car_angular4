@@ -90,8 +90,9 @@
 .ui-corner-all {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
-  border-radius: 0px;
-  border-color: #37317a;
+  border-radius: 0.5em;
+  background-color: #37317a;
+  border-color: #342e73 !important;
 }
 .ui-datepicker table {
   width: 100%;
@@ -231,11 +232,16 @@ ngx-ys-calendar table {
   color: #fffafa !important;
 }
 ngx-ys-codeitem-droplist, ngx-ys-droplist {
-  border: 2px solid #342e73;
+  border: 1px solid #342e73;
+  border-radius: 0.5em;
+  background: #342e73;
 }
 ::-webkit-input-placeholder {
   color: #a1a1e5;
 }
 .ui-inputtext:enabled:hover {
   border-color: #7659ff;
+}
+.ui-dropdown:not(.ui-state-disabled):hover {
+  background-color: #342e73 !important;
 }
