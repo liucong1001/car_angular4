@@ -48,6 +48,7 @@ export class BussinessmanComponent implements OnInit, OnChanges {
   }
   columns: Column[] = [
     // {title: '商户ID', titleClass: '', cell: new TextCell('id')} as Column,// 不要显示
+    // TODO: 商户资料是否齐全的字段
     {title: '商户名', titleClass: '', cell: new TextCell('name')} as Column,
     {title: '编码', titleClass: '', cell: new TextCell('code')} as Column,
     {title: '证件号', titleClass: '', cell: new TextCell('certCode')} as Column,

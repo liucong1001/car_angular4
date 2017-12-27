@@ -52,10 +52,10 @@ export class AddDealerComponent implements OnInit {
     //   Validators.pattern(/^[1-9]\d{3}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$|^\u957f\u671f$/)],
     // ],
     // discount: ['', [Validators.maxLength(50)]],
-    isCarRental: ['', [Validators.required]],
-    isDeal: ['', [Validators.required]],
-    isPersonal: ['', [Validators.required]],
-
+    // isCarRental: ['', [Validators.required]],
+    // isDeal: ['', [Validators.required]],
+    // isPersonal: ['', [Validators.required]],
+    // TODO: 去除模拟数据
     name: ['汉口北二手车市场', [Validators.required, Validators.maxLength(64)]],
     code: ['HKB3', [Validators.required, Validators.pattern(/^[a-zA-Z0-9_-]{4,8}$/)]],
     certCode: ['hankoube-3', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]{8}-[a-zA-Z0-9]$|^[A-Z0-9]{18}$/)]],
@@ -66,9 +66,9 @@ export class AddDealerComponent implements OnInit {
       Validators.pattern(/^[1-9]\d{3}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$|^\u957f\u671f$/)],
     ],
     discount: ['1', [Validators.maxLength(50)]],
-    // isCarRental: ['1', [Validators.required]],
-    // isDeal: ['1', [Validators.required]],
-    // isPersonal: ['1', [Validators.required]],
+    isCarRental: ['1', [Validators.required]],
+    isDeal: ['1', [Validators.required]],
+    isPersonal: ['1', [Validators.required]],
   });
   /**
    * 新的图片地址事件
