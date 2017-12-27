@@ -2,7 +2,7 @@
  * 商户
  */
 export class MerchantModel {
-  id: string;
+  id?: string;
   /**
    * 商户名
    */

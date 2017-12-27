@@ -10,6 +10,7 @@ import {SystemModule} from './system/system.module';
 import {SecurityModule} from './security/security.module';
 import {BussinessModule} from './bussiness/bussiness.module';
 import {IcCardModule} from './ic-card/ic-card.module';
+import {MerchantModule} from './merchant/merchant.module';
 
 const SERVICES = [
   UserService,
@@ -18,6 +19,7 @@ const SERVICES = [
   SmartTableService,
   PlayerService,
   PagerService,
+  ...MerchantModule.forRoot().providers,
   ...BussinessModule.forRoot().providers,
   ...SystemModule.forRoot().providers,
   ...SecurityModule.forRoot().providers,

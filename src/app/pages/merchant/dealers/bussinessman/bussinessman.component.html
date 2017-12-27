@@ -2,36 +2,36 @@
   <nb-card-header class="d-flex">
     <div class="p-2 mr-auto">商户备案</div>
     <div class="p2">
-      <a class="btn btn-primary btn-sm" (click)="jump()">添加商户</a>
+      <a class="btn btn-primary btn-sm" [routerLink]="'add'">添加商户</a>
       <button type="button" class="btn btn-sm btn-outline-success" (click)="toggle()" [ngClass]="{'active':showFilter}" ><i class="ion-funnel"></i></button>
     </div>
   </nb-card-header>
   <nb-card-body>
-    <form [@visibilityChanged]="visibility" (submit)="codeList.reload()">
-      <div class="row">
-        <div class="col-sm-3">
-          <div class="form-group form-group-sm">
-            <input class="form-control"  name="name" type="text" placeholder="商户名称"/>
-          </div>
-        </div>
-        <div class="col-sm-3">
-          <div class="form-group form-group-sm">
-            <input class="form-control" name="code" type="text" placeholder="商户编号"/>
-          </div>
-        </div>
-        <div class="col-sm-3">
-          <div class="form-group form-group-sm">
-            <input class="form-control" name="phone" type="text" placeholder="联系方式"/>
-          </div>
-        </div>
-        <div class="col-sm-2">
-          <button type="submit" class="btn btn btn-primary btn-block"><i class="ion-search"></i>查询</button>
-        </div>
-        <!--<div class="col-sm-2">
-          <button type="reset" class="btn btn-outline-primary btn-block" (click)="banlance()">结算</button>
-        </div>-->
-      </div>
-    </form>
-    <ngx-table #codeList [url]="'/rest/sys/codemap/pager'" [columns]="columns" [filter]="filter"></ngx-table>
+    <!--<form [@visibilityChanged]="visibility">-->
+      <!--<div class="row">-->
+        <!--<div class="col-sm-3">-->
+          <!--<div class="form-group form-group-sm">-->
+            <!--<input class="form-control" [(ngModel)]="filter.code"  name="name" type="text" placeholder="商户名称"/>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col-sm-3">-->
+          <!--<div class="form-group form-group-sm">-->
+            <!--<input class="form-control" name="code" type="text" placeholder="商户编号"/>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col-sm-3">-->
+          <!--<div class="form-group form-group-sm">-->
+            <!--<input class="form-control" name="phone" type="text" placeholder="联系方式"/>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col-sm-2">-->
+          <!--<button type="submit" class="btn btn btn-primary btn-block"><i class="ion-search"></i>查询</button>-->
+        <!--</div>-->
+        <!--&lt;!&ndash;<div class="col-sm-2">-->
+          <!--<button type="reset" class="btn btn-outline-primary btn-block" (click)="banlance()">结算</button>-->
+        <!--</div>&ndash;&gt;-->
+      <!--</div>-->
+    <!--</form>-->
+    <ngx-table [url]="'/rest/merchant/pager'" #itemList [columns]="columns" [filter]="filter"></ngx-table>
   </nb-card-body>
 </nb-card>
