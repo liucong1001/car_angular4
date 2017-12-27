@@ -203,6 +203,8 @@
 }
 .ui-calendar input {
   width: 100% !important;
+  border: 2px solid #342e73;
+  border-radius: 0.5em;
 }
 .ui-calendar {
   position: relative;
@@ -226,13 +228,14 @@ ngx-ys-calendar table {
 }
 .ui-dropdown .ui-dropdown-trigger .fa {
   margin-top: 1em;
+  color: #fffafa !important;
 }
 ngx-ys-codeitem-droplist, ngx-ys-droplist {
   border: 2px solid #342e73;
 }
-.ui-state-default {
-  color: #fffafa !important;
-}
 ::-webkit-input-placeholder {
   color: #a1a1e5;
+}
+.ui-inputtext:enabled:hover {
+  border-color: #7659ff;
 }
