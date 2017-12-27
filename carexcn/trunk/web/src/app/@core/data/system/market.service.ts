@@ -17,8 +17,19 @@ export class MarketService {
    * @returns {Promise<Marketmap>}
    */
   public save(model): Promise<Marketmap> {
-    // const url = `${this.path}/createMarket`;
     return this.http.post(this.path, model).toPromise().then((res) => res.json() as Marketmap);
+  }
+
+  public saveMarketEdit(model): Promise<Marketmap> {
+    return this.http.put(this.path, model).toPromise().then((res) => res.json() as Marketmap);
+  }
+
+
+  public getMarket(id: String): Promise<Marketmap> {
+    const url = `${this.path}/findById/${id}`;
+    return this.http.get(url).toPromise().then(function (res) {
+      return res.json() as Marketmap;
+    });
   }
 
   /**
@@ -68,5 +79,29 @@ export class MarketService {
     const url = `${this.path}/photo/config`;
     return this.http.post(url, model).toPromise().then((res) => res.json() as Marketphotomap);
   }
+
+  /**
+   * 根据id获取证件信息
+   * @param id
+   * @returns {Promise<TResult2|Marketphotomap>}
+   */
+
+  public getPhoto(id: String): Promise<Marketphotomap> {
+    const url = `${this.path}/photo/config/findById/${id}`;
+    return this.http.get(url).toPromise().then(function (res) {
+      return res.json() as Marketphotomap;
+    });
+  }
+
+  /**
+   * 修改保存市场证件
+   * @param model
+   * @returns {Promise<TResult2|Marketphotomap>}
+   */
+  public savePhotoEdit(model): Promise<Marketphotomap> {
+    const url = `${this.path}/photo/config`;
+    return this.http.put(url, model).toPromise().then((res) => res.json() as Marketphotomap);
+  }
+
 
 }

@@ -15,9 +15,9 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label>市场代码:</label>
-                        <input type="text" class="form-control" formControlName="code" placeholder="市场代码" [ngClass]="{'form-control-danger':form.get('code').hasError('required') && form.get('code').touched}">
+                        <input type="text" class="form-control" formControlName="cloudUser" placeholder="市场代码" [ngClass]="{'form-control-danger':form.get('cloudUser').hasError('required') && form.get('cloudUser').touched}">
                     </div>
-                    <div class="text-danger" *ngIf="form.get('code').hasError('required') && form.get('code').touched">
+                    <div class="text-danger" *ngIf="form.get('cloudUser').hasError('required') && form.get('cloudUser').touched">
                         -- 必须输入市场代码
                     </div>
                 </div>
@@ -26,12 +26,12 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
-                        <label>地区代码:</label>
-                        <!-- <input type="text" class="form-control" formControlName="area" placeholder="地区代码" [ngClass]="{'form-control-danger':form.get('area').hasError('required') && form.get('area').touched}"> -->
+                        <label>地区:</label>
+                         <input type="text" class="form-control" formControlName="area" placeholder="地区" [ngClass]="{'form-control-danger':form.get('area').hasError('required') && form.get('area').touched}">
                     </div>
-                    <!-- <div class="text-danger" *ngIf="form.get('area').hasError('required') && form.get('area').touched">
+                    <div class="text-danger" *ngIf="form.get('area').hasError('required') && form.get('area').touched">
                         -- 必须输入地区
-                    </div> -->
+                    </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="form-group">
@@ -40,10 +40,6 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <ngx-table  [url]="'/rest/sys/marketmap/pager'" [columns]="columns" ></ngx-table>
-            </div>
-
             <div class="row">
                 <div class="col-sm-1">
                     <button type="submit" class="btn btn-info btn-block" [disabled]="form.invalid">保存</button>

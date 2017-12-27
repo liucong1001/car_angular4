@@ -3,29 +3,34 @@
  */
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute} from '@angular/router';
+import {Router,ActivatedRoute} from '@angular/router';
 import {Column, TableComponent} from '../../../@core/ui/table/table.component';
 import {TextCell} from '../../../@core/ui/table/cell.text.component';
 import {Menu, MenuCell} from '../../../@core/ui/table/cell.menu.component';
+import {MessageService} from "../../../@core/utils/message.service";
+import {TransferCitymap} from "./../../../@core/model/system/transferCitymap";
+import {TransferCityService} from "../../../@core/data/system/transferCity.service";
+import { AreaService } from './../../../@core/data/system/area.service';
+
 
 @Component({
   selector: 'ngx-transfer-city-edit',
   templateUrl: './transferCity-edit.component.html',
+  providers: [TransferCityService, AreaService,MessageService],
 })
 export class TransferCityEditComponent implements OnInit {
-  /**
-   * 列表组件实例
-   */
-  @ViewChild(TableComponent) itemList: TableComponent;
+  city_source_url = 'https://dongshenghuo.com/test.php?r=stringArr&q=';
+  auto_input_value_tmp = '';
 
   /**
    * 初始化
    */
   ngOnInit(): void {
-    // this.form.get('code').valueChanges.subscribe(val => {
-    //   this.filter.codemap = val;
-    //   this.itemList.reload();
-    // });
+    this.areaService.get(null).then(res => {
+       console.log('地区',res);
+    }).catch(err => {
+      this.message.error('失败', err.json().message);
+    });
   }
 
   /**
@@ -35,14 +40,11 @@ export class TransferCityEditComponent implements OnInit {
    * @param {FormBuilder} fb 表单工厂服务
    * @param {ActivatedRoute} route 当前路由服务
    */
-  constructor( private fb: FormBuilder, private route: ActivatedRoute) {
+  constructor( private fb: FormBuilder,  public router: Router, private route: ActivatedRoute,
+ private transferCityService: TransferCityService, private message: MessageService,private areaService: AreaService
+  ) {
     this.route.params.subscribe(p => {
       if (p.code && p.name) {
-        this.form.setValue(p);
-        this.filter.codemap = p.code;
-        if (p.code && p.name) {
-          this.saved = true;
-        }
       }
     });
   }
@@ -52,8 +54,8 @@ export class TransferCityEditComponent implements OnInit {
    * @type {FormGroup}
    */
   form: FormGroup = this.fb.group({
-    province: ['', [Validators.required]],
-    name: ['', [Validators.required]],
+    city: ['', [Validators.required]],
+    management: ['', [Validators.required]],
   });
   /**
    * 已保存标志
@@ -61,50 +63,33 @@ export class TransferCityEditComponent implements OnInit {
    */
   saved = false;
 
-  /**
-   * 保存
-   * @returns {boolean}
-   */
-
 
   /**
-   * 代码项表单开关
-   * @type {boolean}
+   * 输入提示，模糊搜索
+   * @param event
    */
-  showItemForm = false;
-
-  /**
-   * 显示代码项表单
-   */
-  showForm() {
-    this.showItemForm = true;
+  getAutoCityValue(event) {
+    if (this.auto_input_value_tmp !== event) {
+      this.auto_input_value_tmp = event;
+      this.message.info('输入提示', '您选择了：' + event);
+    }
+  }
+  save(){
+    if (this.form.invalid) {
+      return false;
+    }
+    const codemap = this.form.value as TransferCitymap;
+    console.log('车管所', TransferCitymap);
+    this.transferCityService.save(TransferCitymap).then(res => {
+      this.message.success('保存成功', '代码集保存成功');
+      this.saved = true;
+    }).catch(err => {
+      this.message.error('保存失败', err.json().message);
+    });
   }
 
-  /**
-   * 隐藏代码项表单
-   */
-  hideForm() {
-    this.showItemForm = false;
+  back(){
+    this.router.navigateByUrl('/pages/system/transfercity');
   }
 
-  /**
-   * 代码项搜索条件
-   * @type {{}}
-   */
-  filter: any = {};
-  /**
-   * 代码项列表列定义
-   * @type {[Column , Column , Column]}
-   */
-  columns: Column[] = [
-    {title: '所属城市名', titleClass: '', cell: new TextCell('city')} as Column,
-    {title: '操作', titleClass: 'w-25 text-center', cell: new MenuCell(
-      [
-        new Menu('编辑', '', 'edit'),
-      ],
-      new Menu('查看', '', this.view), 'text-center',
-    )} as Column,
-  ];
-  view(data) {
-  }
 }

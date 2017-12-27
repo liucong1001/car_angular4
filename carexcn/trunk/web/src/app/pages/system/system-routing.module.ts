@@ -1,6 +1,7 @@
 import { MarketEditComponent } from './market/market-edit.component';
 import { MarketComponent } from './market/market.component';
 import { CartypeComponent } from './cartype/cartype.component';
+import { CartypeEditComponent } from './cartype/cartype-edit.component';
 import { BlacklistEditComponent } from './blacklist/blacklist-edit.component';
 import { BlacklistComponent } from './blacklist/blacklist.component';
 import { TransferCityEditComponent } from './transfer-city/transferCity-edit.component';
@@ -33,6 +34,7 @@ const routes: Routes = [{
     {path: 'blacklist', component: BlacklistComponent},
     {path: 'blacklist/edit', component: BlacklistEditComponent},
     {path: 'cartype', component: CartypeComponent},
+    {path:'cartype/edit',component:CartypeEditComponent},
     {path: 'perm', component: PermissionComponent},
     {path: 'area', component: AreaComponent},
     {path: 'market/market', component: MarketComponent},
@@ -54,6 +56,6 @@ export class SystemRoutingModule { }
 export const routedComponents = [
   SystemComponent, CodeComponent, CodeEditComponent, ManagerComponent, ManageritemEditComponent,
   TransfercityComponent, TransferCityEditComponent, BlacklistComponent, BlacklistEditComponent,
-  CartypeComponent, PermissionComponent, AreaComponent , MarketComponent, MarketEditComponent,
+  CartypeComponent, CartypeEditComponent,PermissionComponent, AreaComponent , MarketComponent, MarketEditComponent,
   MarketBrandComponent, MarketFeeComponent, MarketPhotoComponent,
 ];

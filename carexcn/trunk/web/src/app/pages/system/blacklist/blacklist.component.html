@@ -30,14 +30,5 @@
         </div>
       </form>
       <ngx-table #codeList [url]="'/rest/sys/codemap/pager'" [columns]="columns" [filter]="filter"></ngx-table>
-      <hr>
-      <div class="row">
-        <div class="col-sm-2"> 
-          <p-calendar [(ngModel)]="createTime" [locale]="ch"  dateFormat="yy年mm月dd日" showButtonBar="true" [showIcon]="true" [inline]="false" [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030"></p-calendar>
-        </div>
-      </div>
-      <hr>
-      <h3>{{createTime | date}}</h3>
-    <p-lightbox [images]="images" styleClass='img'></p-lightbox>
   </nb-card-body>
 </nb-card>

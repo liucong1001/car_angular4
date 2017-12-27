@@ -22,7 +22,9 @@ export class MarketFeeComponent implements OnInit {
   invoice = false;
   discount = false;
   required = false;
-  marketId = ''
+  marketId = '';
+  isEdit = false;
+  marketName = '';
 
   constructor(private fb: FormBuilder,
               public router: Router,
@@ -32,6 +34,7 @@ export class MarketFeeComponent implements OnInit {
               private message: MessageService,) {
     this.route.params.subscribe((params: Params) => {
       this.marketId = params['id'];
+      this.marketName = params['marketName'];
     });
   }
 
@@ -57,7 +60,7 @@ export class MarketFeeComponent implements OnInit {
     {title: '计入开票', titleClass: '', cell: new TextCell('invoice')} as Column,
     {title: '考虑折扣', titleClass: '', cell: new TextCell('discount')} as Column,
     {title: '必选', titleClass: '', cell: new TextCell('required')} as Column,
-    {title: '操作', titleClass: '', cell: new TextCell('memo')} as Column,
+    {title: '备注', titleClass: '', cell: new TextCell('memo')} as Column,
     {
       title: '操作', titleClass: 'w-25 text-center', cell: new MenuCell(
       [
@@ -75,7 +78,7 @@ export class MarketFeeComponent implements OnInit {
   edit(row: any) {
      console.log('编辑',row);
      this.display = true;
-     // const that=this;
+     this.isEdit = true;
     this.marketService.getFee(row.id).then(res => {
         console.log('获取到的',res);
         this.form.patchValue({
@@ -89,16 +92,9 @@ export class MarketFeeComponent implements OnInit {
           required:res.required,
           memo:res.memo,
         });
-      // Marketfeemap.keys(value).forEach(name => {
-      //   if (this.controls[name]) {
-      //     this.controls[name].patchValue(value[name], {onlySelf: true, emitEvent});
-      //   }
-      // });
     }).catch(err => {
-      // this.message.error('获取失败', err.json().message);
+      this.message.error('获取失败', err.json().message);
     });
-
-
   }
 
   disable(row: any) {
@@ -143,16 +139,32 @@ export class MarketFeeComponent implements OnInit {
     if (this.form.invalid) {
       return false;
     }
-    this.form.value.id = this.marketId;
+
     const marketfeemap = this.form.value as Marketfeemap;
     window.console.log('费用', marketfeemap);
-    this.marketService.saveFee(marketfeemap).then(res => {
-      this.message.success('保存成功', '费用保存成功');
-       this.close();
-      this.itemList.reload();
-    }).catch(err => {
-      this.message.error('保存失败', err.json().message);
-    });
+    if(this.isEdit){
+          this.marketService.saveFeeEdit(marketfeemap).then(res => {
+            this.message.success('保存成功', '费用修改成功');
+            this.close();
+            this.itemList.reload();
+            this.isEdit = false;
+          }).catch(err => {
+            this.message.error('保存失败', err.json().message);
+          });
+    }else {
+         this.form.value.id = this.marketId;
+         this.marketService.saveFee(marketfeemap).then(res => {
+          this.message.success('保存成功', '费用保存成功');
+          this.close();
+          this.itemList.reload();
+          this.isEdit = false;
+        }).catch(err => {
+          this.message.error('保存失败', err.json().message);
+        });
+    }
+
+
+
   }
 
 

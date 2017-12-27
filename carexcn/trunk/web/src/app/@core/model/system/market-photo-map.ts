@@ -2,6 +2,8 @@
  *市场证件模型
  */
 export  class Marketphotomap{
+
+  public id: string;
   /**
    * 名称
    */
@@ -42,6 +44,10 @@ export  class Marketphotomap{
    * 业务类型
    */
   public business:string;
+  /**
+   * 表单名称
+   */
+  public formName:string;
 
 
 }
