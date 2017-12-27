@@ -11,12 +11,12 @@
         <div class="row">
           <div class="col-sm-4">
             <div class="form-group form-group-sm">
-              <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="用户名 - 模糊搜索"/>
+              <input class="form-control" [(ngModel)]="filter.name" name="name" type="text" placeholder="名称 - 模糊搜索"/>
             </div>
           </div>
           <div class="col-sm-4">
             <div class="form-group form-group-sm">
-              <input class="form-control" [(ngModel)]="filter.name" name="name" type="text" placeholder="登录名 - 模糊搜索"/>
+              <input class="form-control" [(ngModel)]="filter.cloudUser" name="cloudUser" type="text" placeholder="市场代码 - 模糊搜索"/>
             </div>
           </div>
           <div class="col-sm-2">
@@ -27,7 +27,6 @@
           </div>
         </div>
       </form>
-      <ngx-table #codeList [url]="'/rest/sys/codemap/pager'" [columns]="columns" [filter]="filter"></ngx-table>
+      <ngx-table #codeList [url]="'/rest/sys/market/vehicle/pager'" [columns]="columns" [filter]="filter"></ngx-table>
     </nb-card-body>
   </nb-card>
-  

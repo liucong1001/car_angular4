@@ -7,6 +7,7 @@ import {Column} from '../../../@core/ui/table/table.component';
 import {TextCell} from '../../../@core/ui/table/cell.text.component';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {ActivatedRoute, Router} from "@angular/router";
+import { DatePipe } from '@angular/common';
 // import { ActivatedRoute, Router, ActivatedRouteSnapshot, RouterState, RouterStateSnapshot } from '@angular/router';
 
 
@@ -49,20 +50,18 @@ export class MarketComponent implements OnInit, OnChanges {
   // 列表列定义
   columns: Column[] = [
     {title: '市场名', titleClass: '', cell: new TextCell('name')} as Column,
-    {title: '市场代码', titleClass: '', cell: new TextCell('code')} as Column,
-    {title: '地区代码', titleClass: '', cell: new TextCell('area')} as Column,
-    {title: '创建人', titleClass: '', cell: new TextCell('name')} as Column,
-    {title: '创建时间', titleClass: '', cell: new TextCell('create_time')} as Column,
+    {title: '市场代码', titleClass: '', cell: new TextCell('cloudUser')} as Column,
+    // {title: '地区代码', titleClass: '', cell: new TextCell('area')} as Column,
+    {title: '创建时间', titleClass: '', cell: new TextCell('createTime' )} as Column ,
     {title: '备注', titleClass: '', cell: new TextCell('memo')} as Column,
     {title: '操作', titleClass: 'w-25 text-center', cell: new MenuCell(
       [
-        new Menu('编辑', '', 'edit'),
+        new Menu('编辑', '', this.edit.bind(this)),
         new Menu('厂牌型号', '', this.brandModelLink.bind(this)),
         new Menu('业务费用', '', this.feeLink.bind(this)),
         new Menu('证件维护', '', this.photoLink.bind(this)),
-        new Menu('禁用', '', this.disable),
       ],
-      new Menu('查看', '', this.view), 'text-center',
+      new Menu('更多', '', this.view), 'text-center',
     )} as Column,
 
   ];
@@ -70,6 +69,7 @@ export class MarketComponent implements OnInit, OnChanges {
   view(row: any, drop: any) {
   }
   edit(row: any) {
+    this.router.navigate( ['/pages/system/market/edit', { id: row.id }]);
   }
   disable(row: any) {
 
@@ -80,11 +80,11 @@ export class MarketComponent implements OnInit, OnChanges {
   }
 
   feeLink(row: any ) {
-    this.router.navigate( ['/pages/system/market/fee', { id: row.id }]);
+    this.router.navigate( ['/pages/system/market/fee', { id: row.id ,marketName:row.name}]);
   }
 
   photoLink(row: any){
-    this.router.navigate( ['/pages/system/market/photo', { id: row.id }]);
+    this.router.navigate( ['/pages/system/market/photo', { id: row.id ,marketName:row.name}]);
   }
 
 }

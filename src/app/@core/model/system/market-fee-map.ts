@@ -2,7 +2,11 @@
  * 市场业务费用模型
  */
 export class Marketfeemap {
+
   public id: string;
+  /**
+   * 费用名
+   */
   public name: string;
   /**
    * 代号

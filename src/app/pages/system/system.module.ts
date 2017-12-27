@@ -37,7 +37,7 @@ const components = [
 @NgModule({
   imports: [ThemeModule, SystemRoutingModule,  HttpModule, UiModule, CommonModule, RouterModule , FormsModule, CalendarModule,
     LightboxModule, TreeModule, DialogModule, CheckboxModule, TabViewModule, DataTableModule, SharedModule,
-    InputTextModule, HttpClientModule, CoreSystemModule],
+    InputTextModule, HttpClientModule,UiModule, CoreSystemModule],
   declarations: [
     ...routedComponents,
     ...components,

@@ -6,6 +6,8 @@ import {Menu, MenuCell} from '../../../@core/ui/table/cell.menu.component';
 import {Column} from '../../../@core/ui/table/table.component';
 import {TextCell} from '../../../@core/ui/table/cell.text.component';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import {ActivatedRoute, Router} from "@angular/router";
+
 
 @Component({
   selector: 'ngx-cartype',
@@ -36,6 +38,11 @@ export class CartypeComponent implements OnInit, OnChanges {
     this.showFilter = !this.showFilter;
     this.visibility = this.showFilter ? 'shown' : 'hidden';
   }
+  constructor(
+    public router: Router,
+    private route: ActivatedRoute,
+  ) { }
+
   // ngOnChanges 可监控组件变量
   ngOnChanges(changes: SimpleChanges): void {
   }
@@ -46,13 +53,14 @@ export class CartypeComponent implements OnInit, OnChanges {
   filter: any = {};
   // 列表列定义
   columns: Column[] = [
-    {title: '代码', titleClass: '', cell: new TextCell('code')} as Column,
-    {title: '类型名称', titleClass: '', cell: new TextCell('name')} as Column,
-    {title: '上级代码', titleClass: '', cell: new TextCell('name')} as Column,
-    {title: '层级', titleClass: '', cell: new TextCell('name')} as Column,
+    {title: '名称', titleClass: '', cell: new TextCell('name')} as Column,
+    {title: '市场代号', titleClass: '', cell: new TextCell('cloudUser')} as Column,
+    {title: '车辆类型', titleClass: '', cell: new TextCell('vehicleTypeCode')} as Column,
+    {title: '车辆类别', titleClass: '', cell: new TextCell('vehicleCategoryCode')} as Column,
+    {title: '市场', titleClass: '', cell: new TextCell('market.name')} as Column,
     {title: '操作', titleClass: 'w-25 text-center', cell: new MenuCell(
       [
-        new Menu('编辑', '', 'edit'),
+        new Menu('编辑', '', this.edit.bind(this)),
         new Menu('禁用', '', this.disable),
       ],
       new Menu('查看', '', this.view), 'text-center',
@@ -62,6 +70,8 @@ export class CartypeComponent implements OnInit, OnChanges {
   view(row: any, drop: any) {
   }
   edit(row: any) {
+    this.router.navigate( ['/pages/system/cartype/edit', { id: row.id}]);
+
   }
   disable(row: any) {
 
