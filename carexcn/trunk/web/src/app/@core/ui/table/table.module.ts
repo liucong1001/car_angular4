@@ -7,10 +7,12 @@ import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
 import {CustomCellComponent} from './cell.custom.component';
 import {SystemModule} from '../../data/system/system.module';
+import {CheckboxCellComponent} from './cell.checkbox.component';
 
 const components = [
   TableComponent,
   TextCellComponent,
+  CheckboxCellComponent,
   MenuCellComponent,
   CustomCellComponent,
 ];
