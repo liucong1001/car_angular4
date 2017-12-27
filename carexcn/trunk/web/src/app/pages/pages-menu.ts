@@ -34,7 +34,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ],
   },
   {
-    title: '备案',
+    title: '商户管理',
     icon: 'ion-ios-bookmarks-outline',
     children: [
       {
@@ -42,8 +42,8 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/merchant/bussinessman',
       },
       {
-        title: '商户员工备案',
-        link: '/pages/merchant/contacts',
+        title: '商户财务维护',
+        link: '/pages/merchant/finance',
       },
     ],
   },

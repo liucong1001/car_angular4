@@ -60,10 +60,10 @@ export class TradeReviseComponent implements OnInit, OnChanges {
     {
       title: '', titleClass: 'w-15 text-center', cell: new MenuCell(
         [
-          new Menu('交易信息', '', 'trade'),
-          new Menu('车辆信息', '', 'car'),
-          new Menu('卖方信息', '', 'seller'),
-          new Menu('买方信息', '', 'buyer'),
+          new Menu('交易', '', 'trade'),
+          new Menu('车辆', '', 'car'),
+          new Menu('卖方', '', 'seller'),
+          new Menu('买方', '', 'buyer'),
         ],
         new Menu('修改', '', this.view), 'text-center',
       )} as Column,
@@ -72,6 +72,10 @@ export class TradeReviseComponent implements OnInit, OnChanges {
 
   // 列表菜单回调
   view(row: any, drop: any) {
+  }
+  seller(row: any) {
+  }
+  buyer(row: any) {
   }
   car(row: any) {
     // this.router.navigateByUrl('/pages/trade-change/trade-revise/trade-info/' + row.name);
