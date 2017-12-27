@@ -6,6 +6,7 @@
     <tr *ngFor="let row of pageContent.content">
       <td *ngFor="let col of columns" [ngSwitch]="col.cell.type" [attr.class]="col.cell.cellClass">
         <ngx-text-cell *ngSwitchCase="'TextCell'" [data]="row" [property]="col.cell.property"></ngx-text-cell>
+        <ngx-checkbox-cell *ngSwitchCase="'CheckboxCell'" [data]="row" [property]="col.cell.property"></ngx-checkbox-cell>
         <ngx-menu-cell *ngSwitchCase="'MenuCell'" [data]="row" [menus]="col.cell.menus" [default]="col.cell.def"></ngx-menu-cell>
         <ngx-custom-cell *ngSwitchCase="'CustomCell'" [data]="{cell:col.cell,row:row}"></ngx-custom-cell>
       </td>

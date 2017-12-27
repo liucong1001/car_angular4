@@ -1,6 +1,7 @@
 import {Component, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {Column, TableComponent} from '../../../../@core/ui/table/table.component';
 import {TextCell} from '../../../../@core/ui/table/cell.text.component';
+import {CheckboxCell} from '../../../../@core/ui/table/cell.checkbox.component';
 import {Menu, MenuCell} from '../../../../@core/ui/table/cell.menu.component';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {Router} from '@angular/router';
@@ -8,6 +9,13 @@ import {MerchantService} from '../../../../@core/data/merchant/merchant.service'
 import {MerchantModel} from '../../../../@core/model/bussiness/merchant.model';
 import {MessageService} from '../../../../@core/utils/message.service';
 
+/**
+ * TODO: 功能列表
+ * 商户增删改查
+ * 子商户增删改查
+ * 备案人增删改查
+ * 商户财务维护  ？？？ 后台没人
+ */
 @Component({
   selector: 'ngx-bussinessman',
   templateUrl: './bussinessman.component.html',
@@ -38,6 +46,7 @@ export class BussinessmanComponent implements OnInit, OnChanges {
   }
   visibility = 'hidden';
   showFilter = false;
+  filter: any = {};
   // 列表搜索表单隐藏显示切换
   toggle() {
     this.showFilter = !this.showFilter;
@@ -52,10 +61,12 @@ export class BussinessmanComponent implements OnInit, OnChanges {
     {title: '商户名', titleClass: '', cell: new TextCell('name')} as Column,
     {title: '编码', titleClass: '', cell: new TextCell('code')} as Column,
     {title: '证件号', titleClass: '', cell: new TextCell('certCode')} as Column,
-    {title: '证件有效期', titleClass: '', cell: new TextCell('endDare')} as Column,
+    {title: '证件有效期', titleClass: '', cell: new TextCell('endDate')} as Column,
     {title: '联系方式', titleClass: '', cell: new TextCell('phone')} as Column,
     {title: '地址', titleClass: '', cell: new TextCell('address')} as Column,
     {title: '类型', titleClass: '', cell: new TextCell('isPersonal')} as Column,
+    {title: '状态', titleClass: '', cell: new CheckboxCell('disableSign', null,
+        (row) => this.disableSign(row as MerchantModel))} as Column,
     {title: '操作', titleClass: 'w-25 text-center', cell: new MenuCell(
         [
           new Menu('修改', '', (row) => this.edit(row as MerchantModel)),
@@ -66,6 +77,16 @@ export class BussinessmanComponent implements OnInit, OnChanges {
         new Menu('查看', '', (row) => this.view(row)), 'text-center',
       )} as Column,
   ];
+
+  /**
+   * 启用停用商户
+   * @param row
+   */
+  disableSign(row) {
+    console.info('----------------------====---------');
+    console.info(row);
+    console.info('--------------------====-----------');
+  }
   son(row) {
     console.info(row);
   }
