@@ -224,8 +224,15 @@ ngx-ys-calendar table {
   background: #3d3780;
   color: white;
 }
-/*
-.ui-datepicker td {
-  background: red;
+.ui-dropdown .ui-dropdown-trigger .fa {
+  margin-top: 1em;
 }
-*/
+ngx-ys-codeitem-droplist, ngx-ys-droplist {
+  border: 2px solid #342e73;
+}
+.ui-state-default {
+  color: #fffafa !important;
+}
+::-webkit-input-placeholder {
+  color: #a1a1e5;
+}

@@ -103,13 +103,16 @@
       font-size: 3rem;
       margin-right: 0.5rem;
     }
-
     span {
       font-family: nb-theme(font-secondary);
       font-weight: nb-theme(font-weight-bold);
       color: nb-theme(color-fg-heading);
       text-transform: uppercase;
     }
+  }
+  label {
+    margin: 0;
+    line-height: normal;
   }
 
   @include nb-for-theme(cosmic) {
