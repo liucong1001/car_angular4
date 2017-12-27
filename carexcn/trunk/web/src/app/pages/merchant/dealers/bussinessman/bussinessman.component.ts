@@ -1,9 +1,12 @@
-import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {Column} from '../../../../@core/ui/table/table.component';
+import {Component, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
+import {Column, TableComponent} from '../../../../@core/ui/table/table.component';
 import {TextCell} from '../../../../@core/ui/table/cell.text.component';
 import {Menu, MenuCell} from '../../../../@core/ui/table/cell.menu.component';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {Router} from '@angular/router';
+import {MerchantService} from '../../../../@core/data/merchant/merchant.service';
+import {MerchantModel} from '../../../../@core/model/bussiness/merchant.model';
+import {MessageService} from '../../../../@core/utils/message.service';
 
 @Component({
   selector: 'ngx-bussinessman',
@@ -21,8 +24,12 @@ import {Router} from '@angular/router';
   ],
 })
 export class BussinessmanComponent implements OnInit, OnChanges {
-
-  constructor(private router: Router) {}
+  @ViewChild(TableComponent) itemList: TableComponent;
+  constructor(
+    private router: Router,
+    private message: MessageService,
+    private merchantService: MerchantService,
+  ) {}
   /*跳转*/
   jump() {
     this.router.navigateByUrl('/pages/merchant/bussinessman/add');
@@ -40,7 +47,7 @@ export class BussinessmanComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
   }
   columns: Column[] = [
-    {title: '商户ID', titleClass: '', cell: new TextCell('id')} as Column,
+    // {title: '商户ID', titleClass: '', cell: new TextCell('id')} as Column,// 不要显示
     {title: '商户名', titleClass: '', cell: new TextCell('name')} as Column,
     {title: '编码', titleClass: '', cell: new TextCell('code')} as Column,
     {title: '证件号', titleClass: '', cell: new TextCell('certCode')} as Column,
@@ -50,6 +57,8 @@ export class BussinessmanComponent implements OnInit, OnChanges {
     {title: '类型', titleClass: '', cell: new TextCell('isPersonal')} as Column,
     {title: '操作', titleClass: 'w-25 text-center', cell: new MenuCell(
         [
+          new Menu('修改', '', (row) => this.edit(row as MerchantModel)),
+          new Menu('删除', '', (row) => this.delete(row as MerchantModel)),
           new Menu('备案人', '', 'linkman'),
           new Menu('子商户', '', 'son'),
         ],
@@ -57,8 +66,25 @@ export class BussinessmanComponent implements OnInit, OnChanges {
       )} as Column,
   ];
   son(row) {
+    console.info(row);
   }
-  linkman(row: any) {}
-  view(data) {
+  linkman(row: any) {
+    console.info(row);
+  }
+  view(row) {
+    console.info(row);
+  }
+  edit(merchant) {
+    this.router.navigate( ['/pages/merchant/bussinessman/edit', { id: merchant.id}]);
+    console.info(merchant);
+  }
+  delete(merchant: MerchantModel) {
+    console.info(merchant);
+    this.merchantService.del(merchant.id).then(res => {
+      this.message.success('操作成功', JSON.stringify(res));
+      this.itemList.reload();
+    }).catch(err => {
+      this.message.error('操作失败', err.json().message);
+    });
   }
 }

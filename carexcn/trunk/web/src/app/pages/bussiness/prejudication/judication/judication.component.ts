@@ -4,6 +4,7 @@ import {CarService} from '../../../../@core/data/bussiness/car.service';
 import {CarModel} from '../../../../@core/model/bussiness/car.model';
 import {MessageService} from '../../../../@core/utils/message.service';
 import {WebcamService} from '../../../../@core/device/webcam.service';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 /**
  * 预审业务 - 预审审核 - 核对信息 --—接口与页面的交互逻辑
@@ -34,7 +35,13 @@ export class JudicationComponent implements OnInit {
    * @param {WebcamService} webcam
    * @param {Router} _router
    */
-  constructor(private message: MessageService, private carService: CarService, private webcam: WebcamService, private _router: Router) {
+  constructor(
+    private message: MessageService,
+    private carService: CarService,
+    private webcam: WebcamService,
+    private _router: Router,
+    private _formbuilder: FormBuilder,
+  ) {
     this.carService.getCar('1').then((res) => this.carData = res as CarModel);
     this.carService.getCars('1').then((res) => this.carsData = res as CarModel[]);
   }

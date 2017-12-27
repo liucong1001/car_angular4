@@ -8,12 +8,13 @@ import {CameraUploadComponent} from './camera/camera-upload.component';
 import {CalendarComponent} from './calendar/calendar.component';
 import {AutoinputComponent} from './autoinput/autoinput.component';
 import { ValidErrorComponent } from './valid-error/valid-error.component';
-import {CommonModule} from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { CodeitemDroplistComponent } from './codeitem-droplist/codeitem-droplist.component';
 import { DroplistComponent } from './droplist/droplist.component';
 import { CarlistComponent } from './carlist/carlist.component';
 import { CardetailComponent } from './cardetail/cardetail.component';
-import {ThemeModule} from '../../@theme/theme.module';
+import { ThemeModule } from '../../@theme/theme.module';
+import { YsFormBuilderComponent } from './ys-form-builder/ys-form-builder.component';
 
 const COMPONENTS = [
   CameraComponent,
@@ -25,6 +26,7 @@ const COMPONENTS = [
   DroplistComponent,
   CarlistComponent,
   CardetailComponent,
+  YsFormBuilderComponent,
 ];
 
 @NgModule({

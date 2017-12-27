@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {CarModel} from '../../../../@core/model/bussiness/car.model';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ErrorMessage} from '../../../../@core/ui/valid-error/valid-error.component';
 
 /**
  * 预审录入1--接口与页面的交互逻辑
@@ -36,11 +38,50 @@ export class RecordingComponent implements OnInit {
     title: '商户联系人确认单',
     source: 'assets/images/camera4.jpg',
   }];
+  /**
+   * 车辆模型
+   * @type {CarModel}
+   */
   public car = new CarModel();
-  constructor(private _router: Router) { }
+  /**
+   * 表单建立
+   * @type {FormGroup}
+   */
+  form: FormGroup = this._formbuilder.group({
+    code: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(12)]],
+  });
+  ysform = {
+    _formbuilder: {
+      code: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(12)]],
+    },
+    _errors: {
+      required: '不能为空',
+      minlength: '不能少于3位',
+      maxlength: '不能大于12位',
+    },
+  };
+  /**
+   * 构造函数
+   * @param {Router} _router
+   * @param {FormBuilder} _formbuilder
+   */
+  constructor(
+    private _router: Router,
+    private _formbuilder: FormBuilder,
+  ) { }
+
   ngOnInit() {
   }
+
   onSubmit() {
     this._router.navigateByUrl('/pages/bussiness/prejudication/recording2');
   }
+
+  errors = {
+    code: [
+      new ErrorMessage('required', '不能为空'),
+      new ErrorMessage('minlength', '不能少于3位'),
+      new ErrorMessage('maxlength', '不能大于12位'),
+    ],
+  };
 }

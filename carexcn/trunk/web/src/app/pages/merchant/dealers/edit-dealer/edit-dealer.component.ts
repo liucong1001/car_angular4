@@ -6,7 +6,7 @@ import {MerchantService} from '../../../../@core/data/merchant/merchant.service'
 import {MerchantForm} from '../../../../@core/model/bussiness/merchant.form';
 import {Http} from '@angular/http';
 import {MerchantModel} from '../../../../@core/model/bussiness/merchant.model';
-import {Codeitem} from "../../../../@core/model/system/codeitem";
+import {Router, ActivatedRoute} from '@angular/router';
 
 
 /**
@@ -14,24 +14,47 @@ import {Codeitem} from "../../../../@core/model/system/codeitem";
  */
 @Component({
   selector: 'ngx-add-dealer',
-  templateUrl: './add-dealer.component.html',
-  styleUrls: ['./add-dealer.component.scss'],
+  templateUrl: './edit-dealer.component.html',
+  styleUrls: ['./edit-dealer.component.scss'],
 })
-export class AddDealerComponent implements OnInit {
+export class EditDealerComponent implements OnInit {
   /**
    * 构造函数
    * @param {MessageService} message
    * @param {Location} location
    */
   constructor(
+    private router: Router,
+    private route: ActivatedRoute,
     private http: Http,
     private message: MessageService,
     private location: Location,
     private fb: FormBuilder,
     private merchantService: MerchantService,
   ) { }
-
+  isEdit = false;
   ngOnInit() {
+    // this.route.params.subscribe(p => {
+    //   if (p.id) {
+    //     console.info(p);
+    //     // this.isEdit = true;
+    //     // this.merchantService.get(p.id).then( res => {
+    //     //   console.log('返回',res);
+    //     //   // this.form.patchValue({
+    //     //   //   id: res.id,
+    //     //   //   name : res.name,
+    //     //   //   cloudUser:res.cloudUser,
+    //     //   //   memo:res.memo,
+    //     //   //   vehicleTypeCode:res.vehicleTypeCode,
+    //     //   //   vehicleCategoryCode:res.vehicleCategoryCode,
+    //     //   //   market:{
+    //     //   //     id:res.market.id,
+    //     //   //     name:res.market.name,
+    //     //   //   }
+    //     //   // });
+    //     // });
+    //   }
+    // });
   }
   photos: any[] = [{
     title: '机构证正面',
@@ -47,10 +70,7 @@ export class AddDealerComponent implements OnInit {
     // certCode: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]{8}-[a-zA-Z0-9]$|^[A-Z0-9]{18}$/)]],
     // address: ['', [Validators.maxLength(50)]],
     // phone: ['', [Validators.required, Validators.pattern(/^1(3|4|7|5|8)([0-9]{9})|0[0-9]{2,3}-[0-9]{8}$/)]],
-    // endDate: ['', [
-    //   Validators.required,
-    //   Validators.pattern(/^[1-9]\d{3}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$|^\u957f\u671f$/)],
-    // ],
+    // endDate: ['', [Validators.required]],
     // discount: ['', [Validators.maxLength(50)]],
     isCarRental: ['', [Validators.required]],
     isDeal: ['', [Validators.required]],
@@ -61,10 +81,7 @@ export class AddDealerComponent implements OnInit {
     certCode: ['hankoube-3', [Validators.required, Validators.pattern(/^[a-zA-Z0-9]{8}-[a-zA-Z0-9]$|^[A-Z0-9]{18}$/)]],
     address: ['湖北武汉汉口', [Validators.maxLength(50)]],
     phone: ['17012345678', [Validators.required, Validators.pattern(/^1(3|4|7|5|8)([0-9]{9})|0[0-9]{2,3}-[0-9]{8}$/)]],
-    endDate: ['20181212', [
-      Validators.required,
-      Validators.pattern(/^[1-9]\d{3}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$|^\u957f\u671f$/)],
-    ],
+    endDate: ['20181212', [Validators.required]],
     discount: ['1', [Validators.maxLength(50)]],
     // isCarRental: ['1', [Validators.required]],
     // isDeal: ['1', [Validators.required]],
@@ -78,11 +95,9 @@ export class AddDealerComponent implements OnInit {
   onChangeSource($event, photo) {
     this.message.info(photo.title + ' 的新图片地址', $event);
   }
-  /*返回*/
   goBack() {
     this.location.back();
   }
-  private api_url_base = '/rest/merchant';
   save() {
     if (this._formGroup.invalid) {
       this.message.error('填写错误', JSON.stringify(this._formGroup.errors));
@@ -98,10 +113,5 @@ export class AddDealerComponent implements OnInit {
         this.message.error('操作失败', err.json().message);
       });
     }
-  }
-  merchant: MerchantModel;
-  edit(row) {
-    this.merchant = row;
-    console.info(this.merchant);
   }
 }

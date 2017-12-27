@@ -1,0 +1,8 @@
+<form [formGroup]="_formGroup" (ngSubmit)="save()" >
+  <div class="form-group">
+    <!--  *ngFor="let control of _formGroup.controls" -->
+    <input type="text" class="form-control" formControlName="code" placeholder="测试表单"
+           [ngClass]="{'form-control-danger':_formGroup.get('code').invalid && _formGroup.get('code').touched}" (blur)="_consolelog($event, this)">
+  </div>
+  <ngx-valid-error [errors]="_errors.code" [control]="_formGroup.get('code')"></ngx-valid-error>
+</form>

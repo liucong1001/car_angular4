@@ -10,6 +10,7 @@ import {RouterModule} from '@angular/router';
 import { LinkmanComponent } from './dealers/linkman/linkman.component';
 import {UiModule} from '../../@core/ui/ui.module';
 import { AddDealerComponent } from './dealers/add-dealer/add-dealer.component';
+import { EditDealerComponent } from './dealers/edit-dealer/edit-dealer.component';
 import { ReviseDealerComponent } from './dealers/revise-dealer/revise-dealer.component';
 import { SonComponent } from './dealers/son/son.component';
 import { AddSonComponent } from './dealers/add-son/add-son.component';
@@ -32,6 +33,7 @@ import { AddLinkmanComponent } from './dealers/add-linkman/add-linkman.component
     ...routedComponents,
     LinkmanComponent,
     AddDealerComponent,
+    EditDealerComponent,
     ReviseDealerComponent,
     SonComponent,
     AddSonComponent,
