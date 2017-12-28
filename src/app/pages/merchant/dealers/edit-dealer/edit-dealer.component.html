@@ -13,7 +13,7 @@
         <div class="col-sm-3">
           <div class="form-group">
             <input type="hidden" formControlName="id" />
-            <!--<label>商户名</label>-->
+            <label>商户名</label>
             <input type="text" class="form-control" name="name" placeholder="商户名"
                    formControlName="name"
                    [ngClass]="{'form-control-danger':_formGroup.get('name').invalid && _formGroup.get('name').touched}">
@@ -21,7 +21,7 @@
         </div>
         <div class="col-sm-3">
           <div class="form-group">
-            <!--<label>商户编号</label>-->
+            <label>商户编号</label>
             <input type="text" class="form-control" id="code" name="code" placeholder="商户编号"
                    formControlName="code"
                    [ngClass]="{'form-control-danger':_formGroup.get('code').invalid && _formGroup.get('code').touched}">
@@ -33,7 +33,7 @@
         </div>
         <div class="col-sm-3">
           <div class="form-group">
-            <!--<label>证件号</label>-->
+            <label>证件号</label>
             <input type="text" class="form-control" name="certCode" placeholder="证件号"
                    formControlName="certCode"
                    [ngClass]="{'form-control-danger':_formGroup.get('certCode').invalid && _formGroup.get('certCode').touched}">
@@ -41,7 +41,7 @@
         </div>
         <div class="col-sm-3">
           <div class="form-group">
-            <!--<label>地址</label>-->
+            <label>地址</label>
             <input type="text" class="form-control" name="address" placeholder="地址"
                    formControlName="address"
                    [ngClass]="{'form-control-danger':_formGroup.get('address').invalid && _formGroup.get('address').touched}">
@@ -49,7 +49,7 @@
         </div>
         <div class="col-sm-3">
           <div class="form-group">
-            <!--<label>联系方式</label>-->
+            <label>联系方式</label>
             <input type="text" class="form-control" name="phone" placeholder="联系方式"
                    formControlName="phone"
                    [ngClass]="{'form-control-danger':_formGroup.get('phone').invalid && _formGroup.get('phone').touched}">
@@ -57,7 +57,7 @@
         </div>
         <div class="col-sm-3">
           <div class="form-group">
-            <!--<label>证件有效期</label>-->
+            <label>证件有效期 格式"20191212"</label>
             <input type="text" class="form-control" name="endDate" placeholder="证件有效期"
                    formControlName="endDate"
                    [ngClass]="{'form-control-danger':_formGroup.get('endDate').invalid && _formGroup.get('endDate').touched}">
@@ -65,7 +65,7 @@
         </div>
         <div class="col-sm-3">
           <div class="form-group">
-            <!--<label>交易折扣</label>-->
+            <label>交易折扣</label>
             <input type="number" class="form-control" name="discount" placeholder="交易折扣"
                    formControlName="discount"
                    [ngClass]="{'form-control-danger':_formGroup.get('discount').invalid && _formGroup.get('discount').touched}">
@@ -73,7 +73,7 @@
         </div>
         <div class="col-sm-2">
           <div class="form-group">
-            <!--<label>是否个人</label>-->
+            <label>是否个人</label>
             <select class="form-control" formControlName="isPersonal"
                     [ngClass]="{'form-control-danger':_formGroup.get('isPersonal').invalid && _formGroup.get('isPersonal').touched}">
               <option value="">是否个人</option>
@@ -84,7 +84,7 @@
         </div>
         <div class="col-sm-3">
           <div class="form-group">
-            <!--<label></label>-->
+            <label>租车位</label>
             <select class="form-control" formControlName="isCarRental"
                     [ngClass]="{'form-control-danger':_formGroup.get('isCarRental').invalid && _formGroup.get('isCarRental').touched}">
               <option value="">是否租车位</option>
@@ -95,7 +95,7 @@
         </div>
         <div class="col-sm-2">
           <div class="form-group">
-            <!--<label></label>-->
+            <label>是否交易</label>
             <select class="form-control" formControlName="isDeal"
                     [ngClass]="{'form-control-danger':_formGroup.get('isDeal').invalid && _formGroup.get('isDeal').touched}">
               <option value="">是否交易</option>
