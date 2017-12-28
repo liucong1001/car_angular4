@@ -34,3 +34,5 @@
     <ngx-table [url]="'/rest/merchant/pager'" #itemList [columns]="columns" [filter]="filter"></ngx-table>
   </nb-card-body>
 </nb-card>
+<ng-template #isPersonalTemp let-data>{{data.isPersonal === '1' ? '个人' : (data.isPersonal === '0' ? '机构' : '')}}</ng-template>
+<ng-template #disableSignTemp let-data>{{data.disableSign === '1' ? '已启用' : '已禁用'}}</ng-template>

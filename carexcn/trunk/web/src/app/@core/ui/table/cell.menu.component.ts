@@ -47,8 +47,9 @@ export class Menu {
   constructor(
     public text: string,
     public icon: string,
-    public callback: MenuOnClick | string) {
-  }
+    public callback: MenuOnClick | string,
+    public show?: MenuOnClick | string,
+  ) {}
   public isCallback(): boolean {
     return typeof(this.callback) === 'function';
   }

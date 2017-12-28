@@ -1,14 +1,20 @@
 <div ngbDropdown #drop="ngbDropdown" class="text-center btn-group ngx-menu-cell">
-  <button type="button" class="btn btn-sm btn-primary" (click)="$event.stopPropagation();default.callback(data,drop)" >{{default.text}}</button>
+  <button type="button" class="btn btn-sm btn-primary" (click)="$event.stopPropagation();default.callback(data,drop)">
+    {{default.text}}
+  </button>
   <button class="btn btn-primary dropdown-toggle-split" ngbDropdownToggle></button>
   <ul ngbDropdownMenu>
-    <li *ngFor="let menu of menus"  [ngClass]="[menu.icon,'dropdown-item', 'clickable']">
-      <a *ngIf="menu.isCallback()" (click)="menu.callback(data)" >
-        {{menu.text}}
-      </a>
-      <a *ngIf="menu.isUrl()" [routerLink]="[menu.callback, data]">
-        {{menu.text}}
-      </a>
-    </li>
+    <ng-container *ngFor="let menu of menus">
+      <ng-container *ngIf="!menu.show || menu.show(data)">
+        <li [ngClass]="[menu.icon,'dropdown-item', 'clickable']">
+          <a *ngIf="menu.isCallback()" (click)="menu.callback(data)">
+            {{menu.text}}
+          </a>
+          <a *ngIf="menu.isUrl()" [routerLink]="[menu.callback, data]">
+            {{menu.text}}
+          </a>
+        </li>
+      </ng-container>
+    </ng-container>
   </ul>
 </div>
