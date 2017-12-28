@@ -8,13 +8,20 @@ export class MerchantModel {
    */
   account?: AccountModel;
   /**
+   * 1-市场(个人)商户
+   * 0-正常商户
+   * 不管是个人还是机构都是正常商户
+   * 个人商户是内建用于进行没有商户关系的交易
+   */
+  flag?: string;
+  /**
    * 编号
    */
   id?: string;
   /**
    * 商户名
    */
-  name: string;
+  name?: string;
   /**
    * 编码
    */
@@ -49,6 +56,10 @@ export class MerchantModel {
   isDeal?: string;
   /**
    * 是否个人（1是，0否）
+   * 个人还是机构
+   * 个人就可以作为商户的情况
+   * 机构必须要有营业执照
+   * 不管是个人还是机构都是正常商户
    */
   isPersonal?: string;
   /**

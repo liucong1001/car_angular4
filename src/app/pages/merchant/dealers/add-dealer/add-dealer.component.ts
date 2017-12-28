@@ -7,6 +7,7 @@ import {MerchantForm} from '../../../../@core/model/bussiness/merchant.form';
 import {Http} from '@angular/http';
 import {MerchantModel} from '../../../../@core/model/bussiness/merchant.model';
 import {Codeitem} from "../../../../@core/model/system/codeitem";
+import {Router} from "@angular/router";
 
 
 /**
@@ -24,6 +25,7 @@ export class AddDealerComponent implements OnInit {
    * @param {Location} location
    */
   constructor(
+    private router: Router,
     private http: Http,
     private message: MessageService,
     private location: Location,
@@ -93,7 +95,7 @@ export class AddDealerComponent implements OnInit {
       // TODO: 以后在此处 MerchantForm 添加 photos 添加附件
       this.merchantService.add({ merchant: merchant} as MerchantForm).then(res => {
         this.message.success('创建成功', '创建商户成功');
-        // this.saved = true;
+        this.router.navigateByUrl('/pages/merchant/bussinessman');
       }).catch(err => {
         this.message.error('操作失败', err.json().message);
       });
