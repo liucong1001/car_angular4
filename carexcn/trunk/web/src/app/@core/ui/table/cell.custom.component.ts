@@ -34,7 +34,7 @@ export class CustomCellComponent extends CellComponent implements OnInit {
           this.target.createEmbeddedView(templateMap[this.cell.template], {$implicit: this.data, cell: this.cell});
         }
       }else {
-        this.target.createEmbeddedView(this.data.cell.template, {$implicit: this.data, cell: this.cell});
+        this.target.createEmbeddedView(this.cell.template, {$implicit: this.data, cell: this.cell});
       }
     }
   }
