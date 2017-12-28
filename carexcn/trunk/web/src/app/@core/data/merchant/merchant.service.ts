@@ -1,6 +1,8 @@
 import {Injectable, isDevMode} from '@angular/core';
 import {Http} from '@angular/http';
 import {MerchantForm} from '../../model/bussiness/merchant.form';
+import {SonMerchantForm} from "../../model/bussiness/son.merchant.form";
+import {promise} from "selenium-webdriver";
 
 @Injectable()
 export class MerchantService {
@@ -23,6 +25,9 @@ export class MerchantService {
   }
   public stop(id: string): Promise<any> {
     return this.http.put(this.api_url_base + '/stop/' + id, null).toPromise();
+  }
+  public createSon(sonForm: SonMerchantForm): Promise<any> {
+    return this.http.post('/rest/son/merchant', sonForm).toPromise();
   }
 }
 
