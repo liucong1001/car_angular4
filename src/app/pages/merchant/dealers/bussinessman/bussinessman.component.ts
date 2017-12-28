@@ -7,6 +7,7 @@ import {MerchantService} from '../../../../@core/data/merchant/merchant.service'
 import {MerchantModel} from '../../../../@core/model/bussiness/merchant.model';
 import {MessageService} from '../../../../@core/utils/message.service';
 import {CustomCell} from '../../../../@core/ui/table/cell';
+import {SonMerchantForm} from "../../../../@core/model/bussiness/son.merchant.form";
 
 /**
  * TODO: 功能列表
@@ -35,6 +36,7 @@ export class BussinessmanComponent implements OnInit, OnChanges {
   }
   @ViewChild('isPersonalTemp') private isPersonalTemp: TemplateRef<any>;
   @ViewChild('disableSignTemp') private disableSignTemp: TemplateRef<any>;
+  // @ViewChild('itemList') private itemList: any;
   columns: Column[];
   ngOnInit() {
     this.columns = [
@@ -63,7 +65,7 @@ export class BussinessmanComponent implements OnInit, OnChanges {
               (row) => this.isNotFlag(row as MerchantModel),
             ),
             new Menu('子商户', '',
-              (row) => this.son(row as MerchantModel),
+              (row) => this.createSon(row as MerchantModel),
               (row) => this.isNotFlag(row as MerchantModel),
             ),
           ],
@@ -75,6 +77,8 @@ export class BussinessmanComponent implements OnInit, OnChanges {
   }
   visibility = 'hidden';
   showFilter = false;
+  showSonForm = false;
+  son: SonMerchantForm = {};
   filter: any = {
     // name: '',
     // code: '',
@@ -96,8 +100,26 @@ export class BussinessmanComponent implements OnInit, OnChanges {
   isNotFlag(row) {
     return '1' === row.flag ? false : true;
   }
-  son(row) {
+
+  /**
+   * 建立子商户
+   * @param row
+   */
+  createSon(row) {
     console.info(row);
+    this.showSonForm = true;
+    this.son.merchantId = row.id;
+  }
+  saveSon(name) {
+    this.son.name = name;
+    console.info(this.son);
+    this.merchantService.createSon(this.son).then(res => {
+      console.info(res);
+      this.message.success('操作成功', '创建子商户成功');
+      this.showSonForm = false;
+    }).catch(err => {
+      this.message.error('操作失败', err.json().message);
+    });
   }
   linkman(row: any) {
     console.info(row);
