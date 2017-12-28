@@ -2,13 +2,13 @@ import {
   Component, Input, OnInit, TemplateRef, ViewChild,
   ViewContainerRef,
 } from '@angular/core';
-import {CellComponent, CustomCellData} from './cell';
+import {CellComponent, CustomCell, CustomCellData} from './cell';
 
 @Component({
   selector: 'ngx-custom-cell',
   template: `
     <div #customCell></div>
-    <ng-template #codemapCell let-data>{{data.row.position | code_trans:data.cell.codemap | async}}</ng-template>
+    <ng-template #codemapCell let-data let-cell="cell">{{data.position | code_trans:cell.codemap | async}}</ng-template>
   `,
 })
 export class CustomCellComponent extends CellComponent implements OnInit {
@@ -16,7 +16,8 @@ export class CustomCellComponent extends CellComponent implements OnInit {
   //   // super();
   // }
 
-  @Input() data: CustomCellData;
+  @Input() data: any;
+  @Input() cell: CustomCell;
   @ViewChild('customCell', {read: ViewContainerRef})
   private target: ViewContainerRef;
 
@@ -26,14 +27,14 @@ export class CustomCellComponent extends CellComponent implements OnInit {
   ngOnInit(): void {
     const templateMap = {
       codemapCell: this.codemapCell,
-    };
-    if (this.data.cell.template) {
-      if (typeof this.data.cell.template === 'string') {
-        if (templateMap[this.data.cell.template]) {
-          this.target.createEmbeddedView(templateMap[this.data.cell.template], {$implicit: this.data});
+    }
+    if (this.cell.template) {
+      if (typeof this.cell.template === 'string') {
+        if (templateMap[this.cell.template]) {
+          this.target.createEmbeddedView(templateMap[this.cell.template], {$implicit: this.data, cell: this.cell});
         }
       }else {
-        this.target.createEmbeddedView(this.data.cell.template, {$implicit: this.data});
+        this.target.createEmbeddedView(this.data.cell.template, {$implicit: this.data, cell: this.cell});
       }
     }
   }
