@@ -59,8 +59,8 @@ export class BussinessmanComponent implements OnInit, OnChanges {
     {title: '地址', titleClass: '', cell: new TextCell('address')} as Column,
     {title: '类型', titleClass: '', cell: new TextCell('isPersonal')} as Column,
     {title: '状态', titleClass: '', cell: new CheckboxCell('disableSign', null,
-        true)} as Column,
-    {title: '操作', titleClass: 'w-25 text-center', cell: new MenuCell(
+        true, '1')} as Column,
+    {title: '操作', titleClass: 'w-5 text-center', cell: new MenuCell(
         [
           new Menu('修改', '', (row) => this.edit(row as MerchantModel)),
           new Menu('删除', '', (row) => this.delete(row as MerchantModel)),

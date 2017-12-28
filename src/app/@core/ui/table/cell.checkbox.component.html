@@ -1,0 +1,6 @@
+<label class="custom-control custom-checkbox">
+  <input #checkbox class="custom-control-input" type="checkbox"
+         [checked]="trueValue === data[property]" (change)="callback(checkbox.checked)"
+         [disabled]="this._disabled"
+  ><span class="custom-control-indicator"></span>
+</label>

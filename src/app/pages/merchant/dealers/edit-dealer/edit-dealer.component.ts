@@ -40,7 +40,7 @@ export class EditDealerComponent implements OnInit {
           this.pid = _merchant.id;
           this._formGroup.patchValue(_merchant);
           // console.info(_merchant.disableSign);
-          if (_merchant.disableSign) {
+          if ('1' === _merchant.disableSign) {
             this.DisableSignLabel = '禁用';
             this.DisableSignValue = true;
           } else {
