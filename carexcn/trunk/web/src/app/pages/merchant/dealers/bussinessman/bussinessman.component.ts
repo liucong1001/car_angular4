@@ -3,7 +3,6 @@ import {Column, TableComponent} from '../../../../@core/ui/table/table.component
 import {TextCell} from '../../../../@core/ui/table/cell.text.component';
 import {CheckboxCell} from '../../../../@core/ui/table/cell.checkbox.component';
 import {Menu, MenuCell} from '../../../../@core/ui/table/cell.menu.component';
-import {animate, state, style, transition, trigger} from '@angular/animations';
 import {Router} from '@angular/router';
 import {MerchantService} from '../../../../@core/data/merchant/merchant.service';
 import {MerchantModel} from '../../../../@core/model/bussiness/merchant.model';
@@ -11,25 +10,15 @@ import {MessageService} from '../../../../@core/utils/message.service';
 
 /**
  * TODO: 功能列表
- * 商户增删改查
- * 子商户增删改查
- * 备案人增删改查
- * 商户财务维护  ？？？ 后台没人
+ * 商户增删改查 wjf
+ * 子商户增删改查 wjf
+ * 备案人增删改查 wjf
+ * 商户财务维护 xxy
  */
 @Component({
   selector: 'ngx-bussinessman',
   templateUrl: './bussinessman.component.html',
   styleUrls: ['./bussinessman.component.scss'],
-  // 定义动画
-  animations: [
-    trigger('visibilityChanged', [
-      // state 控制不同的状态下对应的不同的样式
-      state('shown' , style({ height: 'auto'})),
-      state('hidden', style({ height: '0px',  opacity: '0'})),
-      // transition 控制状态到状态以什么样的方式来进行转换
-      transition('shown <=> hidden', [animate('100ms ease-in-out'), animate('100ms')] ),
-    ]),
-  ],
 })
 export class BussinessmanComponent implements OnInit, OnChanges {
   @ViewChild(TableComponent) itemList: TableComponent;
