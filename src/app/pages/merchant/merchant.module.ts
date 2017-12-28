@@ -12,8 +12,6 @@ import {UiModule} from '../../@core/ui/ui.module';
 import { AddDealerComponent } from './dealers/add-dealer/add-dealer.component';
 import { EditDealerComponent } from './dealers/edit-dealer/edit-dealer.component';
 import { ReviseDealerComponent } from './dealers/revise-dealer/revise-dealer.component';
-import { SonComponent } from './dealers/son/son.component';
-import { AddSonComponent } from './dealers/add-son/add-son.component';
 import { BussinessmanComponent } from './dealers/bussinessman/bussinessman.component';
 import { AddLinkmanComponent } from './dealers/add-linkman/add-linkman.component';
 import { FinanceComponent } from './finance/finance.component';
@@ -39,8 +37,6 @@ import { AddComponent } from './finance/add/add.component';
     AddDealerComponent,
     EditDealerComponent,
     ReviseDealerComponent,
-    SonComponent,
-    AddSonComponent,
     BussinessmanComponent,
     AddLinkmanComponent,
     FinanceComponent,
