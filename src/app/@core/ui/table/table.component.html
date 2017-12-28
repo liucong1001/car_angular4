@@ -6,7 +6,7 @@
     <tr *ngFor="let row of pageContent.content">
       <td *ngFor="let col of columns" [ngSwitch]="col.cell.type" [attr.class]="col.cell.cellClass">
         <ngx-text-cell *ngSwitchCase="'TextCell'" [data]="row" [property]="col.cell.property"></ngx-text-cell>
-        <ngx-checkbox-cell *ngSwitchCase="'CheckboxCell'" [data]="row" [property]="col.cell.property"></ngx-checkbox-cell>
+        <ngx-checkbox-cell *ngSwitchCase="'CheckboxCell'" [data]="row" [property]="col.cell.property" [callback]="col.cell.callback" [_disabled]="col.cell._disabled"></ngx-checkbox-cell>
         <ngx-menu-cell *ngSwitchCase="'MenuCell'" [data]="row" [menus]="col.cell.menus" [default]="col.cell.def"></ngx-menu-cell>
         <ngx-custom-cell *ngSwitchCase="'CustomCell'" [data]="{cell:col.cell,row:row}"></ngx-custom-cell>
       </td>
@@ -28,7 +28,7 @@
               <li class="page-item" [ngClass]="{'disabled':pageContent.last}"><a class="page-link clickable"  (click)="next()">&raquo;</a></li>
             </ul>
           </nav>
-          <span class="text-info col-md-auto">共找到{{pageContent.totalElements}}个符合条件的结果，当前页{{pageContent.numberOfElements}}条结果</span>
+          <span class="text-info col-md-auto">共找到{{pageContent.totalElements || 0}}个符合条件的结果，当前页{{pageContent.numberOfElements || 0}}条结果</span>
         </div>
       </div>
     </td>

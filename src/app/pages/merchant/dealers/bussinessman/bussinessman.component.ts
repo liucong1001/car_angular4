@@ -46,7 +46,11 @@ export class BussinessmanComponent implements OnInit, OnChanges {
   }
   visibility = 'hidden';
   showFilter = false;
-  filter: any = {};
+  filter: any = {
+    // name: '',
+    // code: '',
+    // phone: '',
+  };
   // 列表搜索表单隐藏显示切换
   toggle() {
     this.showFilter = !this.showFilter;
@@ -66,7 +70,7 @@ export class BussinessmanComponent implements OnInit, OnChanges {
     {title: '地址', titleClass: '', cell: new TextCell('address')} as Column,
     {title: '类型', titleClass: '', cell: new TextCell('isPersonal')} as Column,
     {title: '状态', titleClass: '', cell: new CheckboxCell('disableSign', null,
-        (row) => this.disableSign(row as MerchantModel))} as Column,
+        true)} as Column,
     {title: '操作', titleClass: 'w-25 text-center', cell: new MenuCell(
         [
           new Menu('修改', '', (row) => this.edit(row as MerchantModel)),
