@@ -18,5 +18,11 @@ export class MerchantService {
   public get(id: string): Promise<any> {
     return this.http.get(this.api_url_base + '/' + id).toPromise().then((res) => res.json() as MerchantForm);
   }
+  public start(id: string): Promise<any> {
+    return this.http.put(this.api_url_base + '/start/' + id, null).toPromise();
+  }
+  public stop(id: string): Promise<any> {
+    return this.http.put(this.api_url_base + '/stop/' + id, null).toPromise();
+  }
 }
 

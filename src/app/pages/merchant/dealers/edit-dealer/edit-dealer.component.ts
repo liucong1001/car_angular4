@@ -36,11 +36,24 @@ export class EditDealerComponent implements OnInit {
     this.route.params.subscribe(p => {
       if (p.id) {
         this.merchantService.get(p.id).then( res => {
-          this._formGroup.patchValue(res.merchant as MerchantModel);
+          const _merchant = res.merchant as MerchantModel;
+          this.pid = _merchant.id;
+          this._formGroup.patchValue(_merchant);
+          // console.info(_merchant.disableSign);
+          if (_merchant.disableSign) {
+            this.DisableSignLabel = '禁用';
+            this.DisableSignValue = true;
+          } else {
+            this.DisableSignLabel = '启用';
+            this.DisableSignValue = false;
+          }
         });
       }
     });
   }
+  pid = '';
+  DisableSignLabel = '';
+  DisableSignValue: boolean;
   photos: any[] = [{
     title: '机构证正面',
     source: 'assets/images/camera1.jpg',
@@ -72,6 +85,27 @@ export class EditDealerComponent implements OnInit {
   }
   goBack() {
     this.location.back();
+  }
+  changeDisableSign(btn) {
+    if (this.DisableSignValue) {
+      this.merchantService.stop(this.pid).then(() => {
+        this.DisableSignValue = false;
+        this.DisableSignLabel = '启用';
+        this.message.success('操作成功', '禁用商户成功');
+      }).catch((err) => {
+        console.info(err);
+        this.message.error('操作失败', '禁用商户失败');
+      });
+    } else {
+      this.merchantService.start(this.pid).then(() => {
+        this.DisableSignValue = true;
+        this.DisableSignLabel = '禁用';
+        this.message.success('操作成功', '启用商户成功');
+      }).catch(err => {
+        console.info(err);
+        this.message.error('操作失败', '启用商户失败');
+      });
+    }
   }
   save() {
     if (this._formGroup.invalid) {
