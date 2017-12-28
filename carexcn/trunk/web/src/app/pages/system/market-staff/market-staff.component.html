@@ -33,4 +33,4 @@
     <ngx-table #staffList [url]="'/rest/sys/market/staff/pager'" [columns]="columns" [filter]="filter"></ngx-table>
   </nb-card-body>
 </nb-card>
-<ng-template #statusCell let-data><a href="javascript:void(0)" (click)="changeStatus(data)">{{data.status | code_trans:'userStatus' | async}}</a></ng-template>
+<ng-template #statusCell let-row let-cell="cell"><a href="javascript:void(0)" (click)="changeStatus(data)">{{data.status | code_trans:'userStatus' | async}}</a></ng-template>
