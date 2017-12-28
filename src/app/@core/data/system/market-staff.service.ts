@@ -52,4 +52,21 @@ export class MarketStaffService {
   public checkLoginName(loginName: string): Promise<any> {
     return this.http.get(`${this.url}/not/found?loginName=${loginName}`).toPromise();
   }
+
+  /**
+   * 禁用员工
+   * @param {string} id
+   */
+  public disable(id: string): Promise<any> {
+    return this.http.patch(`${this.url}/${id}?disabled`, {}).toPromise();
+  }
+
+  /**
+   * 启用员工
+   * @param {string} id
+   * @return {Promise<any>}
+   */
+  public enable(id: string): Promise<any> {
+    return this.http.patch(`${this.url}/${id}?enable`, {}).toPromise();
+  }
 }
