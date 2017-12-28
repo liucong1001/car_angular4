@@ -14,6 +14,8 @@ import {MessageService} from '../../../../@core/utils/message.service';
  * 子商户增删改查 wjf
  * 备案人增删改查 wjf
  * 商户财务维护 xxy
+ * 个人商户只有查询操作，不可以做任何其它操作
+ *
  */
 @Component({
   selector: 'ngx-bussinessman',
@@ -64,7 +66,7 @@ export class BussinessmanComponent implements OnInit, OnChanges {
         [
           new Menu('修改', '', (row) => this.edit(row as MerchantModel)),
           new Menu('删除', '', (row) => this.delete(row as MerchantModel)),
-          new Menu('备案人', '', 'linkman'),
+          new Menu('备案人', '', (row) => this.delete(row as MerchantModel)),
           new Menu('子商户', '', 'son'),
         ],
         new Menu('查看', '', (row) => this.view(row)), 'text-center',
@@ -93,6 +95,11 @@ export class BussinessmanComponent implements OnInit, OnChanges {
     this.router.navigate( ['/pages/merchant/bussinessman/edit', { id: merchant.id}]);
     console.info(merchant);
   }
+
+  /**
+   * 删除商户
+   * @param {MerchantModel} merchant
+   */
   delete(merchant: MerchantModel) {
     console.info(merchant);
     this.merchantService.del(merchant.id).then(res => {

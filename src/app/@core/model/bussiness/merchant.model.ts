@@ -1,7 +1,15 @@
 /**
  * 商户
  */
+import {AccountModel} from './account.model';
 export class MerchantModel {
+  /**
+   * 账号实体
+   */
+  account?: AccountModel;
+  /**
+   * 编号
+   */
   id?: string;
   /**
    * 商户名
@@ -30,7 +38,7 @@ export class MerchantModel {
   /**
    * 交易折扣
    */
-  discount?: string;
+  discount?: number;
   /**
    * 是否租车位（1场内，0场外）
    */
@@ -49,4 +57,8 @@ export class MerchantModel {
   disableSign?: string;
   invalid?: string;
   cloudUser?: string;
+  /**
+   * 主商户实体，为空时本身为主商户，只有主商户才可以创建子商户
+   */
+  master?: MerchantModel;
 }
