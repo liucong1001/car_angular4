@@ -13,8 +13,6 @@ export class CommonDialogService {
     return new Promise<boolean>((res, rej) => {
       if (confirm(content)) {
         res();
-      }else {
-        rej();
       }
     });
   }
