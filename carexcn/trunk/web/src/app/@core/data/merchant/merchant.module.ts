@@ -1,5 +1,6 @@
 import {ModuleWithProviders, NgModule} from '@angular/core';
 import {MerchantService} from './merchant.service';
+import {FilingService} from './filing.service';
 
 /**
  * 导出服务
@@ -7,6 +8,7 @@ import {MerchantService} from './merchant.service';
  */
 const SERVICES = [
   MerchantService,
+  FilingService,
 ];
 
 /**

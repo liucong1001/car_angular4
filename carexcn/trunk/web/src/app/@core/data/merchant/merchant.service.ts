@@ -1,8 +1,7 @@
 import {Injectable, isDevMode} from '@angular/core';
 import {Http} from '@angular/http';
 import {MerchantForm} from '../../model/bussiness/merchant.form';
-import {SonMerchantForm} from "../../model/bussiness/son.merchant.form";
-import {promise} from "selenium-webdriver";
+import {SonMerchantForm} from '../../model/bussiness/son.merchant.form';
 
 @Injectable()
 export class MerchantService {
@@ -17,7 +16,7 @@ export class MerchantService {
   public del(id: string): Promise<any> {
     return this.http.delete(this.api_url_base + '/' + id).toPromise();
   }
-  public get(id: string): Promise<any> {
+  public get(id: string): Promise<MerchantForm> {
     return this.http.get(this.api_url_base + '/' + id).toPromise().then((res) => res.json() as MerchantForm);
   }
   public start(id: string): Promise<any> {

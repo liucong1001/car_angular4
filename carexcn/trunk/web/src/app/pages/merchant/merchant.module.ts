@@ -11,13 +11,13 @@ import { LinkmanComponent } from './dealers/linkman/linkman.component';
 import {UiModule} from '../../@core/ui/ui.module';
 import { AddDealerComponent } from './dealers/add-dealer/add-dealer.component';
 import { EditDealerComponent } from './dealers/edit-dealer/edit-dealer.component';
-import { ReviseDealerComponent } from './dealers/revise-dealer/revise-dealer.component';
 import { BussinessmanComponent } from './dealers/bussinessman/bussinessman.component';
 import { AddLinkmanComponent } from './dealers/add-linkman/add-linkman.component';
 import { FinanceComponent } from './finance/finance.component';
 import { DetailsComponent } from './finance/details/details.component';
 import { BindingComponent } from './finance/binding/binding.component';
 import { AddComponent } from './finance/add/add.component';
+import { EditLinkmanComponent } from './dealers/edit-linkman/edit-linkman.component';
 
 @NgModule({
   imports: [
@@ -36,13 +36,13 @@ import { AddComponent } from './finance/add/add.component';
     LinkmanComponent,
     AddDealerComponent,
     EditDealerComponent,
-    ReviseDealerComponent,
     BussinessmanComponent,
     AddLinkmanComponent,
     FinanceComponent,
     DetailsComponent,
     BindingComponent,
     AddComponent,
+    EditLinkmanComponent,
   ],
 })
 export class MerchantModule { }

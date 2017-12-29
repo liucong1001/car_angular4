@@ -7,7 +7,7 @@ import {MerchantService} from '../../../../@core/data/merchant/merchant.service'
 import {MerchantModel} from '../../../../@core/model/bussiness/merchant.model';
 import {MessageService} from '../../../../@core/utils/message.service';
 import {CustomCell} from '../../../../@core/ui/table/cell';
-import {SonMerchantForm} from "../../../../@core/model/bussiness/son.merchant.form";
+import {SonMerchantForm} from '../../../../@core/model/bussiness/son.merchant.form';
 
 /**
  * TODO: 功能列表
@@ -36,7 +36,6 @@ export class BussinessmanComponent implements OnInit, OnChanges {
   }
   @ViewChild('isPersonalTemp') private isPersonalTemp: TemplateRef<any>;
   @ViewChild('disableSignTemp') private disableSignTemp: TemplateRef<any>;
-  // @ViewChild('itemList') private itemList: any;
   columns: Column[];
   ngOnInit() {
     this.columns = [
@@ -61,12 +60,12 @@ export class BussinessmanComponent implements OnInit, OnChanges {
               (row) => this.isNotFlag(row as MerchantModel),
             ),
             new Menu('备案人', '',
-              (row) => this.delete(row as MerchantModel),
+              (row) => this.linkman(row as MerchantModel),
               (row) => this.isNotFlag(row as MerchantModel),
             ),
             new Menu('子商户', '',
               (row) => this.createSon(row as MerchantModel),
-              (row) => this.isNotFlag(row as MerchantModel),
+              (row) => this.isNotPersonal(row as MerchantModel),
             ),
           ],
           new Menu('查看', '',
@@ -94,7 +93,14 @@ export class BussinessmanComponent implements OnInit, OnChanges {
   }
 
   /**
-   * 是否是个人商户
+   * 是否是个人类型的商户
+   * @param row
+   */
+  isNotPersonal(row) {
+    return '1' === row.isPersonal ? false : ('1' === row.flag ? false : (row.master ? false : true));
+  }
+  /**
+   * 是否是个人商户【特殊商户，非正常商户】
    * @param row
    */
   isNotFlag(row) {
@@ -121,15 +127,17 @@ export class BussinessmanComponent implements OnInit, OnChanges {
       this.message.error('操作失败', err.json().message);
     });
   }
-  linkman(row: any) {
-    console.info(row);
+  linkman(merchant) {
+    this.router.navigate( ['/pages/merchant/bussinessman/linkman', { id: merchant.id}]);
+    // console.info(merchant.id);
+    // console.info(merchant);
   }
   view(row) {
     console.info(row);
   }
   edit(merchant) {
     this.router.navigate( ['/pages/merchant/bussinessman/edit', { id: merchant.id}]);
-    console.info(merchant);
+    // console.info(merchant);
   }
 
   /**
