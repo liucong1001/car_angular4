@@ -1,4 +1,4 @@
-import {FilingModel} from './filing.model';
+import {FilingInfoModel} from './filing.info.model';
 import {MerchantModel} from './merchant.model';
 
 /**
@@ -8,7 +8,7 @@ export class VehicleModel {
   /**
    * 代办员
    */
-  filingInfo: FilingModel;
+  filingInfo: FilingInfoModel;
   /**
    * 代办主商户标识（如果是子商户，也含主商户标识）
    */

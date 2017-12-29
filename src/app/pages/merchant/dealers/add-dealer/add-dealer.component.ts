@@ -35,6 +35,7 @@ export class AddDealerComponent implements OnInit {
 
   ngOnInit() {
   }
+  merchant: MerchantModel;
   photos: any[] = [{
     title: '机构证正面',
     source: 'assets/images/camera1.jpg',
@@ -80,11 +81,11 @@ export class AddDealerComponent implements OnInit {
   onChangeSource($event, photo) {
     this.message.info(photo.title + ' 的新图片地址', $event);
   }
-  /*返回*/
-  goBack() {
-    this.location.back();
-  }
-  private api_url_base = '/rest/merchant';
+
+  /**
+   * 保存新商户
+   * @returns {boolean}
+   */
   save() {
     if (this._formGroup.invalid) {
       this.message.error('填写错误', JSON.stringify(this._formGroup.errors));
@@ -101,7 +102,6 @@ export class AddDealerComponent implements OnInit {
       });
     }
   }
-  merchant: MerchantModel;
   edit(row) {
     this.merchant = row;
     console.info(this.merchant);

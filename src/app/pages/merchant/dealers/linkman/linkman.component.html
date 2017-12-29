@@ -1,12 +1,14 @@
 <nb-card >
   <nb-card-header class="d-flex">
-    <div class="p-2 mr-auto">备案人列表</div>
+    <div class="p-2 mr-auto">备案人列表 -- {{ merchantName }}</div>
     <div class="p2">
-      <button type="button" class="btn btn-success btn-sm" (click)="jump()">新增联系人</button>
-      <button type="button" class="btn btn-warning btn-sm" (click)="goBack()">关闭</button>
+      <button type="button" class="btn btn-success btn-sm" (click)="addLinkman()">新增备案人</button>
+      <button type="button" class="btn btn-warning btn-sm" (click)="location.back()">关闭</button>
     </div>
   </nb-card-header>
   <nb-card-body>
-    <ngx-table [url]="'/rest/sys/codemap/pager'" [columns]="columns" #itemList [filter]="filter"></ngx-table>
+    <ngx-table [url]="'/rest/merchant/filing/pager?merchantId=' + merchantId" [columns]="columns" #itemList [filter]="filter"></ngx-table>
   </nb-card-body>
 </nb-card>
+
+<ng-template #disableSignTemp let-data><a href="javascript:void(0)" (click)="changeDisableSign(data)" title="点击修改在职状态" [style]="data.disableSign !== '1' ? 'color:#ccc' : ''">当前{{data.disableSign === '1' ? '在职' : '离职'}}</a></ng-template>
