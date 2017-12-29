@@ -18,7 +18,7 @@ export class TextCellComponent extends CellComponent {
       props = key.substring(0, dotIdx);
     }
     const ret = d[props];
-    if (ret === undefined || dotIdx < 1) {
+    if (ret === undefined || ret === null || dotIdx < 1) {
       return ret;
     }
     return this.getData(ret, key.substring(dotIdx + 1));
