@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {NB_AUTH_TOKEN_WRAPPER_TOKEN, NbAuthJWTToken, NbAuthService} from '@nebular/auth';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {AuthSessionToken} from "../../../../@core/data/security/auth-session-token";
+import {AuthSessionToken} from '../../../../@core/data/security/auth-session-token';
 
 /**
  * 登录页面组件
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
       // console.log(err);
     });
     this.authService.onTokenChange().subscribe( (token: AuthSessionToken) => {
-      console.log(token.getPayload());
+      // console.log(token.getPayload());
     });
   }
 

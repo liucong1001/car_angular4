@@ -46,7 +46,7 @@ export class MarketStaffComponent implements OnInit {
       {title: '员工姓名', titleClass: '', cell: new TextCell('userName')} as Column,
       {title: '登录ID', titleClass: '', cell: new TextCell('loginName')} as Column,
       {title: '市场', titleClass: '', cell: new TextCell('market.name')} as Column,
-      {title: '岗位', titleClass: '', cell: new CodemapCell('staffPosition')} as Column,
+      {title: '岗位', titleClass: '', cell: new CodemapCell('position', 'staffPosition')} as Column,
       {title: '状态', titleClass: '', cell: new CustomCell(this.statusCell)} as Column,
       {title: '操作', titleClass: '', cell: new MenuCell([
           new Menu('查看', '', 'edit/:id'),

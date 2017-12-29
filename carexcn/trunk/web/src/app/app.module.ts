@@ -18,6 +18,7 @@ import {ToasterModule} from 'angular2-toaster';
 
 import 'style-loader!angular2-toaster/toaster.css';
 import {ReactiveFormsModule} from '@angular/forms';
+import {PipesModule} from './@core/pipes/pipes.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,6 +34,7 @@ import {ReactiveFormsModule} from '@angular/forms';
     CoreModule.forRoot(),
     ReactiveFormsModule,
     ToasterModule,
+    PipesModule,
   ],
   bootstrap: [AppComponent],
   providers: [
