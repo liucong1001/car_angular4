@@ -38,7 +38,7 @@ export class CustomCellData {
  * 代码集单元格
  */
 export class CodemapCell extends CustomCell {
-  constructor(public codemap: string, cellClass?: string) {
+  constructor(public property, public codemap: string, cellClass?: string) {
     super('codemapCell', cellClass);
   }
 }

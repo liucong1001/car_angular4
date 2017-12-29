@@ -8,7 +8,7 @@ import {CellComponent, CustomCell, CustomCellData} from './cell';
   selector: 'ngx-custom-cell',
   template: `
     <div #customCell></div>
-    <ng-template #codemapCell let-data let-cell="cell">{{data.position | code_trans:cell.codemap | async}}</ng-template>
+    <ng-template #codemapCell let-data let-cell="cell">{{cell.property | getProperty: data | code_trans:cell.codemap | async}}</ng-template>
   `,
 })
 export class CustomCellComponent extends CellComponent implements OnInit {
