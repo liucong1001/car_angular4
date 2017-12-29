@@ -5,6 +5,8 @@ import { UserService } from '../../../@core/data/users.service';
 import { AnalyticsService } from '../../../@core/utils/analytics.service';
 import {NbAuthService} from '@nebular/auth';
 import {Router} from '@angular/router';
+import {MarketStaff} from "../../../@core/model/system/market-staff";
+import {AuthSessionToken} from "../../../@core/data/security/auth-session-token";
 
 @Component({
   selector: 'ngx-header',
@@ -16,13 +18,12 @@ export class HeaderComponent implements OnInit {
 
   @Input() position = 'normal';
 
-  user: any;
+  user: MarketStaff;
 
   userMenu = [{ title: 'Profile' }, { title: '注销' , url: '/auth/login'}];
 
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
-              private userService: UserService,
               private analyticsService: AnalyticsService,
               private authService: NbAuthService,
               private router: Router) {
@@ -30,8 +31,9 @@ export class HeaderComponent implements OnInit {
 
 
   ngOnInit() {
-    this.userService.getUsers()
-      .subscribe((users: any) => this.user = users.nick);
+    this.authService.onTokenChange().subscribe((token: AuthSessionToken) => {
+      this.user = token.getPayload();
+    });
   }
 
   toggleSidebar(): boolean {

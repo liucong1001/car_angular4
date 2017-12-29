@@ -1,6 +1,6 @@
 import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {NbAuthJWTToken, NbAuthModule, NbEmailPassAuthProvider} from '@nebular/auth';
+import {NB_AUTH_TOKEN_WRAPPER_TOKEN, NbAuthModule, NbEmailPassAuthProvider} from '@nebular/auth';
 
 import { throwIfAlreadyLoaded } from './module-import-guard';
 import { DataModule } from './data/data.module';
@@ -10,6 +10,7 @@ import { DeviceModule } from './device/device.module';
 import {UtilsModule} from './utils/utils.module';
 import {PagerService} from './data/pager.service';
 import {UiModule} from './ui/ui.module';
+import {AuthSessionToken} from './data/security/auth-session-token';
 
 const NB_CORE_PROVIDERS = [
   ...DataModule.forRoot().providers,
@@ -40,13 +41,14 @@ const NB_CORE_PROVIDERS = [
             },
             token: {
               getter(module, res) {
-                return res.body.loginName;
+                return JSON.stringify(res.body);
               },
             },
           },
         },
     },
   }).providers,
+  {provide: NB_AUTH_TOKEN_WRAPPER_TOKEN, useClass: AuthSessionToken},
   AnalyticsService,
   MessageService,
   PagerService,

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {NB_AUTH_TOKEN_WRAPPER_TOKEN, NbAuthJWTToken, NbAuthService} from '@nebular/auth';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
+import {AuthSessionToken} from "../../../../@core/data/security/auth-session-token";
 
 /**
  * 登录页面组件
@@ -21,6 +22,9 @@ export class LoginComponent implements OnInit {
     }).catch(err => {
       // console.log(err);
     });
+    this.authService.onTokenChange().subscribe( (token: AuthSessionToken) => {
+      console.log(token.getPayload());
+    });
   }
 
   form: FormGroup = this.fb.group({
@@ -37,9 +41,7 @@ export class LoginComponent implements OnInit {
     }).toPromise().then(ret => {
       // this.tokenService.set
       this.router.navigate(['/']);
-      console.log(ret);
     }).catch(err => {
-      console.log(err);
     });
   }
 
