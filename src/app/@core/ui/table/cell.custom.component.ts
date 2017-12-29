@@ -27,7 +27,7 @@ export class CustomCellComponent extends CellComponent implements OnInit {
   ngOnInit(): void {
     const templateMap = {
       codemapCell: this.codemapCell,
-    }
+    };
     if (this.cell.template) {
       if (typeof this.cell.template === 'string') {
         if (templateMap[this.cell.template]) {
