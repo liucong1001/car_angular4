@@ -10,7 +10,6 @@ import {Recording4Component} from './prejudication/recording4/recording4.compone
 import {RecordingLastComponent} from './prejudication/recording-last/recording-last.component';
 import {RecordingContinueComponent} from './prejudication/recording-continue/recording-continue.component';
 import {JudicationPhotoComponent} from './prejudication/judication-photo/judication-photo.component';
-import {UiExampleComponent} from './ui-example/ui-example.component';
 import {TrecordingComponent} from './transfer/trecording/trecording.component';
 import {TjudicationComponent} from './transfer/tjudication/tjudication.component';
 import {Trecording2Component} from './transfer/trecording2/trecording2.component';
@@ -20,9 +19,6 @@ import {TjudicationFingerComponent} from './transfer/tjudication-finger/tjudicat
 
 const routes: Routes = [
   {
-    path: 'example',
-    component: UiExampleComponent,
-  }, {
     path: 'transfer/trecording',
     component: TrecordingComponent,
   }, {
@@ -43,10 +39,6 @@ const routes: Routes = [
   }, {
     path: 'prejudication',
     component: PrejudicationComponent,
-  },
-  {
-    path: 'transfer',
-    component: TransferComponent,
   },
   {
     path: 'prejudication/recording',

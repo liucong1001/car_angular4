@@ -69,6 +69,9 @@ const routes: Routes = [{
     path: 'tables',
     loadChildren: './tables/tables.module#TablesModule',
   }, {
+    path: 'example',
+    loadChildren: './example/example.module#ExampleModule',
+  }, {
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full',

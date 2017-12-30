@@ -43,11 +43,11 @@ export class UiExampleComponent implements OnInit {
     {label: '汉口', value: 'hankoubei'},
   ];
   getDropListSelect(event) {
-    console.log(event);
+    console.info(event);
     this.codeTransSeleted = JSON.stringify(event);
   }
   getDropListSelectItem(event) {
-    console.log(event);
+    console.info(event);
     this.codeTransSeleted = JSON.stringify(event);
   }
   test2Pipe(code: string, codemap: string) {
@@ -55,7 +55,7 @@ export class UiExampleComponent implements OnInit {
   }
   test1Click(url) {
     this.rest.get(url).subscribe(res => {
-      console.log(res);
+      console.info(res);
     });
   }
   /**
