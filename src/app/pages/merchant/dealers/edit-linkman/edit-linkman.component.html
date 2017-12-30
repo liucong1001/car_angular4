@@ -1,3 +1,118 @@
-<p>
-  edit-linkman works!
-</p>
+<nb-card>
+  <nb-card-header class="d-flex">
+    <div class="p-2 mr-auto">编辑备案人 -- {{_merchant.name}}</div>
+    <div class="p2">
+      <a (click)="location.back()" class="btn btn-secondary btn-sm">返回</a>
+    </div>
+  </nb-card-header>
+
+  <nb-card-body>
+    <form [formGroup]="_formGroup" (ngSubmit)="save()">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label>姓名</label>
+            <input type="text" class="form-control" placeholder="姓名"
+                   formControlName="name"
+                   [ngClass]="{'form-control-danger':_formGroup.get('name').invalid && _formGroup.get('name').touched}">
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label>电话</label>
+            <input type="text" class="form-control" placeholder="电话"
+                   formControlName="phone"
+                   [ngClass]="{'form-control-danger':_formGroup.get('phone').invalid && _formGroup.get('phone').touched}">
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label>是否可交易</label>
+            <select name="isPersonal" class="form-control"
+                    formControlName="isDeal"
+                    [ngClass]="{'form-control-danger':_formGroup.get('isDeal').invalid && _formGroup.get('isDeal').touched}">
+              <option value="">是否可交易</option>
+              <option value="1">可交易</option>
+              <option value="0">不可交易</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label>是否可代办</label>
+            <select name="isPersonal" class="form-control"
+                    formControlName="isAgency"
+                    [ngClass]="{'form-control-danger':_formGroup.get('isAgency').invalid && _formGroup.get('isAgency').touched}">
+              <option value="">是否可代办</option>
+              <option value="1">可代办</option>
+              <option value="0">不可代办</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label>地址</label>
+            <input type="text" class="form-control" name="address" placeholder="地址"
+                   formControlName="address"
+                   [ngClass]="{'form-control-danger':_formGroup.get('address').invalid && _formGroup.get('address').touched}">
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label>证件号</label>
+            <input type="text" class="form-control" placeholder="证件号"
+                   formControlName="certCode"
+                   [ngClass]="{'form-control-danger':_formGroup.get('certCode').invalid && _formGroup.get('certCode').touched}">
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label>是否使用APP</label>
+            <select name="isPersonal" class="form-control"
+                    formControlName="isApp"
+                    [ngClass]="{'form-control-danger':_formGroup.get('isApp').invalid && _formGroup.get('isApp').touched}">
+              <option value="">是否使用APP</option>
+              <option value="1">使用APP</option>
+              <option value="0">不使用APP</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label>证件有效期</label>
+            <input type="text" class="form-control" name="endDate" placeholder="证件有效期"
+                   formControlName="endDate"
+                   [ngClass]="{'form-control-danger':_formGroup.get('endDate').invalid && _formGroup.get('endDate').touched}">
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label>是个人还是单位</label>
+            <select name="isPersonal" class="form-control"
+                    formControlName="type"
+                    [ngClass]="{'form-control-danger':_formGroup.get('type').invalid && _formGroup.get('type').touched}">
+              <option value="">是个人还是单位</option>
+              <option value="1">个人</option>
+              <option value="0">单位</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <label> &nbsp; </label>
+          <button type="submit" class="btn btn-primary btn-block float-right" [disabled]="_formGroup.invalid">保存</button>
+        </div>
+        <div class="col-sm-12" style="margin-bottom: 1rem;">
+          <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source"
+                         (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-6'"></ngx-ys-camera>
+          <div style="height: 288px">
+            <img class="float-left" [src]="fingerImgUrl" alt="指纹照片" style="width: 256px;height: 288px;"/>
+            <ul class="float-left align-middle" style="list-style: none;">
+              <li><button class="btn btn-primary btn-sm" (click)="fingerRead()" style="height: 40px">指纹读取</button></li>
+              <li><button class="btn btn-primary btn-sm" (click)="fingerVerify()" style="height: 40px;margin-top: 5px;">指纹验证</button></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+</nb-card>
