@@ -1,7 +1,7 @@
 /**
  *市场证件模型
  */
-export  class Marketphotomap{
+export  class Marketphotomap {
 
   public id: string;
   /**
@@ -39,15 +39,21 @@ export  class Marketphotomap{
   /**
    * 拍照顺序
    */
-  public sort:string;
+  public sort: string;
   /**
    * 业务类型
    */
-  public business:string;
+  public business: string;
   /**
    * 表单名称
    */
-  public formName:string;
-
+  public formName: string;
+  /**
+   * 市场
+   */
+  public  market: {
+    id: string;
+    name: string;
+ };
 
 }

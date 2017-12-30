@@ -27,7 +27,7 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label>地区:</label>
-                         <input type="text" class="form-control" formControlName="area" placeholder="地区" [ngClass]="{'form-control-danger':form.get('area').hasError('required') && form.get('area').touched}">
+                        <ngx-ys-autoinput [results_resource_url]="city_source_url" (_value)="getAutoCityValue($event)" [showProperty]="'name'" [getProperty]="iCity"></ngx-ys-autoinput>
                     </div>
                     <div class="text-danger" *ngIf="form.get('area').hasError('required') && form.get('area').touched">
                         -- 必须输入地区

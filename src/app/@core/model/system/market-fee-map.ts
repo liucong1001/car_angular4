@@ -8,6 +8,10 @@ export class Marketfeemap {
    * 费用名
    */
   public name: string;
+ /**
+ * 表单名称
+ */
+  public formName: string;
   /**
    * 代号
    */
@@ -41,4 +45,11 @@ export class Marketfeemap {
    */
   public priceType: any;
 
+  /**
+   * 市场
+   */
+  public  market: {
+        id: string;
+        name: string;
+  };
 }

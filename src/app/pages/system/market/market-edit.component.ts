@@ -19,7 +19,9 @@ import { MessageService } from '../../../@core/utils/message.service';
 
 export class MarketEditComponent implements OnInit {
 
-  isEdit = false;
+  city_source_url = '/rest/sys/area?key=';
+  auto_input_value_tmp = '';
+   isEdit = false;
     constructor(private fb: FormBuilder,
         public router: Router,
         private route: ActivatedRoute,
@@ -28,17 +30,19 @@ export class MarketEditComponent implements OnInit {
         private message: MessageService,
     ) {
         this.route.params.subscribe(p => {
-              if(p.id){
+              if (p.id) {
                 this.marketService.getMarket(p.id).then(res =>{
                   this.isEdit = true;
+                  console.log('修改', res, res.area);
                   this.form.patchValue({
-                    id:res.id,
-                    name:res.name,
-                    area: res.area,
-                    cloudUser:res.cloudUser,
-                    memo:res.memo,
-                  })
-                })
+                    id: res.id,
+                    name: res.name,
+                    // area: res.area,
+                    cloudUser: res.cloudUser,
+                    memo: res.memo,
+                  });
+                  this.getAutoCityValue(res.area);
+                });
               }
         });
     }
@@ -47,7 +51,10 @@ export class MarketEditComponent implements OnInit {
     form: FormGroup = this.fb.group({
         name: ['', [Validators.required]],
       cloudUser: ['', [Validators.required]],
-        area: ['', [Validators.required]],
+        area: this.fb.group({
+          id: [''],
+          name: [''],
+        }),
         memo: [''],
         id: [''],
     });
@@ -68,6 +75,21 @@ export class MarketEditComponent implements OnInit {
 
     ngOnInit() {
     }
+
+      /**
+   * 输入提示，模糊搜索
+   * @param event
+   */
+  getAutoCityValue(event) {
+    if (this.auto_input_value_tmp !== event) {
+      this.auto_input_value_tmp = event;
+      this.message.info('输入提示', '您选择了：' + event);
+      console.log('转出地选择了', event);
+      this.form.patchValue({
+        area: event,
+      });
+    }
+  }
 
     /**
   * 已保存标志
@@ -106,6 +128,6 @@ export class MarketEditComponent implements OnInit {
 
     }
     back() {
-        this.router.navigateByUrl('/pages/system/market');
+        this.router.navigateByUrl('/pages/system/market/market');
     }
 }
