@@ -1,3 +1,39 @@
-<p>
-  market-staff-edit works!
-</p>
+<nb-card>
+  <nb-card-header>市场员工信息</nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="form" (ngSubmit)="save()" class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>登录ID</label>
+            <input type="text" class="form-control" formControlName="loginName" placeholder="登录用的ID" />
+          </div>
+          <ngx-valid-error [errors]="errors.loginName" [control]="form.get('loginName')"></ngx-valid-error>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>姓名</label>
+            <input type="text" class="form-control" formControlName="userName" placeholder="员工姓名" />
+          </div>
+          <ngx-valid-error [errors]="errors.userName" [control]="form.get('userName')"></ngx-valid-error>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>岗位</label>
+            <ngx-ys-codeitem-droplist codeMap="staffPosition" formControlName="position"> </ngx-ys-codeitem-droplist>
+          </div>
+          <ngx-valid-error [errors]="errors.position" [control]="form.get('position')"></ngx-valid-error>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>电子邮箱</label>
+            <input type="text" class="form-control" formControlName="email" placeholder="员工的电子邮箱" />
+          </div>
+          <ngx-valid-error [errors]="errors.email" [control]="form.get('email')"></ngx-valid-error>
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+</nb-card>

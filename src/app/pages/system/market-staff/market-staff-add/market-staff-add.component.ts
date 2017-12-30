@@ -9,6 +9,7 @@ import {ErrorMessage} from '../../../../@core/ui/valid-error/valid-error.compone
   selector: 'ngx-market-staff-add',
   templateUrl: './market-staff-add.component.html',
   styleUrls: ['./market-staff-add.component.scss'],
+  providers: [MarketStaffService, MessageService],
 })
 export class MarketStaffAddComponent implements OnInit {
 

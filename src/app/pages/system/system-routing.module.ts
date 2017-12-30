@@ -1,3 +1,4 @@
+import { MarketStaffEditComponent } from './market-staff/market-staff-edit/market-staff-edit.component';
 import { MarketPhotoEditComponent } from './market/market-photo-edit/market-photo-edit.component';
 import { MarketFeeEditComponent } from './market/market-fee-edit/market-fee-edit.component';
 import { MarketEditComponent } from './market/market-edit.component';
@@ -44,6 +45,7 @@ const routes: Routes = [{
     {path: 'market/market/edit', component: MarketEditComponent},
     {path: 'market/staff', component: MarketStaffComponent},
     {path: 'market/staff/add', component: MarketStaffAddComponent},
+    {path: 'market/staff/edit', component: MarketStaffEditComponent},
     {path: 'market/brand', component: MarketBrandComponent},
     {path: 'market/fee', component: MarketFeeComponent},
     {path: 'market/fee/edit', component: MarketFeeEditComponent},
