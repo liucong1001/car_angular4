@@ -13,7 +13,6 @@ import {RecordingLastComponent} from './prejudication/recording-last/recording-l
 import {RecordingContinueComponent} from './prejudication/recording-continue/recording-continue.component';
 import {ThemeModule} from '../../@theme/theme.module';
 import {JudicationPhotoComponent} from './prejudication/judication-photo/judication-photo.component';
-import {UiExampleComponent} from './ui-example/ui-example.component';
 import {UiModule} from '../../@core/ui/ui.module';
 import { TrecordingComponent } from './transfer/trecording/trecording.component';
 import { TjudicationComponent } from './transfer/tjudication/tjudication.component';
@@ -43,7 +42,6 @@ import {SystemModule} from '../../@core/data/system/system.module';
     RecordingLastComponent,
     RecordingContinueComponent,
     JudicationPhotoComponent,
-    UiExampleComponent,
     TrecordingComponent,
     TjudicationComponent,
     TrecordingComponent,
