@@ -9,6 +9,7 @@
               <label>名称:</label>
               <input type="text" class="form-control" formControlName="name" placeholder="名称" [ngClass]="{'form-control-danger':form.get('name').hasError('required') && form.get('name').touched}">
           </div>
+          <ngx-valid-error [errors]="errors.name" [control]="form.get('name')"></ngx-valid-error>
 
         </div>
         <div class="col-sm-6">
@@ -16,6 +17,7 @@
             <label>市场代号:</label>
             <input type="text" class="form-control" formControlName="cloudUser" placeholder="市场代号" >
           </div>
+          <ngx-valid-error [errors]="errors.cloudUser" [control]="form.get('cloudUser')"></ngx-valid-error>
         </div>
 
       </div>
@@ -25,13 +27,14 @@
             <label>车辆类型代码集:</label>
             <input type="text" class="form-control" formControlName="vehicleTypeCode" placeholder="车管所城市名" >
           </div>
-
+          <ngx-valid-error [errors]="errors.vehicleTypeCode" [control]="form.get('vehicleTypeCode')"></ngx-valid-error>
         </div>
         <div class="col-sm-6">
           <div class="form-group">
             <label>车辆类别代码集:</label>
             <input type="text" class="form-control" formControlName="vehicleCategoryCode" placeholder="车辆类别代码集" >
           </div>
+          <ngx-valid-error [errors]="errors.vehicleCategoryCode" [control]="form.get('vehicleCategoryCode')"></ngx-valid-error>
 
         </div>
       </div>
@@ -43,8 +46,8 @@
                   <option value="">--请选择市场-- </option>
                   <option [value]="item.id"  *ngFor="let item of marketList ">{{item.name}}</option>
             </select>
-            <!--<input type="text" class="form-control" formControlName="market" placeholder="车管所城市名" >-->
           </div>
+          <ngx-valid-error [errors]="errors.market.id" [control]="form.get('id')"></ngx-valid-error>
         </div>
         <div class="col-sm-6">
           <div class="form-group">

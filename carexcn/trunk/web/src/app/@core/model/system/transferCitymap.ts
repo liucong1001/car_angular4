@@ -3,7 +3,7 @@
  */
 export class TransferCitymap {
 
-    public id:string;
+    public id: string;
   /**
    * 城市名
    */
@@ -16,14 +16,14 @@ export class TransferCitymap {
   /**
    * 备注
    */
-    public memo:string;
+    public memo: string;
   /**
    * 所属行政区域车管所所属城市
    */
-    public  city:string;
+    public  city: object;
   /**
    * 管辖的区域
    */
-    public management:string;
+    public management: object;
 
   }

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-market-staff-edit',
+  selector: 'ngx-market-staff-edit',
   templateUrl: './market-staff-edit.component.html',
-  styleUrls: ['./market-staff-edit.component.scss']
+  styleUrls: ['./market-staff-edit.component.scss'],
 })
 export class MarketStaffEditComponent implements OnInit {
 

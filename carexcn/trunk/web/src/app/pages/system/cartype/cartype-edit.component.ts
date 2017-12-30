@@ -11,6 +11,7 @@ import {MessageService} from "../../../@core/utils/message.service";
 import {Cartypemap} from "./../../../@core/model/system/cartypemap";
 import {CartypeService} from "../../../@core/data/system/cartype.service";
 import { AreaService } from './../../../@core/data/system/area.service';
+import {ErrorMessage} from '../../../@core/ui/valid-error/valid-error.component';
 
 
 @Component({
@@ -84,6 +85,46 @@ export class CartypeEditComponent implements OnInit {
     code: [''],
      id:[''],
   });
+
+  errors = {
+    name: [
+      new ErrorMessage('required', '必须填写名称！'),
+    ],
+    cloudUser: [
+      new ErrorMessage('required', '必须填写市场代码！'),
+    ],
+    // market: [
+    //   new ErrorMessage('required', '必须选择市场！'),
+    // ],
+    market:{
+      id:[new ErrorMessage('required', '必须选择市场！'),],
+    },
+    vehicleTypeCode: [
+      new ErrorMessage('required', '必须填写车辆类别！'),
+    ],
+    vehicleCategoryCode: [
+      new ErrorMessage('required', '必须填写车辆类别！'),
+    ],
+    // telephone: [
+    //   new ErrorMessage('required', '必须填写手机号码！'),
+    //   new ErrorMessage('pattern', '手机号码格式不正确！'),
+    // ],
+    // code: [
+    //   new ErrorMessage('required', '必须填写手机验证码！'),
+    //   new ErrorMessage('pattern', '验证码格式错误！'),
+    //   new ErrorMessage('validcode', '验证码不正确！'),
+    // ],
+    // userName: [
+    //   new ErrorMessage('required', '必须填写员工姓名！'),
+    //   new ErrorMessage('maxlength', '姓名过长！'),
+    // ],
+    // email: [
+    //   new ErrorMessage('email', '邮址地址格式无效！'),
+    // ],
+    // position: [
+    //   new ErrorMessage('required', '必须选择一个岗位！'),
+    // ],
+  };
   /**
    * 已保存标志
    * @type {boolean}

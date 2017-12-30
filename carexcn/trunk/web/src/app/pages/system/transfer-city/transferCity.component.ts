@@ -6,6 +6,7 @@ import {Menu, MenuCell} from '../../../@core/ui/table/cell.menu.component';
 import {Column} from '../../../@core/ui/table/table.component';
 import {TextCell} from '../../../@core/ui/table/cell.text.component';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'ngx-transfercity',
@@ -42,15 +43,21 @@ export class TransfercityComponent implements OnInit, OnChanges {
   // 组件初始华
   ngOnInit(): void {
   }
+
+  constructor(
+    public router: Router,
+    private route: ActivatedRoute,
+  ) { }
+
   // 列表搜索条件对象
   filter: any = {};
   // 列表列定义
   columns: Column[] = [
-    {title: '省份/直辖市', titleClass: '', cell: new TextCell('code')} as Column,
-    {title: '提档车管所', titleClass: '', cell: new TextCell('name')} as Column,
-    {title: '所属城市维护', titleClass: 'w-25 text-center', cell: new MenuCell(
+    {title: '转出地', titleClass: '', cell: new TextCell('city.name')} as Column,
+    {title: '提档车管所', titleClass: '', cell: new TextCell('management.name')} as Column,
+    {title: '操作', titleClass: 'w-25 text-center', cell: new MenuCell(
       [
-        new Menu('编辑', '', 'edit'),
+        new Menu('编辑', '', this.edit.bind(this)),
         new Menu('禁用', '', this.disable),
       ],
       new Menu('查看', '', this.view), 'text-center',
@@ -65,6 +72,7 @@ export class TransfercityComponent implements OnInit, OnChanges {
   view(row: any, drop: any) {
   }
   edit(row: any) {
+    this.router.navigate( ['/pages/system/transfercity/edit', { id: row.id }]);
   }
   disable(row: any) {
 

@@ -16,7 +16,10 @@ export class Marketmap {
     public number: string;
     /*   地区 */
     // id,clouder,name code,
-    public area: object;
+    public area = {
+      id: '',
+      name: '',
+    };
     /* 市场备注 */
     public memo: string;
 
