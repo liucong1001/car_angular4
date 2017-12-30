@@ -20,20 +20,22 @@ import {FilingService} from '../../../../@core/data/merchant/filing.service';
 export class LinkmanComponent implements OnInit {
 
   /**
-   * 代码项搜索条件
+   * 搜索条件
    * @type {{}}
    */
-  filter: any = {};
+  filter: any = {filingPerson: {}};
   @ViewChild('disableSignTemp') private disableSignTemp: TemplateRef<any>;
   /**
    * 列表组件实例
    */
   @ViewChild(TableComponent) itemList: TableComponent;
   /**
-   * 代码项列表列定义
+   * 列表列定义
    * @type {[Column , Column , Column]}
    */
   columns: Column[] = [];
+  showFilter = false;
+  visibility = 'hidden';
   merchantId = '';
   merchantName = '';
   photos: any[] = [{
@@ -87,6 +89,14 @@ export class LinkmanComponent implements OnInit {
         ];
       }
     });
+  }
+
+  /**
+   * 列表搜索表单隐藏显示切换
+   */
+  toggle() {
+    this.showFilter = !this.showFilter;
+    this.visibility = this.showFilter ? 'shown' : 'hidden';
   }
   /**
    * 新的图片地址事件
