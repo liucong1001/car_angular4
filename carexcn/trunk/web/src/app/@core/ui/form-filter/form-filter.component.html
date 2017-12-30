@@ -1,0 +1,13 @@
+
+<form (submit)="itemList.reload()" >
+  <div class="row">
+    <div *ngFor="let field of filter.__fields" [class]="field._class">
+      <div class="form-group form-group-sm">
+        <input name="name" class="form-control" [(ngModel)]="filter[field._name]" type="text" [placeholder]="field._placeholder"/>
+      </div>
+    </div>
+    <div *ngFor="let button of filter.__buttons" [class]="button._div_class">
+      <button [type]="button._type" [class]="button._class"><i [class]="button._icon"></i>{{button._label}}</button>
+    </div>
+  </div>
+</form>

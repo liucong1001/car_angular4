@@ -14,7 +14,7 @@ import { DroplistComponent } from './droplist/droplist.component';
 import { CarlistComponent } from './carlist/carlist.component';
 import { CardetailComponent } from './cardetail/cardetail.component';
 import { ThemeModule } from '../../@theme/theme.module';
-import { YsFormBuilderComponent } from './ys-form-builder/ys-form-builder.component';
+import { FormFilterComponent } from './form-filter/form-filter.component';
 
 const COMPONENTS = [
   CameraComponent,
@@ -26,7 +26,7 @@ const COMPONENTS = [
   DroplistComponent,
   CarlistComponent,
   CardetailComponent,
-  YsFormBuilderComponent,
+  FormFilterComponent,
 ];
 
 @NgModule({

@@ -5,9 +5,22 @@
     </div>
   </nb-card-header>
   <nb-card-body>
-    表单控件，使用动态表单，自带表单验证
+    <span> &nbsp; &nbsp; * 表格控件已经非常好用了，只需要输入相匹配的URL地址，配置好列即可完成整个表格的显示 </span> <br>
+    <span> &nbsp; &nbsp; * 表格控件对应的搜索表单并不太好用，仍然每一个细节都需要编写，但是都大同小异，下面演示一个搜索表单的编写 </span>
   </nb-card-body>
-  <nb-card-footer>
-    <span> &nbsp; &nbsp; * 本示例用于前端开发组编写包含控件功能页面时参考 </span>
-  </nb-card-footer>
+</nb-card>
+
+<nb-card>
+  <nb-card-header>
+    <div class="cameras-card-header">
+      <span class="cameras-card-title">搜索表单演示</span>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <span> &nbsp; &nbsp; * 搜索表单是和表格控件绑定使用的，一般只需要正常显示做好表单验证即可 </span> <br>
+
+    <ngx-form-filter></ngx-form-filter>
+    <ng-template #itemList></ng-template>
+
+  </nb-card-body>
 </nb-card>
