@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'ngx-form-example',
-  templateUrl: './form-example.component.html',
-  styleUrls: ['./form-example.component.scss'],
+  selector: 'ngx-form-filter',
+  templateUrl: './form-filter.component.html',
+  styleUrls: ['./form-filter.component.scss'],
 })
-export class FormExampleComponent implements OnInit {
+export class FormFilterComponent implements OnInit {
 
   filter = {
     __fields: [
@@ -45,4 +45,5 @@ export class FormExampleComponent implements OnInit {
 
   ngOnInit() {
   }
+
 }
