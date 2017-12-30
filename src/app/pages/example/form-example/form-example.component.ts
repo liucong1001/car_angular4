@@ -11,5 +11,4 @@ export class FormExampleComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }
