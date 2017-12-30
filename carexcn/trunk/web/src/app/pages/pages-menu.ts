@@ -105,7 +105,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
   },
   {
     title: '档案管理',
-    icon: 'ion-social-usd-outline',
+    icon: 'nb-roller-shades',
     children: [
       {
         title: '档案查询',
@@ -157,7 +157,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ],
   }, {
     title: '交易变更',
-    icon: 'ion-ios-settings',
+    icon: 'nb-compose',
     children: [
       {title: '交易修改', link: '/pages/trade-change/trade-revise'},
       {title: '交易状态修改', link: '/pages/trade-change/state-revise'},
