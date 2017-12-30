@@ -5,6 +5,7 @@ import {MerchantModel} from './merchant.model';
  * 备案信息
  */
 export class FilingInfoModel {
+  id?: string;
   /**
    * 姓名
    */

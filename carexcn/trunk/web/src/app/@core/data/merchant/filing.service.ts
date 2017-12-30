@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {RestService} from '../../utils/rest.service';
 import {FilingInfoForm} from '../../model/bussiness/filing.info.form';
+import {Http} from '@angular/http';
 
 /**
  * 备案人备案信息，相关接口
@@ -11,7 +12,7 @@ export class FilingService {
    * 构造函数
    * @param {RestService} rest
    */
-  constructor(private rest: RestService) {}
+  constructor(private rest: Http) {}
 
   /**
    * 接口地址
@@ -25,7 +26,7 @@ export class FilingService {
    * @returns {Promise<FilingInfoForm>}
    */
   public add(model: FilingInfoForm): Promise<FilingInfoForm> {
-    return this.rest.post(this.api_url_base, model).toPromise().then((res) => res as FilingInfoForm);
+    return this.rest.post(this.api_url_base, model).toPromise().then((res) => res.json() as FilingInfoForm);
   }
 
   /**
@@ -34,7 +35,7 @@ export class FilingService {
    * @returns {Promise<FilingInfoForm>}
    */
   public update(model: FilingInfoForm): Promise<FilingInfoForm> {
-    return this.rest.put(this.api_url_base, model).toPromise().then((res) => res as FilingInfoForm);
+    return this.rest.put(this.api_url_base, model).toPromise().then((res) => res.json() as FilingInfoForm);
   }
 
   /**
@@ -52,7 +53,7 @@ export class FilingService {
    * @returns {Promise<FilingInfoForm>}
    */
   public get(id: string): Promise<FilingInfoForm> {
-    return this.rest.get(this.api_url_base + '/' + id).toPromise().then((res) => res as FilingInfoForm);
+    return this.rest.get(this.api_url_base + '/' + id).toPromise().then((res) => res.json() as FilingInfoForm);
   }
 
   /**
