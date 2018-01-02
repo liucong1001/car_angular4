@@ -102,7 +102,7 @@
 }
 .ui-datepicker .ui-datepicker-calendar td:not(.ui-state-disabled) a:hover {
   border-color: #c0c0c0;
-  background: #3d3780;
+  background: #ff930d  !important;
 }
 .ui-state-disabled, .ui-state-disabled a {
   cursor: default!important;
@@ -210,6 +210,12 @@
 .ui-calendar {
   position: relative;
   display: inline-block;
+}
+.ui-datepicker.ui-widget .ui-datepicker-calendar td {
+  border-bottom: 1px solid rgba(42, 42, 42, 0.5) !important;
+}
+.nb-theme-cosmic a:focus, .nb-theme-cosmic a:hover {
+  color: white;
 }
 .ui-datepicker.ui-widget .ui-datepicker-calendar td a.ui-state-highlight {
   background-color: #7659ff;

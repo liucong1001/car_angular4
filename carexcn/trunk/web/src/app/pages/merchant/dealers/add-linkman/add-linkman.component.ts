@@ -53,7 +53,7 @@ export class AddLinkmanComponent implements OnInit {
   }];
   _merchant: MerchantModel = {};
   _formGroup: FormGroup = this.fb.group({
-    name: ['备案人姓名', [Validators.required, Validators.maxLength(14)]],
+    // name: ['备案人姓名', [Validators.required, Validators.maxLength(14)]],
     address: ['湖北武汉汉口', [Validators.required]],
     phone: ['17012345678', [
       Validators.required,
