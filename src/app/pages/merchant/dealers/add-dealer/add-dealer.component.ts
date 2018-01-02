@@ -6,8 +6,8 @@ import {MerchantService} from '../../../../@core/data/merchant/merchant.service'
 import {MerchantForm} from '../../../../@core/model/bussiness/merchant.form';
 import {Http} from '@angular/http';
 import {MerchantModel} from '../../../../@core/model/bussiness/merchant.model';
-import {Codeitem} from "../../../../@core/model/system/codeitem";
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
+import {ErrorMessage} from "../../../../@core/ui/valid-error/valid-error.component";
 
 
 /**
@@ -66,13 +66,50 @@ export class AddDealerComponent implements OnInit {
     phone: ['17012345678', [Validators.required, Validators.pattern(/^1(3|4|7|5|8)([0-9]{9})|0[0-9]{2,3}-[0-9]{8}$/)]],
     endDate: ['20181212', [
       Validators.required,
-      Validators.pattern(/^[1-9]\d{3}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$|^\u957f\u671f$/)],
+      Validators.pattern(/^[1-9]\d{3}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$|^\u957f\u671f$/)],[],
     ],
     discount: ['1', [Validators.maxLength(50)]],
     isCarRental: ['1', [Validators.required]],
     isDeal: ['1', [Validators.required]],
     isPersonal: ['1', [Validators.required]],
   });
+  errors = {
+    name: [
+      new ErrorMessage('required', '必须填写商户名！'),
+      new ErrorMessage('maxLength', '商户名太长了！'),
+    ],
+    code: [
+      new ErrorMessage('required', '必须填写商户编号！'),
+      new ErrorMessage('pattern', '商户编号格式不正确！'),
+    ],
+    certCode: [
+      new ErrorMessage('required', '必须填写证件号！'),
+      new ErrorMessage('pattern', '证件号格式错误！'),
+    ],
+    address: [
+      new ErrorMessage('maxLength', '地址过长！'),
+    ],
+    phone: [
+      new ErrorMessage('required', '必须填写联系方式！'),
+      new ErrorMessage('pattern', '联系方式填写错误！'),
+    ],
+    endDate: [
+      new ErrorMessage('required', '必须有证件有效期！'),
+      new ErrorMessage('pattern', '证件有效期格式错误！'),
+    ],
+    discount: [
+      new ErrorMessage('maxLength', '交易折扣长度不对！'),
+    ],
+    isCarRental: [
+      new ErrorMessage('required', '必须知道是否租车位'),
+    ],
+    isDeal: [
+      new ErrorMessage('required', '必须知道是否能交易！'),
+    ],
+    isPersonal: [
+      new ErrorMessage('required', '必须知道是否是个人！'),
+    ],
+  };
   /**
    * 新的图片地址事件
    * @param $event

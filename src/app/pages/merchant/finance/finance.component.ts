@@ -4,6 +4,13 @@ import {TextCell} from '../../../@core/ui/table/cell.text.component';
 import {Menu, MenuCell} from '../../../@core/ui/table/cell.menu.component';
 import {Column} from '../../../@core/ui/table/table.component';
 
+/**
+ * 商户财务维护
+ * 展示财务有关信息
+ * 修改折扣，IC卡绑卡，，，，挂失，退卡
+ *
+ * 列表展示哪些信息，还没有定
+ */
 @Component({
   selector: 'ngx-finance',
   templateUrl: './finance.component.html',
