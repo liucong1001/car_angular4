@@ -49,8 +49,10 @@ export class MarketStaffComponent implements OnInit {
       {title: '岗位', titleClass: '', cell: new CodemapCell('position', 'staffPosition')} as Column,
       {title: '状态', titleClass: '', cell: new CustomCell(this.statusCell)} as Column,
       {title: '操作', titleClass: '', cell: new MenuCell([
-          new Menu('查看', '', 'edit/:id'),
-       ])},
+          new Menu('编辑', '', 'edit/:id'),
+       ],
+       new Menu('查看', '', 'view/:id')),
+      },
     ];
   }
 
@@ -62,7 +64,7 @@ export class MarketStaffComponent implements OnInit {
         row.status = ret.status;
         this.message.success('成功', '禁用成功！');
       }).catch(err => {
-        this.message.error('失败', err.message);
+        this.message.error('失败', err);
       });
     }else if (row.status === '0') {
       this.commonDialog.confirm(`确认要重新启用${row.userName}登录权限吗？`).then(ret => {
@@ -71,7 +73,7 @@ export class MarketStaffComponent implements OnInit {
         row.status = ret.status;
         this.message.success('成功', '禁用成功！');
       }).catch(err => {
-        this.message.error('失败', err.message);
+        this.message.error('失败', err);
       });
     }
   }
