@@ -10,6 +10,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {FilingInfoForm} from '../../../../@core/model/bussiness/filing.info.form';
 import {FilingService} from '../../../../@core/data/merchant/filing.service';
 import {FilingPersonModel} from "../../../../@core/model/bussiness/filing.person.model";
+import {ErrorMessage} from "../../../../@core/ui/valid-error/valid-error.component";
 
 @Component({
   selector: 'ngx-add-linkman',
@@ -71,6 +72,42 @@ export class AddLinkmanComponent implements OnInit {
     ]],
     type: ['1', [Validators.required]],
   });
+  errors = {
+    name: [
+      new ErrorMessage('required', '必须填写商户名！'),
+      new ErrorMessage('maxLength', '商户名太长了！'),
+    ],
+    certCode: [
+      new ErrorMessage('required', '必须填写证件号！'),
+      new ErrorMessage('pattern', '证件号格式错误！'),
+    ],
+    address: [
+      new ErrorMessage('maxLength', '地址过长！'),
+    ],
+    phone: [
+      new ErrorMessage('required', '必须填写联系方式！'),
+      new ErrorMessage('pattern', '联系方式填写错误！'),
+    ],
+    endDate: [
+      new ErrorMessage('required', '必须有证件有效期！'),
+      new ErrorMessage('pattern', '证件有效期格式错误！'),
+    ],
+    discount: [
+      new ErrorMessage('maxLength', '交易折扣长度不对！'),
+    ],
+    isAgency: [
+      new ErrorMessage('required', '必须知道是否可代办'),
+    ],
+    isApp: [
+      new ErrorMessage('required', '必须知道是否用APP'),
+    ],
+    isDeal: [
+      new ErrorMessage('required', '必须知道是否能交易！'),
+    ],
+    type: [
+      new ErrorMessage('required', '必须知道是否是个人！'),
+    ],
+  };
   /**
    * 新的图片地址事件
    * @param $event

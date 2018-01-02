@@ -51,10 +51,10 @@ export class BussinessmanComponent implements OnInit, OnChanges {
       {title: '状态', titleClass: '', cell: new CustomCell(this.disableSignTemp)} as Column,
       {title: '操作', titleClass: 'w-5 text-center', cell: new MenuCell(
           [
-            new Menu('修改', '',
-              (row) => this.edit(row as MerchantModel),
-              (row) => this.isNotFlag(row as MerchantModel),
-            ),
+            // new Menu('修改', '',
+            //   (row) => this.edit(row as MerchantModel),
+            //   (row) => this.isNotFlag(row as MerchantModel),
+            // ),
             new Menu('删除', '',
               (row) => this.delete(row as MerchantModel),
               (row) => this.isNotFlag(row as MerchantModel),
@@ -68,8 +68,11 @@ export class BussinessmanComponent implements OnInit, OnChanges {
               (row) => this.isNotPersonal(row as MerchantModel),
             ),
           ],
-          new Menu('查看', '',
-            (row) => this.view(row)),
+          new Menu('修改', '',
+            (row) => this.edit(row as MerchantModel),
+            (row) => this.isNotFlag(row as MerchantModel),
+          ),
+          // new Menu('查看', '', (row) => this.view(row)),
           'text-center',
         )} as Column,
     ];

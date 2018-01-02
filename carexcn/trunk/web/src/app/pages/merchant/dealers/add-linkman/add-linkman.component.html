@@ -1,6 +1,6 @@
 <nb-card>
   <nb-card-header class="d-flex">
-    <div class="p-2 mr-auto">编辑备案人 -- {{_merchant.name}}</div>
+    <div class="p-2 mr-auto">添加备案人 -- {{_merchant.name}}</div>
     <div class="p2">
       <a (click)="location.back()" class="btn btn-secondary btn-sm">返回</a>
     </div>
@@ -15,6 +15,7 @@
             <input type="text" class="form-control" placeholder="姓名"
                    formControlName="name"
                    [ngClass]="{'form-control-danger':_formGroup.get('name').invalid && _formGroup.get('name').touched}">
+            <ngx-valid-error [errors]="errors.name" [control]="_formGroup.get('name')"></ngx-valid-error>
           </div>
         </div>
         <div class="col-sm-3">
@@ -23,6 +24,7 @@
             <input type="text" class="form-control" placeholder="电话"
                    formControlName="phone"
                    [ngClass]="{'form-control-danger':_formGroup.get('phone').invalid && _formGroup.get('phone').touched}">
+            <ngx-valid-error [errors]="errors.phone" [control]="_formGroup.get('phone')"></ngx-valid-error>
           </div>
         </div>
         <div class="col-sm-3">
@@ -35,6 +37,7 @@
               <option value="1">可交易</option>
               <option value="0">不可交易</option>
             </select>
+            <ngx-valid-error [errors]="errors.isDeal" [control]="_formGroup.get('isDeal')"></ngx-valid-error>
           </div>
         </div>
         <div class="col-sm-3">
@@ -47,6 +50,7 @@
               <option value="1">可代办</option>
               <option value="0">不可代办</option>
             </select>
+            <ngx-valid-error [errors]="errors.isAgency" [control]="_formGroup.get('isAgency')"></ngx-valid-error>
           </div>
         </div>
         <div class="col-sm-6">
@@ -55,6 +59,7 @@
             <input type="text" class="form-control" name="address" placeholder="地址"
                    formControlName="address"
                    [ngClass]="{'form-control-danger':_formGroup.get('address').invalid && _formGroup.get('address').touched}">
+            <ngx-valid-error [errors]="errors.address" [control]="_formGroup.get('address')"></ngx-valid-error>
           </div>
         </div>
         <div class="col-sm-6">
@@ -63,18 +68,20 @@
             <input type="text" class="form-control" placeholder="证件号"
                    formControlName="certCode"
                    [ngClass]="{'form-control-danger':_formGroup.get('certCode').invalid && _formGroup.get('certCode').touched}">
+            <ngx-valid-error [errors]="errors.certCode" [control]="_formGroup.get('certCode')"></ngx-valid-error>
           </div>
         </div>
         <div class="col-sm-3">
           <div class="form-group">
             <label>是否使用APP</label>
-            <select name="isPersonal" class="form-control"
+            <select class="form-control"
                     formControlName="isApp"
                     [ngClass]="{'form-control-danger':_formGroup.get('isApp').invalid && _formGroup.get('isApp').touched}">
               <option value="">是否使用APP</option>
               <option value="1">使用APP</option>
               <option value="0">不使用APP</option>
             </select>
+            <ngx-valid-error [errors]="errors.isApp" [control]="_formGroup.get('isApp')"></ngx-valid-error>
           </div>
         </div>
         <div class="col-sm-3">
@@ -83,18 +90,20 @@
             <input type="text" class="form-control" name="endDate" placeholder="证件有效期"
                    formControlName="endDate"
                    [ngClass]="{'form-control-danger':_formGroup.get('endDate').invalid && _formGroup.get('endDate').touched}">
+            <ngx-valid-error [errors]="errors.endDate" [control]="_formGroup.get('endDate')"></ngx-valid-error>
           </div>
         </div>
         <div class="col-sm-3">
           <div class="form-group">
             <label>是个人还是单位</label>
-            <select name="isPersonal" class="form-control"
+            <select class="form-control"
                     formControlName="type"
                     [ngClass]="{'form-control-danger':_formGroup.get('type').invalid && _formGroup.get('type').touched}">
               <option value="">是个人还是单位</option>
               <option value="1">个人</option>
               <option value="0">单位</option>
             </select>
+            <ngx-valid-error [errors]="errors.type" [control]="_formGroup.get('type')"></ngx-valid-error>
           </div>
         </div>
         <div class="col-sm-2">

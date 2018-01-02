@@ -7,6 +7,7 @@ import {MerchantForm} from '../../../../@core/model/bussiness/merchant.form';
 import {Http} from '@angular/http';
 import {MerchantModel} from '../../../../@core/model/bussiness/merchant.model';
 import {Router, ActivatedRoute} from '@angular/router';
+import {ErrorMessage} from "../../../../@core/ui/valid-error/valid-error.component";
 
 
 /**
@@ -75,6 +76,43 @@ export class EditDealerComponent implements OnInit {
     isDeal: ['', [Validators.required]],
     isPersonal: ['', [Validators.required]],
   });
+  errors = {
+    name: [
+      new ErrorMessage('required', '必须填写商户名！'),
+      new ErrorMessage('maxLength', '商户名太长了！'),
+    ],
+    code: [
+      new ErrorMessage('required', '必须填写商户编号！'),
+      new ErrorMessage('pattern', '商户编号格式不正确！'),
+    ],
+    certCode: [
+      new ErrorMessage('required', '必须填写证件号！'),
+      new ErrorMessage('pattern', '证件号格式错误！'),
+    ],
+    address: [
+      new ErrorMessage('maxLength', '地址过长！'),
+    ],
+    phone: [
+      new ErrorMessage('required', '必须填写联系方式！'),
+      new ErrorMessage('pattern', '联系方式填写错误！'),
+    ],
+    endDate: [
+      new ErrorMessage('required', '必须有证件有效期！'),
+      new ErrorMessage('pattern', '证件有效期格式错误！'),
+    ],
+    discount: [
+      new ErrorMessage('maxLength', '交易折扣长度不对！'),
+    ],
+    isCarRental: [
+      new ErrorMessage('required', '必须知道是否租车位'),
+    ],
+    isDeal: [
+      new ErrorMessage('required', '必须知道是否能交易！'),
+    ],
+    isPersonal: [
+      new ErrorMessage('required', '必须知道是否是个人！'),
+    ],
+  };
   /**
    * 新的图片地址事件
    * @param $event

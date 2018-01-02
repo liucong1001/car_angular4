@@ -81,10 +81,12 @@ export class LinkmanComponent implements OnInit {
           {title: '在职状态', titleClass: '', cell: new CustomCell(this.disableSignTemp)} as Column,
           {title: '操作', titleClass: 'w-25 text-center', cell: new MenuCell(
               [
-                new Menu('修改', '', (row) => this.edit(row)),
+                // new Menu('修改', '', (row) => this.edit(row)),
                 new Menu('删除', '', (row) => this.delete(row)),
               ],
-              new Menu('查看', '', (row) => this.view(row)), 'text-center',
+              new Menu('修改', '', (row) => this.edit(row)),
+              // new Menu('查看', '', (row) => this.view(row)),
+              'text-center',
             )} as Column,
         ];
       }
