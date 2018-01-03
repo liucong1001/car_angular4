@@ -90,4 +90,8 @@ export class CarService {
     }
     return result;
   }
+
+  checkCarLsnum(lsnum: string): Promise<any> {
+    return this.http.get(this.api_url_base + '?lsnum=' + lsnum).toPromise();
+  }
 }
