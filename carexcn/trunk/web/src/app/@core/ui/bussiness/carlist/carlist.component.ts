@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {MessageService} from '../../utils/message.service';
+import {MessageService} from '../../../utils/message.service';
 
 @Component({
   selector: 'ngx-ys-carlist',
