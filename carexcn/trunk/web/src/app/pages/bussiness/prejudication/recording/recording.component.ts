@@ -5,6 +5,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ErrorMessage} from '../../../../@core/ui/valid-error/valid-error.component';
 import {CarService} from "../../../../@core/data/bussiness/car.service";
 import {MessageService} from "../../../../@core/utils/message.service";
+import {FilingInfoModel} from "../../../../@core/model/bussiness/filing.info.model";
+import {FilingService} from "../../../../@core/data/merchant/filing.service";
 
 /**
  * 预审录入1--接口与页面的交互逻辑
@@ -47,11 +49,12 @@ export class RecordingComponent implements OnInit {
   public car = new CarModel();
   carLsnumPrefixDefault = '鄂A';
   carLsnumIsOk = false;
+  dealerIsOk = false;
   /**
    * 商户搜索资源
    * @type {string}
    */
-  public autoinput_shanghu_source_url = 'http://localhost/rest/merchant/';
+  public autoinput_shanghu_source_url = 'http://localhost/rest/merchant/list/';
   /**
    * 联系人搜索资源
    * @type {string}
@@ -67,10 +70,20 @@ export class RecordingComponent implements OnInit {
     private _formbuilder: FormBuilder,
     private _carService: CarService,
     private _message: MessageService,
+    private _filingService: FilingService,
   ) { }
 
+  linkManData: FilingInfoModel[] = [];
+  linkman = null;
   getSelectedDealer(value) {
-    this._message.info('获取商户', value.toString());
+    console.info(value);
+    this._message.info('获取商户', value.name);
+    this._filingService.agency(value.id).then(res => {
+      console.info(res);
+      this.dealerIsOk = true;
+      this.linkManData = res as FilingInfoModel[];
+      console.info(this.linkManData);
+    });
   }
 
   ngOnInit() {

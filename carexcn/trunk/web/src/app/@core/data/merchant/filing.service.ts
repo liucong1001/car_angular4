@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {RestService} from '../../utils/rest.service';
 import {FilingInfoForm} from '../../model/bussiness/filing.info.form';
 import {Http} from '@angular/http';
+import {FilingInfoModel} from "../../model/bussiness/filing.info.model";
 
 /**
  * 备案人备案信息，相关接口
@@ -80,7 +81,7 @@ export class FilingService {
    * @returns {Promise<any>}
    */
   public agency(id: string): Promise<any> {
-    return this.rest.put(this.api_url_base + '/agency/' + id, null).toPromise();
+    return this.rest.get(this.api_url_base + '/agency/' + id, null).toPromise().then(res => res.json() as FilingInfoModel[]);
   }
 
   /**
@@ -89,6 +90,6 @@ export class FilingService {
    * @returns {Promise<any>}
    */
   public deal(id: string): Promise<any> {
-    return this.rest.put(this.api_url_base + '/deal/' + id, null).toPromise();
+    return this.rest.get(this.api_url_base + '/deal/' + id, null).toPromise();
   }
 }
