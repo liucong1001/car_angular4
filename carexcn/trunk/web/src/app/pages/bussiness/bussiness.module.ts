@@ -21,6 +21,7 @@ import { TrecordingLastComponent } from './transfer/trecording-last/trecording-l
 import { TjudicationPhotoComponent } from './transfer/tjudication-photo/tjudication-photo.component';
 import { TjudicationFingerComponent } from './transfer/tjudication-finger/tjudication-finger.component';
 import {SystemModule} from '../../@core/data/system/system.module';
+import {CacheModule} from '../../@core/cache/cache.module';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import {SystemModule} from '../../@core/data/system/system.module';
     CommonModule,
     BussinessRoutingModule,
     UiModule,
+    CacheModule,
     SystemModule,
   ],
   declarations: [

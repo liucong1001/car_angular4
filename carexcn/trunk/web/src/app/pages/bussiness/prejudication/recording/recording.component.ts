@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {CarModel} from '../../../../@core/model/bussiness/car.model';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ErrorMessage} from '../../../../@core/ui/valid-error/valid-error.component';
-import {CarService} from "../../../../@core/data/bussiness/car.service";
-import {MessageService} from "../../../../@core/utils/message.service";
-import {FilingInfoModel} from "../../../../@core/model/bussiness/filing.info.model";
-import {FilingService} from "../../../../@core/data/merchant/filing.service";
+import {FormBuilder} from '@angular/forms';
+import {CarService} from '../../../../@core/data/bussiness/car.service';
+import {MessageService} from '../../../../@core/utils/message.service';
+import {FilingInfoModel} from '../../../../@core/model/bussiness/filing.info.model';
+import {FilingService} from '../../../../@core/data/merchant/filing.service';
+import {LocalstorageService} from '../../../../@core/cache/localstorage.service';
+import {MerchantModel} from '../../../../@core/model/bussiness/merchant.model';
+import {VehicleModel} from '../../../../@core/model/bussiness/vehicle.model';
 
 /**
  * 预审录入1--接口与页面的交互逻辑
@@ -25,7 +27,7 @@ import {FilingService} from "../../../../@core/data/merchant/filing.service";
   templateUrl: './recording.component.html',
   styleUrls: ['./recording.component.scss'],
 })
-export class RecordingComponent implements OnInit {
+export class RecordingComponent implements OnInit, OnDestroy {
   /**
    *  搜索确认商户联系人时调取对应信息
    */
@@ -56,14 +58,13 @@ export class RecordingComponent implements OnInit {
    */
   public autoinput_shanghu_source_url = 'http://localhost/rest/merchant/list/';
   /**
-   * 联系人搜索资源
-   * @type {string}
-   */
-  public autoinput_linkman_source_url = 'https://dongshenghuo.com/test.php?r=stringArr&q=';
-  /**
    * 构造函数
    * @param {Router} _router
    * @param {FormBuilder} _formbuilder
+   * @param {CarService} _carService
+   * @param {MessageService} _message
+   * @param {FilingService} _filingService
+   * @param {LocalstorageService} _localstorage
    */
   constructor(
     private _router: Router,
@@ -71,33 +72,95 @@ export class RecordingComponent implements OnInit {
     private _carService: CarService,
     private _message: MessageService,
     private _filingService: FilingService,
-  ) { }
+    private _localstorage: LocalstorageService,
+  ) {
+    this._localstorage.prefix = 'bussiness_recording';
+    // this._localstorage.prefix = 'bussiness_prejudication_recording';
+  }
 
   linkManData: FilingInfoModel[] = [];
-  linkmanSelect: null;
-  linkman: FilingInfoModel = {};
-  getSelectedDealer(value) {
-    console.info(value);
-    this._message.info('获取商户', value.name);
-    this._filingService.agency(value.id).then(res => {
+  linkman: any = {};
+  linkmanSelected: FilingInfoModel = {};
+  dealer: MerchantModel = {};
+  vehicle: VehicleModel = {plateNumber: ''};
+  /**
+   * 页面初始化事件
+   */
+  ngOnInit() {
+    console.info('exec on init.');
+    if (this.vehicle.plateNumber.length < 1) {
+      this.vehicle.plateNumber = this.carLsnumPrefixDefault;
+    }
+    let maybe_vehicle = this._localstorage.get('vehicle');
+    if (maybe_vehicle) {
+      this.vehicle = maybe_vehicle;
+      if (5 < (this.vehicle.plateNumber).length) {
+        this.carLsnumIsOk = true;
+        this.dealer = this._localstorage.get('dealer');
+        if (this.dealer) {
+          // this._filingService.agency(this.dealer.id).then(res => {
+          this.dealerIsOk = true;
+          this.linkManData = this._localstorage.get('linkmandata');
+          this.linkmanSelected = this._localstorage.get('linkmanSelected');
+          // this.linkman = this.linkmanSelected.phone;
+          this.linkman = JSON.stringify(this.linkmanSelected);
+          // this.linkManData = res as FilingInfoModel[];
+          // });
+        }
+      }
+    }
+  }
+
+  /**
+   * 页面销毁前
+   * @constructor
+   */
+  ngOnDestroy() {
+    console.info('exec on destroy.');
+    this._localstorage.set('linkmanSelected', this.linkmanSelected);
+    this._localstorage.set('linkmandata', this.linkManData);
+    this._localstorage.set('dealer', this.dealer);
+    this._localstorage.set('vehicle', this.vehicle);
+  }
+
+  /**
+   * 选择好了商户的事件
+   * @param value
+   */
+  getSelectedDealer(dealer) {
+    this.dealer = dealer;
+    this._message.info('获取商户', dealer.name);
+    this._filingService.agency(dealer.id).then(res => {
       this.dealerIsOk = true;
+      this.linkman = ''; // 使 --请选择--  选项高亮
       this.linkManData = res as FilingInfoModel[];
+      // console.info(this.linkManData);
+      // console.info(this.linkmanSelected);
     });
   }
-  linkmanSelected(event, value) {
-    this.linkman = JSON.parse(value);
+
+  /**
+   * 选择好了联系人的事件
+   * @param event
+   * @param value
+   */
+  linkmanSelecteFunc() {
+    console.info(this.linkman);
+    this.linkmanSelected =  JSON.parse(this.linkman);
+    console.info(this.linkmanSelected);
   }
 
-  ngOnInit() {
-  }
-
+  /**
+   * 转入下一页面
+   */
   onSubmit() {
     this._router.navigateByUrl('/pages/bussiness/prejudication/recording2');
   }
+
   /**
    * 车牌号填写完的事件
    */
-  carLsnumBlur(lsnum: string) {
+  carLsnumBlur() {
     /**
      * 检查车牌号
      * 是否已经重复录入

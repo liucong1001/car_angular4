@@ -11,11 +11,13 @@ import {UtilsModule} from './utils/utils.module';
 import {PagerService} from './data/pager.service';
 import {UiModule} from './ui/ui.module';
 import {AuthSessionToken} from './data/security/auth-session-token';
+import {CacheModule} from './cache/cache.module';
 
 const NB_CORE_PROVIDERS = [
   ...DataModule.forRoot().providers,
   ...DeviceModule.forRoot().providers,
   ...UtilsModule.forRoot().providers,
+  ...CacheModule.forRoot().providers,
   ...NbAuthModule.forRoot({
     providers: {
         email: {
