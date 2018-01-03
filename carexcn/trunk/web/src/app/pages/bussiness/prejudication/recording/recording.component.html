@@ -18,9 +18,9 @@
     <div class="input-group">
       <div class="input-group">
         <span class="input-group-addon">代办联系人</span>
-        <select class="form-control" [disabled]="!dealerIsOk" [(ngModel)]="linkman" (change)="linkmanSelecteFunc()">
+        <select class="form-control" [disabled]="!dealerIsOk" [(ngModel)]="linkman" (change)="linkmanSelecteFunc()" [compareWith]="linkmanCompareWithFunc">
           <option value="">--请选择--</option>
-          <option *ngFor="let linkmanitem of linkManData;" [value]="linkmanitem | json">{{linkmanitem.name}}</option>
+          <option *ngFor="let linkmanitem of linkManData" [ngValue]="linkmanitem">{{linkmanitem.name}}</option>
         </select>
       </div>
       <div class="input-group">

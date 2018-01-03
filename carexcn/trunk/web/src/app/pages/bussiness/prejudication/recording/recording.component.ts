@@ -102,8 +102,8 @@ export class RecordingComponent implements OnInit, OnDestroy {
           this.dealerIsOk = true;
           this.linkManData = this._localstorage.get('linkmandata');
           this.linkmanSelected = this._localstorage.get('linkmanSelected');
-          // this.linkman = this.linkmanSelected.phone;
-          this.linkman = JSON.stringify(this.linkmanSelected);
+          this.linkman = this.linkmanSelected;
+          // this.linkman = JSON.stringify(this.linkmanSelected);
           // this.linkManData = res as FilingInfoModel[];
           // });
         }
@@ -121,6 +121,16 @@ export class RecordingComponent implements OnInit, OnDestroy {
     this._localstorage.set('linkmandata', this.linkManData);
     this._localstorage.set('dealer', this.dealer);
     this._localstorage.set('vehicle', this.vehicle);
+  }
+
+  /**
+   * 联系人匹配函数
+   * @param {FilingInfoModel} linkman1
+   * @param {FilingInfoModel} linkman2
+   * @returns {boolean | boolean}
+   */
+  linkmanCompareWithFunc(linkman1: FilingInfoModel, linkman2: FilingInfoModel) {
+    return (linkman1 && linkman2) ? linkman1.phone === linkman2.phone : false;
   }
 
   /**
@@ -145,9 +155,9 @@ export class RecordingComponent implements OnInit, OnDestroy {
    * @param value
    */
   linkmanSelecteFunc() {
-    console.info(this.linkman);
-    this.linkmanSelected =  JSON.parse(this.linkman);
-    console.info(this.linkmanSelected);
+    // console.info(this.linkman);
+    this.linkmanSelected = this.linkman;
+    // console.info(this.linkmanSelected);
   }
 
   /**
