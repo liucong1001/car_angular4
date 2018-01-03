@@ -12,6 +12,7 @@ export class AutoinputComponent implements OnInit, ControlValueAccessor {
   @Input() results_resource_url: string;
   @Input() showProperty: string;
   @Input() getProperty: string;
+  @Input() disabled: boolean;
   value: any;
   results: any[];
   constructor(private rest: RestService) {

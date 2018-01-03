@@ -11,10 +11,10 @@ import { ValidErrorComponent } from './valid-error/valid-error.component';
 import { CommonModule } from '@angular/common';
 import { CodeitemDroplistComponent } from './codeitem-droplist/codeitem-droplist.component';
 import { DroplistComponent } from './droplist/droplist.component';
-import { CarlistComponent } from './carlist/carlist.component';
-import { CardetailComponent } from './cardetail/cardetail.component';
 import { ThemeModule } from '../../@theme/theme.module';
 import { FormFilterComponent } from './form-filter/form-filter.component';
+import {CarlistComponent} from './bussiness/carlist/carlist.component';
+import {CardetailComponent} from './bussiness/cardetail/cardetail.component';
 
 const COMPONENTS = [
   CameraComponent,
