@@ -9,8 +9,8 @@ import {MerchantModel} from '../../../../@core/model/bussiness/merchant.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FilingInfoForm} from '../../../../@core/model/bussiness/filing.info.form';
 import {FilingService} from '../../../../@core/data/merchant/filing.service';
-import {FilingPersonModel} from "../../../../@core/model/bussiness/filing.person.model";
-import {ErrorMessage} from "../../../../@core/ui/valid-error/valid-error.component";
+import {FilingPersonModel} from '../../../../@core/model/bussiness/filing.person.model';
+import {ErrorMessage} from '../../../../@core/ui/valid-error/valid-error.component';
 
 @Component({
   selector: 'ngx-add-linkman',
@@ -53,7 +53,7 @@ export class AddLinkmanComponent implements OnInit {
   }];
   _merchant: MerchantModel = {};
   _formGroup: FormGroup = this.fb.group({
-    // name: ['备案人姓名', [Validators.required, Validators.maxLength(14)]],
+    name: ['备案人姓名', [Validators.required, Validators.maxLength(14)]],
     address: ['湖北武汉汉口', [Validators.required]],
     phone: ['17012345678', [
       Validators.required,

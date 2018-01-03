@@ -74,16 +74,18 @@ export class RecordingComponent implements OnInit {
   ) { }
 
   linkManData: FilingInfoModel[] = [];
-  linkman = null;
+  linkmanSelect: null;
+  linkman: FilingInfoModel = {};
   getSelectedDealer(value) {
     console.info(value);
     this._message.info('获取商户', value.name);
     this._filingService.agency(value.id).then(res => {
-      console.info(res);
       this.dealerIsOk = true;
       this.linkManData = res as FilingInfoModel[];
-      console.info(this.linkManData);
     });
+  }
+  linkmanSelected(event, value) {
+    this.linkman = JSON.parse(value);
   }
 
   ngOnInit() {
