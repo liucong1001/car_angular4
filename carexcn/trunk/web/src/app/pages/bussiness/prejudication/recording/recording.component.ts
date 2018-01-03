@@ -3,6 +3,8 @@ import {Router} from '@angular/router';
 import {CarModel} from '../../../../@core/model/bussiness/car.model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ErrorMessage} from '../../../../@core/ui/valid-error/valid-error.component';
+import {CarService} from "../../../../@core/data/bussiness/car.service";
+import {MessageService} from "../../../../@core/utils/message.service";
 
 /**
  * 预审录入1--接口与页面的交互逻辑
@@ -43,23 +45,18 @@ export class RecordingComponent implements OnInit {
    * @type {CarModel}
    */
   public car = new CarModel();
+  carLsnumPrefixDefault = '鄂A';
+  carLsnumIsOk = false;
   /**
-   * 表单建立
-   * @type {FormGroup}
+   * 商户搜索资源
+   * @type {string}
    */
-  form: FormGroup = this._formbuilder.group({
-    code: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(12)]],
-  });
-  ysform = {
-    _formbuilder: {
-      code: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(12)]],
-    },
-    _errors: {
-      required: '不能为空',
-      minlength: '不能少于3位',
-      maxlength: '不能大于12位',
-    },
-  };
+  public autoinput_shanghu_source_url = 'http://localhost/rest/merchant/';
+  /**
+   * 联系人搜索资源
+   * @type {string}
+   */
+  public autoinput_linkman_source_url = 'https://dongshenghuo.com/test.php?r=stringArr&q=';
   /**
    * 构造函数
    * @param {Router} _router
@@ -68,7 +65,13 @@ export class RecordingComponent implements OnInit {
   constructor(
     private _router: Router,
     private _formbuilder: FormBuilder,
+    private _carService: CarService,
+    private _message: MessageService,
   ) { }
+
+  getSelectedDealer(value) {
+    this._message.info('获取商户', value.toString());
+  }
 
   ngOnInit() {
   }
@@ -76,12 +79,23 @@ export class RecordingComponent implements OnInit {
   onSubmit() {
     this._router.navigateByUrl('/pages/bussiness/prejudication/recording2');
   }
+  /**
+   * 车牌号填写完的事件
+   */
+  carLsnumBlur(lsnum: string) {
+    /**
+     * 检查车牌号
+     * 是否已经重复录入
+     * 是否属于黑名单
+     * 是否属于公车拍卖，如果是应该要拿到公车拍卖的车辆信息
+     */
+    this.carLsnumIsOk = true;
+    // this._carService.checkCarLsnum(lsnum).then(res => {
+    //   this.carLsnumIsOk = true;
+    //   return true;
+    // }).catch(err => {
+    //   this._message.error('错误', err);
+    // });
+  }
 
-  errors = {
-    code: [
-      new ErrorMessage('required', '不能为空'),
-      new ErrorMessage('minlength', '不能少于3位'),
-      new ErrorMessage('maxlength', '不能大于12位'),
-    ],
-  };
 }

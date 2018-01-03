@@ -6,12 +6,24 @@
   </nb-card-header>
   <nb-card-body>
     <div class="input-group">
-      <input type="text" placeholder="请输入车牌号" class="form-control" [(ngModel)]="car.lsnum"/>
-      <input type="text" placeholder="请输入代办商户以搜索" class="form-control"/>
+      <div class="input-group">
+        <span class="input-group-addon">车牌号</span>
+        <input class="form-control" placeholder="请输入车牌号" type="text" #lsnum (blur)="carLsnumBlur(lsnum.value)" [value]="carLsnumPrefixDefault" />
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">代办商户</span>
+        <ngx-ys-autoinput [results_resource_url]="autoinput_shanghu_source_url" (_value)="getSelectedDealer($event)" [showProperty]="'name'" [disabled]="!carLsnumIsOk"></ngx-ys-autoinput>
+      </div>
     </div>
     <div class="input-group">
-      <input type="text" placeholder="请输入代办联系人以搜索" class="form-control"/>
-      <input type="text" placeholder="联系人手机号" class="form-control" readonly/>
+      <div class="input-group">
+        <span class="input-group-addon">代办联系人</span>
+        <input class="form-control" placeholder="请输入代办联系人以搜索" type="text" [disabled]="!carLsnumIsOk" />
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">联系人手机</span>
+        <input class="form-control" placeholder="联系人手机号" type="text"  [disabled]="true" />
+      </div>
     </div>
     <div class="camera col-sm-6 float-left" *ngFor="let camera of cameras"
          [style.background-image]="'url(' + camera.source + ')'">
