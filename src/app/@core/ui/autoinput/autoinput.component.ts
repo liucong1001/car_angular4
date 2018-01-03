@@ -13,6 +13,7 @@ export class AutoinputComponent implements OnInit, ControlValueAccessor {
   @Input() showProperty: string;
   @Input() getProperty: string;
   @Input() disabled: boolean;
+  @Input() defaultValue: any;
   value: any;
   results: any[];
   constructor(private rest: RestService) {
@@ -34,6 +35,9 @@ export class AutoinputComponent implements OnInit, ControlValueAccessor {
     }
     if (this.results_resource_url == null || this.results_resource_url === undefined) {
       throw new Error('results_resource_url 是必须的。');
+    }
+    if (this.defaultValue != null || this.defaultValue !== undefined) {
+      this.value = this.defaultValue;
     }
   }
   search(_event) {
