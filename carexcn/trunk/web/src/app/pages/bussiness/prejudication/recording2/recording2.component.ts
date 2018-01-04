@@ -5,6 +5,7 @@ import {MessageService} from '../../../../@core/utils/message.service';
 import {IdcardModel} from '../../../../@core/model/bussiness/idcard.model';
 import {MerchantModel} from '../../../../@core/model/bussiness/merchant.model';
 import {LocalstorageService} from '../../../../@core/cache/localstorage.service';
+import {SellerModel} from "../../../../@core/model/bussiness/seller.model";
 
 /**
  * 预审录入2--接口与页面的交互逻辑
@@ -29,6 +30,7 @@ export class Recording2Component implements OnInit, OnDestroy {
   }];
   public sellerIdcardData = new IdcardModel;
   public trusterIdcardData = new IdcardModel;
+  public sellerData = new SellerModel;
   merchant: MerchantModel = {name: ''};
   constructor(
     private _router: Router,
@@ -75,10 +77,9 @@ export class Recording2Component implements OnInit, OnDestroy {
    */
   readSellerIdCard() {
     this._message.info('身份证', '读取卖方身份证');
-    const self = this;
     this._idcard.prepare().then((res) => {
       if (res) { // 初始化读卡器正常
-        self._idcard.read().then((idcardData) => this.sellerIdcardData = idcardData as IdcardModel);
+        this._idcard.read().then((idcardData) => this.sellerIdcardData = idcardData as IdcardModel);
       }
     });
   }
@@ -89,10 +90,9 @@ export class Recording2Component implements OnInit, OnDestroy {
    */
   readTrusterIdCard() {
     this._message.info('身份证', '读取委托人身份证');
-    const self = this;
     this._idcard.prepare().then((res) => {
       if (res) { // 初始化读卡器正常
-        self._idcard.read().then((idcardData) => this.trusterIdcardData = idcardData as IdcardModel);
+        this._idcard.read().then((idcardData) => this.trusterIdcardData = idcardData as IdcardModel);
       }
     });
   }
