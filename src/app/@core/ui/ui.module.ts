@@ -15,6 +15,8 @@ import { ThemeModule } from '../../@theme/theme.module';
 import { FormFilterComponent } from './form-filter/form-filter.component';
 import {CarlistComponent} from './bussiness/carlist/carlist.component';
 import {CardetailComponent} from './bussiness/cardetail/cardetail.component';
+import { SellerInfoComponent } from './bussiness/seller-info/seller-info.component';
+import { TrusterInfoComponent } from './bussiness/truster-info/truster-info.component';
 
 const COMPONENTS = [
   CameraComponent,
@@ -26,6 +28,8 @@ const COMPONENTS = [
   DroplistComponent,
   CarlistComponent,
   CardetailComponent,
+  SellerInfoComponent,
+  TrusterInfoComponent,
   FormFilterComponent,
 ];
 

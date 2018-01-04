@@ -1,43 +1,4 @@
-<nb-card>
-  <nb-card-header>
-    <div class="cameras-card-header">
-      <span class="cameras-card-title">预审业务 - 预审录入 3 - 车辆信息</span>
-    </div>
-  </nb-card-header>
-  <nb-card-body>
-    <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source"></ngx-ys-camera>
-    <div class="input-group">
-      <input type="text" placeholder="车牌号" class="form-control" />
-      <input type="text" placeholder="车架号" class="form-control" />
-      <button class="btn btn-primary btn-sm" (click)="read(RecordModel)">读取行驶证</button>
-    </div>
-    <div class="input-group">
-      <input type="text" placeholder="发动机号" class="form-control" />
-      <input type="text" placeholder="登记证号" class="form-control" />
-      <input type="text" placeholder="厂牌型号" class="form-control" />
-      <input type="text" placeholder="手续费" class="form-control" />
-    </div>
-    <div class="input-group">
-      <input type="text" placeholder="车费类型" class="form-control" />
-      <input type="text" placeholder="车辆大小" class="form-control" />
-    </div>
-    <div class="input-group">
-      <input type="text" placeholder="使用年限" class="form-control" />
-      <input type="text" placeholder="行驶证地址" class="form-control" />
-    </div>
-    <div class="input-group">
-      <input type="text" placeholder="累计里程" class="form-control" />
-      <input type="text" placeholder="交易价格" class="form-control" />
-      <input type="text" placeholder="使用性质" class="form-control" />
-      <input type="text" placeholder="评估费" class="form-control" />
-    </div>
-    <div class="input-group">
-      <input type="text" placeholder="年审有效期" class="form-control" />
-      <input type="text" placeholder="保险有效期" class="form-control" />
-      <input type="text" placeholder="路桥有效期" class="form-control" />
-    </div>
-    <div class="float-right">
-      <button class="btn btn-primary btn-lg" (click)="onSubmit()">下一步</button>
-    </div>
-  </nb-card-body>
-</nb-card>
+<ngx-ys-cardetail [car_detail_title]="'预审业务 - 预审录入 3 - 车辆信息'"></ngx-ys-cardetail>
+<div class="float-right">
+  <button class="btn btn-primary btn-lg" (click)="onSubmit()">下一步</button>
+</div>

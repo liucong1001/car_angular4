@@ -1,40 +1,91 @@
 <nb-card>
   <nb-card-header>
     <div class="cameras-card-header">
-      <span class="cameras-card-title">车辆信息</span>
+      <span class="cameras-card-title">{{ car_detail_title || '车辆信息'}}</span>
     </div>
   </nb-card-header>
   <nb-card-body>
     <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source"></ngx-ys-camera>
     <div class="input-group">
-      <input type="text" placeholder="车牌号" title="车牌号" class="form-control" [(ngModel)]="car.lsnum"/>
-      <input type="text" placeholder="车架号" title="车架号" class="form-control" />
-      <button class="btn btn-primary btn-sm" (click)="readCard()">读取行驶证</button>
+      <div class="input-group">
+        <span class="input-group-addon">车牌号</span>
+        <input type="text" placeholder="" class="form-control" />
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">车架号</span>
+        <input type="text" placeholder="" class="form-control" />
+      </div>
+      <button class="btn btn-primary btn-sm" (click)="read(RecordModel)">读取行驶证</button>
     </div>
     <div class="input-group">
-      <input type="text" placeholder="发动机号" title="发动机号" class="form-control" />
-      <input type="text" placeholder="登记证号" title="登记证号" class="form-control" />
-      <input type="text" placeholder="厂牌型号" title="厂牌型号" class="form-control" />
-      <input type="text" placeholder="手续费" title="手续费" class="form-control" />
+      <div class="input-group">
+        <span class="input-group-addon">发动机号</span>
+        <input type="text" placeholder="" class="form-control" />
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">登记证号</span>
+        <input type="text" placeholder="" class="form-control" />
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">厂牌型号</span>
+        <input type="text" placeholder="" class="form-control" />
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">手续费</span>
+        <input type="text" placeholder="" class="form-control" />
+      </div>
     </div>
     <div class="input-group">
-      <input type="text" placeholder="车费类型" title="车费类型" class="form-control" />
-      <input type="text" placeholder="车辆大小" title="车辆大小" class="form-control" />
+      <div class="input-group">
+        <span class="input-group-addon">车费类型</span>
+        <input type="text" placeholder="" class="form-control" />
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">车辆大小</span>
+        <input type="text" placeholder="" class="form-control" />
+      </div>
     </div>
     <div class="input-group">
-      <input type="text" placeholder="使用年限" title="使用年限" class="form-control" />
-      <input type="text" placeholder="行驶证地址" title="行驶证地址" class="form-control" />
+      <div class="input-group">
+        <span class="input-group-addon">使用年限</span>
+        <input type="text" placeholder="" class="form-control" />
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">行驶证地址</span>
+        <input type="text" placeholder="" class="form-control" />
+      </div>
     </div>
     <div class="input-group">
-      <input type="text" placeholder="累计里程" title="累计里程" class="form-control" />
-      <input type="text" placeholder="交易价格" title="交易价格" class="form-control" />
-      <input type="text" placeholder="使用性质" title="使用性质" class="form-control" />
-      <input type="text" placeholder="评估费" title="评估费" class="form-control" />
+      <div class="input-group">
+        <span class="input-group-addon">累计里程</span>
+        <input type="text" placeholder="" class="form-control" />
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">交易价格</span>
+        <input type="text" placeholder="" class="form-control" />
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">使用性质</span>
+        <input type="text" placeholder="" class="form-control" />
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">评估费</span>
+        <input type="text" placeholder="" class="form-control" />
+      </div>
     </div>
     <div class="input-group">
-      <input type="text" placeholder="年审有效期" title="年审有效期" class="form-control" />
-      <input type="text" placeholder="保险有效期" title="保险有效期" class="form-control" />
-      <input type="text" placeholder="路桥有效期" title="路桥有效期" class="form-control" />
+      <div class="input-group">
+        <span class="input-group-addon">年审有效期</span>
+        <input type="text" placeholder="" class="form-control" />
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">保险有效期</span>
+        <input type="text" placeholder="" class="form-control" />
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">路桥有效期</span>
+        <input type="text" placeholder="" class="form-control" />
+      </div>
     </div>
   </nb-card-body>
 </nb-card>

@@ -7,6 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class CardetailComponent implements OnInit {
   @Input() car;
+  @Input() car_detail_title;
   photos: any[] = [{
     title: '行驶证正本',
     source: 'assets/images/camera1.jpg',

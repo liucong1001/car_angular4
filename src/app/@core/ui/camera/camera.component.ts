@@ -22,6 +22,7 @@ export class CameraComponent implements OnInit, ControlValueAccessor {
    */
   @Input() title;
   @Input() source;
+  @Input() btn_show = true;
   @Input() col_sm_6 = 'col-sm-6';
   @Output() _changeSource = new EventEmitter();
   private webcam_has_show = false;
