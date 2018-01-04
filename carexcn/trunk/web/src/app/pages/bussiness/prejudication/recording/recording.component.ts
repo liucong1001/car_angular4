@@ -74,8 +74,7 @@ export class RecordingComponent implements OnInit, OnDestroy {
     private _filingService: FilingService,
     private _localstorage: LocalstorageService,
   ) {
-    this._localstorage.prefix = 'bussiness_recording';
-    // this._localstorage.prefix = 'bussiness_prejudication_recording';
+    this._localstorage.prefix = 'bussiness_prejudication_recording';
   }
 
   linkManData: FilingInfoModel[] = [];
@@ -88,24 +87,39 @@ export class RecordingComponent implements OnInit, OnDestroy {
    */
   ngOnInit() {
     console.info('exec on init.');
+    /**
+     * 默认车牌前缀
+     */
     if (this.vehicle.plateNumber.length < 1) {
       this.vehicle.plateNumber = this.carLsnumPrefixDefault;
     }
+    /**
+     * 读取车辆缓存数据：主要是车牌
+     * @type {any}
+     */
     let maybe_vehicle = this._localstorage.get('vehicle');
     if (maybe_vehicle) {
       this.vehicle = maybe_vehicle;
+      /**
+       * 如果车牌确认填写了
+       */
       if (5 < (this.vehicle.plateNumber).length) {
         this.carLsnumIsOk = true;
-        this.dealer = this._localstorage.get('dealer');
-        if (this.dealer) {
-          // this._filingService.agency(this.dealer.id).then(res => {
+        /**
+         * 读取缓存的商户
+         * @type {any}
+         */
+        let maybe_dealer = this._localstorage.get('dealer');
+        if (maybe_dealer) {
+          this.dealer = maybe_dealer;
+          /**
+           * 缓存联系人相关数据
+           * @type {boolean}
+           */
           this.dealerIsOk = true;
           this.linkManData = this._localstorage.get('linkmandata');
           this.linkmanSelected = this._localstorage.get('linkmanSelected');
           this.linkman = this.linkmanSelected;
-          // this.linkman = JSON.stringify(this.linkmanSelected);
-          // this.linkManData = res as FilingInfoModel[];
-          // });
         }
       }
     }

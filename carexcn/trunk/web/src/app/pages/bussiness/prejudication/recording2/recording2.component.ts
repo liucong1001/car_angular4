@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {IdcardService} from '../../../../@core/device/idcard.service';
 import {MessageService} from '../../../../@core/utils/message.service';
 import {IdcardModel} from '../../../../@core/model/bussiness/idcard.model';
+import {MerchantModel} from '../../../../@core/model/bussiness/merchant.model';
+import {LocalstorageService} from '../../../../@core/cache/localstorage.service';
 
 /**
  * 预审录入2--接口与页面的交互逻辑
@@ -17,8 +19,7 @@ import {IdcardModel} from '../../../../@core/model/bussiness/idcard.model';
   templateUrl: './recording2.component.html',
   styleUrls: ['./recording2.component.scss'],
 })
-export class Recording2Component implements OnInit {
-  cheshang = '上页选定的车商';
+export class Recording2Component implements OnInit, OnDestroy {
   photos: any[] = [{
     title: '身份证正面',
     source: 'assets/images/camera1.jpg',
@@ -28,10 +29,43 @@ export class Recording2Component implements OnInit {
   }];
   public sellerIdcardData = new IdcardModel;
   public trusterIdcardData = new IdcardModel;
-  constructor(private _router: Router, private idcard: IdcardService, private message: MessageService) { }
-
-  ngOnInit() {
+  merchant: MerchantModel = {name: ''};
+  constructor(
+    private _router: Router,
+    private _idcard: IdcardService,
+    private _message: MessageService,
+    private _localstorage: LocalstorageService,
+  ) {
+    this._localstorage.prefix = 'bussiness_prejudication_recording';
   }
+
+  /**
+   * 页面初始化事件
+   */
+  ngOnInit() {
+    console.info('exec on init.');
+    /**
+     * 读取缓存的商户
+     * @type {any}
+     */
+    let maybe_merchant = this._localstorage.get('dealer');
+    console.info(maybe_merchant);
+    if (maybe_merchant) {
+      this.merchant = maybe_merchant;
+    }
+  }
+
+  /**
+   * 页面销毁前
+   * @constructor
+   */
+  ngOnDestroy() {
+    console.info('exec on destroy.');
+  }
+
+  /**
+   * 转到下一页
+   */
   onSubmit() {
     this._router.navigateByUrl('/pages/bussiness/prejudication/recording3');
   }
@@ -40,11 +74,11 @@ export class Recording2Component implements OnInit {
    * 读取卖方身份证信息
    */
   readSellerIdCard() {
-    this.message.info('身份证', '读取卖方身份证');
+    this._message.info('身份证', '读取卖方身份证');
     const self = this;
-    this.idcard.prepare().then((res) => {
+    this._idcard.prepare().then((res) => {
       if (res) { // 初始化读卡器正常
-        self.idcard.read().then((idcardData) => this.sellerIdcardData = idcardData as IdcardModel);
+        self._idcard.read().then((idcardData) => this.sellerIdcardData = idcardData as IdcardModel);
       }
     });
   }
@@ -54,11 +88,11 @@ export class Recording2Component implements OnInit {
    * @param {string} who 谁的身份证
    */
   readTrusterIdCard() {
-    this.message.info('身份证', '读取委托人身份证');
+    this._message.info('身份证', '读取委托人身份证');
     const self = this;
-    this.idcard.prepare().then((res) => {
+    this._idcard.prepare().then((res) => {
       if (res) { // 初始化读卡器正常
-        self.idcard.read().then((idcardData) => this.trusterIdcardData = idcardData as IdcardModel);
+        self._idcard.read().then((idcardData) => this.trusterIdcardData = idcardData as IdcardModel);
       }
     });
   }
