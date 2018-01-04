@@ -16,7 +16,7 @@ export class WebcamService {
    * @param {DeviceService} device
    */
   constructor(private device: DeviceService) {
-    this.api_url = this.device.pre_api_url + '/files/upload';
+    this.api_url = this.device.pre_api_url;
   }
 
   /**
@@ -43,10 +43,10 @@ export class WebcamService {
    * @returns {Promise<any>}
    */
   snapshot(rotate: boolean, user: string, mac: string): Promise<any> {
-    this.api_url += '?user=' + user + '&mac=' + mac;
-    if (rotate) {
-      this.api_url += '&xuanzhuan=true';
-    }
+    // this.api_url += 'user=' + user + '&mac=' + mac;
+    // if (rotate) {
+    //   this.api_url += '&xuanzhuan=true';
+    // }
     const self = this;
     return new Promise(function(resolve, reject){
       self.device.sendCommond('WebCam', 'snapshot', self.api_url).then(function (result) {

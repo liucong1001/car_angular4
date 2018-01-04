@@ -28,7 +28,8 @@ export class DeviceService {
     this._message = message;
     this.conectAgent();
     if (isDevMode()) {
-      this.pre_api_url = 'https://dongshenghuo.com/test.php';
+      // this.pre_api_url = 'https://dongshenghuo.com/test.php';
+      this.pre_api_url = 'http://localhost/rest/files/file?cloudUser=0001';
     }
   }
 
