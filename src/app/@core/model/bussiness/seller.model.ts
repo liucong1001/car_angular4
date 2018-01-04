@@ -7,38 +7,38 @@ export class SellerModel {
   /**
    * 卖方证件类型 代码集.
    */
-  certType: string;
+  certType?: string;
   /**
    * 卖方证件号
    */
-  certCode: string;
+  certCode?: string;
   /**
    * 卖方证件名称
    */
-  name: string;
+  name?: string;
   /**
    * 卖方证件有效期
    */
-  endDate: string;
+  endDate?: string;
   /**
    * 卖方电话
    */
-  phone: string;
+  phone?: string;
   /**
    * 受托人类型 0-无 1-有
    */
-  trusteeType: string;
+  trusteeType?: string;
   /**
    * 卖方地址
    */
-  sellerAddress: string;
+  sellerAddress?: string;
   /**
    * 卖方受托人
    */
-  sellerTrustee: TrusteeModel;
+  sellerTrustee?: TrusteeModel;
   /**
    * 当有受托人的时候委托书是单拍还是多拍
    * 0-单拍 1-多拍
    */
-  flag: string;
+  flag?: string;
 }

@@ -11,6 +11,9 @@ import {Router} from '@angular/router';
  * 3、读取行驶证时通过云接口调取行驶证的内容填充进表单
  * 4、允许用户修改部分表单内容
  * 5、获取表单最终内容并提交到后台接口并跳转到提交成功按钮。
+ * !!!!! 注意：
+ * 审核完成的预审业务不允许动
+ * 没有审核完成的可以添加和修改
  */
 @Component({
   selector: 'ngx-recording-continue',
