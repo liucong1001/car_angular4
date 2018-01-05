@@ -19,10 +19,10 @@
   </ul>
 </div>
 <ng-container *ngIf="!menus || !menus.length">
-<a *ngIf="default.isCallback()" (click)="default.callback(data)" class="btn btn-sm btn-success">
-  {{default.text}}
-</a>
-<a *ngIf="default.isUrl()" [routerLink]="[default.callback, data]" class="btn btn-sm btn-success">
-  {{default.text}}
-</a>
+  <a *ngIf="default.isCallback()" (click)="default.callback(data)" class="btn btn-sm btn-success">
+    {{default.text}}
+  </a>
+  <a *ngIf="default.isUrl()" [routerLink]="[default.callback, data]" class="btn btn-sm btn-success">
+    {{default.text}}
+  </a>
 </ng-container>
