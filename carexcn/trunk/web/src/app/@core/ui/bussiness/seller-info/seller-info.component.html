@@ -5,7 +5,7 @@
     </div>
   </nb-card-header>
   <nb-card-body>
-    <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" [btn_show]="false"></ngx-ys-camera>
+    <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" [btn_show]="btn_show"></ngx-ys-camera>
     <div class="input-group">
       <input type="text" placeholder="卖方姓名" class="form-control" />
       <input type="text" placeholder="卖方身份证号" class="form-control" />

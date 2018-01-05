@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'ngx-ys-seller-info',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./seller-info.component.scss'],
 })
 export class SellerInfoComponent implements OnInit {
+  @Input() btn_show = true;
   photos: any[] = [{
     title: '身份证正面',
     source: 'assets/images/camera1.jpg',
