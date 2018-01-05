@@ -1,12 +1,11 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 
 import { NbMenuService, NbSidebarService } from '@nebular/theme';
-import { UserService } from '../../../@core/data/users.service';
 import { AnalyticsService } from '../../../@core/utils/analytics.service';
 import {NbAuthService} from '@nebular/auth';
 import {Router} from '@angular/router';
-import {MarketStaff} from "../../../@core/model/system/market-staff";
-import {AuthSessionToken} from "../../../@core/data/security/auth-session-token";
+import {MarketStaff} from '../../../@core/model/system/market-staff';
+import {AuthSessionToken} from '../../../@core/data/security/auth-session-token';
 
 @Component({
   selector: 'ngx-header',
