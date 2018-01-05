@@ -50,18 +50,10 @@ export class CodeComponent implements OnInit, OnChanges {
     {title: '描述', titleClass: '', cell: new TextCell('name')} as Column,
     {title: '操作', titleClass: 'w-25 text-center', cell: new MenuCell(
       [
-        new Menu('编辑', '', 'edit'),
-        new Menu('禁用', '', this.disable.bind(this)),
+        // new Menu('编辑', '', 'edit'),
       ],
-      new Menu('查看', '', this.view.bind(this)), 'text-center',
+      new Menu('编辑', '', 'edit'), 'text-center',
     )} as Column,
   ];
-  // 列表菜单回调
-  view(row: any, drop: any) {
-  }
-  edit(row: any) {
-  }
-  disable(row: any) {
 
-  }
 }
