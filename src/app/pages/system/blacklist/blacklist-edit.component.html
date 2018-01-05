@@ -25,12 +25,10 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-1">
-                    <button type="submit" class="btn btn-info btn-block" [disabled]="form.invalid">保存</button>
-                </div>
-                <div class="col-sm-1">
-                    <button type="button" class="btn btn-default btn-block" (click)='back()' >返回</button>
-                </div>
+              <div class="col-sm-6">
+                <button type="submit" class="btn btn-primary btn-sm" [disabled]="form.invalid">保存</button> &nbsp;
+                <button type="button" class="btn btn-info btn-sm" (click)='back()' >返回</button>
+              </div>
             </div>
         </form>
     </nb-card-body>
