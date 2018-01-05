@@ -13,7 +13,7 @@
   class="header-container"
   [class.right]="position === 'normal'"
   [class.left]="position === 'inverse'">
-  <nb-action icon="nb-grid-b" class="toggle-layout" (click)="toggleSettings()"></nb-action>
+  <!--<nb-action icon="nb-grid-b" class="toggle-layout" (click)="toggleSettings()"></nb-action>-->
   <nb-action>
     <nb-user #nbUser [menu]="userMenu" [name]="user?.userName" [picture]="user?.picture" (menuClick)="menuClick($event)"></nb-user>
   </nb-action>
