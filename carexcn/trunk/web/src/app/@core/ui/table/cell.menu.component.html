@@ -1,5 +1,5 @@
-<div ngbDropdown #drop="ngbDropdown" class="text-center btn-group ngx-menu-cell">
-  <button type="button" class="btn btn-sm btn-success" (click)="$event.stopPropagation();default.callback(data,drop)">
+<div ngbDropdown #drop="ngbDropdown" class="text-center btn-group ngx-menu-cell"  *ngIf="menus && menus.length > 0">
+  <button type="button" class="btn btn-sm btn-success has-children" (click)="$event.stopPropagation();default.callback(data,drop)">
     {{default.text}}
   </button>
   <button class="btn btn-success dropdown-toggle-split" ngbDropdownToggle></button>
@@ -18,3 +18,11 @@
     </ng-container>
   </ul>
 </div>
+<ng-container *ngIf="!menus || !menus.length">
+<a *ngIf="default.isCallback()" (click)="default.callback(data)" class="btn btn-sm btn-success">
+  {{default.text}}
+</a>
+<a *ngIf="default.isUrl()" [routerLink]="[default.callback, data]" class="btn btn-sm btn-success">
+  {{default.text}}
+</a>
+</ng-container>
