@@ -4,6 +4,8 @@
 export  class Marketphotomap {
 
   public id: string;
+
+  public isApp :string;
   /**
    * 名称
    */

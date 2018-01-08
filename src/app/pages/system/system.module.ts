@@ -9,7 +9,6 @@ import {HttpClientModule} from '@angular/common/http';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
 import {CodeitemEditComponent} from './code/codeitem-edit.component';
-import { TransferCityitemEditComponent } from './transfer-city/transferCityitem-edit.component';
 import { FormsModule } from '@angular/forms';
 import {CalendarModule} from 'primeng/primeng';
 import {LightboxModule, MegaMenuModule} from 'primeng/primeng';
@@ -23,15 +22,20 @@ import {MarketStaffEditComponent} from './market-staff/market-staff-edit/market-
 import {UiModule} from '../../@core/ui/ui.module';
 import {SystemModule as CoreSystemModule} from '../../@core/data/system/system.module';
 import { MarketPhotoEditComponent } from './market/market-photo-edit/market-photo-edit.component';
+import { MarketPhotoBusinessComponent } from './market/market-photo-business/market-photo-business.component';
+import { MarketPhotoCertificateCodeComponent } from './market/market-photo-certificate-code/market-photo-certificate-code.component';
+import { MarketPhotoFormNameComponent } from './market/market-photo-form-name/market-photo-form-name.component';
 
 const components = [
   CodeitemEditComponent,
-  TransferCityitemEditComponent,
   ToPermTreeNode,
   ToAreaTreeNode,
   MarketStaffComponent,
   MarketStaffAddComponent,
   MarketStaffEditComponent,
+  MarketPhotoBusinessComponent,
+  MarketPhotoCertificateCodeComponent,
+  MarketPhotoFormNameComponent,
 ];
 
 @NgModule({

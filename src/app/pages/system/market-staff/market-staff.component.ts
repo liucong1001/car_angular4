@@ -7,6 +7,7 @@ import {Menu, MenuCell} from '../../../@core/ui/table/cell.menu.component';
 import {CommonDialogService} from '../../../@core/utils/common-dialog.service';
 import {MessageService} from '../../../@core/utils/message.service';
 import {MarketStaffService} from '../../../@core/data/system/market-staff.service';
+import { ActivatedRoute, Router, ActivatedRouteSnapshot, RouterState, RouterStateSnapshot } from '@angular/router';
 
 /**
  * 市场员工管理组件
@@ -28,7 +29,8 @@ import {MarketStaffService} from '../../../@core/data/system/market-staff.servic
 })
 export class MarketStaffComponent implements OnInit {
 
-  constructor(private commonDialog: CommonDialogService, private message: MessageService, private staffService: MarketStaffService) { }
+  constructor(private commonDialog: CommonDialogService, private message: MessageService, private staffService: MarketStaffService,
+    public router: Router) { }
   visibility = 'hidden';
   showFilter = false;
   // 列表搜索表单隐藏显示切换
@@ -64,7 +66,7 @@ export class MarketStaffComponent implements OnInit {
         row.status = ret.status;
         this.message.success('成功', '禁用成功！');
       }).catch(err => {
-        this.message.error('失败', err);
+        this.message.error('失败', err.message);
       });
     }else if (row.status === '0') {
       this.commonDialog.confirm(`确认要重新启用${row.userName}登录权限吗？`).then(ret => {
@@ -73,7 +75,7 @@ export class MarketStaffComponent implements OnInit {
         row.status = ret.status;
         this.message.success('成功', '禁用成功！');
       }).catch(err => {
-        this.message.error('失败', err);
+        this.message.error('失败', err.message);
       });
     }
   }

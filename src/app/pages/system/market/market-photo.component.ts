@@ -1,4 +1,5 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import { promise } from 'selenium-webdriver';
+import {Component, OnInit, ViewChild, Injectable} from '@angular/core';
 import {Menu, MenuCell} from '../../../@core/ui/table/cell.menu.component';
 import {TextCell} from '../../../@core/ui/table/cell.text.component';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -9,34 +10,43 @@ import {Marketphotomap} from './../../../@core/model/system/market-photo-map';
 import {MarketService} from '../../../@core/data/system/market.service';
 import {MessageService} from '../../../@core/utils/message.service';
 import {PanelMenuModule, MenuItem} from 'primeng/primeng';
+import { resolve } from 'q';
+
 
 @Component({
   selector: 'ngx-market-photo',
   templateUrl: './market-photo.component.html',
   providers: [MarketService, MessageService],
 })
-
+@Injectable()
 export class MarketPhotoComponent implements OnInit {
 
   marketId = '';
   marketName = '';
+  marketisApp='';
  market = {
    id: '',
    name: '',
  };
+  marketData = {
+     market:this.market,
+     isApp :'',
+  };
  searchData = {
     business : '',
     certificateCode: '',
     formName: '',
+    isApp:'',
     market : {
        id:  this.marketId,
        name: this.marketName,
     },
  };
-//  object = new Marketphotomap();
+
  business = [];
  CertificateCode = [];
  formName = [];
+ photoData = [];
   constructor(private fb: FormBuilder,
               public router: Router,
               private route: ActivatedRoute,
@@ -47,10 +57,13 @@ export class MarketPhotoComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       this.marketId = params['id'];
       this.marketName = params['marketName'];
+      this.marketisApp = params['isApp'];
       this.market.id = this.marketId;
       this.market.name = this.marketName;
+      this.marketData.isApp=this.marketisApp;
       this.searchData.market.id =  params['id'];
       this.searchData.market.name = this.marketName;
+      this.searchData.isApp = this.marketisApp;
       // this.searchData.market(...this.market);
     });
   }
@@ -98,39 +111,50 @@ export class MarketPhotoComponent implements OnInit {
   filter: any = {};
 
   ngOnInit() {
-    this.marketService.findBusiness(this.market).then(res => {
-      console.log('返回的业务', res);
+    this.marketService.getBusiness(this.marketData).then(res =>{
       this.business = res;
+      console.log(this.business[0]);
+      this.selecctBusiness({data: this.business[0], index: 0})
+    });
+    // this.marketService.findBusiness(this.market).then(res => {
+    //
+    //   if (this.business[0]) {
+    //
+    //     // console.log('certCode后', this.selecctBusiness({data: this.business[0], index: 0}));
+    //
+    //     // if (this.CertificateCode[0]) {
+    //     //   console.log('表单', this.CertificateCode);
+    //     //   this.selectCertificateCode({data: this.CertificateCode[0], index: 0});
+    //     // }else {
+    //     //   console.log('表单esle', this.CertificateCode);
+    //     // }
+    //
+    //   }
+    // });
+  }
+
+  selecctBusiness(result) {
+    this.searchData.business = result.data;
+    this.marketService.findCertificateCode(this.searchData).then(res => {
+        this.CertificateCode = res;
     });
   }
 
-  selecctBusiness(data, event, index) {
-    event.stopPropagation();
-    console.log('切换11');
-    this.searchData.business = data;
-     console.log('选择了', data, this.searchData);
-     this.marketService.findCertificateCode(this.searchData).then(res => {
-        console.log('返回的证件类型', data, event.target , index);
-        this.CertificateCode = res;
-     });
-  }
 
-
-  selectCertificateCode(data, event) {
-    event.stopPropagation();
-    this.searchData.certificateCode = data;
+  selectCertificateCode(result) {
+    console.log('选择代码', result);
+    this.searchData.certificateCode = result.data;
     this.marketService.findFormName(this.searchData).then(res => {
       this.formName = res;
-      // console.log('cateCode', res);
-      // this.CertificateCode = res;
    });
   }
-  selectFormName(data, event) {
-    event.stopPropagation();
-    this.searchData.formName = data;
+
+  selectFormName(result) {
+    console.log('选择表单', result);
+    this.searchData.formName = result.data;
     this.marketService.findMarketPhoto(this.searchData).then(res => {
+      this.photoData = res;
     });
-    console.log(this.searchData);
   }
 
   edit(row: any) {
@@ -160,7 +184,7 @@ export class MarketPhotoComponent implements OnInit {
 
 
   add() {
-    this.router.navigate(['/pages/system/market/photo/edit', { marketId: this.marketId, marketName: this.marketName }]);
+    this.router.navigate(['/pages/system/market/photo/edit', { marketId: this.marketId, marketName: this.marketName ,marketisApp:this.marketisApp}]);
   }
 
   back() {

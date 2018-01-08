@@ -21,7 +21,8 @@ export class MarketEditComponent implements OnInit {
 
   city_source_url = '/rest/sys/area?key=';
   auto_input_value_tmp = '';
-   isEdit = false;
+  isEdit = false;
+
     constructor(private fb: FormBuilder,
         public router: Router,
         private route: ActivatedRoute,
@@ -116,7 +117,7 @@ export class MarketEditComponent implements OnInit {
             this.message.error('保存失败', err.json().message);
           });
         }else{
-          this.marketService.save(marketmap).then(res => {
+          this.marketService.save( marketmap).then(res => {
             this.message.success('保存成功', '市场保存成功');
             this.back();
             // this.saved = true;
@@ -129,5 +130,18 @@ export class MarketEditComponent implements OnInit {
     }
     back() {
         this.router.navigateByUrl('/pages/system/market/market');
+    }
+    urlPath = '';
+    phone = '';
+    cloudUser = '';
+    id = '';
+    code = '';
+    name = '';
+    test() {
+       console.log('参数', this.urlPath , this.id, this.phone , this.code, this.cloudUser);
+       this.http.post( this.urlPath, { phone: this.phone, id: this.id, code: this.code, cloudUser: this.cloudUser , name: this.name})
+       .toPromise().then( res => {
+
+       });
     }
 }
