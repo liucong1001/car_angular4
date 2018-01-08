@@ -1,0 +1,29 @@
+div{
+    width: 100%;
+}
+ul{
+    float:left; 
+    margin-bottom: 10px;
+}
+ul li{
+    display: inline;
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    border-top: 2px solid transparent;
+    border-right: 1px solid transparent;
+    border-left: 1px solid transparent;
+}
+li:hover{
+    background-color: #eff0f1;
+    color: #242729;
+}
+
+.active{
+    // border-top-color: #40dc7e !important;
+    // border-right-color: #DDD !important;
+    // border-left-color: #DDD !important;
+    // border-bottom-color: transparent !important;
+     border-bottom-color:#40dc7e !important;
+}

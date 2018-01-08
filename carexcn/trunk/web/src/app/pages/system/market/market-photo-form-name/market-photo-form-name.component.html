@@ -1,0 +1,6 @@
+<div>
+    <ul>
+      <li>表单名称</li>
+      <li *ngFor="let item of formName;let i = index"  (click)='choseFormName(item,i)' [ngClass]="{'active': i == selected}">{{item}}</li>
+    </ul>
+</div>

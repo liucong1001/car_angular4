@@ -1,0 +1,6 @@
+<div>
+    <ul>
+       <!-- <span>业务类型:</span> -->
+       <li *ngFor="let item of business; let i = index" (click)='choseBusiness(item,i)'   [ngClass]="{'active': i == selected}"  >{{item}}</li>
+    </ul>
+</div>

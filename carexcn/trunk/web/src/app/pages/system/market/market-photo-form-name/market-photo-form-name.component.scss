@@ -1,0 +1,18 @@
+ul{
+    border: 2px solid #dddd; 
+    padding: 0px;
+    margin: 0px;
+ }
+ ul li{
+     list-style: none;
+     padding: 10px;
+     border-bottom: 1px solid  #dddddd;
+     cursor: pointer;
+     text-align: center;
+ }
+ ul li:hover{
+    background: #eee;
+}
+.active{
+    color:#40dc7e;
+}
