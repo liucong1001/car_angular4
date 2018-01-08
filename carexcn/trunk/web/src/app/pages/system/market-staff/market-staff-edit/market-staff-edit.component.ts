@@ -70,4 +70,8 @@ export class MarketStaffEditComponent implements OnInit {
     ],
   };
 
+  back() {
+    this.router.navigateByUrl('/pages/system/market/staff');
+  }
+
 }

@@ -18,6 +18,7 @@ export class MarketPhotoEditComponent implements OnInit {
   isEdit = false;
   marketId = '';
   marketName = '';
+  marketisApp= '';
 
   constructor(private fb: FormBuilder,
     public router: Router,
@@ -28,6 +29,7 @@ export class MarketPhotoEditComponent implements OnInit {
       this.route.params.subscribe((params: Params) => {
         this.marketId = params['marketId'];
         this.marketName = params['marketName'];
+        this.marketisApp = params['marketisApp'];
         if (params['id']) {
           this.marketService.getPhoto(params['id']).then(res => {
             this.isEdit = true;
@@ -53,6 +55,7 @@ export class MarketPhotoEditComponent implements OnInit {
       });
 
       this.form.patchValue({
+        isApp :this.marketisApp,
         market: {
           id: this.marketId,
           name: this.marketName,
@@ -64,6 +67,7 @@ export class MarketPhotoEditComponent implements OnInit {
   }
 
   form: FormGroup = this.fb.group({
+    isApp:[''],
     id: [''],
     name: ['', [Validators.required]],
     memo: [''],
@@ -109,7 +113,7 @@ export class MarketPhotoEditComponent implements OnInit {
   }
 
   back() {
-    this.router.navigate( ['/pages/system/market/photo', { id: this.marketId , marketName: this.marketName}]);
+    this.router.navigate( ['/pages/system/market/photo', { id: this.marketId , marketName: this.marketName,marketisApp:this.marketisApp}]);
    }
 
 

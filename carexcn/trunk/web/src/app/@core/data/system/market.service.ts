@@ -26,7 +26,7 @@ export class MarketService {
 
 
   public getMarket(id: String): Promise<Marketmap> {
-    const url = `${this.path}/findById/${id}`;
+    const url = `${this.path}/${id}`;
     return this.http.get(url).toPromise().then(function (res) {
       return res.json() as Marketmap;
     });
@@ -110,6 +110,16 @@ export class MarketService {
   }
 
   /**
+   * 区分pc，app证件类型
+   * @param model
+   * @returns {Promise<TResult2|TResult1>}
+   */
+  public getBusiness(model){
+    const url = `${this.path}/photo/config/business`;
+    return this.http.post(url,model).toPromise().then(res => res.json());
+  }
+
+  /**
    * 获取所有业务类型
    * @param model
    */
@@ -122,7 +132,7 @@ export class MarketService {
    * @param model
    */
   public  findCertificateCode(model) {
-    const url = `${this.path}/photo/config/findByCertificateCode`;
+    const url = `${this.path}/photo/config/certificate/code`;
     return this.http.post(url, model).toPromise().then(res => res.json());
  }
 /**
@@ -130,7 +140,7 @@ export class MarketService {
  * @param model
  */
   public findFormName(model) {
-    const url = `${this.path}/photo/config/findByFormName`;
+    const url = `${this.path}/photo/config/form/name`;
     return this.http.post(url, model).toPromise().then(res => res.json());
   }
   /**
@@ -138,7 +148,7 @@ export class MarketService {
    * @param model
    */
   public findMarketPhoto(model) {
-    const url = `${this.path}/photo/config/findByMarketPhoto`;
+    const url = `${this.path}/photo/config/market/photo`;
     return this.http.post(url, model).toPromise().then(res => res.json());
   }
 
