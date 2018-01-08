@@ -1,0 +1,8 @@
+<div class="certifiCate_code">
+      <ul>
+          <li><b>证件类型:</b> </li>
+          <li *ngFor="let item of CertifiCateCode;let i = index"  (click)='choseCode(item,i)' [ngClass]="{'active': i == selected}">
+              {{item}} 
+          </li>
+      </ul>
+</div>
