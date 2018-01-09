@@ -4,34 +4,36 @@
       <span class="cameras-card-title">受托人信息</span>
     </div>
   </nb-card-header>
-  <nb-card-body>
+  <nb-card-body [formGroup]="_formGroup">
     <div class="input-group">
       <div class="input-group">
         <span class="input-group-addon">车商</span>
-        <ngx-ys-autoinput [results_resource_url]="autoinput_cheshang_source_url" (_value)="getSelectedCheshang($event)" [showProperty]="'name'" [defaultValue]="cheshang"></ngx-ys-autoinput>
+        <ngx-ys-autoinput [results_resource_url]="autoinput_cheshang_source_url" (_value)="getSelectedCheshang($event)" [showProperty]="'name'" [defaultValue]="cheshang" [placeholder]="'不是车商'"></ngx-ys-autoinput>
       </div>
       <div class="input-group">
         <span class="input-group-addon">受托人姓名</span>
-        <input type="text" placeholder="" class="form-control" [(ngModel)]="trusterIdcardData.Name"/>
+        <input type="text" placeholder="" class="form-control" formControlName="name"/>
       </div>
       <div class="input-group">
-        <span class="input-group-addon">受托人身份证号</span>
-        <input type="text" placeholder="" class="form-control" [(ngModel)]="trusterIdcardData.IdCardNo"/>
+        <span class="input-group-addon">受托人手机</span>
+        <input type="text" placeholder="" class="form-control" formControlName="phone"/>
       </div>
-      <button class="btn btn-primary btn-sm" (click)="readTrusterIdCard()">读受托人身份证</button>
+      <button class="btn btn-primary btn-sm" (click)="readIdCard()">读受托人身份证</button>
     </div>
     <div class="input-group">
       <div class="input-group">
-        <span class="input-group-addon">受托人手机</span>
-        <input type="text" placeholder="" class="form-control"/>
-      </div>
-      <div class="input-group">
-        <span class="input-group-addon">受托人地址</span>
-        <input type="text" placeholder="" class="form-control" [(ngModel)]="trusterIdcardData.Address"/>
+        <span class="input-group-addon">受托人身份证号</span>
+        <input type="text" placeholder="" class="form-control" formControlName="certCode"/>
       </div>
       <div class="input-group">
         <span class="input-group-addon">受托人身份有效期</span>
-        <input type="text" placeholder="" class="form-control" [(ngModel)]="trusterIdcardData.UseEnd"/>
+        <input type="text" placeholder="" class="form-control" formControlName="endDate"/>
+      </div>
+    </div>
+    <div class="input-group">
+      <div class="input-group">
+        <span class="input-group-addon">受托人地址</span>
+        <input type="text" placeholder="" class="form-control" formControlName="address"/>
       </div>
     </div>
     <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" [btn_show]="btn_show"></ngx-ys-camera>

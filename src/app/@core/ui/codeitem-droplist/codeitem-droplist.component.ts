@@ -2,6 +2,7 @@ import {Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angul
 import {SelectItem} from 'primeng/primeng';
 import {CodeitemService} from '../../data/system/codeitem.service';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {Codeitem} from "../../model/system/codeitem";
 @Component({
   selector: 'ngx-ys-codeitem-droplist',
   templateUrl: './codeitem-droplist.component.html',
@@ -49,5 +50,15 @@ export class CodeitemDroplistComponent implements OnInit, ControlValueAccessor {
   _onChange(event) {
     this.change(event.value);
     this._selectedValue.emit(event.value);
+  }
+
+  /**
+   * 证件类型匹配函数
+   * @param {Codeitem} code1
+   * @param {Codeitem} code2
+   * @returns {boolean | boolean}
+   */
+  compareWithFunc(code1: Codeitem, code2: Codeitem) {
+    return (code1 && code2) ? code1.code === code2.code : false;
   }
 }

@@ -1,10 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {SellerModel} from '../../../model/bussiness/seller.model';
-import {FilingService} from '../../../data/merchant/filing.service';
-import {LocalstorageService} from '../../../cache/localstorage.service';
 import {MerchantModel} from '../../../model/bussiness/merchant.model';
 import {Codeitem} from '../../../model/system/codeitem';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {IdcardService} from '../../../device/idcard.service';
+import {MessageService} from '../../../utils/message.service';
 
 @Component({
   selector: 'ngx-ys-seller-info',
@@ -21,11 +21,6 @@ export class SellerInfoComponent implements OnInit {
   @Input() CERTIFICATE_TYPE_LIST: Codeitem[];
   public ifTrusteeType = false;
   public autoinput_cheshang_source_url = '/rest/merchant/filing/deal/';
-  /**
-   * 车商搜索资源
-   * @type {string}
-   */
-  SellerIdcardData: SellerModel = {};
   seller: SellerModel = {};
   photos: any[] = [{
     title: '身份证正面',
@@ -48,19 +43,26 @@ export class SellerInfoComponent implements OnInit {
   cheshang = '';
   public certificateType: Codeitem;
   constructor(
-    private _localstorage: LocalstorageService,
+    private idcard: IdcardService,
     private fb: FormBuilder,
-    private _filingService: FilingService,
+    private message: MessageService,
   ) {
-    /**
-     * 缓存前缀名以业务为单位，一个缓存前缀对应一个业务，一个缓存业务完成则删除该前缀的所有缓存
-     * @type {string}
-     */
-    this._localstorage.prefix = 'bussiness_prejudication_recording';
   }
-
+  subcribeToFormChanges() {
+    // initialize stream
+    const _formValueChanges = this._formGroup.valueChanges;
+    _formValueChanges.subscribe(x => {
+      if ( x.trusteeType === '1' ) {
+        this.ifTrusteeType = true;
+      } else {
+        this.ifTrusteeType = false;
+      }
+      console.info(x);
+    });
+  }
   ngOnInit() {
     this.autoinput_cheshang_source_url += this.merchant.id + '/';
+    this.subcribeToFormChanges();
   }
   certificateTypeSelecteFunc(event) {
     console.info(this.merchant);
@@ -79,8 +81,29 @@ export class SellerInfoComponent implements OnInit {
   }
   getSelectedCheshang(value) {
     console.info(value);
-    // this._filingService.deal(this.merchant.id).then(res => {
-    //   console.info(res);
-    // });
+    value.certCode = value.filingPerson.certCode;
+    this._formGroup.patchValue(value);
+  }
+  readIdCard() {
+    // this.message.info('身份证', '读取卖方身份证');
+    this.idcard.prepare().then((res) => {
+      // this.message.info('身份证', '初始化完毕');
+      if (res) { // 初始化读卡器正常
+        this.idcard.read().then((idcardData) => {
+          this.message.success('身份证', '读取成功');
+          console.info(idcardData);
+          this._formGroup.patchValue({
+            address: idcardData.Address,
+            // birthday: idcardData.Birthday,
+            certCode: idcardData.IdCardNo,
+            name: idcardData.Name,
+            // sex: idcardData.Sex,
+            endDate: idcardData.UseEnd,
+          });
+        });
+      }
+    }).catch(e => {
+      this.message.error('身份证', '读取身份证失败');
+    });
   }
 }

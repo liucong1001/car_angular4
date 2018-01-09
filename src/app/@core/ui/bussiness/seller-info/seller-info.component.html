@@ -32,27 +32,29 @@
         <input type="text" placeholder="" class="form-control" formControlName="name"/>
       </div>
       <div class="input-group">
-        <span class="input-group-addon">卖方身份证号</span>
-        <input type="text" placeholder="" class="form-control" formControlName="certCode"/>
+        <span class="input-group-addon">卖方手机</span>
+        <input type="text" placeholder="" class="form-control" formControlName="phone"/>
       </div>
       <button class="btn btn-primary btn-sm" (click)="readIdCard()">读卖方身份证</button>
     </div>
     <div class="input-group">
       <div class="input-group">
-        <span class="input-group-addon">卖方手机</span>
-        <input type="text" placeholder="" class="form-control" formControlName="phone"/>
-      </div>
-      <div class="input-group">
-        <span class="input-group-addon">卖方地址</span>
-        <input type="text" placeholder="" class="form-control" formControlName="address"/>
+        <span class="input-group-addon">卖方身份证号</span>
+        <input type="text" placeholder="" class="form-control" formControlName="certCode"/>
       </div>
       <div class="input-group">
         <span class="input-group-addon">卖方身份有效期</span>
         <input type="text" placeholder="" class="form-control" formControlName="endDate"/>
       </div>
     </div>
+    <div class="input-group">
+      <div class="input-group">
+        <span class="input-group-addon">卖方地址</span>
+        <input type="text" placeholder="" class="form-control" formControlName="address"/>
+      </div>
+    </div>
     <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" [btn_show]="btn_show"></ngx-ys-camera>
   </nb-card-body>
 </nb-card>
 
-<ngx-ys-truster-info [autoinput_cheshang_source_url]="autoinput_cheshang_source_url" *ngIf=" ifTrusteeType "></ngx-ys-truster-info>
+<ngx-ys-truster-info [autoinput_cheshang_source_url]="autoinput_cheshang_source_url" *ngIf=" ifTrusteeType " [autoinput_cheshang_source_url]="autoinput_cheshang_source_url"></ngx-ys-truster-info>
