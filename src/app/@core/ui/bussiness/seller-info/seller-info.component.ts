@@ -40,7 +40,7 @@ export class SellerInfoComponent implements OnInit {
     name: ['', [Validators.required, Validators.maxLength(64)]],
     endDate: ['', [Validators.required]],
     phone: ['', [Validators.required]],
-    trusteeType: ['', [Validators.required]],
+    trusteeType: ['0', [Validators.required]],
     address: ['', [Validators.required]],
     // Trustee: ['', [Validators.required]],
     // flag: ['', [Validators.required]],
