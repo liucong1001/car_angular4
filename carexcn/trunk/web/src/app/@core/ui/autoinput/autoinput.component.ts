@@ -14,6 +14,7 @@ export class AutoinputComponent implements OnInit, ControlValueAccessor {
   @Input() getProperty: string;
   @Input() disabled: boolean;
   @Input() defaultValue: any;
+  @Input() placeholder: string;
   value: any;
   results: any[];
   constructor(private rest: RestService) {

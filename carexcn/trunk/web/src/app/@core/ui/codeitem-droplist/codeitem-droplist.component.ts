@@ -36,13 +36,13 @@ export class CodeitemDroplistComponent implements OnInit, ControlValueAccessor {
     this.touched = fn;
   }
   ngOnInit() {
-    this.codeitem.convert(this.codeMap).then((res) => {
+    this.codeitem.list(this.codeMap).then((res) => {
       this.items.push({label: this.pleaseSelect, value: null});
         for (const r in res) {
           if (res.hasOwnProperty(r)) {
-            this.items.push({label: res[r], value: r});
+            this.items.push({label: res[r]['name'], value: r});
           }
-          // console.log(r + ' ' + res[r]);
+          // console.info(r + ' ' + res[r]['name']);
         }
     });
   }

@@ -6,6 +6,11 @@ import {IdcardModel} from '../../../../@core/model/bussiness/idcard.model';
 import {MerchantModel} from '../../../../@core/model/bussiness/merchant.model';
 import {LocalstorageService} from '../../../../@core/cache/localstorage.service';
 import {SellerModel} from "../../../../@core/model/bussiness/seller.model";
+import {CodeService} from "../../../../@core/data/system/code.service";
+import {CodeitemService} from "../../../../@core/data/system/codeitem.service";
+import {Codeitem} from "../../../../@core/model/system/codeitem";
+import {FilingInfoModel} from "../../../../@core/model/bussiness/filing.info.model";
+import {FilingService} from "../../../../@core/data/merchant/filing.service";
 
 /**
  * 预审录入2--接口与页面的交互逻辑
@@ -31,13 +36,22 @@ export class Recording2Component implements OnInit, OnDestroy {
   public sellerIdcardData = new IdcardModel;
   public trusterIdcardData = new IdcardModel;
   public sellerData = new SellerModel;
+  public CERTIFICATE_TYPE_LIST: Codeitem[];
+  public certificateType: Codeitem;
   merchant: MerchantModel = {name: ''};
   constructor(
     private _router: Router,
     private _idcard: IdcardService,
     private _message: MessageService,
     private _localstorage: LocalstorageService,
+    private _code: CodeService,
+    private _codeitem: CodeitemService,
+    private _filingService: FilingService,
   ) {
+    /**
+     * 缓存前缀名以业务为单位，一个缓存前缀对应一个业务，一个缓存业务完成则删除该前缀的所有缓存
+     * @type {string}
+     */
     this._localstorage.prefix = 'bussiness_prejudication_recording';
   }
 
@@ -51,10 +65,14 @@ export class Recording2Component implements OnInit, OnDestroy {
      * @type {any}
      */
     let maybe_merchant = this._localstorage.get('dealer');
-    console.info(maybe_merchant);
     if (maybe_merchant) {
       this.merchant = maybe_merchant;
     }
+    let maybe_certificate_type = this._localstorage.get('certificateType');
+    if (maybe_certificate_type) {
+      this.certificateType = maybe_certificate_type;
+    }
+    this._codeitem.list('CERTIFICATE_TYPE').then(res => this.CERTIFICATE_TYPE_LIST = res as Codeitem[]);
   }
 
   /**
@@ -63,6 +81,7 @@ export class Recording2Component implements OnInit, OnDestroy {
    */
   ngOnDestroy() {
     console.info('exec on destroy.');
+    this._localstorage.set('certificateType', this.certificateType);
   }
 
   /**
@@ -85,7 +104,7 @@ export class Recording2Component implements OnInit, OnDestroy {
   }
 
   /**
-   * 读取卖方身份证信息
+   * 读取委托人身份证信息
    * @param {string} who 谁的身份证
    */
   readTrusterIdCard() {

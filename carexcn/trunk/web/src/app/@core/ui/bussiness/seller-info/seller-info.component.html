@@ -4,17 +4,55 @@
       <span class="cameras-card-title">卖方信息</span>
     </div>
   </nb-card-header>
-  <nb-card-body>
+  <nb-card-body [formGroup]="_formGroup">
+    <div class="input-group">
+      <div class="input-group">
+        <span class="input-group-addon">车商</span>
+        <ngx-ys-autoinput [results_resource_url]="autoinput_cheshang_source_url" (_value)="getSelectedCheshang($event)" [showProperty]="'name'" [defaultValue]="cheshang" [placeholder]="'请输入以选择车商'"></ngx-ys-autoinput>
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">是否委托</span>
+        <select class="form-control" formControlName="trusteeType">
+          <option value="1">是</option>
+          <option value="0">否</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">证件类型</span>
+        <!--<ngx-ys-codeitem-droplist formControlName="certType" (_selectedValue)="certificateTypeSelecteFunc($event)" [codeMap]="'CERTIFICATE_TYPE'" (pleaseSelect)="'性别'" style="width:100%"></ngx-ys-codeitem-droplist>-->
+        <!--要拿到实体数据-->
+        <select class="form-control" [(ngModel)]="seller.certType" formControlName="certType" (change)="certificateTypeSelecteFunc()" [compareWith]="certificateTypeCompareWithFunc">
+          <option *ngFor="let code of CERTIFICATE_TYPE_LIST" [ngValue]="code">{{code.name}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="input-group">
+      <div class="input-group">
+        <span class="input-group-addon">卖方姓名</span>
+        <input type="text" placeholder="" class="form-control" formControlName="name"/>
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">卖方身份证号</span>
+        <input type="text" placeholder="" class="form-control" formControlName="certCode"/>
+      </div>
+      <button class="btn btn-primary btn-sm" (click)="readIdCard()">读卖方身份证</button>
+    </div>
+    <div class="input-group">
+      <div class="input-group">
+        <span class="input-group-addon">卖方手机</span>
+        <input type="text" placeholder="" class="form-control" formControlName="phone"/>
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">卖方地址</span>
+        <input type="text" placeholder="" class="form-control" formControlName="address"/>
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">卖方身份有效期</span>
+        <input type="text" placeholder="" class="form-control" formControlName="endDate"/>
+      </div>
+    </div>
     <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" [btn_show]="btn_show"></ngx-ys-camera>
-    <div class="input-group">
-      <input type="text" placeholder="卖方姓名" class="form-control" />
-      <input type="text" placeholder="卖方身份证号" class="form-control" />
-      <button class="btn btn-primary btn-sm" (click)="delete(RecordModel)">读卖方身份证</button>
-    </div>
-    <div class="input-group">
-      <input type="text" placeholder="卖方手机" class="form-control" />
-      <input type="text" placeholder="卖方地址" class="form-control" />
-      <input type="text" placeholder="卖方身份有效期" class="form-control" />
-    </div>
   </nb-card-body>
 </nb-card>
+
+<ngx-ys-truster-info [autoinput_cheshang_source_url]="autoinput_cheshang_source_url" *ngIf=" ifTrusteeType "></ngx-ys-truster-info>
