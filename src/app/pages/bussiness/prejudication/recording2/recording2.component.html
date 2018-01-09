@@ -5,33 +5,9 @@
     </div>
   </nb-card-header>
   <nb-card-body>
-    <div class="input-group">
-      <div class="input-group">
-        <span class="input-group-addon">车商</span>
-        <label class="form-control">{{merchant.name}}</label>
-      </div>
-      <div class="input-group">
-        <span class="input-group-addon">是否委托</span>
-        <select class="form-control">
-          <option>是</option>
-          <option>否</option>
-        </select>
-      </div>
-      <div class="input-group">
-        <span class="input-group-addon">证件类型</span>
-        <select class="form-control">
-          <option>请选择卖方证件类型</option>
-          <option>身份证</option>
-          <option>组织机构代码</option>
-          <option>军官证</option>
-          <option>港澳通行证</option>
-        </select>
-      </div>
-    </div>
   </nb-card-body>
 </nb-card>
-<ngx-ys-seller-info></ngx-ys-seller-info>
-<ngx-ys-truster-info></ngx-ys-truster-info>
+<ngx-ys-seller-info [merchant]="merchant" [CERTIFICATE_TYPE_LIST]="CERTIFICATE_TYPE_LIST"></ngx-ys-seller-info>
 <div class="float-right">
   <button class="btn btn-primary btn-lg" (click)="onSubmit()">下一步</button>
 </div>

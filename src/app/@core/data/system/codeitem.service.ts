@@ -30,6 +30,29 @@ export class CodeitemService {
     return this.http.delete(url).toPromise();
   }
 
+  /**
+   * 获取代码类目子集，需要实体数据
+   * @param {string} codemap
+   * @returns {Promise<any>}
+   */
+  public list(codemap: string): Promise<any> {
+    const url = `${this.path}/convert/${codemap}`;
+    return this.rest.get(url).map(res => {
+      let _result = [];
+      for (let key in res) {
+        if (res[key]) {
+          _result.push(res[key]);
+        }
+      }
+      return _result;
+    }).toPromise();
+  }
+
+  /**
+   * 代码转换
+   * @param {string} codemap
+   * @returns {Promise<any>}
+   */
   public convert(codemap: string): Promise<any> {
     const url = `${this.path}/convert/${codemap}`;
     let _return: Promise<any>;

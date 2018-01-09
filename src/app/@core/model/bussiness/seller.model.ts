@@ -31,11 +31,11 @@ export class SellerModel {
   /**
    * 卖方地址
    */
-  sellerAddress?: string;
+  address?: string;
   /**
    * 卖方受托人
    */
-  sellerTrustee?: TrusteeModel;
+  Trustee?: TrusteeModel;
   /**
    * 当有受托人的时候委托书是单拍还是多拍
    * 0-单拍 1-多拍

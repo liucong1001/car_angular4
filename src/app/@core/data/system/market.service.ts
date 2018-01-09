@@ -12,6 +12,32 @@ export class MarketService {
   }
 
   /**
+   * 根据市场和业务类型查询证件类型 [clh021@gmail.com]
+   * @param {Marketphotomap} model
+   * @returns {Promise<any>}
+   */
+  public getCertificateList(model: Marketphotomap): Promise<any> {
+    return this.http.get(this.path + '/photo/config/certificate/code', model).toPromise();
+  }
+
+  /**
+   * 根据市场，业务类型和证件类型查询表单信息 [clh021@gmail.com]
+   * @param {Marketphotomap} model
+   * @returns {Promise<any>}
+   */
+  public getFormByName(model: Marketphotomap): Promise<any> {
+    return this.http.get(this.path + '/photo/config/form/name', model).toPromise();
+  }
+
+  /**
+   * 根据市场，业务，证件和表单名称查询证件配置信息 [clh021@gmail.com]
+   * @param {Marketphotomap} model
+   * @returns {Promise<any>}
+   */
+  public getCertificateConfig(model: Marketphotomap): Promise<any> {
+    return this.http.get(this.path + '/photo/config/market/photo', model).toPromise();
+  }
+  /**
    * 保存市场
    * @param model
    * @returns {Promise<Marketmap>}

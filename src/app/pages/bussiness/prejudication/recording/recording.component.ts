@@ -56,7 +56,7 @@ export class RecordingComponent implements OnInit, OnDestroy {
    * 商户搜索资源
    * @type {string}
    */
-  public autoinput_shanghu_source_url = 'http://localhost/rest/merchant/list/';
+  public autoinput_shanghu_source_url = '/rest/merchant/list/';
   /**
    * 构造函数
    * @param {Router} _router
@@ -74,6 +74,10 @@ export class RecordingComponent implements OnInit, OnDestroy {
     private _filingService: FilingService,
     private _localstorage: LocalstorageService,
   ) {
+    /**
+     * 缓存前缀名以业务为单位，一个缓存前缀对应一个业务，一个缓存业务完成则删除该前缀的所有缓存
+     * @type {string}
+     */
     this._localstorage.prefix = 'bussiness_prejudication_recording';
   }
 

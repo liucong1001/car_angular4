@@ -7,6 +7,10 @@
   <nb-card-body>
     <div class="input-group">
       <div class="input-group">
+        <span class="input-group-addon">车商</span>
+        <ngx-ys-autoinput [results_resource_url]="autoinput_cheshang_source_url" (_value)="getSelectedCheshang($event)" [showProperty]="'name'" [defaultValue]="cheshang"></ngx-ys-autoinput>
+      </div>
+      <div class="input-group">
         <span class="input-group-addon">受托人姓名</span>
         <input type="text" placeholder="" class="form-control" [(ngModel)]="trusterIdcardData.Name"/>
       </div>
@@ -30,5 +34,6 @@
         <input type="text" placeholder="" class="form-control" [(ngModel)]="trusterIdcardData.UseEnd"/>
       </div>
     </div>
+    <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" [btn_show]="btn_show"></ngx-ys-camera>
   </nb-card-body>
 </nb-card>
