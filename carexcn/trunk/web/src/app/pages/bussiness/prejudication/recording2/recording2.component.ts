@@ -33,9 +33,6 @@ export class Recording2Component implements OnInit, OnDestroy {
     title: '身份证反面',
     source: 'assets/images/camera2.jpg',
   }];
-  public sellerIdcardData = new IdcardModel;
-  public trusterIdcardData = new IdcardModel;
-  public sellerData = new SellerModel;
   public CERTIFICATE_TYPE_LIST: Codeitem[];
   public certificateType: Codeitem;
   merchant: MerchantModel = {name: ''};
@@ -46,7 +43,6 @@ export class Recording2Component implements OnInit, OnDestroy {
     private _localstorage: LocalstorageService,
     private _code: CodeService,
     private _codeitem: CodeitemService,
-    private _filingService: FilingService,
   ) {
     /**
      * 缓存前缀名以业务为单位，一个缓存前缀对应一个业务，一个缓存业务完成则删除该前缀的所有缓存
@@ -89,30 +85,5 @@ export class Recording2Component implements OnInit, OnDestroy {
    */
   onSubmit() {
     this._router.navigateByUrl('/pages/bussiness/prejudication/recording3');
-  }
-
-  /**
-   * 读取卖方身份证信息
-   */
-  readSellerIdCard() {
-    this._message.info('身份证', '读取卖方身份证');
-    this._idcard.prepare().then((res) => {
-      if (res) { // 初始化读卡器正常
-        this._idcard.read().then((idcardData) => this.sellerIdcardData = idcardData as IdcardModel);
-      }
-    });
-  }
-
-  /**
-   * 读取委托人身份证信息
-   * @param {string} who 谁的身份证
-   */
-  readTrusterIdCard() {
-    this._message.info('身份证', '读取委托人身份证');
-    this._idcard.prepare().then((res) => {
-      if (res) { // 初始化读卡器正常
-        this._idcard.read().then((idcardData) => this.trusterIdcardData = idcardData as IdcardModel);
-      }
-    });
   }
 }
