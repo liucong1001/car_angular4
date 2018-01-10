@@ -37,7 +37,7 @@
     <span> &nbsp; &nbsp; * 请UI修改默认图片 <!-- TODO:* 请UI修改默认图片 -->
       <div class="size-container">
         <div class="float-right">
-          <button class="btn btn-primary btn-lg" (click)="onSubmit()">下一步</button>
+          <button class="btn btn-primary btn-lg" (click)="onSubmit()" [disabled]="!linkmanSelected.phone">下一步</button>
         </div>
       </div>
     </span>

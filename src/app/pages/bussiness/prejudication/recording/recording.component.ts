@@ -203,5 +203,4 @@ export class RecordingComponent implements OnInit, OnDestroy {
     //   this._message.error('错误', err);
     // });
   }
-
 }

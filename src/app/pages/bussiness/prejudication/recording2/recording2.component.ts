@@ -154,7 +154,6 @@ export class Recording2Component implements OnInit, OnDestroy {
    * 转到下一页
    */
   onSubmit() {
-    console.info(this._formGroup.value);
-    // this._router.navigateByUrl('/pages/bussiness/prejudication/recording3');
+    this._router.navigateByUrl('/pages/bussiness/prejudication/recording3');
   }
 }
