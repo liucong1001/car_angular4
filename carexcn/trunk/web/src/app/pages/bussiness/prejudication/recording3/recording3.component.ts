@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 
 /**
@@ -13,7 +13,7 @@ import {Router} from '@angular/router';
   templateUrl: './recording3.component.html',
   styleUrls: ['./recording3.component.scss'],
 })
-export class Recording3Component implements OnInit {
+export class Recording3Component implements OnInit, OnDestroy {
   photos: any[] = [{
     title: '行驶证正本',
     source: 'assets/images/camera1.jpg',
@@ -29,7 +29,17 @@ export class Recording3Component implements OnInit {
   }];
   constructor(private _router: Router) { }
 
+  /**
+   * 页面初始化事件
+   */
   ngOnInit() {
+    console.info('exec on init.');
+  }
+  /**
+   * 页面销毁前
+   */
+  ngOnDestroy() {
+    console.info('exec on destroy.');
   }
 
   onSubmit() {

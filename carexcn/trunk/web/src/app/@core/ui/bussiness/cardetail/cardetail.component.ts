@@ -25,6 +25,4 @@ export class CardetailComponent implements OnInit {
 
   ngOnInit() {
   }
-  readCard() {
-  }
 }

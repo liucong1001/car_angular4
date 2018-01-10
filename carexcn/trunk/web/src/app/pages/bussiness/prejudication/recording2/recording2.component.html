@@ -11,5 +11,5 @@
 <ngx-ys-seller-info [merchant]="merchant" [CERTIFICATE_TYPE_LIST]="CERTIFICATE_TYPE_LIST" [seller]="_formGroup.controls.seller" [errors]="errors.seller"></ngx-ys-seller-info>
 </div>
 <div class="float-right">
-  <button class="btn btn-primary btn-lg" (click)="onSubmit()">下一步</button>
+  <button class="btn btn-primary btn-lg" (click)="onSubmit()" [disabled]="_formGroup.invalid">下一步</button>
 </div>
