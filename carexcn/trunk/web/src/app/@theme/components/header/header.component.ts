@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
 
   user: MarketStaff;
 
-  userMenu = [{ title: 'Profile' }, { title: '注销' , url: '/auth/login'}];
+  userMenu = [{ title: '个人资料' }, { title: '注销' , url: '/auth/login'}];
 
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
@@ -56,7 +56,7 @@ export class HeaderComponent implements OnInit {
   menuClick(e) {
     // if (e.title === '注销') {
     //   // this.authService.logout('email').map(ret => {
-    //   //   this.router.navigate(['/auth/login'])
+    //   //   this.router.navigate(['/oauth/login'])
     //   // }).catch(err => {
     //   //
     //   // });
