@@ -1,8 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {SellerModel} from '../../../model/bussiness/seller.model';
 import {MerchantModel} from '../../../model/bussiness/merchant.model';
 import {Codeitem} from '../../../model/system/codeitem';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ControlContainer, FormBuilder, FormGroup, NgForm} from '@angular/forms';
 import {IdcardService} from '../../../device/idcard.service';
 import {MessageService} from '../../../utils/message.service';
 
@@ -10,6 +9,7 @@ import {MessageService} from '../../../utils/message.service';
   selector: 'ngx-ys-seller-info',
   templateUrl: './seller-info.component.html',
   styleUrls: ['./seller-info.component.scss'],
+  viewProviders: [ { provide: ControlContainer, useExisting: NgForm } ],
 })
 export class SellerInfoComponent implements OnInit {
   /**
@@ -17,11 +17,30 @@ export class SellerInfoComponent implements OnInit {
    * @type {boolean}
    */
   @Input() btn_show = true;
+  /**
+   * 当前商户实例
+   */
   @Input() merchant: MerchantModel;
+  /**
+   * 证件类型清单
+   */
   @Input() CERTIFICATE_TYPE_LIST: Codeitem[];
+  /**
+   * 卖家表单
+   */
+  @Input() seller: FormGroup;
+  /**
+   * 错误实例
+   * @type {{}}
+   */
+  @Input() errors: object = {};
   public ifTrusteeType = false;
   public autoinput_cheshang_source_url = '/rest/merchant/filing/deal/';
-  seller: SellerModel = {};
+
+  /**
+   * 图片清单
+   * @type {{title: string; source: string}[]}
+   */
   photos: any[] = [{
     title: '身份证正面',
     source: 'assets/images/camera1.jpg',
@@ -29,41 +48,57 @@ export class SellerInfoComponent implements OnInit {
     title: '身份证反面',
     source: 'assets/images/camera2.jpg',
   }];
-  _formGroup: FormGroup = this.fb.group({
-    certType: ['', [Validators.required]],
-    certCode: ['', [Validators.required]],
-    name: ['', [Validators.required, Validators.maxLength(64)]],
-    endDate: ['', [Validators.required]],
-    phone: ['', [Validators.required]],
-    trusteeType: ['0', [Validators.required]],
-    address: ['', [Validators.required]],
-    // Trustee: ['', [Validators.required]],
-    // flag: ['', [Validators.required]],
-  });
+
+  /**
+   * 当前选择的车商
+   * @type {string}
+   */
   cheshang = '';
+
+  /**
+   * 证件类型列表
+   */
   public certificateType: Codeitem;
+
+  /**
+   * 构造函数
+   * @param {IdcardService} idcard
+   * @param {FormBuilder} formBuilder
+   * @param {MessageService} message
+   */
   constructor(
     private idcard: IdcardService,
-    private fb: FormBuilder,
+    private formBuilder: FormBuilder,
     private message: MessageService,
   ) {
   }
+
+  /**
+   * 订阅表单值变更事件
+   */
   subcribeToFormChanges() {
-    // initialize stream
-    const _formValueChanges = this._formGroup.valueChanges;
+    const _formValueChanges = this.seller.valueChanges;
     _formValueChanges.subscribe(x => {
       if ( x.trusteeType === '1' ) {
         this.ifTrusteeType = true;
       } else {
         this.ifTrusteeType = false;
       }
-      console.info(x);
     });
   }
+
+  /**
+   * 页面初始化事件
+   */
   ngOnInit() {
     this.autoinput_cheshang_source_url += this.merchant.id + '/';
-    this.subcribeToFormChanges();
+    // this.subcribeToFormChanges();
   }
+
+  /**
+   * 证件类型选择事件以切换要操作的图片清单
+   * @param event
+   */
   certificateTypeSelecteFunc(event) {
     console.info(this.merchant);
     console.info(event);
@@ -79,11 +114,21 @@ export class SellerInfoComponent implements OnInit {
   certificateTypeCompareWithFunc(code1: Codeitem, code2: Codeitem) {
     return (code1 && code2) ? code1.code === code2.code : false;
   }
+
+  /**
+   * 选择车商事件
+   * 将选中的车商数据复制到卖家表单中
+   * @param value
+   */
   getSelectedCheshang(value) {
-    console.info(value);
     value.certCode = value.filingPerson.certCode;
-    this._formGroup.patchValue(value);
+    console.info(value);
+    this.seller.patchValue(value);
   }
+
+  /**
+   * 读取IC卡并将读取的信息赋值到卖家表单中
+   */
   readIdCard() {
     // this.message.info('身份证', '读取卖方身份证');
     this.idcard.prepare().then((res) => {
@@ -92,7 +137,7 @@ export class SellerInfoComponent implements OnInit {
         this.idcard.read().then((idcardData) => {
           this.message.success('身份证', '读取成功');
           console.info(idcardData);
-          this._formGroup.patchValue({
+          this.seller.patchValue({
             address: idcardData.Address,
             // birthday: idcardData.Birthday,
             certCode: idcardData.IdCardNo,

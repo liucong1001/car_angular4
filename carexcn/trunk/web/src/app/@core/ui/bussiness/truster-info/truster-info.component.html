@@ -4,36 +4,47 @@
       <span class="cameras-card-title">受托人信息</span>
     </div>
   </nb-card-header>
-  <nb-card-body [formGroup]="_formGroup">
+  <nb-card-body [formGroup]="Trustee">
     <div class="input-group">
       <div class="input-group">
         <span class="input-group-addon">车商</span>
-        <ngx-ys-autoinput [results_resource_url]="autoinput_cheshang_source_url" (_value)="getSelectedCheshang($event)" [showProperty]="'name'" [defaultValue]="cheshang" [placeholder]="'不是车商'"></ngx-ys-autoinput>
+        <ngx-ys-autoinput [results_resource_url]="autoinput_cheshang_source_url" (_value)="getSelectedCheshang($event)"
+                          [showProperty]="'name'" [defaultValue]="cheshang" [placeholder]="'不是车商'"></ngx-ys-autoinput>
       </div>
       <div class="input-group">
-        <span class="input-group-addon">受托人姓名</span>
-        <input type="text" placeholder="" class="form-control" formControlName="name"/>
+        <span class="input-group-addon">姓名</span>
+        <input type="text" placeholder="" class="form-control" formControlName="name"
+               [ngClass]="{'form-control-danger':Trustee.get('name').invalid && Trustee.get('name').touched}"/>
+        <ngx-valid-error [errors]="errors.name" [control]="Trustee.get('name')"></ngx-valid-error>
       </div>
       <div class="input-group">
-        <span class="input-group-addon">受托人手机</span>
-        <input type="text" placeholder="" class="form-control" formControlName="phone"/>
+        <span class="input-group-addon">手机</span>
+        <input type="text" placeholder="" class="form-control" formControlName="phone"
+               [ngClass]="{'form-control-danger':Trustee.get('phone').invalid && Trustee.get('phone').touched}"/>
+        <ngx-valid-error [errors]="errors.phone" [control]="Trustee.get('phone')"></ngx-valid-error>
       </div>
-      <button class="btn btn-primary btn-sm" (click)="readIdCard()">读受托人身份证</button>
+      <button class="btn btn-primary btn-sm" (click)="readIdCard()">读取身份证</button>
     </div>
     <div class="input-group">
       <div class="input-group">
-        <span class="input-group-addon">受托人身份证号</span>
-        <input type="text" placeholder="" class="form-control" formControlName="certCode"/>
+        <span class="input-group-addon">证件号码</span>
+        <input type="text" placeholder="" class="form-control" formControlName="certCode"
+               [ngClass]="{'form-control-danger':Trustee.get('certCode').invalid && Trustee.get('certCode').touched}"/>
+        <ngx-valid-error [errors]="errors.certCode" [control]="Trustee.get('certCode')"></ngx-valid-error>
       </div>
       <div class="input-group">
-        <span class="input-group-addon">受托人身份有效期</span>
-        <input type="text" placeholder="" class="form-control" formControlName="endDate"/>
+        <span class="input-group-addon">证件有效期</span>
+        <input type="text" placeholder="" class="form-control" formControlName="endDate"
+               [ngClass]="{'form-control-danger':Trustee.get('endDate').invalid && Trustee.get('endDate').touched}"/>
+        <ngx-valid-error [errors]="errors.endDate" [control]="Trustee.get('endDate')"></ngx-valid-error>
       </div>
     </div>
     <div class="input-group">
       <div class="input-group">
-        <span class="input-group-addon">受托人地址</span>
-        <input type="text" placeholder="" class="form-control" formControlName="address"/>
+        <span class="input-group-addon">地址</span>
+        <input type="text" placeholder="" class="form-control" formControlName="address"
+               [ngClass]="{'form-control-danger':Trustee.get('address').invalid && Trustee.get('address').touched}"/>
+        <ngx-valid-error [errors]="errors.address" [control]="Trustee.get('address')"></ngx-valid-error>
       </div>
     </div>
     <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" [btn_show]="btn_show"></ngx-ys-camera>
