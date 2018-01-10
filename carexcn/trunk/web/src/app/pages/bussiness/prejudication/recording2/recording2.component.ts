@@ -135,15 +135,19 @@ export class Recording2Component implements OnInit, OnDestroy {
       this.certificateType = maybe_certificate_type;
     }
     this._codeitem.list('CERTIFICATE_TYPE').then(res => this.CERTIFICATE_TYPE_LIST = res as Codeitem[]);
+    let maybe_seller_form = this._localstorage.get('seller_form');
+    if (maybe_seller_form) {
+      this._formGroup.patchValue(maybe_seller_form);
+    }
   }
 
   /**
    * 页面销毁前
-   * @constructor
    */
   ngOnDestroy() {
     console.info('exec on destroy.');
     this._localstorage.set('certificateType', this.certificateType);
+    this._localstorage.set('seller_form', this._formGroup.value);
   }
 
   /**

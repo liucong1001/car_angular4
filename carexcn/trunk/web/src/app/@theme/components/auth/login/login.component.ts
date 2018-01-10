@@ -29,8 +29,10 @@ export class LoginComponent implements OnInit {
 
   form: FormGroup = this.fb.group({
     market: ['0001'],
-    loginName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z][a-zA-Z0-9_-]{5,32}$/)]],
-    password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(32)]],
+    loginName: ['zhouyang', [Validators.required, Validators.pattern(/^[a-zA-Z][a-zA-Z0-9_-]{5,32}$/)]],
+    password: ['111111', [Validators.required, Validators.minLength(6), Validators.maxLength(32)]],
+    // loginName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z][a-zA-Z0-9_-]{5,32}$/)]],
+    // password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(32)]],
   });
 
   login() {
