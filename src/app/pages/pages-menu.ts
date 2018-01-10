@@ -325,19 +325,19 @@ export const MENU_ITEMS: NbMenuItem[] = [
   //   children: [
   //     {
   //       title: 'Login',
-  //       link: '/auth/login',
+  //       link: '/oauth/login',
   //     },
   //     {
   //       title: 'Register',
-  //       link: '/auth/register',
+  //       link: '/oauth/register',
   //     },
   //     {
   //       title: 'Request Password',
-  //       link: '/auth/request-password',
+  //       link: '/oauth/request-password',
   //     },
   //     {
   //       title: 'Reset Password',
-  //       link: '/auth/reset-password',
+  //       link: '/oauth/reset-password',
   //     },
   //   ],
   // },
