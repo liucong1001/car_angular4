@@ -1,7 +1,11 @@
 @import '../../../../@theme/styles/themes';
 @import '~@nebular/theme/styles/global/bootstrap/breakpoints';
 @import '~bootstrap/scss/mixins/breakpoints';
-
+:host ::ng-deep ngx-valid-error{
+  p {
+    margin-top: 1rem;
+  }
+}
 @include nb-install-component() {
   nb-card-header {
     padding: 0;

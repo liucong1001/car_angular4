@@ -1,18 +1,35 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {TrusteeModel} from '../../../model/bussiness/trustee.model';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {IdcardService} from "../../../device/idcard.service";
-import {MessageService} from "../../../utils/message.service";
-import {Codeitem} from "../../../model/system/codeitem";
+import {ControlContainer, FormBuilder, FormGroup, NgForm} from '@angular/forms';
+import {IdcardService} from '../../../device/idcard.service';
+import {MessageService} from '../../../utils/message.service';
+import {Codeitem} from '../../../model/system/codeitem';
+import {MerchantModel} from '../../../model/bussiness/merchant.model';
 
 @Component({
   selector: 'ngx-ys-truster-info',
   templateUrl: './truster-info.component.html',
   styleUrls: ['./truster-info.component.scss'],
+  viewProviders: [ { provide: ControlContainer, useExisting: NgForm } ],
 })
 export class TrusterInfoComponent implements OnInit {
-  @Input() autoinput_cheshang_source_url = '';
-  trusterIdcardData = {};
+  /**
+   * 委托人实例
+   */
+  @Input() Trustee: FormGroup;
+  /**
+   * 商户实例
+   */
+  @Input() merchant: MerchantModel;
+  /**
+   * 错误实例
+   * @type {{}}
+   */
+  @Input() errors: object = {};
+  public autoinput_cheshang_source_url = '/rest/merchant/filing/deal/';
+  /**
+   * 图片清单
+   * @type {{title: string; source: string}[]}
+   */
   photos: any[] = [{
     title: '身份证正面',
     source: 'assets/images/camera1.jpg',
@@ -20,24 +37,24 @@ export class TrusterInfoComponent implements OnInit {
     title: '身份证反面',
     source: 'assets/images/camera2.jpg',
   }];
-  _formGroup: FormGroup = this.fb.group({
-    certType: ['', [Validators.required]],
-    certCode: ['', [Validators.required]],
-    name: ['', [Validators.required, Validators.maxLength(64)]],
-    endDate: ['', [Validators.required]],
-    phone: ['', [Validators.required]],
-    trusteeType: ['0', [Validators.required]],
-    address: ['', [Validators.required]],
-    // Trustee: ['', [Validators.required]],
-    // flag: ['', [Validators.required]],
-  });
+
+  /**
+   * 构造函数
+   * @param {IdcardService} idcard
+   * @param {FormBuilder} fb
+   * @param {MessageService} message
+   */
   constructor(
     private idcard: IdcardService,
     private fb: FormBuilder,
     private message: MessageService,
   ) { }
 
+  /**
+   * 页面初始化事件
+   */
   ngOnInit() {
+    this.autoinput_cheshang_source_url += this.merchant.id + '/';
   }
 
   /**
@@ -49,11 +66,21 @@ export class TrusterInfoComponent implements OnInit {
   certificateTypeCompareWithFunc(code1: Codeitem, code2: Codeitem) {
     return (code1 && code2) ? code1.code === code2.code : false;
   }
+
+  /**
+   * 选择车商事件
+   * 将选中的车商数据复制到卖家表单中
+   * @param value
+   */
   getSelectedCheshang(value) {
     console.info(value);
     value.certCode = value.filingPerson.certCode;
-    this._formGroup.patchValue(value);
+    this.Trustee.patchValue(value);
   }
+
+  /**
+   * 读取IC卡并将读取的信息赋值到卖家表单中
+   */
   readIdCard() {
     // this.message.info('身份证', '读取卖方身份证');
     this.idcard.prepare().then((res) => {
@@ -62,7 +89,7 @@ export class TrusterInfoComponent implements OnInit {
         this.idcard.read().then((idcardData) => {
           this.message.success('身份证', '读取成功');
           console.info(idcardData);
-          this._formGroup.patchValue({
+          this.Trustee.patchValue({
             address: idcardData.Address,
             // birthday: idcardData.Birthday,
             certCode: idcardData.IdCardNo,

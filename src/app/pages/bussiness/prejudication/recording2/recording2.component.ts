@@ -2,15 +2,13 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {IdcardService} from '../../../../@core/device/idcard.service';
 import {MessageService} from '../../../../@core/utils/message.service';
-import {IdcardModel} from '../../../../@core/model/bussiness/idcard.model';
 import {MerchantModel} from '../../../../@core/model/bussiness/merchant.model';
 import {LocalstorageService} from '../../../../@core/cache/localstorage.service';
-import {SellerModel} from "../../../../@core/model/bussiness/seller.model";
-import {CodeService} from "../../../../@core/data/system/code.service";
-import {CodeitemService} from "../../../../@core/data/system/codeitem.service";
-import {Codeitem} from "../../../../@core/model/system/codeitem";
-import {FilingInfoModel} from "../../../../@core/model/bussiness/filing.info.model";
-import {FilingService} from "../../../../@core/data/merchant/filing.service";
+import {CodeService} from '../../../../@core/data/system/code.service';
+import {CodeitemService} from '../../../../@core/data/system/codeitem.service';
+import {Codeitem} from '../../../../@core/model/system/codeitem';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ErrorMessage} from '../../../../@core/ui/valid-error/valid-error.component';
 
 /**
  * 预审录入2--接口与页面的交互逻辑
@@ -36,7 +34,75 @@ export class Recording2Component implements OnInit, OnDestroy {
   public CERTIFICATE_TYPE_LIST: Codeitem[];
   public certificateType: Codeitem;
   merchant: MerchantModel = {name: ''};
+  public _formGroup: FormGroup = this.formBuilder.group({
+    seller: this.formBuilder.group({
+      certType: ['', [Validators.required]],
+      certCode: ['', [Validators.required]],
+      name: ['', [Validators.required, Validators.maxLength(64)]],
+      endDate: ['', [Validators.required]],
+      phone: ['', [Validators.required]],
+      trusteeType: ['0', [Validators.required]],
+      address: ['', [Validators.required]],
+      Trustee: this.formBuilder.group({
+        certCode: ['', [Validators.required]],
+        name: ['', [Validators.required, Validators.maxLength(64)]],
+        endDate: ['', [Validators.required]],
+        phone: ['', [Validators.required]],
+        trusteeType: ['0', [Validators.required]],
+        address: ['', [Validators.required]],
+      }),
+      // flag: ['', [Validators.required]],
+    }),
+  });
+  errors = {
+    seller: {
+      certType: [
+        new ErrorMessage('required', '必须填写证件类型！'),
+      ],
+      certCode: [
+        new ErrorMessage('required', '必须填写证件号码！'),
+      ],
+      name: [
+        new ErrorMessage('required', '必须填写姓名！'),
+        new ErrorMessage('maxLength', '姓名太长了！'),
+      ],
+      endDate: [
+        new ErrorMessage('required', '必须填写有效期！'),
+      ],
+      phone: [
+        new ErrorMessage('required', '必须填写手机！'),
+      ],
+      trusteeType: [
+        new ErrorMessage('required', '必须填写是否委托！'),
+      ],
+      address: [
+        new ErrorMessage('required', '必须填写地址！'),
+      ],
+      Trustee: {
+        certCode: [
+          new ErrorMessage('required', '必须填写证件号码！'),
+        ],
+        name: [
+          new ErrorMessage('required', '必须填写姓名！'),
+          new ErrorMessage('maxLength', '姓名太长了！'),
+        ],
+        endDate: [
+          new ErrorMessage('required', '必须填写有效期！'),
+        ],
+        phone: [
+          new ErrorMessage('required', '必须填写手机！'),
+        ],
+        trusteeType: [
+          new ErrorMessage('required', '必须填写是否委托！'),
+        ],
+        address: [
+          new ErrorMessage('required', '必须填写地址！'),
+        ],
+      },
+    },
+  };
   constructor(
+    private formBuilder: FormBuilder,
     private _router: Router,
     private _idcard: IdcardService,
     private _message: MessageService,
@@ -84,6 +150,7 @@ export class Recording2Component implements OnInit, OnDestroy {
    * 转到下一页
    */
   onSubmit() {
-    this._router.navigateByUrl('/pages/bussiness/prejudication/recording3');
+    console.info(this._formGroup.value);
+    // this._router.navigateByUrl('/pages/bussiness/prejudication/recording3');
   }
 }

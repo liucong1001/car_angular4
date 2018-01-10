@@ -145,6 +145,9 @@ export class LinkmanComponent implements OnInit {
     this.router.navigate(['/pages/merchant/bussinessman/edit-linkman', { linkman_id: row.id}]);
   }
   delete(row) {
+    /**
+     * TODO: 要添加确认操作
+     */
     this.filingService.del(row.id).then(res => {
       this.message.success('操作成功！', '删除备案人成功！');
       this.itemList.reload();

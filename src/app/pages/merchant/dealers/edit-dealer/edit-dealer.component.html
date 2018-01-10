@@ -17,7 +17,7 @@
             <input type="text" class="form-control" name="name" placeholder="商户名"
                    formControlName="name"
                    [ngClass]="{'form-control-danger':_formGroup.get('name').invalid && _formGroup.get('name').touched}">
-            <ngx-valid-error [errors]="errors.endDate" [control]="_formGroup.get('endDate')"></ngx-valid-error>
+            <ngx-valid-error [errors]="errors.name" [control]="_formGroup.get('name')"></ngx-valid-error>
           </div>
         </div>
         <div class="col-sm-3">
@@ -26,7 +26,7 @@
             <input type="text" class="form-control" id="code" name="code" placeholder="商户编号"
                    formControlName="code"
                    [ngClass]="{'form-control-danger':_formGroup.get('code').invalid && _formGroup.get('code').touched}">
-            <ngx-valid-error [errors]="errors.endDate" [control]="_formGroup.get('endDate')"></ngx-valid-error>
+            <ngx-valid-error [errors]="errors.code" [control]="_formGroup.get('code')"></ngx-valid-error>
           </div>
         </div>
         <div class="col-sm-3">
@@ -35,7 +35,7 @@
             <input type="text" class="form-control" name="certCode" placeholder="证件号"
                    formControlName="certCode"
                    [ngClass]="{'form-control-danger':_formGroup.get('certCode').invalid && _formGroup.get('certCode').touched}">
-            <ngx-valid-error [errors]="errors.endDate" [control]="_formGroup.get('endDate')"></ngx-valid-error>
+            <ngx-valid-error [errors]="errors.certCode" [control]="_formGroup.get('certCode')"></ngx-valid-error>
           </div>
         </div>
         <div class="col-sm-3">
@@ -44,7 +44,7 @@
             <input type="text" class="form-control" name="address" placeholder="地址"
                    formControlName="address"
                    [ngClass]="{'form-control-danger':_formGroup.get('address').invalid && _formGroup.get('address').touched}">
-            <ngx-valid-error [errors]="errors.endDate" [control]="_formGroup.get('endDate')"></ngx-valid-error>
+            <ngx-valid-error [errors]="errors.address" [control]="_formGroup.get('address')"></ngx-valid-error>
           </div>
         </div>
         <div class="col-sm-3">
@@ -53,7 +53,7 @@
             <input type="text" class="form-control" name="phone" placeholder="联系方式"
                    formControlName="phone"
                    [ngClass]="{'form-control-danger':_formGroup.get('phone').invalid && _formGroup.get('phone').touched}">
-            <ngx-valid-error [errors]="errors.endDate" [control]="_formGroup.get('endDate')"></ngx-valid-error>
+            <ngx-valid-error [errors]="errors.phone" [control]="_formGroup.get('phone')"></ngx-valid-error>
           </div>
         </div>
         <div class="col-sm-3">
@@ -71,7 +71,7 @@
             <input type="number" class="form-control" name="discount" placeholder="交易折扣"
                    formControlName="discount"
                    [ngClass]="{'form-control-danger':_formGroup.get('discount').invalid && _formGroup.get('discount').touched}">
-            <ngx-valid-error [errors]="errors.endDate" [control]="_formGroup.get('endDate')"></ngx-valid-error>
+            <ngx-valid-error [errors]="errors.discount" [control]="_formGroup.get('discount')"></ngx-valid-error>
           </div>
         </div>
         <div class="col-sm-2">
@@ -83,7 +83,7 @@
               <option value="1">是</option>
               <option value="0">否</option>
             </select>
-            <ngx-valid-error [errors]="errors.endDate" [control]="_formGroup.get('endDate')"></ngx-valid-error>
+            <ngx-valid-error [errors]="errors.isPersonal" [control]="_formGroup.get('isPersonal')"></ngx-valid-error>
           </div>
         </div>
         <div class="col-sm-3">
@@ -95,7 +95,7 @@
               <option value="1">场内</option>
               <option value="0">场外</option>
             </select>
-            <ngx-valid-error [errors]="errors.endDate" [control]="_formGroup.get('endDate')"></ngx-valid-error>
+            <ngx-valid-error [errors]="errors.isCarRental" [control]="_formGroup.get('isCarRental')"></ngx-valid-error>
           </div>
         </div>
         <div class="col-sm-2">
@@ -107,7 +107,7 @@
               <option value="1">是</option>
               <option value="0">否</option>
             </select>
-            <ngx-valid-error [errors]="errors.endDate" [control]="_formGroup.get('endDate')"></ngx-valid-error>
+            <ngx-valid-error [errors]="errors.isDeal" [control]="_formGroup.get('isDeal')"></ngx-valid-error>
           </div>
         </div>
         <div class="col-sm-12" style="margin-bottom: 1rem;">

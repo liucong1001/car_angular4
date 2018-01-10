@@ -148,6 +148,9 @@ export class BussinessmanComponent implements OnInit, OnChanges {
    * @param {MerchantModel} merchant
    */
   delete(merchant: MerchantModel) {
+    /**
+     * TODO: 要添加确认操作
+     */
     console.info(merchant);
     this.merchantService.del(merchant.id).then(res => {
       this.message.success('操作成功', JSON.stringify(res));
