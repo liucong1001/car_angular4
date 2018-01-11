@@ -127,4 +127,32 @@ export class Recording4Component implements OnInit, OnDestroy {
   linkmanCompareWithFunc(linkman1: FilingInfoModel, linkman2: FilingInfoModel) {
     return (linkman1 && linkman2) ? linkman1.phone === linkman2.phone : false;
   }
+  /**
+   * 选择好了联系人的事件
+   * @param event
+   * @param value
+   */
+  linkmanSelecteFunc() {
+    // console.info(this.linkman);
+    this.linkmanSelected = this.linkman;
+    // console.info(this.linkmanSelected);
+  }
+  /**
+   * 车牌号填写完的事件
+   */
+  carLsnumBlur() {
+    /**
+     * 检查车牌号
+     * 是否已经重复录入
+     * 是否属于黑名单
+     * 是否属于公车拍卖，如果是应该要拿到公车拍卖的车辆信息
+     */
+    this.carLsnumIsOk = true;
+    // this._carService.checkCarLsnum(lsnum).then(res => {
+    //   this.carLsnumIsOk = true;
+    //   return true;
+    // }).catch(err => {
+    //   this._message.error('错误', err);
+    // });
+  }
 }
