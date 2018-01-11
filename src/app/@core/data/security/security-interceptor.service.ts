@@ -11,7 +11,7 @@ export class SecurityInterceptorService implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req).catch(err => {
       if (err.status === 401) {
-        this.router.navigate(['/oauth/login']);
+        this.router.navigate(['/auth/login']);
         return;
       }
        if (err.error) {
