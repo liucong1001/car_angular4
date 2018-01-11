@@ -44,11 +44,6 @@ export class RecordingComponent implements OnInit, OnDestroy {
     title: '商户联系人确认单',
     source: 'assets/images/camera4.jpg',
   }];
-  /**
-   * 车辆模型
-   * @type {CarModel}
-   */
-  public car = new CarModel();
   carLsnumPrefixDefault = '鄂A';
   carLsnumIsOk = false;
   dealerIsOk = false;
