@@ -13,7 +13,7 @@ export class MarketPhotoFormNameComponent implements OnInit {
 
   ngOnInit() {
   }
-  selected = 0;
+  selected = null;
   choseFormName(data, index ) {
     this.selected = index;
     this.clickActive.emit({data, index});

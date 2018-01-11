@@ -8,18 +8,21 @@
             <label>费用名:</label>
             <input type="text" class="form-control" formControlName="name" placeholder="费用名">
           </div>
+          <ngx-valid-error [errors]="errors.name" [control]="form.get('name')"></ngx-valid-error>
         </div>
         <div class="col-sm-3">
           <div class="form-group">
             <label>业务类型:</label>
             <input type="text" class="form-control" formControlName="businessType" placeholder="业务类型">
           </div>
+          <ngx-valid-error [errors]="errors.businessType" [control]="form.get('businessType')"></ngx-valid-error>
         </div>
         <div class="col-sm-3">
           <div class="form-group">
             <label>费用:</label>
             <input type="text" class="form-control" formControlName="money" placeholder="费用">
           </div>
+          <ngx-valid-error [errors]="errors.money" [control]="form.get('money')"></ngx-valid-error>
         </div>
       </div>
       <div class="row">
@@ -32,6 +35,7 @@
               <option value="1">是</option>
             </select>
           </div>
+          <ngx-valid-error [errors]="errors.invoice" [control]="form.get('invoice')"></ngx-valid-error>
         </div>
         <div class="col-sm-3">
           <div class="form-group">
@@ -42,6 +46,7 @@
               <option value="1">是</option>
             </select>
           </div>
+          <ngx-valid-error [errors]="errors.discount" [control]="form.get('discount')"></ngx-valid-error>
         </div>
         <div class="col-sm-3">
           <div class="form-group">
@@ -52,6 +57,7 @@
               <option value="1">是</option>
             </select>
           </div>
+          <ngx-valid-error [errors]="errors.required" [control]="form.get('required')"></ngx-valid-error>
         </div>
       </div>
       <div class="row">
@@ -66,8 +72,9 @@
               <option value="04">手填</option>
             </select>
           </div>
+          <ngx-valid-error [errors]="errors.priceType" [control]="form.get('priceType')"></ngx-valid-error>
         </div>
- 
+
         <div class="col-sm-6">
           <div class="form-group">
             <label>备注:</label>

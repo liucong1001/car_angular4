@@ -7,6 +7,8 @@ import {EditDealerComponent} from './dealers/edit-dealer/edit-dealer.component';
 import {BussinessmanComponent} from './dealers/bussinessman/bussinessman.component';
 import {AddLinkmanComponent} from './dealers/add-linkman/add-linkman.component';
 import {EditLinkmanComponent} from './dealers/edit-linkman/edit-linkman.component';
+import {FinanceComponent}from './finance/finance.component';
+import {BindingComponent} from './finance/binding/binding.component';
 
 const routes: Routes = [{
   path: '',
@@ -18,6 +20,8 @@ const routes: Routes = [{
     {path: 'bussinessman/edit-linkman', component: EditLinkmanComponent},
     {path: 'bussinessman/add', component: AddDealerComponent},
     {path: 'bussinessman/edit', component: EditDealerComponent},
+    {path: 'finance', component: FinanceComponent},
+    {path: 'finance/binding', component: BindingComponent},
 ],
 }];
 
@@ -27,5 +31,5 @@ const routes: Routes = [{
 })
 export class MerchantRoutingModule { }
 export const routedComponents = [
-  MerchantComponent , BussinessmanComponent,
+  MerchantComponent , BussinessmanComponent,FinanceComponent,BindingComponent
 ];

@@ -59,6 +59,18 @@ export class MarketService {
   }
 
   /**
+   * 获取所有市场
+   * @returns {Promise<TResult2|TResult1>}
+   */
+
+  public getAllMarketList():Promise<any>{
+    const url = `${this.path}/list`;
+    return  this.http.get(url).toPromise().then(function(res){
+        return res.json();
+});
+}
+
+  /**
    * 保存厂牌型号
    * @param model
    * @returns {Promise<TResult2|MarketBrandmap>}
@@ -90,14 +102,14 @@ export class MarketService {
 
 
   public getFee(id: String): Promise<Marketfeemap> {
-    const url = `${this.path}/cost/costById/${id}`;
+    const url = `${this.path}/cost/${id}`;
     return this.http.get(url).toPromise().then(function (res) {
       return res.json() as Marketfeemap;
     });
   }
 
   public deleteFee(id: String) {
-    const url = `${this.path}/cost/deleteMarketCost/${id}`;
+    const url = `${this.path}/cost/${id}`;
     return this.http.delete(url).toPromise().then(function (res) {
     }) ;
   }
@@ -119,7 +131,7 @@ export class MarketService {
    */
 
   public getPhoto(id: String): Promise<Marketphotomap> {
-    const url = `${this.path}/photo/config/findById/${id}`;
+    const url = `${this.path}/photo/config/${id}`;
     return this.http.get(url).toPromise().then(function (res) {
       return res.json() as Marketphotomap;
     });

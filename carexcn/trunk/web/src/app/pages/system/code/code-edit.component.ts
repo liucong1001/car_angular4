@@ -5,6 +5,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MessageService} from '../../../@core/utils/message.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CodeService} from '../../../@core/data/system/code.service';
+import {MarketService} from '../../../@core/data/system/market.service';
 import {Codemap} from '../../../@core/model/system/codemap';
 import {ActivatedRoute} from '@angular/router';
 import {Column, TableComponent} from '../../../@core/ui/table/table.component';
@@ -15,13 +16,14 @@ import {Codeitem} from '../../../@core/model/system/codeitem';
 @Component({
   selector: 'ngx-code-edit',
   templateUrl: 'code-edit.component.html',
+  providers: [MarketService, MessageService],
 })
 export class CodeEditComponent implements OnInit {
   /**
    * 列表组件实例
    */
   @ViewChild(TableComponent) itemList: TableComponent;
-
+  marketList = [];
   /**
    * 初始化
    */
@@ -30,6 +32,10 @@ export class CodeEditComponent implements OnInit {
       this.filter.codemap = val;
       this.itemList.reload();
     });
+    this.marketService.getAllMarketList().then(res =>{
+      this.marketList = res;
+      // console.log('所有市场',res);
+    })
   }
 
   /**
@@ -39,7 +45,7 @@ export class CodeEditComponent implements OnInit {
    * @param {FormBuilder} fb 表单工厂服务
    * @param {ActivatedRoute} route 当前路由服务
    */
-  constructor(private codeService: CodeService, private message: MessageService, private fb: FormBuilder, private route: ActivatedRoute) {
+  constructor(private codeService: CodeService, private marketService:MarketService, private message: MessageService, private fb: FormBuilder, private route: ActivatedRoute) {
     this.route.params.subscribe(p => {
       if (p.code && p.name) {
         this.form.setValue(p);
