@@ -36,7 +36,7 @@ export class CodeitemDroplistComponent implements OnInit, ControlValueAccessor {
   registerOnTouched(fn: any): void {
     this.touched = fn;
   }
-  ngOnInit() {
+  ngOnInit2ObjValue() {
     this.codeitem.list(this.codeMap).then((res) => {
       this.items.push({label: this.pleaseSelect, value: null});
         for (const r in res) {
@@ -45,6 +45,17 @@ export class CodeitemDroplistComponent implements OnInit, ControlValueAccessor {
           }
           // console.info(r + ' ' + res[r]['name']);
         }
+    });
+  }
+  ngOnInit() {
+    this.codeitem.convert(this.codeMap).then((res) => {
+      this.items.push({label: this.pleaseSelect, value: null});
+      for (const r in res) {
+        if (res.hasOwnProperty(r)) {
+          this.items.push({label: res[r], value: r});
+        }
+        // console.log(r + ' ' + res[r]);
+      }
     });
   }
   _onChange(event) {
