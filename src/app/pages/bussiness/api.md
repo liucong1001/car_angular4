@@ -124,15 +124,15 @@
       ids   	  <transfer.id>       过户时
   
   
-  创建预审车辆	/rest/business/trade/prejudication	post
-  增加预审车辆	/rest/business/trade/prejudication/{id}	post
+  创建预审车辆	/rest/business/trade/prejudication	post     clouduser  seller卖方对象实例  PreVehicle对象实例
+  增加预审车辆	/rest/business/trade/prejudication/{id}	post   clouduser  PreVehicle对象实例
   预审审核		/rest/business/trade/prejudication	put
   
-  创建过户车辆	/rest/business/trade/transfer  post
+  创建过户车辆	/rest/business/trade/transfer  post       clouduser   buyer买方对象实例   TransferVehicle对象实例   archiveNo 车辆流水号
   增加过户车辆	/rest/business/trade/transfer/{id}	post
   过户审核		/rest/business/trade/transfer	put
   
-  创建直接过户车辆	/rest/business/trade/trade  post
+  创建直接过户车辆	/rest/business/trade/trade  post   clouduser  seller卖方对象实例  PreVehicle对象实例  buyer买方对象实例  TransferVehicle对象实例
   增加直接过户车辆	/rest/business/trade/trade/{id}	post
   双方审核			/rest/business/trade/trade	put
   
