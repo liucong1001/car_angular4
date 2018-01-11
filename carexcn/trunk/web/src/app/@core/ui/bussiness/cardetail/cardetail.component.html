@@ -4,87 +4,121 @@
       <span class="cameras-card-title">{{ car_detail_title || '车辆信息'}}</span>
     </div>
   </nb-card-header>
-  <nb-card-body>
+  <nb-card-body [formGroup]="vehicle">
     <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source"></ngx-ys-camera>
     <div class="input-group">
       <div class="input-group">
         <span class="input-group-addon">车牌号</span>
-        <input type="text" placeholder="" class="form-control" />
+        <input type="text" placeholder="" class="form-control" formControlName="plateNumber"
+               [ngClass]="{'form-control-danger':vehicle.get('plateNumber').invalid && vehicle.get('plateNumber').touched}"/>
+        <ngx-valid-error [errors]="errors.plateNumber" [control]="vehicle.get('plateNumber')"></ngx-valid-error>
       </div>
       <div class="input-group">
         <span class="input-group-addon">车架号</span>
-        <input type="text" placeholder="" class="form-control" />
+        <input type="text" placeholder="" class="form-control" formControlName="frameNumber"
+               [ngClass]="{'form-control-danger':vehicle.get('frameNumber').invalid && vehicle.get('frameNumber').touched}"/>
+        <ngx-valid-error [errors]="errors.frameNumber" [control]="vehicle.get('frameNumber')"></ngx-valid-error>
       </div>
-      <button class="btn btn-primary btn-sm" (click)="read(RecordModel)">读取行驶证</button>
+      <button class="btn btn-primary btn-sm" (click)="readVehicleCard()">读取行驶证</button>
     </div>
     <div class="input-group">
       <div class="input-group">
-        <span class="input-group-addon">发动机号</span>
-        <input type="text" placeholder="" class="form-control" />
+        <span class="input-group-addon">发动机号.</span>
+        <input type="text" placeholder="" class="form-control" formControlName="eeee"
+               [ngClass]="{'form-control-danger':vehicle.get('eeee').invalid && vehicle.get('eeee').touched}"/>
+        <ngx-valid-error [errors]="errors.eeee" [control]="vehicle.get('eeee')"></ngx-valid-error>
       </div>
       <div class="input-group">
         <span class="input-group-addon">登记证号</span>
-        <input type="text" placeholder="" class="form-control" />
+        <input type="text" placeholder="" class="form-control" formControlName="registration"
+               [ngClass]="{'form-control-danger':vehicle.get('registration').invalid && vehicle.get('registration').touched}"/>
+        <ngx-valid-error [errors]="errors.registration" [control]="vehicle.get('registration')"></ngx-valid-error>
       </div>
       <div class="input-group">
         <span class="input-group-addon">厂牌型号</span>
-        <input type="text" placeholder="" class="form-control" />
+        <input type="text" placeholder="" class="form-control" formControlName="labelCode"
+               [ngClass]="{'form-control-danger':vehicle.get('labelCode').invalid && vehicle.get('labelCode').touched}"/>
+        <ngx-valid-error [errors]="errors.labelCode" [control]="vehicle.get('labelCode')"></ngx-valid-error>
       </div>
       <div class="input-group">
         <span class="input-group-addon">手续费</span>
-        <input type="text" placeholder="" class="form-control" />
+        <input type="text" placeholder="" class="form-control" formControlName="fee"
+               [ngClass]="{'form-control-danger':vehicle.get('fee').invalid && vehicle.get('fee').touched}"/>
+        <ngx-valid-error [errors]="errors.fee" [control]="vehicle.get('fee')"></ngx-valid-error>
       </div>
     </div>
     <div class="input-group">
       <div class="input-group">
-        <span class="input-group-addon">车费类型</span>
-        <input type="text" placeholder="" class="form-control" />
+        <span class="input-group-addon">车辆类型</span>
+        <input type="text" placeholder="" class="form-control" formControlName="vehicleType"
+               [ngClass]="{'form-control-danger':vehicle.get('vehicleType').invalid && vehicle.get('vehicleType').touched}"/>
+        <ngx-valid-error [errors]="errors.vehicleType" [control]="vehicle.get('vehicleType')"></ngx-valid-error>
       </div>
       <div class="input-group">
         <span class="input-group-addon">车辆大小</span>
-        <input type="text" placeholder="" class="form-control" />
+        <input type="text" placeholder="" class="form-control" formControlName="size"
+               [ngClass]="{'form-control-danger':vehicle.get('size').invalid && vehicle.get('size').touched}"/>
+        <ngx-valid-error [errors]="errors.size" [control]="vehicle.get('size')"></ngx-valid-error>
       </div>
     </div>
     <div class="input-group">
       <div class="input-group">
-        <span class="input-group-addon">使用年限</span>
-        <input type="text" placeholder="" class="form-control" />
+        <span class="input-group-addon">使用年限.</span>
+        <input type="text" placeholder="" class="form-control" formControlName="eeee"
+               [ngClass]="{'form-control-danger':vehicle.get('eeee').invalid && vehicle.get('eeee').touched}"/>
+        <ngx-valid-error [errors]="errors.eeee" [control]="vehicle.get('eeee')"></ngx-valid-error>
       </div>
       <div class="input-group">
-        <span class="input-group-addon">行驶证地址</span>
-        <input type="text" placeholder="" class="form-control" />
+        <span class="input-group-addon">行驶证地址.</span>
+        <input type="text" placeholder="" class="form-control" formControlName="eeee"
+               [ngClass]="{'form-control-danger':vehicle.get('eeee').invalid && vehicle.get('eeee').touched}"/>
+        <ngx-valid-error [errors]="errors.eeee" [control]="vehicle.get('eeee')"></ngx-valid-error>
       </div>
     </div>
     <div class="input-group">
       <div class="input-group">
         <span class="input-group-addon">累计里程</span>
-        <input type="text" placeholder="" class="form-control" />
+        <input type="text" placeholder="" class="form-control" formControlName="mileage"
+               [ngClass]="{'form-control-danger':vehicle.get('mileage').invalid && vehicle.get('mileage').touched}"/>
+        <ngx-valid-error [errors]="errors.mileage" [control]="vehicle.get('mileage')"></ngx-valid-error>
       </div>
       <div class="input-group">
-        <span class="input-group-addon">交易价格</span>
-        <input type="text" placeholder="" class="form-control" />
+        <span class="input-group-addon">交易价格.</span>
+        <input type="text" placeholder="" class="form-control" formControlName="eeee"
+               [ngClass]="{'form-control-danger':vehicle.get('eeee').invalid && vehicle.get('eeee').touched}"/>
+        <ngx-valid-error [errors]="errors.eeee" [control]="vehicle.get('eeee')"></ngx-valid-error>
       </div>
       <div class="input-group">
         <span class="input-group-addon">使用性质</span>
-        <input type="text" placeholder="" class="form-control" />
+        <input type="text" placeholder="" class="form-control" formControlName="useCharacter"
+               [ngClass]="{'form-control-danger':vehicle.get('useCharacter').invalid && vehicle.get('useCharacter').touched}"/>
+        <ngx-valid-error [errors]="errors.useCharacter" [control]="vehicle.get('useCharacter')"></ngx-valid-error>
       </div>
       <div class="input-group">
-        <span class="input-group-addon">评估费</span>
-        <input type="text" placeholder="" class="form-control" />
+        <span class="input-group-addon">评估费.</span>
+        <input type="text" placeholder="" class="form-control" formControlName="eeee"
+               [ngClass]="{'form-control-danger':vehicle.get('eeee').invalid && vehicle.get('eeee').touched}"/>
+        <ngx-valid-error [errors]="errors.eeee" [control]="vehicle.get('eeee')"></ngx-valid-error>
       </div>
     </div>
     <div class="input-group">
       <div class="input-group">
-        <span class="input-group-addon">年审有效期</span>
-        <input type="text" placeholder="" class="form-control" />
+        <span class="input-group-addon">年审有效期.</span>
+        <input type="text" placeholder="" class="form-control" formControlName="eeee"
+               [ngClass]="{'form-control-danger':vehicle.get('eeee').invalid && vehicle.get('eeee').touched}"/>
+        <ngx-valid-error [errors]="errors.eeee" [control]="vehicle.get('eeee')"></ngx-valid-error>
       </div>
       <div class="input-group">
-        <span class="input-group-addon">保险有效期</span>
-        <input type="text" placeholder="" class="form-control" />
+        <span class="input-group-addon">保险有效期.</span>
+        <input type="text" placeholder="" class="form-control" formControlName="eeee"
+               [ngClass]="{'form-control-danger':vehicle.get('eeee').invalid && vehicle.get('eeee').touched}"/>
+        <ngx-valid-error [errors]="errors.eeee" [control]="vehicle.get('eeee')"></ngx-valid-error>
       </div>
       <div class="input-group">
-        <span class="input-group-addon">路桥有效期</span>
-        <input type="text" placeholder="" class="form-control" />
+        <span class="input-group-addon">路桥有效期.</span>
+        <input type="text" placeholder="" class="form-control" formControlName="eeee"
+               [ngClass]="{'form-control-danger':vehicle.get('eeee').invalid && vehicle.get('eeee').touched}"/>
+        <ngx-valid-error [errors]="errors.eeee" [control]="vehicle.get('eeee')"></ngx-valid-error>
       </div>
     </div>
   </nb-card-body>

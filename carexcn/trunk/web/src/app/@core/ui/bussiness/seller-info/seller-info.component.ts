@@ -63,12 +63,10 @@ export class SellerInfoComponent implements OnInit {
   /**
    * 构造函数
    * @param {IdcardService} idcard
-   * @param {FormBuilder} formBuilder
    * @param {MessageService} message
    */
   constructor(
     private idcard: IdcardService,
-    private formBuilder: FormBuilder,
     private message: MessageService,
   ) {
   }

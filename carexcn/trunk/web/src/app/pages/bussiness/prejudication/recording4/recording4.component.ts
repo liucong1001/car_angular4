@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import {FormBuilder} from '@angular/forms';
 
 /**
  * 预审录入4--接口与页面的交互逻辑
@@ -18,7 +19,10 @@ import {Router} from '@angular/router';
 })
 export class Recording4Component implements OnInit {
 
-  constructor(private _router: Router) { }
+  constructor(
+    private _formBuilder: FormBuilder,
+    private _router: Router,
+  ) { }
 
   ngOnInit() {
   }
