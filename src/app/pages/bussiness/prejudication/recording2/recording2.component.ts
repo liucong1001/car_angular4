@@ -34,8 +34,8 @@ export class Recording2Component implements OnInit, OnDestroy {
   public CERTIFICATE_TYPE_LIST: Codeitem[];
   public certificateType: Codeitem;
   merchant: MerchantModel = {name: ''};
-  public _formGroup: FormGroup = this.formBuilder.group({
-    seller: this.formBuilder.group({
+  public _formGroup: FormGroup = this._formBuilder.group({
+    seller: this._formBuilder.group({
       certType: ['', [Validators.required]],
       certCode: ['', [Validators.required]],
       name: ['', [Validators.required, Validators.maxLength(64)]],
@@ -43,7 +43,7 @@ export class Recording2Component implements OnInit, OnDestroy {
       phone: ['', [Validators.required]],
       trusteeType: ['0', [Validators.required]],
       address: ['', [Validators.required]],
-      Trustee: this.formBuilder.group({
+      Trustee: this._formBuilder.group({
         certCode: ['', [Validators.required]],
         name: ['', [Validators.required, Validators.maxLength(64)]],
         endDate: ['', [Validators.required]],
@@ -102,7 +102,7 @@ export class Recording2Component implements OnInit, OnDestroy {
     },
   };
   constructor(
-    private formBuilder: FormBuilder,
+    private _formBuilder: FormBuilder,
     private _router: Router,
     private _idcard: IdcardService,
     private _message: MessageService,

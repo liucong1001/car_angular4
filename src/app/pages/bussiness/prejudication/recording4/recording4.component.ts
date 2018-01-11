@@ -1,12 +1,15 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {FormBuilder} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {VehicleModel} from '../../../../@core/model/bussiness/vehicle.model';
 import {FilingInfoModel} from '../../../../@core/model/bussiness/filing.info.model';
 import {LocalstorageService} from '../../../../@core/cache/localstorage.service';
 import {MerchantModel} from '../../../../@core/model/bussiness/merchant.model';
 import {FilingService} from '../../../../@core/data/merchant/filing.service';
 import {MessageService} from '../../../../@core/utils/message.service';
+import {Codeitem} from '../../../../@core/model/system/codeitem';
+import {ErrorMessage} from '../../../../@core/ui/valid-error/valid-error.component';
+import {CodeitemService} from "../../../../@core/data/system/codeitem.service";
 
 /**
  * 预审录入4--接口与页面的交互逻辑
@@ -32,6 +35,77 @@ export class Recording4Component implements OnInit, OnDestroy {
   carLsnumPrefixDefault = '鄂A';
   carLsnumIsOk = false;
   dealerIsOk = false;
+  merchant: MerchantModel = {name: ''};
+  public CERTIFICATE_TYPE_LIST: Codeitem[];
+  public certificateType: Codeitem;
+  public _formGroup: FormGroup = this._formBuilder.group({
+    seller: this._formBuilder.group({
+      certType: ['', [Validators.required]],
+      certCode: ['', [Validators.required]],
+      name: ['', [Validators.required, Validators.maxLength(64)]],
+      endDate: ['', [Validators.required]],
+      phone: ['', [Validators.required]],
+      trusteeType: ['0', [Validators.required]],
+      address: ['', [Validators.required]],
+      Trustee: this._formBuilder.group({
+        certCode: ['', [Validators.required]],
+        name: ['', [Validators.required, Validators.maxLength(64)]],
+        endDate: ['', [Validators.required]],
+        phone: ['', [Validators.required]],
+        trusteeType: ['0', [Validators.required]],
+        address: ['', [Validators.required]],
+      }),
+      // flag: ['', [Validators.required]],
+    }),
+  });
+
+  errors = {
+    seller: {
+      certType: [
+        new ErrorMessage('required', '必须填写证件类型！'),
+      ],
+      certCode: [
+        new ErrorMessage('required', '必须填写证件号码！'),
+      ],
+      name: [
+        new ErrorMessage('required', '必须填写姓名！'),
+        new ErrorMessage('maxLength', '姓名太长了！'),
+      ],
+      endDate: [
+        new ErrorMessage('required', '必须填写有效期！'),
+      ],
+      phone: [
+        new ErrorMessage('required', '必须填写手机！'),
+      ],
+      trusteeType: [
+        new ErrorMessage('required', '必须填写是否委托！'),
+      ],
+      address: [
+        new ErrorMessage('required', '必须填写地址！'),
+      ],
+      Trustee: {
+        certCode: [
+          new ErrorMessage('required', '必须填写证件号码！'),
+        ],
+        name: [
+          new ErrorMessage('required', '必须填写姓名！'),
+          new ErrorMessage('maxLength', '姓名太长了！'),
+        ],
+        endDate: [
+          new ErrorMessage('required', '必须填写有效期！'),
+        ],
+        phone: [
+          new ErrorMessage('required', '必须填写手机！'),
+        ],
+        trusteeType: [
+          new ErrorMessage('required', '必须填写是否委托！'),
+        ],
+        address: [
+          new ErrorMessage('required', '必须填写地址！'),
+        ],
+      },
+    },
+  };
   /**
    * 商户搜索资源
    * @type {string}
@@ -43,7 +117,14 @@ export class Recording4Component implements OnInit, OnDestroy {
     private _message: MessageService,
     private _filingService: FilingService,
     private _localstorage: LocalstorageService,
-  ) { }
+    private _codeitem: CodeitemService,
+  ) {
+    /**
+     * 缓存前缀名以业务为单位，一个缓存前缀对应一个业务，一个缓存业务完成则删除该前缀的所有缓存
+     * @type {string}
+     */
+    this._localstorage.prefix = 'bussiness_prejudication_recording';
+  }
 
   /**
    * 页面初始化事件
@@ -83,6 +164,23 @@ export class Recording4Component implements OnInit, OnDestroy {
           this.linkManData = this._localstorage.get('linkmandata');
           this.linkmanSelected = this._localstorage.get('linkmanSelected');
           this.linkman = this.linkmanSelected;
+        }
+        /**
+         * 读取缓存的商户
+         * @type {any}
+         */
+        let maybe_merchant = this._localstorage.get('dealer');
+        if (maybe_merchant) {
+          this.merchant = maybe_merchant;
+        }
+        let maybe_certificate_type = this._localstorage.get('certificateType');
+        if (maybe_certificate_type) {
+          this.certificateType = maybe_certificate_type;
+        }
+        this._codeitem.list('CERTIFICATE_TYPE').then(res => this.CERTIFICATE_TYPE_LIST = res as Codeitem[]);
+        let maybe_seller_form = this._localstorage.get('seller_form');
+        if (maybe_seller_form) {
+          this._formGroup.patchValue(maybe_seller_form);
         }
       }
     }

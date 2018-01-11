@@ -10,7 +10,7 @@ import {FilingService} from '../../../../@core/data/merchant/filing.service';
 import {FilingInfoModel} from '../../../../@core/model/bussiness/filing.info.model';
 import {FilingInfoForm} from '../../../../@core/model/bussiness/filing.info.form';
 import {FilingPersonModel} from '../../../../@core/model/bussiness/filing.person.model';
-import {ErrorMessage} from "../../../../@core/ui/valid-error/valid-error.component";
+import {ErrorMessage} from '../../../../@core/ui/valid-error/valid-error.component';
 
 @Component({
   selector: 'ngx-edit-linkman',
