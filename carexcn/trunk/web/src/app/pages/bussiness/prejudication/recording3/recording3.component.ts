@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, ValidationErrors, Validators} from '@angular/forms';
 import {LocalstorageService} from '../../../../@core/cache/localstorage.service';
 import {ErrorMessage} from '../../../../@core/ui/valid-error/valid-error.component';
 
@@ -31,24 +31,24 @@ export class Recording3Component implements OnInit, OnDestroy {
     source: 'assets/images/camera4.jpg',
   }];
   public _formGroup: FormGroup = this._formBuilder.group({
-    brandModel: ['', [Validators.required]], // 厂牌型号实体Id
-    labelCode: ['', [Validators.required]],
-    vehicleType: ['', [Validators.required]],
-    plateNumber: ['', [Validators.required]],
-    frameNumber: ['', [Validators.required]],
-    registration: ['', [Validators.required]],
-    registrationDate: ['', [Validators.required]],
-    useCharacter: ['', [Validators.required]],
-    useNature: ['', [Validators.required]],
-    displacement: ['', [Validators.required]],
-    range: ['', [Validators.required]],
-    size: ['', [Validators.required]],
-    mileage: ['', [Validators.required]],
-    otherConditions: ['', [Validators.required]],
-    origin: ['', [Validators.required]],
-    fee: ['', [Validators.required]],
-    review: ['', [Validators.required]],
-    invalid: ['', [Validators.required]],
+    brandModel: ['1', [Validators.required]], // 厂牌型号实体Id
+    labelCode: ['1', [Validators.required]],
+    vehicleType: ['轿车', [Validators.required]],
+    plateNumber: ['1', [Validators.required]],
+    frameNumber: ['1', [Validators.required]],
+    registration: ['1', [Validators.required]],
+    registrationDate: ['1', [Validators.required]],
+    useCharacter: ['1', [Validators.required]],
+    useNature: ['私', [Validators.required]],
+    displacement: ['1', [Validators.required]],
+    range: ['1', [Validators.required]],
+    size: ['小', [Validators.required]],
+    mileage: ['1000', [Validators.required]],
+    otherConditions: ['1', [Validators.required]],
+    origin: ['武汉', [Validators.required]],
+    fee: ['无', [Validators.required]],
+    review: ['1', [Validators.required]],
+    invalid: ['1', [Validators.required]],
     eeee: ['', [Validators.maxLength(50)]],
     /**
      * TODO: 注意 eeee 字段，后台可能暂未准备好接收，但是是业务必须的字段
@@ -108,7 +108,6 @@ export class Recording3Component implements OnInit, OnDestroy {
       new ErrorMessage('required', '必须填写业务状态！'),
     ],
     eeee: [
-      new ErrorMessage('required', '必须填写业务状态！'),
       new ErrorMessage('maxLength', '太长了！'),
     ],
   };
@@ -123,22 +122,52 @@ export class Recording3Component implements OnInit, OnDestroy {
     private _router: Router,
     private _formBuilder: FormBuilder,
     private _localstorage: LocalstorageService,
-  ) { }
+  ) {
+    /**
+     * 缓存前缀名以业务为单位，一个缓存前缀对应一个业务，一个缓存业务完成则删除该前缀的所有缓存
+     * @type {string}
+     */
+    this._localstorage.prefix = 'bussiness_prejudication_recording';
+  }
 
   /**
    * 页面初始化事件
    */
   ngOnInit() {
     console.info('exec on init.');
+    // const formPatchValue = {
+    //
+    // };
+    let maybe_vehicle = this._localstorage.get('vehicle');
+    if (maybe_vehicle) {
+      this._formGroup.patchValue(maybe_vehicle);
+    }
   }
   /**
    * 页面销毁前
    */
   ngOnDestroy() {
     console.info('exec on destroy.');
+    this._localstorage.set('vehicle', this._formGroup.value);
   }
 
   onSubmit() {
+    // this.getFormValidationErrors(this._formGroup);
     this._router.navigateByUrl('/pages/bussiness/prejudication/recording4');
+  }
+
+  /**
+   * 检查并输出表单组包含的错误
+   * @param {FormGroup} _formGroup
+   */
+  getFormValidationErrors(_formGroup: FormGroup) {
+    Object.keys(_formGroup.controls).forEach(key => {
+      const controlErrors: ValidationErrors = _formGroup.get(key).errors;
+      if (controlErrors != null) {
+        Object.keys(controlErrors).forEach(keyError => {
+          console.info('Key control: ' + key + ', keyError: ' + keyError + ', err value: ', controlErrors[keyError]);
+        });
+      }
+    });
   }
 }
