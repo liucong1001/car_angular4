@@ -177,6 +177,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
       {title: '行政区划', link: '/pages/system/area'},
       {title: '市场配置', link: '/pages/system/market/market'},
       {title: '市场员工', link: '/pages/system/market/staff'},
+      {title: '角色管理',link:'/pages/system/role'},
     ],
   },
   {

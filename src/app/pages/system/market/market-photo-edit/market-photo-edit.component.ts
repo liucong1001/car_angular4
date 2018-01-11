@@ -5,7 +5,7 @@ import {Http} from '@angular/http';
 import { MessageService } from './../../../../@core/utils/message.service';
 import { MarketService } from './../../../../@core/data/system/market.service';
 import {Marketphotomap} from './../../../../@core/model/system/market-photo-map';
-
+import {ErrorMessage} from '../../../../@core/ui/valid-error/valid-error.component';
 
 @Component({
   selector: 'ngx-market-photo-edit',
@@ -43,6 +43,8 @@ export class MarketPhotoEditComponent implements OnInit {
               sort: res.sort,
               status: res.status,
               memo: res.memo,
+              certificateCode:res.certificateCode,
+              photoType:res.photoType,
               market: {
                 id: this.marketId,
                 name: this.marketName,
@@ -50,6 +52,12 @@ export class MarketPhotoEditComponent implements OnInit {
             });
           }).catch(err => {
             this.message.error('获取失败', err.json().message);
+          });
+        }else {
+          this.form.patchValue({
+            business: params['business'],
+            formName: params['formName'],
+            certificateCode:params['certificateCode'],
           });
         }
       });
@@ -71,18 +79,49 @@ export class MarketPhotoEditComponent implements OnInit {
     id: [''],
     name: ['', [Validators.required]],
     memo: [''],
-    certificateCode: ['', [Validators.required]],
+    certificateCode: ['', [Validators.required,Validators.maxLength(2)]],
+    photoType: ['', [Validators.required,Validators.maxLength(2)]],
     formName: ['', [Validators.required]],
     status: ['', [Validators.required]],
     max: ['', [Validators.required]],
     min: ['', [Validators.required]],
-    sort: ['', [Validators.required]],
-    business: ['', [Validators.required]],
+    sort: [''],
+    business: ['', [Validators.required,Validators.maxLength(4)]],
     market: this.fb.group({
       id: ['', [Validators.required]],
       name: [''],
     }),
   });
+
+  errors = {
+    name: [
+      new ErrorMessage('required', '证件名称必须填写'),
+    ],
+    business: [
+      new ErrorMessage('required', '业务类型必须填写！'),
+      new ErrorMessage('maxlength', '业务类型过长！'),
+    ],
+    certificateCode: [
+      new ErrorMessage('required', '证件类型代码集必须填写！'),
+      new ErrorMessage('maxlength', '证件类型代码集过长！'),
+    ],
+    photoType: [
+      new ErrorMessage('required', '照片类型代码集必须填写！'),
+      new ErrorMessage('maxlength', '照片类型代码集过长！'),
+    ],
+    formName: [
+      new ErrorMessage('required', '表达名称必须填写！'),
+    ],
+    status: [
+      new ErrorMessage('required', '状态必须选择！'),
+    ],
+    max: [
+      new ErrorMessage('required', '最大张数必须填写！'),
+    ],
+    min: [
+      new ErrorMessage('required', '最小张数必须填写！'),
+    ],
+  };
 
 
   /**
@@ -113,7 +152,7 @@ export class MarketPhotoEditComponent implements OnInit {
   }
 
   back() {
-    this.router.navigate( ['/pages/system/market/photo', { id: this.marketId , marketName: this.marketName,marketisApp:this.marketisApp}]);
+    this.router.navigate( ['/pages/system/market/photo', { id: this.marketId , marketName: this.marketName,isApp:this.marketisApp}]);
    }
 
 

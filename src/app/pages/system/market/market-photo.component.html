@@ -5,13 +5,12 @@
 </style>
 <nb-card>
   <nb-card-header class="d-flex">
-    <div class="p-2 mr-auto">{{marketName}}-市场证件</div>
+    <div class="p-2 mr-auto">{{marketName}}-{{photoType}}市场证件</div>
     <div class="p4">
       <button type="button" class="btn btn-info btn-block" (click)='add()'>添加</button>
     </div>
   </nb-card-header>
 
- 
   <nb-card-body>
       <div class="row business" >
           <ngx-market-photo-business  [business]='business' (clickActive)='selecctBusiness($event)' ></ngx-market-photo-business>
@@ -19,30 +18,34 @@
       <div style="height:40px;"></div>
       <div class="row">
        <div class="">
-          <ngx-market-photo-certificate-code  [CertifiCateCode]='CertificateCode'  (clickActive)='selectCertificateCode($event)'  ></ngx-market-photo-certificate-code>        
+          <ngx-market-photo-certificate-code  [CertifiCateCode]='CertificateCode'  [formName]='formName'  (clickActive)='selectCertificateCode($event)'  (choseForm)='selectFormName($event)' ></ngx-market-photo-certificate-code>
        </div>
-       <div class="">
-          <ngx-market-photo-form-name [formName]='formName' (clickActive)='selectFormName($event)' ></ngx-market-photo-form-name>  
-       </div>
-       <div class="col-md-6">
+       <!--<div class="">-->
+          <!--<ngx-market-photo-form-name [formName]='formName' (clickActive)='selectFormName($event)' ></ngx-market-photo-form-name>-->
+       <!--</div>-->
+       <div class="col-md-9">
             <table class="table table-bordered table-striped"  border="1">
                 <tr>
-                   <th>名称</th>
-                   <th>代号</th>
-                   <th>状态</th>
-                   <th>拍照顺序</th>
-                   <th>最大张数</th>
-                   <th>最小张数</th>
-                   <th>备注</th>
+                   <th width="100px">名称</th>
+                   <th width="100px">照片类型</th>
+                   <th width="100px">市场编号</th>
+                   <th width="100px">状态</th>
+                   <th width="100px">拍照顺序</th>
+                   <th width="150px">最大张数</th>
+                   <th width="150px">最小张数</th>
+                   <th width="200px">备注</th>
+                   <th style="width: 110px">操作</th>
                 </tr>
                 <tr *ngFor="let item of photoData" >
                   <td>{{item.name}}</td>
+                  <td>{{item.photoType | code_trans: 'photoType' | async  }}</td>
                   <td>{{item.cloudUser}}</td>
                   <td>{{item.status}}</td>
                   <td>{{item.sort}}</td>
                   <td>{{item.max}}</td>
                   <td>{{item.min}}</td>
                   <td>{{item.memo}}</td>
+                  <td> <button class="btn btn-sm  btn-warning" (click)="edit(item)" >修改</button>  </td>
                 </tr>
             </table>
        </div>

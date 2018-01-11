@@ -23,6 +23,11 @@ export  class Marketphotomap {
    */
   public certificateCode:string;
   /**
+   * 照片类型
+   */
+  public  photoType:string;
+
+  /**
    * 拍摄张数
    */
   public photoCode:number;

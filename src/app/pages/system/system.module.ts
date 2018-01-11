@@ -25,6 +25,8 @@ import { MarketPhotoEditComponent } from './market/market-photo-edit/market-phot
 import { MarketPhotoBusinessComponent } from './market/market-photo-business/market-photo-business.component';
 import { MarketPhotoCertificateCodeComponent } from './market/market-photo-certificate-code/market-photo-certificate-code.component';
 import { MarketPhotoFormNameComponent } from './market/market-photo-form-name/market-photo-form-name.component';
+import { RoleComponent } from './role/role.component';
+import { RoleAddComponent } from './role/role-add/role-add.component';
 
 const components = [
   CodeitemEditComponent,

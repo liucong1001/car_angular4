@@ -5,6 +5,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router, Params} from '@angular/router';
 import {Http} from '@angular/http';
+import {ErrorMessage} from '../../../../@core/ui/valid-error/valid-error.component';
+
 
 @Component({
   selector: `ngx-market-fee-edit`,
@@ -77,6 +79,30 @@ export class MarketFeeEditComponent implements OnInit {
     }),
     id: [null],
   });
+
+  errors = {
+    name: [
+      new ErrorMessage('required', '证件名称必须填写'),
+    ],
+    businessType: [
+      new ErrorMessage('required', '业务类型必须填写！'),
+    ],
+    money: [
+      new ErrorMessage('required', '费用必须填写！'),
+    ],
+    invoice: [
+      new ErrorMessage('required', '计入开票必须选择！'),
+    ],
+    discount: [
+      new ErrorMessage('required', '折扣必须选择！'),
+    ],
+    required: [
+      new ErrorMessage('required', '是否必选必须选择！'),
+    ],
+    priceType: [
+      new ErrorMessage('required', '价格类型必须选择！'),
+    ],
+  };
 
   save() {
     if (this.form.invalid) {

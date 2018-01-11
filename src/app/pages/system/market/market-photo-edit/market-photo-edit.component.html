@@ -8,27 +8,44 @@
             <label>证件名称:</label>
             <input type="text" class="form-control" formControlName="name" placeholder="证件名称">
           </div>
+          <ngx-valid-error [errors]="errors.name" [control]="form.get('name')"></ngx-valid-error>
         </div>
         <div class="col-sm-3">
           <div class="form-group">
             <label>业务类型:</label>
             <input type="text" class="form-control" formControlName="business" placeholder="业务类型">
           </div>
+          <ngx-valid-error [errors]="errors.business" [control]="form.get('business')"></ngx-valid-error>
         </div>
         <div class="col-sm-3">
           <div class="form-group">
             <label>证件类型代码集:</label>
-            <input type="code" class="form-control" formControlName="certificateCode" placeholder="证件类型代码集">
+            <div>
+              <ngx-ys-codeitem-droplist   codeMap="certificateCode" formControlName="certificateCode"> </ngx-ys-codeitem-droplist>
+            </div>
+            <!--<input type="code" class="form-control" formControlName="certificateCode" placeholder="证件类型代码集">-->
           </div>
+          <ngx-valid-error [errors]="errors.certificateCode" [control]="form.get('certificateCode')"></ngx-valid-error>
         </div>
         <div class="col-sm-3">
           <div class="form-group">
             <label>表单名称</label>
             <input type="text" class="form-control" formControlName="formName" placeholder="表单名称">
           </div>
+          <ngx-valid-error [errors]="errors.formName" [control]="form.get('formName')"></ngx-valid-error>
         </div>
+
       </div>
       <div class="row">
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label>照片类型</label>
+            <div>
+              <ngx-ys-codeitem-droplist codeMap="photoType" formControlName="photoType"> </ngx-ys-codeitem-droplist>
+            </div>
+          </div>
+          <ngx-valid-error [errors]="errors.photoType" [control]="form.get('photoType')"></ngx-valid-error>
+        </div>
         <div class="col-sm-3">
           <div class="form-group">
             选择状态
@@ -39,6 +56,7 @@
               <option value="03">选拍</option>
             </select>
           </div>
+          <ngx-valid-error [errors]="errors.status" [control]="form.get('status')"></ngx-valid-error>
         </div>
         <div class="col-sm-3">
           <div class="form-group">
@@ -51,15 +69,18 @@
             最大张数
             <input type="number" class="form-control" formControlName="max" placeholder="最大张数">
           </div>
+          <ngx-valid-error [errors]="errors.max" [control]="form.get('max')"></ngx-valid-error>
         </div>
+      </div>
+
+      <div class="row">
         <div class="col-sm-3">
           <div class="form-group">
             最小张数
             <input type="number" class="form-control" formControlName="min" placeholder="最小张数">
           </div>
+          <ngx-valid-error [errors]="errors.min" [control]="form.get('min')"></ngx-valid-error>
         </div>
-      </div>
-      <div class="row">
         <div class="col-sm-6">
           <div class="form-group">
             <label>备注:</label>

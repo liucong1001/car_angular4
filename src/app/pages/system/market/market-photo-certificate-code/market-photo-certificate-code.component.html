@@ -1,8 +1,11 @@
 <div class="certifiCate_code">
       <ul>
-          <li><b>证件类型:</b> </li>
-          <li *ngFor="let item of CertifiCateCode;let i = index"  (click)='choseCode(item,i)' [ngClass]="{'active': i == selected}">
-              {{item}} 
+         <li><h5>证件类型:</h5> </li>
+          <li *ngFor="let item of CertifiCateCode;let i = index"   >
+             <h6  (click)='choseCode(item,i)' [ngClass]="{'active': i == selected}"> {{item | code_trans: 'certifiCateCode' | async }} </h6>
+            <div class="" *ngIf="i == selected" >
+              <ngx-market-photo-form-name [formName]='formName' (clickActive)='choseFormName($event)' ></ngx-market-photo-form-name>
+            </div>
           </li>
       </ul>
 </div>

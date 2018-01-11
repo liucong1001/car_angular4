@@ -14,9 +14,10 @@
             <select class="form-control" formControlName="cloudUser"
                     [ngClass]="{'form-control-danger':form.get('cloudUser').invalid && form.get('cloudUser').touched}">
               <option>公用代码集</option>
-              <option value="0003">长丰二手车市场</option>
-              <option value="0002">汉口北二手车市场</option>
-              <option value="0005">保定二手车市场</option>
+              <!--<option value="0003">长丰二手车市场</option>-->
+              <!--<option value="0002">汉口北二手车市场</option>-->
+              <!--<option value="0005">保定二手车市场</option>-->
+              <option [value]="item.cloudUser" *ngFor="let item of marketList">{{item.name}}</option>
             </select>
           </div>
           <div class="text-danger" *ngIf="form.get('cloudUser').touched && form.get('cloudUser').hasError('required')">

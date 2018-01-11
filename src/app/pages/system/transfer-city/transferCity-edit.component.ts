@@ -101,6 +101,7 @@ export class TransferCityEditComponent implements OnInit {
     this.transferCityService.save(codemap).then(res => {
       this.message.success('保存成功', '代码集保存成功');
       this.saved = true;
+      this.back();
     }).catch(err => {
       this.message.error('保存失败', err.json().message);
     });

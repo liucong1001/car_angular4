@@ -23,7 +23,8 @@ export class MarketPhotoComponent implements OnInit {
 
   marketId = '';
   marketName = '';
-  marketisApp='';
+  marketisApp ='';
+  photoType = '';
  market = {
    id: '',
    name: '',
@@ -58,6 +59,13 @@ export class MarketPhotoComponent implements OnInit {
       this.marketId = params['id'];
       this.marketName = params['marketName'];
       this.marketisApp = params['isApp'];
+       if(this.marketisApp=='0'){
+           this.photoType='PC端';
+       } else if(this.marketisApp=='1'){
+           this.photoType='APP端';
+       }
+
+
       this.market.id = this.marketId;
       this.market.name = this.marketName;
       this.marketData.isApp=this.marketisApp;
@@ -116,21 +124,6 @@ export class MarketPhotoComponent implements OnInit {
       console.log(this.business[0]);
       this.selecctBusiness({data: this.business[0], index: 0})
     });
-    // this.marketService.findBusiness(this.market).then(res => {
-    //
-    //   if (this.business[0]) {
-    //
-    //     // console.log('certCode后', this.selecctBusiness({data: this.business[0], index: 0}));
-    //
-    //     // if (this.CertificateCode[0]) {
-    //     //   console.log('表单', this.CertificateCode);
-    //     //   this.selectCertificateCode({data: this.CertificateCode[0], index: 0});
-    //     // }else {
-    //     //   console.log('表单esle', this.CertificateCode);
-    //     // }
-    //
-    //   }
-    // });
   }
 
   selecctBusiness(result) {
@@ -157,34 +150,16 @@ export class MarketPhotoComponent implements OnInit {
     });
   }
 
-  edit(row: any) {
-    this.router.navigate(['/pages/system/market/photo/edit', { marketId: this.marketId, marketName: this.marketName, id: row.id }]);
-
-    // console.log('编辑', row);
-    // this.display = true;
-    // this.isEdit = true;
-    // this.marketService.getPhoto(row.id).then(res => {
-    //   console.log('获取到的', res);
-    //   this.form.patchValue({
-    //     id : res.id,
-    //     name : res.name,
-    //     certificateCode : res.certificateCode,
-    //     formName :  res.formName,
-    //     status : res.status,
-    //     max: res.max,
-    //     min: res.min,
-    //     sort: res.sort,
-    //     business: res.business,
-    //     memo: res.memo,
-    //   });
-    // }).catch(err => {
-    //   this.message.error('获取失败', err.json().message);
-    // });
+  edit(data) {
+     console.log('修改',data);
+    this.router.navigate(['/pages/system/market/photo/edit', { marketId: this.marketId, marketName: this.marketName, id: data.id,marketisApp:this.marketisApp }]);
   }
 
 
   add() {
-    this.router.navigate(['/pages/system/market/photo/edit', { marketId: this.marketId, marketName: this.marketName ,marketisApp:this.marketisApp}]);
+    console.log('选择的值',this.searchData);
+    this.router.navigate(['/pages/system/market/photo/edit', { marketId: this.marketId, marketName: this.marketName ,marketisApp:this.marketisApp,
+      business:this.searchData.business,certificateCode:this.searchData.certificateCode,formName:this.searchData.formName}]);
   }
 
   back() {

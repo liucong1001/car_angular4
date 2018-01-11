@@ -3,6 +3,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 import {TextCell} from '../../../@core/ui/table/cell.text.component';
 import {Menu, MenuCell} from '../../../@core/ui/table/cell.menu.component';
 import {Column} from '../../../@core/ui/table/table.component';
+import {ActivatedRoute, Router} from '@angular/router';
 
 /**
  * 商户财务维护
@@ -28,7 +29,10 @@ import {Column} from '../../../@core/ui/table/table.component';
 })
 export class FinanceComponent implements OnInit, OnChanges {
 
-  constructor() { }
+  constructor(
+    public router: Router,
+    private route: ActivatedRoute,
+  ) { }
 
   visibility = 'hidden';
   showFilter = false;
@@ -61,7 +65,7 @@ export class FinanceComponent implements OnInit, OnChanges {
       title: '', titleClass: 'w-15 text-center', cell: new MenuCell(
         [
           new Menu('查看', '', 'see'),
-          new Menu('绑卡', '', 'binding'),
+          new Menu('绑卡', '', this.icCardBind.bind(this)),
           /*new Menu('挂失', '', 'seller'),
           new Menu('修改折扣', '', 'buyer'),*/
         ],
@@ -75,6 +79,7 @@ export class FinanceComponent implements OnInit, OnChanges {
   }
   see(row: any) {
   }
-  binding(row: any) {
+  icCardBind(row: any) {
+    this.router.navigate( ['/pages/merchant/finance/binding', { id: row.id }]);
   }
 }

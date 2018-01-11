@@ -3,6 +3,12 @@ import {IccardModel, IccardOperaModel} from '../../../../@core/model/bussiness/i
 import {MessageService} from '../../../../@core/utils/message.service';
 import {IccardService} from '../../../../@core/device/iccard.service';
 import {Location} from '@angular/common';
+import {MerchantService} from '../../../../@core/data/merchant/merchant.service';
+import {Http} from '@angular/http';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {MerchantModel} from '../../../../@core/model/bussiness/merchant.model';
+import {Router, ActivatedRoute} from '@angular/router';
+import {ErrorMessage} from "../../../../@core/ui/valid-error/valid-error.component";
 
 @Component({
   selector: 'ngx-binding',
@@ -13,10 +19,23 @@ export class BindingComponent implements OnInit {
 
   // 组件初始华
   ngOnInit() {
+    this.route.params.subscribe(p => {
+      if (p.id) {
+        this.merchantService.get(p.id).then( res => {
+          const _merchant = res.merchant as MerchantModel;
+          console.log('获取的信息',_merchant);
+        });
+      }
+    });
   }
   constructor(private iccard: IccardService,
               private message: MessageService,
               private location: Location,
+              private router: Router,
+              private route: ActivatedRoute,
+              private http: Http,
+              private fb: FormBuilder,
+              private merchantService: MerchantService,
   ) { }
   public iccardData = new IccardModel('云石科技', '0001', 18);
   public iccardPayData = new IccardOperaModel();
