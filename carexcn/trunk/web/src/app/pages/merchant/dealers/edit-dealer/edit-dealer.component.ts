@@ -7,7 +7,7 @@ import {MerchantForm} from '../../../../@core/model/bussiness/merchant.form';
 import {Http} from '@angular/http';
 import {MerchantModel} from '../../../../@core/model/bussiness/merchant.model';
 import {Router, ActivatedRoute} from '@angular/router';
-import {ErrorMessage} from "../../../../@core/ui/valid-error/valid-error.component";
+import {ErrorMessage} from '../../../../@core/ui/valid-error/valid-error.component';
 
 
 /**
