@@ -1,8 +1,8 @@
 import {Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
 import {SelectItem} from 'primeng/primeng';
 import {CodeitemService} from '../../data/system/codeitem.service';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {Codeitem} from "../../model/system/codeitem";
+import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {Codeitem} from '../../model/system/codeitem';
 @Component({
   selector: 'ngx-ys-codeitem-droplist',
   templateUrl: './codeitem-droplist.component.html',
@@ -18,6 +18,7 @@ export class CodeitemDroplistComponent implements OnInit, ControlValueAccessor {
 
   @Input() codeMap = '';
   @Input() pleaseSelect = '请选择';
+  @Input() ifDisabled = false;
   @Output() _selectedValue = new EventEmitter();
   private value: any;
   private change(val: any): void {}
@@ -38,7 +39,7 @@ export class CodeitemDroplistComponent implements OnInit, ControlValueAccessor {
   }
   ngOnInit2ObjValue() {
     this.codeitem.list(this.codeMap).then((res) => {
-      this.items.push({label: this.pleaseSelect, value: null});
+      // this.items.push({label: this.pleaseSelect, value: null});
         for (const r in res) {
           if (res.hasOwnProperty(r)) {
             this.items.push({label: res[r]['name'], value: r});
@@ -49,7 +50,7 @@ export class CodeitemDroplistComponent implements OnInit, ControlValueAccessor {
   }
   ngOnInit() {
     this.codeitem.convert(this.codeMap).then((res) => {
-      this.items.push({label: this.pleaseSelect, value: null});
+      // this.items.push({label: this.pleaseSelect, value: null});
       for (const r in res) {
         if (res.hasOwnProperty(r)) {
           this.items.push({label: res[r], value: r});

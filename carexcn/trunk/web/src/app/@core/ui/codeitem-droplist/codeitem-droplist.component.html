@@ -4,4 +4,6 @@
   [ngModel]="value"
   (onChange)="_onChange($event)"
   (onBlur)="touched()"
+  [disabled]="ifDisabled"
+  [placeholder]="pleaseSelect"
 ></p-dropdown>
