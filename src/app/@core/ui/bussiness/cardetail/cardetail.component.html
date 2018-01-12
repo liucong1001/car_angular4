@@ -5,7 +5,7 @@
     </div>
   </nb-card-header>
   <nb-card-body [formGroup]="vehicle">
-    <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source"></ngx-ys-camera>
+    <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" [btn_show]="btn_show"></ngx-ys-camera>
     <div class="input-group">
       <div class="input-group">
         <span class="input-group-addon">车牌号</span>
@@ -23,10 +23,10 @@
     </div>
     <div class="input-group">
       <div class="input-group">
-        <span class="input-group-addon">发动机号.</span>
-        <input type="text" placeholder="" class="form-control" formControlName="eeee"
-               [ngClass]="{'form-control-danger':vehicle.get('eeee').invalid && vehicle.get('eeee').touched}"/>
-        <ngx-valid-error [errors]="errors.eeee" [control]="vehicle.get('eeee')"></ngx-valid-error>
+        <span class="input-group-addon">发动机号</span>
+        <input type="text" placeholder="" class="form-control" formControlName="engineNumber"
+               [ngClass]="{'form-control-danger':vehicle.get('engineNumber').invalid && vehicle.get('engineNumber').touched}"/>
+        <ngx-valid-error [errors]="errors.engineNumber" [control]="vehicle.get('engineNumber')"></ngx-valid-error>
       </div>
       <div class="input-group">
         <span class="input-group-addon">登记证号</span>

@@ -1,6 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {CarModel} from '../../../../@core/model/bussiness/car.model';
 import {FormBuilder} from '@angular/forms';
 import {CarService} from '../../../../@core/data/bussiness/car.service';
 import {MessageService} from '../../../../@core/utils/message.service';
@@ -8,7 +7,7 @@ import {FilingInfoModel} from '../../../../@core/model/bussiness/filing.info.mod
 import {FilingService} from '../../../../@core/data/merchant/filing.service';
 import {LocalstorageService} from '../../../../@core/cache/localstorage.service';
 import {MerchantModel} from '../../../../@core/model/bussiness/merchant.model';
-import {VehicleModel} from '../../../../@core/model/bussiness/vehicle.model';
+import {PreVehicleModel} from '../../../../@core/model/bussiness/trade/preVehicle/preVehicle.model';
 
 /**
  * 预审录入1--接口与页面的交互逻辑
@@ -56,7 +55,6 @@ export class RecordingComponent implements OnInit, OnDestroy {
    * 构造函数
    * @param {Router} _router
    * @param {FormBuilder} _formbuilder
-   * @param {CarService} _carService
    * @param {MessageService} _message
    * @param {FilingService} _filingService
    * @param {LocalstorageService} _localstorage
@@ -64,7 +62,6 @@ export class RecordingComponent implements OnInit, OnDestroy {
   constructor(
     private _router: Router,
     private _formbuilder: FormBuilder,
-    private _carService: CarService,
     private _message: MessageService,
     private _filingService: FilingService,
     private _localstorage: LocalstorageService,
@@ -80,7 +77,7 @@ export class RecordingComponent implements OnInit, OnDestroy {
   linkman: any = {};
   linkmanSelected: FilingInfoModel = {};
   dealer: MerchantModel = {};
-  vehicle: VehicleModel = {plateNumber: ''};
+  vehicle: PreVehicleModel = {plateNumber: ''};
   /**
    * 页面初始化事件
    */

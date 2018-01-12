@@ -32,21 +32,22 @@ export class Recording3Component implements OnInit, OnDestroy {
   }];
   public _formGroup: FormGroup = this._formBuilder.group({
     brandModel: ['1', [Validators.required]], // 厂牌型号实体Id
-    labelCode: ['1', [Validators.required]],
-    vehicleType: ['轿车', [Validators.required]],
-    plateNumber: ['1', [Validators.required]],
-    frameNumber: ['1', [Validators.required]],
+    labelCode: ['宝马WBA1A110', [Validators.required]],
+    vehicleType: ['小型轿车', [Validators.required]],
+    plateNumber: ['', [Validators.required]],
+    frameNumber: ['LVGBE40K28G244297', [Validators.required]],
+    engineNumber: ['C466626', [Validators.required]],
     registration: ['1', [Validators.required]],
-    registrationDate: ['1', [Validators.required]],
-    useCharacter: ['1', [Validators.required]],
-    useNature: ['私', [Validators.required]],
+    registrationDate: ['20080924', [Validators.required]],
+    useCharacter: ['非营运', [Validators.required]],
+    useNature: ['私用', [Validators.required]],
     displacement: ['1', [Validators.required]],
     range: ['1', [Validators.required]],
     size: ['小', [Validators.required]],
     mileage: ['1000', [Validators.required]],
     otherConditions: ['1', [Validators.required]],
     origin: ['武汉', [Validators.required]],
-    fee: ['无', [Validators.required]],
+    fee: ['284', [Validators.required]],
     review: ['1', [Validators.required]],
     invalid: ['1', [Validators.required]],
     eeee: ['', [Validators.maxLength(50)]],
@@ -70,6 +71,9 @@ export class Recording3Component implements OnInit, OnDestroy {
     ],
     frameNumber: [
       new ErrorMessage('required', '必须填写车架号！'),
+    ],
+    engineNumber: [
+      new ErrorMessage('required', '必须填写发动机号！'),
     ],
     registration: [
       new ErrorMessage('required', '必须填写登记证书号！'),
@@ -141,6 +145,10 @@ export class Recording3Component implements OnInit, OnDestroy {
     let maybe_vehicle = this._localstorage.get('vehicle');
     if (maybe_vehicle) {
       this._formGroup.patchValue(maybe_vehicle);
+      let maybe_seller_form = this._localstorage.get('seller_form');
+      if (maybe_seller_form) {
+        this._formGroup.patchValue({});
+      }
     }
   }
   /**
