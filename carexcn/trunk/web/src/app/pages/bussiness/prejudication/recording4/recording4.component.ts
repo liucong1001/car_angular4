@@ -9,7 +9,8 @@ import {FilingService} from '../../../../@core/data/merchant/filing.service';
 import {MessageService} from '../../../../@core/utils/message.service';
 import {Codeitem} from '../../../../@core/model/system/codeitem';
 import {ErrorMessage} from '../../../../@core/ui/valid-error/valid-error.component';
-import {CodeitemService} from "../../../../@core/data/system/codeitem.service";
+import {CodeitemService} from '../../../../@core/data/system/codeitem.service';
+import {PrejudicationService} from '../../../../@core/data/bussiness/prejudication.service';
 
 /**
  * 预审录入4--接口与页面的交互逻辑
@@ -27,6 +28,19 @@ import {CodeitemService} from "../../../../@core/data/system/codeitem.service";
   styleUrls: ['./recording4.component.scss'],
 })
 export class Recording4Component implements OnInit, OnDestroy {
+  photos: any[] = [{
+    title: '行驶证正本',
+    source: 'assets/images/camera1.jpg',
+  }, {
+    title: '行驶证副本',
+    source: 'assets/images/camera2.jpg',
+  }, {
+    title: '登记证书首页',
+    source: 'assets/images/camera3.jpg',
+  }, {
+    title: '登记证书末页',
+    source: 'assets/images/camera4.jpg',
+  }];
   linkManData: FilingInfoModel[] = [];
   linkman: any = {};
   linkmanSelected: FilingInfoModel = {};
@@ -40,22 +54,87 @@ export class Recording4Component implements OnInit, OnDestroy {
   public certificateType: Codeitem;
   public _formGroup: FormGroup = this._formBuilder.group({
     seller: this._formBuilder.group({
-      certType: ['', [Validators.required]],
-      certCode: ['', [Validators.required]],
-      name: ['', [Validators.required, Validators.maxLength(64)]],
-      endDate: ['', [Validators.required]],
-      phone: ['', [Validators.required]],
-      trusteeType: ['0', [Validators.required]],
-      address: ['', [Validators.required]],
+      certType: [
+        { value: '', disabled: true },
+        [Validators.required],
+      ],
+      certCode: [
+        { value: '', disabled: true },
+        [Validators.required],
+      ],
+      name: [
+        { value: '', disabled: true },
+        [Validators.required, Validators.maxLength(64)],
+      ],
+      endDate: [
+        { value: '', disabled: true },
+        [Validators.required],
+      ],
+      phone: [
+        { value: '', disabled: true },
+        [Validators.required],
+      ],
+      trusteeType: [
+        { value: '0', disabled: true },
+        [Validators.required],
+      ],
+      address: [
+        { value: '', disabled: true },
+        [Validators.required],
+      ],
       Trustee: this._formBuilder.group({
-        certCode: ['', [Validators.required]],
-        name: ['', [Validators.required, Validators.maxLength(64)]],
-        endDate: ['', [Validators.required]],
-        phone: ['', [Validators.required]],
-        trusteeType: ['0', [Validators.required]],
-        address: ['', [Validators.required]],
+        certCode: [
+          { value: '', disabled: true },
+          [Validators.required],
+        ],
+        name: [
+          { value: '', disabled: true },
+          [Validators.required, Validators.maxLength(64)],
+        ],
+        endDate: [
+          { value: '', disabled: true },
+          [Validators.required],
+        ],
+        phone: [
+          { value: '', disabled: true },
+          [Validators.required],
+        ],
+        trusteeType: [
+          { value: '0', disabled: true },
+          [Validators.required],
+        ],
+        address: [
+          { value: '', disabled: true },
+          [Validators.required],
+        ],
       }),
       // flag: ['', [Validators.required]],
+    }),
+    vehicle: this._formBuilder.group({
+      brandModel: [{ value: '', disabled: true }, [Validators.required]], // 厂牌型号实体Id
+      labelCode: [{ value: '', disabled: true }, [Validators.required]],
+      vehicleType: [{ value: '', disabled: true }, [Validators.required]],
+      plateNumber: [{ value: '', disabled: true }, [Validators.required]],
+      frameNumber: [{ value: '', disabled: true }, [Validators.required]],
+      engineNumber: [{ value: '', disabled: true }, [Validators.required]],
+      registration: [{ value: '', disabled: true }, [Validators.required]],
+      registrationDate: [{ value: '', disabled: true }, [Validators.required]],
+      useCharacter: [{ value: '', disabled: true }, [Validators.required]],
+      useNature: [{ value: '', disabled: true }, [Validators.required]],
+      displacement: [{ value: '', disabled: true }, [Validators.required]],
+      range: [{ value: '', disabled: true }, [Validators.required]],
+      size: [{ value: '', disabled: true }, [Validators.required]],
+      mileage: [{ value: '', disabled: true }, [Validators.required]],
+      otherConditions: [{ value: '', disabled: true }, [Validators.required]],
+      origin: [{ value: '', disabled: true }, [Validators.required]],
+      fee: [{ value: '', disabled: true }, [Validators.required]],
+      review: [{ value: '', disabled: true }, [Validators.required]],
+      invalid: [{ value: '', disabled: true }, [Validators.required]],
+      eeee: [{ value: '', disabled: true }, [Validators.maxLength(50)]],
+      /**
+       * TODO: 注意 eeee 字段，后台可能暂未准备好接收，但是是业务必须的字段
+       * TODO: 注意 eeee 字段的错误信息
+       */
     }),
   });
 
@@ -105,6 +184,65 @@ export class Recording4Component implements OnInit, OnDestroy {
         ],
       },
     },
+    vehicle: {
+      brandModel: [
+        new ErrorMessage('required', '必须填写厂牌型号！'),
+      ],
+      labelCode: [
+        new ErrorMessage('required', '必须填写厂牌型号！'),
+      ],
+      vehicleType: [
+        new ErrorMessage('required', '必须填写车辆类型！'),
+      ],
+      plateNumber: [
+        new ErrorMessage('required', '必须填写车牌号！'),
+      ],
+      frameNumber: [
+        new ErrorMessage('required', '必须填写车架号！'),
+      ],
+      engineNumber: [
+        new ErrorMessage('required', '必须填写发动机号！'),
+      ],
+      registration: [
+        new ErrorMessage('required', '必须填写登记证书号！'),
+      ],
+      useCharacter: [
+        new ErrorMessage('required', '必须填写使用性质！'),
+      ],
+      useNature: [
+        new ErrorMessage('required', '必须填写车辆性质！'),
+      ],
+      displacement: [
+        new ErrorMessage('required', '必须填写排量！'),
+      ],
+      range: [
+        new ErrorMessage('required', '必须填写排量区间！'),
+      ],
+      size: [
+        new ErrorMessage('required', '必须填写车辆大小！'),
+      ],
+      mileage: [
+        new ErrorMessage('required', '必须填写行驶里程！'),
+      ],
+      otherConditions: [
+        new ErrorMessage('required', '必须填写其他状况！'),
+      ],
+      origin: [
+        new ErrorMessage('required', '必须填写车辆产地！'),
+      ],
+      fee: [
+        new ErrorMessage('required', '必须填写业务手续费！'),
+      ],
+      review: [
+        new ErrorMessage('required', '必须填写审核状态！'),
+      ],
+      invalid: [
+        new ErrorMessage('required', '必须填写业务状态！'),
+      ],
+      eeee: [
+        new ErrorMessage('maxLength', '太长了！'),
+      ],
+    },
   };
   /**
    * 商户搜索资源
@@ -118,6 +256,7 @@ export class Recording4Component implements OnInit, OnDestroy {
     private _filingService: FilingService,
     private _localstorage: LocalstorageService,
     private _codeitem: CodeitemService,
+    private _prejudicationService: PrejudicationService,
   ) {
     /**
      * 缓存前缀名以业务为单位，一个缓存前缀对应一个业务，一个缓存业务完成则删除该前缀的所有缓存
@@ -144,6 +283,7 @@ export class Recording4Component implements OnInit, OnDestroy {
     let maybe_vehicle = this._localstorage.get('vehicle');
     if (maybe_vehicle) {
       this.vehicle = maybe_vehicle;
+      this._formGroup.patchValue({vehicle: maybe_vehicle});
       /**
        * 如果车牌确认填写了
        */
@@ -186,6 +326,8 @@ export class Recording4Component implements OnInit, OnDestroy {
     }
   }
   onSubmit() {
+    console.info(this._formGroup.value);
+    // this._prejudicationService.create();
     this._router.navigateByUrl('/pages/bussiness/prejudication/recording-last');
   }
   /**

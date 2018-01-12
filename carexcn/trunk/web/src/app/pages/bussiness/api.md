@@ -35,7 +35,7 @@
                     FilingInfo卖方受托人的备案人实例{id}	
     preVehicle				预审车辆对象实例	   [预审和直接过户时(创建和增加)必须]
       photos 				卖方录入图片列表<map>
-      proVehicle 			<obj>
+      preVehicle 			<obj>
           FilingInfo	备案人对象实例	id
           LabelCode	厂牌型号名称	
           VehicleType	车辆类型代码	

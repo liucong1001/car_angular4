@@ -1,28 +1,16 @@
-import {FilingInfoModel} from './filing.info.model';
-import {MerchantModel} from './merchant.model';
+import {FilingInfoModel} from '../../filing.info.model';
 
-/**
- * 车辆
- */
-export class VehicleModel {
+export class PreVehicleModel {
   /**
-   * 代办员
+   * 备案人对象实例{id}
    */
   filingInfo?: FilingInfoModel;
-  /**
-   * 代办主商户标识（如果是子商户，也含主商户标识）
-   */
-  merchant?: MerchantModel;
-  /**
-   * 厂牌型号 引用厂牌型号实体Id
-   */
-  // brandModel?: string;
   /**
    * 厂牌型号名称
    */
   labelCode?: string;
   /**
-   * 车辆类型 代码集
+   * 车辆类型代码
    */
   vehicleType?: string;
   /**
@@ -36,7 +24,7 @@ export class VehicleModel {
   /**
    * 登记证书号
    */
-  registration?: string;
+  registratio?: string;
   /**
    * 行驶证注册日期
    */
@@ -77,12 +65,4 @@ export class VehicleModel {
    * 业务手续费
    */
   fee?: string;
-  /**
-   * 审核状态 0 - 未审核 1 - 已审核
-   */
-  review?: string;
-  /**
-   * 业务状态 0 - 有效 1 - 无效
-   */
-  invalid?: string;
 }
