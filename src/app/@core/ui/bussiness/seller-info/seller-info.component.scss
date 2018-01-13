@@ -6,6 +6,13 @@
     margin-top: 1rem;
   }
 }
+:host ::ng-deep ngx-ys-codeitem-droplist{
+  p-dropdown {
+    div:first-child {
+      width: 100%!important;
+    }
+  }
+}
 @include nb-install-component() {
   nb-card-header {
     padding: 0;

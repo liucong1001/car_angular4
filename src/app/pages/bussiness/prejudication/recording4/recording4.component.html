@@ -36,8 +36,16 @@
     </div>
   </nb-card-body>
 </nb-card>
-<ngx-ys-seller-info [merchant]="merchant" [CERTIFICATE_TYPE_LIST]="CERTIFICATE_TYPE_LIST" [seller]="_formGroup.controls.seller" [errors]="errors.seller" [btn_show]="false"></ngx-ys-seller-info>
-<ngx-ys-cardetail [photos]="photos" [vehicle]="_formGroup.controls.vehicle" [errors]="errors.vehicle" [btn_show]="false"></ngx-ys-cardetail>
+<ngx-ys-seller-info [merchant]="merchant" [certType]="certType" [seller]="_formGroup.controls.seller" [errors]="errors.seller" [btn_show]="false"></ngx-ys-seller-info>
+<ngx-ys-cardetail
+  [photos]="photos"
+  [vehicle]="_formGroup.controls.vehicle"
+  [errors]="errors.vehicle"
+  [btn_show]="false"
+  [useCharacter]="useCharacter"
+  [vehicleType]="vehicleType"
+  [vehicleSize]="vehicleSize"
+></ngx-ys-cardetail>
 <div class="float-right">
   <button class="btn btn-primary btn-lg" (click)="onSubmit()">确认提交</button>
 </div>

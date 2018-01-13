@@ -20,10 +20,12 @@
       </div>
       <div class="input-group">
         <span class="input-group-addon">证件类型</span>
-        <!--<ngx-ys-codeitem-droplist formControlName="certType" (_selectedValue)="certificateTypeSelecteFunc($event)" [codeMap]="'CERTIFICATE_TYPE'" (pleaseSelect)="'性别'" style="width:100%"></ngx-ys-codeitem-droplist>-->
+        <!--seller.get('certType').disable()-->
+        <!--<ngx-ys-codeitem-droplist formControlName="certType" [ifDisabled]="true" (_selectedValue)="certificateTypeSelecteFunc($event)" [codeMap]="'certType'" style="width: 100%;"></ngx-ys-codeitem-droplist>-->
         <!--要拿到实体数据-->
-        <select class="form-control" formControlName="certType" (change)="certificateTypeSelecteFunc()" [compareWith]="certificateTypeCompareWithFunc">
-          <option *ngFor="let code of CERTIFICATE_TYPE_LIST" [ngValue]="code">{{code.name}}</option>
+        <!--<select class="form-control" formControlName="certType" (change)="certificateTypeSelecteFunc()" [compareWith]="certificateTypeCompareWithFunc">-->
+        <select class="form-control" formControlName="certType" (change)="certificateTypeSelecteFunc()">
+          <option *ngFor="let code of certType" [ngValue]="code.code">{{code.name}}</option>
         </select>
         <ngx-valid-error [errors]="errors.certType" [control]="seller.get('certType')"></ngx-valid-error>
       </div>

@@ -3,6 +3,8 @@ import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, ValidationErrors, Validators} from '@angular/forms';
 import {LocalstorageService} from '../../../../@core/cache/localstorage.service';
 import {ErrorMessage} from '../../../../@core/ui/valid-error/valid-error.component';
+import {Codeitem} from "../../../../@core/model/system/codeitem";
+import {CodeitemService} from "../../../../@core/data/system/codeitem.service";
 
 /**
  * 预审录入3--接口与页面的交互逻辑
@@ -17,6 +19,9 @@ import {ErrorMessage} from '../../../../@core/ui/valid-error/valid-error.compone
   styleUrls: ['./recording3.component.scss'],
 })
 export class Recording3Component implements OnInit, OnDestroy {
+  useCharacter: Codeitem[];
+  vehicleType: Codeitem[];
+  vehicleSize: Codeitem[];
   photos: any[] = [{
     title: '行驶证正本',
     source: 'assets/images/camera1.jpg',
@@ -126,6 +131,7 @@ export class Recording3Component implements OnInit, OnDestroy {
     private _router: Router,
     private _formBuilder: FormBuilder,
     private _localstorage: LocalstorageService,
+    private _codeitem: CodeitemService,
   ) {
     /**
      * 缓存前缀名以业务为单位，一个缓存前缀对应一个业务，一个缓存业务完成则删除该前缀的所有缓存
@@ -150,6 +156,14 @@ export class Recording3Component implements OnInit, OnDestroy {
         this._formGroup.patchValue({});
       }
     }
+    this._codeitem.list('useCharacter').then(res => this.useCharacter = res as Codeitem[]);
+    this._codeitem.list('vehicleType').then(res => this.vehicleType = res as Codeitem[]);
+    this._codeitem.list('vehicleSize').then(res => this.vehicleSize = res as Codeitem[]);
+
+    // let maybe_seller_form = this._localstorage.get('seller_form');
+    // if (maybe_seller_form) {
+    //   this._formGroup.patchValue(maybe_seller_form);
+    // }
   }
   /**
    * 页面销毁前

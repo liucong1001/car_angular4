@@ -8,14 +8,14 @@ export class SellerForm {
   /**
    * 卖方审核图片列表<map> [审核时]
    */
-  reviewPhotos: object;
+  reviewPhotos?: object;
   /**
    * 卖方录入图片列表<map> [创建时]
    */
-  photos: object;
+  photos?: object;
   /**
    * 受托人图片列表<map>   [可选]
    */
-  trusteePhotos: object;
-  seller: PersonModel;
+  trusteePhotos?: object;
+  seller?: PersonModel;
 }

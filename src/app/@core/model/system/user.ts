@@ -38,4 +38,8 @@ export class User {
    * 权限列表
    */
   public permissons: string[];
+  /**
+   * cloudUser
+   */
+  public cloudUser: string;
 }

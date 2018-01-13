@@ -50,14 +50,22 @@
     <div class="input-group">
       <div class="input-group">
         <span class="input-group-addon">车辆类型</span>
-        <input type="text" placeholder="" class="form-control" formControlName="vehicleType"
-               [ngClass]="{'form-control-danger':vehicle.get('vehicleType').invalid && vehicle.get('vehicleType').touched}"/>
+        <!--<input type="text" placeholder="" class="form-control" formControlName="vehicleType"-->
+               <!--[ngClass]="{'form-control-danger':vehicle.get('vehicleType').invalid && vehicle.get('vehicleType').touched}"/>-->
+        <!--<ngx-ys-codeitem-droplist formControlName="useCharacter" (_selectedValue)="certificateTypeSelecteFunc($event)" [codeMap]="'useCharacter'"></ngx-ys-codeitem-droplist>-->
+        <!--要拿到实体数据-->
+        <select class="form-control" formControlName="vehicleType">
+          <option *ngFor="let code of vehicleType" [ngValue]="code.code">{{code.name}}</option>
+        </select>
         <ngx-valid-error [errors]="errors.vehicleType" [control]="vehicle.get('vehicleType')"></ngx-valid-error>
       </div>
       <div class="input-group">
         <span class="input-group-addon">车辆大小</span>
-        <input type="text" placeholder="" class="form-control" formControlName="size"
-               [ngClass]="{'form-control-danger':vehicle.get('size').invalid && vehicle.get('size').touched}"/>
+        <!--<input type="text" placeholder="" class="form-control" formControlName="size"-->
+               <!--[ngClass]="{'form-control-danger':vehicle.get('size').invalid && vehicle.get('size').touched}"/>-->
+        <select class="form-control" formControlName="size">
+          <option *ngFor="let code of vehicleSize" [ngValue]="code.code">{{code.name}}</option>
+        </select>
         <ngx-valid-error [errors]="errors.size" [control]="vehicle.get('size')"></ngx-valid-error>
       </div>
     </div>
@@ -90,8 +98,13 @@
       </div>
       <div class="input-group">
         <span class="input-group-addon">使用性质</span>
-        <input type="text" placeholder="" class="form-control" formControlName="useCharacter"
-               [ngClass]="{'form-control-danger':vehicle.get('useCharacter').invalid && vehicle.get('useCharacter').touched}"/>
+        <!--<input type="text" placeholder="" class="form-control" formControlName="useCharacter"-->
+               <!--[ngClass]="{'form-control-danger':vehicle.get('useCharacter').invalid && vehicle.get('useCharacter').touched}"/>-->
+        <!--<ngx-ys-codeitem-droplist formControlName="useCharacter" (_selectedValue)="certificateTypeSelecteFunc($event)" [codeMap]="'useCharacter'"></ngx-ys-codeitem-droplist>-->
+        <!--要拿到实体数据-->
+        <select class="form-control" formControlName="useCharacter" (change)="useCharacterSelecteFunc()" [compareWith]="useCharacterCompareWithFunc">
+        <option *ngFor="let code of useCharacter" [ngValue]="code.code">{{code.name}}</option>
+        </select>
         <ngx-valid-error [errors]="errors.useCharacter" [control]="vehicle.get('useCharacter')"></ngx-valid-error>
       </div>
       <div class="input-group">

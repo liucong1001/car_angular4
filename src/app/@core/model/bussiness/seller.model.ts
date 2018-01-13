@@ -1,5 +1,5 @@
 import {TrusteeModel} from './trustee.model';
-
+// TODO: 清理此model 并根据业务使用对应的 review 和 trade 下的model，开发完成后，顺便检查并清理 trade 和 review 下已存在，同目录下类似的 model
 /**
  * 卖方
  */

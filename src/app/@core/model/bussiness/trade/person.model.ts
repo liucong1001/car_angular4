@@ -2,7 +2,7 @@ import {FilingInfoModel} from '../filing.info.model';
 import {TrusteeModel} from './trustee.model';
 
 export class PersonModel {
-  id: string;
+  id?: string;
   /**
    * 证件类型 代码集.
    */
