@@ -53,7 +53,6 @@ export class Recording4Component implements OnInit, OnDestroy {
   carLsnumPrefixDefault = '鄂A';
   carLsnumIsOk = false;
   dealerIsOk = false;
-  merchant: MerchantModel = {name: ''};
   useCharacter: Codeitem[];
   vehicleType: Codeitem[];
   vehicleSize: Codeitem[];
@@ -61,66 +60,27 @@ export class Recording4Component implements OnInit, OnDestroy {
   public certTypeSelected: Codeitem;
   public _formGroup: FormGroup = this._formBuilder.group({
     seller: this._formBuilder.group({
-      certType: [
-        { value: '', disabled: true },
-        [Validators.required],
-      ],
-      certCode: [
-        { value: '', disabled: true },
-        [Validators.required],
-      ],
-      name: [
-        { value: '', disabled: true },
-        [Validators.required, Validators.maxLength(64)],
-      ],
-      endDate: [
-        { value: '', disabled: true },
-        [Validators.required],
-      ],
-      phone: [
-        { value: '', disabled: true },
-        [Validators.required],
-      ],
-      trusteeType: [
-        { value: '0', disabled: true },
-        [Validators.required],
-      ],
-      address: [
-        { value: '', disabled: true },
-        [Validators.required],
-      ],
+      certType: [{ value: '', disabled: true }, [Validators.required]],
+      certCode: [{ value: '', disabled: true }, [Validators.required]],
+      name: [{ value: '', disabled: true }, [Validators.required, Validators.maxLength(64)]],
+      endDate: [{ value: '', disabled: true }, [Validators.required]],
+      phone: [{ value: '', disabled: true }, [Validators.required]],
+      trusteeType: [{ value: '0', disabled: true }, [Validators.required]],
+      address: [{ value: '', disabled: true }, [Validators.required]],
       Trustee: this._formBuilder.group({
-        certCode: [
-          { value: '', disabled: true },
-          [Validators.required],
-        ],
-        name: [
-          { value: '', disabled: true },
-          [Validators.required, Validators.maxLength(64)],
-        ],
-        endDate: [
-          { value: '', disabled: true },
-          [Validators.required],
-        ],
-        phone: [
-          { value: '', disabled: true },
-          [Validators.required],
-        ],
-        trusteeType: [
-          { value: '0', disabled: true },
-          [Validators.required],
-        ],
-        address: [
-          { value: '', disabled: true },
-          [Validators.required],
-        ],
+        certCode: [{ value: '', disabled: true }, [Validators.required]],
+        name: [{ value: '', disabled: true }, [Validators.required, Validators.maxLength(64)]],
+        endDate: [{ value: '', disabled: true }, [Validators.required]],
+        phone: [{ value: '', disabled: true }, [Validators.required]],
+        trusteeType: [{ value: '0', disabled: true }, [Validators.required]],
+        address: [{ value: '', disabled: true }, [Validators.required]],
       }),
       // flag: ['', [Validators.required]],
     }),
     vehicle: this._formBuilder.group({
       brandModel: [{ value: '', disabled: true }, [Validators.required]], // 厂牌型号实体Id
       labelCode: [{ value: '', disabled: true }, [Validators.required]],
-      vehicleType: [{ value: '', disabled: false }, [Validators.required]],
+      vehicleType: [{ value: '', disabled: true }, [Validators.required]],
       plateNumber: [{ value: '', disabled: true }, [Validators.required]],
       frameNumber: [{ value: '', disabled: true }, [Validators.required]],
       engineNumber: [{ value: '', disabled: true }, [Validators.required]],
@@ -290,7 +250,6 @@ export class Recording4Component implements OnInit, OnDestroy {
     let maybe_vehicle = this._localstorage.get('vehicle');
     if (maybe_vehicle) {
       this.vehicle = maybe_vehicle;
-      this._formGroup.patchValue({vehicle: maybe_vehicle});
       /**
        * 如果车牌确认填写了
        */
@@ -312,30 +271,32 @@ export class Recording4Component implements OnInit, OnDestroy {
           this.linkmanSelected = this._localstorage.get('linkmanSelected');
           this.linkman = this.linkmanSelected;
         }
-        /**
-         * 读取缓存的商户
-         * @type {any}
-         */
-        let maybe_merchant = this._localstorage.get('dealer');
-        if (maybe_merchant) {
-          this.merchant = maybe_merchant;
-        }
         let maybe_certificate_type = this._localstorage.get('certType');
         if (maybe_certificate_type) {
           this.certTypeSelected = maybe_certificate_type;
+        }
+        let maybe_seller_form = this._localstorage.get('seller_form');
+        if (maybe_seller_form) {
+          console.info('-------------------------');
+          console.info(maybe_seller_form.seller);
+          console.info('-------------------------');
+          this._formGroup.patchValue({
+            vehicle: maybe_vehicle,
+            seller: maybe_seller_form.seller,
+          });
+          console.info(this._formGroup.value);
+          console.info('---------_formGroup.value----------------');
         }
         this._codeitem.list('certType').then(res => this.certType = res as Codeitem[]);
         this._codeitem.list('useCharacter').then(res => this.useCharacter = res as Codeitem[]);
         this._codeitem.list('vehicleType').then(res => this.vehicleType = res as Codeitem[]);
         this._codeitem.list('vehicleSize').then(res => this.vehicleSize = res as Codeitem[]);
-        let maybe_seller_form = this._localstorage.get('seller_form');
-        if (maybe_seller_form) {
-          this._formGroup.patchValue(maybe_seller_form);
-        }
       }
     }
   }
   onSubmit() {
+    console.info(this._formGroup);
+    console.info(this._formGroup.controls);
     console.info(this._formGroup.value);
     // let preVehicle = this._formGroup.value.vehicle as PreVehicleModel;
     // preVehicle.filingInfo = this.linkmanSelected;

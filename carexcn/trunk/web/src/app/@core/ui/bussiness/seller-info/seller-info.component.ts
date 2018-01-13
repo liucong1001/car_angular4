@@ -34,6 +34,7 @@ export class SellerInfoComponent implements OnInit {
    * @type {{}}
    */
   @Input() errors: object = {};
+  @Input() showCheshang = true;
   public ifTrusteeType = false;
   public autoinput_cheshang_source_url = '/rest/merchant/filing/deal/';
 
