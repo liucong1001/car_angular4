@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {NbThemeService} from '@nebular/theme';
 import {Router} from '@angular/router';
+import {LocalstorageService} from "../../../../@core/cache/localstorage.service";
+import {MessageService} from "../../../../@core/utils/message.service";
+import {TradeForm} from "../../../../@core/model/bussiness/trade/trade.form";
 
 /**
  * 录入成功的提示
@@ -17,13 +20,29 @@ export class RecordingLastComponent implements OnInit {
 
   currentTheme: string;
   themeSubscription: any;
-
-  constructor(private themeService: NbThemeService, private _router: Router) {
+  trade: TradeForm;
+  constructor(
+    private themeService: NbThemeService,
+    private _router: Router,
+    private _message: MessageService,
+    private _localstorage: LocalstorageService,
+  ) {
+    /**
+     * 缓存前缀名以业务为单位，一个缓存前缀对应一个业务，一个缓存业务完成则删除该前缀的所有缓存
+     * @type {string}
+     */
+    this._localstorage.prefix = 'bussiness_prejudication_recording';
     this.themeSubscription = this.themeService.getJsTheme().subscribe(theme => {
       this.currentTheme = theme.name;
     });
   }
   ngOnInit() {
+    let maybe_trade = this._localstorage.get('trade');
+    if (maybe_trade) {
+      console.info(maybe_trade);
+      this.trade = maybe_trade as TradeForm;
+      this._message.success('archiveNo', this.trade.archiveNo);
+    }
   }
   toPrint() {
   }
