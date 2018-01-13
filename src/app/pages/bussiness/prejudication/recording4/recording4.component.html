@@ -36,7 +36,14 @@
     </div>
   </nb-card-body>
 </nb-card>
-<ngx-ys-seller-info [merchant]="merchant" [certType]="certType" [seller]="_formGroup.controls.seller" [errors]="errors.seller" [btn_show]="false"></ngx-ys-seller-info>
+<ngx-ys-seller-info
+  [merchant]="dealer"
+  [certType]="certType"
+  [seller]="_formGroup.controls.seller"
+  [errors]="errors.seller"
+  [btn_show]="false"
+  [showCheshang]="false"
+></ngx-ys-seller-info>
 <ngx-ys-cardetail
   [photos]="photos"
   [vehicle]="_formGroup.controls.vehicle"

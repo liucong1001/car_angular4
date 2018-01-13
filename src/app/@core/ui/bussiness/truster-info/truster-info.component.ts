@@ -25,6 +25,7 @@ export class TrusterInfoComponent implements OnInit {
    * @type {{}}
    */
   @Input() errors: object = {};
+  @Input() showCheshang = true;
   public autoinput_cheshang_source_url = '/rest/merchant/filing/deal/';
   /**
    * 图片清单

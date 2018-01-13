@@ -6,7 +6,7 @@
   </nb-card-header>
   <nb-card-body [formGroup]="seller">
     <div class="input-group">
-      <div class="input-group">
+      <div class="input-group" *ngIf="showCheshang">
         <span class="input-group-addon">车商</span>
         <ngx-ys-autoinput [results_resource_url]="autoinput_cheshang_source_url" (_value)="getSelectedCheshang($event)"
                           [showProperty]="'name'" [defaultValue]="cheshang" [placeholder]="'不是车商'"></ngx-ys-autoinput>
@@ -72,4 +72,4 @@
 </nb-card>
 
 <ngx-ys-truster-info *ngIf="'1' == seller.get('trusteeType').value" [merchant]="merchant"
-     [Trustee]="seller.controls.Trustee" [errors]="errors.Trustee"></ngx-ys-truster-info>
+     [Trustee]="seller.controls.Trustee" [errors]="errors.Trustee" [showCheshang]="showCheshang"></ngx-ys-truster-info>
