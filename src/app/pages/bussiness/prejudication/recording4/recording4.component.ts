@@ -15,6 +15,7 @@ import {SellerForm} from '../../../../@core/model/bussiness/trade/seller.form';
 import {PreVehicleForm} from '../../../../@core/model/bussiness/trade/preVehicle.form';
 import {PersonModel} from '../../../../@core/model/bussiness/trade/person.model';
 import {PreVehicleModel} from '../../../../@core/model/bussiness/trade/preVehicle/preVehicle.model';
+import {TradeForm} from "../../../../@core/model/bussiness/trade/trade.form";
 
 /**
  * 预审录入4--接口与页面的交互逻辑
@@ -277,15 +278,10 @@ export class Recording4Component implements OnInit, OnDestroy {
         }
         let maybe_seller_form = this._localstorage.get('seller_form');
         if (maybe_seller_form) {
-          console.info('-------------------------');
-          console.info(maybe_seller_form.seller);
-          console.info('-------------------------');
           this._formGroup.patchValue({
             vehicle: maybe_vehicle,
             seller: maybe_seller_form.seller,
           });
-          console.info(this._formGroup.value);
-          console.info('---------_formGroup.value----------------');
         }
         this._codeitem.list('certType').then(res => this.certType = res as Codeitem[]);
         this._codeitem.list('useCharacter').then(res => this.useCharacter = res as Codeitem[]);
@@ -295,36 +291,37 @@ export class Recording4Component implements OnInit, OnDestroy {
     }
   }
   onSubmit() {
-    console.info(this._formGroup);
-    console.info(this._formGroup.controls);
-    console.info(this._formGroup.value);
-    // let preVehicle = this._formGroup.value.vehicle as PreVehicleModel;
-    // preVehicle.filingInfo = this.linkmanSelected;
-    // this._prejudicationService.create({
-    //   photos: {},
-    //   trusteePhotos: {},
-    //   seller: this._formGroup.value.seller as PersonModel,
-    // } as SellerForm, {
-    //   photos: {},
-    //   preVehicle: preVehicle,
-    //   // newCarsPrice: '',
-    // } as PreVehicleForm).then(res => {
-    //   console.info(res);
-    // }).catch(e => {
-    //   console.info(e);
-    // });
-    // this._router.navigateByUrl('/pages/bussiness/prejudication/recording-last');
+    let preVehicle = this._formGroup.value.vehicle as PreVehicleModel;
+    preVehicle.filingInfo = this.linkmanSelected;
+    this._prejudicationService.create({
+      photos: {},
+      trusteePhotos: {},
+      seller: this._formGroup.value.seller as PersonModel,
+    } as SellerForm, {
+      photos: {},
+      preVehicle: preVehicle,
+      // newCarsPrice: '',
+    } as PreVehicleForm).then(res => {
+      let trade = res.json() as TradeForm;
+      if ( trade.archiveNo ) {
+        // console.info(trade);
+        this._localstorage.set('trade', trade);
+        this._localstorage.del('linkmanSelected');
+        this._localstorage.del('linkmandata');
+        this._localstorage.del('dealer');
+        this._localstorage.del('vehicle');
+        this._localstorage.del('seller_form');
+        this._router.navigateByUrl('/pages/bussiness/prejudication/recording-last');
+      }
+    }).catch(e => {
+      console.info(e);
+    });
   }
   /**
    * 页面销毁前
    * @constructor
    */
   ngOnDestroy() {
-    console.info('exec on destroy.');
-    // this._localstorage.set('linkmanSelected', this.linkmanSelected);
-    // this._localstorage.set('linkmandata', this.linkManData);
-    // this._localstorage.set('dealer', this.dealer);
-    // this._localstorage.set('vehicle', this.vehicle);
   }
 
   /**
