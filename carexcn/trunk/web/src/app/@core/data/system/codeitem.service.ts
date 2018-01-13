@@ -6,7 +6,7 @@ import {RestService} from '../../utils/rest.service';
 @Injectable()
 export class CodeitemService {
   path = '/rest/sys/codeitem';
-  // private codemapTemplateData: Array<Array<string>> = [];
+  private codemapTemplateObj: any = {};
   private codemapTemplateData: any = {};
   constructor(private http: Http, private rest: RestService) {
   }
@@ -31,21 +31,28 @@ export class CodeitemService {
   }
 
   /**
-   * 获取代码类目子集，需要实体数据
+   * 获取代码类目子集，需要实体数据的情况
    * @param {string} codemap
    * @returns {Promise<any>}
    */
   public list(codemap: string): Promise<any> {
     const url = `${this.path}/convert/${codemap}`;
-    return this.rest.get(url).map(res => {
-      let _result = [];
-      for (let key in res) {
-        if (res[key]) {
-          _result.push(res[key]);
+    let _return: Promise<any>;
+    if (this.codemapTemplateObj[codemap]) {
+      _return = this.codemapTemplateObj[codemap];
+    } else {
+      _return = this.codemapTemplateObj[codemap] = this.rest.get(url).map(res => {
+        // 将map数据转换为包含实体数据的数组
+        let _result = [];
+        for (let key in res) {
+          if (res[key]) {
+            _result.push(res[key]);
+          }
         }
-      }
-      return _result;
-    }).toPromise();
+        return _result;
+      }).toPromise();
+    }
+    return _return;
   }
 
   /**

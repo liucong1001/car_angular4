@@ -4,12 +4,22 @@ import {TradeForm} from '../../model/bussiness/trade/trade.form';
 import {ReviewForm} from '../../model/bussiness/review/review.form';
 import {SellerForm} from '../../model/bussiness/trade/seller.form';
 import {PreVehicleForm} from '../../model/bussiness/trade/preVehicle.form';
+import {AuthSessionToken} from '../security/auth-session-token';
+import {NbAuthService} from '@nebular/auth';
+import {MarketStaff} from '../../model/system/market-staff';
 
 @Injectable()
 export class PrejudicationService {
-  constructor(private http: Http) {}
+  user: MarketStaff;
+  constructor(
+    private authService: NbAuthService,
+    private http: Http,
+  ) {
+    this.authService.onTokenChange().subscribe((token: AuthSessionToken) => {
+      this.user = token.getPayload();
+    });
+  }
   private api_url_base = '/rest/business/trade/prejudication';
-
   /**
    * 创建预审车辆
    * @param {TradeForm} form  clouduser  seller卖方对象实例  PreVehicle对象实例
@@ -17,7 +27,7 @@ export class PrejudicationService {
    */
   public create(seller: SellerForm, preVehicle: PreVehicleForm): Promise<any> {
     return this.http.post(this.api_url_base, {
-      clouduser: '001', // TODO: clouduser
+      cloudUser: this.user.cloudUser,
       seller: seller,
       preVehicle: preVehicle,
     } as TradeForm).toPromise();

@@ -31,8 +31,8 @@ export class Recording2Component implements OnInit, OnDestroy {
     title: '身份证反面',
     source: 'assets/images/camera2.jpg',
   }];
-  public CERTIFICATE_TYPE_LIST: Codeitem[];
-  public certificateType: Codeitem;
+  public certType: Codeitem[];
+  public certTypeSelected: Codeitem;
   merchant: MerchantModel = {name: ''};
   public _formGroup: FormGroup = this._formBuilder.group({
     seller: this._formBuilder.group({
@@ -130,11 +130,11 @@ export class Recording2Component implements OnInit, OnDestroy {
     if (maybe_merchant) {
       this.merchant = maybe_merchant;
     }
-    let maybe_certificate_type = this._localstorage.get('certificateType');
+    let maybe_certificate_type = this._localstorage.get('certType');
     if (maybe_certificate_type) {
-      this.certificateType = maybe_certificate_type;
+      this.certTypeSelected = maybe_certificate_type;
     }
-    this._codeitem.list('CERTIFICATE_TYPE').then(res => this.CERTIFICATE_TYPE_LIST = res as Codeitem[]);
+    this._codeitem.list('certType').then(res => this.certType = res as Codeitem[]);
     let maybe_seller_form = this._localstorage.get('seller_form');
     if (maybe_seller_form) {
       this._formGroup.patchValue(maybe_seller_form);
@@ -146,7 +146,7 @@ export class Recording2Component implements OnInit, OnDestroy {
    */
   ngOnDestroy() {
     console.info('exec on destroy.');
-    this._localstorage.set('certificateType', this.certificateType);
+    this._localstorage.set('certType', this.certTypeSelected);
     this._localstorage.set('seller_form', this._formGroup.value);
   }
 

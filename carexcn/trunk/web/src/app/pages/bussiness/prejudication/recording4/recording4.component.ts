@@ -11,6 +11,10 @@ import {Codeitem} from '../../../../@core/model/system/codeitem';
 import {ErrorMessage} from '../../../../@core/ui/valid-error/valid-error.component';
 import {CodeitemService} from '../../../../@core/data/system/codeitem.service';
 import {PrejudicationService} from '../../../../@core/data/bussiness/prejudication.service';
+import {SellerForm} from '../../../../@core/model/bussiness/trade/seller.form';
+import {PreVehicleForm} from '../../../../@core/model/bussiness/trade/preVehicle.form';
+import {PersonModel} from '../../../../@core/model/bussiness/trade/person.model';
+import {PreVehicleModel} from '../../../../@core/model/bussiness/trade/preVehicle/preVehicle.model';
 
 /**
  * 预审录入4--接口与页面的交互逻辑
@@ -50,8 +54,11 @@ export class Recording4Component implements OnInit, OnDestroy {
   carLsnumIsOk = false;
   dealerIsOk = false;
   merchant: MerchantModel = {name: ''};
-  public CERTIFICATE_TYPE_LIST: Codeitem[];
-  public certificateType: Codeitem;
+  useCharacter: Codeitem[];
+  vehicleType: Codeitem[];
+  vehicleSize: Codeitem[];
+  public certType: Codeitem[];
+  public certTypeSelected: Codeitem;
   public _formGroup: FormGroup = this._formBuilder.group({
     seller: this._formBuilder.group({
       certType: [
@@ -113,7 +120,7 @@ export class Recording4Component implements OnInit, OnDestroy {
     vehicle: this._formBuilder.group({
       brandModel: [{ value: '', disabled: true }, [Validators.required]], // 厂牌型号实体Id
       labelCode: [{ value: '', disabled: true }, [Validators.required]],
-      vehicleType: [{ value: '', disabled: true }, [Validators.required]],
+      vehicleType: [{ value: '', disabled: false }, [Validators.required]],
       plateNumber: [{ value: '', disabled: true }, [Validators.required]],
       frameNumber: [{ value: '', disabled: true }, [Validators.required]],
       engineNumber: [{ value: '', disabled: true }, [Validators.required]],
@@ -313,11 +320,14 @@ export class Recording4Component implements OnInit, OnDestroy {
         if (maybe_merchant) {
           this.merchant = maybe_merchant;
         }
-        let maybe_certificate_type = this._localstorage.get('certificateType');
+        let maybe_certificate_type = this._localstorage.get('certType');
         if (maybe_certificate_type) {
-          this.certificateType = maybe_certificate_type;
+          this.certTypeSelected = maybe_certificate_type;
         }
-        this._codeitem.list('CERTIFICATE_TYPE').then(res => this.CERTIFICATE_TYPE_LIST = res as Codeitem[]);
+        this._codeitem.list('certType').then(res => this.certType = res as Codeitem[]);
+        this._codeitem.list('useCharacter').then(res => this.useCharacter = res as Codeitem[]);
+        this._codeitem.list('vehicleType').then(res => this.vehicleType = res as Codeitem[]);
+        this._codeitem.list('vehicleSize').then(res => this.vehicleSize = res as Codeitem[]);
         let maybe_seller_form = this._localstorage.get('seller_form');
         if (maybe_seller_form) {
           this._formGroup.patchValue(maybe_seller_form);
@@ -327,8 +337,22 @@ export class Recording4Component implements OnInit, OnDestroy {
   }
   onSubmit() {
     console.info(this._formGroup.value);
-    // this._prejudicationService.create();
-    this._router.navigateByUrl('/pages/bussiness/prejudication/recording-last');
+    // let preVehicle = this._formGroup.value.vehicle as PreVehicleModel;
+    // preVehicle.filingInfo = this.linkmanSelected;
+    // this._prejudicationService.create({
+    //   photos: {},
+    //   trusteePhotos: {},
+    //   seller: this._formGroup.value.seller as PersonModel,
+    // } as SellerForm, {
+    //   photos: {},
+    //   preVehicle: preVehicle,
+    //   // newCarsPrice: '',
+    // } as PreVehicleForm).then(res => {
+    //   console.info(res);
+    // }).catch(e => {
+    //   console.info(e);
+    // });
+    // this._router.navigateByUrl('/pages/bussiness/prejudication/recording-last');
   }
   /**
    * 页面销毁前
@@ -336,10 +360,10 @@ export class Recording4Component implements OnInit, OnDestroy {
    */
   ngOnDestroy() {
     console.info('exec on destroy.');
-    this._localstorage.set('linkmanSelected', this.linkmanSelected);
-    this._localstorage.set('linkmandata', this.linkManData);
-    this._localstorage.set('dealer', this.dealer);
-    this._localstorage.set('vehicle', this.vehicle);
+    // this._localstorage.set('linkmanSelected', this.linkmanSelected);
+    // this._localstorage.set('linkmandata', this.linkManData);
+    // this._localstorage.set('dealer', this.dealer);
+    // this._localstorage.set('vehicle', this.vehicle);
   }
 
   /**

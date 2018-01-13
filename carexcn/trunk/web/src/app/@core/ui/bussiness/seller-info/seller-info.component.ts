@@ -24,7 +24,7 @@ export class SellerInfoComponent implements OnInit {
   /**
    * 证件类型清单
    */
-  @Input() CERTIFICATE_TYPE_LIST: Codeitem[];
+  @Input() certType: Codeitem[];
   /**
    * 卖家表单
    */
@@ -77,6 +77,7 @@ export class SellerInfoComponent implements OnInit {
   subcribeToFormChanges() {
     const _formValueChanges = this.seller.valueChanges;
     _formValueChanges.subscribe(x => {
+      console.info(x);
       if ( x.trusteeType === '1' ) {
         this.ifTrusteeType = true;
       } else {
@@ -98,9 +99,10 @@ export class SellerInfoComponent implements OnInit {
    * @param event
    */
   certificateTypeSelecteFunc(event) {
-    console.info(this.merchant);
-    console.info(event);
-    console.info(this.certificateType);
+    // this.seller.value
+    // console.info(this.merchant);
+    // console.info(event);
+    // console.info(this.certificateType);
   }
 
   /**
