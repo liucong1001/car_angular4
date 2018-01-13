@@ -28,9 +28,10 @@ export class RecordingLastComponent implements OnInit {
   toPrint() {
   }
   toContinue() {
-    this._router.navigateByUrl('/pages/bussiness/prejudication/recording-continue');
+    // console.info(this.currentTheme);
+    // this._router.navigateByUrl('/pages/bussiness/prejudication/recording-continue');
   }
-  onJudication() {
+  toJudication() {
     this._router.navigateByUrl('/pages/bussiness/prejudication/judication');
   }
 }
