@@ -5,15 +5,14 @@
     </div>
   </nb-card-header>
   <nb-card-body class="text-center">
-    <h1>恭喜！预审录入成功！[201711290001]</h1>
+    <h1>恭喜！预审录入成功！[{{trade.archiveNo}}]</h1>
     <div>
       <img src="assets/images/qrcode.jpg" />
     </div>
 
     <div class="details">
       <div class="title">
-        预审流水单:201711290001<br />
-        预审批次号:201711290001
+        预审流水单:{{trade.archiveNo}}
       </div>
       <button type="button" class="btn btn-primary" (click)="toPrint()">打印</button>
       <button type="button" class="btn btn-primary" (click)="toContinue()">继续添加</button>
