@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {NbThemeService} from '@nebular/theme';
 import {Router} from '@angular/router';
-import {LocalstorageService} from "../../../../@core/cache/localstorage.service";
-import {MessageService} from "../../../../@core/utils/message.service";
-import {TradeForm} from "../../../../@core/model/bussiness/trade/trade.form";
+import {LocalstorageService} from '../../../../@core/cache/localstorage.service';
+import {MessageService} from '../../../../@core/utils/message.service';
+import {TradeForm} from '../../../../@core/model/bussiness/trade/trade.form';
 
 /**
  * 录入成功的提示
@@ -17,12 +16,8 @@ import {TradeForm} from "../../../../@core/model/bussiness/trade/trade.form";
   styleUrls: ['./recording-last.component.scss'],
 })
 export class RecordingLastComponent implements OnInit {
-
-  currentTheme: string;
-  themeSubscription: any;
   trade: TradeForm;
   constructor(
-    private themeService: NbThemeService,
     private _router: Router,
     private _message: MessageService,
     private _localstorage: LocalstorageService,
@@ -32,9 +27,6 @@ export class RecordingLastComponent implements OnInit {
      * @type {string}
      */
     this._localstorage.prefix = 'bussiness_prejudication_recording';
-    this.themeSubscription = this.themeService.getJsTheme().subscribe(theme => {
-      this.currentTheme = theme.name;
-    });
   }
   ngOnInit() {
     let maybe_trade = this._localstorage.get('trade');
@@ -47,8 +39,7 @@ export class RecordingLastComponent implements OnInit {
   toPrint() {
   }
   toContinue() {
-    // console.info(this.currentTheme);
-    // this._router.navigateByUrl('/pages/bussiness/prejudication/recording-continue');
+    this._router.navigateByUrl('/pages/bussiness/prejudication/recording-continue');
   }
   toJudication() {
     this._router.navigateByUrl('/pages/bussiness/prejudication/judication');
