@@ -97,6 +97,21 @@ export class IccardService {
    * 获取密码
    * @param timeout
    * @returns {Promise<any>}
+   getPassword: function getPassword(timeout) {
+        var deferred = $q.defer();
+        var promise = deferred.promise;
+        $device.sendCommond("ICCard", "GetPassword", timeout || 300).then(function (result) {
+            if (result.code == "success") {
+                deferred.resolve(result.password);
+            } else {
+                deferred.reject(result.message);
+            }
+        }, function (e) {
+            deferred.reject("获取密码失败[e=" + e + "]");
+            console.log("获取密码失败", e);
+        });
+        return promise;
+    },
    */
   getPassword(timeout?): Promise<any> {
     const self = this;

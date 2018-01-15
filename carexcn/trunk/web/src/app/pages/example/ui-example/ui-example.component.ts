@@ -146,15 +146,21 @@ export class UiExampleComponent implements OnInit {
       }
     });
   }
-
+  iccardPlayVoid() {
+    console.info('iccardPlayVoid');
+  }
   /**
    * IC卡 请输入密码
    */
   iccardPasswd() {
-    this.iccard.getPassword().then(res => {
-      console.info(res);
-    }).catch(e => {
-      console.info(e);
+    this.iccard.writerInit(this.iccardData.market, this.iccardData.maker, this.iccardData.txnSlot).then((res) => {
+      if (true === res) {
+        this.iccard.getPassword().then(passRes => {
+          console.info(passRes);
+        }).catch(e => {
+          console.info(e);
+        });
+      }
     });
   }
 
