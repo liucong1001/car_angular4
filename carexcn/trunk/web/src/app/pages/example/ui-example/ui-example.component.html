@@ -55,11 +55,7 @@
               <button class="btn btn-primary btn-sm" (click)="iccardText()">IC卡写入文本</button>
             </div>
             <div class="input-group">
-              <!--<select #iccardVoid>-->
-                <!--<option value="password">请输入密码</option>-->
-              <!--</select>-->
-              <button class="btn btn-primary btn-sm" (click)="iccardPlayVoid()">播放声音</button>
-              <label class="form-control">请输入密码</label>
+              <label class="form-control">用户输入的密码: {{iccardPassword}}</label>
               <button class="btn btn-primary btn-sm" (click)="iccardPasswd()">请输入密码</button>
             </div>
           </nb-tab>
@@ -153,8 +149,9 @@
       <button class="btn btn-primary btn-sm" (click)="iccardText()">IC卡写入文本</button>
     </div>
     <div class="input-group">
-      <label class="form-control">请输入密码</label>
+      <label class="form-control">用户输入的密码: {{iccardPassword}}</label>
       <button class="btn btn-primary btn-sm" (click)="iccardPasswd()">请输入密码</button>
+      <ngx-ys-droplist (_selectedValue)="getDropListIccardSound($event)" [selectItems]="dropListIccardSound" ></ngx-ys-droplist>
     </div>
 
     <div class="input-group">
