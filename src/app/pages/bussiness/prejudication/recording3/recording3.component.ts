@@ -1,10 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {FormBuilder, FormGroup, ValidationErrors, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {LocalstorageService} from '../../../../@core/cache/localstorage.service';
-import {ErrorMessage} from '../../../../@core/ui/valid-error/valid-error.component';
-import {Codeitem} from "../../../../@core/model/system/codeitem";
-import {CodeitemService} from "../../../../@core/data/system/codeitem.service";
+import {Codeitem} from '../../../../@core/model/system/codeitem';
+import {CodeitemService} from '../../../../@core/data/system/codeitem.service';
 
 /**
  * 预审录入3--接口与页面的交互逻辑
@@ -36,90 +35,29 @@ export class Recording3Component implements OnInit, OnDestroy {
     source: 'assets/images/camera4.jpg',
   }];
   public _formGroup: FormGroup = this._formBuilder.group({
-    brandModel: ['1', [Validators.required]], // 厂牌型号实体Id
-    labelCode: ['宝马WBA1A110', [Validators.required]],
-    vehicleType: ['小型轿车', [Validators.required]],
-    plateNumber: ['', [Validators.required]],
-    frameNumber: ['LVGBE40K28G244297', [Validators.required]],
-    engineNumber: ['C466626', [Validators.required]],
-    registration: ['1', [Validators.required]],
-    registrationDate: ['20080924', [Validators.required]],
-    useCharacter: ['非营运', [Validators.required]],
-    useNature: ['私用', [Validators.required]],
-    displacement: ['1', [Validators.required]],
-    range: ['1', [Validators.required]],
-    size: ['小', [Validators.required]],
-    mileage: ['1000', [Validators.required]],
-    otherConditions: ['1', [Validators.required]],
-    origin: ['武汉', [Validators.required]],
-    fee: ['284', [Validators.required]],
-    review: ['1', [Validators.required]],
-    invalid: ['1', [Validators.required]],
-    eeee: ['', [Validators.maxLength(50)]],
+    // brandModel: ['1', [Validators.maxLength(50)]], // 厂牌型号实体Id
+    labelCode: ['宝马WBA1A110', [Validators.required]], // 厂牌型号名称
+    vehicleType: ['01', [Validators.required]], // 车辆类型代码
+    plateNumber: ['', [Validators.required]], // 车牌号
+    frameNumber: ['LVGBE40K28G244297', [Validators.required]], // 车架号
+    // engineNumber: ['C466626', [Validators.required]],
+    registration: ['1', [Validators.required, Validators.maxLength(12)]], // 登记证书号 行驶证号
+    registrationDate: ['20080924', [Validators.required]], // 行驶证注册日期
+    useCharacter: ['01', [Validators.required]], // 使用性质代码
+    useNature: ['01', [Validators.required]], // 车辆性质
+    displacement: ['1', [Validators.required]], // 设置排量
+    range: ['01', [Validators.required]], // 排量区间代码
+    size: ['01', [Validators.required]], // 车辆大小代码
+    mileage: ['1000', [Validators.required]], // 行驶里程
+    otherConditions: ['1', [Validators.required]], // 其它状况说明
+    origin: ['武汉', [Validators.required]], // 车辆产地
+    fee: ['284', [Validators.required]], // 手续费
+    // eeee: ['', [Validators.maxLength(50)]],
     /**
      * TODO: 注意 eeee 字段，后台可能暂未准备好接收，但是是业务必须的字段
      * TODO: 注意 eeee 字段的错误信息
      */
   });
-  errors = {
-    brandModel: [
-      new ErrorMessage('required', '必须填写厂牌型号！'),
-    ],
-    labelCode: [
-      new ErrorMessage('required', '必须填写厂牌型号！'),
-    ],
-    vehicleType: [
-      new ErrorMessage('required', '必须填写车辆类型！'),
-    ],
-    plateNumber: [
-      new ErrorMessage('required', '必须填写车牌号！'),
-    ],
-    frameNumber: [
-      new ErrorMessage('required', '必须填写车架号！'),
-    ],
-    engineNumber: [
-      new ErrorMessage('required', '必须填写发动机号！'),
-    ],
-    registration: [
-      new ErrorMessage('required', '必须填写登记证书号！'),
-    ],
-    useCharacter: [
-      new ErrorMessage('required', '必须填写使用性质！'),
-    ],
-    useNature: [
-      new ErrorMessage('required', '必须填写车辆性质！'),
-    ],
-    displacement: [
-      new ErrorMessage('required', '必须填写排量！'),
-    ],
-    range: [
-      new ErrorMessage('required', '必须填写排量区间！'),
-    ],
-    size: [
-      new ErrorMessage('required', '必须填写车辆大小！'),
-    ],
-    mileage: [
-      new ErrorMessage('required', '必须填写行驶里程！'),
-    ],
-    otherConditions: [
-      new ErrorMessage('required', '必须填写其他状况！'),
-    ],
-    origin: [
-      new ErrorMessage('required', '必须填写车辆产地！'),
-    ],
-    fee: [
-      new ErrorMessage('required', '必须填写业务手续费！'),
-    ],
-    review: [
-      new ErrorMessage('required', '必须填写审核状态！'),
-    ],
-    invalid: [
-      new ErrorMessage('required', '必须填写业务状态！'),
-    ],
-    eeee: [
-      new ErrorMessage('maxLength', '太长了！'),
-    ],
-  };
 
   /**
    * 构造函数
@@ -176,20 +114,5 @@ export class Recording3Component implements OnInit, OnDestroy {
   onSubmit() {
     // this.getFormValidationErrors(this._formGroup);
     this._router.navigateByUrl('/pages/bussiness/prejudication/recording4');
-  }
-
-  /**
-   * 检查并输出表单组包含的错误
-   * @param {FormGroup} _formGroup
-   */
-  getFormValidationErrors(_formGroup: FormGroup) {
-    Object.keys(_formGroup.controls).forEach(key => {
-      const controlErrors: ValidationErrors = _formGroup.get(key).errors;
-      if (controlErrors != null) {
-        Object.keys(controlErrors).forEach(keyError => {
-          console.info('Key control: ' + key + ', keyError: ' + keyError + ', err value: ', controlErrors[keyError]);
-        });
-      }
-    });
   }
 }

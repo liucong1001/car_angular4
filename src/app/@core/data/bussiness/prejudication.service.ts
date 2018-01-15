@@ -45,14 +45,13 @@ export class PrejudicationService {
 
   /**
    * 增加预审车辆
-   * @param {string} id
+   * @param {string} id    trade.prejudication.id
    * @param {TradeForm} form  clouduser  PreVehicle对象实例
    * @returns {Promise<any>}
    */
-  public addCar(id: string, seller: SellerForm, preVehicle: PreVehicleForm): Promise<any> {
+  public addCar(id: string, preVehicle: PreVehicleForm): Promise<any> {
     return this.http.post(this.api_url_base + '/' + id, {
-      clouduser: '001', // TODO: clouduser
-      seller: seller,
+      cloudUser: this.user.cloudUser,
       preVehicle: preVehicle,
     } as TradeForm).toPromise();
   }
@@ -65,7 +64,7 @@ export class PrejudicationService {
   public review(id: string, tradeIds: Array<string>): Promise<any> {
     return this.http.put(this.api_url_base, {
       prejudication: {
-        clouduser: '001', // TODO: clouduser
+        cloudUser: this.user.cloudUser,
         id: id,
       },
       seller: {}, // TODO: seller.reviewPhotos

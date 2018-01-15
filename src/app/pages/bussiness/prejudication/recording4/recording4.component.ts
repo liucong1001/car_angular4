@@ -85,7 +85,7 @@ export class Recording4Component implements OnInit, OnDestroy {
       plateNumber: [{ value: '', disabled: true }, [Validators.required]],
       frameNumber: [{ value: '', disabled: true }, [Validators.required]],
       engineNumber: [{ value: '', disabled: true }, [Validators.required]],
-      registration: [{ value: '', disabled: true }, [Validators.required]],
+      registration: [{ value: '', disabled: true }, [Validators.required, Validators.maxLength(12)]],
       registrationDate: [{ value: '', disabled: true }, [Validators.required]],
       useCharacter: [{ value: '', disabled: true }, [Validators.required]],
       useNature: [{ value: '', disabled: true }, [Validators.required]],
@@ -151,65 +151,6 @@ export class Recording4Component implements OnInit, OnDestroy {
           new ErrorMessage('required', '必须填写地址！'),
         ],
       },
-    },
-    vehicle: {
-      brandModel: [
-        new ErrorMessage('required', '必须填写厂牌型号！'),
-      ],
-      labelCode: [
-        new ErrorMessage('required', '必须填写厂牌型号！'),
-      ],
-      vehicleType: [
-        new ErrorMessage('required', '必须填写车辆类型！'),
-      ],
-      plateNumber: [
-        new ErrorMessage('required', '必须填写车牌号！'),
-      ],
-      frameNumber: [
-        new ErrorMessage('required', '必须填写车架号！'),
-      ],
-      engineNumber: [
-        new ErrorMessage('required', '必须填写发动机号！'),
-      ],
-      registration: [
-        new ErrorMessage('required', '必须填写登记证书号！'),
-      ],
-      useCharacter: [
-        new ErrorMessage('required', '必须填写使用性质！'),
-      ],
-      useNature: [
-        new ErrorMessage('required', '必须填写车辆性质！'),
-      ],
-      displacement: [
-        new ErrorMessage('required', '必须填写排量！'),
-      ],
-      range: [
-        new ErrorMessage('required', '必须填写排量区间！'),
-      ],
-      size: [
-        new ErrorMessage('required', '必须填写车辆大小！'),
-      ],
-      mileage: [
-        new ErrorMessage('required', '必须填写行驶里程！'),
-      ],
-      otherConditions: [
-        new ErrorMessage('required', '必须填写其他状况！'),
-      ],
-      origin: [
-        new ErrorMessage('required', '必须填写车辆产地！'),
-      ],
-      fee: [
-        new ErrorMessage('required', '必须填写业务手续费！'),
-      ],
-      review: [
-        new ErrorMessage('required', '必须填写审核状态！'),
-      ],
-      invalid: [
-        new ErrorMessage('required', '必须填写业务状态！'),
-      ],
-      eeee: [
-        new ErrorMessage('maxLength', '太长了！'),
-      ],
     },
   };
   /**
