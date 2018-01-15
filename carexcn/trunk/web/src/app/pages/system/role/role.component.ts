@@ -3,6 +3,7 @@ import {Menu, MenuCell} from '../../../@core/ui/table/cell.menu.component';
 import {Column} from '../../../@core/ui/table/table.component';
 import {TextCell} from '../../../@core/ui/table/cell.text.component';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'ngx-role',
@@ -27,7 +28,11 @@ export class RoleComponent implements OnInit {
     this.showFilter = !this.showFilter;
     this.visibility = this.showFilter ? 'shown' : 'hidden';
   }
-  constructor() { }
+  constructor(
+    public router: Router,
+    private route: ActivatedRoute,
+  ) { }
+
 
   ngOnInit() {
   }
@@ -36,13 +41,16 @@ export class RoleComponent implements OnInit {
   // 列表列定义
   columns: Column[] = [
     {title: '角色名称', titleClass: '', cell: new TextCell('name')} as Column,
-    {title: '角色代码', titleClass: '', cell: new TextCell('code')} as Column,
+    {title: '角色代码', titleClass: '', cell: new TextCell('permissons')} as Column,
     {title: '操作', titleClass: 'w-25 text-center', cell: new MenuCell(
       [
         // new Menu('编辑', '', 'edit'),
       ],
-      new Menu('编辑', '', 'edit'), 'text-center',
+      new Menu('编辑', '', this.edit.bind(this)), 'text-center',
     )} as Column,
   ];
+  edit(row: any){
+    this.router.navigate( ['/pages/system/role/edit', { id: row.id }]);
+  }
 
 }

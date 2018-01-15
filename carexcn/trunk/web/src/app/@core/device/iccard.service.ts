@@ -96,7 +96,7 @@ export class IccardService {
    * @param timeout
    * @returns {Promise<any>}
    */
-  getPassword(timeout): Promise<any> {
+  getPassword(timeout?): Promise<any> {
     const self = this;
     return new Promise(function(resolve, reject){
       self.device.sendCommond('ICCard', 'GetPassword', timeout || 300).then(function (result) {

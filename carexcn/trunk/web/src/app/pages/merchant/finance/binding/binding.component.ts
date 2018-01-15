@@ -17,16 +17,19 @@ import {ErrorMessage} from "../../../../@core/ui/valid-error/valid-error.compone
 })
 export class BindingComponent implements OnInit {
 
+  merchant = {};
+  icCardInfo={};
   // 组件初始华
   ngOnInit() {
     this.route.params.subscribe(p => {
       if (p.id) {
         this.merchantService.get(p.id).then( res => {
-          const _merchant = res.merchant as MerchantModel;
-          console.log('获取的信息',_merchant);
+          this.merchant = res.merchant as MerchantModel;
+          console.log('获取的信息',this.merchant);
         });
       }
     });
+
   }
   constructor(private iccard: IccardService,
               private message: MessageService,
@@ -68,6 +71,8 @@ export class BindingComponent implements OnInit {
         self.iccard.scanCard().then((s) => {
           self.iccardData.Banlance = s.Banlance;
           self.iccardData.BanlanceDisplay = (s.Banlance) / 100 ;
+          this.icCardInfo = s;
+          // console.log("ic卡",s);
         }).catch((e) => {
           // console.log(e);
           self.message.success('IC卡操作', 'IC卡连接不稳定。未能获取到余额');
@@ -78,5 +83,19 @@ export class BindingComponent implements OnInit {
       this.message.error('IC卡连接失败！', '设备或IC卡不正常或连接有误。');
     });
   }
+
+  public sound(){
+    console.log("声音！");
+    this.iccard.beep();
+  }
+
+  public bindIcCard() {
+    console.log("开始输入密码！");
+    this.iccard.playSound(4);
+    this.iccard.getPassword(500).then(res =>{
+       console.log('输入的密码',res);
+    })
+  }
+
 
 }

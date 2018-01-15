@@ -76,19 +76,19 @@ export class MarketComponent implements OnInit, OnChanges {
 
   }
   brandModelLink(row: any ) {
-     this.router.navigateByUrl('/pages/system/market/brand');
+    this.router.navigate( ['/pages/system/market/market/brand', { id: row.id , marketName: row.name}]);
   }
 
   feeLink(row: any ) {
-    this.router.navigate( ['/pages/system/market/fee', { id: row.id , marketName: row.name}]);
+    this.router.navigate( ['/pages/system/market/market/fee', { id: row.id , marketName: row.name}]);
   }
 
   photoLink(row: any) {
-    this.router.navigate( ['/pages/system/market/photo', { id: row.id , marketName: row.name,isApp:0}]);
+    this.router.navigate( ['/pages/system/market/market/photo', { id: row.id , marketName: row.name,isApp:0}]);
   }
 
   photoLinkApp(row: any) {
-    this.router.navigate( ['/pages/system/market/photo', { id: row.id , marketName: row.name,isApp:1}]);
+    this.router.navigate( ['/pages/system/market/market/photo', { id: row.id , marketName: row.name,isApp:1}]);
   }
 
 }

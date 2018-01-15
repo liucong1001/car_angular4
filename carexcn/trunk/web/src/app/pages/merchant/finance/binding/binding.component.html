@@ -8,13 +8,16 @@
   <nb-card-body>
     <div class="input-group">
       <span class="input-group-addon">商户：</span>
-      <label class="form-control"></label>
+      <label class="form-control">{{merchant.name}}</label>
     </div>
     <div class="input-group">
       <span class="input-group-addon">账户编号：</span>
       <select class="form-control" >
         <option value=""></option>
       </select>
+    </div>
+    <div>
+      <!--<span>所属账户的ID:{{merchant.account.id}}</span>-->
     </div>
     <div class="input-group">
       <span class="input-group-addon">账户名称：</span>
@@ -24,12 +27,12 @@
     </div>
     <div class="input-group">
       <span class="input-group-addon">IC卡卡号：</span>
-      <label class="form-control">{{iccardData.CardNumber}}</label>
+      <label class="form-control">{{icCardInfo.CardNumber}}</label>
     </div>
   </nb-card-body>
   <div class="height"></div>
   <nb-card-body>
-    <button class="btn btn-success ">确定绑卡</button>
+    <button class="btn btn-success " (click)="bindIcCard()">确定绑卡</button>
     <button class="btn btn-success " (click)="readIccard()">读取</button>
     <button class="btn btn-success " (click)="goBack()">返回</button>
   </nb-card-body>

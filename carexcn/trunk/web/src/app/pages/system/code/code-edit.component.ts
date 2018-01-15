@@ -34,7 +34,6 @@ export class CodeEditComponent implements OnInit {
     });
     this.marketService.getAllMarketList().then(res =>{
       this.marketList = res;
-      // console.log('所有市场',res);
     })
   }
 

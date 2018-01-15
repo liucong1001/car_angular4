@@ -12,16 +12,16 @@
         </div>
         <div class="row">
             <div class="col-sm-6">
-                <span>树形菜单</span>
+                <span>角色代码</span>
                 <div>
-
+                  <p-tree [value]="orgTree | permTreeNode" selectionMode="checkbox"   [(selection)]="selectedNode" (onNodeSelect)="nodeSelect($event)" (click)="null" onNodeUnselect='nodeUnselect($event)'></p-tree>
                 </div>
             </div>
         </div>
 
         <div class="row">
           <div class="col-sm-6">
-            <button type="submit" class="btn btn-primary btn-sm" [disabled]="form.invalid">保存</button> &nbsp;
+            <button type="submit" class="btn btn-primary btn-sm" >保存</button> &nbsp;
             <button type="button" class="btn btn-info btn-sm" (click)='back()' >返回</button>
           </div>
         </div>
