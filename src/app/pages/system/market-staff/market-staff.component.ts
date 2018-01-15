@@ -73,7 +73,7 @@ export class MarketStaffComponent implements OnInit {
         return this.staffService.enable(row.id);
       }).then(ret => {
         row.status = ret.status;
-        this.message.success('成功', '禁用成功！');
+        this.message.success('成功', '启用成功！');
       }).catch(err => {
         this.message.error('失败', err.message);
       });
