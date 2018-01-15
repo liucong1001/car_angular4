@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {NbThemeService} from '@nebular/theme';
+import {MessageService} from '../../../@core/utils/message.service';
 
 @Component({
   selector: 'ngx-form-example',
@@ -41,8 +43,21 @@ export class FormExampleComponent implements OnInit {
       },
     ],
   };
-  constructor() { }
+  currentTheme: string;
+  themeSubscription: any;
+  constructor(
+    private themeService: NbThemeService,
+    private _message: MessageService,
+  ) {
+    this.themeSubscription = this.themeService.getJsTheme().subscribe(theme => {
+      this.currentTheme = theme.name;
+    });
+  }
 
   ngOnInit() {
+  }
+
+  getCurrentTheme() {
+    this._message.info('当前主题', this.currentTheme);
   }
 }
