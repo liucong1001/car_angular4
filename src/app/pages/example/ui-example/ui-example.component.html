@@ -54,6 +54,10 @@
               <input type="text" placeholder="输入此处的文本写入IC卡屏幕" class="form-control" [(ngModel)]="iccardData.Text"/>
               <button class="btn btn-primary btn-sm" (click)="iccardText()">IC卡写入文本</button>
             </div>
+            <div class="input-group">
+              <label class="form-control">请输入密码</label>
+              <button class="btn btn-primary btn-sm" (click)="iccardPasswd()">请输入密码</button>
+            </div>
           </nb-tab>
           <nb-tab tabTitle="指纹控件">
             <div class="input-group">
@@ -78,9 +82,9 @@
       <button class="btn btn-primary btn-sm" (click)="test2Pipe(codeMap.value, code.value)">代码转换管道测试</button>
     </div>
     <div class="input-group">
-      <label class="btn">'001' | code_trans: '002' => {{ '001' | code_trans: '002' | async }}</label>
+      <label class="btn">'03' | code_trans: 'photoType' => {{ '03' | code_trans: 'photoType' | async }}</label>
       <input type="text" placeholder="选中的值" class="form-control" [(ngModel)]="codeTransSeleted"/>
-      <ngx-ys-codeitem-droplist (_selectedValue)="getDropListSelectItem($event)" [codeMap]="'002'" (pleaseSelect)="'性别'" ></ngx-ys-codeitem-droplist>
+      <ngx-ys-codeitem-droplist (_selectedValue)="getDropListSelectItem($event)" [codeMap]="'photoType'" ></ngx-ys-codeitem-droplist>
       <ngx-ys-droplist (_selectedValue)="getDropListSelect($event)" [selectItems]="dropListItems" ></ngx-ys-droplist>
     </div>
     <div class="cameras-card-header">
@@ -143,6 +147,10 @@
       <button class="btn btn-primary btn-sm" (click)="readIccard()">读取IC卡</button>
       <input type="text" placeholder="输入此处的文本写入IC卡屏幕" class="form-control" [(ngModel)]="iccardData.Text"/>
       <button class="btn btn-primary btn-sm" (click)="iccardText()">IC卡写入文本</button>
+    </div>
+    <div class="input-group">
+      <label class="form-control">请输入密码</label>
+      <button class="btn btn-primary btn-sm" (click)="iccardPasswd()">请输入密码</button>
     </div>
 
     <div class="input-group">
