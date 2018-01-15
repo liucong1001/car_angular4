@@ -47,6 +47,6 @@
 ></ngx-ys-cardetail>
 
 <div class="float-right">
-  <button class="btn btn-primary btn-lg" (click)="onSubmit()">保存</button> &nbsp;
+  <button class="btn btn-primary btn-lg" (click)="onSubmit()" [disabled]="_formGroup.invalid || notNewCar">保存</button> &nbsp;
   <button class="btn btn-primary btn-lg" (click)="reBack()">返回</button>
 </div>

@@ -1,10 +1,6 @@
 <ngx-ys-cardetail [car_detail_title]="'预审业务 - 预审录入 3 - 车辆信息'"
                   [photos]="photos"
                   [vehicle]="_formGroup"
-                  [errors]="errors"
-                  [useCharacter]="useCharacter"
-                  [vehicleType]="vehicleType"
-                  [vehicleSize]="vehicleSize"
 ></ngx-ys-cardetail>
 <div class="float-right">
   <button class="btn btn-primary btn-lg" (click)="onSubmit()" [disabled]="_formGroup.invalid">下一步</button>

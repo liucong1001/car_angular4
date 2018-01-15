@@ -1,10 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MessageService} from '../../../utils/message.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {Codeitem} from "../../../model/system/codeitem";
-import {FilingInfoModel} from "../../../model/bussiness/filing.info.model";
-import {CodeitemService} from "../../../data/system/codeitem.service";
-import {ErrorMessage} from "../../valid-error/valid-error.component";
+import {Codeitem} from '../../../model/system/codeitem';
+import {FilingInfoModel} from '../../../model/bussiness/filing.info.model';
+import {CodeitemService} from '../../../data/system/codeitem.service';
+import {ErrorMessage} from '../../valid-error/valid-error.component';
 
 @Component({
   selector: 'ngx-ys-cardetail',
@@ -30,8 +30,10 @@ export class CardetailComponent implements OnInit {
   @Input() car_detail_title?: string;
   @Input() photos: Array<object>;
   @Input() useCharacter?: Codeitem[];
+  @Input() useNature?: Codeitem[];
   @Input() vehicleType?: Codeitem[];
   @Input() vehicleSize?: Codeitem[];
+  @Input() vehicleOrigin?: Codeitem[];
 
   public useCharacterSelected: Codeitem;
   constructor(
@@ -44,11 +46,17 @@ export class CardetailComponent implements OnInit {
     if (! this.useCharacter) {
       this._codeitem.list('useCharacter').then(res => this.useCharacter = res as Codeitem[]);
     }
-    if (! this.useCharacter) {
+    if (! this.useNature) {
+      this._codeitem.list('useNature').then(res => this.useNature = res as Codeitem[]);
+    }
+    if (! this.vehicleType) {
       this._codeitem.list('vehicleType').then(res => this.vehicleType = res as Codeitem[]);
     }
-    if (! this.useCharacter) {
+    if (! this.vehicleSize) {
       this._codeitem.list('vehicleSize').then(res => this.vehicleSize = res as Codeitem[]);
+    }
+    if (! this.vehicleOrigin) {
+      this._codeitem.list('vehicleOrigin').then(res => this.vehicleOrigin = res as Codeitem[]);
     }
     if (! this.errors) {
       this.errors = {
@@ -72,6 +80,9 @@ export class CardetailComponent implements OnInit {
         ],
         registration: [
           new ErrorMessage('required', '必须填写登记证书号！'),
+        ],
+        registrationDate: [
+          new ErrorMessage('required', '必须填写行驶证注册日期！'),
         ],
         useCharacter: [
           new ErrorMessage('required', '必填'),
@@ -106,9 +117,27 @@ export class CardetailComponent implements OnInit {
         invalid: [
           new ErrorMessage('required', '必须填写业务状态！'),
         ],
-        eeee: [
-          new ErrorMessage('maxLength', '太长了！'),
-        ],
+        Trustee: {
+          certCode: [
+            new ErrorMessage('required', '必须填写证件号码！'),
+          ],
+          name: [
+            new ErrorMessage('required', '必须填写姓名！'),
+            new ErrorMessage('maxLength', '姓名太长了！'),
+          ],
+          endDate: [
+            new ErrorMessage('required', '必须填写有效期！'),
+          ],
+          phone: [
+            new ErrorMessage('required', '必须填写手机！'),
+          ],
+          trusteeType: [
+            new ErrorMessage('required', '必须填写是否委托！'),
+          ],
+          address: [
+            new ErrorMessage('required', '必须填写地址！'),
+          ],
+        },
       };
     }
   }
@@ -119,6 +148,12 @@ export class CardetailComponent implements OnInit {
     return (code1 && code2) ? code1.code === code2.code : false;
   }
   useCharacterSelecteFunc() {
-    console.info('useCharacterSelecteFunc');
+    // console.info('useCharacterSelecteFunc');
+  }
+  useNatureSelecteFunc() {
+    // console.info('useNatureSelecteFunc');
+  }
+  vehicleOriginSelecteFunc() {
+    // console.info('useNatureSelecteFunc');
   }
 }

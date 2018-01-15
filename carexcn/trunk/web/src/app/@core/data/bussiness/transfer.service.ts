@@ -18,7 +18,7 @@ export class TransferService {
 
   /**
    * 增加过户车辆
-   * @param {string} id
+   * @param {string} id  trade.transfer.id
    * @param {TradeForm} form  clouduser  TransferVehicle对象实例
    * @returns {Promise<any>}
    */
