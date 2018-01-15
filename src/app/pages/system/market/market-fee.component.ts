@@ -59,7 +59,7 @@ export class MarketFeeComponent implements OnInit {
   }
 
   edit(row: any) {
-    this.router.navigate(['/pages/system/market/fee/edit', { id: row.id, marketId: this.marketId, marketName: this.marketName }]);
+    this.router.navigate(['/pages/system/market/market/fee/edit', { id: row.id, marketId: this.marketId, marketName: this.marketName }]);
   }
 
   delete(row: any) {
@@ -86,7 +86,7 @@ export class MarketFeeComponent implements OnInit {
 
   }
   add() {
-    this.router.navigate(['/pages/system/market/fee/edit', { marketId: this.marketId, marketName: this.marketName }]);
+    this.router.navigate(['/pages/system/market/market/fee/edit', { marketId: this.marketId, marketName: this.marketName }]);
   }
 
   back() {

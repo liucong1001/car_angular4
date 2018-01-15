@@ -152,7 +152,7 @@ export class MarketPhotoEditComponent implements OnInit {
   }
 
   back() {
-    this.router.navigate( ['/pages/system/market/photo', { id: this.marketId , marketName: this.marketName,isApp:this.marketisApp}]);
+    this.router.navigate( ['/pages/system/market/market/photo', { id: this.marketId , marketName: this.marketName,isApp:this.marketisApp}]);
    }
 
 

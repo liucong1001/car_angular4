@@ -12,12 +12,13 @@ import {Cartypemap} from "./../../../@core/model/system/cartypemap";
 import {CartypeService} from "../../../@core/data/system/cartype.service";
 import { AreaService } from './../../../@core/data/system/area.service';
 import {ErrorMessage} from '../../../@core/ui/valid-error/valid-error.component';
+import {MarketService} from '../../../@core/data/system/market.service';
 
 
 @Component({
   selector: 'ngx-cartype-edit',
   templateUrl: './cartype-edit.component.html',
-  providers: [CartypeService, AreaService,MessageService],
+  providers: [CartypeService, AreaService,MessageService,MarketService],
 })
 export class CartypeEditComponent implements OnInit {
 
@@ -59,13 +60,14 @@ export class CartypeEditComponent implements OnInit {
    * @param {FormBuilder} fb 表单工厂服务
    * @param {ActivatedRoute} route 当前路由服务
    */
-  constructor( private fb: FormBuilder,  public router: Router, private route: ActivatedRoute,
+  constructor( private fb: FormBuilder,  public router: Router, private route: ActivatedRoute, private marketService:MarketService,
                private cartypeService: CartypeService, private message: MessageService,private areaService: AreaService
   ) {
-    this.cartypeService.getAllMarket().then(res => {
+
+    this.marketService.getAllMarketList().then(res =>{
       this.marketList = res;
-      console.log('获取市场',res);
     })
+
   }
 
   /**

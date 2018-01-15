@@ -127,7 +127,7 @@ export class MarketFeeEditComponent implements OnInit {
     }
   }
  back() {
-  this.router.navigate( ['/pages/system/market/fee', { id: this.marketId , marketName: this.marketName}]);
+  this.router.navigate( ['/pages/system/market/market/fee', { id: this.marketId , marketName: this.marketName}]);
  }
 
 

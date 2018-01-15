@@ -9,18 +9,39 @@ import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angul
 import { Column, TableComponent } from '../../../@core/ui/table/table.component';
 import { MarketService } from '../../../@core/data/system/market.service';
 import { MessageService } from '../../../@core/utils/message.service';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 
 @Component({
     selector: 'ngx-market-brand',
     templateUrl: './market-brand.component.html',
     providers: [MarketService, MessageService],
+  // 定义动画
+  animations: [
+    trigger('visibilityChanged', [
+      // state 控制不同的状态下对应的不同的样式
+      state('shown' , style({ height: 'auto'})),
+      state('hidden', style({ height: '0px',  opacity: '0'})),
+      // transition 控制状态到状态以什么样的方式来进行转换
+      transition('shown <=> hidden', [animate('100ms ease-in-out'), animate('100ms')] ),
+    ]),
+  ],
 })
+/**
+ * 厂牌型号不需要新增界面，只需要查询界面。
+ */
 
 export class MarketBrandComponent implements OnInit {
         // 厂牌型号模态框
-        brandModel = false;
+    brandModel = false;
 
+  visibility = 'hidden';
+  showFilter = false;
+  // 列表搜索表单隐藏显示切换
+  toggle() {
+    this.showFilter = !this.showFilter;
+    this.visibility = this.showFilter ? 'shown' : 'hidden';
+  }
     constructor(private fb: FormBuilder,
         public router: Router,
         private route: ActivatedRoute,

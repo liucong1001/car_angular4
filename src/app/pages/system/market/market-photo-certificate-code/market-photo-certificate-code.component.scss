@@ -17,9 +17,17 @@ ul li{
 //ul li h3{
 //  text-indent: 10px!important;
 //}
-ul li h6:hover{
-    background: #eee;
+  #codeText:hover{
+    //background-color:#eee ;
+    color:#40dc7e;
 }
+  #codeText{
+    position: relative;
+  }
+ #codeText i{
+   position: absolute;
+   right: 10px;
+ }
 .active{
     color:#40dc7e;
 }

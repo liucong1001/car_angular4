@@ -33,6 +33,10 @@ export class MarketPhotoComponent implements OnInit {
      market:this.market,
      isApp :'',
   };
+  /**
+   * 添加查询数据
+   * @type {{business: string; certificateCode: string; formName: string; isApp: string; market: {id: string; name: string}}}
+   */
  searchData = {
     business : '',
     certificateCode: '',
@@ -72,7 +76,6 @@ export class MarketPhotoComponent implements OnInit {
       this.searchData.market.id =  params['id'];
       this.searchData.market.name = this.marketName;
       this.searchData.isApp = this.marketisApp;
-      // this.searchData.market(...this.market);
     });
   }
 
@@ -135,7 +138,6 @@ export class MarketPhotoComponent implements OnInit {
 
 
   selectCertificateCode(result) {
-    console.log('选择代码', result);
     this.searchData.certificateCode = result.data;
     this.marketService.findFormName(this.searchData).then(res => {
       this.formName = res;
@@ -143,7 +145,6 @@ export class MarketPhotoComponent implements OnInit {
   }
 
   selectFormName(result) {
-    console.log('选择表单', result);
     this.searchData.formName = result.data;
     this.marketService.findMarketPhoto(this.searchData).then(res => {
       this.photoData = res;
@@ -151,14 +152,15 @@ export class MarketPhotoComponent implements OnInit {
   }
 
   edit(data) {
-     console.log('修改',data);
-    this.router.navigate(['/pages/system/market/photo/edit', { marketId: this.marketId, marketName: this.marketName, id: data.id,marketisApp:this.marketisApp }]);
+    this.router.navigate(['/pages/system/market/market/photo/edit', { marketId: this.marketId, marketName: this.marketName, id: data.id,marketisApp:this.marketisApp }]);
   }
 
+  /**
+   * 添加新证件
+   */
 
   add() {
-    console.log('选择的值',this.searchData);
-    this.router.navigate(['/pages/system/market/photo/edit', { marketId: this.marketId, marketName: this.marketName ,marketisApp:this.marketisApp,
+    this.router.navigate(['/pages/system/market/market/photo/edit', { marketId: this.marketId, marketName: this.marketName ,marketisApp:this.marketisApp,
       business:this.searchData.business,certificateCode:this.searchData.certificateCode,formName:this.searchData.formName}]);
   }
 
