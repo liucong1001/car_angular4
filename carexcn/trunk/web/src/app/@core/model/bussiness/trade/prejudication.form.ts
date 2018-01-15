@@ -2,7 +2,7 @@ import {BussinessForm} from './prejudication/bussiness.form';
 
 export class PrejudicationForm {
   id: string;
-  bussiness: BussinessForm;
+  business: BussinessForm;
   /**
    * 来源标记 0 pc 1 app
    */

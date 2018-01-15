@@ -20,10 +20,12 @@ export class PrejudicationService {
     });
   }
   private api_url_base = '/rest/business/trade/prejudication';
+
   /**
    * 创建预审车辆
-   * @param {TradeForm} form  clouduser  seller卖方对象实例  PreVehicle对象实例
-   * @returns {Promise<any>} TODO: 检查完善
+   * @param {SellerForm} seller
+   * @param {PreVehicleForm} preVehicle
+   * @returns {Promise<any>}
    */
   public create(seller: SellerForm, preVehicle: PreVehicleForm): Promise<any> {
     return this.http.post(this.api_url_base, {
@@ -31,6 +33,14 @@ export class PrejudicationService {
       seller: seller,
       preVehicle: preVehicle,
     } as TradeForm).toPromise();
+  }
+  /**
+   * 获取车辆列表
+   * @param {TradeForm} form  clouduser  seller卖方对象实例  PreVehicle对象实例
+   * @returns {Promise<any>} TODO: 检查完善
+   */
+  public carList(archiveNo: string): Promise<any> {
+    return this.http.get(this.api_url_base + '?archiveNo=' + archiveNo).toPromise();
   }
 
   /**
