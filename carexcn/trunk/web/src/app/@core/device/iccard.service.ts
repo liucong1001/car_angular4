@@ -11,7 +11,9 @@ export class IccardService {
    * 构造函数
    * @param {DeviceService} device
    */
-  constructor(private device: DeviceService) {
+  constructor(
+    private device: DeviceService,
+  ) {
   }
 
   /**
@@ -98,7 +100,7 @@ export class IccardService {
    */
   getPassword(timeout?): Promise<any> {
     const self = this;
-    return new Promise(function(resolve, reject){
+    return new Promise(function(resolve){
       self.device.sendCommond('ICCard', 'GetPassword', timeout || 300).then(function (result) {
         if ('success' === result.code) {
           resolve(JSON.parse((result)));
@@ -107,8 +109,7 @@ export class IccardService {
         }
         resolve(JSON.parse(result));
       }, function (error) {
-        reject(error);
-        console.log(error);
+        console.info(error);
       });
     });
   }
@@ -122,8 +123,10 @@ export class IccardService {
    */
   recharge(recharge: IccardOperaModel): Promise<any> {
     const amount = recharge.amount;
-    const date = (new Date()).toLocaleDateString().replace(/\//g, '');
-    const time = (new Date()).toLocaleTimeString('zh-guoyu', {'timeZone': 'Asia/Shanghai', 'hour12': false}).replace(/:/g, '');
+    const tzoffset = (new Date()).getTimezoneOffset() * 60000;
+    const localISOTime = (new Date(Date.now() - tzoffset)).toISOString().slice(0, -5);
+    const date = localISOTime.split('T')[0].replace(/-/g, '');
+    const time = localISOTime.split('T')[1].replace(/:/g, '');
     return this.doCommond('ICCard', 'Recharge', '充值失败', {amount, date, time});
   }
 
@@ -136,8 +139,10 @@ export class IccardService {
    */
   pay(pay: IccardOperaModel): Promise<any> {
     const amount = pay.amount;
-    const date = (new Date()).toLocaleDateString().replace(/\//g, '');
-    const time = (new Date()).toLocaleTimeString('zh-guoyu', {'timeZone': 'Asia/Shanghai', 'hour12': false}).replace(/:/g, '');
+    const tzoffset = (new Date()).getTimezoneOffset() * 60000;
+    const localISOTime = (new Date(Date.now() - tzoffset)).toISOString().slice(0, -5);
+    const date = localISOTime.split('T')[0].replace(/-/g, '');
+    const time = localISOTime.split('T')[1].replace(/:/g, '');
     return this.doCommond('ICCard', 'Pay', '扣款失败', {amount, date, time});
   }
 }

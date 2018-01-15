@@ -148,6 +148,17 @@ export class UiExampleComponent implements OnInit {
   }
 
   /**
+   * IC卡 请输入密码
+   */
+  iccardPasswd() {
+    this.iccard.getPassword().then(res => {
+      console.info(res);
+    }).catch(e => {
+      console.info(e);
+    });
+  }
+
+  /**
    * IC卡充值
    */
   iccardRecharge() {
