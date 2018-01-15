@@ -42,6 +42,23 @@ export class UiExampleComponent implements OnInit {
     {label: '上海', value: {name: '上海市', code: 'shanghai'}},
     {label: '汉口', value: 'hankoubei'},
   ];
+  public dropListIccardSound = [
+    {label: '选择声音直接播放', value: null},
+    {label: '请插卡', value: '1'},
+    {label: '请刷卡', value: '2'},
+    {label: '读卡错误', value: '3'},
+    {label: '请输入密码', value: '4'},
+    {label: '密码错误', value: '5'},
+    {label: '操作成功', value: '6'},
+    {label: '操作超时', value: '7'},
+    {label: '操作失败', value: '8'},
+    {label: '请取回卡', value: '9'},
+    {label: '请重新输入密码', value: '10'},
+    {label: '请再次输入密码', value: '11'},
+    {label: '请输入新密码', value: '12'},
+    {label: '请输入旧密码', value: '13'},
+    {label: '请确认新密码', value: '14'},
+  ];
   getDropListSelect(event) {
     console.info(event);
     this.codeTransSeleted = JSON.stringify(event);
@@ -146,9 +163,22 @@ export class UiExampleComponent implements OnInit {
       }
     });
   }
-  iccardPlayVoid() {
-    console.info('iccardPlayVoid');
+
+  /**
+   * IC卡 声音播放
+   */
+  getDropListIccardSound(iccardVoidIndex) {
+    this.iccard.writerInit(this.iccardData.market, this.iccardData.maker, this.iccardData.txnSlot).then((init) => {
+      if (true === init) {
+        this.iccard.playSound(iccardVoidIndex).then(res => {
+          console.info(res);
+        }).catch(e => {
+          console.info(e);
+        });
+      }
+    });
   }
+  private iccardPassword = '';
   /**
    * IC卡 请输入密码
    */
@@ -157,6 +187,7 @@ export class UiExampleComponent implements OnInit {
       if (true === res) {
         this.iccard.getPassword().then(passRes => {
           console.info(passRes);
+          this.iccardPassword = passRes;
         }).catch(e => {
           console.info(e);
         });

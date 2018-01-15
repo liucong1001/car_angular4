@@ -2,6 +2,13 @@
 @import '~@nebular/theme/styles/global/bootstrap/breakpoints';
 @import '~bootstrap/scss/mixins/breakpoints';
 
+:host ::ng-deep ngx-ys-droplist{
+  p-dropdown {
+    div:first-child {
+      width: 100%!important;
+    }
+  }
+}
 @include nb-install-component() {
   nb-card-header {
     padding: 0;

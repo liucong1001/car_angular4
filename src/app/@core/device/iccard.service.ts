@@ -118,11 +118,10 @@ export class IccardService {
     return new Promise(function(resolve){
       self.device.sendCommond('ICCard', 'GetPassword', timeout || 300).then(function (result) {
         if ('success' === result.code) {
-          resolve(JSON.parse((result)));
+          resolve(result.password);
         } else {
           reject('ICCard - GetPassword - 获取密码失败');
         }
-        resolve(JSON.parse(result));
       }, function (error) {
         console.info(error);
       });
