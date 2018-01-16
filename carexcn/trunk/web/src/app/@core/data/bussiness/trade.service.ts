@@ -9,7 +9,7 @@ export class TradeService {
 
   /**
    * 查询交易车辆信息 (可查询交易所有信息)
-   * @param {string} archiveNo
+   * @param {string} archiveNo   流水号
    * @returns {Promise<any>}
    */
   public get(archiveNo: string): Promise<any> {
@@ -24,4 +24,5 @@ export class TradeService {
   public update(form: TradeForm): Promise<any> {
     return this.http.put(this.api_url_base, form).toPromise();
   }
+
 }

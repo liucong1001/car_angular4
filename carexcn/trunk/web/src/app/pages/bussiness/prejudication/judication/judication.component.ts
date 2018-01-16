@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {CarService} from '../../../../@core/data/bussiness/car.service';
 import {CarModel} from '../../../../@core/model/bussiness/car.model';
 import {MessageService} from '../../../../@core/utils/message.service';
@@ -36,7 +36,11 @@ export class JudicationComponent implements OnInit {
     title: '登记证书末页',
     source: 'assets/images/camera4.jpg',
   }];
-  public trade: TradeForm = {};
+  public trade: TradeForm = {
+    prejudication: {business: {archiveNo: ''}},
+    preVehicle: {preVehicle: {filingInfo: {merchant: {account: {}}}}},
+    seller: {seller: {}},
+  };
   public tradeList: [TradeForm];
   public _formGroup: FormGroup = this._formBuilder.group({
     vehicle: this._formBuilder.group({
@@ -64,36 +68,44 @@ export class JudicationComponent implements OnInit {
        */
     }),
   });
+
   /**
-   * 数据初始化
+   * 构造函数
    * @param {MessageService} message
    * @param {CarService} carService
    * @param {WebcamService} webcam
    * @param {Router} _router
+   * @param {ActivatedRoute} _route
+   * @param {TradeService} _trade
+   * @param {MessageService} _message
+   * @param {PrejudicationService} _prejudicationService
+   * @param {FormBuilder} _formBuilder
+   * @param {LocalstorageService} _localstorage
    */
   constructor(
     private message: MessageService,
     private carService: CarService,
     private webcam: WebcamService,
     private _router: Router,
+    private _route: ActivatedRoute,
     private _trade: TradeService,
     private _message: MessageService,
     private _prejudicationService: PrejudicationService,
     private _formBuilder: FormBuilder,
     private _localstorage: LocalstorageService,
   ) {
-    /**
-     * 缓存前缀名以业务为单位，一个缓存前缀对应一个业务，一个缓存业务完成则删除该前缀的所有缓存
-     * @type {string}
-     */
-    this._localstorage.prefix = 'bussiness_prejudication_recording';
   }
   ngOnInit(): void {
-    this.trade = this._localstorage.get('trade');
-    this._prejudicationService.carList(this.trade.prejudication.business.archiveNo).then(res => {
-      this.tradeList = res.json() as [TradeForm];
-    }).catch(e => {
-      console.info(e);
+    this._route.params.subscribe(param => {
+      // this.trade.prejudication.business.archiveNo
+      if (param.archiveNo) {
+        this._prejudicationService.carList(param.archiveNo).then(res => {
+          this.tradeList = res.json() as [TradeForm];
+          this.trade = this.tradeList[0] as TradeForm;
+        }).catch(e => {
+          console.info(e);
+        });
+      }
     });
   }
   onSubmit() {
