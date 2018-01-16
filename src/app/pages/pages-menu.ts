@@ -12,8 +12,16 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'ion-ios-briefcase-outline',
     children: [
       {
-        title: '预审业务',
-        link: '/pages/bussiness/prejudication',
+        title: '预审录入',
+        link: '/pages/bussiness/prejudication/recording',
+      },
+      {
+        title: '预审批量添加',
+        link: '/pages/bussiness/prejudication/continue',
+      },
+      {
+        title: '预审审核',
+        link: '/pages/bussiness/prejudication/judication',
       },
       {
         title: '过户录入',
@@ -177,7 +185,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
       {title: '行政区划', link: '/pages/system/area'},
       {title: '市场配置', link: '/pages/system/market/market'},
       {title: '市场员工', link: '/pages/system/market/staff'},
-      {title: '角色管理',link:'/pages/system/role'},
+      {title: '角色管理', link: '/pages/system/role'},
     ],
   },
   {
