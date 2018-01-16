@@ -4,7 +4,47 @@
       <span class="cameras-card-title">{{pageTitle || '业务查询'}}</span>
     </div>
   </nb-card-header>
-  <nb-card-body>
+
+
+
+  <nb-card-body *ngIf="!canEdit">
+    <div class="input-group">
+      <div class="input-group">
+        <span class="input-group-addon">批次号</span>
+        <input class="form-control" type="text" placeholder="输入批次号以查询" [(ngModel)]="trade.prejudication.business.archiveNo" #archiveNo/>
+        <button class="btn btn-primary btn-sm" (click)="getTradeByArchiveNo(archiveNo.value)" [disabled]="archiveNo.value.length !== 18">查询</button>
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">代办商户</span>
+        <label class="form-control">{{trade.preVehicle.preVehicle.filingInfo.merchant.account.accountName || ''}}</label>
+        <!--<ngx-ys-autoinput [results_resource_url]="autoinput_shanghu_source_url"-->
+        <!--(_value)="getSelectedDealer($event)"-->
+        <!--[showProperty]="'name'"-->
+        <!--[disabled]="true"-->
+        <!--[defaultValue]="dealer"-->
+        <!--&gt;</ngx-ys-autoinput>-->
+      </div>
+    </div>
+    <div class="input-group">
+      <div class="input-group">
+        <span class="input-group-addon">代办联系人</span>
+        <label class="form-control">{{trade.seller.seller.name || ''}}</label>
+        <!--<select class="form-control" [disabled]="true" [(ngModel)]="linkman" (change)="linkmanSelecteFunc()" [compareWith]="linkmanCompareWithFunc">-->
+        <!--<option value="">&#45;&#45;请选择&#45;&#45;</option>-->
+        <!--<option *ngFor="let linkmanitem of linkManData" [ngValue]="linkmanitem">{{linkmanitem.name}}</option>-->
+        <!--</select>-->
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">联系人手机</span>
+        <input class="form-control" type="text"  [disabled]="true" [value]="trade.seller.seller.phone || null "/>
+      </div>
+    </div>
+    <!--<div class="prompt">*若有流水号/批次号，请直接扫描流水号/批次号，即可获取卖方信息与车辆信息*</div>-->
+  </nb-card-body>
+
+
+
+  <nb-card-body *ngIf="canEdit">
     <div class="input-group">
       <div class="input-group">
         <span class="input-group-addon">批次号</span>

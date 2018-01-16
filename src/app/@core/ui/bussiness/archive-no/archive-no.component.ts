@@ -11,6 +11,7 @@ import {MessageService} from '../../../utils/message.service';
 export class ArchiveNoComponent implements OnInit {
   @Input() archiveNo = '';
   @Input() pageTitle = '';
+  @Input() canEdit = false;
   @Output('_tradeList') private _tradeList = new EventEmitter();
   @Output('_trade') private _trade = new EventEmitter();
   public trade: TradeForm = {

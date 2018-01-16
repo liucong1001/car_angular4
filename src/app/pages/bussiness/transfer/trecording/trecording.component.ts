@@ -11,11 +11,9 @@ import {TradeForm} from '../../../../@core/model/bussiness/trade/trade.form';
 })
 export class TrecordingComponent implements OnInit {
 
-  public trade: TradeForm = {
-    prejudication: {business: {archiveNo: ''}},
-    // preVehicle: {preVehicle: {filingInfo: {merchant: {account: {}}}}},
-    // seller: {seller: {}},
-  };
+  public archiveNo = '';
+  public trade: TradeForm;
+  public tradeList: [TradeForm];
   constructor(
     private _message: MessageService,
     private _webcam: WebcamService,
@@ -24,10 +22,12 @@ export class TrecordingComponent implements OnInit {
     // this.carService.getCar('1').then((res) => this.carData = res as CarModel);
     // this.carService.getCars('1').then((res) => this.carsData = res as CarModel[]);
   }
- /* constructor(
-    private message: MessageService,
-    private router: Router,
-  ) { }*/
+  getTradeByArchiveNoComponent(trade) {
+    this.trade = trade;
+  }
+  getTradeListByArchiveNoComponent(tradeList) {
+    this.tradeList = tradeList;
+  }
   // photos: any[] = [{
   //   title: '',
   //   source: 'assets/images/camera1.jpg',

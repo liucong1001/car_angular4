@@ -1,36 +1,17 @@
-<nb-card>
-  <nb-card-header>
-    <div class="cameras-card-header">
-      <span class="cameras-card-title">过户业务 - 过户录入 - 买方录入</span>
-    </div>
-  </nb-card-header>
-  <nb-card-body>
-    <div class="input-group">
-      <span class="input-group-addon">批次号</span>
-      <input class="form-control" type="text" placeholder="输入批次号以查询" [(ngModel)]="trade.prejudication.business.archiveNo" #archiveNo/>
-      <button class="btn btn-primary btn-sm" (click)="getTradeByArchiveNo(archiveNo.value)" [disabled]="archiveNo.value.length !== 18">查询</button>
-    </div>
-    <!--<div class="prompt">*若有流水号/批次号，请直接扫描流水号/批次号，即可获取卖方信息与车辆信息*</div>-->
-  </nb-card-body>
-</nb-card>
-<!--<nb-card>-->
-  <!--<nb-card-header>-->
-    <!--<div class="cameras-card-header">-->
-      <!--<span class="cameras-card-title">卖方</span>-->
-    <!--</div>-->
-  <!--</nb-card-header>-->
-  <!--<nb-card-body>-->
-    <!--<div class="input-group">-->
-      <!--<input type="text" placeholder="姓名" class="form-control"  [(readonly)]="read" (click)="readWrite()"/>-->
-      <!--<input type="text" placeholder="身份证号码" class="form-control" [(readonly)]="read" (click)="readWrite()"/>-->
-      <!--<input type="text" placeholder="证件有效期" [(readonly)]="read" (click)="readWrite()" class="form-control" />-->
-    <!--</div>-->
-    <!--<div class="input-group">-->
-      <!--<input type="text" placeholder="地址" class="form-control"  [(readonly)]="read" (click)="readWrite()"/>-->
-      <!--<input type="text" placeholder="手机号" class="form-control" [(readonly)]="read" (click)="readWrite()"/>-->
-    <!--</div>-->
-  <!--</nb-card-body>-->
-<!--</nb-card>-->
+<ngx-ys-archive-no
+  [pageTitle]="'过户业务 - 过户录入 - 买方录入'"
+  [archiveNo]="archiveNo"
+  (_tradeList)="getTradeListByArchiveNoComponent($event)"
+  (_trade)="getTradeByArchiveNoComponent($event)"
+></ngx-ys-archive-no>
+
+<!--<ngx-ys-seller-info-->
+  <!--[merchant]="dealer"-->
+  <!--[seller]="_formGroup.controls.seller"-->
+  <!--[btn_show]="false"-->
+  <!--[showCheshang]="false"-->
+<!--&gt;</ngx-ys-seller-info>-->
+
 <!--<ngx-ys-carlist [cars]="carsData" *ngIf="batch !==''" (_selectCar)='onChangeSelectingCar($event)' [car_list_title]="'已预审车辆信息'"></ngx-ys-carlist>-->
 <!--<ngx-ys-cardetail [(car)]="carData"></ngx-ys-cardetail>-->
 
