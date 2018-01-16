@@ -1,4 +1,4 @@
-@import '../../../@theme/styles/themes';
+@import '../../../../@theme/styles/themes';
 @import '~@nebular/theme/styles/global/bootstrap/breakpoints';
 @import '~bootstrap/scss/mixins/breakpoints';
 
@@ -7,10 +7,30 @@
     padding: 0;
     border: none;
   }
+  label {
+    padding: 10px;
+  }
+  .with .row {
+    margin: 0;
+  }
+  .prompt {
+    color: #d1d1ff;
+    font-size: 14px;
+    padding: 5px 20px;
+  }
 
   nb-card-body {
     padding: 0;
     position: relative;
+    span {
+      font-size: unset;
+    }
+    .input-group-addon {
+      width: auto;
+    }
+    ngx-ys-autoinput {
+      width: 100%;
+    }
   }
 
   nb-card-footer {
