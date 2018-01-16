@@ -8,11 +8,11 @@
     <div class="input-group">
       <div class="input-group">
         <span class="input-group-addon">批次号</span>
-        <label class="form-control">{{trade.archiveNo}}</label>
+        <label class="form-control">{{trade.prejudication.business.archiveNo || ''}}</label>
       </div>
       <div class="input-group">
         <span class="input-group-addon">代办商户</span>
-        <label class="form-control">{{trade.preVehicle.preVehicle.filingInfo.merchant.account.accountName}}</label>
+        <label class="form-control">{{trade.preVehicle.preVehicle.filingInfo.merchant.account.accountName || ''}}</label>
         <!--<ngx-ys-autoinput [results_resource_url]="autoinput_shanghu_source_url"-->
                           <!--(_value)="getSelectedDealer($event)"-->
                           <!--[showProperty]="'name'"-->
@@ -24,7 +24,7 @@
     <div class="input-group">
       <div class="input-group">
         <span class="input-group-addon">代办联系人</span>
-        <label class="form-control">{{trade.seller.seller.name}}</label>
+        <label class="form-control">{{trade.seller.seller.name || ''}}</label>
         <!--<select class="form-control" [disabled]="true" [(ngModel)]="linkman" (change)="linkmanSelecteFunc()" [compareWith]="linkmanCompareWithFunc">-->
           <!--<option value="">&#45;&#45;请选择&#45;&#45;</option>-->
           <!--<option *ngFor="let linkmanitem of linkManData" [ngValue]="linkmanitem">{{linkmanitem.name}}</option>-->
@@ -32,7 +32,7 @@
       </div>
       <div class="input-group">
         <span class="input-group-addon">联系人手机</span>
-        <label class="form-control">{{trade.seller.seller.phone}}</label>
+        <label class="form-control">{{trade.seller.seller.phone || ''}}</label>
         <!--<input class="form-control" placeholder="请先选择商户和联系人" type="text"  [disabled]="true" [value]="linkmanSelected.phone || null "/>-->
       </div>
     </div>

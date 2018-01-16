@@ -136,7 +136,25 @@
   增加直接过户车辆	/rest/business/trade/trade/{id}	post
   双方审核			/rest/business/trade/trade	put
   
-  修改交易车辆信息	/rest/business/trade  put (可修改所有交易信息)
+  修改交易车辆信息	/rest/business/trade  put (可修改所有交易信息，，手机端录入也是这个接口)
   查询交易车辆信息	/rest/business/trade?archiveNo={number}  get (可查询交易所有信息)
+  
+  流水号是二维码
+  
+  
+  交易查询页面功能
+  
+  手机端录入，分页查询 待续：  得到  tradeform 包含trade 照片， 接口 同 交易查询页面
+  
+  手机端录入打回原因查询    /rest/business/trade/back?archiveNo={number}  get  ()
+      [查询]
+      
+  
+  手机端录入打回            /rest/business/trade/back  put  ()
+          archiveNo 车辆流水号
+          reason 打回原因
+          photoCodes 退回照片类型代码表
+              <string>  eg:'01,03,05'照片类型01的照片被打回
+
 
 ```

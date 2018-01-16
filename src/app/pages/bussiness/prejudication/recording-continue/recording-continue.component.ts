@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MessageService} from '../../../../@core/utils/message.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {TradeService} from '../../../../@core/data/bussiness/trade.service';
 import {LocalstorageService} from '../../../../@core/cache/localstorage.service';
 import {TradeForm} from '../../../../@core/model/bussiness/trade/trade.form';
@@ -41,7 +41,11 @@ export class RecordingContinueComponent implements OnInit {
     source: 'assets/images/camera4.jpg',
   }];
   private notNewCar = false;
-  public trade: TradeForm = {};
+  public trade: TradeForm = {
+    prejudication: {business: {archiveNo: ''}},
+    preVehicle: {preVehicle: {filingInfo: {merchant: {account: {}}}}},
+    seller: {seller: {}},
+  };
   public tradeList: [TradeForm];
   public _formGroup: FormGroup = this._formBuilder.group({
     vehicle: this._formBuilder.group({
@@ -75,6 +79,7 @@ export class RecordingContinueComponent implements OnInit {
     private _prejudicationService: PrejudicationService,
     private _formBuilder: FormBuilder,
     private _router: Router,
+    private _route: ActivatedRoute,
     private _localstorage: LocalstorageService,
   ) {
     /**
@@ -84,11 +89,16 @@ export class RecordingContinueComponent implements OnInit {
     this._localstorage.prefix = 'bussiness_prejudication_recording';
   }
   ngOnInit(): void {
-    this.trade = this._localstorage.get('trade');
-    this._prejudicationService.carList(this.trade.prejudication.business.archiveNo).then(res => {
-      this.tradeList = res.json() as [TradeForm];
-    }).catch(e => {
-      console.info(e);
+    this._route.params.subscribe(param => {
+      // this.trade.prejudication.business.archiveNo
+      if (param.archiveNo) {
+        this._prejudicationService.carList(param.archiveNo).then(res => {
+          this.tradeList = res.json() as [TradeForm];
+          this.trade = this.tradeList[0] as TradeForm;
+        }).catch(e => {
+          console.info(e);
+        });
+      }
     });
   }
   onChangeSelected(trade: TradeForm): void {
