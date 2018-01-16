@@ -40,7 +40,7 @@ export class RecordingLastComponent implements OnInit {
   }
   toContinue() {
     this._router.navigate([
-      '/pages/bussiness/prejudication/recording-continue',
+      '/pages/bussiness/prejudication/continue',
       { archiveNo: this.trade.prejudication.business.archiveNo},
       ]);
   }

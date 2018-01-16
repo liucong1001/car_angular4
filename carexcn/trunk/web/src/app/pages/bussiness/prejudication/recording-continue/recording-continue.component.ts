@@ -141,6 +141,15 @@ export class RecordingContinueComponent implements OnInit {
     // console.info(this.trade);
     this._router.navigateByUrl('/pages/bussiness/prejudication');
   }
+  getTradeByArchiveNo(archiveNo) {
+    this._prejudicationService.carList(archiveNo).then(res => {
+      this.tradeList = res.json() as [TradeForm];
+      this.trade = this.tradeList[0] as TradeForm;
+    }).catch(e => {
+      // console.info(e.message);
+      this._message.info('操作提示', '批次号 ' + archiveNo + ' 没有查询结果。');
+    });
+  }
   /**
    * 检查并输出表单组包含的错误
    * @param {FormGroup} _formGroup

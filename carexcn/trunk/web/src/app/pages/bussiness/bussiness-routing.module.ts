@@ -61,7 +61,7 @@ const routes: Routes = [
     component: RecordingLastComponent,
   },
   {
-    path: 'prejudication/recording-continue',
+    path: 'prejudication/continue',
     component: RecordingContinueComponent,
   },
   {

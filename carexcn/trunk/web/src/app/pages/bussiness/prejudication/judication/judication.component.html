@@ -8,11 +8,12 @@
     <div class="input-group">
       <div class="input-group">
         <span class="input-group-addon">批次号</span>
-        <label class="form-control">{{trade.archiveNo}}</label>
+        <input class="form-control" type="text" placeholder="输入批次号以查询" [(ngModel)]="trade.prejudication.business.archiveNo" #archiveNo/>
+        <button class="btn btn-primary btn-sm" (click)="getTradeByArchiveNo(archiveNo.value)" [disabled]="archiveNo.value.length !== 18">查询</button>
       </div>
       <div class="input-group">
         <span class="input-group-addon">代办商户</span>
-        <label class="form-control">{{trade.preVehicle.preVehicle.filingInfo.merchant.account.accountName}}</label>
+        <label class="form-control">{{trade.preVehicle.preVehicle.filingInfo.merchant.account.accountName || ''}}</label>
         <!--<ngx-ys-autoinput [results_resource_url]="autoinput_shanghu_source_url"-->
         <!--(_value)="getSelectedDealer($event)"-->
         <!--[showProperty]="'name'"-->
@@ -24,7 +25,7 @@
     <div class="input-group">
       <div class="input-group">
         <span class="input-group-addon">代办联系人</span>
-        <label class="form-control">{{trade.seller.seller.name}}</label>
+        <label class="form-control">{{trade.seller.seller.name || ''}}</label>
         <!--<select class="form-control" [disabled]="true" [(ngModel)]="linkman" (change)="linkmanSelecteFunc()" [compareWith]="linkmanCompareWithFunc">-->
         <!--<option value="">&#45;&#45;请选择&#45;&#45;</option>-->
         <!--<option *ngFor="let linkmanitem of linkManData" [ngValue]="linkmanitem">{{linkmanitem.name}}</option>-->
@@ -32,8 +33,7 @@
       </div>
       <div class="input-group">
         <span class="input-group-addon">联系人手机</span>
-        <label class="form-control">{{trade.seller.seller.phone}}</label>
-        <!--<input class="form-control" placeholder="请先选择商户和联系人" type="text"  [disabled]="true" [value]="linkmanSelected.phone || null "/>-->
+        <input class="form-control" type="text"  [disabled]="true" [value]="trade.seller.seller.phone || null "/>
       </div>
     </div>
   </nb-card-body>
@@ -47,14 +47,15 @@
   <!--[showCheshang]="false"-->
 <!--&gt;</ngx-ys-seller-info>-->
 
-<ngx-ys-carlist [tradeList]="tradeList"  (_selected)='onChangeSelected($event)' [showAddButton]="false"></ngx-ys-carlist>
+<ngx-ys-carlist *ngIf="tradeList" [tradeList]="tradeList"  (_selected)='onChangeSelected($event)' [showAddButton]="false"></ngx-ys-carlist>
 
 <ngx-ys-cardetail
+  *ngIf="tradeList"
   [photos]="photos"
   [vehicle]="_formGroup.controls.vehicle"
 ></ngx-ys-cardetail>
 
 <div class="float-right">
-  <button class="btn btn-primary btn-lg" (click)="onSubmit()">审核</button> &nbsp;
+  <button class="btn btn-primary btn-lg" (click)="onSubmit()" *ngIf="tradeList">审核</button> &nbsp;
   <button class="btn btn-primary btn-lg" (click)="reBack()">返回</button>
 </div>
