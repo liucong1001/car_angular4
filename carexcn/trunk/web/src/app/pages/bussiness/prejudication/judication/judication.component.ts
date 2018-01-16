@@ -36,11 +36,8 @@ export class JudicationComponent implements OnInit {
     title: '登记证书末页',
     source: 'assets/images/camera4.jpg',
   }];
-  public trade: TradeForm = {
-    prejudication: {business: {archiveNo: ''}},
-    preVehicle: {preVehicle: {filingInfo: {merchant: {account: {}}}}},
-    seller: {seller: {}},
-  };
+  public archiveNo = '';
+  public trade: TradeForm;
   public tradeList: [TradeForm];
   public _formGroup: FormGroup = this._formBuilder.group({
     vehicle: this._formBuilder.group({
@@ -99,12 +96,7 @@ export class JudicationComponent implements OnInit {
     this._route.params.subscribe(param => {
       // this.trade.prejudication.business.archiveNo
       if (param.archiveNo) {
-        this._prejudicationService.carList(param.archiveNo).then(res => {
-          this.tradeList = res.json() as [TradeForm];
-          this.trade = this.tradeList[0] as TradeForm;
-        }).catch(e => {
-          console.info(e);
-        });
+        this.archiveNo = param.archiveNo;
       }
     });
   }
@@ -115,14 +107,11 @@ export class JudicationComponent implements OnInit {
   reBack() {
     this._router.navigateByUrl('/pages/bussiness/prejudication');
   }
-  getTradeByArchiveNo(archiveNo) {
-    this._prejudicationService.carList(archiveNo).then(res => {
-      this.tradeList = res.json() as [TradeForm];
-      this.trade = this.tradeList[0] as TradeForm;
-    }).catch(e => {
-      // console.info(e.message);
-      this._message.info('操作提示', '批次号 ' + archiveNo + ' 没有查询结果。');
-    });
+  getTradeByArchiveNoComponent(trade) {
+    this.trade = trade;
+  }
+  getTradeListByArchiveNoComponent(tradeList) {
+    this.tradeList = tradeList;
   }
   onChangeSelected(trade: TradeForm): void {
     if (null === trade) {

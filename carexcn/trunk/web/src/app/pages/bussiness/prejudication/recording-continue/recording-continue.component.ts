@@ -40,12 +40,9 @@ export class RecordingContinueComponent implements OnInit {
     title: '登记证书末页',
     source: 'assets/images/camera4.jpg',
   }];
+  public archiveNo = '';
   private notNewCar = false;
-  public trade: TradeForm = {
-    prejudication: {business: {archiveNo: ''}},
-    preVehicle: {preVehicle: {filingInfo: {merchant: {account: {}}}}},
-    seller: {seller: {}},
-  };
+  public trade: TradeForm;
   public tradeList: [TradeForm];
   public _formGroup: FormGroup = this._formBuilder.group({
     vehicle: this._formBuilder.group({
@@ -92,12 +89,7 @@ export class RecordingContinueComponent implements OnInit {
     this._route.params.subscribe(param => {
       // this.trade.prejudication.business.archiveNo
       if (param.archiveNo) {
-        this._prejudicationService.carList(param.archiveNo).then(res => {
-          this.tradeList = res.json() as [TradeForm];
-          this.trade = this.tradeList[0] as TradeForm;
-        }).catch(e => {
-          console.info(e);
-        });
+        this.archiveNo = param.archiveNo;
       }
     });
   }
@@ -141,14 +133,11 @@ export class RecordingContinueComponent implements OnInit {
     // console.info(this.trade);
     this._router.navigateByUrl('/pages/bussiness/prejudication');
   }
-  getTradeByArchiveNo(archiveNo) {
-    this._prejudicationService.carList(archiveNo).then(res => {
-      this.tradeList = res.json() as [TradeForm];
-      this.trade = this.tradeList[0] as TradeForm;
-    }).catch(e => {
-      // console.info(e.message);
-      this._message.info('操作提示', '批次号 ' + archiveNo + ' 没有查询结果。');
-    });
+  getTradeByArchiveNoComponent(trade) {
+    this.trade = trade;
+  }
+  getTradeListByArchiveNoComponent(tradeList) {
+    this.tradeList = tradeList;
   }
   /**
    * 检查并输出表单组包含的错误

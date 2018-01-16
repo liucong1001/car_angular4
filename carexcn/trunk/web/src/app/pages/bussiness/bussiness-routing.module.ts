@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {PrejudicationComponent} from './prejudication/prejudication.component';
-import {TransferComponent} from './transfer/transfer.component';
 import {RecordingComponent} from './prejudication/recording/recording.component';
 import {JudicationComponent} from './prejudication/judication/judication.component';
 import {Recording2Component} from './prejudication/recording2/recording2.component';

@@ -3,7 +3,6 @@ import {CommonModule} from '@angular/common';
 
 import {BussinessRoutingModule} from './bussiness-routing.module';
 import {PrejudicationComponent} from './prejudication/prejudication.component';
-import {TransferComponent} from './transfer/transfer.component';
 import {JudicationComponent} from './prejudication/judication/judication.component';
 import {RecordingComponent} from './prejudication/recording/recording.component';
 import {Recording2Component} from './prejudication/recording2/recording2.component';
@@ -35,7 +34,6 @@ import {CacheModule} from '../../@core/cache/cache.module';
   ],
   declarations: [
     PrejudicationComponent,
-    TransferComponent,
     JudicationComponent,
     RecordingComponent,
     Recording2Component,

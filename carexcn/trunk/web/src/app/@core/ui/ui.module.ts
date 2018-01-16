@@ -17,6 +17,7 @@ import {CarlistComponent} from './bussiness/carlist/carlist.component';
 import {CardetailComponent} from './bussiness/cardetail/cardetail.component';
 import { SellerInfoComponent } from './bussiness/seller-info/seller-info.component';
 import { TrusterInfoComponent } from './bussiness/truster-info/truster-info.component';
+import { ArchiveNoComponent } from './bussiness/archive-no/archive-no.component';
 
 const COMPONENTS = [
   CameraComponent,
@@ -30,6 +31,7 @@ const COMPONENTS = [
   CardetailComponent,
   SellerInfoComponent,
   TrusterInfoComponent,
+  ArchiveNoComponent,
   FormFilterComponent,
 ];
 

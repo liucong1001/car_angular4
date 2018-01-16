@@ -6,206 +6,207 @@
   </nb-card-header>
   <nb-card-body>
     <div class="input-group">
-      <input type="text" placeholder="批次号" class="form-control" [(ngModel)]="batch" />
-      <button class="btn btn-primary btn-sm" >开启扫描仪</button>
+      <span class="input-group-addon">批次号</span>
+      <input class="form-control" type="text" placeholder="输入批次号以查询" [(ngModel)]="trade.prejudication.business.archiveNo" #archiveNo/>
+      <button class="btn btn-primary btn-sm" (click)="getTradeByArchiveNo(archiveNo.value)" [disabled]="archiveNo.value.length !== 18">查询</button>
     </div>
-    <div class="prompt">*若有流水号/批次号，请直接扫描流水号/批次号，即可获取卖方信息与车辆信息*</div>
+    <!--<div class="prompt">*若有流水号/批次号，请直接扫描流水号/批次号，即可获取卖方信息与车辆信息*</div>-->
   </nb-card-body>
 </nb-card>
-<nb-card>
-  <nb-card-header>
-    <div class="cameras-card-header">
-      <span class="cameras-card-title">卖方</span>
-    </div>
-  </nb-card-header>
-  <nb-card-body>
-    <div class="input-group">
-      <input type="text" placeholder="姓名" class="form-control"  [(readonly)]="read" (click)="readWrite()"/>
-      <input type="text" placeholder="身份证号码" class="form-control" [(readonly)]="read" (click)="readWrite()"/>
-      <input type="text" placeholder="证件有效期" [(readonly)]="read" (click)="readWrite()" class="form-control" />
-    </div>
-    <div class="input-group">
-      <input type="text" placeholder="地址" class="form-control"  [(readonly)]="read" (click)="readWrite()"/>
-      <input type="text" placeholder="手机号" class="form-control" [(readonly)]="read" (click)="readWrite()"/>
-    </div>
-  </nb-card-body>
-</nb-card>
-<ngx-ys-carlist [cars]="carsData" *ngIf="batch !==''" (_selectCar)='onChangeSelectingCar($event)' [car_list_title]="'已预审车辆信息'"></ngx-ys-carlist>
-<ngx-ys-cardetail [(car)]="carData"></ngx-ys-cardetail>
+<!--<nb-card>-->
+  <!--<nb-card-header>-->
+    <!--<div class="cameras-card-header">-->
+      <!--<span class="cameras-card-title">卖方</span>-->
+    <!--</div>-->
+  <!--</nb-card-header>-->
+  <!--<nb-card-body>-->
+    <!--<div class="input-group">-->
+      <!--<input type="text" placeholder="姓名" class="form-control"  [(readonly)]="read" (click)="readWrite()"/>-->
+      <!--<input type="text" placeholder="身份证号码" class="form-control" [(readonly)]="read" (click)="readWrite()"/>-->
+      <!--<input type="text" placeholder="证件有效期" [(readonly)]="read" (click)="readWrite()" class="form-control" />-->
+    <!--</div>-->
+    <!--<div class="input-group">-->
+      <!--<input type="text" placeholder="地址" class="form-control"  [(readonly)]="read" (click)="readWrite()"/>-->
+      <!--<input type="text" placeholder="手机号" class="form-control" [(readonly)]="read" (click)="readWrite()"/>-->
+    <!--</div>-->
+  <!--</nb-card-body>-->
+<!--</nb-card>-->
+<!--<ngx-ys-carlist [cars]="carsData" *ngIf="batch !==''" (_selectCar)='onChangeSelectingCar($event)' [car_list_title]="'已预审车辆信息'"></ngx-ys-carlist>-->
+<!--<ngx-ys-cardetail [(car)]="carData"></ngx-ys-cardetail>-->
 
-<nb-card>
-  <nb-card-header>
-    <div class="cameras-card-header">
-      <span class="cameras-card-title">买方信息</span>
-    </div>
-  </nb-card-header>
-  <nb-card-body>
+<!--<nb-card>-->
+  <!--<nb-card-header>-->
+    <!--<div class="cameras-card-header">-->
+      <!--<span class="cameras-card-title">买方信息</span>-->
+    <!--</div>-->
+  <!--</nb-card-header>-->
+  <!--<nb-card-body>-->
 
-    <div class="input-group">
-      <input type="text" placeholder="买方姓名" class="form-control" />
-      <input type="text" placeholder="买方身份证号" class="form-control" />
-      <input type="text" placeholder="买方手机" class="form-control" />
-    </div>
-    <div class="input-group">
-      <input type="text" placeholder="买方地址" class="form-control" />
-      <input type="text" placeholder="买方身份有效期" class="form-control" />
-      <select name="" class="form-control" [(ngModel)]="credentials.type">
-        <option value="">请选择证件类型</option>
-        <option value="1">身份证</option>
-        <option value="2">港澳通行证</option>
-        <option value="3">居住证</option>
-        <option value="4">营业执照三证合一</option>
-        <option value="5">组织机构代码证</option>
-        <option value="6">护照</option>
-        <option value="7">军官证</option>
-        <option value="8">临时身份证</option>
-      </select>
-      <button class="btn btn-primary btn-sm" (click)="delete(RecordModel)">读买方身份证</button>
-    </div>
-    <div class="with">
-      <div class="row" *ngIf="credentials.type == '1'||credentials.type == '2'||credentials.type == '3'">
-        <div class="col-sm-6">
-          <label>身份证正面</label>
-          <div>
-            <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <label>身份证反面</label>
-          <div>
-            <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
-          </div>
-        </div>
-      </div>
-      <div class="row" *ngIf="credentials.type == '2'">
-        <div class="col-sm-6">
-          <label>港澳通行证正面</label>
-          <div>
-            <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <label>港澳通行证反面</label>
-          <div>
-            <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
-          </div>
-        </div>
-      </div>
-      <div class="row" *ngIf="credentials.type == '3'">
-        <div class="col-sm-6">
-          <label>居住证正面</label>
-          <div>
-            <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <label>居住证反面</label>
-          <div>
-            <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
-          </div>
-        </div>
-      </div>
-      <div class="row" *ngIf="credentials.type == '4'||credentials.type == '5'">
-        <div class="col-sm-6">
-          <label>买方营业执照</label>
-          <div>
-            <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
-          </div>
-        </div>
-      </div>
-      <div class="row" *ngIf="credentials.type == '5'">
-        <div class="col-sm-6">
-          <label>买方组织机构代码证</label>
-          <div>
-            <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <label>税务登记证</label>
-          <div>
-            <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
-          </div>
-        </div>
-      </div>
-      <div class="row" *ngIf="credentials.type == '6'">
-        <div class="col-sm-6">
-          <label>护照第一页</label>
-          <div>
-            <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <label>护照第二页</label>
-          <div>
-            <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <label>护照第三页</label>
-          <div>
-            <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
-          </div>
-        </div>
-      </div>
-      <div class="row" *ngIf="credentials.type == '7'">
-        <div class="col-sm-6">
-          <label>军官证</label>
-          <div>
-            <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
-          </div>
-        </div>
-      </div>
+    <!--<div class="input-group">-->
+      <!--<input type="text" placeholder="买方姓名" class="form-control" />-->
+      <!--<input type="text" placeholder="买方身份证号" class="form-control" />-->
+      <!--<input type="text" placeholder="买方手机" class="form-control" />-->
+    <!--</div>-->
+    <!--<div class="input-group">-->
+      <!--<input type="text" placeholder="买方地址" class="form-control" />-->
+      <!--<input type="text" placeholder="买方身份有效期" class="form-control" />-->
+      <!--<select name="" class="form-control" [(ngModel)]="credentials.type">-->
+        <!--<option value="">请选择证件类型</option>-->
+        <!--<option value="1">身份证</option>-->
+        <!--<option value="2">港澳通行证</option>-->
+        <!--<option value="3">居住证</option>-->
+        <!--<option value="4">营业执照三证合一</option>-->
+        <!--<option value="5">组织机构代码证</option>-->
+        <!--<option value="6">护照</option>-->
+        <!--<option value="7">军官证</option>-->
+        <!--<option value="8">临时身份证</option>-->
+      <!--</select>-->
+      <!--<button class="btn btn-primary btn-sm" (click)="delete(RecordModel)">读买方身份证</button>-->
+    <!--</div>-->
+    <!--<div class="with">-->
+      <!--<div class="row" *ngIf="credentials.type == '1'||credentials.type == '2'||credentials.type == '3'">-->
+        <!--<div class="col-sm-6">-->
+          <!--<label>身份证正面</label>-->
+          <!--<div>-->
+            <!--<ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col-sm-6">-->
+          <!--<label>身份证反面</label>-->
+          <!--<div>-->
+            <!--<ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="row" *ngIf="credentials.type == '2'">-->
+        <!--<div class="col-sm-6">-->
+          <!--<label>港澳通行证正面</label>-->
+          <!--<div>-->
+            <!--<ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col-sm-6">-->
+          <!--<label>港澳通行证反面</label>-->
+          <!--<div>-->
+            <!--<ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="row" *ngIf="credentials.type == '3'">-->
+        <!--<div class="col-sm-6">-->
+          <!--<label>居住证正面</label>-->
+          <!--<div>-->
+            <!--<ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col-sm-6">-->
+          <!--<label>居住证反面</label>-->
+          <!--<div>-->
+            <!--<ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="row" *ngIf="credentials.type == '4'||credentials.type == '5'">-->
+        <!--<div class="col-sm-6">-->
+          <!--<label>买方营业执照</label>-->
+          <!--<div>-->
+            <!--<ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="row" *ngIf="credentials.type == '5'">-->
+        <!--<div class="col-sm-6">-->
+          <!--<label>买方组织机构代码证</label>-->
+          <!--<div>-->
+            <!--<ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col-sm-6">-->
+          <!--<label>税务登记证</label>-->
+          <!--<div>-->
+            <!--<ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="row" *ngIf="credentials.type == '6'">-->
+        <!--<div class="col-sm-6">-->
+          <!--<label>护照第一页</label>-->
+          <!--<div>-->
+            <!--<ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col-sm-6">-->
+          <!--<label>护照第二页</label>-->
+          <!--<div>-->
+            <!--<ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col-sm-6">-->
+          <!--<label>护照第三页</label>-->
+          <!--<div>-->
+            <!--<ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="row" *ngIf="credentials.type == '7'">-->
+        <!--<div class="col-sm-6">-->
+          <!--<label>军官证</label>-->
+          <!--<div>-->
+            <!--<ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
 
-      <div class="row" *ngIf="credentials.type == '8'">
-        <div class="col-sm-6">
-          <label>临时身份证正面</label>
-          <div>
-            <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <label>临时身份证背面</label>
-          <div>
-            <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
-          </div>
-        </div>
-      </div>
-      <div class="row" *ngIf="credentials.type == '8'">
-        <div class="col-sm-6">
-          <label>驾驶证正面&户口本</label>
-          <div>
-            <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <label>驾驶证背面</label>
-          <div>
-            <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>
-          </div>
-        </div>
-      </div>
-      <div class="cameras-card-header">
-        <span class="cameras-card-title">受托人信息</span>
-      </div>
-      <div class="input-group">
-        <select class="form-control">
-          <option value="">选择受托人</option>
-          <option value=""></option>
-          <option value=""></option>
-        </select>
-        <input type="text" placeholder="受托人姓名" class="form-control" />
-        <input type="text" placeholder="受托人身份证号" class="form-control" />
-        <button class="btn btn-primary btn-sm" (click)="delete(RecordModel)">读受托人身份证</button>
+      <!--<div class="row" *ngIf="credentials.type == '8'">-->
+        <!--<div class="col-sm-6">-->
+          <!--<label>临时身份证正面</label>-->
+          <!--<div>-->
+            <!--<ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col-sm-6">-->
+          <!--<label>临时身份证背面</label>-->
+          <!--<div>-->
+            <!--<ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="row" *ngIf="credentials.type == '8'">-->
+        <!--<div class="col-sm-6">-->
+          <!--<label>驾驶证正面&户口本</label>-->
+          <!--<div>-->
+            <!--<ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col-sm-6">-->
+          <!--<label>驾驶证背面</label>-->
+          <!--<div>-->
+            <!--<ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-12'"></ngx-ys-camera>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="cameras-card-header">-->
+        <!--<span class="cameras-card-title">受托人信息</span>-->
+      <!--</div>-->
+      <!--<div class="input-group">-->
+        <!--<select class="form-control">-->
+          <!--<option value="">选择受托人</option>-->
+          <!--<option value=""></option>-->
+          <!--<option value=""></option>-->
+        <!--</select>-->
+        <!--<input type="text" placeholder="受托人姓名" class="form-control" />-->
+        <!--<input type="text" placeholder="受托人身份证号" class="form-control" />-->
+        <!--<button class="btn btn-primary btn-sm" (click)="delete(RecordModel)">读受托人身份证</button>-->
 
-      </div>
-      <div class="input-group">
-        <input type="text" placeholder="受托人地址" class="form-control" />
-        <input type="text" placeholder="受托人身份有效期" class="form-control" />
-        <input type="text" placeholder="受托人手机" class="form-control" />
-      </div>
-    </div>
-  </nb-card-body>
-</nb-card>
+      <!--</div>-->
+      <!--<div class="input-group">-->
+        <!--<input type="text" placeholder="受托人地址" class="form-control" />-->
+        <!--<input type="text" placeholder="受托人身份有效期" class="form-control" />-->
+        <!--<input type="text" placeholder="受托人手机" class="form-control" />-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</nb-card-body>-->
+<!--</nb-card>-->
 
 <!--<ngx-ys-cardetail [(car)]="carData"></ngx-ys-cardetail>-->
 
