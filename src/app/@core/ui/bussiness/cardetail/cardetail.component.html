@@ -49,15 +49,31 @@
         <ngx-valid-error [errors]="errors.labelCode" [control]="vehicle.get('labelCode')"></ngx-valid-error>
       </div>
       <div class="input-group">
+        <span class="input-group-addon">车辆产地</span>
+        <select class="form-control" formControlName="origin">
+          <option *ngFor="let code of vehicleOrigin" [ngValue]="code.code">{{code.name}}</option>
+        </select>
+        <ngx-valid-error [errors]="errors.origin" [control]="vehicle.get('origin')"></ngx-valid-error>
+      </div>
+    </div>
+    <div class="input-group">
+      <div class="input-group">
         <span class="input-group-addon">排量</span>
-        <input type="text" placeholder="" class="form-control" formControlName="displacement"
-               [ngClass]="{'form-control-danger':vehicle.get('displacement').invalid && vehicle.get('displacement').touched}"/>
+        <select class="form-control" formControlName="displacement">
+          <option *ngFor="let code of vehicleDisplacement" [ngValue]="code.code">{{code.name}}</option>
+        </select>
+        <!--<input type="text" placeholder="" class="form-control" formControlName="displacement"-->
+               <!--[ngClass]="{'form-control-danger':vehicle.get('displacement').invalid && vehicle.get('displacement').touched}"/>-->
         <ngx-valid-error [errors]="errors.displacement" [control]="vehicle.get('displacement')"></ngx-valid-error>
       </div>
       <div class="input-group">
         <span class="input-group-addon">排量区间</span>
-        <input type="text" placeholder="" class="form-control" formControlName="range"
-               [ngClass]="{'form-control-danger':vehicle.get('range').invalid && vehicle.get('range').touched}"/>
+
+        <select class="form-control" formControlName="range">
+          <option *ngFor="let code of vehicleRange" [ngValue]="code.code">{{code.name}}</option>
+        </select>
+        <!--<input type="text" placeholder="" class="form-control" formControlName="range"-->
+               <!--[ngClass]="{'form-control-danger':vehicle.get('range').invalid && vehicle.get('range').touched}"/>-->
         <ngx-valid-error [errors]="errors.range" [control]="vehicle.get('range')"></ngx-valid-error>
       </div>
       <div class="input-group">
@@ -99,17 +115,6 @@
         </select>
         <ngx-valid-error [errors]="errors.useCharacter" [control]="vehicle.get('useCharacter')"></ngx-valid-error>
       </div>
-      <div class="input-group">
-        <span class="input-group-addon">使用性质</span>
-        <!--<input type="text" placeholder="" class="form-control" formControlName="useCharacter"-->
-        <!--[ngClass]="{'form-control-danger':vehicle.get('useCharacter').invalid && vehicle.get('useCharacter').touched}"/>-->
-        <!--<ngx-ys-codeitem-droplist formControlName="useCharacter" (_selectedValue)="certificateTypeSelecteFunc($event)" [codeMap]="'useCharacter'"></ngx-ys-codeitem-droplist>-->
-        <!--要拿到实体数据-->
-        <select class="form-control" formControlName="useCharacter" (change)="useCharacterSelecteFunc()" [compareWith]="useCharacterCompareWithFunc">
-          <option *ngFor="let code of useCharacter" [ngValue]="code.code">{{code.name}}</option>
-        </select>
-        <ngx-valid-error [errors]="errors.useCharacter" [control]="vehicle.get('useCharacter')"></ngx-valid-error>
-      </div>
     </div>
     <!--<div class="input-group">-->
       <!--<div class="input-group">-->
@@ -127,11 +132,15 @@
     <!--</div>-->
     <div class="input-group">
       <div class="input-group">
-        <span class="input-group-addon">车辆产地</span>
-        <select class="form-control" formControlName="origin">
-          <option *ngFor="let code of vehicleOrigin" [ngValue]="code.code">{{code.name}}</option>
+        <span class="input-group-addon">使用性质</span>
+        <!--<input type="text" placeholder="" class="form-control" formControlName="useCharacter"-->
+        <!--[ngClass]="{'form-control-danger':vehicle.get('useCharacter').invalid && vehicle.get('useCharacter').touched}"/>-->
+        <!--<ngx-ys-codeitem-droplist formControlName="useCharacter" (_selectedValue)="certificateTypeSelecteFunc($event)" [codeMap]="'useCharacter'"></ngx-ys-codeitem-droplist>-->
+        <!--要拿到实体数据-->
+        <select class="form-control" formControlName="useCharacter" (change)="useCharacterSelecteFunc()" [compareWith]="useCharacterCompareWithFunc">
+          <option *ngFor="let code of useCharacter" [ngValue]="code.code">{{code.name}}</option>
         </select>
-        <ngx-valid-error [errors]="errors.origin" [control]="vehicle.get('origin')"></ngx-valid-error>
+        <ngx-valid-error [errors]="errors.useCharacter" [control]="vehicle.get('useCharacter')"></ngx-valid-error>
       </div>
       <div class="input-group">
         <span class="input-group-addon">累计里程</span>

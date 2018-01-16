@@ -4,6 +4,8 @@ import {Codeitem} from '../../../model/system/codeitem';
 import {ControlContainer, FormBuilder, FormGroup, NgForm} from '@angular/forms';
 import {IdcardService} from '../../../device/idcard.service';
 import {MessageService} from '../../../utils/message.service';
+import {CodeitemService} from "../../../data/system/codeitem.service";
+import {ErrorMessage} from "../../valid-error/valid-error.component";
 
 @Component({
   selector: 'ngx-ys-seller-info',
@@ -24,7 +26,7 @@ export class SellerInfoComponent implements OnInit {
   /**
    * 证件类型清单
    */
-  @Input() certType: Codeitem[];
+  @Input() certType?: Codeitem[];
   /**
    * 卖家表单
    */
@@ -33,7 +35,30 @@ export class SellerInfoComponent implements OnInit {
    * 错误实例
    * @type {{}}
    */
-  @Input() errors: object = {};
+  @Input() errors?: object = {
+    certType: [
+      new ErrorMessage('required', '必须填写证件类型！'),
+    ],
+    certCode: [
+      new ErrorMessage('required', '必须填写证件号码！'),
+    ],
+    name: [
+      new ErrorMessage('required', '必须填写姓名！'),
+      new ErrorMessage('maxLength', '姓名太长了！'),
+    ],
+    endDate: [
+      new ErrorMessage('required', '必须填写有效期！'),
+    ],
+    phone: [
+      new ErrorMessage('required', '必须填写手机！'),
+    ],
+    trusteeType: [
+      new ErrorMessage('required', '必须填写是否委托！'),
+    ],
+    address: [
+      new ErrorMessage('required', '必须填写地址！'),
+    ],
+  };
   @Input() showCheshang = true;
   public ifTrusteeType = false;
   public autoinput_cheshang_source_url = '/rest/merchant/filing/deal/';
@@ -69,6 +94,7 @@ export class SellerInfoComponent implements OnInit {
   constructor(
     private idcard: IdcardService,
     private message: MessageService,
+    private _codeitem: CodeitemService,
   ) {
   }
 
@@ -92,14 +118,16 @@ export class SellerInfoComponent implements OnInit {
    */
   ngOnInit() {
     this.autoinput_cheshang_source_url += this.merchant.id + '/';
-    // this.subcribeToFormChanges();
+    if (! this.certType) {
+      this._codeitem.list('certType').then(res => this.certType = res as Codeitem[]);
+    }
   }
 
   /**
    * 证件类型选择事件以切换要操作的图片清单
    * @param event
    */
-  certificateTypeSelecteFunc(event) {
+  certTypeSelecteFunc(event) {
     // this.seller.value
     // console.info(this.merchant);
     // console.info(event);

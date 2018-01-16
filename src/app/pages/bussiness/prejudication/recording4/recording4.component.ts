@@ -105,54 +105,6 @@ export class Recording4Component implements OnInit, OnDestroy {
        */
     }),
   });
-
-  errors = {
-    seller: {
-      certType: [
-        new ErrorMessage('required', '必须填写证件类型！'),
-      ],
-      certCode: [
-        new ErrorMessage('required', '必须填写证件号码！'),
-      ],
-      name: [
-        new ErrorMessage('required', '必须填写姓名！'),
-        new ErrorMessage('maxLength', '姓名太长了！'),
-      ],
-      endDate: [
-        new ErrorMessage('required', '必须填写有效期！'),
-      ],
-      phone: [
-        new ErrorMessage('required', '必须填写手机！'),
-      ],
-      trusteeType: [
-        new ErrorMessage('required', '必须填写是否委托！'),
-      ],
-      address: [
-        new ErrorMessage('required', '必须填写地址！'),
-      ],
-      Trustee: {
-        certCode: [
-          new ErrorMessage('required', '必须填写证件号码！'),
-        ],
-        name: [
-          new ErrorMessage('required', '必须填写姓名！'),
-          new ErrorMessage('maxLength', '姓名太长了！'),
-        ],
-        endDate: [
-          new ErrorMessage('required', '必须填写有效期！'),
-        ],
-        phone: [
-          new ErrorMessage('required', '必须填写手机！'),
-        ],
-        trusteeType: [
-          new ErrorMessage('required', '必须填写是否委托！'),
-        ],
-        address: [
-          new ErrorMessage('required', '必须填写地址！'),
-        ],
-      },
-    },
-  };
   /**
    * 商户搜索资源
    * @type {string}

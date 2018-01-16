@@ -6,10 +6,9 @@ import {LocalstorageService} from '../../../../@core/cache/localstorage.service'
 import {TradeForm} from '../../../../@core/model/bussiness/trade/trade.form';
 import {PrejudicationService} from '../../../../@core/data/bussiness/prejudication.service';
 import {FormBuilder, FormControl, FormGroup, ValidationErrors, Validators} from '@angular/forms';
-import {SellerForm} from "../../../../@core/model/bussiness/trade/seller.form";
-import {PreVehicleForm} from "../../../../@core/model/bussiness/trade/preVehicle.form";
-import {PreVehicleModel} from "../../../../@core/model/bussiness/trade/preVehicle/preVehicle.model";
-import {FilingInfoModel} from "../../../../@core/model/bussiness/filing.info.model";
+import {PreVehicleForm} from '../../../../@core/model/bussiness/trade/preVehicle.form';
+import {PreVehicleModel} from '../../../../@core/model/bussiness/trade/preVehicle/preVehicle.model';
+import {FilingInfoModel} from '../../../../@core/model/bussiness/filing.info.model';
 
 /**
  * 预审录入 继续录入/批量录入 --接口与页面的交互逻辑
@@ -114,17 +113,23 @@ export class RecordingContinueComponent implements OnInit {
       // newCarsPrice: '',
     } as PreVehicleForm).then(res => {
       console.info(res);
+      this._message.info('操作提示', '车辆添加成功！');
+      this._prejudicationService.carList(this.trade.prejudication.business.archiveNo).then(r => {
+        this.tradeList = r.json() as [TradeForm];
+      }).catch(e => {
+        console.info(e);
+      });
     }).catch(e => {
       console.info(e);
     });
     // this._router.navigateByUrl('/pages/bussiness/prejudication/recording-last');
   }
   reBack() {
-    console.info(this._formGroup.invalid);
-    console.info(this.notNewCar);
-    this.getFormValidationErrors(this._formGroup);
-    console.info(this.trade);
-    // this._router.navigateByUrl('/pages/bussiness/prejudication');
+    // console.info(this._formGroup.invalid);
+    // console.info(this.notNewCar);
+    // this.getFormValidationErrors(this._formGroup);
+    // console.info(this.trade);
+    this._router.navigateByUrl('/pages/bussiness/prejudication');
   }
   /**
    * 检查并输出表单组包含的错误

@@ -8,9 +8,9 @@
   </nb-card-body>
 </nb-card>
 <div ngForm="_formGroup">
-<ngx-ys-seller-info [merchant]="merchant" [certType]="certType" [seller]="_formGroup.controls.seller" [errors]="errors.seller"></ngx-ys-seller-info>
+<ngx-ys-seller-info [merchant]="merchant" [seller]="_formGroup.controls.seller"></ngx-ys-seller-info>
 </div>
 <div class="float-right">
   <button class="btn btn-primary btn-lg" (click)="onSubmit()" [disabled]="_formGroup.invalid">下一步</button>
-  <button class="btn btn-primary btn-lg" (click)="getFormValidationErrors(_formGroup)">test</button>
+  <!--<button class="btn btn-primary btn-lg" (click)="getFormValidationErrors(_formGroup)">test</button>-->
 </div>
