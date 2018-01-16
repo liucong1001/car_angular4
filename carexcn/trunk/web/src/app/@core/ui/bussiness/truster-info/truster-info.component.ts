@@ -4,6 +4,7 @@ import {IdcardService} from '../../../device/idcard.service';
 import {MessageService} from '../../../utils/message.service';
 import {Codeitem} from '../../../model/system/codeitem';
 import {MerchantModel} from '../../../model/bussiness/merchant.model';
+import {ErrorMessage} from "../../valid-error/valid-error.component";
 
 @Component({
   selector: 'ngx-ys-truster-info',
@@ -24,7 +25,27 @@ export class TrusterInfoComponent implements OnInit {
    * 错误实例
    * @type {{}}
    */
-  @Input() errors: object = {};
+  @Input() errors?: object = {
+    certCode: [
+      new ErrorMessage('required', '必须填写证件号码！'),
+    ],
+    name: [
+      new ErrorMessage('required', '必须填写姓名！'),
+      new ErrorMessage('maxLength', '姓名太长了！'),
+    ],
+    endDate: [
+      new ErrorMessage('required', '必须填写有效期！'),
+    ],
+    phone: [
+      new ErrorMessage('required', '必须填写手机！'),
+    ],
+    trusteeType: [
+      new ErrorMessage('required', '必须填写是否委托！'),
+    ],
+    address: [
+      new ErrorMessage('required', '必须填写地址！'),
+    ],
+  };
   @Input() showCheshang = true;
   public autoinput_cheshang_source_url = '/rest/merchant/filing/deal/';
   /**

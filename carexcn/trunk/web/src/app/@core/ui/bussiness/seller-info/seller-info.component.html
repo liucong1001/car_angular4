@@ -24,7 +24,7 @@
         <!--<ngx-ys-codeitem-droplist formControlName="certType" [ifDisabled]="true" (_selectedValue)="certificateTypeSelecteFunc($event)" [codeMap]="'certType'" style="width: 100%;"></ngx-ys-codeitem-droplist>-->
         <!--要拿到实体数据-->
         <!--<select class="form-control" formControlName="certType" (change)="certificateTypeSelecteFunc()" [compareWith]="certificateTypeCompareWithFunc">-->
-        <select class="form-control" formControlName="certType" (change)="certificateTypeSelecteFunc()">
+        <select class="form-control" formControlName="certType" (change)="certTypeSelecteFunc()">
           <option *ngFor="let code of certType" [ngValue]="code.code">{{code.name}}</option>
         </select>
         <ngx-valid-error [errors]="errors.certType" [control]="seller.get('certType')"></ngx-valid-error>
@@ -72,4 +72,4 @@
 </nb-card>
 
 <ngx-ys-truster-info *ngIf="'1' == seller.get('trusteeType').value" [merchant]="merchant"
-     [Trustee]="seller.controls.Trustee" [errors]="errors.Trustee" [showCheshang]="showCheshang"></ngx-ys-truster-info>
+     [Trustee]="seller.controls.Trustee" [showCheshang]="showCheshang"></ngx-ys-truster-info>

@@ -25,7 +25,86 @@ export class CardetailComponent implements OnInit {
    * 错误实例
    * @type {{error}}
    */
-  @Input() errors?: object;
+  @Input() errors?: object = {
+    brandModel: [
+      new ErrorMessage('required', '必须填写厂牌型号！'),
+    ],
+    labelCode: [
+      new ErrorMessage('required', '必须填写厂牌型号！'),
+    ],
+    vehicleType: [
+      new ErrorMessage('required', '必须填写车辆类型！'),
+    ],
+    plateNumber: [
+      new ErrorMessage('required', '必须填写车牌号！'),
+    ],
+    frameNumber: [
+      new ErrorMessage('required', '必须填写车架号！'),
+    ],
+    engineNumber: [
+      new ErrorMessage('required', '必须填写发动机号！'),
+    ],
+    registration: [
+      new ErrorMessage('required', '必须填写登记证书号！'),
+    ],
+    registrationDate: [
+      new ErrorMessage('required', '必须填写行驶证注册日期！'),
+    ],
+    useCharacter: [
+      new ErrorMessage('required', '必填'),
+    ],
+    useNature: [
+      new ErrorMessage('required', '必须填写车辆性质！'),
+    ],
+    displacement: [
+      new ErrorMessage('required', '必须填写排量！'),
+    ],
+    range: [
+      new ErrorMessage('required', '必须填写排量区间！'),
+    ],
+    size: [
+      new ErrorMessage('required', '必须填写车辆大小！'),
+    ],
+    mileage: [
+      new ErrorMessage('required', '必须填写行驶里程！'),
+    ],
+    otherConditions: [
+      new ErrorMessage('required', '必须填写其他状况！'),
+    ],
+    origin: [
+      new ErrorMessage('required', '必须填写车辆产地！'),
+    ],
+    fee: [
+      new ErrorMessage('required', '必须填写业务手续费！'),
+    ],
+    review: [
+      new ErrorMessage('required', '必须填写审核状态！'),
+    ],
+    invalid: [
+      new ErrorMessage('required', '必须填写业务状态！'),
+    ],
+    Trustee: {
+      certCode: [
+        new ErrorMessage('required', '必须填写证件号码！'),
+      ],
+      name: [
+        new ErrorMessage('required', '必须填写姓名！'),
+        new ErrorMessage('maxLength', '姓名太长了！'),
+      ],
+      endDate: [
+        new ErrorMessage('required', '必须填写有效期！'),
+      ],
+      phone: [
+        new ErrorMessage('required', '必须填写手机！'),
+      ],
+      trusteeType: [
+        new ErrorMessage('required', '必须填写是否委托！'),
+      ],
+      address: [
+        new ErrorMessage('required', '必须填写地址！'),
+      ],
+    },
+  };
   @Input() car;
   @Input() car_detail_title?: string;
   @Input() photos: Array<object>;
@@ -34,6 +113,8 @@ export class CardetailComponent implements OnInit {
   @Input() vehicleType?: Codeitem[];
   @Input() vehicleSize?: Codeitem[];
   @Input() vehicleOrigin?: Codeitem[];
+  @Input() vehicleDisplacement?: Codeitem[];
+  @Input() vehicleRange?: Codeitem[];
 
   public useCharacterSelected: Codeitem;
   constructor(
@@ -58,87 +139,11 @@ export class CardetailComponent implements OnInit {
     if (! this.vehicleOrigin) {
       this._codeitem.list('vehicleOrigin').then(res => this.vehicleOrigin = res as Codeitem[]);
     }
-    if (! this.errors) {
-      this.errors = {
-        brandModel: [
-          new ErrorMessage('required', '必须填写厂牌型号！'),
-        ],
-        labelCode: [
-          new ErrorMessage('required', '必须填写厂牌型号！'),
-        ],
-        vehicleType: [
-          new ErrorMessage('required', '必须填写车辆类型！'),
-        ],
-        plateNumber: [
-          new ErrorMessage('required', '必须填写车牌号！'),
-        ],
-        frameNumber: [
-          new ErrorMessage('required', '必须填写车架号！'),
-        ],
-        engineNumber: [
-          new ErrorMessage('required', '必须填写发动机号！'),
-        ],
-        registration: [
-          new ErrorMessage('required', '必须填写登记证书号！'),
-        ],
-        registrationDate: [
-          new ErrorMessage('required', '必须填写行驶证注册日期！'),
-        ],
-        useCharacter: [
-          new ErrorMessage('required', '必填'),
-        ],
-        useNature: [
-          new ErrorMessage('required', '必须填写车辆性质！'),
-        ],
-        displacement: [
-          new ErrorMessage('required', '必须填写排量！'),
-        ],
-        range: [
-          new ErrorMessage('required', '必须填写排量区间！'),
-        ],
-        size: [
-          new ErrorMessage('required', '必须填写车辆大小！'),
-        ],
-        mileage: [
-          new ErrorMessage('required', '必须填写行驶里程！'),
-        ],
-        otherConditions: [
-          new ErrorMessage('required', '必须填写其他状况！'),
-        ],
-        origin: [
-          new ErrorMessage('required', '必须填写车辆产地！'),
-        ],
-        fee: [
-          new ErrorMessage('required', '必须填写业务手续费！'),
-        ],
-        review: [
-          new ErrorMessage('required', '必须填写审核状态！'),
-        ],
-        invalid: [
-          new ErrorMessage('required', '必须填写业务状态！'),
-        ],
-        Trustee: {
-          certCode: [
-            new ErrorMessage('required', '必须填写证件号码！'),
-          ],
-          name: [
-            new ErrorMessage('required', '必须填写姓名！'),
-            new ErrorMessage('maxLength', '姓名太长了！'),
-          ],
-          endDate: [
-            new ErrorMessage('required', '必须填写有效期！'),
-          ],
-          phone: [
-            new ErrorMessage('required', '必须填写手机！'),
-          ],
-          trusteeType: [
-            new ErrorMessage('required', '必须填写是否委托！'),
-          ],
-          address: [
-            new ErrorMessage('required', '必须填写地址！'),
-          ],
-        },
-      };
+    if (! this.vehicleDisplacement) {
+      this._codeitem.list('vehicleDisplacement').then(res => this.vehicleDisplacement = res as Codeitem[]);
+    }
+    if (! this.vehicleRange) {
+      this._codeitem.list('vehicleRange').then(res => this.vehicleRange = res as Codeitem[]);
     }
   }
   readVehicleCard() {
