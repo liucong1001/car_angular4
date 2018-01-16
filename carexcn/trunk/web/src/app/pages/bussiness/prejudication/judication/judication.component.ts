@@ -109,10 +109,20 @@ export class JudicationComponent implements OnInit {
     });
   }
   onSubmit() {
-    this._router.navigateByUrl('/pages/bussiness/prejudication/judication-photo');
+    this._message.info('操作提示', '审核功能待照片功能一同完成');
+    // this._router.navigateByUrl('/pages/bussiness/prejudication/judication-photo');
   }
   reBack() {
     this._router.navigateByUrl('/pages/bussiness/prejudication');
+  }
+  getTradeByArchiveNo(archiveNo) {
+    this._prejudicationService.carList(archiveNo).then(res => {
+      this.tradeList = res.json() as [TradeForm];
+      this.trade = this.tradeList[0] as TradeForm;
+    }).catch(e => {
+      // console.info(e.message);
+      this._message.info('操作提示', '批次号 ' + archiveNo + ' 没有查询结果。');
+    });
   }
   onChangeSelected(trade: TradeForm): void {
     if (null === trade) {
