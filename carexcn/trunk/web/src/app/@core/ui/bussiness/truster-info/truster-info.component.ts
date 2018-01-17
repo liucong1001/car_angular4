@@ -4,7 +4,7 @@ import {IdcardService} from '../../../device/idcard.service';
 import {MessageService} from '../../../utils/message.service';
 import {Codeitem} from '../../../model/system/codeitem';
 import {MerchantModel} from '../../../model/bussiness/merchant.model';
-import {ErrorMessage} from "../../valid-error/valid-error.component";
+import {ErrorMessage} from '../../valid-error/valid-error.component';
 
 @Component({
   selector: 'ngx-ys-truster-info',
