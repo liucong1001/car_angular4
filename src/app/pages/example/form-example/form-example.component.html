@@ -18,9 +18,9 @@
     </div>
   </nb-card-header>
   <nb-card-body>
-    <span> &nbsp; &nbsp; * 搜索表单是和表格控件绑定使用的，一般只需要正常显示做好表单验证即可 </span> <br>
+    <span> &nbsp; &nbsp; * 搜索表单是和表格控件绑定使用的，一般只需要正常显示做好表单验证即可 </span> <br /> <br />
 
-    <ngx-form-filter></ngx-form-filter>
+    <ngx-form-filter [filter]="filterForm"></ngx-form-filter> <br />{{ filterFormResult }}
     <ng-template #itemList></ng-template>
 
   </nb-card-body>
