@@ -24,12 +24,20 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/bussiness/prejudication/judication',
       },
       {
-        title: '过户录入',
+        title: '预审过户',
         link: '/pages/bussiness/transfer/trecording',
+      },
+      {
+        title: '直接过户',
+        link: '/pages/bussiness/transfer/direct-recording',
       },
       {
         title: '过户审核',
         link: '/pages/bussiness/transfer/tjudication',
+      },
+      {
+        title: '手机端录入',
+        link: '/pages/bussiness/mobile-recording',
       },
     ],
   },

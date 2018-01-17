@@ -21,6 +21,8 @@ import { TjudicationPhotoComponent } from './transfer/tjudication-photo/tjudicat
 import { TjudicationFingerComponent } from './transfer/tjudication-finger/tjudication-finger.component';
 import {SystemModule} from '../../@core/data/system/system.module';
 import {CacheModule} from '../../@core/cache/cache.module';
+import { DirectRecordingComponent } from './transfer/direct-recording/direct-recording.component';
+import {MobileRecordingComponent} from './mobile-recording/mobile-recording.component';
 
 
 @NgModule({
@@ -50,6 +52,8 @@ import {CacheModule} from '../../@core/cache/cache.module';
     TrecordingLastComponent,
     TjudicationPhotoComponent,
     TjudicationFingerComponent,
+    DirectRecordingComponent,
+    MobileRecordingComponent,
   ],
 })
 export class BussinessModule {

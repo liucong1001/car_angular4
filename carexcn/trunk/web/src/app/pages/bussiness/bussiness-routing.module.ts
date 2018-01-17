@@ -15,27 +15,43 @@ import {Trecording2Component} from './transfer/trecording2/trecording2.component
 import {TrecordingLastComponent} from './transfer/trecording-last/trecording-last.component';
 import {TjudicationPhotoComponent} from './transfer/tjudication-photo/tjudication-photo.component';
 import {TjudicationFingerComponent} from './transfer/tjudication-finger/tjudication-finger.component';
+import {DirectRecordingComponent} from './transfer/direct-recording/direct-recording.component';
+import {MobileRecordingComponent} from './mobile-recording/mobile-recording.component';
 
 const routes: Routes = [
   {
+    path: 'mobile-recording',
+    component: MobileRecordingComponent,
+  },
+  {
     path: 'transfer/trecording',
     component: TrecordingComponent,
-  }, {
+  },
+  {
     path: 'transfer/trecording2',
     component: Trecording2Component,
-  }, {
+  },
+  {
     path: 'transfer/trecording-last',
     component: TrecordingLastComponent,
-  }, {
+  },
+  {
+    path: 'transfer/direct-recording',
+    component: DirectRecordingComponent,
+  },
+  {
     path: 'transfer/tjudication',
     component: TjudicationComponent,
-  }, {
+  },
+  {
     path: 'transfer/tjudication-phone',
     component: TjudicationPhotoComponent,
-  }, {
+  },
+  {
     path: 'transfer/tjudication-finger',
     component: TjudicationFingerComponent,
-  }, {
+  },
+  {
     path: 'prejudication',
     component: PrejudicationComponent,
   },

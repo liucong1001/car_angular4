@@ -19,6 +19,7 @@ import { SellerInfoComponent } from './bussiness/seller-info/seller-info.compone
 import { TrusterInfoComponent } from './bussiness/truster-info/truster-info.component';
 import { ArchiveNoComponent } from './bussiness/archive-no/archive-no.component';
 import { FormBuilderComponent } from './form-builder/form-builder.component';
+import { YsCardComponent } from './bussiness/ys-card/ys-card.component';
 
 const COMPONENTS = [
   CameraComponent,
@@ -34,6 +35,7 @@ const COMPONENTS = [
   TrusterInfoComponent,
   ArchiveNoComponent,
   FormFilterComponent,
+  YsCardComponent,
 ];
 
 @NgModule({
@@ -56,6 +58,7 @@ entryComponents: [],
   declarations: [
     ...COMPONENTS,
     FormBuilderComponent,
+    YsCardComponent,
   ],
 })
 export class UiModule {

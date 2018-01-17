@@ -5,7 +5,7 @@ import {WebcamService} from '../../../../@core/device/webcam.service';
 import {TradeForm} from '../../../../@core/model/bussiness/trade/trade.form';
 
 @Component({
-  selector: 'ngx-trecording',
+  selector: 'ngx-ys-trecording',
   templateUrl: './trecording.component.html',
   styleUrls: ['./trecording.component.scss'],
 })
