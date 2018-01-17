@@ -1,16 +1,28 @@
 <ngx-ys-archive-no
   [pageTitle]="'过户业务 - 预审过户 - 买方录入'"
   [archiveNo]="archiveNo"
+  [prompt]="'请输入批次号后点击查询，调取预审通过的车辆后再进行车辆的选择'"
   (_tradeList)="getTradeListByArchiveNoComponent($event)"
   (_trade)="getTradeByArchiveNoComponent($event)"
 ></ngx-ys-archive-no>
 
-<!--<ngx-ys-seller-info-->
-  <!--[merchant]="trade.preVehicle.preVehicle.filingInfo.merchant"-->
-  <!--[seller]="_formGroup.controls.seller"-->
-  <!--[btn_show]="false"-->
-  <!--[showCheshang]="false"-->
-<!--&gt;</ngx-ys-seller-info>-->
+<ngx-ys-carlist
+  *ngIf="tradeList"
+  [tradeList]="tradeList"
+  (_selected)='onChangeSelectedCar($event)'
+></ngx-ys-carlist>
+
+<ngx-ys-cardetail
+  *ngIf="tradeList"
+  [photos]="photos"
+  [vehicle]="_formGroup.controls.vehicle"
+></ngx-ys-cardetail>
+
+<ngx-ys-seller-info
+  *ngIf="trade"
+  [merchant]="trade.preVehicle.preVehicle.filingInfo.merchant"
+  [seller]="_formGroup.controls.seller"
+></ngx-ys-seller-info>
 
 <!--<ngx-ys-carlist [cars]="carsData" *ngIf="batch !==''" (_selectCar)='onChangeSelectingCar($event)' [car_list_title]="'已预审车辆信息'"></ngx-ys-carlist>-->
 <!--<ngx-ys-cardetail [(car)]="carData"></ngx-ys-cardetail>-->

@@ -39,7 +39,7 @@
         <input class="form-control" type="text"  [disabled]="true" [value]="trade.seller.seller.phone || null "/>
       </div>
     </div>
-    <!--<div class="prompt">*若有流水号/批次号，请直接扫描流水号/批次号，即可获取卖方信息与车辆信息*</div>-->
+    <div class="prompt">{{prompt}}</div>
   </nb-card-body>
 
 
@@ -76,6 +76,6 @@
         <input class="form-control" type="text"  [disabled]="true" [value]="trade.seller.seller.phone || null "/>
       </div>
     </div>
-    <!--<div class="prompt">*若有流水号/批次号，请直接扫描流水号/批次号，即可获取卖方信息与车辆信息*</div>-->
+    <div class="prompt">{{prompt}}</div>
   </nb-card-body>
 </nb-card>
