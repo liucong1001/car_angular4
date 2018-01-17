@@ -93,7 +93,7 @@ export class RecordingContinueComponent implements OnInit {
       }
     });
   }
-  onChangeSelected(trade: TradeForm): void {
+  onChangeSelectedCar(trade: TradeForm): void {
     if (null === trade) {
       this._formGroup.reset();
       this.notNewCar = false;
