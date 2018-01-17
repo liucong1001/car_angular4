@@ -15,7 +15,7 @@ export class ArchiveNoComponent implements OnInit {
   @Output('_tradeList') private _tradeList = new EventEmitter();
   @Output('_trade') private _trade = new EventEmitter();
   public trade: TradeForm = {
-    prejudication: {business: {archiveNo: ''}},
+    prejudication: {business: {archiveNo: '201801160001010002'}},
     preVehicle: {preVehicle: {filingInfo: {merchant: {account: {}}}}},
     seller: {seller: {}},
   };
