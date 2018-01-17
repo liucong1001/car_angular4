@@ -15,7 +15,7 @@ import {SellerForm} from '../../../../@core/model/bussiness/trade/seller.form';
 import {PreVehicleForm} from '../../../../@core/model/bussiness/trade/preVehicle.form';
 import {PersonModel} from '../../../../@core/model/bussiness/trade/person.model';
 import {PreVehicleModel} from '../../../../@core/model/bussiness/trade/preVehicle/preVehicle.model';
-import {TradeForm} from "../../../../@core/model/bussiness/trade/trade.form";
+import {TradeForm} from '../../../../@core/model/bussiness/trade/trade.form';
 
 /**
  * 预审录入4--接口与页面的交互逻辑
@@ -244,8 +244,6 @@ export class Recording4Component implements OnInit, OnDestroy {
   }
   /**
    * 选择好了联系人的事件
-   * @param event
-   * @param value
    */
   linkmanSelecteFunc() {
     // console.info(this.linkman);
