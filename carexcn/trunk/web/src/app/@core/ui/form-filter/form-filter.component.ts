@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'ngx-form-filter',
@@ -6,44 +7,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./form-filter.component.scss'],
 })
 export class FormFilterComponent implements OnInit {
-
-  filter = {
-    __fields: [
-      {
-        _name: 'name',
-        _value: '',
-        _class: 'col-sm-3',
-        _placeholder: '商户名称',
-        _label: '', // label为空则不显示label，需要占位符 请用 &nbsp;
-      },
-      {
-        _name: 'code',
-        _value: '',
-        _class: 'col-sm-3',
-        _placeholder: '商户编码',
-        _label: '',
-      },
-      {
-        _name: 'phone',
-        _value: '',
-        _class: 'col-sm-3',
-        _placeholder: '联系方式',
-        _label: '',
-      },
-    ],
-    __buttons: [
-      {
-        _type: 'submit',
-        _label: '查询',
-        _icon: 'ion-search',
-        _class: 'btn btn btn-primary btn-block',
-        _div_class: 'col-sm-2',
-      },
-    ],
-  };
+  @Input() filter = null;
+  prepareFilter = false;
   constructor() { }
-
   ngOnInit() {
+    if (this.filter == null || this.filter === undefined) {
+      throw new Error('filter 参数是必须的！');
+    } else if (this.filter.__fields == null || this.filter.__fields === undefined) {
+      throw new Error('filter 中 __fields 元素是必须的且不能为空！');
+    } else if (!(this.filter.__fields instanceof Array)) {
+      throw new Error('filter 中 __fields 元素必须是数组！');
+    } else if (this.filter.__buttons == null || this.filter.__buttons === undefined) {
+      throw new Error('filter 中 __buttons 元素是必须的且不能为空！');
+    } else if (!(this.filter.__buttons instanceof Array)) {
+      throw new Error('filter 中 __buttons 元素必须是数组！');
+    } else {
+      this.prepareFilter = true;
+    }
   }
 
+  submitFilter(filterForm: NgForm) {
+    console.info(filterForm.value());
+  }
 }

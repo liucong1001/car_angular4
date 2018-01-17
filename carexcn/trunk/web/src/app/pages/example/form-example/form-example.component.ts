@@ -8,8 +8,8 @@ import {MessageService} from '../../../@core/utils/message.service';
   styleUrls: ['./form-example.component.scss'],
 })
 export class FormExampleComponent implements OnInit {
-
-  filter = {
+  filterFormResult: any;
+  filterForm = {
     __fields: [
       {
         _name: 'name',
@@ -59,5 +59,9 @@ export class FormExampleComponent implements OnInit {
 
   getCurrentTheme() {
     this._message.info('当前主题', this.currentTheme);
+  }
+  submit(event) {
+    console.info('submit');
+    this.filterFormResult = event;
   }
 }
