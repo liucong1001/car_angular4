@@ -7,7 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class YsCardComponent implements OnInit {
   @Input() pageTitle = '';
-  @Input() cardContent = '';
+  @Input() cardContent: Array<string> = [''];
   constructor() { }
 
   ngOnInit() {

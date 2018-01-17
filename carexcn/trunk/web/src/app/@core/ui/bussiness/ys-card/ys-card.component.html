@@ -5,6 +5,8 @@
     </div>
   </nb-card-header>
   <nb-card-body>
-    {{cardContent}}
+    <ul>
+      <li *ngFor="let c of cardContent">{{c}}<br /></li>
+    </ul>
   </nb-card-body>
 </nb-card>
