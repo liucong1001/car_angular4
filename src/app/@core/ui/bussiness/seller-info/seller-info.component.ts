@@ -60,7 +60,6 @@ export class SellerInfoComponent implements OnInit {
     ],
   };
   @Input() showCheshang = true;
-  public ifTrusteeType = false;
   public autoinput_cheshang_source_url = '/rest/merchant/filing/deal/';
 
   /**
@@ -82,11 +81,6 @@ export class SellerInfoComponent implements OnInit {
   cheshang = '';
 
   /**
-   * 证件类型列表
-   */
-  public certificateType: Codeitem;
-
-  /**
    * 构造函数
    * @param {IdcardService} idcard
    * @param {MessageService} message
@@ -99,24 +93,25 @@ export class SellerInfoComponent implements OnInit {
   }
 
   /**
-   * 订阅表单值变更事件
+   * 是否委托变更事件
    */
-  subcribeToFormChanges() {
-    const _formValueChanges = this.seller.valueChanges;
-    _formValueChanges.subscribe(x => {
-      console.info(x);
-      if ( x.trusteeType === '1' ) {
-        this.ifTrusteeType = true;
-      } else {
-        this.ifTrusteeType = false;
-      }
-    });
+  trusteeTypeChange() {
+    // 默认不用填写委托人
+    // 一旦勾选有委托人，则必须填写委托人
+    if ( this.seller.get('trusteeType').value === '1' ) {
+      this.seller.controls.Trustee.enable();
+    } else {
+      this.seller.controls.Trustee.disable();
+    }
   }
 
   /**
    * 页面初始化事件
    */
   ngOnInit() {
+    // 默认不用填写委托人
+    this.seller.controls.Trustee.disable();
+
     this.autoinput_cheshang_source_url += this.merchant.id + '/';
     if (! this.certType) {
       this._codeitem.list('certType').then(res => this.certType = res as Codeitem[]);
