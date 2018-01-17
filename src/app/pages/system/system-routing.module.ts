@@ -33,8 +33,6 @@ const routes: Routes = [{
   children: [
     {path: 'code', component: CodeComponent},
     {path: 'code/edit', component: CodeEditComponent},
-    {path: 'manager', component: ManagerComponent},
-    {path: 'manager/edit', component: ManageritemEditComponent},
     {path: 'transfercity', component: TransfercityComponent},
     {path: 'transfercity/edit', component: TransferCityEditComponent},
     {path: 'blacklist', component: BlacklistComponent},
@@ -53,9 +51,9 @@ const routes: Routes = [{
     {path: 'market/market/fee/edit', component: MarketFeeEditComponent},
     {path: 'market/market/photo', component: MarketPhotoComponent},
     {path: 'market/market/photo/edit', component: MarketPhotoEditComponent},
-    {path:'role',component:RoleComponent},
-    {path:'role/add',component:RoleAddComponent},
-    {path:'role/edit',component:RoleEditComponent}
+    {path: 'role', component: RoleComponent},
+    {path: 'role/add', component: RoleAddComponent},
+    {path: 'role/edit', component: RoleEditComponent},
   ],
 }];
 
@@ -66,9 +64,9 @@ const routes: Routes = [{
 export class SystemRoutingModule { }
 
 export const routedComponents = [
-  SystemComponent, CodeComponent, CodeEditComponent, ManagerComponent, ManageritemEditComponent,
+  SystemComponent, CodeComponent, CodeEditComponent,
   TransfercityComponent, TransferCityEditComponent, BlacklistComponent, BlacklistEditComponent,
   CartypeComponent, CartypeEditComponent, PermissionComponent, AreaComponent , MarketComponent, MarketEditComponent,
   MarketBrandComponent, MarketFeeComponent, MarketFeeEditComponent, MarketPhotoComponent, MarketPhotoEditComponent,
-  RoleComponent,RoleAddComponent,RoleEditComponent
+  RoleComponent, RoleAddComponent, RoleEditComponent,
 ];
