@@ -1,7 +1,7 @@
-import {Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
-import {SelectItem} from 'primeng/primeng';
+import {Component, EventEmitter, forwardRef, Input, OnInit, Output, TemplateRef, ViewChild} from '@angular/core';
+import {Dropdown, SelectItem} from 'primeng/primeng';
 import {CodeitemService} from '../../data/system/codeitem.service';
-import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {Codeitem} from '../../model/system/codeitem';
 @Component({
   selector: 'ngx-ys-codeitem-droplist',
@@ -19,7 +19,8 @@ export class CodeitemDroplistComponent implements OnInit, ControlValueAccessor {
   @Input() codeMap = '';
   @Input() pleaseSelect = '请选择';
   @Input() ifDisabled = false;
-  @Output() _selectedValue = new EventEmitter();
+  @Output() _selectedValue? = new EventEmitter();
+  @ViewChild(Dropdown) private ppdropdown: Dropdown;
   private value: any;
   private change(val: any): void {}
   private touched(): void {}
@@ -57,11 +58,12 @@ export class CodeitemDroplistComponent implements OnInit, ControlValueAccessor {
         }
         // console.log(r + ' ' + res[r]);
       }
+      this.ppdropdown.writeValue(this.value);
     });
   }
   _onChange(event) {
-    this.change(event.value);
-    this._selectedValue.emit(event.value);
+    this.change(this.value);
+    this._selectedValue.emit(this.value);
   }
 
   /**
