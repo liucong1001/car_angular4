@@ -1,7 +1,7 @@
 import {UiTableModule} from './table/table.module';
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CameraComponent} from './camera/camera.component';
 import {CalendarModule, FileUploadModule, AutoCompleteModule, DropdownModule} from 'primeng/primeng';
 import {CameraUploadComponent} from './camera/camera-upload.component';
@@ -18,6 +18,11 @@ import {CardetailComponent} from './bussiness/cardetail/cardetail.component';
 import { SellerInfoComponent } from './bussiness/seller-info/seller-info.component';
 import { TrusterInfoComponent } from './bussiness/truster-info/truster-info.component';
 import { ArchiveNoComponent } from './bussiness/archive-no/archive-no.component';
+import {ErrorClassDirective} from './form/error-class.directive';
+import { InputComponent } from './form/input/input.component';
+import { SelectComponent } from './form/select/select.component';
+import { CodemirrorComponent } from './form/codemirror/codemirror.component';
+import {CodemirrorModule} from 'ng2-codemirror';
 import { FormBuilderComponent } from './form-builder/form-builder.component';
 import { YsCardComponent } from './bussiness/ys-card/ys-card.component';
 
@@ -35,6 +40,10 @@ const COMPONENTS = [
   TrusterInfoComponent,
   ArchiveNoComponent,
   FormFilterComponent,
+  ErrorClassDirective,
+  InputComponent,
+  SelectComponent,
+  CodemirrorComponent,
   YsCardComponent,
 ];
 
@@ -48,12 +57,14 @@ entryComponents: [],
     ThemeModule,
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     UiTableModule,
     RouterModule,
     FileUploadModule,
     CalendarModule,
     AutoCompleteModule,
     DropdownModule,
+    CodemirrorModule,
   ],
   declarations: [
     ...COMPONENTS,

@@ -42,12 +42,12 @@ const components = [
 ];
 
 @NgModule({
-  imports: [ThemeModule, SystemRoutingModule,  HttpModule, UiModule, CommonModule, RouterModule , FormsModule, CalendarModule,
-    LightboxModule, MegaMenuModule, TreeModule, DialogModule, CheckboxModule, TabViewModule, DataTableModule, SharedModule,
-    InputTextModule, AutoCompleteModule, HttpClientModule, UiModule, CoreSystemModule ],
+imports: [ThemeModule, SystemRoutingModule,  HttpModule, UiModule, CommonModule, RouterModule , FormsModule, CalendarModule,
+  LightboxModule, MegaMenuModule, TreeModule, DialogModule, CheckboxModule, TabViewModule, DataTableModule, SharedModule,
+  InputTextModule, AutoCompleteModule, HttpClientModule, UiModule, CoreSystemModule ],
   declarations: [
-    ...routedComponents,
-    ...components,
-  ],
+  ...routedComponents,
+  ...components,
+],
 })
 export class SystemModule {}

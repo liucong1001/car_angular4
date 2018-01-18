@@ -196,6 +196,14 @@ export const MENU_ITEMS: NbMenuItem[] = [
     ],
   },
   {
+    title: '平台管理',
+    icon: 'nb-grid-b',
+    link: '/pages/manager',
+    children: [
+      {title: '校验器', link: '/pages/manager/validator'},
+    ],
+  },
+  {
     title: '示例',
     icon: 'ion-ios-briefcase-outline',
     children: [

@@ -1,0 +1,9 @@
+<div class="form-group">
+  <label>{{label}}</label>
+  <div class="input-group">
+    <ng-container *ngIf="codemap">
+      <ngx-ys-codeitem-droplist  [ngxErrorClass]="control" [formControl]="control" [codeMap]="codemap"></ngx-ys-codeitem-droplist>
+    </ng-container>
+  </div>
+</div>
+<ngx-valid-error [errors]="errors" [control]="control"></ngx-valid-error>

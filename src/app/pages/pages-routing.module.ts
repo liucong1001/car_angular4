@@ -45,6 +45,10 @@ const routes: Routes = [{
     canActivate: [AuthGuardService],
     loadChildren: './system/system.module#SystemModule',
   }, {
+    path: 'manager',
+    canActivate: [AuthGuardService],
+    loadChildren: './manager/manager.module#ManagerModule',
+  }, {
     path: 'merchant',
     loadChildren: './merchant/merchant.module#MerchantModule',
   }, {
