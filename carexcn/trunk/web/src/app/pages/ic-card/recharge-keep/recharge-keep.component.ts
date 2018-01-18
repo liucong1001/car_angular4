@@ -1,32 +1,47 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit,OnChanges,DoCheck,} from '@angular/core';
 import {IccardService} from '../../../@core/device/iccard.service';
 import {IccardModel, IccardOperaModel} from '../../../@core/model/bussiness/iccard.model';
 import {MessageService} from '../../../@core/utils/message.service';
+import {IcCardOperationService}from '../../../@core/data/ic-card/card.service'
+import {IcCardRechargemap,icCardData} from '../../../@core/model/icCard/recharge';
 @Component({
   selector: 'ngx-recharge-keep',
   templateUrl: './recharge-keep.component.html',
   styleUrls: ['./recharge-keep.component.scss'],
+  providers:[IcCardOperationService],
 })
 
 export class RechargeKeepComponent implements OnInit {
 
-  /*tabs: any[] = [
-    {
-      title: 'IC卡充值',
-      route: '/pages/ic-card/recharge-keep/recharge',
-    },
-    {
-      title: 'IC卡充值记录',
-      route: '/pages/ic-card/recharge-keep/recharge-record',
-    },
-  ];*/
+
   // 组件初始华
   ngOnInit() {
+
+    this.getCardData = {
+      icAccount:{
+        balance:null,
+        ownedAccount:{
+          accountName: null
+        }
+      }
+    };
+
+    this.iccardRechargemap = {
+           icCardNo:null,
+           give:null,
+           recharge:null,
+           amount:null,
+           cloudUser:'0001'
+    };
   }
-  constructor(private iccard: IccardService, private message: MessageService) { }
+  constructor(private iccard: IccardService, private message: MessageService ,private IcCardOperationService:IcCardOperationService) { }
+  public icCardInfo= new IccardModel('云石科技', '0001', 18);
   public iccardData = new IccardModel('云石科技', '0001', 18);
   public iccardPayData = new IccardOperaModel();
   public iccardRechargeData = new IccardOperaModel();
+  public  iccardRechargemap = new IcCardRechargemap();
+  public  getCardData = new icCardData();
+
   /**
    * IC卡文本写入
    */
@@ -82,6 +97,9 @@ export class RechargeKeepComponent implements OnInit {
         self.iccard.scanCard().then((s) => {
           self.iccardData.Banlance = s.Banlance;
           self.iccardData.BanlanceDisplay = (s.Banlance) / 100 ;
+          this.icCardInfo = s;
+          this.getInfo();
+          console.log("ic卡",this.iccardData,this.icCardInfo);
         }).catch((e) => {
           console.log(e);
           self.message.success('IC卡操作', 'IC卡连接不稳定。未能获取到余额');
@@ -91,6 +109,35 @@ export class RechargeKeepComponent implements OnInit {
       console.log(e);
       this.message.error('IC卡连接失败！', '设备或IC卡不正常或连接有误。');
     });
+  }
+  getInfo(){
+     if(this.icCardInfo.CardNumber&&this.icCardInfo.CardNumber!=null){
+          console.log("检测到卡号",this.icCardInfo.CardNumber);
+          this.IcCardOperationService.get(this.icCardInfo.CardNumber).then(res=>{
+            console.log('拿到卡信息',res,res.icAccount,res.icAccount.ownedAccount.accountName);
+            // .ownedAccount.accountName
+            this.getCardData = {
+              // icAccount:balance  :res.icAccount.balance
+               icAccount:{
+                 balance:res.icAccount.balance,
+                 ownedAccount:{
+                   accountName:  res.icAccount.ownedAccount.accountName
+                 }
+               }
+            };
+          })
+     }
+
+  }
+
+  recharge(){
+
+    this.iccardRechargemap.icCardNo = this.icCardInfo.CardNumber;
+    this.iccardRechargemap.amount =  this.iccardRechargemap.give + this.iccardRechargemap.recharge;
+    console.log("充值对象",this.iccardRechargemap);
+        this.IcCardOperationService.recharge(this.iccardRechargemap).then(res =>{
+          this.message.success('恭喜你', '充值成功！');
+        })
   }
 
 }

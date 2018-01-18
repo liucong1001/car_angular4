@@ -1,41 +1,29 @@
 import {Injectable, isDevMode} from '@angular/core';
 import {Http} from '@angular/http';
 import {CardModel} from '../../model/bussiness/card.model';
+import {IcCardRechargemap} from '../../model/icCard/recharge';
+
 
 @Injectable()
-export class CardService {
-  constructor(private http: Http) {}
-  private api_url_base = 'rest/car/';
-  private cards: CardModel[] = [
-    {number: '100000', num: 'B00001'},
-    {number: '200000', num: 'B00002'},
-    {number: '300000', num: 'B00003'},
-    {number: '400000', num: 'B00004'},
-    {number: '500000', num: 'B00005'},
-    {number: '600000', num: 'B00006'},
-    {number: '700000', num: 'B00007'},
-  ];
-  public card: CardModel = {
-    number: '',
-    num: '',
-  };
-  getCards(cid: string): Promise<CardModel[]> {
-    let result: Promise<CardModel[]>;
-    if (isDevMode()) {
-      result = Promise.resolve(this.cards).then((res) => res as CardModel[]);
-    } else {
-      result = this.http.get(this.api_url_base + 'cid/' + cid).toPromise().then((res) => res.json() as CardModel[]);
-    }
-    return result;
+export class IcCardOperationService {
+  private path = '/rest/pay/iccard';
+  constructor(private http: Http) {
+  }
+  public get(iccardno: String): Promise<any> {
+    const url = `${this.path}/info/${iccardno}`;
+    return this.http.get(url).toPromise().then(function (res) {
+      return res.json() as any;
+    });
   }
 
-  /*create(number: string): Promise<CardModel[]> {
-    if (isDevMode()) {
-      return Promise.resolve(this.cards).then((res) => res as CardModel[]);
-    } else {
-      return this.http
-        .get(this.api_url_base, JSON.stringify({number: number}))
-        .toPromise().then(res => res.json().data as CardModel[]);
-    }
-  }*/
+  public recharge(model: IcCardRechargemap): Promise<any> {
+      const url =  `${this.path}/recharge`;
+      return this.http.post(url, model).toPromise().then(function (res) {
+        return res.json() as any;
+      });
+  }
+
+
+
+
 }

@@ -9,23 +9,32 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MerchantModel} from '../../../../@core/model/bussiness/merchant.model';
 import {Router, ActivatedRoute} from '@angular/router';
 import {ErrorMessage} from "../../../../@core/ui/valid-error/valid-error.component";
-
+import { FinanceBindService } from './../../../../@core/data/merchant/financeBind.service';
+import {FinanceBindmap} from '../../../../@core/model/merchant/financeBind';
 @Component({
   selector: 'ngx-binding',
   templateUrl: './binding.component.html',
   styleUrls: ['./binding.component.scss'],
+  providers:[FinanceBindService],
 })
 export class BindingComponent implements OnInit {
 
-  merchant = {};
-  icCardInfo={};
+  merchant = new  MerchantModel();
+  icCardInfo= new IccardModel('云石科技', '0001', 18);
   // 组件初始华
   ngOnInit() {
     this.route.params.subscribe(p => {
+      // console.log("ic卡模型",this.card.account.accountID);
       if (p.id) {
         this.merchantService.get(p.id).then( res => {
           this.merchant = res.merchant as MerchantModel;
+          this.card.account ={
+              cloudUser:'0001',
+              id:this.merchant.account.id
+          }
           console.log('获取的信息',this.merchant);
+          console.log("ic卡",this.card);
+          // this.card.account.accountID =
         });
       }
     });
@@ -39,10 +48,12 @@ export class BindingComponent implements OnInit {
               private http: Http,
               private fb: FormBuilder,
               private merchantService: MerchantService,
+              private  financeBindService:FinanceBindService,
   ) { }
   public iccardData = new IccardModel('云石科技', '0001', 18);
   public iccardPayData = new IccardOperaModel();
   public iccardRechargeData = new IccardOperaModel();
+  public card = new FinanceBindmap();
   /*返回*/
   goBack() {
     this.location.back();
@@ -72,6 +83,9 @@ export class BindingComponent implements OnInit {
           self.iccardData.Banlance = s.Banlance;
           self.iccardData.BanlanceDisplay = (s.Banlance) / 100 ;
           this.icCardInfo = s;
+          // this.card.icCard={
+          //
+          // }
           // console.log("ic卡",s);
         }).catch((e) => {
           // console.log(e);
@@ -92,8 +106,31 @@ export class BindingComponent implements OnInit {
   public bindIcCard() {
     console.log("开始输入密码！");
     this.iccard.playSound(4);
-    this.iccard.getPassword(500).then(res =>{
-       console.log('输入的密码',res);
+    this.iccard.getPassword().then(pwd =>{
+       console.log('输入的密码',pwd);
+       if(pwd.length!=6){
+         this.iccard.playSound(8);
+       }else {
+         this.iccard.playSound(11);
+         this.iccard.getPassword().then(repwd =>{
+             if(repwd !=pwd){
+               this.iccard.playSound(5);
+             }else {
+
+               this.card.icCard = {
+                   icCardNo:this.icCardInfo.CardNumber,
+                   passWord:pwd
+               }
+               // const pwdMd5=md5.createHash();
+                  console.log("输出card对象",this.card);
+               this.financeBindService.save(this.card).then(res=>{
+                 this.message.success('恭喜你', '绑卡成功！');
+               }).catch(err => {
+                 this.message.error('保存失败', err.json().message);
+               });
+             }
+         })
+       }
     })
   }
 
