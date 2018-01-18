@@ -1,0 +1,36 @@
+<form [formGroup]="form" (submit)="add()">
+<nb-card>
+  <nb-card-header class="d-flex">
+    <div class="p-2 mr-auto">添加验证器</div>
+    <div class="p2">
+      <a [routerLink]="'..'" class="btn btn-secondary btn-sm">返回</a>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <ngx-input [control]="form.get('code')" label="编号" [errors]="errors.code"></ngx-input>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <ngx-input [control]="form.get('name')" label="名称" [errors]="errors.name"></ngx-input>
+        </div>
+        <div class="col-md-4">
+          <ngx-select [control]="form.get('group')" label="分组" [errors]="errors.group" codemap="validatorGroup"></ngx-select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <ngx-codemirror [formControl]="form.get('script')"></ngx-codemirror>
+          <ngx-valid-error [errors]="errors.script" [control]="form.get('script')"></ngx-valid-error>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+  <nb-card-footer class="text-center">
+    <button class="btn btn-hero-primary w-50" type="submit" [disabled]="form.invalid">保存</button>
+  </nb-card-footer>
+</nb-card>
+</form>

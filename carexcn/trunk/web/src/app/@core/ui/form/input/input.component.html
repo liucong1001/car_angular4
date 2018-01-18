@@ -1,0 +1,8 @@
+<div class="form-group">
+  <label>{{label}}</label>
+  <div class="input-group">
+  <input class="form-control" type="text" [formControl]="control"
+         [ngxErrorClass]="control" />
+  </div>
+</div>
+<ngx-valid-error [errors]="errors" [control]="control"></ngx-valid-error>

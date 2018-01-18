@@ -14,8 +14,6 @@ import { Routes, RouterModule } from '@angular/router';
 import {SystemComponent} from './system.component';
 import {CodeComponent} from './code/code.component';
 import {CodeEditComponent} from './code/code-edit.component';
-import { ManagerComponent } from './manager/manager.component';
-import { ManageritemEditComponent } from './manager/manageritem-edit.component';
 import { PermissionComponent } from './permission/permission.component';
 import { AreaComponent } from './area/area.component';
 import {MarketStaffComponent} from './market-staff/market-staff.component';

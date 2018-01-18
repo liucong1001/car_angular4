@@ -4,6 +4,7 @@ import {CodeitemService} from './codeitem.service';
 import {ManagerService} from './manager.service';
 import {MarketStaffService} from './market-staff.service';
 import {CodeTransPipe} from './code.trans.pipe';
+import {ValidatorService} from './validator.service';
 
 /**
  * 导出服务
@@ -12,9 +13,9 @@ import {CodeTransPipe} from './code.trans.pipe';
 const SERVICES = [
   CodeService,
   CodeitemService,
-  ManagerService,
   MarketStaffService,
   CodeTransPipe,
+  ValidatorService,
 ];
 
 /**
