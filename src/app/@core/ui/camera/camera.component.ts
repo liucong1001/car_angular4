@@ -2,6 +2,8 @@ import {Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angul
 import {MessageService} from '../../utils/message.service';
 import {WebcamService} from '../../device/webcam.service';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {CameraModalComponent} from './camera-modal/camera-modal.component';
 
 @Component({
   selector: 'ngx-ys-camera',
@@ -33,7 +35,11 @@ export class CameraComponent implements OnInit, ControlValueAccessor {
    * @param {WebcamService} webcam
    * @param {FileUploadModule} upld
    */
-  constructor(private message: MessageService, private webcam: WebcamService) {
+  constructor(
+    private message: MessageService,
+    private webcam: WebcamService,
+    private modalService: NgbModal,
+  ) {
   }
 
   writeValue(obj: any): void {
@@ -62,6 +68,13 @@ export class CameraComponent implements OnInit, ControlValueAccessor {
       this.webcam_has_show = true;
       this.message.info('摄像头', '当前开启');
     }
+  }
+
+  showPicModal(picSource) {
+    console.info('this.showPicModal url : ' + picSource);
+    const activeModal = this.modalService.open(CameraModalComponent, { size: 'lg', container: 'nb-layout', windowClass: 'text-center'});
+    activeModal.componentInstance.modalHeader = '查看图片';
+    activeModal.componentInstance.pic_source = picSource;
   }
 
   /**

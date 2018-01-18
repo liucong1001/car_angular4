@@ -11,6 +11,7 @@ export class CarlistComponent implements OnInit {
   @Input() cars; // TODO: 过户完成后删除该参数
   @Input() car_list_title;
   @Input() showAddButton? = false;
+  @Input() useCheckBox? = false;
   @Output('_selectCar') private _selectCar = new EventEmitter();
   @Output('_selected') private _selected = new EventEmitter();
   constructor(

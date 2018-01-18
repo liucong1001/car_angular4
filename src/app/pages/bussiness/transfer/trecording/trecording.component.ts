@@ -38,6 +38,7 @@ export class TrecordingComponent implements OnInit {
   }
   getTradeByArchiveNoComponent(trade) {
     this.trade = trade;
+    this._formGroup.controls.seller.patchValue(this.trade.seller.seller);
   }
   getTradeListByArchiveNoComponent(tradeList) {
     this.tradeList = tradeList;

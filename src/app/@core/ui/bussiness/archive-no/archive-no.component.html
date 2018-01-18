@@ -48,7 +48,7 @@
     <div class="input-group">
       <div class="input-group">
         <span class="input-group-addon">批次号</span>
-        <input class="form-control" type="text" placeholder="输入批次号以查询" [(ngModel)]="trade.prejudication.business.archiveNo" #archiveNo/>
+        <input class="form-control" type="number" placeholder="输入批次号以查询" [(ngModel)]="trade.prejudication.business.archiveNo" #archiveNo/>
         <button class="btn btn-primary btn-sm" (click)="getTradeByArchiveNo(archiveNo.value)" [disabled]="archiveNo.value.length !== 18">查询</button>
       </div>
       <div class="input-group">

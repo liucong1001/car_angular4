@@ -1,5 +1,5 @@
 <ngx-ys-archive-no
-  [pageTitle]="'过户业务 - 预审过户 - 买方录入'"
+  [pageTitle]="'过户业务 - 预审过户 - 车辆选择'"
   [archiveNo]="archiveNo"
   [prompt]="'请输入批次号后点击查询，调取预审通过的车辆后再进行车辆的选择'"
   (_tradeList)="getTradeListByArchiveNoComponent($event)"
@@ -10,6 +10,7 @@
   *ngIf="tradeList"
   [tradeList]="tradeList"
   (_selected)='onChangeSelectedCar($event)'
+  [useCheckBox]="true"
 ></ngx-ys-carlist>
 
 <ngx-ys-cardetail
