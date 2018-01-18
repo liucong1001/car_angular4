@@ -16,7 +16,7 @@ export class ArchiveNoComponent implements OnInit {
   @Output('_tradeList') private _tradeList = new EventEmitter();
   @Output('_trade') private _trade = new EventEmitter();
   public trade: TradeForm = {
-    prejudication: {business: {archiveNo: '201801160001010002'}},
+    prejudication: {business: {archiveNo: ''}},
     preVehicle: {preVehicle: {filingInfo: {merchant: {account: {}}}}},
     seller: {seller: {}},
   };
@@ -39,8 +39,8 @@ export class ArchiveNoComponent implements OnInit {
       this._tradeList.emit(this.tradeList);
       this._trade.emit(this.trade);
     }).catch(e => {
-      // console.info(e.message);
-      this._message.info('操作提示', '批次号 ' + archiveNo + ' 没有查询结果。');
+      const error = e.json();
+      this._message.info('操作提示', error.message);
     });
   }
 

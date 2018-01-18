@@ -4,6 +4,7 @@ import {CarService} from '../../../../@core/data/bussiness/car.service';
 import {CarModel} from '../../../../@core/model/bussiness/car.model';
 import {Router} from '@angular/router';
 import {MessageService} from '../../../../@core/utils/message.service';
+import {TradeForm} from "../../../../@core/model/bussiness/trade/trade.form";
 
 @Component({
   selector: 'ngx-tjudication',
@@ -11,7 +12,8 @@ import {MessageService} from '../../../../@core/utils/message.service';
   styleUrls: ['./tjudication.component.scss'],
 })
 export class TjudicationComponent implements OnInit {
-
+  public trade: TradeForm;
+  public tradeList: [TradeForm];
   public test= '';
   /**
    * 车辆单辆数据
@@ -43,6 +45,12 @@ export class TjudicationComponent implements OnInit {
   }
   reBack() {
     this._router.navigateByUrl('/pages/bussiness/transfer/trecording-last');
+  }
+  getTradeByArchiveNoComponent(trade) {
+    this.trade = trade;
+  }
+  getTradeListByArchiveNoComponent(tradeList) {
+    this.tradeList = tradeList;
   }
 
 }

@@ -1,18 +1,11 @@
-<nb-card>
-  <nb-card-header>
-    <div class="cameras-card-header">
-      <span class="cameras-card-title">过户业务 - 过户审核 - 买方审核</span>
-    </div>
-  </nb-card-header>
-  <nb-card-body>
-    <div class="input-group">
-      <input type="text" placeholder="批次号" class="form-control" [(ngModel)]="test" readonly/>
-      <input type="text" placeholder="商户编码" class="form-control" />
-      <input type="text" placeholder="联系人" readonly class="form-control" [(ngModel)]="test" />
-      <input type="text" placeholder="手机号" readonly class="form-control" [(ngModel)]="test" />
-    </div>
-  </nb-card-body>
-</nb-card>
+<ngx-ys-archive-no
+  [pageTitle]="'过户业务 - 预审审核 - 买方审核'"
+  [archiveNo]="archiveNo"
+  [prompt]="'请输入批次号后点击查询，调取预审通过的车辆后再进行车辆的选择'"
+  (_tradeList)="getTradeListByArchiveNoComponent($event)"
+  (_trade)="getTradeByArchiveNoComponent($event)"
+></ngx-ys-archive-no>
+
 <!--<nb-card>-->
   <!--<nb-card-header>-->
     <!--<div class="cameras-card-header">-->

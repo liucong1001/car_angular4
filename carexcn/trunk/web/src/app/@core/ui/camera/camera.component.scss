@@ -3,6 +3,12 @@
 @import '~bootstrap/scss/mixins/breakpoints';
 
 @include nb-install-component() {
+  .pic-modal-area {
+    height: 86%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+  }
   .fa-camera, .fa-camera-retro {
     position: absolute;
     z-index: 2;

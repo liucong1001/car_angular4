@@ -1,4 +1,5 @@
 <div class="camera float-left {{col_sm_6}}" [style.background-image]="'url(' + source + ')'">
+  <div (click)="showPicModal(source)" class="pic-modal-area"></div>
   <span>{{ title }}
     <div class="webcam_btn float-right">
       <div *ngIf="btn_show">

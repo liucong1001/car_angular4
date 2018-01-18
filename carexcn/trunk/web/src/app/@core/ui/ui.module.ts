@@ -5,6 +5,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CameraComponent} from './camera/camera.component';
 import {CalendarModule, FileUploadModule, AutoCompleteModule, DropdownModule} from 'primeng/primeng';
 import {CameraUploadComponent} from './camera/camera-upload.component';
+import { CameraModalComponent } from './camera/camera-modal/camera-modal.component';
 import {CalendarComponent} from './calendar/calendar.component';
 import {AutoinputComponent} from './autoinput/autoinput.component';
 import { ValidErrorComponent } from './valid-error/valid-error.component';
@@ -28,6 +29,7 @@ import { YsCardComponent } from './bussiness/ys-card/ys-card.component';
 
 const COMPONENTS = [
   CameraComponent,
+  CameraModalComponent,
   CameraUploadComponent,
   CalendarComponent,
   AutoinputComponent,
@@ -48,7 +50,9 @@ const COMPONENTS = [
 ];
 
 @NgModule({
-entryComponents: [],
+  entryComponents: [
+    CameraModalComponent,
+  ],
   exports: [
     ...COMPONENTS,
     UiTableModule,
@@ -68,8 +72,6 @@ entryComponents: [],
   ],
   declarations: [
     ...COMPONENTS,
-    FormBuilderComponent,
-    YsCardComponent,
   ],
 })
 export class UiModule {
