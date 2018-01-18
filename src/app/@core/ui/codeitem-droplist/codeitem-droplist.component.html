@@ -1,7 +1,7 @@
 <p-dropdown
   [options]="items"
   [style]="{'width':'150px'}"
-  [ngModel]="value"
+  [(ngModel)]="value"
   (onChange)="_onChange($event)"
   (onBlur)="touched()"
   [disabled]="ifDisabled"
