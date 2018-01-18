@@ -1,9 +1,10 @@
-import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, OnChanges, OnInit, SimpleChanges,TemplateRef,ViewChild} from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {TextCell} from '../../../@core/ui/table/cell.text.component';
 import {Menu, MenuCell} from '../../../@core/ui/table/cell.menu.component';
-import {Column} from '../../../@core/ui/table/table.component';
+import {Column,TableComponent} from '../../../@core/ui/table/table.component';
 import {ActivatedRoute, Router} from '@angular/router';
+import {CodemapCell, CustomCell} from '../../../@core/ui/table/cell';
 
 /**
  * 商户财务维护
@@ -29,6 +30,9 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class FinanceComponent implements OnInit, OnChanges {
 
+  @ViewChild(TableComponent) itemList: TableComponent;
+  @ViewChild('isPersonalTemp')  isPersonalTemp: TemplateRef<any>;
+
   constructor(
     public router: Router,
     private route: ActivatedRoute,
@@ -49,29 +53,30 @@ export class FinanceComponent implements OnInit, OnChanges {
 
   // 组件初始华
   ngOnInit(): void {
+    this.columns = [
+      {title: '商户名', titleClass: '', cell: new TextCell('name')} as Column,
+      {title: '编码', titleClass: '', cell: new TextCell('code')} as Column,
+      {title: '证件号', titleClass: '', cell: new TextCell('certCode')} as Column,
+      {title: '联系方式', titleClass: '', cell: new TextCell('phone')} as Column,
+      {title: '地址', titleClass: '', cell: new TextCell('address')} as Column,
+      {title: '类型', titleClass: '',cell: new CustomCell(this.isPersonalTemp)} as Column,
+      {
+        title: '', titleClass: 'w-15 text-center', cell: new MenuCell(
+        [
+          new Menu('查看', '', 'see'),
+          new Menu('绑卡', '', this.icCardBind.bind(this)),
+          /*new Menu('挂失', '', 'seller'),
+           new Menu('修改折扣', '', 'buyer'),*/
+        ],
+        new Menu('操作', '', this.view), 'text-center',
+      )} as Column,
+    ];
   }
 
   // 列表搜索条件对象
   filter: any = {};
   // 列表列定义
-  columns: Column[] = [
-    {title: '商户名', titleClass: '', cell: new TextCell('name')} as Column,
-    {title: '编码', titleClass: '', cell: new TextCell('code')} as Column,
-    {title: '证件号', titleClass: '', cell: new TextCell('certCode')} as Column,
-    {title: '联系方式', titleClass: '', cell: new TextCell('phone')} as Column,
-    {title: '地址', titleClass: '', cell: new TextCell('address')} as Column,
-    {title: '类型', titleClass: '', cell: new TextCell('isPersonal')} as Column,
-    {
-      title: '', titleClass: 'w-15 text-center', cell: new MenuCell(
-        [
-          new Menu('查看', '', 'see'),
-          new Menu('绑卡', '', this.icCardBind.bind(this)),
-          /*new Menu('挂失', '', 'seller'),
-          new Menu('修改折扣', '', 'buyer'),*/
-        ],
-        new Menu('操作', '', this.view), 'text-center',
-      )} as Column,
-  ];
+  columns: Column[];
 
 
   // 列表菜单回调

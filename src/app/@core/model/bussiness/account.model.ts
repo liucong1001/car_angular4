@@ -11,4 +11,8 @@ export class AccountModel {
    * 1-市场(个人)商户 0-正常商户
    */
   flag?: string;
+  /**
+   *id
+   */
+  id?:string;
 }

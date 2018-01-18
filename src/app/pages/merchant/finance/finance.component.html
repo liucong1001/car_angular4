@@ -1,6 +1,6 @@
 <nb-card>
   <nb-card-header class="d-flex">
-    <div class="p-2 mr-auto">商户财务维护</div>
+    <div class="p-2 mr-auto">商户财1务维护</div>
     <div class="p2">
       <a class="btn btn-primary btn-sm" [routerLink]="'see'">查看</a>
       <a class="btn btn-primary btn-sm" [routerLink]="'binding'">绑卡</a>
@@ -33,3 +33,6 @@
     <ngx-table [url]="'/rest/merchant/pager'" #itemList [columns]="columns" [filter]="filter"></ngx-table>
   </nb-card-body>
 </nb-card>
+
+<!--<ng-template #isPersonalTemp11 let-data  let-cell="cell">{{data.isPersonal === '1' ? '个人' : (data.isPersonal === '0' ? '机构' : '')}}</ng-template>-->
+<ng-template #isPersonalTemp let-data >{{data.isPersonal === '1' ? '个人' : (data.isPersonal === '0' ? '机构' : '')}}</ng-template>

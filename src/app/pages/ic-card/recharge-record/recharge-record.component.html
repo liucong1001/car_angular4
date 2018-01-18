@@ -36,6 +36,7 @@
         </div>-->
       </div>
     </form>
-    <ngx-table #codeList [url]="'../../../@core/data/ic-card/iccard'" [columns]="columns" [filter]="filter"></ngx-table>
+    <ngx-table #codeList [url]="'/rest/pay/recharge/pager'" [columns]="columns" [filter]="filter"></ngx-table>
   </nb-card-body>
 </nb-card>
+<ng-template #statusTemp let-data>{{data.status === '1' ? '已撤销' : (data.status === '0' ? '已完成' : 'ada')}}</ng-template>

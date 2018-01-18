@@ -8,33 +8,28 @@
   <nb-card-body>
     <div class="input-group">
       <span class="input-group-addon">卡号：</span>
-      <label class="form-control">{{iccardData.CardNumber}}</label>
-    </div>
-    <div class="input-group">
-      <span class="input-group-addon">商户名称：</span>
-      <label class="form-control" ></label>
+      <label class="form-control">{{icCardInfo.CardNumber}}</label>
     </div>
     <div class="input-group">
       <span class="input-group-addon">账户名称：</span>
-      <label class="form-control" ></label>
+      <label class="form-control" >{{getCardData.icAccount.ownedAccount.accountName}}</label>
     </div>
     <div class="input-group">
       <span class="input-group-addon">当前余额：</span>
-      <label class="form-control">{{iccardData.BanlanceDisplay}}</label>
+      <label class="form-control">{{getCardData.icAccount.balance}}</label>
     </div>
     <div class="input-group">
       <span class="input-group-addon" (click)="iccardText()">输入充值金额：</span>
-      <input type="text" class="form-control" [(ngModel)]="iccardRechargeData.amountDisplay"/>
+      <input type="number" class="form-control" [(ngModel)]="iccardRechargemap.recharge" placeholder="充值金额"/>
     </div>
     <div class="input-group">
       <span class="input-group-addon" (click)="iccardText()">输入赠送金额：</span>
-      <input type="text" class="form-control" placeholder=""/>
+      <input type="number" class="form-control"  [(ngModel)]="iccardRechargemap.give" placeholder="赠送金额" />
     </div>
   </nb-card-body>
   <div class="height"></div>
   <nb-card-body>
-    <button class="btn btn-success " (click)="iccardRecharge()">充值</button>
-    <button class="btn btn-success " (click)="readIccard()">读取</button>
+    <button class="btn btn-success " (click)="recharge()">充值</button>
   </nb-card-body>
 </nb-card>
 

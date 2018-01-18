@@ -2,7 +2,7 @@ export class Permissionmap {
 
         constructor(
             /* 市场 */
-            public cloudUser: null,
+            public cloudUser : null,
 
             public id: string,
             /**
@@ -27,7 +27,9 @@ export class Permissionmap {
 
             public subPermissons: Array<any>,
 
-            public parent: object,
+            public parent: {
+               id?: string,
+            },
 
         ) { }
 

@@ -4,7 +4,7 @@ import {Column} from '../../../@core/ui/table/table.component';
 import {TextCell} from '../../../@core/ui/table/cell.text.component';
 import {Menu, MenuCell} from '../../../@core/ui/table/cell.menu.component';
 import {CardModel} from '../../../@core/model/bussiness/card.model';
-import {CardService} from '../../../@core/data/ic-card/card.service';
+
 
 @Component({
   selector: 'ngx-transfer-record',
