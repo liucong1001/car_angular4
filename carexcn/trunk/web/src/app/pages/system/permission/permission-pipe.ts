@@ -6,7 +6,7 @@ import { forEach } from '@angular/router/src/utils/collection';
 
 @Pipe({name: 'permTreeNode'})
 export class ToPermTreeNode implements PipeTransform {
-    transform(perm: Permissionmap[]): TreeNode [] {
+    transform(perm: Permissionmap[]): TreeNode  {
         function tree(json) {
             const item = [];
             json.forEach((p) => {
@@ -24,6 +24,6 @@ export class ToPermTreeNode implements PipeTransform {
         }
 
        const treeData = tree(perm);
-        return treeData;
+        return treeData  ;
     }
 }

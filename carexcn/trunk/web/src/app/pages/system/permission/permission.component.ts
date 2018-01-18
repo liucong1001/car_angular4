@@ -51,6 +51,7 @@ export class PermissionComponent implements OnInit {
         this.item.path = this.selectedNode.path;
         this.item.icon = this.selectedNode.icon;
         this.item.id = this.selectedNode.id;
+        console.log("选择的节点",this.selectedNode);
     }
     public nodeUnselect(event): void {
     }
@@ -75,22 +76,27 @@ export class PermissionComponent implements OnInit {
             this.permissionService.save(this.item).then(res => {
                 alert('添加成功');
                 this.getData();
+               this.disabled = !this.disabled;
             }).catch(err => {
                 this.message.error('失败', err.json().message);
             });
             return;
         }
         if (!this.disabled) {
-            delete this.item.parent;
+          console.log("修改对象",this.item);
+          this.item.parent = {
+            id: this.selectedNode.parent.id,
+          };
             this.permissionService.save(this.item).then(res => {
                 alert('修改成功');
                 this.getData();
+                this.Root()
             }).catch(err => {
                 this.message.error('失败', err.json().message);
             });
         }
         this.disabled = !this.disabled;
-        this.Root();
+
     }
     public Root() {
         this.selectedNode = undefined;
@@ -112,6 +118,15 @@ export class PermissionComponent implements OnInit {
             }
             return result;
         }
+    }
+
+    public confirmDelete(){
+        this.permissionService.remove(this.selectedNode.id).then(res=>{
+          alert("删除成功！");
+          this.getData();
+          this.Root();
+          this.item = new Permissionmap(null, '', '', '', '', '', '', '1', 1, [], {});
+        })
     }
 
 

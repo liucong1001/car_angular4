@@ -61,7 +61,7 @@ export class CodeEditComponent implements OnInit {
    * @type {FormGroup}
    */
   form: FormGroup = this.fb.group({
-    cloudUser: ['', [Validators.required]],
+    cloudUser: [''],
     code: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(32)]],
     name: ['', [Validators.required, Validators.maxLength(64)]],
   });

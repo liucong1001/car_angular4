@@ -21,7 +21,7 @@ export class RoleEditComponent implements OnInit {
   public orgTree: Permissionmap[] = [];
 
   /* 当前选中的节点 */
-  public selectedNode: Permissionmap ;
+  public selectedNode: Permissionmap[]= [] ;
   public disabled = true;
   public isNew = false;
   public selectcCode = [];
@@ -48,7 +48,6 @@ export class RoleEditComponent implements OnInit {
   ngOnInit() {
     this.getData();
     this.route.params.subscribe(p => {
-      console.log('params',p);
       if (p.id) {
         this.isEdit = true;
         this.roleService.get(p.id).then(res =>{
@@ -68,10 +67,14 @@ export class RoleEditComponent implements OnInit {
   public getData() {
     this.permissionService.get(null).then(res => {
       this.orgTree = res;
+
       // this.toPermTreeNodePipe.transform(res,'pipeFilter');
-      let data = new ToPermTreeNode().transform(res);
-      // this.selectedNode = [data[1]];
-      console.log('数组',[data[1]]);
+      let data = new ToPermTreeNode().transform(res)  ;
+      let dataJson = data as Permissionmap;
+      this.selectedNode = [data[1]];
+
+      // console.log('数组',[data[1]]);
+      console.log("选中",this.selectedNode);
     }).catch(err => {
       this.message.error('失败', err.json().message);
     });
