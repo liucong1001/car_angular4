@@ -1,0 +1,45 @@
+<nb-card>
+  <nb-card-header class="d-flex">
+    <div class="p-2 mr-auto">照片示例修改</div>
+    <div class="p2">  <a [routerLink]="'../'" class="btn btn-secondary btn-sm">返回</a></div>
+  </nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="form" (ngSubmit)="save()">
+      <div class="row">
+        <div class="col-sm-6" formGroupName="photoExample">
+          <div class="form-group">
+            <label>照片类型:</label>
+            <div>
+              <ngx-ys-codeitem-droplist codeMap="photoType" formControlName="photoType" > </ngx-ys-codeitem-droplist>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label>图片:</label>
+          </div>
+
+        </div>
+      </div>
+      <div class="row" formGroupName="photoExample">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label>长宽比:</label>
+            <input type="text" class="form-control" formControlName="scale" placeholder="长宽比">
+          </div>
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-1">
+          <!-- [disabled]="form.invalid" -->
+          <button type="submit" class="btn btn-info btn-block" >保存</button>
+        </div>
+      </div>
+    </form>
+
+  </nb-card-body>
+</nb-card>

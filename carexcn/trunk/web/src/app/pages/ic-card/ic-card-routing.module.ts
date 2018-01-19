@@ -7,30 +7,29 @@ import {TransferAccountsComponent} from './transfer-accounts/transfer-accounts.c
 import {CardManageComponent} from './card-manage/card-manage.component';
 import {RefundComponent} from './refund/refund.component';
 import {RechargeRecordComponent} from './recharge-record/recharge-record.component';
+import  {RechargeCancelComponent} from './recharge-cancel/recharge-cancel.component';
+import {PasswordChangeComponent} from './password-change/password-change.component';
 
 const routes: Routes = [{
-    path: '',
-    component: IcCardComponent,
-    children: [{
-        path: 'recharge-keep',
-        component: RechargeKeepComponent,
-      }, {
-      path: 'recharge-record',
-      component: RechargeRecordComponent,
-      }, {
+  path: '',
+  component: IcCardComponent,
+  children: [{
+    path: 'recharge-keep',
+    component: RechargeKeepComponent,
+  }, {
+    path: 'recharge-record',
+    component: RechargeRecordComponent,
+  },
+    {
+      path: 'recharge-cancel',
+      component: RechargeCancelComponent,
+    },
+    {
       path: 'password-reset',
       component: PasswordResetComponent,
-      /*children: [{
-        path: '',
-        redirectTo: 'reset',
-        pathMatch: 'full',
-      }, {
-        path: 'reset',
-        component: ResetComponent,
-      }, {
-        path: 'tab',
-        component: TabComponent,
-      }],*/
+    }, {
+      path: 'password-change',
+      component: PasswordChangeComponent,
     }, {
       path: 'transfer-accounts',
       component: TransferAccountsComponent,
@@ -41,10 +40,11 @@ const routes: Routes = [{
       path: 'card-manage',
       component: CardManageComponent,
     }],
-  }];
+}];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
+
 export class IcCardRoutingModule { }

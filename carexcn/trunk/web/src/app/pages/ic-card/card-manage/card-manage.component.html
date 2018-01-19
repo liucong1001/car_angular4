@@ -11,7 +11,7 @@
       <div class="row">
         <div class="col-sm-3">
           <div class="form-group form-group-sm">
-            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="卡号 - 模糊匹配"/>
+            <input class="form-control" [(ngModel)]="filter.icCardNo" name="icCardNo" type="text" placeholder="卡号 - 模糊匹配"/>
           </div>
         </div>
         <div class="col-sm-3">
@@ -42,6 +42,6 @@
         </div>
       </div>
     </form>
-    <ngx-table #codeList [url]="'/rest/sys/codemap/pager'" [columns]="columns" [filter]="filter"></ngx-table>
+    <ngx-table #codeList [url]="'/rest/pay/iccard/pager'" [columns]="columns" [filter]="filter"></ngx-table>
   </nb-card-body>
 </nb-card>

@@ -24,6 +24,9 @@ import {MarketFeeComponent} from './market/market-fee.component';
 import {RoleComponent} from './role/role.component';
 import { RoleAddComponent } from './role/role-add/role-add.component';
 import { RoleEditComponent } from './role/role-edit/role-edit.component';
+import { PhotoExampleComponent } from './photo-example/photo-example.component';
+import { PhotoExampleAddComponent } from './photo-example/photo-example-add/photo-example-add.component';
+import { PhotoExampleEditComponent } from './photo-example/photo-example-edit/photo-example-edit.component';
 
 const routes: Routes = [{
   path: '',
@@ -52,6 +55,9 @@ const routes: Routes = [{
     {path: 'role', component: RoleComponent},
     {path: 'role/add', component: RoleAddComponent},
     {path: 'role/edit', component: RoleEditComponent},
+    {path: 'photo-example', component: PhotoExampleComponent},
+    {path: 'photo-example/add', component: PhotoExampleAddComponent},
+    {path: 'photo-example/edit', component: PhotoExampleEditComponent},
   ],
 }];
 

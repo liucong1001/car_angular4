@@ -137,6 +137,8 @@ export class RechargeKeepComponent implements OnInit {
     console.log("充值对象",this.iccardRechargemap);
         this.IcCardOperationService.recharge(this.iccardRechargemap).then(res =>{
           this.message.success('恭喜你', '充值成功！');
+        }).catch(err=>{
+          this.message.error('充值失败',err.json().message);
         })
   }
 

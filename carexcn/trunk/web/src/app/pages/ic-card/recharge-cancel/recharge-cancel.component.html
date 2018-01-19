@@ -1,0 +1,39 @@
+<nb-card>
+    <nb-card-header class="d-flex">
+      <div class="p-2 mr-auto">充值撤销详情页</div>
+      <div class="p2">  <a [routerLink]="'../recharge-record'" class="btn btn-secondary btn-sm">返回</a></div>
+    </nb-card-header>
+    <nb-card-body>
+         <table class="table border" width="70%" border="1">
+             <tr>
+                <td>卡号：</td>
+                <td>{{rechargeCancelInfo.icCardNo}}</td>
+                <td>商户名称</td>
+                <td>{{rechargeCancelInfo.accountName}}</td>
+             </tr>
+             <tr>
+                <td>总金额</td>
+                <td>{{rechargeCancelInfo.amount}}</td>
+                <td>充值时间</td>
+                <td>{{rechargeCancelInfo.date}}</td>
+             </tr>
+              <tr>
+                 <td>充值金额</td>
+                 <td>{{rechargeCancelInfo.recharge}}</td>
+                <td>赠送金额</td>
+                <td>{{rechargeCancelInfo.give}}</td>
+              </tr>
+              <tr>
+                <td>取消充值原因</td>
+                 <td colspan="4">
+                   <input type="text" class="form-control" placeholder="取消原因" [(ngModel)]="rechargeCancelInfo.reason" >
+                 </td>
+              </tr>
+         </table>
+        <div class="row">
+            <div class="col-md-1">
+               <button class="btn  btn-sm btn-danger" (click)="cancel()" >撤销</button>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>
