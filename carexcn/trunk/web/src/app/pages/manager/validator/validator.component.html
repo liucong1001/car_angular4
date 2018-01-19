@@ -9,12 +9,20 @@
   <nb-card-body>
     <form [@visibilityChanged]="visibility" (submit)="list.reload()">
       <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-3">
           <div class="form-group form-group-sm">
-            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="代码 - 模糊搜索"/>
+            <select class="form-control" [(ngModel)]="filter.cloudUser" name="cloudUser">
+              <option value="" selected="selected">所有</option>
+              <option [value]="m.code" *ngFor="let m of markets">{{m.name}}</option>
+            </select>
           </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-3">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="编码 - 模糊搜索"/>
+          </div>
+        </div>
+        <div class="col-sm-3">
           <div class="form-group form-group-sm">
             <input class="form-control" [(ngModel)]="filter.name" name="name" type="text" placeholder="名称 - 模糊搜索"/>
           </div>
