@@ -28,6 +28,9 @@ import { MarketPhotoFormNameComponent } from './market/market-photo-form-name/ma
 import { RoleComponent } from './role/role.component';
 import { RoleAddComponent } from './role/role-add/role-add.component';
 import { RoleEditComponent } from './role/role-edit/role-edit.component';
+import { PhotoExampleComponent } from './photo-example/photo-example.component';
+import { PhotoExampleAddComponent } from './photo-example/photo-example-add/photo-example-add.component';
+import { PhotoExampleEditComponent } from './photo-example/photo-example-edit/photo-example-edit.component';
 
 const components = [
   CodeitemEditComponent,
@@ -39,6 +42,9 @@ const components = [
   MarketPhotoBusinessComponent,
   MarketPhotoCertificateCodeComponent,
   MarketPhotoFormNameComponent,
+  PhotoExampleComponent,
+  PhotoExampleAddComponent,
+  PhotoExampleEditComponent,
 ];
 
 @NgModule({

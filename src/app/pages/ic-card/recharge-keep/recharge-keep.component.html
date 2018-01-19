@@ -6,30 +6,35 @@
     </div>
   </nb-card-header>
   <nb-card-body>
-    <div class="input-group">
-      <span class="input-group-addon">卡号：</span>
-      <label class="form-control">{{icCardInfo.CardNumber}}</label>
+    <div class="row form-inline form-group">
+       <div class="col-md-2"><label for="">卡号：</label> </div>
+       <div class="col-md-4">{{icCardInfo.CardNumber}}</div>
     </div>
-    <div class="input-group">
-      <span class="input-group-addon">账户名称：</span>
-      <label class="form-control" >{{getCardData.icAccount.ownedAccount.accountName}}</label>
+    <div class="row form-inline form-group">
+      <div class="col-md-2"><label for="">账户名称：</label> </div>
+      <div class="col-md-4">{{getCardData.icAccount.ownedAccount.accountName}}</div>
     </div>
-    <div class="input-group">
-      <span class="input-group-addon">当前余额：</span>
-      <label class="form-control">{{getCardData.icAccount.balance}}</label>
+    <div class="row form-inline form-group">
+      <div class="col-md-2"><label for="">当前余额：</label> </div>
+      <div class="col-md-4">{{getCardData.icAccount.balance}} </div>
     </div>
-    <div class="input-group">
-      <span class="input-group-addon" (click)="iccardText()">输入充值金额：</span>
-      <input type="number" class="form-control" [(ngModel)]="iccardRechargemap.recharge" placeholder="充值金额"/>
+    <div class="row form-inline form-group">
+      <div class="col-md-2"><label for="">输入充值金额：</label> </div>
+      <div class="col-md-4">
+        <input type="number" class="form-control" [(ngModel)]="iccardRechargemap.recharge" placeholder="充值金额"/>
+      </div>
+
     </div>
-    <div class="input-group">
-      <span class="input-group-addon" (click)="iccardText()">输入赠送金额：</span>
-      <input type="number" class="form-control"  [(ngModel)]="iccardRechargemap.give" placeholder="赠送金额" />
+    <div class="row form-inline form-group">
+      <div class="col-md-2"><label for="">输入赠送金额：</label> </div>
+      <div class="col-md-4">
+        <input type="number" class="form-control"  [(ngModel)]="iccardRechargemap.give" placeholder="赠送金额" />
+      </div>
+    </div>
+    <div class="row form-inline form-group">
+      <div class="col-md-2 text-center"><button class="btn btn-success " (click)="recharge()">充值</button> </div>
     </div>
   </nb-card-body>
-  <div class="height"></div>
-  <nb-card-body>
-    <button class="btn btn-success " (click)="recharge()">充值</button>
-  </nb-card-body>
+
 </nb-card>
 

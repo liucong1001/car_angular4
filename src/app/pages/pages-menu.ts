@@ -68,14 +68,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/ic-card/recharge-record',
       },
       {
-        title: '密码重置',
-        link: '/pages/ic-card/password-reset',
-      },
-      {
-        title: 'IC卡转账',
-        link: '/pages/ic-card/transfer-accounts',
-      },
-      {
         title: 'IC卡冲红',
         link: '/pages/ic-card/refund',
       },
@@ -193,6 +185,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
       {title: '市场配置', link: '/pages/system/market/market'},
       {title: '市场员工', link: '/pages/system/market/staff'},
       {title: '角色管理', link: '/pages/system/role'},
+      {title: '照片示例', link: '/pages/system/photo-example'},
     ],
   },
   {

@@ -14,12 +14,15 @@ import {RouterModule} from '@angular/router';
 import { RefundComponent } from './refund/refund.component';
 import { RechargeRecordComponent } from './recharge-record/recharge-record.component';
 import {UiModule} from '../../@core/ui/ui.module';
+import { RechargeCancelComponent } from './recharge-cancel/recharge-cancel.component';
+import { PasswordChangeComponent } from './password-change/password-change.component';
 // import Direction = L.Direction;
 
 export const components = [
   IcCardComponent,
   RechargeKeepComponent,
   RechargeRecordComponent,
+  RechargeCancelComponent,
   PasswordResetComponent,
   TransferAccountsComponent,
   RefundComponent,
@@ -43,6 +46,8 @@ export const components = [
     CardManageComponent,
     RefundComponent,
     RechargeRecordComponent,
+    RechargeCancelComponent,
+    PasswordChangeComponent,
   ],
 })
 export class IcCardModule { }

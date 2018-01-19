@@ -11,8 +11,8 @@
       <label class="form-control">{{merchant.name}}</label>
     </div>
     <div class="input-group">
-      <span class="input-group-addon">账户编号：</span>
-      <label class="form-control" >{{merchant.account.accountNo?merchant.account.accountNo:0}}</label>
+      <span class="input-group-addon">账户1编号：</span>
+      <label class="form-control" >{{merchant.account.accountNo==undefined?0:merchant.account.accountNo}}</label>
     </div>
 
     <div class="input-group">
