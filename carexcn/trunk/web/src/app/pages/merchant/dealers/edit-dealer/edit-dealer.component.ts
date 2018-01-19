@@ -121,7 +121,7 @@ export class EditDealerComponent implements OnInit {
    * @param photo
    */
   onChangeSource($event, photo) {
-    this.message.info(photo.title + ' 的新图片地址', $event);
+    // this.message.info(photo.title + ' 的新图片地址', $event);
   }
   goBack() {
     this.location.back();

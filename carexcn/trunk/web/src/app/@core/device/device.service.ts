@@ -3,6 +3,7 @@
  */
 import {Injectable, isDevMode} from '@angular/core';
 import {MessageService} from '../utils/message.service';
+import {UserService} from '../data/users.service';
 
 @Injectable()
 export class DeviceService {
@@ -14,25 +15,42 @@ export class DeviceService {
   opened = false;
   promiseMap = {};
   /**
-   * 所有设备服务对接口地址的统一调度
+   * 图片上传地址前缀
    * @type {string}
    */
   pre_api_url = location.protocol + '//' + location.host;
+  /**
+   * 图片访问地址前缀
+   * @type {string}
+   */
+  pre_access_url = location.protocol + '//' + location.host;
+  /**
+   * 图片临时访问地址前缀
+   * @type {string}
+   */
+  pre_access_url_tmp = location.protocol + '//' + location.host;
   public _message: MessageService;
   /**
    * 构造函数
    * 设备连接代理
    * 接口地址统一调度
    */
-  constructor(message: MessageService) {
+  constructor(
+    public userService: UserService,
+    message: MessageService,
+  ) {
     this._message = message;
     this.conectAgent();
-    if (isDevMode()) {
+    // if (isDevMode()) {
       // this.pre_api_url = 'https://dongshenghuo.com/test.php';
-      this.pre_api_url = 'http://localhost/rest/files/file?cloudUser=0001';
-      // 临时文件 /rest/files/file/temp?cloudUser=0001&filename=xxx.jpg
-      // 业务附件 /rest/files/file/{fileid}
-    }
+    this.pre_api_url = location.protocol + '//' + location.host +
+      '/rest/files/file?cloudUser=' +
+      this.userService.getCurrentLoginUser().cloudUser;
+    this.pre_access_url = '/rest/files/file/'; // 业务附件 /rest/files/file/{fileid}
+    this.pre_access_url_tmp = '/rest/files/file/temp?cloudUser=' +
+      this.userService.getCurrentLoginUser().cloudUser +
+      '&filename='; // 临时文件 /rest/files/file/temp?cloudUser=0001&filename=xxx.jpg
+    // }
   }
 
   /**
@@ -72,7 +90,11 @@ export class DeviceService {
                  * =====================================clh021@gmail.com ===== BEGIN
                  */
                 if ('Init' === result.method) {
-                  self.promiseMap[result.id].reject({Error: false, i: result.id, 'Message': '设备链接异常，请检查设备。'});
+                  self.promiseMap[result.id].reject({
+                    Error: false,
+                    i: result.id,
+                    'Message': '设备链接异常，请检查设备。',
+                  });
                   delete self.promiseMap[result.id];
                 }
                 /**
@@ -87,14 +109,14 @@ export class DeviceService {
             // $rootScope.$broadcast(result.Type, result);
           }
         } catch (err) {
-          console.log('无法解析的消息', err, e);
-          // console.log('无法解析的消息', e.data, e);
+          console.info('无法解析的消息', err, e);
+          // console.info('无法解析的消息', e.data, e);
         }
       }
-      console.log('message', e);
+      console.info('message', e);
     };
     this.ws.close = function () {
-      console.log('closed,reopening');
+      console.info('closed,reopening');
       this.opened = false;
       setTimeout(self.conectAgent, 5000);
     };
@@ -103,7 +125,7 @@ export class DeviceService {
       if ( undefined !== messageService) {
         messageService.error('设备链接超时', '请链接好设备并刷新页面。');
       }
-      console.log('error', e);
+      console.info('error', e);
       if (!self.opened) {
         setTimeout(self.conectAgent, 5000);
       }
@@ -143,7 +165,7 @@ export class DeviceService {
     }
 
     const str = JSON.stringify({id, plugin, method, args});
-    console.log('send', {id, plugin, method, args});
+    console.info('send', {id, plugin, method, args});
     this.ws.send(str);
   }
 

@@ -4,6 +4,7 @@ import {WebcamService} from '../../device/webcam.service';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {CameraModalComponent} from './camera-modal/camera-modal.component';
+import {DeviceService} from '../../device/device.service';
 
 @Component({
   selector: 'ngx-ys-camera',
@@ -39,6 +40,7 @@ export class CameraComponent implements OnInit, ControlValueAccessor {
     private message: MessageService,
     private webcam: WebcamService,
     private modalService: NgbModal,
+    private device: DeviceService,
   ) {
   }
 
@@ -78,15 +80,25 @@ export class CameraComponent implements OnInit, ControlValueAccessor {
   }
 
   /**
+   * 拿到图片后统一处理的事
+   * @param {string} file
+   */
+  afterGetFileName(file: string) {
+    /**
+     * 显示当前新图片
+     */
+    this.source = this.device.pre_access_url_tmp + file;
+    this._changeSource.emit(file);
+    this.registFunc(file);
+  }
+
+  /**
    * 拍照并自动上传
-   * 目前暂时只适配了开发环境[自己搭建的调试环境]
-   * TODO: 需要在后端完成时进一步适配线上环境，对接后端程序
    */
   paizhao() {
     this.message.info('摄像头', '拍照并上传');
     this.webcam.snapshot(false, 'a', 'b').then((res) => {
-      this.source = res.file[0];
-      this._changeSource.emit(res.file[0]);
+      this.afterGetFileName(res.file[0]);
     });
   }
   /**
@@ -94,8 +106,6 @@ export class CameraComponent implements OnInit, ControlValueAccessor {
    * @param source
    */
   onUploadComplete(source) {
-    this.source = source;
-    this.registFunc(source);
-    this._changeSource.emit(source);
+    this.afterGetFileName(source);
   }
 }

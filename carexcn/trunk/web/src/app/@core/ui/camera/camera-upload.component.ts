@@ -47,11 +47,17 @@ export class CameraUploadComponent implements OnInit {
    * TODO: 需要在后端完成时进一步适配线上环境，对接后端程序
    * @param {MessageService} message
    */
-  constructor(private message: MessageService) {
+  constructor(
+    private message: MessageService,
+  ) {
   }
   ngOnInit() {
   }
-
+  uploadBefore($event) {
+    // $event.xhr.open('POST', this.upload_url, true);
+    // $event.xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+    $event.xhr.setRequestHeader ('Accept', 'application/json');
+  }
   /**
    * 上传进度支持
    * @param $event
