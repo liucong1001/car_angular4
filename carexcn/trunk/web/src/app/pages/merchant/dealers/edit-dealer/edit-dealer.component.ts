@@ -8,6 +8,7 @@ import {Http} from '@angular/http';
 import {MerchantModel} from '../../../../@core/model/bussiness/merchant.model';
 import {Router, ActivatedRoute} from '@angular/router';
 import {ErrorMessage} from '../../../../@core/ui/valid-error/valid-error.component';
+import {UserService} from "../../../../@core/data/users.service";
 
 
 /**
@@ -32,6 +33,7 @@ export class EditDealerComponent implements OnInit {
     private location: Location,
     private fb: FormBuilder,
     private merchantService: MerchantService,
+    private userService: UserService,
   ) { }
   ngOnInit() {
     this.route.params.subscribe(p => {
@@ -151,7 +153,7 @@ export class EditDealerComponent implements OnInit {
       return false;
     } else {
       let merchant = this._formGroup.value as MerchantModel;
-      merchant.cloudUser = '0001'; // TODO: 设置登陆用户
+      merchant.cloudUser = this.userService.getCurrentLoginUser().cloudUser;
       // TODO: 以后在此处 MerchantForm 添加 photos 添加附件
       this.merchantService.update({ merchant: merchant} as MerchantForm).then(res => {
         this.message.success('修改成功', '修改商户成功');

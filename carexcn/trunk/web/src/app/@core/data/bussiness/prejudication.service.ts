@@ -1,23 +1,20 @@
 import {Injectable} from '@angular/core';
-import {Http} from '@angular/http';
 import {TradeForm} from '../../model/bussiness/trade/trade.form';
 import {ReviewForm} from '../../model/bussiness/review/review.form';
 import {SellerForm} from '../../model/bussiness/trade/seller.form';
 import {PreVehicleForm} from '../../model/bussiness/trade/preVehicle.form';
-import {AuthSessionToken} from '../security/auth-session-token';
-import {NbAuthService} from '@nebular/auth';
+import {Http} from '@angular/http';
+import {UserService} from '../users.service';
 import {MarketStaff} from '../../model/system/market-staff';
 
 @Injectable()
 export class PrejudicationService {
-  user: MarketStaff;
+  public currentUser: MarketStaff;
   constructor(
-    private authService: NbAuthService,
-    private http: Http,
+    public userService: UserService,
+    public http: Http,
   ) {
-    this.authService.onTokenChange().subscribe((token: AuthSessionToken) => {
-      this.user = token.getPayload();
-    });
+    this.currentUser = this.userService.getCurrentLoginUser();
   }
   private api_url_base = '/rest/business/trade/prejudication';
 
@@ -29,7 +26,7 @@ export class PrejudicationService {
    */
   public create(seller: SellerForm, preVehicle: PreVehicleForm): Promise<any> {
     return this.http.post(this.api_url_base, {
-      cloudUser: this.user.cloudUser,
+      cloudUser: this.currentUser.cloudUser,
       seller: seller,
       preVehicle: preVehicle,
     } as TradeForm).toPromise();
@@ -51,7 +48,7 @@ export class PrejudicationService {
    */
   public addCar(id: string, preVehicle: PreVehicleForm): Promise<any> {
     return this.http.post(this.api_url_base + '/' + id, {
-      cloudUser: this.user.cloudUser,
+      cloudUser: this.currentUser.cloudUser,
       preVehicle: preVehicle,
     } as TradeForm).toPromise();
   }
@@ -64,7 +61,7 @@ export class PrejudicationService {
   public review(id: string, tradeIds: Array<string>): Promise<any> {
     return this.http.put(this.api_url_base, {
       prejudication: {
-        cloudUser: this.user.cloudUser,
+        cloudUser: this.currentUser.cloudUser,
         id: id,
       },
       seller: {}, // TODO: seller.reviewPhotos

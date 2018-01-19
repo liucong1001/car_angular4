@@ -105,6 +105,7 @@ export class RecordingContinueComponent implements OnInit {
       this._message.info('查看车辆', trade.preVehicle.preVehicle.plateNumber);
     }
   }
+
   onSubmit() {
     console.info(this.trade);
     let preVehicle = this._formGroup.value.vehicle as PreVehicleModel;

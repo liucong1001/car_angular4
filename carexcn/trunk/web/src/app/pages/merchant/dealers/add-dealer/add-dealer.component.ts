@@ -8,6 +8,7 @@ import {Http} from '@angular/http';
 import {MerchantModel} from '../../../../@core/model/bussiness/merchant.model';
 import {Router} from '@angular/router';
 import {ErrorMessage} from '../../../../@core/ui/valid-error/valid-error.component';
+import {UserService} from "../../../../@core/data/users.service";
 
 
 /**
@@ -31,6 +32,7 @@ export class AddDealerComponent implements OnInit {
     private location: Location,
     private fb: FormBuilder,
     private merchantService: MerchantService,
+    private userService: UserService,
   ) { }
 
   ngOnInit() {
@@ -129,7 +131,7 @@ export class AddDealerComponent implements OnInit {
       return false;
     } else {
       let merchant = this._formGroup.value as MerchantModel;
-      merchant.cloudUser = '0001'; // TODO: 设置登陆用户
+      merchant.cloudUser = this.userService.getCurrentLoginUser().cloudUser;
       // TODO: 以后在此处 MerchantForm 添加 photos 添加附件
       this.merchantService.add({ merchant: merchant} as MerchantForm).then(res => {
         this.message.success('创建成功', '创建商户成功');
