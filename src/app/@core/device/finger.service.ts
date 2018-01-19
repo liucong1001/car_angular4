@@ -23,7 +23,7 @@ export class FingerService {
         resolve(JSON.parse(result));
       }, function (error) {
         reject(error);
-        console.log(error_message, error);
+        console.info(error_message, error);
       });
     });
   }
