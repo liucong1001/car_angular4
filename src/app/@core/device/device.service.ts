@@ -30,6 +30,8 @@ export class DeviceService {
     if (isDevMode()) {
       // this.pre_api_url = 'https://dongshenghuo.com/test.php';
       this.pre_api_url = 'http://localhost/rest/files/file?cloudUser=0001';
+      // 临时文件 /rest/files/file/temp?cloudUser=0001&filename=xxx.jpg
+      // 业务附件 /rest/files/file/{fileid}
     }
   }
 

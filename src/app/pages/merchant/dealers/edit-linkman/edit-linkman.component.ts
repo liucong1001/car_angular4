@@ -11,6 +11,7 @@ import {FilingInfoModel} from '../../../../@core/model/bussiness/filing.info.mod
 import {FilingInfoForm} from '../../../../@core/model/bussiness/filing.info.form';
 import {FilingPersonModel} from '../../../../@core/model/bussiness/filing.person.model';
 import {ErrorMessage} from '../../../../@core/ui/valid-error/valid-error.component';
+import {UserService} from "../../../../@core/data/users.service";
 
 @Component({
   selector: 'ngx-edit-linkman',
@@ -98,6 +99,7 @@ export class EditLinkmanComponent implements OnInit {
     private location: Location,
     private merchantService: MerchantService,
     private filingService: FilingService,
+    private userService: UserService,
   ) { }
 
   ngOnInit() {
@@ -135,7 +137,7 @@ export class EditLinkmanComponent implements OnInit {
         certCode: this._formGroup.value.certCode,
         type: this._filinginfo.filingPerson.type,
       } as FilingPersonModel;
-      filinginfo.cloudUser = '0001'; // TODO: 设置登陆用户
+      filinginfo.cloudUser = this.userService.getCurrentLoginUser().cloudUser;
       filinginfo.merchant = this._merchant;
       // TODO: 以后在此处 MerchantForm 添加 photos 添加附件
       this.filingService.update({filingInfo: filinginfo} as FilingInfoForm).then(res => {
