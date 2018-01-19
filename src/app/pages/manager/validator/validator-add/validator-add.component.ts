@@ -5,6 +5,8 @@ import {ErrorMessage} from '../../../../@core/ui/valid-error/valid-error.compone
 import 'codemirror/lib/codemirror';
 import 'codemirror/mode/javascript/javascript';
 import {MessageService} from '../../../../@core/utils/message.service';
+import {MarketService} from '../../../../@core/data/system/market.service';
+import {Marketmap} from "../../../../@core/model/system/marketmap";
 
 @Component({
   selector: 'ngx-validator-add',
@@ -13,15 +15,21 @@ import {MessageService} from '../../../../@core/utils/message.service';
 })
 export class ValidatorAddComponent implements OnInit {
 
-  constructor(private validatorService: ValidatorService, private fb: FormBuilder, private message: MessageService) { }
+  constructor(private validatorService: ValidatorService, private fb: FormBuilder,
+              private message: MessageService, private marketService: MarketService) { }
 
   ngOnInit() {
+    this.marketService.getAllMarketList().then(markets => {
+      this.markets = markets;
+    });
   }
 
+  markets: Marketmap[] = [];
+
   form = this.fb.group({
+    cloudUser: [''],
     code: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(32)]],
     name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(32)]],
-    group: ['', [Validators.required]],
     script: ['//TODO: 完成数据检查代码', [Validators.required]],
   });
 

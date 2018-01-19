@@ -16,7 +16,6 @@ import {Codeitem} from '../../../@core/model/system/codeitem';
 @Component({
   selector: 'ngx-code-edit',
   templateUrl: 'code-edit.component.html',
-  providers: [MarketService, MessageService],
 })
 export class CodeEditComponent implements OnInit {
   /**
@@ -32,9 +31,9 @@ export class CodeEditComponent implements OnInit {
       this.filter.codemap = val;
       this.itemList.reload();
     });
-    this.marketService.getAllMarketList().then(res =>{
+    this.marketService.getAllMarketList().then(res => {
       this.marketList = res;
-    })
+    });
   }
 
   /**
@@ -44,7 +43,8 @@ export class CodeEditComponent implements OnInit {
    * @param {FormBuilder} fb 表单工厂服务
    * @param {ActivatedRoute} route 当前路由服务
    */
-  constructor(private codeService: CodeService, private marketService:MarketService, private message: MessageService, private fb: FormBuilder, private route: ActivatedRoute) {
+  constructor(private codeService: CodeService, private marketService: MarketService, private message: MessageService,
+              private fb: FormBuilder, private route: ActivatedRoute) {
     this.route.params.subscribe(p => {
       if (p.code && p.name) {
         this.form.setValue(p);
@@ -80,7 +80,6 @@ export class CodeEditComponent implements OnInit {
       return false;
     }
     const codemap = this.form.value as Codemap;
-    console.log('代码集', codemap);
     this.codeService.save(codemap).then(res => {
       this.message.success('保存成功', '代码集保存成功');
       this.saved = true;

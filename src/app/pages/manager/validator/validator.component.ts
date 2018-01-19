@@ -3,8 +3,10 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 import {TextCell} from '../../../@core/ui/table/cell.text.component';
 import {Menu, MenuCell} from '../../../@core/ui/table/cell.menu.component';
 import {Column} from '../../../@core/ui/table/table.component';
-import {CodemapCell} from '../../../@core/ui/table/cell';
+import {CodemapCell, DictCell} from '../../../@core/ui/table/cell';
 import {ActivatedRoute, Route, Router} from "@angular/router";
+import {MarketService} from "../../../@core/data/system/market.service";
+import {forEach} from "@angular/router/src/utils/collection";
 
 @Component({
   selector: 'ngx-validator',
@@ -23,7 +25,7 @@ import {ActivatedRoute, Route, Router} from "@angular/router";
 })
 export class ValidatorComponent implements OnInit {
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  constructor(private router: Router, private route: ActivatedRoute, private marketService: MarketService) { }
 
   visibility = 'hidden';
   showFilter = false;
@@ -33,7 +35,15 @@ export class ValidatorComponent implements OnInit {
     this.visibility = this.showFilter ? 'shown' : 'hidden';
   }
 
+  markets = []
+  marketMap = {}
   ngOnInit() {
+    this.marketService.getAllMarketList().then(markets => {
+      this.markets = markets;
+      for (let m of this.markets) {
+        this.marketMap[m.code] = m.name;
+      }
+    });
   }
 
   filter: any = {};
@@ -41,7 +51,7 @@ export class ValidatorComponent implements OnInit {
   columns: Column[] = [
     {title: '编号', titleClass: '', cell: new TextCell('code')} as Column,
     {title: '名称', titleClass: '', cell: new TextCell('name')} as Column,
-    {title: '分类', titleClass: '', cell: new CodemapCell('group', 'validatorGroup')} as Column,
+    {title: '市场', titleClass: '', cell: new DictCell('cloudUser', this.marketMap)} as Column,
     {title: '操作', titleClass: 'w-25 text-center', cell: new MenuCell(
         [
           // new Menu('编辑', '', 'edit'),

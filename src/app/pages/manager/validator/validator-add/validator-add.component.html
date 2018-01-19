@@ -11,14 +11,16 @@
       <div class="row">
         <div class="col-md-4">
           <div class="form-group">
+            <ngx-select [control]="form.get('cloudUser')" label="市场" [items]="markets" textField="name" valueField="code" defautOptionText="公用"></ngx-select>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
             <ngx-input [control]="form.get('code')" label="编号" [errors]="errors.code"></ngx-input>
           </div>
         </div>
         <div class="col-md-4">
           <ngx-input [control]="form.get('name')" label="名称" [errors]="errors.name"></ngx-input>
-        </div>
-        <div class="col-md-4">
-          <ngx-select [control]="form.get('group')" label="分组" [errors]="errors.group" codemap="validatorGroup"></ngx-select>
         </div>
       </div>
       <div class="row">
