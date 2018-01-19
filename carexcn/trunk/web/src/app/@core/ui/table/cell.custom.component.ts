@@ -2,12 +2,13 @@ import {
   Component, Input, OnInit, TemplateRef, ViewChild,
   ViewContainerRef,
 } from '@angular/core';
-import {CellComponent, CustomCell, CustomCellData} from './cell';
+import {CellComponent, CustomCell } from './cell';
 
 @Component({
   selector: 'ngx-custom-cell',
   template: `
     <div #customCell></div>
+    <ng-template #dictCell let-data let-cell="cell">{{cell.dict[cell.property | getProperty: data]}}</ng-template>
     <ng-template #codemapCell let-data let-cell="cell">{{cell.property | getProperty: data | code_trans:cell.codemap | async}}</ng-template>
   `,
 })
@@ -23,10 +24,13 @@ export class CustomCellComponent extends CellComponent implements OnInit {
 
   @ViewChild('codemapCell')
   private codemapCell: TemplateRef<any>;
+  @ViewChild('dictCell')
+  private dictCell: TemplateRef<any>;
 
   ngOnInit(): void {
     const templateMap = {
       codemapCell: this.codemapCell,
+      dictCell: this.dictCell,
     };
     if (this.cell.template) {
       if (typeof this.cell.template === 'string') {

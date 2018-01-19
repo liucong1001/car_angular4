@@ -4,6 +4,12 @@
     <ng-container *ngIf="codemap">
       <ngx-ys-codeitem-droplist  [ngxErrorClass]="control" [formControl]="control" [codeMap]="codemap"></ngx-ys-codeitem-droplist>
     </ng-container>
+    <ng-container *ngIf="textField">
+      <select class="form-control" [ngxErrorClass]="control" [formControl]="control">
+        <option [value]="defautOptionValue">{{defautOptionText}}</option>
+        <option [value]="item[valueField]" *ngFor="let item of items">{{item[textField]}}</option>
+      </select>
+    </ng-container>
   </div>
 </div>
 <ngx-valid-error [errors]="errors" [control]="control"></ngx-valid-error>

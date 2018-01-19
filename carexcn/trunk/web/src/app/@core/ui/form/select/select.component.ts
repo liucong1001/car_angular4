@@ -7,7 +7,6 @@ import {BaseFormControl} from '../base-form-control';
   styleUrls: ['./select.component.scss'],
 })
 export class SelectComponent extends BaseFormControl implements OnInit {
-
   constructor() {
     super();
   }
@@ -16,4 +15,9 @@ export class SelectComponent extends BaseFormControl implements OnInit {
   }
 
   @Input() codemap: string;
+  @Input() items: any[];
+  @Input() textField: string;
+  @Input() valueField: string;
+  @Input() defautOptionText = '无';
+  @Input() defautOptionValue = '';
 }

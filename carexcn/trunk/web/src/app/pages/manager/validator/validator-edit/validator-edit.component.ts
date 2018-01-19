@@ -4,6 +4,7 @@ import {FormBuilder, Validators} from '@angular/forms';
 import {ValidatorService} from '../../../../@core/data/system/validator.service';
 import {ErrorMessage} from '../../../../@core/ui/valid-error/valid-error.component';
 import {ActivatedRoute} from '@angular/router';
+import {MarketService} from '../../../../@core/data/system/market.service';
 
 @Component({
   selector: 'ngx-validator-edit',
@@ -13,13 +14,18 @@ import {ActivatedRoute} from '@angular/router';
 export class ValidatorEditComponent implements OnInit {
 
   constructor(private validatorService: ValidatorService, private fb: FormBuilder,
-              private message: MessageService, private route: ActivatedRoute) {
+              private message: MessageService, private route: ActivatedRoute,
+              private marketService: MarketService) {
   }
+  markets = [];
 
   ngOnInit() {
     this.route.params.subscribe(p => {
       this.validatorService.get(p.id).then(v => {
         this.form.setValue(v);
+      });
+      this.marketService.getAllMarketList().then(markets => {
+        this.markets = markets;
       });
     });
   }
@@ -29,7 +35,6 @@ export class ValidatorEditComponent implements OnInit {
     cloudUser: [''],
     code: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(32)]],
     name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(32)]],
-    group: ['', [Validators.required]],
     script: ['', [Validators.required]],
   });
 
@@ -43,9 +48,6 @@ export class ValidatorEditComponent implements OnInit {
       new ErrorMessage('required', '必须填写名称'),
       new ErrorMessage('minlength', '名称过短'),
       new ErrorMessage('maxlength', '名称过长'),
-    ],
-    group: [
-      new ErrorMessage('required', '必须选择一个分类'),
     ],
     script: [
       new ErrorMessage('required', '必须填写校验脚本'),

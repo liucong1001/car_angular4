@@ -42,3 +42,12 @@ export class CodemapCell extends CustomCell {
     super('codemapCell', cellClass);
   }
 }
+
+/**
+ * 字典单元格
+ */
+export class DictCell extends CustomCell {
+  constructor(public property, public dict: any, cellClass?: string) {
+    super('dictCell', cellClass);
+  }
+}
