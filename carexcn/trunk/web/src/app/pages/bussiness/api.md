@@ -7,7 +7,12 @@
     certificateCode  证件类型代码集
     formName  表单名称
   
+  /rest/business/trade/check GET
+  plateNumber
+  filingInfoId 代办人唯一标识 filingInfoId
   
+  返回
+  返回空则正常通过，否则异常，拍卖fillinfo，price
   
   
   tradeform

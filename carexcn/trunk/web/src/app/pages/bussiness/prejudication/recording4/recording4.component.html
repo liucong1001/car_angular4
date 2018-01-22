@@ -23,15 +23,15 @@
     </div>
     <div class="input-group">
       <div class="input-group">
-        <span class="input-group-addon">代办联系人</span>
+        <span class="input-group-addon">代办人</span>
         <select class="form-control" [disabled]="true" [(ngModel)]="linkman" (change)="linkmanSelecteFunc()" [compareWith]="linkmanCompareWithFunc">
           <option value="">--请选择--</option>
           <option *ngFor="let linkmanitem of linkManData" [ngValue]="linkmanitem">{{linkmanitem.name}}</option>
         </select>
       </div>
       <div class="input-group">
-        <span class="input-group-addon">联系人手机</span>
-        <input class="form-control" placeholder="请先选择商户和联系人" type="text"  [disabled]="true" [value]="linkmanSelected.phone || null "/>
+        <span class="input-group-addon">代办人手机</span>
+        <input class="form-control" placeholder="请先选择商户和代办人" type="text"  [disabled]="true" [value]="linkmanSelected.phone || null "/>
       </div>
     </div>
   </nb-card-body>
