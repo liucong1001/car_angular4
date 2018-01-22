@@ -63,7 +63,7 @@ export class MarketService {
    * @returns {Promise<TResult2|TResult1>}
    */
 
-  public getAllMarketList():Promise<any>{
+  public getAllMarketList(): Promise<any> {
     const url = `${this.path}/list`;
     return  this.http.get(url).toPromise().then(function(res){
         return res.json();
@@ -152,9 +152,9 @@ export class MarketService {
    * @param model
    * @returns {Promise<TResult2|TResult1>}
    */
-  public getBusiness(model){
+  public getBusiness(model) {
     const url = `${this.path}/photo/config/business`;
-    return this.http.post(url,model).toPromise().then(res => res.json());
+    return this.http.post(url, model).toPromise().then(res => res.json());
   }
 
   /**
