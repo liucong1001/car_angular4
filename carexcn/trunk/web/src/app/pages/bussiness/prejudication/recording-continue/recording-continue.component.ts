@@ -140,8 +140,12 @@ export class RecordingContinueComponent implements OnInit {
   getTradeListByArchiveNoComponent(tradeList) {
     this.tradeList = tradeList;
   }
+  test() {
+    console.info('test');
+  }
   /**
    * 检查并输出表单组包含的错误
+   * eg: getFormValidationErrors(_formGroup)
    * @param {FormGroup} _formGroup
    */
   getFormValidationErrors(_formGroup: FormGroup) {

@@ -1,4 +1,15 @@
 ```
+
+  照片证件类型接口  /rest/sys/market/photo/config/photo/ POST
+  marketphoto
+    isApp  0 0:pc
+    business  业务类型  01 预审  02 过户
+    certificateCode  证件类型代码集
+    formName  表单名称
+  
+  
+  
+  
   tradeform
     clouduser	 [所有情况必须]
     archiveNo				车辆流水号    [预审后的过户操作必须][修改必须]
@@ -155,6 +166,5 @@
           reason 打回原因
           photoCodes 退回照片类型代码表
               <string>  eg:'01,03,05'照片类型01的照片被打回
-
 
 ```

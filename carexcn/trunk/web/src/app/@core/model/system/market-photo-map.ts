@@ -3,62 +3,62 @@
  */
 export  class Marketphotomap {
 
-  public id: string;
+  public id?: string;
 
-  public isApp :string;
+  public isApp?: string;
   /**
    * 名称
    */
-  public name: string;
+  public name?: string;
   /**
    * 代号
    */
-  public  cloudUser:string;
+  public  cloudUser?: string;
   /**
    * 备注
    */
-  public  memo:string;
+  public  memo?: string;
   /**
    * 证件类型代码集
    */
-  public certificateCode:string;
+  public certificateCode?: string;
   /**
    * 照片类型
    */
-  public  photoType:string;
+  public  photoType?: string;
 
   /**
    * 拍摄张数
    */
-  public photoCode:number;
+  public photoCode?: number;
   /**
    * 选择状态
    */
-  public status:string;
+  public status?: string;
   /**
    * 最大张数
    */
-  public  max:number;
+  public  max?: number;
   /**
    * 最小张数
    */
-  public  min:number;
+  public  min?: number;
   /**
    * 拍照顺序
    */
-  public sort: string;
+  public sort?: string;
   /**
    * 业务类型
    */
-  public business: string;
+  public business?: string;
   /**
    * 表单名称
    */
-  public formName: string;
+  public formName?: string;
   /**
    * 市场
    */
-  public  market: {
+  public  market?: {
     id: string;
     name: string;
  };
