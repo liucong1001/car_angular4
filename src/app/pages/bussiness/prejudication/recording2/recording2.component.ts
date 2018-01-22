@@ -7,8 +7,7 @@ import {LocalstorageService} from '../../../../@core/cache/localstorage.service'
 import {CodeService} from '../../../../@core/data/system/code.service';
 import {CodeitemService} from '../../../../@core/data/system/codeitem.service';
 import {Codeitem} from '../../../../@core/model/system/codeitem';
-import {FormBuilder, FormControl, FormGroup, ValidationErrors, Validators} from '@angular/forms';
-import {ErrorMessage} from '../../../../@core/ui/valid-error/valid-error.component';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 /**
  * 预审录入2--接口与页面的交互逻辑
@@ -68,6 +67,10 @@ export class Recording2Component implements OnInit, OnDestroy {
      * @type {string}
      */
     this._localstorage.prefix = 'bussiness_prejudication_recording';
+  }
+
+  test() {
+    console.info('aaaa');
   }
 
   /**
