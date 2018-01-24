@@ -4,7 +4,7 @@ import {TransferCitymap} from '../../model/system/transferCitymap';
 
 @Injectable()
 export class TransferCityService {
-  private path = '/rest/common/vehicle/management';
+  private path = '/rest/manager/vehicle/management';
   constructor(private http: Http) {
   }
 
