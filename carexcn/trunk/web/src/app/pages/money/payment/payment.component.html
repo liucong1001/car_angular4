@@ -1,58 +1,62 @@
 <nb-card>
   <nb-card-header class="d-flex">
-    <div class="p-2 mr-auto">缴费支付</div>
-    <!--<div class="p2">
-      &lt;!&ndash;<a [routerLink]="'edit'" class="btn btn-primary btn-sm">新增</a>&ndash;&gt;
-      &lt;!&ndash;<button type="button" class="btn btn-sm btn-outline-success" (click)="toggle()" [ngClass]="{'active':showFilter}" ><i class="ion-funnel"></i></button>&ndash;&gt;
-    </div>-->
+    <div class="p-2 mr-auto">创建订单</div>
   </nb-card-header>
-  <nb-card-header class="d-flex">
-    <div class="input-group input-group-sm reader">
-      <input type="text" placeholder="扫描流水或输入流水按回车" class="form-control"/>
-    </div>
-  </nb-card-header>
-  <nb-card-body>
-    <form [@visibilityChanged]="visibility" (submit)="codeList.reload()">
-      <div class="row">
-        <div class="col-sm-4">
-          <div class="form-group form-group-sm">
-            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="代码集 - 模糊搜索"/>
-          </div>
+
+  <nb-card-body style="min-height: 800px">
+       <div class="row ">
+           <div class="col-md-3 ">
+             <div class="form-group has-feedback">
+               <input type="text" class="form-control" placeholder="流水号" [(ngModel)]="archiveNo"  (ngModelChange)="archiveNoChange($event)"/>
+               <i class="icon icon-search form-control-feedback"></i>
+             </div>
+           </div>
+            <div class="col-md-3">
+              <!--optionLabel="name"-->
+              <p-multiSelect [options]="costList" [(ngModel)]="selectedCost" styleClass="multiSelect" optionLabel="name"
+                             [panelStyle]="{minWidth:'20em'}" filterPlaceHolder="请选择业务费用" onChange="costChange(selectedCost)"	>
+              </p-multiSelect>
+            </div>
+            <div class="col-md-2"><input type="text" placeholder="请输入收费金额" class="form-control"> </div>
+           <!--<div class="col-md-1"> <button class="btn btn-sm btn-success" (click)="search(archiveNo)">查询</button> </div>-->
+         <div class="col-md-1"> <button class="btn btn-sm btn-success" (click)="createTable()">创建</button> </div>
+       </div>
+      <hr>
+        <div class="row text-center">
+
+          <table class="table table-striped  border" width="80%">
+             <thead>
+               <tr>
+                  <th>流水号</th>
+                  <!--<th>车牌号</th>-->
+                  <th>费用名称</th>
+                  <th>费用</th>
+                  <th>商户</th>
+                  <th>编辑</th>
+               </tr>
+             </thead>
+             <tbody>
+               <ng-container *ngFor="let item of list ">
+                 <tr *ngFor="let son of item.items">
+                     <td>{{son.archiveNo}}</td>
+                     <!--<td></td>-->
+                     <td>{{son.feeType}}</td>
+                     <td>{{ son.shouldAmount}}</td>
+                     <td>{{son.accountName}}</td>
+                     <td></td>
+
+                 </tr>
+               </ng-container>
+             </tbody>
+            <tfoot>
+            </tfoot>
+          </table>
         </div>
-        <!--<div class="col-sm-4">
-          <div class="form-group form-group-sm">
-            <input class="form-control" [(ngModel)]="filter.name" name="name" type="text" placeholder="描述 - 模糊搜索"/>
-          </div>
-        </div>
-        <div class="col-sm-2">
-          <button type="submit" class="btn btn btn-primary btn-block">搜索</button>
-        </div>
-        <div class="col-sm-2">
-          <button type="reset" class="btn btn-outline-primary btn-block">重置</button>
-        </div>-->
+      <div class="row ">
+        <div class="col-md-10"></div>
+        <div class="col-md-1"><button class="btn btn-success btn-sm " (click)="creatOrder()">创建订单</button></div>
+        <div class="col-md-1"><button class="btn btn-warning btn-sm">审批</button></div>
       </div>
-    </form>
-    <div class="height"></div>
 
-    <!--<ngx-table #codeList [url]="'/rest/sys/codemap/pager'" [columns]="columns" [filter]="filter"></ngx-table>-->
-  </nb-card-body>
-  <nb-card-header>订单详情</nb-card-header>
-  <nb-card-body>
-    <table border="1">
-      <!--<tr><th colspan="7">消费报表</th></tr>-->
-      <tr>
-        <td>发票号</td>
-        <td>车牌号</td>
-        <td>流水号</td>
-        <td>类型</td>
-        <td>手续费</td>
-        <td>开票时间</td>
-      </tr>
-
-    </table>
-  </nb-card-body>
-  <div class="height"></div>
-  <nb-card-body>
-    <button class="btn btn-success right">提交</button>
   </nb-card-body>
 </nb-card>

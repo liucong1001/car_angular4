@@ -3,7 +3,7 @@ export  class changePasswordModel {
 
       public  cloudUser:string;
 
-      public  icCardNO:string;
+      public  icCardNo:string;
 
       public oldPassWord:string;
   /**

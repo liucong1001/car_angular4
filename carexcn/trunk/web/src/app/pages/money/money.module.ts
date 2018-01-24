@@ -10,6 +10,9 @@ import {UiTableModule} from '../../@core/ui/table/table.module';
 import {HttpModule} from '@angular/http';
 import {RouterModule} from '@angular/router';
 import {UiModule} from '../../@core/ui/ui.module';
+import {MultiSelectModule} from 'primeng/primeng';
+// import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown';
+
 
 @NgModule({
   imports: [
@@ -20,6 +23,9 @@ import {UiModule} from '../../@core/ui/ui.module';
     HttpModule,
     RouterModule,
     UiModule, /*ngx-ys-calendar标签*/
+    MultiSelectModule,
+    // AngularMultiSelectModule
+
   ],
   declarations: [
     ...routedComponents,

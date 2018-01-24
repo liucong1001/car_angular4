@@ -16,6 +16,10 @@ export class PasswordChangeComponent implements OnInit {
 
    changePasswordModel=  new changePasswordModel();
    public iccardData = new IccardModel('云石科技', '0001', 18);
+   //控制页面提示消息
+   oldPwd = false;
+   newPwd = false;
+   reNewPwd = false;
 
   constructor(private IcCardOperationService: IcCardOperationService,  public router: Router,
               private route: ActivatedRoute, private message: MessageService,private iccard: IccardService) { }
@@ -23,7 +27,7 @@ export class PasswordChangeComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(p => {
       if (p.icCardNo) {
-       this.changePasswordModel.icCardNO = p.icCardNo;
+       this.changePasswordModel.icCardNo = p.icCardNo;
       }
     });
     this.changePasswordModel.cloudUser = '0001';
@@ -39,7 +43,6 @@ export class PasswordChangeComponent implements OnInit {
       }).catch(err =>{
         this.message.error('',err.jsson.message);
       })
-
   }
 
 
@@ -64,6 +67,7 @@ export class PasswordChangeComponent implements OnInit {
   changePassword(){
     console.log('修改密码ing');
     this.iccard.playSound(13);/*请输入旧密码*/
+    this. oldPwd = true;this. newPwd = false;this. reNewPwd = false;
     this.iccard.getPassword().then(oldpwd =>{
       console.log('输入旧密码',oldpwd);
       this.changePasswordModel.oldPassWord = oldpwd;
@@ -72,6 +76,7 @@ export class PasswordChangeComponent implements OnInit {
         this.iccard.showText("密码错误");
       }else {
         this.iccard.playSound(12); /*请输入新密码 */
+        this. oldPwd = false;this. newPwd = true;this. reNewPwd = false;
         this.iccard.getPassword().then(newpwd =>{
           console.log('新的密码',newpwd);
           this.changePasswordModel.newPassWord = newpwd;
@@ -80,12 +85,18 @@ export class PasswordChangeComponent implements OnInit {
             this.iccard.showText("密码错误");
           }else {
             this.iccard.playSound(14);/*请确认新密码*/
+            this. oldPwd = false;this. newPwd = false;this. reNewPwd = true;
             this.iccard.getPassword().then(reNewPwd =>{
               this.changePasswordModel.reNewPassword =  reNewPwd;
                this.IcCardOperationService.iccardChange(this.changePasswordModel).then(res=>{
                  this.message.success('修改密码成功!','');
+                 this.changePasswordModel.oldPassWord = '';
+                 this.changePasswordModel.newPassWord = '';
+                 this.changePasswordModel.reNewPassword = '';
+                 this. oldPwd = false;this. newPwd = false;this. reNewPwd = false;
                }).catch(err=>{
                  this.message.error('',err.json().message);
+                 this. oldPwd = false;this. newPwd = false;this. reNewPwd = false;
                })
             })
           }

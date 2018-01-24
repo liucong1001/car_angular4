@@ -16,6 +16,7 @@ export class RechargeKeepComponent implements OnInit {
 
   // 组件初始华
   ngOnInit() {
+    this.iccardInit();
 
     this.getCardData = {
       icAccount:{
@@ -25,7 +26,6 @@ export class RechargeKeepComponent implements OnInit {
         }
       }
     };
-
     this.iccardRechargemap = {
            icCardNo:null,
            give:null,
@@ -42,6 +42,20 @@ export class RechargeKeepComponent implements OnInit {
   public  iccardRechargemap = new IcCardRechargemap();
   public  getCardData = new icCardData();
 
+  ngDoCheck(){
+     // this.readIccard();
+  }
+
+  /**
+   * ic卡初始化
+   */
+  iccardInit(){
+    this.iccard.writerInit(this.iccardData.market, this.iccardData.maker, this.iccardData.txnSlot).then( res =>{
+      this.message.success('','ic卡初始化完成!');
+    }).catch(err =>{
+      this.message.error('',err.jsson.message);
+    })
+  }
   /**
    * IC卡文本写入
    */
@@ -110,6 +124,8 @@ export class RechargeKeepComponent implements OnInit {
       this.message.error('IC卡连接失败！', '设备或IC卡不正常或连接有误。');
     });
   }
+
+
   getInfo(){
      if(this.icCardInfo.CardNumber&&this.icCardInfo.CardNumber!=null){
           console.log("检测到卡号",this.icCardInfo.CardNumber);
@@ -130,13 +146,19 @@ export class RechargeKeepComponent implements OnInit {
 
   }
 
+  /**
+   * ic卡充值
+   */
   recharge(){
-
     this.iccardRechargemap.icCardNo = this.icCardInfo.CardNumber;
     this.iccardRechargemap.amount =  this.iccardRechargemap.give + this.iccardRechargemap.recharge;
     console.log("充值对象",this.iccardRechargemap);
         this.IcCardOperationService.recharge(this.iccardRechargemap).then(res =>{
           this.message.success('恭喜你', '充值成功！');
+          this.iccard.showText('充值金额:'+this.iccardRechargemap.recharge+'\n赠送金额:'+this.iccardRechargemap.give);
+          this.iccardRechargemap.recharge = null;
+          this.iccardRechargemap.give = null;
+          this.readIccard();
         }).catch(err=>{
           this.message.error('充值失败',err.json().message);
         })

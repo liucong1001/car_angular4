@@ -52,9 +52,10 @@
         </div>
       </div>
     </form>
-    <ngx-table #codeList [url]="'/rest/sys/codemap/pager'" [columns]="columns" [filter]="filter"></ngx-table>
+    <ngx-table #codeList [url]="'/rest/pay/payorder/pager'" [columns]="columns" [filter]="filter"></ngx-table>
   </nb-card-body>
   <nb-card-body>
     <button class="btn btn-primary" (click)="viewpage()">查看</button>
   </nb-card-body>
 </nb-card>
+<ng-template #createTimeCell  let-data let-cell="cell"><span >{{data.createTime | date:"yyyy-MM-dd HH:mm:ss"}}</span></ng-template>

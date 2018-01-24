@@ -1,9 +1,10 @@
-import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, OnChanges, OnInit, SimpleChanges,TemplateRef,ViewChild } from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {Column} from '../../../@core/ui/table/table.component';
 import {TextCell} from '../../../@core/ui/table/cell.text.component';
 import {Menu, MenuCell} from '../../../@core/ui/table/cell.menu.component';
 import {Router} from '@angular/router';
+import {CodemapCell, CustomCell} from '../../../@core/ui/table/cell';
 
 @Component({
   selector: 'ngx-order-manage',
@@ -27,7 +28,7 @@ import {Router} from '@angular/router';
   ],
 })
 export class OrderManageComponent implements OnInit, OnChanges {
-
+  @ViewChild('createTimeCell') private createTimeCell: TemplateRef<any>;
   constructor(private router: Router) {
   }
 
@@ -52,11 +53,12 @@ export class OrderManageComponent implements OnInit, OnChanges {
   filter: any = {};
   // 列表列定义
   columns: Column[] = [
-    {title: '订单号', titleClass: 'w-25 text-center', cell: new TextCell('code')} as Column,
-    {title: '金额', titleClass: 'w-10 text-center', cell: new TextCell('name')} as Column,
+    {title: '订单号', titleClass: 'w-25 text-center', cell: new TextCell('id')} as Column,
+    {title: '实收金额', titleClass: 'w-10 text-center', cell: new TextCell('actualAmount')} as Column,
+    {title: '应收金额', titleClass: 'w-10 text-center', cell: new TextCell('shouldAmount')} as Column,
     {title: '业务类型', titleClass: 'w-15 text-center', cell: new TextCell('name')} as Column,
-    {title: '状态', titleClass: 'w-10 text-center', cell: new TextCell('name')} as Column,
-    {title: '创建时间', titleClass: 'w-20 text-center', cell: new TextCell('name')} as Column,
+    {title: '状态', titleClass: 'w-10 text-center', cell: new TextCell('complete')} as Column,
+    {title: '创建时间', titleClass: 'w-20 text-center', cell: new CustomCell(this.createTimeCell)} as Column,
     {
       title: '', titleClass: 'w-15 text-center', cell: new MenuCell(
         [
