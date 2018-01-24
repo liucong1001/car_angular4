@@ -7,7 +7,7 @@ import {Marketphotomap} from './../../model/system/market-photo-map';
 
 @Injectable()
 export class MarketService {
-  private path = '/rest/sys/market';
+  private path = '/rest/manager/market';
   constructor(private http: Http) {
   }
 

@@ -39,8 +39,8 @@ export class MarketStaffComponent implements OnInit {
     this.visibility = this.showFilter ? 'shown' : 'hidden';
   }
   filter: any = {};
-
-  @ViewChild('statusCell') private statusCell: TemplateRef<any>;
+  private
+  @ViewChild('statusCell')  statusCell: TemplateRef<any>;
 
   columns: Column[];
   ngOnInit() {

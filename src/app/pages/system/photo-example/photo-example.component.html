@@ -33,4 +33,4 @@
     <ngx-table #staffList [url]="'/rest/common/photo/example/pager'" [columns]="columns" [filter]="filter"></ngx-table>
   </nb-card-body>
 </nb-card>
-<!--<ng-template #statusCell let-data let-cell="cell"><a href="javascript:void(0)" (click)="changeStatus(data)">{{data?.status | code_trans:'userStatus' | async}}</a></ng-template>-->
+<ng-template #createTimeCell  let-data let-cell="cell"><span >{{data.createTime | date:"yyyy-MM-dd HH:mm:ss"}}</span></ng-template>

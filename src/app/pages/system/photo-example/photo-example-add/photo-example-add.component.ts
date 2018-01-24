@@ -18,6 +18,11 @@ export class PhotoExampleAddComponent implements OnInit {
   ngOnInit() {
   }
 
+  photos: any[] = [{
+    title: '示例照片',
+    source: 'assets/images/camera1.jpg',
+  }];
+
   /**
    * 表单定义
    * @type {FormGroup}
@@ -30,6 +35,15 @@ export class PhotoExampleAddComponent implements OnInit {
     }),
 
   });
+
+  /**
+   * 新的图片地址事件
+   * @param $event
+   * @param photo
+   */
+  onChangeSource($event, photo) {
+    this.message.info(photo.title + ' 的新图片地址', $event);
+  }
 
 
   save() {

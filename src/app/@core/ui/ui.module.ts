@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CameraComponent} from './camera/camera.component';
-import {CalendarModule, FileUploadModule, AutoCompleteModule, DropdownModule} from 'primeng/primeng';
+import {CalendarModule, FileUploadModule, AutoCompleteModule, DropdownModule,MultiSelectModule} from 'primeng/primeng';
 import {CameraUploadComponent} from './camera/camera-upload.component';
 import { CameraModalComponent } from './camera/camera-modal/camera-modal.component';
 import {CalendarComponent} from './calendar/calendar.component';
@@ -69,7 +69,9 @@ const COMPONENTS = [
     AutoCompleteModule,
     DropdownModule,
     CodemirrorModule,
+    MultiSelectModule
   ],
+
   declarations: [
     ...COMPONENTS,
   ],

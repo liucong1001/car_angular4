@@ -90,7 +90,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/money/order-manage',
       },
       {
-        title: '缴费支付',
+        title: '创建订单',
         link: '/pages/money/payment',
       },
       {

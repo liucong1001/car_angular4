@@ -7,12 +7,43 @@ import {promise} from "selenium-webdriver";
 
 
 @Injectable()
-export class IcCardOperationService {
-  private path = '/rest/pay/iccard';
+export class PaymentService {
+  private path = '/rest/pay/payorder';
   constructor(private http: Http) {
   }
-  public get(iccardno: String): Promise<any> {
-    const url = `${this.path}/info/${iccardno}`;
+
+  /**
+   * 创建订单
+   * @param model
+   * @returns {Promise<TResult2|TResult1>}
+   */
+  public  createOrder(model:any){
+    const url = `${this.path}/add`;
+      return this.http.post(url,model).toPromise().then(function (res) {
+        return res.json() as any;
+      })
+  }
+
+  /**
+   * 根据市场cloudUser获取费用
+   * @param cloudUser
+   * @returns {Promise<TResult2|TResult1>}
+   */
+  public getCost(cloudUser: String): Promise<any> {
+    const url = `rest/manager/market/cost/marketcost/${cloudUser}`;
+    return this.http.get(url).toPromise().then(function (res) {
+      return res.json() as any;
+    });
+  }
+
+  /**
+   * 根据流水号获取相关信息
+   * @param arc
+   * @returns {Promise<TResult2|TResult1>}
+   */
+
+  public getArcInfo(arc:string):Promise<any>{
+    const url = `rest/business/trade?archiveNo=`+arc;
     return this.http.get(url).toPromise().then(function (res) {
       return res.json() as any;
     });
@@ -26,10 +57,10 @@ export class IcCardOperationService {
    * @returns {Promise<TResult2|TResult1>}
    */
   public recharge(model: IcCardRechargemap): Promise<any> {
-      const url =  `${this.path}/recharge`;
-      return this.http.post(url, model).toPromise().then(function (res) {
-        return res.json() as any;
-      });
+    const url =  `${this.path}/recharge`;
+    return this.http.post(url, model).toPromise().then(function (res) {
+      return res.json() as any;
+    });
   }
 
   /**
@@ -63,12 +94,12 @@ export class IcCardOperationService {
    * @param icCardNO
    * @returns {Promise<TResult2|TResult1>}
    */
- public  iccardRemove(icCardNO:string):Promise<any>{
-     const url = `${this.path}/remove/${icCardNO}`;
-     return this.http.patch(url,null).toPromise().then(function (res) {
-     return res.json() as any;
-   });
- }
+  public  iccardRemove(icCardNO:string):Promise<any>{
+    const url = `${this.path}/remove/${icCardNO}`;
+    return this.http.patch(url,null).toPromise().then(function (res) {
+      return res.json() as any;
+    });
+  }
 
   /**
    * ic卡挂失
