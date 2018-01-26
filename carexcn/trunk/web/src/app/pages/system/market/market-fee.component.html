@@ -16,3 +16,9 @@
         </div>
     </nb-card-footer>
 </nb-card>
+
+ <ng-template #priceTypeCell let-data>{{data.priceType | priceTypePipe}}</ng-template>
+
+  <ng-template #invoice let-data> {{data.invoice  | feeBooleanPipe}}</ng-template>
+  <ng-template #discount let-data>{{data.discount | feeBooleanPipe}}</ng-template>
+  <ng-template #required let-data>{{data.required | feeBooleanPipe}}</ng-template>

@@ -11,6 +11,7 @@ import {HttpModule} from '@angular/http';
 import {RouterModule} from '@angular/router';
 import {UiModule} from '../../@core/ui/ui.module';
 import {MultiSelectModule} from 'primeng/primeng';
+import { PaymentOrderComponent } from './payment-order/payment-order.component';
 // import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown';
 
 

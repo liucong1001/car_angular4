@@ -1,0 +1,9 @@
+.borderless td, .borderless th {
+  border: none;
+}
+tbody tr td:first-child{
+  text-align: right;
+}
+tbody tr td:nth-child(2){
+  text-align: left;
+}

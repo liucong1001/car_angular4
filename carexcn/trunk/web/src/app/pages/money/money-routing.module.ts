@@ -9,6 +9,7 @@ import {PaymentDetailComponent} from './payment-detail/payment-detail.component'
 import {TurnoverDetailComponent} from './turnover-detail/turnover-detail.component';
 import {PrintInvoiceComponent} from './print-invoice/print-invoice.component';
 import {CheckComponent} from './order-manage/check.component';
+import {PaymentOrderComponent} from './payment-order/payment-order.component';
 
 const routes: Routes = [{
   path: '',
@@ -23,6 +24,7 @@ const routes: Routes = [{
     {path: 'payment-detail', component: PaymentDetailComponent},
     {path: 'turnover-detail', component: TurnoverDetailComponent},
     {path: 'print-invoice', component: PrintInvoiceComponent},
+    {path: 'payment/order', component: PaymentOrderComponent},
     ],
 }];
 
@@ -41,4 +43,5 @@ export const routedComponents = [
   TurnoverDetailComponent,
   PrintInvoiceComponent,
   CheckComponent,
+  PaymentOrderComponent
 ];
