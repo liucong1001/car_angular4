@@ -43,7 +43,7 @@ export class PaymentComponent implements OnInit, OnChanges {
 
   // ngOnChanges 可监控组件变量
   ngOnChanges(changes: SimpleChanges): void {
-    // console.log('监听流水号',changes);
+
   }
   archiveNoChange(arcNo:string){
      console.log('监听',arcNo,'长度',arcNo.length);
@@ -53,10 +53,7 @@ export class PaymentComponent implements OnInit, OnChanges {
   }
   // 组件初始华
   ngOnInit() {
-    this.paymentService.getCost('0001').then(res=>{
-         this.costList = res;
-    })
-    // this.payOrderItem.payment = this.businessObjectPayment;
+
     this.payOrderItem.payment = new BusinessObjectPayment();
     this.payOrderItem.items = [];
     /**
@@ -69,9 +66,6 @@ export class PaymentComponent implements OnInit, OnChanges {
           items:[],
      }
   }
-  costChange(data){
-    console.log('选择',data);
-  }
 
   /**
    * 根据流水号或者车牌号查询
@@ -79,85 +73,73 @@ export class PaymentComponent implements OnInit, OnChanges {
    */
   search(data){
 
+    this.payOrderItem.items = [];
     this.paymentService.getArcInfo(data).then(res=>{
-           // this.payOrderItem.items = [];
-          this.payOrderItem = {items:[],payment:{shouldAmount:null,archiveNo:'',accountName:'',businessObjectId:''}};
-      // this.payOrderItem.payment = new BusinessObjectPayment();
-      // this.payOrderItem.items = [];
-          //流水号，账户，实收信息 prejudication
+      this.payOrderItem.payment = {
+        archiveNo:data,
+        shouldAmount:0,
+        businessObjectId:res.prejudication.business.id,
+        accountName:res.preVehicle.preVehicle.merchant.name,
+      };
+      this.payOrder.accountId = res.preVehicle.preVehicle.merchant.account.id;
 
-          this.businessObjectPayment={
-             archiveNo :data,
-            shouldAmount:res.preVehicle.preVehicle.fee,
-            accountName:res.preVehicle.preVehicle.merchant.name,
-            businessObjectId:res.prejudication.business.id
-          };
-         this.payOrderItem.payment = this.businessObjectPayment;
-         //详细费用
-          this.businessObjectPaymentInfo ={
-            feeType:this.transFeeType,
-            shouldAmount:res.preVehicle.preVehicle.fee,
-            invoice:'1',
-            businessType:res.prejudication.business.businessType,
-            archiveNo: this.businessObjectPayment.archiveNo,
-            accountName:this.businessObjectPayment.accountName,
-          };
+          this.paymentService.getArcFee(data).then(result=>{
 
-          this.payOrderItem.items.push(this.businessObjectPaymentInfo);
-          /*生成订单账户id*/
-          this.payOrder.accountId = res.preVehicle.preVehicle.merchant.account.id;
+            for( var i in result){
+              this.payOrderItem.items.push({
+                name:         result[i].name,
+                feeType:      result[i].priceType,
+                money:        result[i].money.split(','),
+                shouldAmount: result[i].money,
+                invoice:      result[i].invoice,
+                businessType: result[i].businessType,
+                // archiveNo:   this.businessObjectPayment.archiveNo,
+                // accountName: this.businessObjectPayment.accountName,
+              })
+            }
+            // console.log("生成数据", this.payOrderItem);
+            this.payOrder.items.push({payment:this.payOrderItem.payment,items:this.payOrderItem.items});
+            console.log('列表创建数据',this.list);
+            console.log('表单对象', this.payOrder);
 
-         this.list.push(this.payOrderItem);
+          }).catch(err=>{
+            this.message.error('查询失败',err.message);
+          })
 
-
-        console.log("生成数据", this.payOrderItem);
-        console.log('列表创建数据',this.list);
-    }).catch(err=>{
-      this.message.error('查询失败',err.message);
-    })
-
+    });
   }
 
-  /**
-   * 生成表格
-   */
-  createTable(){
-    console.log("选择的费用",this.selectedCost);
-    console.log('列表前',this.list);
-    for(var i in this.selectedCost){
-        this.payOrderItem.items.push({
-          feeType:      this.selectedCost[i].priceType,
-          shouldAmount: +this.selectedCost[i].money,  //+ 字符串转数字类型
-          invoice:      this.selectedCost[i].invoice,
-          businessType: this.selectedCost[i].businessType,
-          archiveNo:   this.businessObjectPayment.archiveNo,
-          accountName: this.businessObjectPayment.accountName,
-        });
-      // this.payOrderItem.payment.shouldAmount =  this.payOrderItem.payment.shouldAmount + (+this.selectedCost[i].money);
-      }
-     // this.list.push(this.payOrderItem);
-
-    console.log("生成单个流水",this.payOrderItem);
-    // "生成list",this.list,
-    console.log('列表后',this.list);
-    this.payOrder.items.push(this.payOrderItem);
-    //   console.log('订单',this.payOrder);
-  }
 
   /**
-   * 创建订单
+   * 费用总计算
    */
-  creatOrder(){
+   feeSum(){
+    this.payOrder.shouldAmount = 0;
+    // step2 计算所有流水号的费用总和
      for( var i in this.payOrder.items){
-       this.payOrder.shouldAmount += this.payOrder.items[i].payment.shouldAmount;
+          this.payOrder.items[i].payment.shouldAmount = 0;
+           // step1 计算单个流水号的费用总和
+          for(var j in this.payOrder.items[i].items){
+              this.payOrder.items[i].payment.shouldAmount += parseFloat(this.payOrder.items[i].items[j].shouldAmount) ;
+          }
+         this.payOrder.shouldAmount += this.payOrder.items[i].payment.shouldAmount;
      }
      this.payOrder.actualAmount = this.payOrder.shouldAmount;
-      console.log("创建订单",this.payOrder);
-      this.paymentService.createOrder(this.payOrder).then(res=>{
-         this.message.success('','创建订单成功！')
-      }).catch(err=>{
-         this.message.error('',err.json().message);
-      })
+     console.log('表单',this.payOrder);
+
+  }
+
+  /**
+   * 创建表单
+   */
+  creatOrder(){
+    this.feeSum();
+     console.log("创建订单",this.payOrder);
+     this.paymentService.createOrder(this.payOrder).then(res=>{
+        this.message.success('','创建订单成功！')
+     }).catch(err=>{
+        this.message.error('',err.json().message);
+     })
   }
 
 }

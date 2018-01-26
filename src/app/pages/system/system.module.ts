@@ -31,7 +31,8 @@ import { RoleEditComponent } from './role/role-edit/role-edit.component';
 import { PhotoExampleComponent } from './photo-example/photo-example.component';
 import { PhotoExampleAddComponent } from './photo-example/photo-example-add/photo-example-add.component';
 import { PhotoExampleEditComponent } from './photo-example/photo-example-edit/photo-example-edit.component';
-
+import {PriceTypePipe} from  '../../@core/data/system/priceType.pipe';
+import {FeeBooleanPipe} from  '../../@core/data/system/feeBoolean.pipe'
 const components = [
   CodeitemEditComponent,
   ToPermTreeNode,
@@ -45,6 +46,7 @@ const components = [
   PhotoExampleComponent,
   PhotoExampleAddComponent,
   PhotoExampleEditComponent,
+  PriceTypePipe,FeeBooleanPipe,
 ];
 
 @NgModule({

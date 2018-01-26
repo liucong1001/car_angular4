@@ -1,0 +1,107 @@
+<nb-card>
+  <nb-card-header class="d-flex">
+    <div class="p-2 mr-auto">订单缴费</div>
+    <div class="p-2">
+      <select name=""  class="form-control" [(ngModel)]="payStatus">
+        <option value="">选择其他付款方式</option>
+        <option value="1">现金支付</option>
+      </select>
+    </div>
+    <div class="p2">
+      <button type="button" class="btn btn-outline-success" (click)="readIccard()">启用读卡器</button>
+    </div>
+  </nb-card-header>
+
+  <div class="row">
+    <div class="col-md-6">
+      <table class="table  borderless">
+        <thead class="text-center">
+        <tr >
+          <td colspan="2"> <b>订单详情</b> </td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>订单ID:</td> <td>{{OrderInfo.id}}</td>
+        </tr>
+        <tr>
+          <td>商户:</td> <td *ngIf="OrderInfo.businessObjectPayments"> {{OrderInfo.businessObjectPayments[0].accountName}}</td>
+        </tr>
+        <tr>
+          <td>实缴金额:</td> <td>{{OrderInfo.actualAmount}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <hr>
+  <div class="row form-inline form-group">
+    <div class="col-md-6 text-center"> <b>ic卡信息</b>  </div>
+  </div>
+  <div class="row form-inline form-group">
+    <div class="col-md-2"><label for="">卡号：</label> </div>
+    <div class="col-md-4">{{icCardInfo.CardNumber}}</div>
+  </div>
+  <div class="row form-inline form-group">
+    <div class="col-md-2"><label for="">账户名称：</label> </div>
+    <div class="col-md-4" *ngIf="getCardData.icAccount">{{getCardData.icAccount.ownedAccount.accountName}}</div>
+  </div>
+  <div class="row form-inline form-group">
+    <div class="col-md-2"><label for="">当前余额：</label> </div>
+    <div class="col-md-4" *ngIf="getCardData.icAccount">{{getCardData.icAccount.balance}} </div>
+  </div>
+
+  <nb-card-body>
+     <div class="row">
+        <div class="col-md-6">
+          <table class="table  borderless">
+            <thead class="text-center">
+               <tr >
+                   <td colspan="2"> <b>订单详情</b> </td>
+               </tr>
+            </thead>
+            <tbody>
+                <tr>
+                  <td>订单ID:</td> <td>{{OrderInfo.id}}</td>
+                </tr>
+                <tr>
+                  <td>商户:</td> <td *ngIf="OrderInfo.businessObjectPayments"> {{OrderInfo.businessObjectPayments[0].accountName}}</td>
+                </tr>
+                <tr>
+                  <td>实缴金额:</td> <td>{{OrderInfo.actualAmount}}</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+     </div>
+    <hr>
+     <div class="row form-inline form-group">
+        <div class="col-md-6 text-center"> <b>ic卡信息</b>  </div>
+     </div>
+    <div class="row form-inline form-group">
+      <div class="col-md-2"><label for="">卡号：</label> </div>
+      <div class="col-md-4">{{icCardInfo.CardNumber}}</div>
+    </div>
+    <div class="row form-inline form-group">
+      <div class="col-md-2"><label for="">账户名称：</label> </div>
+      <div class="col-md-4" *ngIf="getCardData.icAccount">{{getCardData.icAccount.ownedAccount.accountName}}</div>
+    </div>
+    <div class="row form-inline form-group">
+      <div class="col-md-2"><label for="">当前余额：</label> </div>
+      <div class="col-md-4" *ngIf="getCardData.icAccount">{{getCardData.icAccount.balance}} </div>
+    </div>
+  </nb-card-body>
+
+  <nb-card-footer>
+      <div class="row">
+        <div class="col-md-2 text-center">
+          <button class="btn btn-danger" (click)="payMoney()">确定扣款</button>
+        </div>
+        <div class="col-md-7"></div>
+        <div class="col-md-1"> <button class="btn btn-warning" (click)="cancel()">撤销</button> </div>
+        <div class="col-md-1">  <button class="btn btn-sm btn-default" (click)="back()">返回</button>  </div>
+      </div>
+  </nb-card-footer>
+
+</nb-card>
+

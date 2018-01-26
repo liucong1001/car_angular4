@@ -56,25 +56,17 @@ export class OrderManageComponent implements OnInit, OnChanges {
     {title: '订单号', titleClass: 'w-25 text-center', cell: new TextCell('id')} as Column,
     {title: '实收金额', titleClass: 'w-10 text-center', cell: new TextCell('actualAmount')} as Column,
     {title: '应收金额', titleClass: 'w-10 text-center', cell: new TextCell('shouldAmount')} as Column,
-    {title: '业务类型', titleClass: 'w-15 text-center', cell: new TextCell('name')} as Column,
-    {title: '状态', titleClass: 'w-10 text-center', cell: new TextCell('complete')} as Column,
+    {title: '业务类型', titleClass: 'w-15 text-center', cell: new CodemapCell('business.businessType','businessType')} as Column,
+    {title: '状态', titleClass: 'w-10 text-center', cell: new CodemapCell('complete','orderStatus')} as Column,
     {title: '创建时间', titleClass: 'w-20 text-center', cell: new CustomCell(this.createTimeCell)} as Column,
     {
       title: '', titleClass: 'w-15 text-center', cell: new MenuCell(
         [
           new Menu('编辑', '', 'edit'),
-          new Menu('禁用', '', this.disable),
+          new Menu('缴费', '', this.payOrder.bind(this)),
         ],
         new Menu('查看', '', this.view), 'text-center',
         )} as Column,
-    {
-      title: '', titleClass: 'w-15 text-center', cell: new MenuCell(
-        [
-          new Menu('编辑', '', 'edit'),
-          new Menu('禁用', '', this.disable),
-        ],
-        new Menu('撤销订单', '', this.view), 'text-center',
-      )} as Column,
   ];
 
   // 列表菜单回调
@@ -87,8 +79,8 @@ export class OrderManageComponent implements OnInit, OnChanges {
   disable(row: any) {
 
   }
-  /*跳转*/
-  viewpage() {
-    this.router.navigateByUrl('/pages/money/check');
+
+  payOrder(row:any){
+    this.router.navigate( ['/pages/money/payment/order', { id: row.id }]);
   }
 }

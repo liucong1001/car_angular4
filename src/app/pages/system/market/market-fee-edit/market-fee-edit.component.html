@@ -13,7 +13,11 @@
         <div class="col-sm-3">
           <div class="form-group">
             <label>业务类型:</label>
-            <input type="text" class="form-control" formControlName="businessType" placeholder="业务类型">
+            <!--<input type="text" class="form-control" formControlName="businessType" placeholder="业务类型">-->
+            <div>
+              <ngx-ys-codeitem-droplist   codeMap="businessType" formControlName="businessType"> </ngx-ys-codeitem-droplist>
+            </div>
+
           </div>
           <ngx-valid-error [errors]="errors.businessType" [control]="form.get('businessType')"></ngx-valid-error>
         </div>

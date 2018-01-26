@@ -37,7 +37,20 @@ export class PaymentService {
   }
 
   /**
-   * 根据流水号获取相关信息
+   * 根据流水号获取费用信息
+   * @param arc
+   * @returns {Promise<TResult2|TResult1>}
+   */
+
+  public getArcFee(arc:string):Promise<any>{
+    const url = `rest/business/trade/cost?archiveNo=`+arc;
+    return this.http.get(url).toPromise().then(function (res) {
+      return res.json() as any;
+    });
+  }
+
+  /**
+   * 根据流水号获取商户信息
    * @param arc
    * @returns {Promise<TResult2|TResult1>}
    */
