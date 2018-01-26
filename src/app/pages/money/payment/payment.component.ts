@@ -8,6 +8,7 @@ import {SelectItem} from 'primeng/primeng';
 import {MessageService} from '../../../@core/utils/message.service';
 import {BusinessObjectPaymentInfo,BusinessObjectPayment,PayOrderItemForm,PayOrderForm} from '../../../@core/model/money/payment.model';
 import {Marketfeemap} from '../../../@core/model/system/market-fee-map';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'ngx-payment',
@@ -38,7 +39,7 @@ export class PaymentComponent implements OnInit, OnChanges {
   // 订单对象
   payOrder = new PayOrderForm();
 
-  constructor(private paymentService:PaymentService,private message:MessageService) {
+  constructor(private paymentService:PaymentService,private message:MessageService,private router: Router) {
   }
 
   // ngOnChanges 可监控组件变量
@@ -137,6 +138,7 @@ export class PaymentComponent implements OnInit, OnChanges {
      console.log("创建订单",this.payOrder);
      this.paymentService.createOrder(this.payOrder).then(res=>{
         this.message.success('','创建订单成功！')
+       this.router.navigate( ['/pages/money/payment/order', { id: res.id }]);
      }).catch(err=>{
         this.message.error('',err.json().message);
      })
