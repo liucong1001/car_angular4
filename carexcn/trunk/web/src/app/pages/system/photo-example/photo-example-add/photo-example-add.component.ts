@@ -22,6 +22,10 @@ export class PhotoExampleAddComponent implements OnInit {
     title: '示例照片',
     source: 'assets/images/camera1.jpg',
   }];
+  filePath = null;
+   photoForm={
+      'photoExample': []
+   };
 
   /**
    * 表单定义
@@ -33,6 +37,10 @@ export class PhotoExampleAddComponent implements OnInit {
       photoType: [null, [Validators.required]],
       scale: [null, [Validators.required]],
     }),
+    // photos:this.fb.group({
+    //   'photoExample':[[{'filePath':null}]],
+    // }),
+    // photos:this.photoForm,
 
   });
 
@@ -43,6 +51,13 @@ export class PhotoExampleAddComponent implements OnInit {
    */
   onChangeSource($event, photo) {
     this.message.info(photo.title + ' 的新图片地址', $event);
+    this.filePath = $event;
+    console.log("filepath",this.filePath);
+    this.photoForm.photoExample.push({'filePath':this.filePath});
+    console.log("对象", this.photoForm);
+    // this.form.patchValue({
+    //   photos: this.photoForm,
+    // });
   }
 
 
@@ -51,6 +66,7 @@ export class PhotoExampleAddComponent implements OnInit {
     //   return false;
     // }
     const codemap = this.form.value ;
+    codemap.photos=this.photoForm;
     console.log('照片示例', codemap);
     this.photoExampleService.save(codemap).then(res => {
       this.message.success('保存成功', '照片示例保存成功');
