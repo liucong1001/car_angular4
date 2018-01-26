@@ -22,6 +22,13 @@ export class PhotoExampleEditComponent implements OnInit {
       if (p.id) {
         this.photoExampleService.get(p.id).then(res =>{
           console.log('修改', res);
+          // this.filePath =res.photos.photoExample[0].filePath;
+         // this. photos: any[] = [{
+         //    title: '示例照片',
+         //    source: this.filePath,
+         //  }];
+         //  this.photos[0].source = res.photos.photoExample[0].filePath;
+
           this.photoExampleModel = res  as PhotoExampleModel;
           this.form.patchValue(this.photoExampleModel);
         });
@@ -29,6 +36,11 @@ export class PhotoExampleEditComponent implements OnInit {
     });
 
   }
+  filePath = '';
+  photos: any[] = [{
+    title: '示例照片',
+    source: '',
+  }];
 
   /**
    * 表单定义
