@@ -1,4 +1,4 @@
-import {Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, forwardRef, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {MessageService} from '../../utils/message.service';
 import {WebcamService} from '../../device/webcam.service';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
@@ -17,7 +17,7 @@ import {FileSystemService} from './../../data/system/file-system.service';
     useExisting: forwardRef(() => CameraComponent),
   }],
 })
-export class CameraComponent implements OnInit, ControlValueAccessor {
+export class CameraComponent implements OnInit, ControlValueAccessor, OnChanges {
   /**
    * 传入参数
    * example:
@@ -26,7 +26,6 @@ export class CameraComponent implements OnInit, ControlValueAccessor {
    */
   @Input() title;
   @Input() source;
-  @Input() file_id;
   @Input() btn_show = true;
   @Input() col_sm_6 = 'col-sm-6';
   @Output() _changeSource = new EventEmitter();
@@ -58,19 +57,16 @@ export class CameraComponent implements OnInit, ControlValueAccessor {
 
   registerOnTouched(fn: any): void {
   }
-  ngOnInit() {
+  ngOnChanges() {
     /**
      * 如果传递了 file_id 则根据 file_id 重置 source 的值
-     * 重置失败则不打开任何图片并提示错误信息
+     * 重置失败则视为普通url地址打开
      */
-    if (this.file_id) {
-      this.file.getFilePathById(this.file_id).then(res => {
-        console.info(res);
-      }).catch(err => {
-        console.info(err);
-      });
+    if (this.source && this.source.indexOf('id:') === 0) {
+      this.source = this.file.getFileUrlById(this.source.substring(3));
     }
   }
+  ngOnInit() {}
   /**
    *  显示或隐藏摄像头窗口
    */
