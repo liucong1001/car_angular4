@@ -21,10 +21,11 @@ export class PaymentOrderComponent implements OnInit {
               private route: ActivatedRoute, private message: MessageService,private iccard: IccardService,
               private paymentOrderService:PaymentOrderService,private location: Location) {
             this.route.params.subscribe((params: Params) => {
-
               if (params['id']) {
                 this.paymentOrderService.getOrderInfo(params['id']).then(res => {
                   this.OrderInfo = res;
+                  this.icCardPayMoney = this.OrderInfo.actualAmount;
+                  this.cashPayMoney = 0;
                 }).catch(err => {
                   this.message.error('获取失败', err.json().message);
                 });
@@ -34,6 +35,9 @@ export class PaymentOrderComponent implements OnInit {
 
   OrderInfo = new paymentOrderModel() ;
   public  payMoneyModel =  paymentOrderPayModel ['']= [];
+
+  public  icCardPayMoney :number;
+  public  cashPayMoney :number;
 
   ngOnInit() {
     this.iccardInit();
@@ -102,22 +106,34 @@ export class PaymentOrderComponent implements OnInit {
 
 
   payMoney(){
-   this.payMoneyModel[0] = {
+   this.payMoneyModel.push({
+     //ic卡支付
      payStatus:this.payStatus,
-     payAmount:this.OrderInfo.actualAmount,
+     payAmount:this.icCardPayMoney,
      payIcCard:this.icCardInfo.CardNumber,
      businessID:this.OrderInfo.business.id,
      payOrderId:this.OrderInfo.id,
      passWord:'123456',
      cloudUser:'0001',
-   };
+   },{
+     //现金支付
+     payStatus:'1',
+     payAmount:this.cashPayMoney,
+     payIcCard:null,
+     businessID:this.OrderInfo.business.id,
+     payOrderId:this.OrderInfo.id,
+     passWord:null,
+     cloudUser:'0001',
+   });
+
 
    const model = {'receiveRecordForms': this.payMoneyModel};
     console.log('确定扣款对象',this.payMoneyModel);
      this.paymentOrderService.payOrder(model).then(res=>{
-        this.message.success('','支付成功！')
+        this.message.success('','支付成功！');
+        this.back();
      }).catch(err=>{
-        this.message.error('',err.json().message);
+       this.message.error('扣款失败',err.json().message);
      })
 
   }

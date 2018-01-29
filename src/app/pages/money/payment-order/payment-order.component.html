@@ -12,45 +12,6 @@
     </div>
   </nb-card-header>
 
-  <div class="row">
-    <div class="col-md-6">
-      <table class="table  borderless">
-        <thead class="text-center">
-        <tr >
-          <td colspan="2"> <b>订单详情</b> </td>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td>订单ID:</td> <td>{{OrderInfo.id}}</td>
-        </tr>
-        <tr>
-          <td>商户:</td> <td *ngIf="OrderInfo.businessObjectPayments"> {{OrderInfo.businessObjectPayments[0].accountName}}</td>
-        </tr>
-        <tr>
-          <td>实缴金额:</td> <td>{{OrderInfo.actualAmount}}</td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  <hr>
-  <div class="row form-inline form-group">
-    <div class="col-md-6 text-center"> <b>ic卡信息</b>  </div>
-  </div>
-  <div class="row form-inline form-group">
-    <div class="col-md-2"><label for="">卡号：</label> </div>
-    <div class="col-md-4">{{icCardInfo.CardNumber}}</div>
-  </div>
-  <div class="row form-inline form-group">
-    <div class="col-md-2"><label for="">账户名称：</label> </div>
-    <div class="col-md-4" *ngIf="getCardData.icAccount">{{getCardData.icAccount.ownedAccount.accountName}}</div>
-  </div>
-  <div class="row form-inline form-group">
-    <div class="col-md-2"><label for="">当前余额：</label> </div>
-    <div class="col-md-4" *ngIf="getCardData.icAccount">{{getCardData.icAccount.balance}} </div>
-  </div>
-
   <nb-card-body>
      <div class="row">
         <div class="col-md-6">
@@ -89,6 +50,18 @@
     <div class="row form-inline form-group">
       <div class="col-md-2"><label for="">当前余额：</label> </div>
       <div class="col-md-4" *ngIf="getCardData.icAccount">{{getCardData.icAccount.balance}} </div>
+    </div>
+    <div class="row form-inline form-group">
+      <div class="col-md-2"><label for="">IC卡确认扣除：</label> </div>
+      <div class="col-md-4" ><input type="number" class="form-control" placeholder="IC卡确认扣除金额" [(ngModel)]="icCardPayMoney"></div>
+    </div>
+    <div class="row form-inline form-group">
+      <div class="col-md-2"><label for="">现金确认扣除：</label> </div>
+      <div class="col-md-4" ><input type="number" class="form-control" placeholder="现金确认扣除" [(ngModel)]="cashPayMoney"></div>
+    </div>
+    <div class="row form-inline form-group">
+      <div class="col-md-2"><label for="">总扣除：</label> </div>
+      <div class="col-md-4 text-danger" *ngIf="(icCardPayMoney)">{{icCardPayMoney+cashPayMoney}}</div>
     </div>
   </nb-card-body>
 

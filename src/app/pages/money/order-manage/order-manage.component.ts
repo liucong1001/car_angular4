@@ -64,6 +64,7 @@ export class OrderManageComponent implements OnInit, OnChanges {
         [
           new Menu('编辑', '', 'edit'),
           new Menu('缴费', '', this.payOrder.bind(this)),
+          new Menu('订单撤销', '', this.cancelOrder.bind(this)),
         ],
         new Menu('查看', '', this.view), 'text-center',
         )} as Column,
@@ -82,5 +83,8 @@ export class OrderManageComponent implements OnInit, OnChanges {
 
   payOrder(row:any){
     this.router.navigate( ['/pages/money/payment/order', { id: row.id }]);
+  }
+  cancelOrder(row:any){
+    this.router.navigate( ['/pages/money/order/cancel', { id: row.id }]);
   }
 }
