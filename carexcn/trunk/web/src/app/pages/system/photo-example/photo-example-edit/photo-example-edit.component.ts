@@ -27,10 +27,9 @@ export class PhotoExampleEditComponent implements OnInit {
       if (p.id) {
         this.photoExampleService.get(p.id).then(res => {
           this.photoExampleModel = res  as PhotoExampleModel;
-          // let photos =  this.photoExampleModel.photos;
           this.form.patchValue(this.photoExampleModel);
-          this.photos.source = 'id:4028f2e8614067a0016140690f2d0001';
-          console.info('照片', this.photos);
+          this.photos.source = 'id:' + this.photoExampleModel.photos.photoExample[0].id;
+          this.photoForm.photoExample[0] = this.photoExampleModel.photos.photoExample[0];
         });
       }
     });
@@ -39,6 +38,10 @@ export class PhotoExampleEditComponent implements OnInit {
     title: '示例照片',
     source: '',
   };
+  filePath = null;
+  photoForm={
+    'photoExample': []
+  };
 
   /**
    * 新的图片地址事件
@@ -46,7 +49,10 @@ export class PhotoExampleEditComponent implements OnInit {
    * @param photo
    */
   onChangeSource($event, photo) {
-    this.message.info(photo.title + ' 的新图片地址', $event);
+    // this.message.info(photo.title + ' 的新图片地址', $event);
+    this.filePath = $event;
+    console.log("filepath",$event);
+    this.photoForm.photoExample[0]={'filePath':$event};
   }
 
   /**
@@ -68,8 +74,10 @@ export class PhotoExampleEditComponent implements OnInit {
     // if (this.form.invalid) {
     //   return false;
     // }
+
     const codemap = this.form.value ;
-    console.log('照片示例', codemap);
+    codemap.photos = this.photoForm;
+    console.log('照片示例', codemap,this.photoForm);
     this.photoExampleService.saveEdit(codemap).then(res => {
       this.message.success('保存成功', '照片示例保存成功');
       // this.saved = true;

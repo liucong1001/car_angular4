@@ -55,9 +55,6 @@ export class PhotoExampleAddComponent implements OnInit {
     console.log("filepath",this.filePath);
     this.photoForm.photoExample.push({'filePath':this.filePath});
     console.log("对象", this.photoForm);
-    // this.form.patchValue({
-    //   photos: this.photoForm,
-    // });
   }
 
 
