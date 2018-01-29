@@ -5,6 +5,7 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {CameraModalComponent} from './camera-modal/camera-modal.component';
 import {DeviceService} from '../../device/device.service';
+import {FileSystemService} from './../../data/system/file-system.service';
 
 @Component({
   selector: 'ngx-ys-camera',
@@ -25,6 +26,7 @@ export class CameraComponent implements OnInit, ControlValueAccessor {
    */
   @Input() title;
   @Input() source;
+  @Input() file_id;
   @Input() btn_show = true;
   @Input() col_sm_6 = 'col-sm-6';
   @Output() _changeSource = new EventEmitter();
@@ -41,6 +43,7 @@ export class CameraComponent implements OnInit, ControlValueAccessor {
     private webcam: WebcamService,
     private modalService: NgbModal,
     private device: DeviceService,
+    private file: FileSystemService,
   ) {
   }
 
@@ -56,6 +59,17 @@ export class CameraComponent implements OnInit, ControlValueAccessor {
   registerOnTouched(fn: any): void {
   }
   ngOnInit() {
+    /**
+     * 如果传递了 file_id 则根据 file_id 重置 source 的值
+     * 重置失败则不打开任何图片并提示错误信息
+     */
+    if (this.file_id) {
+      this.file.getFilePathById(this.file_id).then(res => {
+        console.info(res);
+      }).catch(err => {
+        console.info(err);
+      });
+    }
   }
   /**
    *  显示或隐藏摄像头窗口
