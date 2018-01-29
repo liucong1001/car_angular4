@@ -17,7 +17,13 @@ export class PhotoExampleModel {
     id:string;
   };
   public photos?:{
-
+    photoExample:[{
+      id:string,
+      fileType:string,
+      filePath:string,
+      objectId:string,
+      objectType:string,
+    }]
   }
 
 
