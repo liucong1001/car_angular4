@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {MessageService} from '../../../../@core/utils/message.service';
 import {Location} from '@angular/common';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {MerchantService} from '../../../../@core/data/merchant/merchant.service';
 import {MerchantForm} from '../../../../@core/model/bussiness/merchant.form';
 import {Http} from '@angular/http';
 import {MerchantModel} from '../../../../@core/model/bussiness/merchant.model';
 import {Router, ActivatedRoute} from '@angular/router';
 import {ErrorMessage} from '../../../../@core/ui/valid-error/valid-error.component';
-import {UserService} from "../../../../@core/data/users.service";
+import {UserService} from '../../../../@core/data/users.service';
 
 
 /**
@@ -64,6 +64,13 @@ export class EditDealerComponent implements OnInit {
     title: '机构证反面',
     source: 'assets/images/camera2.jpg',
   }];
+  // _photosForm: FormGroup = this.fb.group({
+  //   title: '机构证正面',
+  //   source: 'assets/images/camera1.jpg',
+  // }, {
+  //   title: '机构证反面',
+  //   source: 'assets/images/camera2.jpg',
+  // });
   // saved = false;
   _formGroup: FormGroup = this.fb.group({
     id: ['', [Validators.required]],
@@ -147,6 +154,51 @@ export class EditDealerComponent implements OnInit {
       });
     }
   }
+
+  /**
+   * 需要构建出一个支持 赋值和读取的 photos form
+   * 能够 this._photosForm.values 拿到值，方便的构建成如下数据结构
+   * eg: photos:{'身份证正面':['1.jpg','2.jpg']}
+   * 更新时，从后台拿到数据值能直接赋值上去组件能够正常显示图片
+   * @type {FormGroup}
+   * @private
+   */
+  _photosForm: FormGroup = this.fb.group({
+    photos: this.fb.array([]),
+  });
+  photoType = '身份证';
+  photosValue: FormArray;
+  addPhotos(): void {
+    this._photosForm.addControl(this.photoType, this.fb.array([]));
+    // .addControl(this.photoType, this.fb.array([]));
+    // let photosValue = this._photosForm.get('photos') as FormArray;
+    // photosValue.push(this.createPhotos('机构证正面', 'assets/images/camera1.jpg'));
+    // photosValue.push(this.createPhotos());
+    // console.info(this._photosForm.value.photos);
+  }
+  addPhoto(): void {
+    // this._photosForm.addControl(this.photoType, this.fb.array([]));
+    // let photos = this._photosForm.get('photos') as FormArray;
+
+    // console.info(this._photosForm.get('photos'));
+    // let photosValue = this._photosForm.get('photos') as FormArray;
+    // let a = '身份证';
+    // let photos = photosValue.at(0).get(a) as FormArray;
+    // photos.push(this.fb.control('ccc'));
+    // let photoValue = this._photosForm.get('photos')[0].get('身份证').push(this.fb.control('cc'));
+    let photos = this._photosForm.get('photos') as FormArray;
+    photos.push(this.fb.control('aa'));
+    let photo = photos.at(0).get(this.photoType) as FormArray;
+    photo.push(this.fb.control('aa'));
+    // this._photosForm.get(this.photoType)[0].push(this.fb.control('bb'));
+    // photoValue.push(this.fb.control('cc'));
+    // photosValue.push(this.createPhotos());
+    // console.info(this._photosForm.value.photos);
+  }
+  viewPhotos(): void {
+    console.info(this._photosForm.value);
+    // console.info(this._photosForm.value.photos);
+  }
   save() {
     if (this._formGroup.invalid) {
       this.message.error('填写错误', JSON.stringify(this._formGroup.errors));
@@ -154,8 +206,7 @@ export class EditDealerComponent implements OnInit {
     } else {
       let merchant = this._formGroup.value as MerchantModel;
       merchant.cloudUser = this.userService.getCurrentLoginUser().cloudUser;
-      // TODO: 以后在此处 MerchantForm 添加 photos 添加附件
-      this.merchantService.update({ merchant: merchant} as MerchantForm).then(res => {
+      this.merchantService.update({ merchant: merchant, photos: this.photos} as MerchantForm).then(res => {
         this.message.success('修改成功', '修改商户成功');
         // this.saved = true;
       }).catch(err => {

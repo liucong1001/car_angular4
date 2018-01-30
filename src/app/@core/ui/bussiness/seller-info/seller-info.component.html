@@ -6,6 +6,11 @@
   </nb-card-header>
   <nb-card-body [formGroup]="seller">
     <div class="input-group">
+      <!--<button type="button" class="btn btn-primary btn-block" (click)="addPhoto()">添加照片</button>-->
+      <!--<button type="button" class="btn btn-primary btn-block" (click)="addPhotoType()">添加照片类型</button>-->
+      <!--<button type="button" class="btn btn-primary btn-block" (click)="viewPhotos()">查看照片所有值</button>-->
+    </div>
+    <div class="input-group">
       <div class="input-group" *ngIf="showCheshang">
         <span class="input-group-addon">车商</span>
         <ngx-ys-autoinput [results_resource_url]="autoinput_cheshang_source_url" (_value)="getSelectedCheshang($event)"
@@ -21,7 +26,7 @@
       <div class="input-group">
         <span class="input-group-addon">证件类型</span>
         <!--seller.get('certType').disable()-->
-        <ngx-ys-codeitem-droplist formControlName="certType" [ifDisabled]="false" [codeMap]="'certType'" style="width: 100%;"></ngx-ys-codeitem-droplist>
+        <ngx-ys-codeitem-droplist formControlName="certType" [ifDisabled]="false" [codeMap]="'certType'" (_selectedValue)="certTypeSelecteFunc($event)" style="width: 100%;"></ngx-ys-codeitem-droplist>
         <!--<ngx-ys-codeitem-droplist formControlName="certType" [ifDisabled]="false" (_selectedValue)="certificateTypeSelecteFunc($event)" [codeMap]="'certType'" style="width: 100%;"></ngx-ys-codeitem-droplist>-->
         <!--要拿到实体数据-->
         <!--<select class="form-control" formControlName="certType" (change)="certificateTypeSelecteFunc()" [compareWith]="certificateTypeCompareWithFunc">-->
@@ -68,7 +73,7 @@
         <ngx-valid-error [errors]="errors.address" [control]="seller.get('address')"></ngx-valid-error>
       </div>
     </div>
-    <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" [btn_show]="btn_show"></ngx-ys-camera>
+    <ngx-ys-dynamic-photo-form [photos]="seller.get('_photos_')" [photos_name]="photos_name" [btn_show]="btn_show"></ngx-ys-dynamic-photo-form>
   </nb-card-body>
 </nb-card>
 
