@@ -1,12 +1,14 @@
 /**
  * Create by clh021@gmail.com On 2017.12.11
  */
-import {Injectable, isDevMode} from '@angular/core';
+import {Injectable, isDevMode, OnInit} from '@angular/core';
 import {MessageService} from '../utils/message.service';
 import {UserService} from '../data/users.service';
 
 @Injectable()
-export class DeviceService {
+export class DeviceService implements OnInit {
+  ngOnInit(): void {
+  }
   ws: WebSocket;
   /**
    * 初始化默认摄像头是否显示的状态值
@@ -18,17 +20,22 @@ export class DeviceService {
    * 图片上传地址前缀
    * @type {string}
    */
-  pre_api_url = location.protocol + '//' + location.host;
+  // pre_api_url = location.protocol + '//' + location.host;
+  pre_api_url = location.protocol + '//' + location.host +
+    '/rest/files/file?cloudUser=' +
+    this.userService.getCurrentLoginUser().cloudUser;
   /**
    * 图片访问地址前缀
    * @type {string}
    */
-  pre_access_url = location.protocol + '//' + location.host;
+  pre_access_url = '/rest/files/file/';
   /**
    * 图片临时访问地址前缀
    * @type {string}
    */
-  pre_access_url_tmp = location.protocol + '//' + location.host;
+  pre_access_url_tmp = '/rest/files/file/temp?cloudUser=' +
+    this.userService.getCurrentLoginUser().cloudUser +
+    '&filename=';
   public _message: MessageService;
   /**
    * 构造函数
@@ -37,19 +44,19 @@ export class DeviceService {
    */
   constructor(
     public userService: UserService,
-    message: MessageService,
+    public message: MessageService,
   ) {
     this._message = message;
     this.conectAgent();
     // if (isDevMode()) {
-      // this.pre_api_url = 'https://dongshenghuo.com/test.php';
-    this.pre_api_url = location.protocol + '//' + location.host +
-      '/rest/files/file?cloudUser=' +
-      this.userService.getCurrentLoginUser().cloudUser;
-    this.pre_access_url = '/rest/files/file/'; // 业务附件 /rest/files/file/{fileid}
-    this.pre_access_url_tmp = '/rest/files/file/temp?cloudUser=' +
-      this.userService.getCurrentLoginUser().cloudUser +
-      '&filename='; // 临时文件 /rest/files/file/temp?cloudUser=0001&filename=xxx.jpg
+    // this.pre_api_url = 'https://dongshenghuo.com/test.php';
+    // this.pre_api_url = location.protocol + '//' + location.host +
+    //   '/rest/files/file?cloudUser=' +
+    //   this.userService.getCurrentLoginUser().cloudUser;
+    // this.pre_access_url = '/rest/files/file/'; // 业务附件 /rest/files/file/{fileid}
+    // this.pre_access_url_tmp = '/rest/files/file/temp?cloudUser=' +
+    //   this.userService.getCurrentLoginUser().cloudUser +
+    //   '&filename='; // 临时文件 /rest/files/file/temp?cloudUser=0001&filename=xxx.jpg
     // }
   }
 

@@ -47,7 +47,10 @@ export class CameraComponent implements OnInit, ControlValueAccessor, OnChanges 
   }
 
   writeValue(obj: any): void {
-    this.source = obj;
+    if ( 'string' === typeof(obj) ) {
+      this.source = obj;
+      this.ngOnChanges();
+    }
   }
 
   registFunc(value: any) {}
@@ -58,13 +61,28 @@ export class CameraComponent implements OnInit, ControlValueAccessor, OnChanges 
   registerOnTouched(fn: any): void {
   }
   ngOnChanges() {
-    /**
-     * 如果传递了 file_id 则根据 file_id 重置 source 的值
-     * 重置失败则视为普通url地址打开
-     */
-    if (this.source && this.source.indexOf('id:') === 0) {
-      this.source = this.file.getFileUrlById(this.source.substring(3));
+    let obj = this.source;
+    if (obj && obj.indexOf('id:') === 0) {
+      /**
+       * 如果传递了 file_id 则根据 file_id 重置 source 的值
+       * 重置失败则视为普通url地址打开
+       */
+      this.source = this.file.getFileUrlById(obj);
+    } else if (this.source && this.source.indexOf('tmp:') === 0) {
+      /**
+       * 如果传递了 file_id 则根据 file_id 重置 source 的值
+       * 重置失败则视为普通url地址打开
+       */
+      this.source = this.file.getFileUrlByTmp(obj);
+    } else {
+      /**
+       * 非协商前缀则视为图片全路径处理
+       * @type {string}
+       */
+      this.source = obj;
     }
+    // console.info(this.title);
+    // console.info(this.source);
   }
   ngOnInit() {}
   /**
@@ -97,7 +115,8 @@ export class CameraComponent implements OnInit, ControlValueAccessor, OnChanges 
     /**
      * 显示当前新图片
      */
-    this.source = this.device.pre_access_url_tmp + file;
+    this.source = this.file.getFileUrlByTmp(file);
+    console.info('显示当前新图片', this.source);
     this._changeSource.emit(file);
     this.registFunc(file);
   }
@@ -108,7 +127,7 @@ export class CameraComponent implements OnInit, ControlValueAccessor, OnChanges 
   paizhao() {
     this.message.info('摄像头', '拍照并上传');
     this.webcam.snapshot(false, 'a', 'b').then((res) => {
-      this.afterGetFileName(res.file[0]);
+      this.afterGetFileName('tmp:' + res.file[0]);
     });
   }
   /**
@@ -116,6 +135,6 @@ export class CameraComponent implements OnInit, ControlValueAccessor, OnChanges 
    * @param source
    */
   onUploadComplete(source) {
-    this.afterGetFileName(source);
+    this.afterGetFileName('tmp:' + source);
   }
 }

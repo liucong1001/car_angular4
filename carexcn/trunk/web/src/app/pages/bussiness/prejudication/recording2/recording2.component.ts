@@ -8,6 +8,9 @@ import {CodeService} from '../../../../@core/data/system/code.service';
 import {CodeitemService} from '../../../../@core/data/system/codeitem.service';
 import {Codeitem} from '../../../../@core/model/system/codeitem';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {MarketService} from '../../../../@core/data/system/market.service';
+import {FilingInfoModel} from '../../../../@core/model/bussiness/filing.info.model';
+import {UserService} from '../../../../@core/data/users.service';
 
 /**
  * 预审录入2--接口与页面的交互逻辑
@@ -33,6 +36,7 @@ export class Recording2Component implements OnInit, OnDestroy {
   public certType: Codeitem[];
   public certTypeSelected: Codeitem;
   merchant: MerchantModel = {name: ''};
+  linkmanSelected: FilingInfoModel = {};
   public _formGroup: FormGroup = this._formBuilder.group({
     seller: this._formBuilder.group({
       certType: ['', [Validators.required]],
@@ -61,6 +65,8 @@ export class Recording2Component implements OnInit, OnDestroy {
     private _localstorage: LocalstorageService,
     private _code: CodeService,
     private _codeitem: CodeitemService,
+    private _market: MarketService,
+    public _userService: UserService,
   ) {
     /**
      * 缓存前缀名以业务为单位，一个缓存前缀对应一个业务，一个缓存业务完成则删除该前缀的所有缓存
@@ -69,15 +75,19 @@ export class Recording2Component implements OnInit, OnDestroy {
     this._localstorage.prefix = 'bussiness_prejudication_recording';
   }
 
-  test() {
-    console.info('aaaa');
-  }
-
   /**
    * 页面初始化事件
    */
   ngOnInit() {
     console.info('exec on init.');
+    /**
+     * 市场 代办员
+     * @type {any | any}
+     */
+    let maybe_linkman = this._localstorage.get('linkmanSelected');
+    if (maybe_linkman) {
+      this.linkmanSelected = maybe_linkman;
+    }
     /**
      * 读取缓存的商户
      * @type {any}

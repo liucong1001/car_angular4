@@ -54,6 +54,16 @@ export class PrejudicationService {
   }
 
   /**
+   * 检查车辆是否允许录入
+   * @param {string} plateNumber
+   * @param {number} filingInfoId
+   * @returns {Promise<any>}
+   */
+  public checkCar(plateNumber: string, filingInfoId: string): Promise<any> {
+    return this.http.get('/rest/business/trade/check?plateNumber=' + plateNumber + '&filingInfoId=' + filingInfoId).toPromise();
+  }
+
+  /**
    * 预审审核
    * @param {string} id   prejudication.bussiness.id
    * @returns {Promise<any>}

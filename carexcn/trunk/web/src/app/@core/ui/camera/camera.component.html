@@ -3,6 +3,7 @@
   <span>{{ title }}
     <div class="webcam_btn float-right">
       <div *ngIf="btn_show">
+        <!--<i class="fa fa-bandcamp" (click)="ngOnChanges()" aria-hidden="true" title="当前图路径"></i> &nbsp;-->
         <i class="fa fa-camera-retro" aria-hidden="true" (click)="showCamera()" title="隐藏或显示摄像头"></i> &nbsp;
         <i class="fa fa-camera" aria-hidden="true" (click)="paizhao()" title="拍照并上传"></i> &nbsp;
         <ngx-ys-camera-upload (_new_img_url)='onUploadComplete($event)' [upload_url]="this.webcam.api_url"></ngx-ys-camera-upload>

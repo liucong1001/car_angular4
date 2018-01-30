@@ -7,6 +7,7 @@ import {FilingService} from '../../../../@core/data/merchant/filing.service';
 import {LocalstorageService} from '../../../../@core/cache/localstorage.service';
 import {MerchantModel} from '../../../../@core/model/bussiness/merchant.model';
 import {PreVehicleModel} from '../../../../@core/model/bussiness/trade/preVehicle/preVehicle.model';
+import {PrejudicationService} from '../../../../@core/data/bussiness/prejudication.service';
 
 /**
  * 预审录入1--接口与页面的交互逻辑
@@ -64,6 +65,7 @@ export class RecordingComponent implements OnInit, OnDestroy {
     private _message: MessageService,
     private _filingService: FilingService,
     private _localstorage: LocalstorageService,
+    private _prejudication: PrejudicationService,
   ) {
     /**
      * 缓存前缀名以业务为单位，一个缓存前缀对应一个业务，一个缓存业务完成则删除该前缀的所有缓存
@@ -173,7 +175,15 @@ export class RecordingComponent implements OnInit, OnDestroy {
    * 转入下一页面
    */
   onSubmit() {
-    this._router.navigateByUrl('/pages/bussiness/prejudication/recording2');
+    if (this.vehicle.plateNumber.length > 5 ) {
+      this._prejudication.checkCar(this.vehicle.plateNumber, this.linkmanSelected.id).then(res => {
+        this._router.navigateByUrl('/pages/bussiness/prejudication/recording2');
+      }).catch(e => {
+        this._message.error('录入错误', e.json().message);
+      });
+    } else {
+      this._message.error('车牌号错误', '您的车牌号可能没有填写完');
+    }
   }
 
   /**
