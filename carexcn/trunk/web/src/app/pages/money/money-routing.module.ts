@@ -8,7 +8,6 @@ import {TransferRecordComponent} from './transfer-record/transfer-record.compone
 import {PaymentDetailComponent} from './payment-detail/payment-detail.component';
 import {TurnoverDetailComponent} from './turnover-detail/turnover-detail.component';
 import {PrintInvoiceComponent} from './print-invoice/print-invoice.component';
-import {CheckComponent} from './order-manage/check.component';
 import {PaymentOrderComponent} from './payment-order/payment-order.component';
 import { OrderCancelComponent } from './order-cancel/order-cancel.component';
 
@@ -18,7 +17,6 @@ const routes: Routes = [{
   children: [
     // {path: '', redirectTo: '/order-manage', pathMatch: 'full'},
     {path: 'order-manage', component: OrderManageComponent},
-    {path: 'check', component: CheckComponent},
     {path: 'consume-record', component: ConsumeRecordComponent},
     {path: 'payment', component: PaymentComponent},
     {path: 'transfer-record', component: TransferRecordComponent},
@@ -44,7 +42,6 @@ export const routedComponents = [
   PaymentDetailComponent,
   TurnoverDetailComponent,
   PrintInvoiceComponent,
-  CheckComponent,
   PaymentOrderComponent,
   OrderCancelComponent
 ];

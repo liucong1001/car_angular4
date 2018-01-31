@@ -1,15 +1,18 @@
 import {Component, OnChanges, OnInit, SimpleChanges,TemplateRef,ViewChild } from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import {Column} from '../../../@core/ui/table/table.component';
 import {TextCell} from '../../../@core/ui/table/cell.text.component';
 import {Menu, MenuCell} from '../../../@core/ui/table/cell.menu.component';
 import {Router} from '@angular/router';
 import {CodemapCell, CustomCell} from '../../../@core/ui/table/cell';
+import {OrderCancelService} from '../../../@core/data/money/orderCancel.service';
+import {MessageService} from '../../../@core/utils/message.service';
+import {Column, TableComponent} from '../../../@core/ui/table/table.component';
 
 @Component({
   selector: 'ngx-order-manage',
   templateUrl: './order-manage.component.html',
   styleUrls: ['./order-manage.component.scss'],
+  providers:[OrderCancelService],
   /*styles: [`
     form {
       overflow: hidden;
@@ -29,7 +32,7 @@ import {CodemapCell, CustomCell} from '../../../@core/ui/table/cell';
 })
 export class OrderManageComponent implements OnInit, OnChanges {
   @ViewChild('createTimeCell') private createTimeCell: TemplateRef<any>;
-  constructor(private router: Router) {
+  constructor(private router: Router,private orderCancelService:OrderCancelService,private message:MessageService) {
   }
 
   visibility = 'hidden';
@@ -40,6 +43,10 @@ export class OrderManageComponent implements OnInit, OnChanges {
     this.showFilter = !this.showFilter;
     this.visibility = this.showFilter ? 'shown' : 'hidden';
   }
+  /**
+   * 列表组件实例
+   */
+  @ViewChild(TableComponent) orderManage: TableComponent;
 
   // ngOnChanges 可监控组件变量
   ngOnChanges(changes: SimpleChanges): void {
@@ -64,6 +71,7 @@ export class OrderManageComponent implements OnInit, OnChanges {
         [
           new Menu('编辑', '', 'edit'),
           new Menu('缴费', '', this.payOrder.bind(this)),
+          new Menu('删除', '', this.delete.bind(this)),
           new Menu('订单撤销', '', this.cancelOrder.bind(this)),
         ],
         new Menu('查看', '', this.view), 'text-center',
@@ -86,5 +94,13 @@ export class OrderManageComponent implements OnInit, OnChanges {
   }
   cancelOrder(row:any){
     this.router.navigate( ['/pages/money/order/cancel', { id: row.id }]);
+  }
+  delete(row:any){
+    this.orderCancelService.orderDelete(row.id).then(res=>{
+       this.message.success('','删除成功！');
+      this.orderManage.reload();
+    }).catch(err=>{
+       this.message.error('',err.json().message);
+    });
   }
 }

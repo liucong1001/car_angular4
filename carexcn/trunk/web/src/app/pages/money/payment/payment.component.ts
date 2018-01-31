@@ -98,7 +98,6 @@ export class PaymentComponent implements OnInit, OnChanges {
                 // accountName: this.businessObjectPayment.accountName,
               })
             }
-            // console.log("生成数据", this.payOrderItem);
             this.payOrder.items.push({payment:this.payOrderItem.payment,items:this.payOrderItem.items});
             console.log('列表创建数据',this.list);
             console.log('表单对象', this.payOrder);
@@ -125,23 +124,31 @@ export class PaymentComponent implements OnInit, OnChanges {
           }
          this.payOrder.shouldAmount += this.payOrder.items[i].payment.shouldAmount;
      }
-     this.payOrder.actualAmount = this.payOrder.shouldAmount;
+     // this.payOrder.actualAmount = this.payOrder.shouldAmount;
      console.log('表单',this.payOrder);
-
   }
 
   /**
    * 创建表单
    */
   creatOrder(){
-    this.feeSum();
+    // this.feeSum();
      console.log("创建订单",this.payOrder);
      this.paymentService.createOrder(this.payOrder).then(res=>{
         this.message.success('','创建订单成功！')
-       this.router.navigate( ['/pages/money/payment/order', { id: res.id }]);
+       if(res.complete =='0'){
+         this.router.navigate( ['/pages/money/payment/order', { id: res.id }]);
+       }else if(res.complete =='3'){
+         this.router.navigate( ['/pages/money/order-manage']);
+       }
      }).catch(err=>{
         this.message.error('',err.json().message);
      })
+  }
+
+  remove(data,index){
+        this.payOrder.items.splice(index,1);
+        this.feeSum();
   }
 
 }
