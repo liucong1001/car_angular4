@@ -67,10 +67,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'IC卡充值记录',
         link: '/pages/ic-card/recharge-record',
       },
-      {
-        title: 'IC卡冲红',
-        link: '/pages/ic-card/refund',
-      },
+      // {
+      //   title: 'IC卡冲红',
+      //   link: '/pages/ic-card/refund',
+      // },
       {
         title: '卡片管理',
         link: '/pages/ic-card/card-manage',
@@ -97,14 +97,14 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'IC卡消费记录',
         link: '/pages/money/consume-record',
       },
-      {
-        title: 'IC卡转账记录',
-        link: '/pages/money/transfer-record',
-      },
-      {
-        title: '支付详情查询',
-        link: '/pages/money/payment-detail',
-      },
+      // {
+      //   title: 'IC卡转账记录',
+      //   link: '/pages/money/transfer-record',
+      // },
+      // {
+      //   title: '支付详情查询',
+      //   link: '/pages/money/payment-detail',
+      // },
       {
         title: 'IC卡流水查询',
         link: '/pages/money/turnover-detail',

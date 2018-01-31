@@ -13,10 +13,12 @@
     </div>
     <hr>
 
-    <div class="container fee card" *ngFor=" let i of payOrder.items ">
+    <div class="container fee card" *ngFor=" let i of payOrder.items;let idx=index ">
       <div class="row  card-header">
         <div class="col-md-3">流水号：{{i.payment.archiveNo}}</div>
         <div class="col-nd-3">商户：{{i.payment.accountName}}</div>
+        <div class="col-md-5"></div>
+        <div class="col-md-1" (click)="remove(i,idx)">删除</div>
       </div>
        <div class="card-body">
 
@@ -50,14 +52,18 @@
 
   <nb-card-footer>
     <div class="row ">
-      <div class="col-md-7"></div>
-      <div class=" col-md-2  text-center text-danger">应收金额：<b *ngIf="payOrder.shouldAmount">{{payOrder.shouldAmount}}</b></div>
+      <div class="col-md-4"></div>
+      <div class=" col-md-2  text-center text-danger"> <b *ngIf="payOrder.shouldAmount">应收金额：{{payOrder.shouldAmount}}</b></div>
+      <div class="col-md-1 text-danger" *ngIf="payOrder.shouldAmount"> <b>实收金额：</b> </div>
+      <div class=" col-md-2  text-center text-danger">
+        <input type="number"  class="form-control" [(ngModel)]="payOrder.actualAmount" *ngIf="payOrder.shouldAmount">
+      </div>
       <div class="col-md-1">
         <button class="btn btn-success btn-sm " (click)="creatOrder()">创建订单</button>
       </div>
-      <div class="col-md-1">
-        <button class="btn btn-warning btn-sm">审批</button>
-      </div>
+      <!--<div class="col-md-1">-->
+        <!--<button class="btn btn-warning btn-sm">审批</button>-->
+      <!--</div>-->
     </div>
   </nb-card-footer>
 

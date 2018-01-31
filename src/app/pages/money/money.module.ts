@@ -13,6 +13,7 @@ import {UiModule} from '../../@core/ui/ui.module';
 import {MultiSelectModule} from 'primeng/primeng';
 import { PaymentOrderComponent } from './payment-order/payment-order.component';
 import { OrderCancelComponent } from './order-cancel/order-cancel.component';
+import {SystemModule as CoreSystemModule} from '../../@core/data/system/system.module';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { OrderCancelComponent } from './order-cancel/order-cancel.component';
     RouterModule,
     UiModule, /*ngx-ys-calendar标签*/
     MultiSelectModule,
+    CoreSystemModule,
     // AngularMultiSelectModule
 
   ],

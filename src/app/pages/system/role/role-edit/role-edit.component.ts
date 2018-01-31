@@ -67,13 +67,13 @@ export class RoleEditComponent implements OnInit {
   public getData() {
     this.permissionService.get(null).then(res => {
       this.orgTree = res;
-
+      console.log('开始返回数据',res);
       // this.toPermTreeNodePipe.transform(res,'pipeFilter');
       let data = new ToPermTreeNode().transform(res)  ;
       let dataJson = data as Permissionmap;
-      this.selectedNode = [data[1]];
+      // this.selectedNode = [data[5]];
 
-      // console.log('数组',[data[1]]);
+      console.log('数组',[dataJson[5]],'json',dataJson);
       console.log("选中",this.selectedNode);
     }).catch(err => {
       this.message.error('失败', err.json().message);
@@ -81,7 +81,7 @@ export class RoleEditComponent implements OnInit {
   }
 
   public nodeSelect(event): void {
-
+    this.selectcCode = [];
     console.log('选择节点',this.selectedNode);
     for(var i in this.selectedNode){
       this.selectcCode.push(this.selectedNode[i].code);

@@ -1,9 +1,10 @@
-import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, OnInit, TemplateRef, ViewChild,SimpleChanges,OnChanges} from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {Column} from '../../../@core/ui/table/table.component';
 import {TextCell} from '../../../@core/ui/table/cell.text.component';
 import {IccardService} from '../../../@core/device/iccard.service';
 import {DeviceService} from '../../../@core/device/device.service';
+import {CodemapCell, CustomCell} from '../../../@core/ui/table/cell';
 
 @Component({
   selector: 'ngx-turnover-detail',
@@ -32,6 +33,7 @@ export class TurnoverDetailComponent implements OnInit, OnChanges {
   constructor() { }
 
   visibility = 'hidden';
+
   showFilter = false;
   // 列表搜索表单隐藏显示切换
   toggle() {
@@ -46,13 +48,16 @@ export class TurnoverDetailComponent implements OnInit, OnChanges {
   }
   // 列表搜索条件对象
   filter: any = {};
+  @ViewChild('createTimeCell') private createTimeCell: TemplateRef<any>;
+
   // 列表列定义
   columns: Column[] = [
-    {title: '类型', titleClass: '', cell: new TextCell('code')} as Column,
-    {title: '订单号', titleClass: '', cell: new TextCell('name')} as Column,
-    {title: '支付金额', titleClass: '', cell: new TextCell('name')} as Column,
-    {title: '收入金额', titleClass: '', cell: new TextCell('name')} as Column,
-    {title: '时间', titleClass: '', cell: new TextCell('name')} as Column,
+    {title: '类型', titleClass: 'w-20', cell: new CodemapCell('recordType','recordType')} as Column,
+    {title: '订单号', titleClass: '', cell: new TextCell('id')} as Column,
+    {title: '支付金额', titleClass: '', cell: new TextCell('amount')} as Column,
+    {title: '方式', titleClass: '', cell: new CodemapCell('payStatus','payStatus')} as Column,
+    {title: '时间', titleClass: '', cell: new CustomCell(this.createTimeCell)} as Column,
+    {title: 'memo', titleClass: '', cell: new TextCell('rmk')} as Column,
     /*{title: '操作', titleClass: 'w-25 text-center', cell: new MenuCell(
         [
           new Menu('编辑', '', 'edit'),

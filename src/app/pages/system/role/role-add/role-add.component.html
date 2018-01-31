@@ -14,7 +14,7 @@
             <div class="col-sm-6">
                 <span>角色代码</span>
                 <div>
-                  <p-tree [value]="orgTree | permTreeNode" selectionMode="checkbox"   [(selection)]="selectedNode" (onNodeSelect)="nodeSelect($event)" (click)="null" onNodeUnselect='nodeUnselect($event)'></p-tree>
+                  <p-tree [value]="orgTree | permTreeNode" selectionMode="checkbox"   [(selection)]="selectedNode" (onNodeSelect)="nodeSelect($event)" (click)="clcikMe()" onNodeUnselect='nodeUnselect($event)'></p-tree>
                 </div>
             </div>
         </div>

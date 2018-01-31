@@ -29,6 +29,7 @@ export class BusinessObjectPaymentInfo {
 }
 //缴费订单---单条缴费总金额
 export class BusinessObjectPayment {
+  public id?:string;
   /**
    * 业务对象标识
    */
@@ -45,6 +46,11 @@ export class BusinessObjectPayment {
    * 账户名称
    */
   public accountName:string;
+  /**
+   * 完成状态
+   */
+  public finishType?:string;
+
 }
 //缴费订单---单条缴费对象
 export  class  PayOrderItemForm{

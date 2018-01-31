@@ -51,11 +51,14 @@ export class MarketStaffComponent implements OnInit {
       {title: '岗位', titleClass: '', cell: new CodemapCell('position', 'staffPosition')} as Column,
       {title: '状态', titleClass: '', cell: new CustomCell(this.statusCell)} as Column,
       {title: '操作', titleClass: '', cell: new MenuCell([
-          new Menu('编辑', '', 'edit/:id'),
+          new Menu('编辑', '', this.edit.bind(this)),
        ],
        new Menu('查看', '', 'view/:id')),
       },
     ];
+  }
+  edit(row:any){
+    this.router.navigate( ['/pages/system/market/staff/edit', { id: row.id }]);
   }
 
   changeStatus(row) {

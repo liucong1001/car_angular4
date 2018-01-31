@@ -51,19 +51,22 @@ export class RoleAddComponent implements OnInit {
   }
 
   public nodeSelect(event): void {
-
-    // console.log('选择节点',this.selectedNode,typeof this.selectedNode);
+    this.selectcCode = [];
+    console.log('选择节点',this.selectedNode,typeof this.selectedNode);
     for(var i in this.selectedNode){
       this.selectcCode.push(this.selectedNode[i].code);
     }
-    // console.log('code的值',this.selectcCode);
+    console.log('code的值',this.selectcCode);
     this.form.patchValue({
       permissons:this.selectcCode,
     });
-
   }
 
   public nodeUnselect(event): void {
+     console.log('取消');
+  }
+  public clcikMe(){
+    // console.log('点击1');
   }
 
   public  save(){
@@ -75,6 +78,7 @@ export class RoleAddComponent implements OnInit {
       this.message.error('保存失败', err.json().message);
     });
   }
+
   public back(){
     this.router.navigateByUrl('/pages/system/role');
   }
