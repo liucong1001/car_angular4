@@ -37,11 +37,17 @@ export class PhotoExampleService {
    * @param model
    * @returns {Promise<TResult2|PhotoExampleModel>}
    */
-
   public saveEdit(model): Promise<PhotoExampleModel> {
     return this.http.put(this.path, model).toPromise().then((res) => res.json() as PhotoExampleModel);
   }
 
-
+  /**
+   * 获取图片局部放大时的对应配置
+   * 调用时应做好全局缓存，
+   * @returns {Promise<any>}
+   */
+  public getPhotoScrollerYConfig(): Promise<any> {
+    return this.http.get('').toPromise();
+  }
 
 }
