@@ -69,4 +69,24 @@ export class MarketStaffService {
   public enable(id: string): Promise<any> {
     return this.http.patch(`${this.url}/${id}?enable`, {}).toPromise();
   }
+
+  /**
+   * 更具id获取员工信息
+   * @param id
+   * @returns {Promise<Object>}
+   */
+  public getInfo(id:string):Promise<any>{
+    return this.http.get(`${this.url}/${id}`).toPromise();
+  }
+
+  /**
+   * 修改保存
+   * @param staff
+   * @returns {Promise<Object>}
+   */
+  public editSave(staff: MarketStaffForm): Promise<MarketStaff> {
+    return this.http.put(this.url, staff).toPromise();
+  }
+
+
 }

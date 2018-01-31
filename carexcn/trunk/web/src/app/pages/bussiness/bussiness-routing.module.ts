@@ -17,11 +17,16 @@ import {TjudicationPhotoComponent} from './transfer/tjudication-photo/tjudicatio
 import {TjudicationFingerComponent} from './transfer/tjudication-finger/tjudication-finger.component';
 import {DirectRecordingComponent} from './transfer/direct-recording/direct-recording.component';
 import {MobileRecordingComponent} from './mobile-recording/mobile-recording.component';
+import { MobileTestComponent } from './mobile-recording/mobile-test/mobile-test.component';
 
 const routes: Routes = [
   {
     path: 'mobile-recording',
     component: MobileRecordingComponent,
+  },
+  {
+    path: 'mobile-recording/test',
+    component: MobileTestComponent,
   },
   {
     path: 'transfer/trecording',
