@@ -26,6 +26,7 @@ import { CodemirrorComponent } from './form/codemirror/codemirror.component';
 import {CodemirrorModule} from 'ng2-codemirror';
 import { YsCardComponent } from './bussiness/ys-card/ys-card.component';
 import { DynamicPhotoFormComponent } from './bussiness/dynamic-photo-form/dynamic-photo-form.component';
+import { PhotoDetailComponent } from './bussiness/photo-detail/photo-detail.component';
 
 const COMPONENTS = [
   CameraComponent,
@@ -48,6 +49,7 @@ const COMPONENTS = [
   CodemirrorComponent,
   YsCardComponent,
   DynamicPhotoFormComponent,
+  PhotoDetailComponent,
 ];
 
 @NgModule({

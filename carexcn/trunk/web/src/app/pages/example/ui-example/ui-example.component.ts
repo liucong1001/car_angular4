@@ -75,6 +75,15 @@ export class UiExampleComponent implements OnInit {
       console.info(res);
     });
   }
+  photo_detail_url = 'https://dongshenghuo.com/tmp/license/%E8%BA%AB%E4%BB%BD%E8%AF%81%E5%8F%8D%E9%9D%A2.jpg';
+  photo_detail_top = '0';
+  photo_detail_display = false;
+  testPhotoDetail(url, top) {
+    this.photo_detail_url = url ? url : 'https://dongshenghuo.com/tmp/license/%E8%BA%AB%E4%BB%BD%E8%AF%81%E5%8F%8D%E9%9D%A2.jpg';
+    this.photo_detail_top = top ? top : '0';
+    this.photo_detail_display = true;
+    console.info(url, top);
+  }
   /**
    * 构造函数
    * @param {MessageService} message

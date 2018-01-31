@@ -75,6 +75,13 @@
       <input type="text" placeholder="URL地址测试" class="form-control" #url/>
       <button class="btn btn-primary btn-sm" (click)="test1Click(url.value)">测试1</button>
     </div>
+    <ngx-ys-photo-detail [photoUrl]="photo_detail_url" [top]="photo_detail_top" [display]="photo_detail_display"></ngx-ys-photo-detail>
+    <div class="input-group">
+      <input type="text" placeholder="图片URL" class="form-control" #url/>
+      <input type="text" placeholder="Top坐标(百分比)" class="form-control" #top/>
+      <button class="btn btn-primary btn-sm" (click)="testPhotoDetail(url.value, top.value)">图片局部放大</button>
+      <button class="btn btn-primary btn-sm" (click)="photo_detail_display = false">隐藏</button>
+    </div>
     <div class="input-group">
       <input type="text" placeholder="代码类" class="form-control" #codeMap/>
       <input type="text" placeholder="代码" class="form-control" #code/>
