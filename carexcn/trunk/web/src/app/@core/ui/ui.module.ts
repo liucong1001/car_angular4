@@ -24,7 +24,6 @@ import { InputComponent } from './form/input/input.component';
 import { SelectComponent } from './form/select/select.component';
 import { CodemirrorComponent } from './form/codemirror/codemirror.component';
 import {CodemirrorModule} from 'ng2-codemirror';
-import { FormBuilderComponent } from './form-builder/form-builder.component';
 import { YsCardComponent } from './bussiness/ys-card/ys-card.component';
 import { DynamicPhotoFormComponent } from './bussiness/dynamic-photo-form/dynamic-photo-form.component';
 
