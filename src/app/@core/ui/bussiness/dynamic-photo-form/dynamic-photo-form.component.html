@@ -1,0 +1,19 @@
+<div *ngIf="photos">
+  <div [formGroup]="photos">
+    <!--先循环出 photos(formGroup)中的photoType(controls)-->
+    <div *ngFor="let photoType of objectKeys(photos.controls)">
+      <div formArray="photoType">
+        <!--再循环出photoType中的各个照片数组-->
+        <div *ngFor="let photo of getPhotoFormControls(photoType)">
+          <!--数组中的每个元素都是一个最终的 controls 值-->
+          <ngx-ys-camera
+            [title]="photos_name[photoType]"
+            [source]="photo.value"
+            [btn_show]="btn_show"
+            [formControl]="photo"
+          ></ngx-ys-camera>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
