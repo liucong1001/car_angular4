@@ -26,6 +26,9 @@ export class MarketStaffAddComponent implements OnInit {
     position: ['', [Validators.required]],
   });
   form: FormGroup = this.fb.group({
+    test: this.fb.array([
+
+    ]),
     marketStaff: this.marketStaff,
     code: ['', [Validators.required, Validators.pattern(/^[0-9]{4}$/)], this.validCode.bind(this) ],
   });
