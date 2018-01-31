@@ -1,10 +1,11 @@
 import { MessageService } from './../../../../@core/utils/message.service';
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, ValidationErrors, Validators} from '@angular/forms';
-import { ActivatedRoute, Router, ActivatedRouteSnapshot, RouterState, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRoute, Router,Params, ActivatedRouteSnapshot, RouterState, RouterStateSnapshot } from '@angular/router';
 import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
 import {MarketStaffService} from '../../../../@core/data/system/market-staff.service';
 import {ErrorMessage} from '../../../../@core/ui/valid-error/valid-error.component';
+import {Observable} from 'rxjs/Observable';
 
 
 @Component({
@@ -24,9 +25,29 @@ export class MarketStaffEditComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.route.params.subscribe((params: Params) => {
+      if (params['id']) {
+        this.staffService.getInfo(params['id']).then(res => {
+          // this.form.setValue(res);
+            this.marketStaff.patchValue({
+              id: res.id,
+              cloudUser:'0001',
+              loginName: res.loginName,
+              userName: res.userName,
+              position:res.position,
+              email:res.email,
+              telephone:res.telephone,
+            });
+        })
+        //   .catch(err => {
+        //   this.message.error('获取失败', err.json().message);
+        // });
+      }
+    });
   }
 
-  form: FormGroup = this.fb.group({
+  marketStaff: FormGroup = this.fb.group({
+    id:['',[Validators.required]],
     cloudUser: ['0001'],
     loginName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z][a-zA-Z0-9_-]{5,32}$/)], this.loginNameExists.bind(this)],
     telephone: ['', [Validators.required, Validators.pattern(/^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0,5-9]))\d{8}$/)]],
@@ -34,6 +55,34 @@ export class MarketStaffEditComponent implements OnInit {
     email: ['', [Validators.email]],
     position: ['', [Validators.required]],
   });
+
+  form: FormGroup = this.fb.group({
+    test: this.fb.array([
+
+    ]),
+    marketStaff: this.marketStaff,
+    code: ['', [Validators.required, Validators.pattern(/^[0-9]{4}$/)], this.validCode.bind(this) ],
+  });
+
+
+
+  /**
+   * 校验验证码
+   */
+  validCode(control: FormControl): Observable<ValidationErrors|null> {
+    const o = Observable.create(observ => {
+      observ.next({validcode: true});
+      this.staffService.validCode(this.marketStaff.value.telephone, control.value)
+        .then(ret => {
+          observ.next(null);
+          observ.complete();
+        }).catch(err => {
+        observ.next({validcode: true});
+        observ.complete();
+      });
+    });
+    return o;
+  }
 
   loginNameExists(control: FormControl): Promise<ValidationErrors|null> {
     return this.staffService.checkLoginName(control.value)
@@ -72,6 +121,16 @@ export class MarketStaffEditComponent implements OnInit {
 
   back() {
     this.router.navigateByUrl('/pages/system/market/staff');
+  }
+  save(){
+    // if (this.marketStaff.invalid) {
+    //   return;
+    // }
+    this.staffService.editSave(this.form.value).then(res => {
+      this.message.success('员工创建成功', `` );
+    }).catch(err => {
+      this.message.error('修改员工出现错误', err.message);
+    });
   }
 
 }

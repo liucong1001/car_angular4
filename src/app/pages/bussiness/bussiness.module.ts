@@ -23,6 +23,7 @@ import {SystemModule} from '../../@core/data/system/system.module';
 import {CacheModule} from '../../@core/cache/cache.module';
 import { DirectRecordingComponent } from './transfer/direct-recording/direct-recording.component';
 import {MobileRecordingComponent} from './mobile-recording/mobile-recording.component';
+import { MobileTestComponent } from './mobile-recording/mobile-test/mobile-test.component';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import {MobileRecordingComponent} from './mobile-recording/mobile-recording.comp
     TjudicationFingerComponent,
     DirectRecordingComponent,
     MobileRecordingComponent,
+    MobileTestComponent,
   ],
 })
 export class BussinessModule {

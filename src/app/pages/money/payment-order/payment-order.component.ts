@@ -106,25 +106,30 @@ export class PaymentOrderComponent implements OnInit {
 
 
   payMoney(){
-   this.payMoneyModel.push({
-     //ic卡支付
-     payStatus:this.payStatus,
-     payAmount:this.icCardPayMoney,
-     payIcCard:this.icCardInfo.CardNumber,
-     businessID:this.OrderInfo.business.id,
-     payOrderId:this.OrderInfo.id,
-     passWord:'123456',
-     cloudUser:'0001',
-   },{
-     //现金支付
-     payStatus:'1',
-     payAmount:this.cashPayMoney,
-     payIcCard:null,
-     businessID:this.OrderInfo.business.id,
-     payOrderId:this.OrderInfo.id,
-     passWord:null,
-     cloudUser:'0001',
-   });
+   // this.payMoneyModel.push({
+   //
+   // },{
+   //
+   // });
+    this.payMoneyModel=[{
+      //ic卡支付
+      payStatus:this.payStatus,
+      payAmount:this.icCardPayMoney,
+      payIcCard:this.icCardInfo.CardNumber,
+      businessID:this.OrderInfo.business.id,
+      payOrderId:this.OrderInfo.id,
+      passWord:'123456',
+      cloudUser:'0001',
+    },{
+      //现金支付
+      payStatus:'1',
+      payAmount:this.cashPayMoney,
+      payIcCard:null,
+      businessID:this.OrderInfo.business.id,
+      payOrderId:this.OrderInfo.id,
+      passWord:null,
+      cloudUser:'0001',
+    }];
 
 
    const model = {'receiveRecordForms': this.payMoneyModel};
