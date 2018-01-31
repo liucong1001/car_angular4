@@ -263,6 +263,12 @@ export class SellerInfoComponent implements OnInit {
   }
 
   /**
+   * 显示照片详情
+   */
+  showPhotoDetail() {
+    console.info('a');
+  }
+  /**
    * 读取IC卡并将读取的信息赋值到卖家表单中
    */
   readIdCard() {
