@@ -6,12 +6,13 @@ import { MessageService } from './../../../../@core/utils/message.service';
 import { MarketService } from './../../../../@core/data/system/market.service';
 import {Marketphotomap} from './../../../../@core/model/system/market-photo-map';
 import {ErrorMessage} from '../../../../@core/ui/valid-error/valid-error.component';
+import {PhotoExampleService} from '../../../../@core/data/system/photo-example.service';
 
 @Component({
   selector: 'ngx-market-photo-edit',
   templateUrl: './market-photo-edit.component.html',
   styleUrls: ['./market-photo-edit.component.scss'],
-  providers: [MarketService, MessageService],
+  providers: [MarketService, MessageService,PhotoExampleService],
 })
 export class MarketPhotoEditComponent implements OnInit {
 
@@ -19,13 +20,18 @@ export class MarketPhotoEditComponent implements OnInit {
   marketId = '';
   marketName = '';
   marketisApp= '';
+  photoTypeList = [];
 
   constructor(private fb: FormBuilder,
     public router: Router,
     private route: ActivatedRoute,
     public http: Http,
     private marketService: MarketService,
-    private message: MessageService) {
+    private message: MessageService,
+    private photoExampleService:PhotoExampleService,) {
+    this.photoExampleService.getPhotoType().then(res=>{
+      this.photoTypeList = res;
+    });
       this.route.params.subscribe((params: Params) => {
         this.marketId = params['marketId'];
         this.marketName = params['marketName'];
@@ -72,6 +78,7 @@ export class MarketPhotoEditComponent implements OnInit {
      }
 
   ngOnInit() {
+
   }
 
   form: FormGroup = this.fb.group({
@@ -80,7 +87,7 @@ export class MarketPhotoEditComponent implements OnInit {
     name: ['', [Validators.required]],
     memo: [''],
     certificateCode: ['', [Validators.required,Validators.maxLength(2)]],
-    photoType: ['', [Validators.required,Validators.maxLength(2)]],
+    photoType: ['', [Validators.required,Validators.maxLength(3)]],
     formName: ['', [Validators.required]],
     status: ['', [Validators.required]],
     max: ['', [Validators.required]],

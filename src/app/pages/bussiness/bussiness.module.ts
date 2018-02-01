@@ -24,6 +24,8 @@ import {CacheModule} from '../../@core/cache/cache.module';
 import { DirectRecordingComponent } from './transfer/direct-recording/direct-recording.component';
 import {MobileRecordingComponent} from './mobile-recording/mobile-recording.component';
 import { MobileTestComponent } from './mobile-recording/mobile-test/mobile-test.component';
+import { MobileReviewComponent } from './mobile-recording/mobile-review/mobile-review.component';
+import { MobileInputComponent } from './mobile-recording/mobile-input/mobile-input.component';
 
 
 @NgModule({
@@ -56,6 +58,8 @@ import { MobileTestComponent } from './mobile-recording/mobile-test/mobile-test.
     DirectRecordingComponent,
     MobileRecordingComponent,
     MobileTestComponent,
+    MobileReviewComponent,
+    MobileInputComponent,
   ],
 })
 export class BussinessModule {

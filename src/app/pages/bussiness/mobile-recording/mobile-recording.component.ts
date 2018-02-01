@@ -28,13 +28,14 @@ export class MobileRecordingComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    // this.filter.preStatusList='12';
   }
   // 列表搜索条件对象
   filter: any = {};
   // 列表列定义
   columns: Column[] = [
-    {title: '流水号', titleClass: '', cell: new TextCell('code')} as Column,
-    {title: '车牌号', titleClass: '', cell: new TextCell('name')} as Column,
+    {title: '流水号', titleClass: '', cell: new TextCell('archiveNo')} as Column,
+    {title: '车牌号', titleClass: '', cell: new TextCell('plateNumber')} as Column,
     {title: '里程(公里)', titleClass: '', cell: new TextCell('name')} as Column,
     {title: '出售价', titleClass: '', cell: new TextCell('name')} as Column,
     {title: '购买价', titleClass: '', cell: new TextCell('name')} as Column,

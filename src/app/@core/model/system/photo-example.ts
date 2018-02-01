@@ -15,6 +15,8 @@ export class PhotoExampleModel {
     scale: string;
 
     id:string;
+
+    name:string;
   };
   public photos?:{
     photoExample:[{

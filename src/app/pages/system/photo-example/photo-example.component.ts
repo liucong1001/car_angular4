@@ -41,7 +41,8 @@ export class PhotoExampleComponent implements OnInit {
   columns: Column[];
   ngOnInit() {
     this.columns = [
-      {title: '照片类型', titleClass: '', cell: new CodemapCell('photoType', 'photoType')} as Column,
+      {title: '附件类型名称', titleClass: '', cell: new TextCell('name')} as Column,
+      {title: '附件类型代码', titleClass: '', cell: new TextCell('photoType')} as Column,
       {title: '长宽比', titleClass: '', cell: new TextCell('scale')} as Column,
       {title: '创建时间', titleClass: '', cell: new CustomCell(this.createTimeCell)} as Column,
       {title: '操作', titleClass: '', cell: new MenuCell([

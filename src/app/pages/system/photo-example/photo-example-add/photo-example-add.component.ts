@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router, ActivatedRoute} from '@angular/router';
 import {MessageService} from '../../../../@core/utils/message.service';
 import {PhotoExampleService} from '../../../../@core/data/system/photo-example.service';
+import {FileSystemService} from "../../../../@core/data/system/file-system.service";
 
 @Component({
   selector: 'ngx-photo-example-add',
@@ -13,9 +14,10 @@ import {PhotoExampleService} from '../../../../@core/data/system/photo-example.s
 export class PhotoExampleAddComponent implements OnInit {
 
   constructor(private fb: FormBuilder,private message:MessageService,private photoExampleService:PhotoExampleService,
-              public router: Router, private route: ActivatedRoute,) { }
+              public router: Router, private route: ActivatedRoute,  private file: FileSystemService,) { }
 
   ngOnInit() {
+
   }
 
   photos: any[] = [{
@@ -36,12 +38,8 @@ export class PhotoExampleAddComponent implements OnInit {
     photoExample: this.fb.group({
       photoType: [null, [Validators.required]],
       scale: [null, [Validators.required]],
+      name:[null,[Validators.required]],
     }),
-    // photos:this.fb.group({
-    //   'photoExample':[[{'filePath':null}]],
-    // }),
-    // photos:this.photoForm,
-
   });
 
   /**
@@ -50,11 +48,8 @@ export class PhotoExampleAddComponent implements OnInit {
    * @param photo
    */
   onChangeSource($event, photo) {
-    this.message.info(photo.title + ' 的新图片地址', $event);
-    this.filePath = $event;
-    console.log("filepath",this.filePath);
-    this.photoForm.photoExample.push({'filePath':this.filePath});
-    console.log("对象", this.photoForm);
+    this.filePath = this.file.getFileUrlByTmp($event);
+    this.photoForm.photoExample[0] = {'filePath': this.file.getFileNameByTmp($event)};
   }
 
 

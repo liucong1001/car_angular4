@@ -38,7 +38,7 @@ export class MobileTestComponent implements OnInit {
     })
   }
   back(){
-
+    this.router.navigate( ['/pages/bussiness/mobile-recording']);
   }
 
 }
