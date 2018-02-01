@@ -18,6 +18,8 @@ import {TjudicationFingerComponent} from './transfer/tjudication-finger/tjudicat
 import {DirectRecordingComponent} from './transfer/direct-recording/direct-recording.component';
 import {MobileRecordingComponent} from './mobile-recording/mobile-recording.component';
 import { MobileTestComponent } from './mobile-recording/mobile-test/mobile-test.component';
+import { MobileReviewComponent } from './mobile-recording/mobile-review/mobile-review.component';
+import { MobileInputComponent } from './mobile-recording/mobile-input/mobile-input.component';
 
 const routes: Routes = [
   {
@@ -27,6 +29,14 @@ const routes: Routes = [
   {
     path: 'mobile-recording/test',
     component: MobileTestComponent,
+  },
+  {
+    path: 'mobile-recording/input',
+    component: MobileInputComponent,
+  },
+  {
+    path: 'mobile-recording/review',
+    component: MobileReviewComponent,
   },
   {
     path: 'transfer/trecording',

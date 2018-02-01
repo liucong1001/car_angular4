@@ -44,6 +44,18 @@ export class PhotoExampleService {
   }
 
   /**
+   * 获取照片类型
+   * @returns {Promise<TResult2|TResult1>}
+   */
+  public getPhotoType():Promise<any>{
+    const url = `${this.path}/type`;
+    return this.http.get(url).toPromise().then(function (res) {
+       return res.json() as any;
+    })
+  }
+
+
+  /**
    * 获取图片局部放大时的对应配置
    * 会返回所有配置而非单个附件类型的配置
    * 会自动全局缓存，有效期至浏览器关闭

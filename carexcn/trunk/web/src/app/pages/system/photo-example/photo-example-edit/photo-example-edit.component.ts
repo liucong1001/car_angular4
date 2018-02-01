@@ -65,6 +65,7 @@ export class PhotoExampleEditComponent implements OnInit {
     photoExample: this.fb.group({
       photoType: [null, [Validators.required]],
       scale: [null, [Validators.required]],
+      name:[null,[Validators.required]],
       id: [null, [Validators.required]],
     }),
   });

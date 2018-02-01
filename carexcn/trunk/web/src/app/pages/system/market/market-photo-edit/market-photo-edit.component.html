@@ -42,7 +42,10 @@
           <div class="form-group">
             <label>照片类型</label>
             <div>
-              <ngx-ys-codeitem-droplist codeMap="photoType" formControlName="photoType"> </ngx-ys-codeitem-droplist>
+              <select name="" id=""  class="form-control" formControlName="photoType">
+                <option [value]="item.code" *ngFor="let item of photoTypeList">{{item.name}}</option>
+              </select>
+              <!--<ngx-ys-codeitem-droplist codeMap="photoType" formControlName="photoType"> </ngx-ys-codeitem-droplist>-->
             </div>
           </div>
           <ngx-valid-error [errors]="errors.photoType" [control]="form.get('photoType')"></ngx-valid-error>

@@ -6,11 +6,19 @@
   <nb-card-body>
     <form [formGroup]="form" (ngSubmit)="save()">
       <div class="row">
-        <div class="col-sm-6" formGroupName="photoExample">
+        <div class="col-sm-3" formGroupName="photoExample" >
           <div class="form-group">
-            <label>照片类型:</label>
+            <label> 照片类型名称:</label>
             <div>
-              <ngx-ys-codeitem-droplist codeMap="photoType" formControlName="photoType" > </ngx-ys-codeitem-droplist>
+              <input type="text"  formControlName="name" class="form-control">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3" formGroupName="photoExample">
+          <div class="form-group">
+            <label> 照片类型代码:</label>
+            <div>
+              <input type="text"  formControlName="photoType" class="form-control">
             </div>
           </div>
         </div>
