@@ -111,7 +111,7 @@ export class CameraComponent implements OnInit, ControlValueAccessor, OnChanges 
    * 拿到图片后统一处理的事
    * @param {string} file
    */
-  afterGetFileName(file: string) {
+  afterGetFileName(file: string, value: string) {
     /**
      * 显示当前新图片
      */
@@ -127,7 +127,7 @@ export class CameraComponent implements OnInit, ControlValueAccessor, OnChanges 
   paizhao() {
     this.message.info('摄像头', '拍照并上传');
     this.webcam.snapshot(false, 'a', 'b').then((res) => {
-      this.afterGetFileName('tmp:' + res.file[0]);
+      this.afterGetFileName('tmp:' + res.file[0], res.file[0]);
     });
   }
   /**
@@ -135,6 +135,6 @@ export class CameraComponent implements OnInit, ControlValueAccessor, OnChanges 
    * @param source
    */
   onUploadComplete(source) {
-    this.afterGetFileName('tmp:' + source);
+    this.afterGetFileName('tmp:' + source, source);
   }
 }

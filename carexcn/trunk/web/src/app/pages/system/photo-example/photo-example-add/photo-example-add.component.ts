@@ -64,9 +64,9 @@ export class PhotoExampleAddComponent implements OnInit {
     // }
     const codemap = this.form.value ;
     codemap.photos=this.photoForm;
-    console.log('照片示例', codemap);
+    console.log('附件类型', codemap);
     this.photoExampleService.save(codemap).then(res => {
-      this.message.success('保存成功', '照片示例保存成功');
+      this.message.success('保存成功', '附件类型保存成功');
       // this.saved = true;
       this.back();
     }).catch(err => {
