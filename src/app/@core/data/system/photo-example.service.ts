@@ -7,7 +7,7 @@ import {CarModel} from "../../model/bussiness/car.model";
 export class PhotoExampleService {
 
   private path = '/rest/common/photo/example';
-  private photo_scrollery_config_cache;
+  private photo_scrollery_config_cache: Promise<any>;
   constructor(private http: Http) {
   }
 
@@ -49,7 +49,7 @@ export class PhotoExampleService {
    * 会自动全局缓存，有效期至浏览器关闭
    * @returns {Promise<any>}
    */
-  public getPhotoScrollerYConfig(photo): Promise<any> {
+  public getPhotoScrollerYConfig(photoType: string): Promise<any> {
     // return this.http.get('').toPromise();
     if (! this.photo_scrollery_config_cache ) {
       this.photo_scrollery_config_cache = Promise.resolve(this.photo_scrollery_config);

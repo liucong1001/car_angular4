@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router, ActivatedRoute} from '@angular/router';
 import {MessageService} from '../../../../@core/utils/message.service';
 import {PhotoExampleService} from '../../../../@core/data/system/photo-example.service';
 import {PhotoExampleModel} from '../../../../@core/model/system/photo-example';
+import {FileSystemService} from "../../../../@core/data/system/file-system.service";
 
 @Component({
   selector: 'ngx-photo-example-edit',
@@ -14,13 +15,15 @@ import {PhotoExampleModel} from '../../../../@core/model/system/photo-example';
 export class PhotoExampleEditComponent implements OnInit {
 
   photoExampleModel = new PhotoExampleModel();
+
   constructor(
     private fb: FormBuilder,
     private message: MessageService,
     private photoExampleService: PhotoExampleService,
     public router: Router,
     private route: ActivatedRoute,
-  ) { }
+    private file: FileSystemService,
+  ) {}
 
   ngOnInit() {
     this.route.params.subscribe(p => {
@@ -34,13 +37,14 @@ export class PhotoExampleEditComponent implements OnInit {
       }
     });
   }
+
   photos = {
     title: '示例照片',
     source: '',
   };
   filePath = null;
-  photoForm={
-    'photoExample': []
+  photoForm = {
+    'photoExample': [],
   };
 
   /**
@@ -49,10 +53,8 @@ export class PhotoExampleEditComponent implements OnInit {
    * @param photo
    */
   onChangeSource($event, photo) {
-    // this.message.info(photo.title + ' 的新图片地址', $event);
-    this.filePath = $event;
-    console.log("filepath",$event);
-    this.photoForm.photoExample[0]={'filePath':$event};
+    this.filePath = this.file.getFileUrlByTmp($event);
+    this.photoForm.photoExample[0] = {'filePath': this.file.getFileNameByTmp($event)};
   }
 
   /**
@@ -60,34 +62,26 @@ export class PhotoExampleEditComponent implements OnInit {
    * @type {FormGroup}
    */
   form: FormGroup = this.fb.group({
-
     photoExample: this.fb.group({
       photoType: [null, [Validators.required]],
       scale: [null, [Validators.required]],
       id: [null, [Validators.required]],
     }),
-
   });
 
-
   save() {
-    // if (this.form.invalid) {
-    //   return false;
-    // }
-
-    const codemap = this.form.value ;
+    const codemap = this.form.value;
     codemap.photos = this.photoForm;
-    console.log('照片示例', codemap,this.photoForm);
     this.photoExampleService.saveEdit(codemap).then(res => {
-      this.message.success('保存成功', '照片示例保存成功');
+      this.message.success('保存成功', '附件类型保存成功');
       // this.saved = true;
       this.back();
     }).catch(err => {
       this.message.error('保存失败', err.json().message);
     });
   }
-  back(){
+
+  back() {
     this.router.navigateByUrl('/pages/system/photo-example');
   }
-
 }

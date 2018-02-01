@@ -12,6 +12,9 @@ export class FileSystemService {
   public getFileUrlByTmp(file_temp: string): string {
     return this.device.pre_access_url_tmp + file_temp.substring(4);
   }
+  public getFileNameByTmp(file_temp: string): string {
+    return file_temp.substring(4);
+  }
   public getFileUrlById(file_id: string): string {
     return this.path + file_id.substring(3);
   }
