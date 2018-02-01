@@ -89,9 +89,9 @@
       <button class="btn btn-primary btn-sm" (click)="test2Pipe(codeMap.value, code.value)">代码转换管道测试</button>
     </div>
     <div class="input-group">
-      <label class="btn">'03' | code_trans: 'photoType' => {{ '03' | code_trans: 'photoType' | async }}</label>
+      <label class="btn">'03' | code_trans: 'certType' => {{ '03' | code_trans: 'certType' | async }}</label>
       <input type="text" placeholder="选中的值" class="form-control" [(ngModel)]="codeTransSeleted"/>
-      <ngx-ys-codeitem-droplist (_selectedValue)="getDropListSelectItem($event)" [codeMap]="'photoType'" ></ngx-ys-codeitem-droplist>
+      <ngx-ys-codeitem-droplist (_selectedValue)="getDropListSelectItem($event)" [codeMap]="'certType'" ></ngx-ys-codeitem-droplist>
       <ngx-ys-droplist (_selectedValue)="getDropListSelect($event)" [selectItems]="dropListItems" ></ngx-ys-droplist>
     </div>
     <div class="cameras-card-header">
