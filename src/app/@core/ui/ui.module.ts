@@ -27,6 +27,7 @@ import {CodemirrorModule} from 'ng2-codemirror';
 import { YsCardComponent } from './bussiness/ys-card/ys-card.component';
 import { DynamicPhotoFormComponent } from './bussiness/dynamic-photo-form/dynamic-photo-form.component';
 import { PhotoDetailComponent } from './bussiness/photo-detail/photo-detail.component';
+import {InputWithPhotoDirective} from './bussiness/photo-detail/input-with-photo.directive';
 
 const COMPONENTS = [
   CameraComponent,
@@ -44,6 +45,7 @@ const COMPONENTS = [
   ArchiveNoComponent,
   FormFilterComponent,
   ErrorClassDirective,
+  InputWithPhotoDirective,
   InputComponent,
   SelectComponent,
   CodemirrorComponent,

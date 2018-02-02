@@ -83,7 +83,7 @@ export class RecordingComponent implements OnInit, OnDestroy {
    * 页面初始化事件
    */
   ngOnInit() {
-    console.info('exec on init.');
+    // console.info('exec on init.');
     /**
      * 默认车牌前缀
      */
@@ -127,7 +127,7 @@ export class RecordingComponent implements OnInit, OnDestroy {
    * @constructor
    */
   ngOnDestroy() {
-    console.info('exec on destroy.');
+    // console.info('exec on destroy.');
     this._localstorage.set('linkmanSelected', this.linkmanSelected);
     this._localstorage.set('linkmandata', this.linkManData);
     this._localstorage.set('dealer', this.dealer);

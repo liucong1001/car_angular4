@@ -9,6 +9,8 @@ import {ErrorMessage} from '../../valid-error/valid-error.component';
 import {Marketphotomap} from '../../../model/system/market-photo-map';
 import {MarketService} from '../../../data/system/market.service';
 import {FileSystemService} from '../../../data/system/file-system.service';
+import {LocalstorageService} from '../../../cache/localstorage.service';
+import {IWPDisplayParam} from '../photo-detail/IWP-display.param';
 
 @Component({
   selector: 'ngx-ys-seller-info',
@@ -94,7 +96,7 @@ export class SellerInfoComponent implements OnInit {
     private fb: FormBuilder,
     private _codeitem: CodeitemService,
     private _market: MarketService,
-    private _file: FileSystemService,
+    private _localstorage: LocalstorageService,
   ) {
   }
 
@@ -156,11 +158,21 @@ export class SellerInfoComponent implements OnInit {
       formName: '预审录入卖家', // 表单名称
     } as Marketphotomap).then(res => this.initPhotoMap(res.json() as [Marketphotomap]));
   }
+  public photo_detail_param: IWPDisplayParam = new IWPDisplayParam(); // 图片局部放大参数
+  /**
+   * 配置显示图片局部放大功能
+   * @param {boolean} ifDisplay
+   */
+  setIWPDisplay(param: IWPDisplayParam) {
+    this.photo_detail_param = param;
+    this.photo_detail_param.photoUrl = this.photos_url[this.seller.value.certType];
+  }
   /**
    * 初始化动态图片表单
    * @param {[Marketphotomap]} marketphotomap_arr
    */
-  public photos_name = {};
+  public photos_name = {}; // 动态图片表单要用的照片名称
+  public photos_url = {}; // 图片局部放大指令要用的示例图片地址
   initPhotoMap(marketphotomap_arr: [Marketphotomap]) {
     let sellerPhotos = this.seller.get('_photos_') as FormGroup;
     if (sellerPhotos) {
@@ -175,8 +187,10 @@ export class SellerInfoComponent implements OnInit {
      * photos:{photoType:['1.jpg','2.jpg','3.jpg']}
      */
     let photo_name_tmp = {};
+    let photo_url_tmp = {};
     marketphotomap_arr.forEach(r => {
       photo_name_tmp[r.photoType] = r.name;
+      photo_url_tmp[r.photoType] = 'id:' + r.photoExample.fileId;
       let i = 0;
       while ( i < r.min) {
         sellerPhotos.addControl(r.photoType, this.fb.array([
@@ -227,6 +241,8 @@ export class SellerInfoComponent implements OnInit {
       // sellerPhotos.at(0).
     });
     this.photos_name = photo_name_tmp;
+    this.photos_url = photo_url_tmp;
+    // this._localstorage.set('bussiness_prejudication_recording_sellers_photos_urls', this.photos_url);
   }
 
   /**
