@@ -79,7 +79,7 @@ export class Recording2Component implements OnInit, OnDestroy {
    * 页面初始化事件
    */
   ngOnInit() {
-    console.info('exec on init.');
+    // console.info('exec on init.');
     /**
      * 市场 代办员
      * @type {any | any}
@@ -111,7 +111,7 @@ export class Recording2Component implements OnInit, OnDestroy {
    * 页面销毁前
    */
   ngOnDestroy() {
-    console.info('exec on destroy.');
+    // console.info('exec on destroy.');
     this._localstorage.set('certType', this.certTypeSelected);
     this._localstorage.set('seller_form', this._formGroup.value);
   }

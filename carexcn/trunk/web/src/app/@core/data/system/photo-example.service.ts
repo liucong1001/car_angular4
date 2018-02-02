@@ -69,11 +69,33 @@ export class PhotoExampleService {
     return this.photo_scrollery_config_cache;
   }
   private photo_scrollery_config = {
-    3: {
+    // 附件类型
+    '03': {
       username: 0,
-      sex: 5,
       birthday: 20,
       address: 50,
+      endDate: 60,
+    },
+  };
+
+  /**
+   * 根据当前字段获取附件类型编号
+   */
+  public getPhotoByFieldName() {
+    console.info('getPhotoByFieldName');
+  }
+  private field_name_photo_config = {
+    // 证件类型
+    '03': {
+      '03_': { // 附件类型
+        username: [{photoType: '03', scroller: 0}],
+        birthday: 20,
+        address: 50,
+        endDate: 60,
+      },
+      birthday: '03',
+      address: '03',
+      endDate: '04',
     },
   };
 }
