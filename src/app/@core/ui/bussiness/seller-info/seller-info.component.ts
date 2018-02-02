@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {MerchantModel} from '../../../model/bussiness/merchant.model';
 import {Codeitem} from '../../../model/system/codeitem';
 import {ControlContainer, FormArray, FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
@@ -10,7 +10,6 @@ import {Marketphotomap} from '../../../model/system/market-photo-map';
 import {MarketService} from '../../../data/system/market.service';
 import {FileSystemService} from '../../../data/system/file-system.service';
 import {LocalstorageService} from '../../../cache/localstorage.service';
-import {IWPDisplayParam} from '../photo-detail/IWP-display.param';
 
 @Component({
   selector: 'ngx-ys-seller-info',
@@ -133,7 +132,7 @@ export class SellerInfoComponent implements OnInit {
    * @type {FormGroup}
    * @private
    */
-  photoType = '身份证';
+  // photoType = '身份证';
   addPhotoType() {
     // (this.seller.get('_photos_') as FormArray).addControl(this.photoType, this.fb.array([]));
   }
@@ -157,15 +156,6 @@ export class SellerInfoComponent implements OnInit {
       business: '01', //  01 预审  02 过户
       formName: '预审录入卖家', // 表单名称
     } as Marketphotomap).then(res => this.initPhotoMap(res.json() as [Marketphotomap]));
-  }
-  public photo_detail_param: IWPDisplayParam = new IWPDisplayParam(); // 图片局部放大参数
-  /**
-   * 配置显示图片局部放大功能
-   * @param {boolean} ifDisplay
-   */
-  setIWPDisplay(param: IWPDisplayParam) {
-    this.photo_detail_param = param;
-    this.photo_detail_param.photoUrl = this.photos_url[this.seller.value.certType];
   }
   /**
    * 初始化动态图片表单
@@ -242,7 +232,6 @@ export class SellerInfoComponent implements OnInit {
     });
     this.photos_name = photo_name_tmp;
     this.photos_url = photo_url_tmp;
-    // this._localstorage.set('bussiness_prejudication_recording_sellers_photos_urls', this.photos_url);
   }
 
   /**
@@ -270,7 +259,7 @@ export class SellerInfoComponent implements OnInit {
    */
   getSelectedCheshang(value) {
     value.certCode = value.filingPerson.certCode;
-    console.info(value);
+    // console.info(value);
     this.seller.patchValue(value);
   }
 

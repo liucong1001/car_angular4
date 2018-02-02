@@ -18,30 +18,30 @@ export class PhotoDetailComponent implements OnInit, OnChanges {
    * [额外说明]：动态图片表单不能在为选择证件类型时input中绑定单个url
    * 但是方便的在选择证件类型时取到所有url，这种情况建议存入缓存中，会自动读取对比
    */
-  @Input() photoUrl = '';
+  @Input() private photoUrl = '';
   private url: string;
   /**
    * 区域定位百分比的数字
    * @type {number}
    */
-  @Input() top? = 0;
+  @Input() private top? = 0;
   /**
    * 当前照片的附件类型(编码)
    * @type {string}
    */
-  @Input() type? = '';
+  @Input() private type? = '';
   /**
    * 当前照片的附件字段名
    * @type {string}
    */
-  @Input() field? = '';
+  @Input() private field? = '';
   /**
    * 是否显示的开关
    * @type {boolean}
    */
-  @Input() display = false;
-  @ViewChild('img') img: ElementRef;
-  @ViewChild('div') div: ElementRef;
+  @Input() private display = false;
+  @ViewChild('img') private img: ElementRef;
+  @ViewChild('div') private div: ElementRef;
   constructor(
     private _file: FileSystemService,
   ) {}
@@ -78,11 +78,17 @@ export class PhotoDetailComponent implements OnInit, OnChanges {
       }
     }
   }
+  public setPhotoUrl(url: string) {
+    this.url = this._file.getRealFileUrl(url);
+  }
+  public ifShow(ifDisplay: boolean) {
+    this.display = ifDisplay;
+  }
   /**
    * 计算并设置当前滚动条高度
    * @type {number} 设置高度的百分比
    */
-  setTop(top: number) {
+  private setTop(top: number) {
     const imgHeight = this.img.nativeElement.offsetHeight;
     let divTop = imgHeight * (this.top / 100);
     this.div.nativeElement.scrollTo(0, divTop);

@@ -1,5 +1,7 @@
 import {Component, Input, OnChanges, OnInit} from '@angular/core';
-import {AbstractControl, FormArray, FormControl, FormGroup} from '@angular/forms';
+import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {Marketphotomap} from '../../../model/system/market-photo-map';
+import {MarketService} from '../../../data/system/market.service';
 
 @Component({
   selector: 'ngx-ys-dynamic-photo-form',
@@ -7,20 +9,29 @@ import {AbstractControl, FormArray, FormControl, FormGroup} from '@angular/forms
   styleUrls: ['./dynamic-photo-form.component.scss'],
 })
 export class DynamicPhotoFormComponent implements OnInit, OnChanges {
+  // 把选择证件类型之后，的动态组件相关操作都移动到动态组件当中去，由动态组件完成该操作
+  // 不用传递这么多参数
   /**
    * 图片FormGroup
    */
   @Input() photos: FormGroup;
+  @Input() certType: string;
   @Input() photos_name: Object;
   @Input() btn_show = true;
-  objectKeys = Object.keys;
-  constructor() { }
+  private _certType: string;
+  protected objectKeys = Object.keys;
+  constructor(
+    private _market: MarketService,
+    private fb: FormBuilder,
+  ) { }
   ngOnInit() {}
   ngOnChanges() {
-    // console.info(this.photos_name);
-    // console.info(this.photos);
-    // console.info(this.photos.value);
-
+    if (this._certType === undefined) {
+      this._certType = this.certType;
+    }
+    if (this._certType !== this.certType ) {
+      this._certType = this.certType;
+    }
     // if (this.photos) {
     //   Object.keys(this.photos.controls).forEach(key1 => {
     //     let keys = [];
@@ -40,6 +51,85 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
   getPhotoFormControls(photoType: string): Array<AbstractControl> {
     return (this.photos.get(photoType) as FormArray).controls;
   }
+  setCertificateConfig(certType) {
+    this._market.getCertificateConfig({
+      isApp: '0',
+      certificateCode: certType, // 证件类型代码集
+      business: '01', //  01 预审  02 过户
+      formName: '预审录入卖家', // 表单名称
+    } as Marketphotomap).then(res => this.initPhotoMap(res.json() as [Marketphotomap]));
+  }
+  initPhotoMap(marketphotomap_arr: [Marketphotomap]) {
+    let sellerPhotos = this.photos;
+    /**
+     * 需要处理的事情：
+     * 拿到 sort，name，min，max，photoType
+     * 需要处理的最终数据为：
+     * photos:{photoType:['1.jpg','2.jpg','3.jpg']}
+     */
+    let photo_name_tmp = {};
+    let photo_url_tmp = {};
+    marketphotomap_arr.forEach(r => {
+      photo_name_tmp[r.photoType] = r.name;
+      photo_url_tmp[r.photoType] = 'id:' + r.photoExample.fileId;
+      let i = 0;
+      while ( i < r.min) {
+        sellerPhotos.addControl(r.photoType, this.fb.array([
+          {
+            value: 'id:' + (r.photoExample ? r.photoExample.fileId : ''),
+            disabled: false,
+          }, // [Validators.required, Validators.maxLength(64)],
+        ]));
+        i++;
+      }
+      // /**
+      //  * 多张情况
+      //  */
+      // if ( r.max > r.min) {
+      //   let i = r.min;
+      //   while ( i < r.max) {
+      //     console.info('i--------', i);
+      //     // sellerPhotos.addControl(r.photoType + ' ' + i, this.fb.array(['id:' + (r.fileDescription ? r.fileDescription.id : '')]));
+      //     sellerPhotos.addControl(r.photoType, this.fb.array([
+      //       {
+      //         label: r.name + ' ' + i,
+      //         value: 'id:' + (r.fileDescription ? r.fileDescription.id : ''),
+      //         disabled: false,
+      //       }, // [Validators.required, Validators.maxLength(64)],
+      //     ]));
+      //     i++;
+      //   }
+      //   /**
+      //    * 单张情况
+      //    */
+      // } else if ( r.max === r.min) {
+      //   // sellerPhotos.addControl(r.photoType, this.fb.array(['id:' + (r.fileDescription ? r.fileDescription.id : '')]));
+      //   sellerPhotos.addControl(r.photoType, this.fb.array([
+      //     {
+      //       label: r.name,
+      //       value: 'id:' + (r.fileDescription ? r.fileDescription.id : ''),
+      //       disabled: false,
+      //     }, // [Validators.required, Validators.maxLength(64)],
+      //   ]));
+      //   /**
+      //    * 异常情况
+      //    */
+      // } else {
+      //   console.error('error: max < min.');
+      // }
+      // sellerPhotos.push(photoType);
+      // sellerPhotos.push(this.fb.control(r.photoType, this.fb.array([])));
+      // sellerPhotos.at(0).
+    });
+    this.photos_name = photo_name_tmp;
+    this.photos_url = photo_url_tmp;
+  }
+  /**
+   * 初始化动态图片表单
+   * @param {[Marketphotomap]} marketphotomap_arr
+   */
+  // public photos_name = {}; // 动态图片表单要用的照片名称
+  public photos_url = {}; // 图片局部放大指令要用的示例图片地址
   getPhotoValue(photoType: string, photo: string): any {
     return this.photos.get(photoType).get(photo).value;
   }
