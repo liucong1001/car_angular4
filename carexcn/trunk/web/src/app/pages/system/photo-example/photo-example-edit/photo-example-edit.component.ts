@@ -4,7 +4,7 @@ import {Router, ActivatedRoute} from '@angular/router';
 import {MessageService} from '../../../../@core/utils/message.service';
 import {PhotoExampleService} from '../../../../@core/data/system/photo-example.service';
 import {PhotoExampleModel} from '../../../../@core/model/system/photo-example';
-import {FileSystemService} from "../../../../@core/data/system/file-system.service";
+import {FileSystemService} from '../../../../@core/data/system/file-system.service';
 
 @Component({
   selector: 'ngx-photo-example-edit',

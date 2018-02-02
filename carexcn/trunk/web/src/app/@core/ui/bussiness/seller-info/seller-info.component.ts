@@ -176,16 +176,12 @@ export class SellerInfoComponent implements OnInit {
      */
     let photo_name_tmp = {};
     marketphotomap_arr.forEach(r => {
-      // console.info(
-      //   'name:' + r.name + ' photoType:' + r.photoType + ' max:' + r.max + ' min:' + r.min +
-      //   ' sort:' + r.sort);
       photo_name_tmp[r.photoType] = r.name;
       let i = 0;
       while ( i < r.min) {
         sellerPhotos.addControl(r.photoType, this.fb.array([
           {
-            // label: r.name + (i > 1 ? ' ' + i : ''),
-            value: 'id:' + (r.fileDescription ? r.fileDescription.id : ''),
+            value: 'id:' + (r.photoExample ? r.photoExample.fileId : ''),
             disabled: false,
           }, // [Validators.required, Validators.maxLength(64)],
         ]));
