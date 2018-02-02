@@ -1,4 +1,4 @@
-import {FileDescriptionModel} from '../bussiness/file-description.model';
+import {photoExample} from '../bussiness/photo-example.model';
 
 /**
  *市场证件模型
@@ -63,7 +63,7 @@ export  class Marketphotomap {
    * 表单名称
    */
   public formName?: string;
-  public fileDescription?: FileDescriptionModel;
+  public photoExample?: photoExample;
   /**
    * 市场
    */

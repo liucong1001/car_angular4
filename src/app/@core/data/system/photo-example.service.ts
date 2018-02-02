@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 import {PhotoExampleModel} from '../../model/system/photo-example';
-import {CarModel} from "../../model/bussiness/car.model";
 
 @Injectable()
 export class PhotoExampleService {
@@ -47,11 +46,11 @@ export class PhotoExampleService {
    * 获取照片类型
    * @returns {Promise<TResult2|TResult1>}
    */
-  public getPhotoType():Promise<any>{
+  public getPhotoType(): Promise<any> {
     const url = `${this.path}/type`;
     return this.http.get(url).toPromise().then(function (res) {
        return res.json() as any;
-    })
+    });
   }
 
 
@@ -62,9 +61,10 @@ export class PhotoExampleService {
    * @returns {Promise<any>}
    */
   public getPhotoScrollerYConfig(photoType: string): Promise<any> {
-    // return this.http.get('').toPromise();
     if (! this.photo_scrollery_config_cache ) {
       this.photo_scrollery_config_cache = Promise.resolve(this.photo_scrollery_config);
+      // 当改成后台配置时使用下面的方式
+      // this.photo_scrollery_config_cache = this.http.get('').toPromise();
     }
     return this.photo_scrollery_config_cache;
   }
