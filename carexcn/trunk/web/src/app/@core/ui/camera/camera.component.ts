@@ -61,28 +61,7 @@ export class CameraComponent implements OnInit, ControlValueAccessor, OnChanges 
   registerOnTouched(fn: any): void {
   }
   ngOnChanges() {
-    let obj = this.source;
-    if (obj && obj.indexOf('id:') === 0) {
-      /**
-       * 如果传递了 file_id 则根据 file_id 重置 source 的值
-       * 重置失败则视为普通url地址打开
-       */
-      this.source = this.file.getFileUrlById(obj);
-    } else if (this.source && this.source.indexOf('tmp:') === 0) {
-      /**
-       * 如果传递了 file_id 则根据 file_id 重置 source 的值
-       * 重置失败则视为普通url地址打开
-       */
-      this.source = this.file.getFileUrlByTmp(obj);
-    } else {
-      /**
-       * 非协商前缀则视为图片全路径处理
-       * @type {string}
-       */
-      this.source = obj;
-    }
-    // console.info(this.title);
-    // console.info(this.source);
+    this.source = this.file.getRealFileUrl(this.source);
   }
   ngOnInit() {}
   /**

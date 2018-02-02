@@ -1,4 +1,9 @@
-<ngx-ys-photo-detail></ngx-ys-photo-detail>
+<ngx-ys-photo-detail
+  [display]="photo_detail_param.display"
+  [photoUrl]="photo_detail_param.photoUrl"
+  [type]="photo_detail_param.type"
+  [field]="photo_detail_param.field"
+></ngx-ys-photo-detail>
 <nb-card>
   <nb-card-header>
     <div class="cameras-card-header">
@@ -7,11 +12,6 @@
   </nb-card-header>
   <nb-card-body [formGroup]="seller">
     <ngx-ys-dynamic-photo-form [photos]="seller.get('_photos_')" [photos_name]="photos_name" [btn_show]="btn_show"></ngx-ys-dynamic-photo-form>
-    <div class="input-group">
-      <!--<button type="button" class="btn btn-primary btn-block" (click)="showPhotoDetail()">显示照片详情</button>-->
-      <!--<button type="button" class="btn btn-primary btn-block" (click)="addPhotoType()">添加照片类型</button>-->
-      <!--<button type="button" class="btn btn-primary btn-block" (click)="viewPhotos()">查看照片所有值</button>-->
-    </div>
     <div class="input-group">
       <div class="input-group" *ngIf="showCheshang">
         <span class="input-group-addon">车商</span>
@@ -41,7 +41,8 @@
     <div class="input-group">
       <div class="input-group">
         <span class="input-group-addon">姓名</span>
-        <input type="text" placeholder="" class="form-control" formControlName="name"
+        <input type="text" placeholder="" ngxInputWithPhoto (iwp_display)="setIWPDisplay($event)"
+               class="form-control" formControlName="name"
                [ngClass]="{'form-control-danger':seller.get('name').invalid && seller.get('name').touched}"/>
         <ngx-valid-error [errors]="errors.name" [control]="seller.get('name')"></ngx-valid-error>
       </div>
@@ -57,12 +58,14 @@
       <div class="input-group">
         <span class="input-group-addon">证件号码</span>
         <input type="text" placeholder="" class="form-control" formControlName="certCode"
+               ngxInputWithPhoto (iwp_display)="setIWPDisplay($event)"
                [ngClass]="{'form-control-danger':seller.get('certCode').invalid && seller.get('certCode').touched}"/>
         <ngx-valid-error [errors]="errors.certCode" [control]="seller.get('certCode')"></ngx-valid-error>
       </div>
       <div class="input-group">
         <span class="input-group-addon">证件有效期</span>
         <input type="text" placeholder="" class="form-control" formControlName="endDate"
+               ngxInputWithPhoto (iwp_display)="setIWPDisplay($event)"
                [ngClass]="{'form-control-danger':seller.get('endDate').invalid && seller.get('endDate').touched}"/>
         <ngx-valid-error [errors]="errors.endDate" [control]="seller.get('endDate')"></ngx-valid-error>
       </div>
@@ -71,6 +74,7 @@
       <div class="input-group">
         <span class="input-group-addon">地址</span>
         <input type="text" placeholder="" class="form-control" formControlName="address"
+               ngxInputWithPhoto (iwp_display)="setIWPDisplay($event)"
                [ngClass]="{'form-control-danger':seller.get('address').invalid && seller.get('address').touched}"/>
         <ngx-valid-error [errors]="errors.address" [control]="seller.get('address')"></ngx-valid-error>
       </div>
