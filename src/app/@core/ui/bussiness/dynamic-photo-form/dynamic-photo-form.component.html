@@ -1,4 +1,5 @@
 <div *ngIf="photos">
+  <!--<button (click)="getPhotoChecked()">getPhotoChecked</button>-->
   <div [formGroup]="photos">
     <!--先循环出 photos(formGroup)中的photoType(controls)-->
     <div *ngFor="let photoType of objectKeys(photos.controls)">
@@ -11,6 +12,8 @@
             [source]="photo.value"
             [btn_show]="btn_show"
             [formControl]="photo"
+            [btn_check]="true"
+            (_wrong_checked)="changeChecked($event)"
           ></ngx-ys-camera>
         </div>
       </div>

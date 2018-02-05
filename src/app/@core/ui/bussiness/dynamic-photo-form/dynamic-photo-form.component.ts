@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {Marketphotomap} from '../../../model/system/market-photo-map';
 import {MarketService} from '../../../data/system/market.service';
@@ -23,6 +23,13 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
   @Input() photos: FormGroup;
   @Input() certType: string;
   @Input() btn_show = true;
+  /**
+   * 是否勾选可当前照片
+   * @type {EventEmitter<any>}
+   * @private
+   */
+  @Output() _wrong_checked = new EventEmitter();
+  private wrong_checked: Array<ChangeCheckedValueModel> = [];
   private photos_name: Object;
   private _certType: string;
   protected objectKeys = Object.keys;
@@ -33,6 +40,28 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.setCertificateConfig(this._certType);
   }
+
+  /**
+   * 动态图片中是否选中状态的切换
+   */
+  changeChecked(v: ChangeCheckedValueModel) {
+    if (v.status) {
+      /**
+       * 要添加到屏蔽项
+       */
+      this.wrong_checked.push(v);
+    } else {
+      /**
+       * 如果在屏蔽项中，要移除出去
+       */
+      this.wrong_checked = this.wrong_checked.filter(r => r.title !== v.title);
+    }
+    console.info(v);
+  }
+  getPhotoChecked() {
+    console.info(this.wrong_checked);
+  }
+
   ngOnChanges() {
     if (this._certType === undefined) {
       this._certType = this.certType;
@@ -69,7 +98,7 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
     } as Marketphotomap).then(res => this.initPhotoMap(res.json() as [Marketphotomap]));
   }
   initPhotoMap(marketphotomap_arr: [Marketphotomap]) {
-    this.photos = this.fb.group({});
+    // this.photos = this.fb.group({});
     /**
      * 需要处理的事情：
      * 拿到 sort，name，min，max，photoType
@@ -80,55 +109,21 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
     let photo_url_tmp = {};
     marketphotomap_arr.forEach(r => {
       photo_name_tmp[r.photoType] = r.name;
-      photo_url_tmp[r.photoType] = 'id:' + r.photoExample.fileId;
-      let i = 0;
-      while ( i < r.min) {
-        this.photos.addControl(r.photoType, this.fb.array([
-          {
-            value: 'id:' + (r.photoExample ? r.photoExample.fileId : ''),
-            disabled: false,
-          }, // [Validators.required, Validators.maxLength(64)],
-        ]));
-        i++;
+      if ( r.photoExample ) {
+        photo_url_tmp[r.photoType] = 'id:' + r.photoExample.fileId;
+        let i = 0;
+        while (i < r.min) {
+          this.photos.addControl(r.photoType, this.fb.array([
+            {
+              value: 'id:' + (r.photoExample ? r.photoExample.fileId : ''),
+              disabled: false,
+            }, // [Validators.required, Validators.maxLength(64)],
+          ]));
+          i++;
+        }
+      } else {
+        throw new Error('表单为“' + r.formName + '”的“' + r.name + '”缺少关联的示例图片，请添加');
       }
-      // /**
-      //  * 多张情况
-      //  */
-      // if ( r.max > r.min) {
-      //   let i = r.min;
-      //   while ( i < r.max) {
-      //     console.info('i--------', i);
-      //     // sellerPhotos.addControl(r.photoType + ' ' + i, this.fb.array(['id:' + (r.fileDescription ? r.fileDescription.id : '')]));
-      //     sellerPhotos.addControl(r.photoType, this.fb.array([
-      //       {
-      //         label: r.name + ' ' + i,
-      //         value: 'id:' + (r.fileDescription ? r.fileDescription.id : ''),
-      //         disabled: false,
-      //       }, // [Validators.required, Validators.maxLength(64)],
-      //     ]));
-      //     i++;
-      //   }
-      //   /**
-      //    * 单张情况
-      //    */
-      // } else if ( r.max === r.min) {
-      //   // sellerPhotos.addControl(r.photoType, this.fb.array(['id:' + (r.fileDescription ? r.fileDescription.id : '')]));
-      //   sellerPhotos.addControl(r.photoType, this.fb.array([
-      //     {
-      //       label: r.name,
-      //       value: 'id:' + (r.fileDescription ? r.fileDescription.id : ''),
-      //       disabled: false,
-      //     }, // [Validators.required, Validators.maxLength(64)],
-      //   ]));
-      //   /**
-      //    * 异常情况
-      //    */
-      // } else {
-      //   console.error('error: max < min.');
-      // }
-      // sellerPhotos.push(photoType);
-      // sellerPhotos.push(this.fb.control(r.photoType, this.fb.array([])));
-      // sellerPhotos.at(0).
     });
     this.photos_name = photo_name_tmp;
     this.photos_url = photo_url_tmp;
@@ -148,4 +143,10 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
   getPhotoType(photoType: string): FormArray {
     return this.photos.get(photoType) as FormArray;
   }
+}
+
+export class ChangeCheckedValueModel {
+  status: boolean;
+  title: string;
+  source: string;
 }

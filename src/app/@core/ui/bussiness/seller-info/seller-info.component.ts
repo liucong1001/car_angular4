@@ -122,21 +122,18 @@ export class SellerInfoComponent implements OnInit {
     if (! this.certType) {
       this._codeitem.list('certType').then(res => this.certType = res as Codeitem[]);
     }
-    /**
-     * 初始化照片动态表单
-     */
+    this.certTypeSelecteFunc('');
+  }
+  /**
+   * 初始化照片动态表单
+   */
+  certTypeSelecteFunc(event) {
     let sellerPhotos = this.seller.get('_photos_') as FormGroup;
     if (sellerPhotos) {
       this.seller.removeControl('_photos_');
     }
     this.seller.addControl('_photos_', this.fb.group({}));
   }
-  /**
-   * 初始化动态图片表单
-   * @param {[Marketphotomap]} marketphotomap_arr
-   */
-  public photos_name = {}; // 动态图片表单要用的照片名称
-  public photos_url = {}; // 图片局部放大指令要用的示例图片地址
 
   /**
    * 选择车商事件

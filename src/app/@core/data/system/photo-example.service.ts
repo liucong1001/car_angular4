@@ -7,6 +7,7 @@ export class PhotoExampleService {
 
   private path = '/rest/common/photo/example';
   private photo_scrollery_config_cache: Promise<any>;
+  private field_name_photo_config_cache: Promise<any>;
   constructor(private http: Http) {
   }
 
@@ -66,7 +67,7 @@ export class PhotoExampleService {
       // 当改成后台配置时使用下面的方式
       // this.photo_scrollery_config_cache = this.http.get('').toPromise();
     }
-    return this.photo_scrollery_config_cache;
+    return this.photo_scrollery_config_cache[photoType];
   }
   private photo_scrollery_config = {
     // 附件类型
@@ -81,8 +82,13 @@ export class PhotoExampleService {
   /**
    * 根据当前字段获取附件类型编号
    */
-  public getPhotoByFieldName() {
-    console.info('getPhotoByFieldName');
+  public getPhotoTypeByFieldName(fieldName: string): Promise<any> {
+    if (! this.field_name_photo_config_cache ) {
+      this.field_name_photo_config_cache = Promise.resolve(this.field_name_photo_config);
+      // 当改成后台配置时使用下面的方式
+      // this.field_name_photo_config_cache = this.http.get('').toPromise();
+    }
+    return this.field_name_photo_config_cache[fieldName];
   }
   private field_name_photo_config = {
     // 证件类型
@@ -98,4 +104,18 @@ export class PhotoExampleService {
       endDate: '04',
     },
   };
+  // private field_name_photo_config = {
+  //   // 证件类型
+  //   '03': {
+  //     '03_': { // 附件类型
+  //       username: [{photoType: '03', scroller: 0}],
+  //       birthday: 20,
+  //       address: 50,
+  //       endDate: 60,
+  //     },
+  //     birthday: '03',
+  //     address: '03',
+  //     endDate: '04',
+  //   },
+  // };
 }
