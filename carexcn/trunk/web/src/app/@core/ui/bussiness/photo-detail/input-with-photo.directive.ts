@@ -1,6 +1,5 @@
 import {Directive, HostListener, Input} from '@angular/core';
 import {FileSystemService} from '../../../data/system/file-system.service';
-import {LocalstorageService} from '../../../cache/localstorage.service';
 import {PhotoDetailComponent} from './photo-detail.component';
 
 @Directive({

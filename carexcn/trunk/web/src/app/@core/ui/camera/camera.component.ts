@@ -23,13 +23,36 @@ export class CameraComponent implements OnInit, ControlValueAccessor, OnChanges 
    * example:
    * title = '行驶证';
    * source = 'assets/images/camera1.jpg';
+   * source = 'tmp:123456789.jpg';
+   * source = 'id:12346156fd564';
    */
   @Input() title;
   @Input() source;
+  /**
+   * 是否显示上传按钮
+   * @type {boolean}
+   */
   @Input() btn_show = true;
+  /**
+   * 是否显示 check 按钮(一般用于审核操作)
+   * @type {boolean}
+   */
+  @Input() btn_check = true;
   @Input() col_sm_6 = 'col-sm-6';
+  /**
+   * 图片新地址
+   * @type {EventEmitter<any>}
+   * @private
+   */
   @Output() _changeSource = new EventEmitter();
+  /**
+   * 是否勾选当前照片
+   * @type {EventEmitter<any>}
+   * @private
+   */
+  @Output() _wrong_checked = new EventEmitter();
   private webcam_has_show = false;
+  private wrong_checked = false;
 
   /**
    * 构造函数
@@ -64,6 +87,7 @@ export class CameraComponent implements OnInit, ControlValueAccessor, OnChanges 
     this.source = this.file.getRealFileUrl(this.source);
   }
   ngOnInit() {}
+
   /**
    *  显示或隐藏摄像头窗口
    */
@@ -79,6 +103,25 @@ export class CameraComponent implements OnInit, ControlValueAccessor, OnChanges 
     }
   }
 
+  /**
+   * 审核打回照片的集合的索引数据
+   * @returns {string}
+   */
+  getWrongCheckedIndex() {
+    return this.title + '_' + this.source;
+  }
+  /**
+   * 是否选中的状态切换
+   */
+  changeChecked() {
+    this.wrong_checked = !this.wrong_checked;
+    this._wrong_checked.emit({status: this.wrong_checked, title: this.title, source: this.source});
+  }
+
+  /**
+   * 显示模态框的放大图
+   * @param picSource
+   */
   showPicModal(picSource) {
     console.info('this.showPicModal url : ' + picSource);
     const activeModal = this.modalService.open(CameraModalComponent, { size: 'lg', container: 'nb-layout', windowClass: 'text-center'});
