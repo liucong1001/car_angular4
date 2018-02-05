@@ -49,7 +49,7 @@ export class MarketStaffEditComponent implements OnInit {
   marketStaff: FormGroup = this.fb.group({
     id:['',[Validators.required]],
     cloudUser: ['0001'],
-    loginName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z][a-zA-Z0-9_-]{5,32}$/)], this.loginNameExists.bind(this)],
+    loginName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z][a-zA-Z0-9_-]{5,32}$/)]],
     telephone: ['', [Validators.required, Validators.pattern(/^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0,5-9]))\d{8}$/)]],
     userName: ['', [Validators.required, Validators.maxLength(64)]],
     email: ['', [Validators.email]],
@@ -63,7 +63,16 @@ export class MarketStaffEditComponent implements OnInit {
     marketStaff: this.marketStaff,
     code: ['', [Validators.required, Validators.pattern(/^[0-9]{4}$/)], this.validCode.bind(this) ],
   });
-
+  /**
+   * 发送验证码
+   */
+  sendCode() {
+    this.staffService.sendCode(this.marketStaff.value.telephone).then(res => {
+      this.message.success('验证码发送成功', `请输入[${this.marketStaff.value.telephone}]收到的验证码！`, 5000);
+    }).catch(err => {
+      this.message.error('验证码发送失败', err.message);
+    });
+  }
 
 
   /**
@@ -103,7 +112,7 @@ export class MarketStaffEditComponent implements OnInit {
       new ErrorMessage('pattern', '手机号码格式不正确！'),
     ],
     code: [
-      new ErrorMessage('required', '必须填写手机验证码！'),
+      // new ErrorMessage('required', '必须填写手机验证码！'),
       new ErrorMessage('pattern', '验证码格式错误！'),
       new ErrorMessage('validcode', '验证码不正确！'),
     ],
@@ -127,7 +136,8 @@ export class MarketStaffEditComponent implements OnInit {
     //   return;
     // }
     this.staffService.editSave(this.form.value).then(res => {
-      this.message.success('员工创建成功', `` );
+      this.message.success('员工信息修改成功', `` );
+      this.back();
     }).catch(err => {
       this.message.error('修改员工出现错误', err.message);
     });

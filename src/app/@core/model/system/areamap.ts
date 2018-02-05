@@ -17,7 +17,7 @@ export class Areamap {
         /*  地区子集 */
         public childrens: Array<any>,
 
-        public parent: {
+        public parent?: {
           id?: string,
         },
     ) { }

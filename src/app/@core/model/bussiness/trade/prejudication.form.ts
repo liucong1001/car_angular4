@@ -1,4 +1,5 @@
 import {BussinessForm} from './prejudication/bussiness.form';
+import {TransferVehicleModel} from './transferVehicle/transferVehicle.model';
 
 export class PrejudicationForm {
   id?: string;
@@ -11,4 +12,6 @@ export class PrejudicationForm {
    * 是否有效 0 有效 1 无效
    */
   invalid?: string;
+
+  preVehicle?:TransferVehicleModel;
 }

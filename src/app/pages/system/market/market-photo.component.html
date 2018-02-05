@@ -37,7 +37,9 @@
                 </tr>
                 <tr *ngFor="let item of photoData" >
                   <td>{{item.name}}</td>
-                  <td>{{item.photoType | code_trans: 'photoType' | async  }}</td>
+                  <!--| code_trans: 'photoType' | async-->
+                  <td>{{item.photoExample.name}}</td>
+                  <!--<td>{{item.photoType}}</td>-->
                   <td>{{item.status}}</td>
                   <td>{{item.sort}}</td>
                   <td>{{item.max}}</td>

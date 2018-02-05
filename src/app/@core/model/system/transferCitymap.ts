@@ -1,3 +1,4 @@
+import {Areamap} from './areamap';
 /**
  * 车管所模型
  */
@@ -20,10 +21,10 @@ export class TransferCitymap {
   /**
    * 所属行政区域车管所所属城市
    */
-    public  city: object;
+    public  city: Areamap;
   /**
    * 管辖的区域
    */
-    public management: object;
+    public management: Areamap;
 
   }

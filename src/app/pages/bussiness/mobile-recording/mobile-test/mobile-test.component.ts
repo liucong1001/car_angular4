@@ -3,11 +3,13 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router, Params} from '@angular/router';
 import {Http} from '@angular/http';
 import { MessageService } from './../../../../@core/utils/message.service';
+import {PhotoExampleService} from '../../../../@core/data/system/photo-example.service';
 
 @Component({
   selector: 'ngx-mobile-test',
   templateUrl: './mobile-test.component.html',
-  styleUrls: ['./mobile-test.component.scss']
+  styleUrls: ['./mobile-test.component.scss'],
+  providers:[PhotoExampleService],
 })
 export class MobileTestComponent implements OnInit {
 
@@ -15,9 +17,14 @@ export class MobileTestComponent implements OnInit {
               public router: Router,
               private route: ActivatedRoute,
               public http: Http,
-              private message: MessageService) { }
+              private message: MessageService,private photoExampleService:PhotoExampleService) { }
+
+  photoTypeList = [];
 
   ngOnInit() {
+    this.photoExampleService.getPhotoType().then(res=>{
+      this.photoTypeList = res;
+    });
   }
 
 

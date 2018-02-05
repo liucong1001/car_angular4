@@ -14,14 +14,15 @@
         <div class="col-sm-3">
           <div class="form-group form-group-sm">
             <label>商户</label>
-            <input class="form-control"  type="text" placeholder="模糊匹配商户"/>
+            <ngx-ys-autoinput [results_resource_url]="autoinput_shanghu_source_url" (_value)="getSelectedDealer($event)" [showProperty]="'name'" [defaultValue]="dealer"></ngx-ys-autoinput>
           </div>
         </div>
         <div class="col-sm-6">
           <div class="form-group form-group-sm">
             <label>受托人</label>
-            <select class="form-control" name="summary">
-              <option value="">--请选择受托人--</option>
+            <select class="form-control" [disabled]="!dealerIsOk" [(ngModel)]="linkman" (change)="linkmanSelecteFunc()"  name="linkman" [compareWith]="linkmanCompareWithFunc">
+              <option value="">--请选择--</option>
+              <option *ngFor="let linkmanitem of linkManData" [ngValue]="linkmanitem">{{linkmanitem.name}}</option>
             </select>
           </div>
         </div>

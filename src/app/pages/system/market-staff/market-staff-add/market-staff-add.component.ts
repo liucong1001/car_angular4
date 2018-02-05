@@ -4,6 +4,7 @@ import {MarketStaffService} from '../../../../@core/data/system/market-staff.ser
 import {MessageService} from '../../../../@core/utils/message.service';
 import {Observable} from 'rxjs/Observable';
 import {ErrorMessage} from '../../../../@core/ui/valid-error/valid-error.component';
+import { ActivatedRoute, Router,Params, ActivatedRouteSnapshot, RouterState, RouterStateSnapshot } from '@angular/router';
 
 @Component({
   selector: 'ngx-market-staff-add',
@@ -13,7 +14,8 @@ import {ErrorMessage} from '../../../../@core/ui/valid-error/valid-error.compone
 })
 export class MarketStaffAddComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private staffService: MarketStaffService, private msg: MessageService) { }
+  constructor(private fb: FormBuilder, private staffService: MarketStaffService, private msg: MessageService,
+              public router: Router,) { }
 
   ngOnInit() {
   }
@@ -95,6 +97,9 @@ export class MarketStaffAddComponent implements OnInit {
       this.msg.error('验证码发送失败', err.message);
     });
   }
+  back() {
+    this.router.navigateByUrl('/pages/system/market/staff');
+  }
 
   addStaff() {
     if (this.marketStaff.invalid) {
@@ -102,6 +107,7 @@ export class MarketStaffAddComponent implements OnInit {
     }
     this.staffService.create(this.form.value).then(res => {
       this.msg.success('员工创建成功', `请[${this.marketStaff.value.userName}]尽快登录修改密码！` , 5000);
+      this.back();
     }).catch(err => {
       this.msg.error('创建员工出现错误', err.message);
     });

@@ -5,17 +5,17 @@
         <form [formGroup]="form" (ngSubmit)="save()">
             <div class="row">
                 <div class="col-sm-6">
-                    <div class="form-group">
-                        <label>转出地:{{city}}</label>
-                        <ngx-ys-autoinput [results_resource_url]="city_source_url_city" (_value)="getAutoCityValue($event)" [showProperty]="'name'" [getProperty]="" ></ngx-ys-autoinput>
+                    <div class="form-group" *ngIf="isDataAvailable">
+                        <label>转出地:</label>
+                        <ngx-ys-autoinput [results_resource_url]="city_source_url_city" (_value)="getAutoCityValue($event)" [showProperty]="'name'"  [defaultValue]="cityDefault" ></ngx-ys-autoinput>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-6">
-                    <div class="form-group">
+                    <div class="form-group" *ngIf="isDataAvailable">
                         <label>车管所:</label>
-                        <ngx-ys-autoinput [results_resource_url]="city_source_url" (_value)="getAutoManagementValue($event)" [showProperty]="'name'" [getProperty]=""></ngx-ys-autoinput>                        
+                        <ngx-ys-autoinput [results_resource_url]="city_source_url" (_value)="getAutoManagementValue($event)" [showProperty]="'name'" [defaultValue]="managementDefault" ></ngx-ys-autoinput>
                     </div>
                     <div class="text-danger" *ngIf="form.get('management').hasError('required') && form.get('management').touched">
                         -- 必须输入车管所
@@ -25,7 +25,6 @@
 
             <div class="row">
                 <div class="col-sm-1">
-                    <!-- [disabled]="form.invalid" -->
                     <button type="submit" class="btn btn-info btn-block" >保存</button>
                 </div>
                 <div class="col-sm-1">

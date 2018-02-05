@@ -74,7 +74,7 @@ export class MarketComponent implements OnInit, OnChanges {
   view(row: any, drop: any) {
   }
   edit(row: any) {
-    this.router.navigate( ['/pages/system/market/market/edit', { id: row.id }]);
+    this.router.navigate( ['/pages/system/market/market/edit', { id: row.id ,area:row.area}]);
   }
   disable(row: any) {
 

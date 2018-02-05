@@ -1,3 +1,46 @@
-<p>
-  mobile-input works!
-</p>
+<nb-card>
+  <nb-card-header>
+    移动端录入-开始录入
+  </nb-card-header>
+  <nb-card-body>
+
+    <div class="card">
+      <div class="card-header">
+        商户：
+        <!--{{tradeInfo.prejudication.preVehicle.merchant.name}}-->
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        卖方基本信息(个人)
+      </div>
+      <div class="card-block">
+        <div class="row">
+
+        </div>
+        <div class="row">
+
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header card-title">
+        卖方附件
+      </div>
+      <div class="card-block">
+        <div class="row" >
+
+        </div>
+      </div>
+    </div>
+
+  </nb-card-body>
+  <nb-card-footer>
+    <div class="row">
+      <div class="col-md-2"> <button class="btn btn-danger btn-sm" (click)="save()" >提交出库信息</button>  </div>
+      <div class="col-md-1"> <button class="btn btn-default btn-sm ">返回</button> </div>
+    </div>
+  </nb-card-footer>
+</nb-card>

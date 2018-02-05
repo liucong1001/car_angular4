@@ -11,6 +11,8 @@ import {MessageService} from '../../../@core/utils/message.service';
 import {TransferCitymap} from './../../../@core/model/system/transferCitymap';
 import {TransferCityService} from '../../../@core/data/system/transferCity.service';
 import { AreaService } from './../../../@core/data/system/area.service';
+import { Areamap } from './../../../@core/model/system/areamap';
+import {LocalstorageService} from './../../../@core/cache/localstorage.service';
 
 
 @Component({
@@ -24,8 +26,15 @@ export class TransferCityEditComponent implements OnInit {
   city_source_url = '/rest/sys/area?key=';
   auto_input_value_tmp = '';
   auto_input_value_management = '';
-  city = [];
+  cityDefault= new Areamap(null, '', '', '', '', '', null, [], {});
+  managementDefault = new Areamap(null, '', '', '', '', '', null, [], {});
+
   cityValue = '';
+  /**
+   * 通过*ngIf一起使用，可以到达拿到数据再加载模板的效果，厉害！
+   * @type {boolean}
+   */
+  isDataAvailable:boolean = false;
   /**
    * 初始化
    */
@@ -39,18 +48,21 @@ export class TransferCityEditComponent implements OnInit {
    * @param {FormBuilder} fb 表单工厂服务
    * @param {ActivatedRoute} route 当前路由服务
    */
-  constructor( private fb: FormBuilder,  public router: Router, private route: ActivatedRoute,
- private transferCityService: TransferCityService, private message: MessageService,private areaService: AreaService
+  constructor( private fb: FormBuilder,
+               public router: Router, private route: ActivatedRoute,
+               private transferCityService: TransferCityService,
+               private message: MessageService,
+               private areaService: AreaService,
+               private _localstorage: LocalstorageService,
   ) {
     this.route.params.subscribe(p => {
       if (p.id) {
-         console.log('获取到的参数', p.id);
-         this.transferCityService.get(p.id).then(res => {
-           console.log('获取到的对象', res);
-           this.cityValue = '2243';
-           this.city.push(res.city);
-           this.getAutoCityValue('武汉');
-         });
+        this.transferCityService.get(p.id).then(res => {
+
+          this.cityDefault = res.city;
+          this.managementDefault = res.management;
+           this.isDataAvailable = true;
+        });
       }
     });
   }
@@ -80,7 +92,6 @@ export class TransferCityEditComponent implements OnInit {
       this.form.patchValue({
         city: event,
       });
-      console.log('转出地选择了', event, this.form.value);
     }
   }
   getAutoManagementValue(event) {
@@ -109,5 +120,7 @@ export class TransferCityEditComponent implements OnInit {
   back() {
     this.router.navigateByUrl('/pages/system/transfercity');
   }
-
+  test() {
+    console.info(this.form.value);
+  }
 }

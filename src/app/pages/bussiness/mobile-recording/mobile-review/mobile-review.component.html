@@ -1,21 +1,50 @@
 <nb-card>
    <nb-card-header>
-      移动端录入-车辆入库
+      移动端录入-预审
    </nb-card-header>
-   <nb-card-body>
-       <div class="row">
-          <div class="col-md-12">商户：</div>
+   <nb-card-body *ngIf="tradeInfo">
+
+     <div class="card">
+       <div class="card-header">
+         商户：{{tradeInfo}} <br>
+         <!--{{tradeInfo.prejudication.preVehicle.merchant.name}}-->
+         预审状态：{{tradeInfo.prejudicationStatus}}
        </div>
-       <div class="row">
-          <div class="col-md-12">卖方基本信息(个人)</div>
+     </div>
+
+     <div class="card">
+       <div class="card-header">
+         卖方基本信息(个人)
        </div>
-       <div class="row">
-         <div class="col-md-12">卖方附件</div>
+       <div class="card-block">
+           <div class="row">
+               <!--<div class="col-md-6">车辆牌照号:{{tradeInfo.preVehicle.preVehicle.plateNumber}}</div>-->
+               <div class="col-md-6">手机号:{{tradeInfo.seller.seller.phone}}</div>
+           </div>
+           <div class="row">
+               <!--<div class="col-md-6">出售价格:{{tradeInfo.preVehicle.newCarsPrice}}</div>-->
+               <!--<div class="col-md-6">里程:{{tradeInfo.preVehicle.preVehicle.mileage}}</div>-->
+           </div>
        </div>
+     </div>
+
+     <div class="card">
+       <div class="card-header card-title">
+         卖方附件
+       </div>
+       <div class="card-block">
+         <div class="row" >
+             <!--<div class="col-md-3"><img [src]="tradeInfo.seller.photos" alt="item.objectType">  </div>-->
+           <!--<ngx-ys-dynamic-photo-form [photos]="tradeInfo.seller.photos" [photos_name]="photos_name" [btn_show]="btn_show"></ngx-ys-dynamic-photo-form>-->
+         </div>
+       </div>
+     </div>
+
    </nb-card-body>
    <nb-card-footer>
        <div class="row">
-          <div class="col-md-2">  <button class="btn btn-danger btn-sm">资料有误退回商户</button>  </div>
+          <div class="col-md-2"> <button class="btn btn-danger btn-sm" (click)="back()">资料有误退回商户</button>  </div>
+          <div class="col-md-1"> <button class="btn btn-success btn-sm " (click)="startInput()">开始录入</button> </div>
        </div>
    </nb-card-footer>
 </nb-card>

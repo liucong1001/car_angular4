@@ -12,8 +12,8 @@ export class TradeService {
    * @param {string} archiveNo   流水号
    * @returns {Promise<any>}
    */
-  public get(archiveNo: string): Promise<any> {
-    return this.http.get(this.api_url_base + '?archiveNo=' + archiveNo).toPromise();
+  public get(archiveNo: string): Promise<TradeForm> {
+    return this.http.get(this.api_url_base + '?archiveNo=' + archiveNo).toPromise().then((res) => res.json() as TradeForm);
   }
 
   /**
