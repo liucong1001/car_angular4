@@ -13,24 +13,33 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
   // 不用传递这么多参数
   /**
    * 图片FormGroup
+   * 需要构建出一个支持 赋值和读取的 photos form
+   * 能够 this._photosForm.values 拿到值，方便的构建成如下数据结构
+   * eg: photos:{'身份证正面':['1.jpg','2.jpg']}
+   * 更新时，从后台拿到数据值能直接赋值上去组件能够正常显示图片
+   * @type {FormGroup}
+   * @private
    */
   @Input() photos: FormGroup;
   @Input() certType: string;
-  @Input() photos_name: Object;
   @Input() btn_show = true;
+  private photos_name: Object;
   private _certType: string;
   protected objectKeys = Object.keys;
   constructor(
     private _market: MarketService,
     private fb: FormBuilder,
   ) { }
-  ngOnInit() {}
+  ngOnInit() {
+    this.setCertificateConfig(this._certType);
+  }
   ngOnChanges() {
     if (this._certType === undefined) {
       this._certType = this.certType;
     }
     if (this._certType !== this.certType ) {
       this._certType = this.certType;
+      this.setCertificateConfig(this._certType);
     }
     // if (this.photos) {
     //   Object.keys(this.photos.controls).forEach(key1 => {
@@ -60,7 +69,7 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
     } as Marketphotomap).then(res => this.initPhotoMap(res.json() as [Marketphotomap]));
   }
   initPhotoMap(marketphotomap_arr: [Marketphotomap]) {
-    let sellerPhotos = this.photos;
+    this.photos = this.fb.group({});
     /**
      * 需要处理的事情：
      * 拿到 sort，name，min，max，photoType
@@ -74,7 +83,7 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
       photo_url_tmp[r.photoType] = 'id:' + r.photoExample.fileId;
       let i = 0;
       while ( i < r.min) {
-        sellerPhotos.addControl(r.photoType, this.fb.array([
+        this.photos.addControl(r.photoType, this.fb.array([
           {
             value: 'id:' + (r.photoExample ? r.photoExample.fileId : ''),
             disabled: false,
