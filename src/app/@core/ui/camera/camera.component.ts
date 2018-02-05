@@ -37,7 +37,7 @@ export class CameraComponent implements OnInit, ControlValueAccessor, OnChanges 
    * 是否显示 check 按钮(一般用于审核操作)
    * @type {boolean}
    */
-  @Input() btn_check = true;
+  @Input() btn_check = false;
   @Input() col_sm_6 = 'col-sm-6';
   /**
    * 图片新地址

@@ -23,6 +23,7 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
   @Input() photos: FormGroup;
   @Input() certType: string;
   @Input() btn_show = true;
+  @Input() btn_show_check = false;
   /**
    * 是否勾选可当前照片
    * @type {EventEmitter<any>}
