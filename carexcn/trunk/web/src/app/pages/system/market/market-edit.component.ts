@@ -9,6 +9,7 @@ import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angul
 import { Column, TableComponent } from '../../../@core/ui/table/table.component';
 import { MarketService } from '../../../@core/data/system/market.service';
 import { MessageService } from '../../../@core/utils/message.service';
+import { Areamap } from './../../../@core/model/system/areamap';
 
 
 @Component({
@@ -22,6 +23,8 @@ export class MarketEditComponent implements OnInit {
   city_source_url = '/rest/sys/area?key=';
   auto_input_value_tmp = '';
   isEdit = false;
+  cityDefault:{};
+  isDataAvailable:boolean = false;
 
     constructor(private fb: FormBuilder,
         public router: Router,
@@ -31,18 +34,20 @@ export class MarketEditComponent implements OnInit {
         private message: MessageService,
     ) {
         this.route.params.subscribe(p => {
-              if (p.id) {
+
+          if (p.id) {
+                // console.log('城市参数',JSON.stringify(p));
+
                 this.marketService.getMarket(p.id).then(res =>{
                   this.isEdit = true;
-                  console.log('修改', res, res.area);
+                  this.cityDefault = res.area;
+                  this.isDataAvailable = true;
                   this.form.patchValue({
                     id: res.id,
                     name: res.name,
-                    // area: res.area,
                     cloudUser: res.cloudUser,
                     memo: res.memo,
                   });
-                  this.getAutoCityValue(res.area);
                 });
               }
         });
@@ -75,6 +80,7 @@ export class MarketEditComponent implements OnInit {
 
 
     ngOnInit() {
+
     }
 
       /**
@@ -85,7 +91,6 @@ export class MarketEditComponent implements OnInit {
     if (this.auto_input_value_tmp !== event) {
       this.auto_input_value_tmp = event;
       this.message.info('输入提示', '您选择了：' + event);
-      console.log('转出地选择了', event);
       this.form.patchValue({
         area: event,
       });

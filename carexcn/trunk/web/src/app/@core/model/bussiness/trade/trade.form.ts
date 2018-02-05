@@ -31,7 +31,7 @@ export class TradeForm {
   /**
    * 卖方表单模型
    */
-  seller?: SellerForm;
+  seller?: SellerForm ;
   preVehicle?: PreVehicleForm;
   /**
    * 过户业务对象实例（结构同prejudication） [仅读取用，不需要操作]
