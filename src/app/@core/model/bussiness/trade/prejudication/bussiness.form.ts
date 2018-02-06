@@ -4,7 +4,7 @@ export class BussinessForm {
    * 业务类型代码值
    * 预审 01 过户 02(后面可能要统一到代码集)
    */
-  bussinessType?: string;
+  businessType?: string;
   /**
    * 业务流水号(预审批次号)
    */

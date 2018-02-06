@@ -26,7 +26,7 @@ import {MobileRecordingComponent} from './mobile-recording/mobile-recording.comp
 import { MobileTestComponent } from './mobile-recording/mobile-test/mobile-test.component';
 import { MobileReviewComponent } from './mobile-recording/mobile-review/mobile-review.component';
 import { MobileInputComponent } from './mobile-recording/mobile-input/mobile-input.component';
-
+import {CertTypePipe} from  '../../@core/data/bussiness/certTypePipe';
 
 @NgModule({
   imports: [
@@ -60,6 +60,7 @@ import { MobileInputComponent } from './mobile-recording/mobile-input/mobile-inp
     MobileTestComponent,
     MobileReviewComponent,
     MobileInputComponent,
+    CertTypePipe,
   ],
 })
 export class BussinessModule {
