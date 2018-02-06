@@ -29,6 +29,10 @@ export class CameraComponent implements OnInit, ControlValueAccessor, OnChanges 
   @Input() title;
   @Input() source;
   /**
+   * 当照片值为空时显示示例照片
+   */
+  @Input() example_source;
+  /**
    * 是否显示上传按钮
    * @type {boolean}
    */
@@ -84,7 +88,7 @@ export class CameraComponent implements OnInit, ControlValueAccessor, OnChanges 
   registerOnTouched(fn: any): void {
   }
   ngOnChanges() {
-    this.source = this.file.getRealFileUrl(this.source);
+    // this.source = this.file.getRealFileUrl(this.source);
   }
   ngOnInit() {}
 
@@ -126,7 +130,7 @@ export class CameraComponent implements OnInit, ControlValueAccessor, OnChanges 
     console.info('this.showPicModal url : ' + picSource);
     const activeModal = this.modalService.open(CameraModalComponent, { size: 'lg', container: 'nb-layout', windowClass: 'text-center'});
     activeModal.componentInstance.modalHeader = '查看图片';
-    activeModal.componentInstance.pic_source = picSource;
+    activeModal.componentInstance.pic_source = this.file.getRealFileUrl(picSource);
   }
 
   /**

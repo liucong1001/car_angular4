@@ -8,7 +8,6 @@
   <nb-card-body [formGroup]="seller">
     <!-- 修改此处，把选择证件类型之后，的动态组件相关操作都移动到动态组件当中去，由动态组件完成该操作 -->
     <ngx-ys-dynamic-photo-form
-      #dynamicPhotoForm
       [photos]="seller.get('_photos_')"
       [certType]="seller.value.certType"
       [btn_show]="btn_show"
@@ -44,7 +43,7 @@
         <input type="text" placeholder=""
                ngxInputWithPhoto
                [iwp_photoDetailTmp]="photoDetailTemplate"
-               [iwp_photos_url]="dynamicPhotoForm.photos_url"
+               [iwp_photos_url]="seller.get('_photos_').value"
                [iwp_certType]="seller.value.certType"
                [iwp_formName]="'record.sellerForm'"
                class="form-control" formControlName="name"
@@ -65,7 +64,7 @@
         <input type="text" placeholder="" class="form-control" formControlName="certCode"
                ngxInputWithPhoto
                [iwp_photoDetailTmp]="photoDetailTemplate"
-               [iwp_photos_url]="dynamicPhotoForm.photos_url"
+               [iwp_photos_url]="seller.get('_photos_').value"
                [iwp_certType]="seller.value.certType"
                [iwp_formName]="'record.sellerForm'"
                [ngClass]="{'form-control-danger':seller.get('certCode').invalid && seller.get('certCode').touched}"/>
@@ -76,7 +75,7 @@
         <input type="text" placeholder="" class="form-control" formControlName="endDate"
                ngxInputWithPhoto
                [iwp_photoDetailTmp]="photoDetailTemplate"
-               [iwp_photos_url]="dynamicPhotoForm.photos_url"
+               [iwp_photos_url]="seller.get('_photos_').value"
                [iwp_certType]="seller.value.certType"
                [iwp_formName]="'record.sellerForm'"
                [ngClass]="{'form-control-danger':seller.get('endDate').invalid && seller.get('endDate').touched}"/>
@@ -89,7 +88,7 @@
         <input type="text" placeholder="" class="form-control" formControlName="address"
                ngxInputWithPhoto
                [iwp_photoDetailTmp]="photoDetailTemplate"
-               [iwp_photos_url]="dynamicPhotoForm.photos_url"
+               [iwp_photos_url]="seller.get('_photos_').value"
                [iwp_certType]="seller.value.certType"
                [iwp_formName]="'record.sellerForm'"
                [ngClass]="{'form-control-danger':seller.get('address').invalid && seller.get('address').touched}"/>

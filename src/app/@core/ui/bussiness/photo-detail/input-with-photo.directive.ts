@@ -23,12 +23,15 @@ export class InputWithPhotoDirective {
   focus(event) {
     this._photo.getPhotoTypeConfigByFieldName(this._control.name, this.iwp_certType, this.iwp_formName).then(photoType => {
       if (photoType) {
-        this._photo.getPhotoScrollerYConfig(this._control.name, photoType).then(scroller => {
-          this.iwp_photoDetailTmp.setTop(scroller);
-          this.iwp_photoDetailTmp.setPhotoUrl(this.iwp_photos_url[photoType]);
-          this.iwp_photoDetailTmp.ifShow(true);
-          // this.iwp_photoDetailTmp.top = scroller;
-        });
+        if (this.iwp_photos_url[photoType][0]) {
+          this._photo.getPhotoScrollerYConfig(this._control.name, photoType).then(scroller => {
+            this.iwp_photoDetailTmp.setTop(scroller);
+            this.iwp_photoDetailTmp.setPhotoUrl(this.iwp_photos_url[photoType][0]);
+            this.iwp_photoDetailTmp.ifShow(true);
+          });
+        } else {
+          console.info(' 当前没有上传图片，忽略放大显示');
+        }
       } else {
         throw new Error('无法获取正确的 photoType');
       }
