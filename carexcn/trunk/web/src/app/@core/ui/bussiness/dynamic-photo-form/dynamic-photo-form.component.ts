@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
-import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Marketphotomap} from '../../../model/system/market-photo-map';
 import {MarketService} from '../../../data/system/market.service';
 
@@ -59,6 +59,10 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
     }
     console.info(v);
   }
+
+  /**
+   * 获取打叉的要打回的图片集合
+   */
   getPhotoChecked() {
     console.info(this.wrong_checked);
   }
@@ -99,7 +103,6 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
     } as Marketphotomap).then(res => this.initPhotoMap(res.json() as [Marketphotomap]));
   }
   initPhotoMap(marketphotomap_arr: [Marketphotomap]) {
-    // this.photos = this.fb.group({});
     /**
      * 需要处理的事情：
      * 拿到 sort，name，min，max，photoType
@@ -111,14 +114,14 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
     marketphotomap_arr.forEach(r => {
       photo_name_tmp[r.photoType] = r.name;
       if ( r.photoExample ) {
-        photo_url_tmp[r.photoType] = 'id:' + r.photoExample.fileId;
+        photo_url_tmp[r.photoType] = 'id:' + (r.photoExample ? r.photoExample.fileId : '');
         let i = 0;
         while (i < r.min) {
-          this.photos.addControl(r.photoType, this.fb.array([
-            {
-              value: 'id:' + (r.photoExample ? r.photoExample.fileId : ''),
+          this.photos.addControl(r.photoType, new FormArray([
+            new FormControl({
+              value: '', // 'id:' + (r.photoExample ? r.photoExample.fileId : ''),
               disabled: false,
-            }, // [Validators.required, Validators.maxLength(64)],
+            }, Validators.required),
           ]));
           i++;
         }

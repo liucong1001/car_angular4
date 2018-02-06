@@ -19,24 +19,28 @@ export class FileSystemService {
     return this.path + file_id.substring(3);
   }
   public getRealFileUrl(file: string): string {
-    if (file && file.indexOf('id:') === 0) {
-      /**
-       * 如果传递了 file_id 则根据 file_id 重置 source 的值
-       * 重置失败则视为普通url地址打开
-       */
-      return this.getFileUrlById(file);
-    } else if (file && file.indexOf('tmp:') === 0) {
-      /**
-       * 如果传递了 file_id 则根据 file_id 重置 source 的值
-       * 重置失败则视为普通url地址打开
-       */
-      return this.getFileUrlByTmp(file);
+    if ( file.length > 0 ) {
+      if (file.startsWith('id:')) {
+        /**
+         * 如果传递了 file_id 则根据 file_id 重置 source 的值
+         * 重置失败则视为普通url地址打开
+         */
+        return this.getFileUrlById(file);
+      } else if (file.startsWith('tmp:')) {
+        /**
+         * 如果传递了 file_id 则根据 file_id 重置 source 的值
+         * 重置失败则视为普通url地址打开
+         */
+        return this.getFileUrlByTmp(file);
+      } else {
+        /**
+         * 非协商前缀则视为图片全路径处理
+         * @type {string}
+         */
+        return file;
+      }
     } else {
-      /**
-       * 非协商前缀则视为图片全路径处理
-       * @type {string}
-       */
-      return file;
+      return '';
     }
   }
 }

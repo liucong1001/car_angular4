@@ -120,8 +120,6 @@ export class Recording2Component implements OnInit, OnDestroy {
    * 转到下一页
    */
   onSubmit() {
-    // let seller = this._formGroup.controls.seller as FormGroup;
-    // seller.patchValue({certType: '02'});
     this._router.navigateByUrl('/pages/bussiness/prejudication/recording3');
   }
 }
