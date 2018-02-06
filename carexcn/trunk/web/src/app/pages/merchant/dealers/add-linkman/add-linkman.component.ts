@@ -11,7 +11,7 @@ import {FilingInfoForm} from '../../../../@core/model/bussiness/filing.info.form
 import {FilingService} from '../../../../@core/data/merchant/filing.service';
 import {FilingPersonModel} from '../../../../@core/model/bussiness/filing.person.model';
 import {ErrorMessage} from '../../../../@core/ui/valid-error/valid-error.component';
-import {UserService} from "../../../../@core/data/users.service";
+import {UserService} from '../../../../@core/data/users.service';
 
 @Component({
   selector: 'ngx-add-linkman',
