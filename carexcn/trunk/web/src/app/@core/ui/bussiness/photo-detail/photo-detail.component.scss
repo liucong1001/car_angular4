@@ -1,4 +1,4 @@
-.image-detail {
+div {
   position: fixed;
   top: 0;
   left: 0;
@@ -9,7 +9,7 @@
   overflow:scroll;
   //overflow: hidden;
 }
-.image-detail img {
+div img {
   position: absolute;
   max-width: none;
   max-height: none;

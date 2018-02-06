@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnChanges, OnInit, ViewChild} from '@angular/core';
+import {AfterViewChecked, Component, ElementRef, Input, OnChanges, OnInit, ViewChild} from '@angular/core';
 import {FileSystemService} from '../../../data/system/file-system.service';
 
 /**
@@ -10,7 +10,7 @@ import {FileSystemService} from '../../../data/system/file-system.service';
   templateUrl: './photo-detail.component.html',
   styleUrls: ['./photo-detail.component.scss'],
 })
-export class PhotoDetailComponent implements OnInit, OnChanges {
+export class PhotoDetailComponent implements OnInit, AfterViewChecked { // OnChanges,
   /**
    * 图片显示路径
    * 支持 "tmp:","id:","http://......1.jpg" 等格式
@@ -24,17 +24,17 @@ export class PhotoDetailComponent implements OnInit, OnChanges {
    * 区域定位百分比的数字
    * @type {number}
    */
-  @Input() private top? = 0;
+  @Input() public top = 0;
   /**
    * 当前照片的附件类型(编码)
    * @type {string}
    */
-  @Input() private type? = '';
+  // @Input() private type? = '';
   /**
    * 当前照片的附件字段名
    * @type {string}
    */
-  @Input() private field? = '';
+  // @Input() private field? = '';
   /**
    * 是否显示的开关
    * @type {boolean}
@@ -44,6 +44,7 @@ export class PhotoDetailComponent implements OnInit, OnChanges {
   @ViewChild('div') private div: ElementRef;
   constructor(
     private _file: FileSystemService,
+    // private _example: PhotoExampleService,
   ) {}
   ngOnInit() {
     if (this.photoUrl === undefined && this.display === undefined) {
@@ -57,40 +58,47 @@ export class PhotoDetailComponent implements OnInit, OnChanges {
         throw new Error('display 属性是必须的！');
       }
       if (this.top == null || this.top === undefined) {
-        if (
-          this.top == null || this.top === undefined ||
-          this.type == null || this.type === undefined ||
-          this.field == null || this.field === undefined
-        ) {
-          throw new Error('不传递top时 type 和 field 是必须的！');
-        }
+        throw new Error('top 属性是必须的！');
+        // if (
+        //   this.type == null || this.type === undefined ||
+        //   this.field == null || this.field === undefined
+        // ) {
+        //   throw new Error('不传递top时 type(照片类型) 和 field(字段名) 是必须的！');
+        // }
       }
     }
   }
-  ngOnChanges() {
-    if (this.display) {
-      this.url = this._file.getRealFileUrl(this.photoUrl);
-      if (this.top == null || this.top === undefined) {
-        // this.setTop(this.top);
-        console.info(this.field);
-      } else {
-        this.setTop(this.top);
-      }
-    }
-  }
+  // ngOnChanges() {
+    // if (this.display) {
+    //   if (this.top == null || this.top === undefined) {
+    //     this._example.getPhotoScrollerYConfig(this.field, this.type).then(top => {
+    //       console.info('OnChanges 1', top);
+    //       // this.applyTop(top);
+    //     });
+    //   } else {
+    //     console.info('OnChanges 2', this.top);
+    //     this.applyTop(this.top);
+    //   }
+    // }
+  // }
   public setPhotoUrl(url: string) {
-    this.url = this._file.getRealFileUrl(url);
+    this.photoUrl =  url;
   }
   public ifShow(ifDisplay: boolean) {
     this.display = ifDisplay;
+  }
+  public setTop(top: number) {
+    this.top = top;
+  }
+  ngAfterViewChecked(): void {
+    this.applyTop();
   }
   /**
    * 计算并设置当前滚动条高度
    * @type {number} 设置高度的百分比
    */
-  private setTop(top: number) {
-    const imgHeight = this.img.nativeElement.offsetHeight;
-    let divTop = imgHeight * (this.top / 100);
-    this.div.nativeElement.scrollTo(0, divTop);
+  private applyTop(top?: number) {
+    top = top ? top : this.top;
+    this.div.nativeElement.scrollTo(0, this.img.nativeElement.height * (top / 100));
   }
 }

@@ -25,7 +25,7 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
   @Input() btn_show = true;
   @Input() btn_show_check = false;
   /**
-   * 是否勾选可当前照片
+   * 勾选照片的集合(一般用于审核打回操作)
    * @type {EventEmitter<any>}
    * @private
    */
