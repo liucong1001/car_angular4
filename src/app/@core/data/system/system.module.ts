@@ -6,6 +6,7 @@ import {CodeTransPipe} from './code.trans.pipe';
 import {ValidatorService} from './validator.service';
 import {MarketService} from './market.service';
 import {FileSystemService} from './file-system.service';
+import {PhotoExampleService} from './photo-example.service';
 
 /**
  * 导出服务
@@ -19,6 +20,7 @@ const SERVICES = [
   ValidatorService,
   MarketService,
   FileSystemService,
+  PhotoExampleService,
 ];
 
 /**

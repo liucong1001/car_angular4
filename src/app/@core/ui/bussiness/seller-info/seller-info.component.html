@@ -8,6 +8,7 @@
   <nb-card-body [formGroup]="seller">
     <!-- 修改此处，把选择证件类型之后，的动态组件相关操作都移动到动态组件当中去，由动态组件完成该操作 -->
     <ngx-ys-dynamic-photo-form
+      #dynamicPhotoForm
       [photos]="seller.get('_photos_')"
       [certType]="seller.value.certType"
       [btn_show]="btn_show"
@@ -27,7 +28,6 @@
       </div>
       <div class="input-group">
         <span class="input-group-addon">证件类型</span>
-        <!--seller.get('certType').disable()-->
         <ngx-ys-codeitem-droplist formControlName="certType" [ifDisabled]="false" [codeMap]="'certType'" (_selectedValue)="certTypeSelecteFunc($event)" style="width: 100%;"></ngx-ys-codeitem-droplist>
         <!--<ngx-ys-codeitem-droplist formControlName="certType" [ifDisabled]="false" (_selectedValue)="certificateTypeSelecteFunc($event)" [codeMap]="'certType'" style="width: 100%;"></ngx-ys-codeitem-droplist>-->
         <!--要拿到实体数据-->
@@ -44,6 +44,9 @@
         <input type="text" placeholder=""
                ngxInputWithPhoto
                [iwp_photoDetailTmp]="photoDetailTemplate"
+               [iwp_photos_url]="dynamicPhotoForm.photos_url"
+               [iwp_certType]="seller.value.certType"
+               [iwp_formName]="'record.sellerForm'"
                class="form-control" formControlName="name"
                [ngClass]="{'form-control-danger':seller.get('name').invalid && seller.get('name').touched}"/>
         <ngx-valid-error [errors]="errors.name" [control]="seller.get('name')"></ngx-valid-error>
@@ -60,12 +63,22 @@
       <div class="input-group">
         <span class="input-group-addon">证件号码</span>
         <input type="text" placeholder="" class="form-control" formControlName="certCode"
+               ngxInputWithPhoto
+               [iwp_photoDetailTmp]="photoDetailTemplate"
+               [iwp_photos_url]="dynamicPhotoForm.photos_url"
+               [iwp_certType]="seller.value.certType"
+               [iwp_formName]="'record.sellerForm'"
                [ngClass]="{'form-control-danger':seller.get('certCode').invalid && seller.get('certCode').touched}"/>
         <ngx-valid-error [errors]="errors.certCode" [control]="seller.get('certCode')"></ngx-valid-error>
       </div>
       <div class="input-group">
         <span class="input-group-addon">证件有效期</span>
         <input type="text" placeholder="" class="form-control" formControlName="endDate"
+               ngxInputWithPhoto
+               [iwp_photoDetailTmp]="photoDetailTemplate"
+               [iwp_photos_url]="dynamicPhotoForm.photos_url"
+               [iwp_certType]="seller.value.certType"
+               [iwp_formName]="'record.sellerForm'"
                [ngClass]="{'form-control-danger':seller.get('endDate').invalid && seller.get('endDate').touched}"/>
         <ngx-valid-error [errors]="errors.endDate" [control]="seller.get('endDate')"></ngx-valid-error>
       </div>
@@ -74,6 +87,11 @@
       <div class="input-group">
         <span class="input-group-addon">地址</span>
         <input type="text" placeholder="" class="form-control" formControlName="address"
+               ngxInputWithPhoto
+               [iwp_photoDetailTmp]="photoDetailTemplate"
+               [iwp_photos_url]="dynamicPhotoForm.photos_url"
+               [iwp_certType]="seller.value.certType"
+               [iwp_formName]="'record.sellerForm'"
                [ngClass]="{'form-control-danger':seller.get('address').invalid && seller.get('address').touched}"/>
         <ngx-valid-error [errors]="errors.address" [control]="seller.get('address')"></ngx-valid-error>
       </div>
