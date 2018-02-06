@@ -35,3 +35,4 @@
     <ngx-table #codeList [url]="'/rest/business/trade/pager'" [columns]="columns" [filter]="filter"></ngx-table>
   </nb-card-body>
 </nb-card>
+<ng-template #TypeCell let-data let-cell="cell">{{data.seller.seller.certType | certTypePipe}}</ng-template>

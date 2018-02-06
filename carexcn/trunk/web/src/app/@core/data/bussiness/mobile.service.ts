@@ -26,5 +26,15 @@ export class MobileService {
     return this.http.put(url, model).toPromise().then(res => res.json());
   }
 
+  /**
+   * 提交入库信息
+   * @param model
+   * @returns {Promise<TResult2|TResult1>}
+   */
+  public save(model:any):Promise<any>{
+    const url=`${this.api_url_base}/update`;
+    return this.http.put(url,model).toPromise().then(res =>res.json());
+  }
+
 
 }

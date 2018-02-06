@@ -1,10 +1,11 @@
-import {Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import {Component, OnChanges, OnInit, SimpleChanges ,TemplateRef, ViewChild} from '@angular/core';
 import {Menu, MenuCell} from '../../../@core/ui/table/cell.menu.component';
 import {Column} from '../../../@core/ui/table/table.component';
 import {TextCell} from '../../../@core/ui/table/cell.text.component';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {visibilityToggle} from "../../../@core/ui/animations/toggle.animation";
 import {ActivatedRoute, Router} from '@angular/router';
+import {CodemapCell, CustomCell} from '../../../@core/ui/table/cell';
 
 @Component({
   selector: 'ngx-ys-mobile-recording',
@@ -33,25 +34,30 @@ export class MobileRecordingComponent implements OnInit {
 
   ngOnInit() {
     // this.filter.preStatusList='12';
+    this.columns = [
+      {title: '流水号', titleClass: '', cell: new TextCell('archiveNo')} as Column,
+      {title: '车牌号', titleClass: '', cell: new TextCell('preVehicle.preVehicle.plateNumber')} as Column,
+      {title: '里程(公里)', titleClass: '', cell: new TextCell('preVehicle.preVehicle.mileage')} as Column,
+      {title: '出售价', titleClass: '', cell: new TextCell('name')} as Column,
+      {title: '购买价', titleClass: '', cell: new TextCell('name')} as Column,
+      {title: '状态', titleClass: '', cell: new CodemapCell('prejudicationStatus', 'prejudicationStatus')} as Column,
+      {title: '类型(卖方|买方)', titleClass: 'w-15 text-center', cell:new CustomCell(this.TypeCell)} as Column,
+      {title: '商户', titleClass: '', cell: new TextCell('preVehicle.preVehicle.merchant.name')} as Column,
+      {title: '操作', titleClass: 'w-15 text-center', cell: new MenuCell(
+        [
+          new Menu('预览', '', this.review.bind(this)),
+        ],
+        new Menu('更多', '', this.view), 'text-center',
+      )} as Column,
+    ];
   }
+  private
+  @ViewChild('TypeCell')  TypeCell: TemplateRef<any>;
   // 列表搜索条件对象
   filter: any = {};
   // 列表列定义
-  columns: Column[] = [
-    {title: '流水号', titleClass: '', cell: new TextCell('archiveNo')} as Column,
-    {title: '车牌号', titleClass: '', cell: new TextCell('preVehicle.preVehicle.plateNumber')} as Column,
-    {title: '里程(公里)', titleClass: '', cell: new TextCell('preVehicle.preVehicle.mileage')} as Column,
-    {title: '出售价', titleClass: '', cell: new TextCell('name')} as Column,
-    {title: '购买价', titleClass: '', cell: new TextCell('name')} as Column,
-    {title: '类型', titleClass: '', cell: new TextCell('name')} as Column,
-    {title: '商户', titleClass: '', cell: new TextCell('preVehicle.preVehicle.merchant.name')} as Column,
-    {title: '操作', titleClass: 'w-25 text-center', cell: new MenuCell(
-      [
-        new Menu('预览', '', this.review.bind(this)),
-      ],
-      new Menu('更多', '', this.view), 'text-center',
-    )} as Column,
-  ];
+  columns: Column[] ;
+
   view(){
 
   }
