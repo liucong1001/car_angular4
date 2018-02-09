@@ -1,6 +1,6 @@
 <nb-card>
   <nb-card-header class="d-flex">
-    <div class="p-2 mr-auto">新建项目（公车拍卖）</div>
+    <div class="p-2 mr-auto">修改项目（公车拍卖）</div>
   </nb-card-header>
   <nb-card-body>
     <form  [formGroup]="form">
@@ -12,13 +12,13 @@
           </div>
         </div>
         <div class="col-sm-3">
-          <div class="form-group form-group-sm">
+          <div class="form-group form-group-sm" *ngIf="isDataAvailable">
             <label>商户</label>
             <ngx-ys-autoinput [results_resource_url]="autoinput_shanghu_source_url" (_value)="getSelectedDealer($event)" [showProperty]="'name'" [defaultValue]="dealer"></ngx-ys-autoinput>
           </div>
         </div>
         <div class="col-sm-6">
-          <div class="form-group form-group-sm">
+          <div class="form-group form-group-sm" *ngIf="isDataAvailable">
             <label>受托人</label>
             <select class="form-control"  formControlName="filingInfo" (change)="linkmanSelecteFunc()"  name="linkman" [compareWith]="linkmanCompareWithFunc">
               <option value="">--请选择--</option>

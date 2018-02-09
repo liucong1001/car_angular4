@@ -8,6 +8,8 @@ import {BalanceDetailsComponent} from './discount-balance/balance-details/balanc
 import {AddProjectComponent} from './auction-manage/add-project/add-project.component';
 import {CarsManageComponent} from './auction-manage/cars-manage/cars-manage.component';
 import {AddCarComponent} from './auction-manage/add-car/add-car.component';
+import { EditProjectComponent } from './auction-manage/edit-project/edit-project.component';
+import { EditCarComponent } from './auction-manage/edit-car/edit-car.component';
 
 const routes: Routes = [{
   path: '',
@@ -15,8 +17,10 @@ const routes: Routes = [{
   children: [
     {path: 'auction-manage', component: AuctionManageComponent},
     {path: 'auction-manage/add-project', component: AddProjectComponent},
+    {path: 'auction-manage/edit-project', component: EditProjectComponent},
     {path: 'auction-manage/cars-manage', component: CarsManageComponent},
     {path: 'auction-manage/add-car', component: AddCarComponent},
+    {path: 'auction-manage/edit-car', component: EditCarComponent},
     {path: 'rebate-form', component: RebateFormComponent},
     {path: 'discount-balance', component: DiscountBalanceComponent},
     {path: 'discount-balance/balance-details', component: BalanceDetailsComponent},
@@ -37,5 +41,7 @@ export const routedComponents = [
   AddProjectComponent,
   CarsManageComponent,
   AddCarComponent,
+  EditProjectComponent,
+  EditCarComponent,
 ];
 

@@ -1,6 +1,7 @@
-import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, OnChanges, OnInit, SimpleChanges,TemplateRef,ViewChild } from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {Column} from '../../../@core/ui/table/table.component';
+import {CodemapCell, CustomCell} from '../../../@core/ui/table/cell';
 import {Router} from '@angular/router';
 import {TextCell} from '../../../@core/ui/table/cell.text.component';
 import {Menu, MenuCell} from '../../../@core/ui/table/cell.menu.component';
@@ -33,6 +34,7 @@ export class AuctionManageComponent implements OnInit, OnChanges {
   visibility = 'hidden';
   showFilter = false;
 
+  @ViewChild('createTimeCell') private createTimeCell: TemplateRef<any>;
   // 列表搜索表单隐藏显示切换
   toggle() {
     this.showFilter = !this.showFilter;
@@ -45,35 +47,41 @@ export class AuctionManageComponent implements OnInit, OnChanges {
 
   // 组件初始华
   ngOnInit(): void {
+    this.columns = [
+      {title: '项目名称', titleClass: 'w-15 text-center', cell: new TextCell('name')} as Column,
+      {title: '项目编号', titleClass: 'w-10 text-center', cell: new TextCell('id')} as Column,
+      {title: '状态', titleClass: 'w-5 text-center', cell: new TextCell('status')} as Column,
+      {title: '商户', titleClass: 'w-10 text-center', cell: new TextCell('merchant.name')} as Column,
+      {title: '已返现/总返现', titleClass: 'w-5 text-center', cell: new TextCell('')} as Column,
+      {title: '已过户/总台数', titleClass: 'w-5 text-center', cell: new TextCell('')} as Column,
+      {title: '创建时间', titleClass: 'w-20 text-center', cell: new CustomCell(this.createTimeCell)} as Column,
+      {
+        title: '', titleClass: 'w-10 text-center', cell: new MenuCell(
+        [
+          new Menu('编辑', '', this.edit.bind(this)),
+          new Menu('禁用', '', this.disable),
+        ],
+        new Menu('车辆管理', '', this.carLink.bind(this)), 'text-center',
+      )} as Column,
+    ];
   }
+
 
   // 列表搜索条件对象
   filter: any = {};
   // 列表列定义
-  columns: Column[] = [
-    {title: '项目名称', titleClass: 'w-25 text-center', cell: new TextCell('code')} as Column,
-    {title: '项目编号', titleClass: 'w-10 text-center', cell: new TextCell('name')} as Column,
-    {title: '状态', titleClass: 'w-15 text-center', cell: new TextCell('name')} as Column,
-    {title: '商户', titleClass: 'w-10 text-center', cell: new TextCell('name')} as Column,
-    {title: '已返现/总返现', titleClass: 'w-20 text-center', cell: new TextCell('name')} as Column,
-    {title: '已过户/总台数', titleClass: 'w-20 text-center', cell: new TextCell('name')} as Column,
-    {title: '创建人', titleClass: 'w-20 text-center', cell: new TextCell('name')} as Column,
-    {title: '创建时间', titleClass: 'w-20 text-center', cell: new TextCell('name')} as Column,
-    {
-      title: '', titleClass: 'w-25 text-center', cell: new MenuCell(
-        [
-          new Menu('编辑', '', 'edit'),
-          new Menu('禁用', '', this.disable),
-        ],
-        new Menu('车辆管理', '', this.view), 'text-center',
-      )} as Column,
-  ];
+  columns: Column[] ;
+
+  carLink(row: any){
+    this.router.navigate(['/pages/common-auction/auction-manage/cars-manage', { id:row.id}]);
+  }
 
   // 列表菜单回调
   view(row: any, drop: any) {
   }
 
   edit(row: any) {
+    this.router.navigate(['/pages/common-auction/auction-manage/edit-project', { id:row.id}]);
   }
 
   disable(row: any) {
