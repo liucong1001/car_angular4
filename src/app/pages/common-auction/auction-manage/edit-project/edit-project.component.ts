@@ -10,14 +10,14 @@ import { ActivatedRoute, Router, ActivatedRouteSnapshot, RouterState, RouterStat
 import {commonAutionService} from  '../../../../@core/data/common-aution/project.service';
 import { FormBuilder, FormGroup, Validators, FormsModule } from '@angular/forms';
 
+
 @Component({
-  selector: 'ngx-add-project',
-  templateUrl: './add-project.component.html',
-  styleUrls: ['./add-project.component.scss'],
+  selector: 'ngx-edit-project',
+  templateUrl: './edit-project.component.html',
+  styleUrls: ['./edit-project.component.scss'],
   providers:[commonAutionService],
 })
-export class AddProjectComponent implements OnInit, OnChanges {
-
+export class EditProjectComponent implements OnInit {
   constructor(    private _router: Router,
                   private _formbuilder: FormBuilder,
                   private _message: MessageService,
@@ -26,7 +26,8 @@ export class AddProjectComponent implements OnInit, OnChanges {
                   private _prejudication: PrejudicationService,
                   public router: Router,
                   public commonAutionService:commonAutionService,
-                  private fb: FormBuilder,) {this._localstorage.prefix = 'bussiness_prejudication_recording'; }
+                  private fb: FormBuilder,
+                  private route: ActivatedRoute,) { }
 
   carLsnumPrefixDefault = '鄂A';
   carLsnumIsOk = false;
@@ -48,6 +49,7 @@ export class AddProjectComponent implements OnInit, OnChanges {
     filingInfo:[null],
     saleType:[''],
     salePercent: [''],
+    id:[''],
   });
 
   form: FormGroup = this.fb.group({
@@ -58,17 +60,25 @@ export class AddProjectComponent implements OnInit, OnChanges {
    * @type {string}
    */
   public autoinput_shanghu_source_url = '/rest/merchant/list/';
-
+  isDataAvailable:boolean = false;
   // ngOnChanges 可监控组件变量
   ngOnChanges(changes: SimpleChanges): void {
   }
 
   // 组件初始华
   ngOnInit(): void {
-
+    this.route.params.subscribe(p => {
+      if (p.id) {
+         this.commonAutionService.getProjectInfo(p.id).then(res=>{
+             console.log('获取数据',res);
+             this.saleProjectform.patchValue(res.saleProject);
+             this.dealer = res.saleProject.merchant;
+             this.getSelectedDealer(this.dealer);
+              this.isDataAvailable = true;
+         })
+      }
+    });
   }
-
-
 
 
   /**
@@ -110,8 +120,9 @@ export class AddProjectComponent implements OnInit, OnChanges {
   save(){
 
     console.log("输出对象",this.form.value);
-    this.commonAutionService.saveProject(this.form.value).then(res=>{
-       this._message.success('','创建项目成功!');
+    this.commonAutionService.editCar(this.form.value).then(res=>{
+      this._message.success('','修改项目成功!');
+      this.goBack();
     }).catch(err=>{
       this._message.error('',err.json().message);
     })

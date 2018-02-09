@@ -72,9 +72,8 @@ export class AreaComponent implements OnInit {
 
     public editOrSave(event): void {
         if (this.isNew) {
-            window.console.log('新增菜单', this.item);
             this.areaService.save(this.item).then(res => {
-                alert('添加成功');
+                this.message.success('','添加成功！');
                 this.getData();
               this.disabled = !this.disabled;
             }).catch(err => {
@@ -87,7 +86,7 @@ export class AreaComponent implements OnInit {
             id: this.selectedNode.parent.id,
           };
             this.areaService.save(this.item).then(res => {
-                alert('修改成功');
+              this.message.success('','修改成功！');
                 this.getData();
                 this.Root();
             }).catch(err => {
@@ -103,7 +102,7 @@ export class AreaComponent implements OnInit {
 
   public confirmDelete(){
     this.areaService.remove(this.selectedNode.id).then(res=>{
-      alert("删除成功！");
+      this.message.success('','删除成功！');
       this.getData();
       this.Root();
       this.item = new Areamap(null, '', '', '', '', '', null, [], {});

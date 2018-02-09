@@ -74,7 +74,7 @@ export class PermissionComponent implements OnInit {
     public editOrSave(event): void {
         if (this.isNew) {
             this.permissionService.save(this.item).then(res => {
-                alert('添加成功');
+                this.message.success('','添加成功!');
                 this.getData();
                this.disabled = !this.disabled;
             }).catch(err => {
@@ -83,14 +83,13 @@ export class PermissionComponent implements OnInit {
             return;
         }
         if (!this.disabled) {
-          console.log("修改对象",this.item);
           this.item.parent = {
             id: this.selectedNode.parent.id,
           };
             this.permissionService.save(this.item).then(res => {
-                alert('修改成功');
+                this.message.success('','修改成功!');
                 this.getData();
-                this.Root()
+                this.Root();
             }).catch(err => {
                 this.message.error('失败', err.json().message);
             });
@@ -122,7 +121,7 @@ export class PermissionComponent implements OnInit {
 
     public confirmDelete(){
         this.permissionService.remove(this.selectedNode.id).then(res=>{
-          alert("删除成功！");
+          this.message.success('','删除成功!');
           this.getData();
           this.Root();
           this.item = new Permissionmap(null, '', '', '', '', '', '', '1', 1, [], {});

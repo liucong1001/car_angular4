@@ -7,6 +7,8 @@ import {RouterModule} from '@angular/router';
 import {UiTableModule} from '../../@core/ui/table/table.module';
 import {HttpModule} from '@angular/http';
 import {UiModule} from '../../@core/ui/ui.module';
+import { EditProjectComponent } from './auction-manage/edit-project/edit-project.component';
+import { EditCarComponent } from './auction-manage/edit-car/edit-car.component';
 
 @NgModule({
   imports: [

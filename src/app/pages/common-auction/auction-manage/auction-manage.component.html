@@ -7,7 +7,7 @@
   </nb-card-header>
   <nb-card-body>
     <div class="row">
-      <div class="col-sm-3">
+      <div class="col-sm-2">
         <button type="submit" class="btn btn-primary btn-block" (click)="banlance()"><i class="ion-plus-round"></i><span>添加公车拍卖项目</span></button>
       </div>
       <div class="col-sm-9"></div>
@@ -56,6 +56,7 @@
         </div>
       </div>
     </form>
-    <ngx-table #codeList [url]="'/rest/sys/codemap/pager'" [columns]="columns" [filter]="filter"></ngx-table>
+    <ngx-table #codeList [url]="'/rest/business/trade/sales/pager'" [columns]="columns" [filter]="filter"></ngx-table>
   </nb-card-body>
 </nb-card>
+<ng-template #createTimeCell  let-data let-cell="cell"><span >{{data.createTime | date:"yyyy-MM-dd HH:mm:ss"}}</span></ng-template>
