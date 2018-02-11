@@ -46,10 +46,21 @@ export class PaymentComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
 
   }
+  type:string;
   archiveNoChange(arcNo:string){
      console.log('监听',arcNo,'长度',arcNo.length);
        if(arcNo.length==16){
-        this.search(arcNo);
+
+        this.paymentService.getPay(arcNo).then(res=>{
+             console.log('数组长度',res.length);
+             if(res.length==1){
+               this.type=res[0].business.businessType;
+               this.search(arcNo,this.type);
+             }else  {
+
+             }
+
+        })
       }
   }
   // 组件初始华
@@ -72,19 +83,20 @@ export class PaymentComponent implements OnInit, OnChanges {
    * 根据流水号或者车牌号查询
    * @param data
    */
-  search(data){
+  search(data,type){
 
     this.payOrderItem.items = [];
     this.paymentService.getArcInfo(data).then(res=>{
       this.payOrderItem.payment = {
         archiveNo:data,
         shouldAmount:0,
-        businessObjectId:res.prejudication.business.id,
+        businessObjectId:res.prejudication.id,
+        businessType:type,
         accountName:res.preVehicle.preVehicle.merchant.name,
       };
       this.payOrder.accountId = res.preVehicle.preVehicle.merchant.account.id;
 
-          this.paymentService.getArcFee(data).then(result=>{
+          this.paymentService.getArcFee(data,type).then(result=>{
 
             for( var i in result){
               this.payOrderItem.items.push({

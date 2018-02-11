@@ -1,3 +1,6 @@
+/**
+ *优惠结算-车辆详情模型
+ */
 export class  carBalance{
 
   /**
@@ -8,4 +11,5 @@ export class  carBalance{
    * 创建时间
    */
   createTime:Date;
+
 }
