@@ -1,9 +1,10 @@
-import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, OnChanges, OnInit, SimpleChanges,TemplateRef,ViewChild } from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {Column} from '../../../@core/ui/table/table.component';
 import {Menu, MenuCell} from '../../../@core/ui/table/cell.menu.component';
 import {TextCell} from '../../../@core/ui/table/cell.text.component';
 import {Router} from '@angular/router';
+import {CodemapCell, CustomCell} from '../../../@core/ui/table/cell';
 
 @Component({
   selector: 'ngx-discount-balance',
@@ -33,6 +34,7 @@ export class DiscountBalanceComponent implements OnInit, OnChanges {
   visibility = 'hidden';
   showFilter = false;
 
+  @ViewChild('createTimeCell') private createTimeCell: TemplateRef<any>;
   // 列表搜索表单隐藏显示切换
   toggle() {
     this.showFilter = !this.showFilter;
@@ -45,33 +47,35 @@ export class DiscountBalanceComponent implements OnInit, OnChanges {
 
   // 组件初始华
   ngOnInit(): void {
+    this.columns = [
+      {title: '项目名称', titleClass: 'w-15 text-center', cell: new TextCell('name')} as Column,
+      {title: '项目编号', titleClass: 'w-10 text-center', cell: new TextCell('id')} as Column,
+      {title: '商户', titleClass: 'w-10 text-center', cell: new TextCell('merchant.name')} as Column,
+      {title: '已过户/总台数', titleClass: 'w-5 text-center', cell: new TextCell('')} as Column,
+      {title: '已返现金额', titleClass: 'w-5 text-center', cell: new TextCell('discounted')} as Column,
+      {title: '待返现金额', titleClass: 'w-5 text-center', cell: new TextCell('discounting')} as Column,
+      {title: '总返现金额', titleClass: 'w-5 text-center', cell: new TextCell('discount')} as Column,
+      {title: '状态', titleClass: 'w-5 text-center', cell: new CodemapCell('status','saleProjectStatus')} as Column,
+      {title: '创建时间', titleClass: 'w-20 text-center', cell: new CustomCell(this.createTimeCell)} as Column,
+      {
+        title: '', titleClass: 'w-10 text-center', cell: new MenuCell(
+        [
+
+        ],
+        new Menu('结算', '', this.view.bind(this)), 'text-center',
+      )} as Column,
+    ];
   }
 
   // 列表搜索条件对象
   filter: any = {};
   // 列表列定义
-  columns: Column[] = [
-    {title: '项目名称', titleClass: 'w-25 text-center', cell: new TextCell('code')} as Column,
-    {title: '项目编号', titleClass: 'w-10 text-center', cell: new TextCell('name')} as Column,
-    {title: '商户名称', titleClass: 'w-15 text-center', cell: new TextCell('name')} as Column,
-    {title: '创建用户', titleClass: 'w-10 text-center', cell: new TextCell('name')} as Column,
-    {title: '已过户/总台数', titleClass: 'w-20 text-center', cell: new TextCell('name')} as Column,
-    {title: '已返现金额', titleClass: 'w-20 text-center', cell: new TextCell('name')} as Column,
-    {title: '待返现金额', titleClass: 'w-20 text-center', cell: new TextCell('name')} as Column,
-    {title: '总返现金额', titleClass: 'w-20 text-center', cell: new TextCell('name')} as Column,
-    {title: '状态', titleClass: 'w-20 text-center', cell: new TextCell('name')} as Column,
-    {
-      title: '结算', titleClass: 'w-15 text-center', cell: new MenuCell(
-        [
-          new Menu('编辑', '', 'edit'),
-          new Menu('禁用', '', this.disable),
-        ],
-        new Menu('结算', '', this.view), 'text-center',
-      )} as Column,
-  ];
+  columns: Column[] ;
 
   // 列表菜单回调
   view(row: any, drop: any) {
+    this.router.navigate(['/pages/common-auction/discount-balance/balance-details', { id:row.id}]);
+
   }
 
   edit(row: any) {

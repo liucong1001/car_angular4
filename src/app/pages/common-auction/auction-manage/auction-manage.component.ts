@@ -50,7 +50,7 @@ export class AuctionManageComponent implements OnInit, OnChanges {
     this.columns = [
       {title: '项目名称', titleClass: 'w-15 text-center', cell: new TextCell('name')} as Column,
       {title: '项目编号', titleClass: 'w-10 text-center', cell: new TextCell('id')} as Column,
-      {title: '状态', titleClass: 'w-5 text-center', cell: new TextCell('status')} as Column,
+      {title: '状态', titleClass: 'w-5 text-center', cell: new CodemapCell('status','saleProjectStatus')} as Column,
       {title: '商户', titleClass: 'w-10 text-center', cell: new TextCell('merchant.name')} as Column,
       {title: '已返现/总返现', titleClass: 'w-5 text-center', cell: new TextCell('')} as Column,
       {title: '已过户/总台数', titleClass: 'w-5 text-center', cell: new TextCell('')} as Column,

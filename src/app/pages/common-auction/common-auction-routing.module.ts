@@ -10,6 +10,7 @@ import {CarsManageComponent} from './auction-manage/cars-manage/cars-manage.comp
 import {AddCarComponent} from './auction-manage/add-car/add-car.component';
 import { EditProjectComponent } from './auction-manage/edit-project/edit-project.component';
 import { EditCarComponent } from './auction-manage/edit-car/edit-car.component';
+import { CarDetailsComponent } from './discount-balance/balance-details/car-details/car-details.component';
 
 const routes: Routes = [{
   path: '',
@@ -24,6 +25,7 @@ const routes: Routes = [{
     {path: 'rebate-form', component: RebateFormComponent},
     {path: 'discount-balance', component: DiscountBalanceComponent},
     {path: 'discount-balance/balance-details', component: BalanceDetailsComponent},
+    {path: 'discount-balance/balance-details/car-details', component: CarDetailsComponent},
   ],
 }];
 
@@ -43,5 +45,6 @@ export const routedComponents = [
   AddCarComponent,
   EditProjectComponent,
   EditCarComponent,
+  CarDetailsComponent
 ];
 

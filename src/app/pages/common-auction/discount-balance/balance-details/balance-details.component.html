@@ -1,32 +1,27 @@
 <nb-card>
   <nb-card-header class="d-flex">
     <div class="p-2 mr-auto">结算详情</div>
+    <div class="p2">
+      <a [routerLink]="'..'" class="btn btn-secondary btn-sm">返回</a>
+    </div>
   </nb-card-header>
   <nb-card-body>
-    <form (submit)="codeList.reload()">
       <div class="row">
-        <!--<div class="col-sm-2">
+        <div class="col-sm-1">
           <div class="form-group form-group-sm">
-            <span>请输入号码：</span>
-            &lt;!&ndash;<input class="form-control" name="code" type="text" placeholder="请扫码车管所业务流水号后再扫描交易流水号"/>&ndash;&gt;
+            <button type="submit" class="btn btn btn-primary btn-block" (click)="Settlement()" *ngIf="!againBanlance">结算</button>
           </div>
-        </div>-->
-        <!--<div class="col-sm-7">-->
-          <!--<div class="form-group form-group-sm">-->
-            <!--请输入号码：-->
-            <!--<input class="form-control input-custom" name="code" type="text" placeholder="请扫码车管所业务流水号后再扫描交易流水号"/>-->
-          <!--</div>-->
-        <!--</div>-->
+        </div>
         <div class="col-sm-2">
           <div class="form-group form-group-sm">
-            <button type="submit" class="btn btn btn-primary btn-block">结算</button>
+            <button  class="btn btn btn-primary btn-block" (click)="SettlementCarLink()" *ngIf="againBanlance">重新结算</button>
           </div>
         </div>
       </div>
-    </form>
+
   </nb-card-body>
   <nb-card-body>
-    <table border="1">
+    <table class="table table-bordered table-striped">
       <tr>
         <th>序号</th>
         <th>结算金额</th>
@@ -35,25 +30,45 @@
         <th>支付状态</th>
         <th>结算车辆</th>
       </tr>
-      <tr></tr>
+        <tr *ngFor=" let item  of balanceData ; let i = index" >
+          <ng-container *ngIf="againBanlance">
+            <td>{{i+1}}</td>
+            <td>{{item.settleAccounts}}</td>
+            <td> {{item.creator?.userName}}</td>
+            <td>{{item.createTime | date:'yyyy-MM-dd HH:mm:ss '}}</td>
+            <td>{{item.status==1?'已支付':'未支付'}}</td>
+            <td><a [routerLink]="'/pages/common-auction/auction-manage/cars-manage'"  [queryParams]="{id:item.saleProject.id}">车辆详情</a></td>
+          </ng-container>
+        </tr>
+
+      <tr *ngFor=" let item  of settleDate ; let i = index" >
+        <ng-container *ngIf="!againBanlance">
+          <td>{{i+1}}</td>
+          <td>{{item.settleAccounts}}</td>
+          <td>{{item.creator.userName}}</td>
+          <td>{{item.createTime | date:'yyyy-MM-dd HH:mm:ss '}}</td>
+          <td>{{item.status==1?'已支付':'未支付'}}</td>
+          <td><a href="ng#/sale/project/balance/car?id={{item.id}}">车辆详情</a></td>
+        </ng-container>
+      </tr>
     </table>
   </nb-card-body>
   <nb-card-body>
     <div class="row">
       <div class="col-sm-2"></div>
       <div class="col-sm-8">
-        <table border="1">
-          <tr>
+        <table  class="table table-bordered">
+          <tr class="">
             <td>已结算</td>
             <td>已支付</td>
             <td>待支付</td>
             <td></td>
           </tr>
           <tr>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td></td>
+            <td>{{discounted}}</td>
+            <td>{{paying}}</td>
+            <td>{{pay}}</td>
+            <td> <button class="btn btn-success" (click)="payAccount()" >支付</button> </td>
           </tr>
         </table>
       </div>
