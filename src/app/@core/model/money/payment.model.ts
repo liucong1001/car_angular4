@@ -34,6 +34,11 @@ export class BusinessObjectPayment {
    * 业务对象标识
    */
   public businessObjectId?: string;
+
+  /**
+   * 业务类型
+   */
+  public businessType?:string;
   /**
    * 应收金额
    */

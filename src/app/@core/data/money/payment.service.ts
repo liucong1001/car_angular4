@@ -42,8 +42,8 @@ export class PaymentService {
    * @returns {Promise<TResult2|TResult1>}
    */
 
-  public getArcFee(arc:string):Promise<any>{
-    const url = `rest/business/trade/cost?archiveNo=`+arc;
+  public getArcFee(arc:string,type:string):Promise<any>{
+    const url = `rest/business/trade/cost?archiveNo=`+arc+'&type='+type;
     return this.http.get(url).toPromise().then(function (res) {
       return res.json() as any;
     });
@@ -57,6 +57,13 @@ export class PaymentService {
 
   public getArcInfo(arc:string):Promise<any>{
     const url = `rest/business/trade?archiveNo=`+arc;
+    return this.http.get(url).toPromise().then(function (res) {
+      return res.json() as any;
+    });
+  }
+  // 通过流水获取待缴费的票据业务对象列表
+  public  getPay(arc:string):Promise<any>{
+    const url = `/rest/business/trade/bill/needpay?archiveNo=`+arc;
     return this.http.get(url).toPromise().then(function (res) {
       return res.json() as any;
     });
