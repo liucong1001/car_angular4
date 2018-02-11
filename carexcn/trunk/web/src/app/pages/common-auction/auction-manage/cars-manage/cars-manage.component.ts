@@ -4,6 +4,7 @@ import {Column} from '../../../../@core/ui/table/table.component';
 import {TextCell} from '../../../../@core/ui/table/cell.text.component';
 import {Menu, MenuCell} from '../../../../@core/ui/table/cell.menu.component';
 import {Router, ActivatedRoute} from '@angular/router';
+import {CodemapCell, CustomCell} from '../../../../@core/ui/table/cell';
 
 
 @Component({
@@ -66,7 +67,7 @@ export class CarsManageComponent implements OnInit, OnChanges {
     {title: '总费用', titleClass: 'w-20 text-center', cell: new TextCell('fee')} as Column,
     {title: '金额三', titleClass: 'w-20 text-center', cell: new TextCell('discount')} as Column,
     {title: '发票号', titleClass: 'w-20 text-center', cell: new TextCell('bill')} as Column,
-    {title: '状态', titleClass: 'w-20 text-center', cell: new TextCell('status')} as Column,
+    {title: '状态', titleClass: 'w-20 text-center', cell: new CodemapCell('status','saleCarStatus')} as Column,
     {
       title: '操作', titleClass: 'w-25 text-center', cell: new MenuCell(
         [

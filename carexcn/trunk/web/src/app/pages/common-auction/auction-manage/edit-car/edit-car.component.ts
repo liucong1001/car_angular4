@@ -28,7 +28,6 @@ export class EditCarComponent implements OnInit {
            this.saleCarform.patchValue(res);
            this.form.patchValue({projectId:res.saleProject.id})
         })
-        // this.form.patchValue({projectId:p.id})
       }
     });
   }
