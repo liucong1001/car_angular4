@@ -130,6 +130,8 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
     let photo_url_tmp = {};
     /**
      * 根据缓存的名字拿到缓存的数据，在初始化的过程中，完成对表单的默认赋值
+     * 注意判断名字是否为空和名字拿到的缓存名是否为空
+     * 缓存名的缓存本来也该判断是否为空，但是循环中就可以判断了
      */
     // 在循环开始之前的该处，要拿到缓存的数据，循环时使用
     marketphotomap_arr.forEach(r => {
