@@ -19,6 +19,13 @@ import {Marketphotomap} from '../../../../@core/model/system/market-photo-map';
   styleUrls: ['./recording3.component.scss'],
 })
 export class Recording3Component implements OnInit, OnDestroy {
+  /**
+   * 缓存服务的前缀
+   * 缓存前缀名以业务为单位，一个缓存前缀对应一个业务，一个缓存业务完成则删除该前缀的所有缓存
+   * @type {string}
+   * @private
+   */
+  private _cache_pre = 'bussiness_prejudication_recording_';
   certificateFormConfig: Marketphotomap;
   useCharacter: Codeitem[];
   vehicleType: Codeitem[];
@@ -41,6 +48,7 @@ export class Recording3Component implements OnInit, OnDestroy {
     otherConditions: ['1', [Validators.required]], // 其它状况说明
     origin: ['武汉', [Validators.required]], // 车辆产地
     fee: ['284', [Validators.required]], // 手续费
+
     // eeee: ['', [Validators.maxLength(50)]],
     /**
      * TODO: 注意 eeee 字段，后台可能暂未准备好接收，但是是业务必须的字段
@@ -58,28 +66,17 @@ export class Recording3Component implements OnInit, OnDestroy {
     private _router: Router,
     private _formBuilder: FormBuilder,
     private _localstorage: LocalstorageService,
-    private common_localstorage: LocalstorageService,
     private _codeitem: CodeitemService,
-  ) {
-    /**
-     * 缓存前缀名以业务为单位，一个缓存前缀对应一个业务，一个缓存业务完成则删除该前缀的所有缓存
-     * @type {string}
-     */
-    this._localstorage.prefix = 'bussiness_prejudication_recording';
-  }
+  ) {}
 
   /**
    * 页面初始化事件
    */
   ngOnInit() {
-    console.info('exec on init.');
-    // const formPatchValue = {
-    //
-    // };
-    let maybe_vehicle = this._localstorage.get('vehicle');
+    let maybe_vehicle = this._localstorage.get(this._cache_pre + 'vehicle');
     if (maybe_vehicle) {
       this._formGroup.patchValue(maybe_vehicle);
-      let maybe_seller_form = this._localstorage.get('seller_form');
+      let maybe_seller_form = this._localstorage.get(this._cache_pre + 'seller_form');
       if (maybe_seller_form) {
         this._formGroup.patchValue({});
       }
@@ -108,9 +105,9 @@ export class Recording3Component implements OnInit, OnDestroy {
    */
   ngOnDestroy() {
     console.info('exec on destroy.');
-    this._localstorage.set('vehicle', this._formGroup.value);
-    this._localstorage.set('vehicle_photos', this._formGroup.get('_photos_'));
-    this.common_localstorage.set('cardetail__dynamic_photos', this._localstorage.prefix + 'vehicle_photos');
+    this._localstorage.set(this._cache_pre + 'vehicle', this._formGroup.value);
+    this._localstorage.set(this._cache_pre + 'vehicle_photos', this._formGroup.get('_photos_').value);
+    this._localstorage.set('cardetail__dynamic_photos', this._cache_pre + 'vehicle_photos');
   }
 
   onSubmit() {

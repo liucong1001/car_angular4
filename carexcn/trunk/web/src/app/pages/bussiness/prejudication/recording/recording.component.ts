@@ -28,6 +28,13 @@ import {PrejudicationService} from '../../../../@core/data/bussiness/prejudicati
 })
 export class RecordingComponent implements OnInit, OnDestroy {
   /**
+   * 缓存服务的前缀
+   * 缓存前缀名以业务为单位，一个缓存前缀对应一个业务，一个缓存业务完成则删除该前缀的所有缓存
+   * @type {string}
+   * @private
+   */
+  private _cache_pre = 'bussiness_prejudication_recording_';
+  /**
    *  搜索确认商户联系人时调取对应信息
    */
   cameras: any[] = [{
@@ -67,11 +74,6 @@ export class RecordingComponent implements OnInit, OnDestroy {
     private _localstorage: LocalstorageService,
     private _prejudication: PrejudicationService,
   ) {
-    /**
-     * 缓存前缀名以业务为单位，一个缓存前缀对应一个业务，一个缓存业务完成则删除该前缀的所有缓存
-     * @type {string}
-     */
-    this._localstorage.prefix = 'bussiness_prejudication_recording';
   }
 
   linkManData: FilingInfoModel[] = [];
@@ -94,7 +96,7 @@ export class RecordingComponent implements OnInit, OnDestroy {
      * 读取车辆缓存数据：主要是车牌
      * @type {any}
      */
-    let maybe_vehicle = this._localstorage.get('vehicle');
+    let maybe_vehicle = this._localstorage.get(this._cache_pre + 'vehicle');
     if (maybe_vehicle) {
       this.vehicle = maybe_vehicle;
       /**
@@ -106,7 +108,7 @@ export class RecordingComponent implements OnInit, OnDestroy {
          * 读取缓存的商户
          * @type {any}
          */
-        let maybe_dealer = this._localstorage.get('dealer');
+        let maybe_dealer = this._localstorage.get(this._cache_pre + 'dealer');
         if (maybe_dealer) {
           this.dealer = maybe_dealer;
           /**
@@ -114,8 +116,8 @@ export class RecordingComponent implements OnInit, OnDestroy {
            * @type {boolean}
            */
           this.dealerIsOk = true;
-          this.linkManData = this._localstorage.get('linkmandata');
-          this.linkmanSelected = this._localstorage.get('linkmanSelected');
+          this.linkManData = this._localstorage.get(this._cache_pre + 'linkmandata');
+          this.linkmanSelected = this._localstorage.get(this._cache_pre + 'linkmanSelected');
           this.linkman = this.linkmanSelected;
         }
       }
@@ -128,10 +130,10 @@ export class RecordingComponent implements OnInit, OnDestroy {
    */
   ngOnDestroy() {
     // console.info('exec on destroy.');
-    this._localstorage.set('linkmanSelected', this.linkmanSelected);
-    this._localstorage.set('linkmandata', this.linkManData);
-    this._localstorage.set('dealer', this.dealer);
-    this._localstorage.set('vehicle', this.vehicle);
+    this._localstorage.set(this._cache_pre + 'linkmanSelected', this.linkmanSelected);
+    this._localstorage.set(this._cache_pre + 'linkmandata', this.linkManData);
+    this._localstorage.set(this._cache_pre + 'dealer', this.dealer);
+    this._localstorage.set(this._cache_pre + 'vehicle', this.vehicle);
   }
 
   /**

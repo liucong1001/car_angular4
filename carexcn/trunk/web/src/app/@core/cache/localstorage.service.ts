@@ -5,31 +5,27 @@ import { Injectable } from '@angular/core';
  */
 @Injectable()
 export class LocalstorageService {
-  public prefix: string;
   constructor() {}
-  // constructor(prefix: string) {
-  //   this.prefix = prefix;
-  // }
   get(key: string) {
     try {
-      JSON.parse(localStorage.getItem(this.prefix + '_' + key));
+      JSON.parse(localStorage.getItem(key));
     } catch (e) {
       return null;
     }
-    return JSON.parse(localStorage.getItem(this.prefix + '_' + key));
+    return JSON.parse(localStorage.getItem(key));
   }
   set(key: string, data: any) {
     if (data) {
-      return localStorage.setItem(this.prefix + '_' + key, JSON.stringify(data));
+      return localStorage.setItem(key, JSON.stringify(data));
     } else {
       return false;
     }
   }
   has(key: string) {
-    return localStorage.getItem(this.prefix + '_' + key) !== null;
+    return localStorage.getItem(key) !== null;
   }
   del(key: string) {
-    return localStorage.removeItem(this.prefix + '_' + key);
+    return localStorage.removeItem(key);
   }
   clear() {
     return localStorage.clear();

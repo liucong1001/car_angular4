@@ -27,6 +27,13 @@ import {Marketphotomap} from '../../../../@core/model/system/market-photo-map';
   styleUrls: ['./recording2.component.scss'],
 })
 export class Recording2Component implements OnInit, OnDestroy {
+  /**
+   * 缓存服务的前缀
+   * 缓存前缀名以业务为单位，一个缓存前缀对应一个业务，一个缓存业务完成则删除该前缀的所有缓存
+   * @type {string}
+   * @private
+   */
+  private _cache_pre = 'bussiness_prejudication_recording_';
   public certType: Codeitem[];
   public certTypeSelected: Codeitem;
   merchant: MerchantModel = {name: ''};
@@ -58,29 +65,22 @@ export class Recording2Component implements OnInit, OnDestroy {
     private _idcard: IdcardService,
     private _message: MessageService,
     private _localstorage: LocalstorageService,
-    private common_localstorage: LocalstorageService,
     private _code: CodeService,
     private _codeitem: CodeitemService,
     private _market: MarketService,
     public _userService: UserService,
-  ) {
-    /**
-     * 缓存前缀名以业务为单位，一个缓存前缀对应一个业务，一个缓存业务完成则删除该前缀的所有缓存
-     * @type {string}
-     */
-    this._localstorage.prefix = 'bussiness_prejudication_recording';
-  }
+  ) {}
 
   /**
    * 页面初始化事件
    */
   ngOnInit() {
-    // console.info('exec on init.');
     /**
      * 市场 代办员
      * @type {any | any}
      */
-    let maybe_linkman = this._localstorage.get('linkmanSelected');
+    let maybe_linkman = this._localstorage.get(this._cache_pre + 'linkmanSelected');
+    console.info('发现 linkmanSelected ：', maybe_linkman);
     if (maybe_linkman) {
       this.linkmanSelected = maybe_linkman;
     }
@@ -88,16 +88,19 @@ export class Recording2Component implements OnInit, OnDestroy {
      * 读取缓存的商户
      * @type {any}
      */
-    let maybe_merchant = this._localstorage.get('dealer');
+    let maybe_merchant = this._localstorage.get(this._cache_pre + 'dealer');
+    console.info('发现 dealer ：', maybe_merchant);
     if (maybe_merchant) {
       this.merchant = maybe_merchant;
     }
-    let maybe_certificate_type = this._localstorage.get('certType');
+    let maybe_certificate_type = this._localstorage.get(this._cache_pre + 'certType');
+    console.info('发现 certType ：', maybe_certificate_type);
     if (maybe_certificate_type) {
       this.certTypeSelected = maybe_certificate_type;
     }
     this._codeitem.list('certType').then(res => this.certType = res as Codeitem[]);
-    let maybe_seller_form = this._localstorage.get('seller_form');
+    let maybe_seller_form = this._localstorage.get(this._cache_pre + 'seller_form');
+    console.info('发现 seller_form ：', maybe_seller_form);
     if (maybe_seller_form) {
       this._formGroup.patchValue(maybe_seller_form);
     }
@@ -118,10 +121,10 @@ export class Recording2Component implements OnInit, OnDestroy {
    */
   ngOnDestroy() {
     // console.info('exec on destroy.');
-    this._localstorage.set('certType', this.certTypeSelected);
-    this._localstorage.set('seller_form', this._formGroup.value);
-    this._localstorage.set('seller_photos', this._formGroup.get('_photos_'));
-    this.common_localstorage.set('seller_info__dynamic_photos', this._localstorage.prefix + 'seller_photos');
+    this._localstorage.set(this._cache_pre + 'certType', this.certTypeSelected);
+    this._localstorage.set(this._cache_pre + 'seller_form', this._formGroup.value);
+    this._localstorage.set(this._cache_pre + 'seller_photos', this._formGroup.get('_photos_'));
+    this._localstorage.set('seller_info__dynamic_photos', this._cache_pre + 'seller_photos');
   }
 
   /**

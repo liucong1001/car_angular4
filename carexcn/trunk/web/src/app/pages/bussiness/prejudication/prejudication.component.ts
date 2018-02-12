@@ -11,7 +11,6 @@ import {Router} from '@angular/router';
   styleUrls: ['./prejudication.component.scss'],
 })
 export class PrejudicationComponent implements OnInit {
-
   cameras: any[] = [{
     title: '预审录入',
     source: 'assets/images/camera1.jpg',

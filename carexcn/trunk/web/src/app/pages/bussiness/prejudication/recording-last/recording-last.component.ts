@@ -16,20 +16,21 @@ import {TradeForm} from '../../../../@core/model/bussiness/trade/trade.form';
   styleUrls: ['./recording-last.component.scss'],
 })
 export class RecordingLastComponent implements OnInit {
+  /**
+   * 缓存服务的前缀
+   * 缓存前缀名以业务为单位，一个缓存前缀对应一个业务，一个缓存业务完成则删除该前缀的所有缓存
+   * @type {string}
+   * @private
+   */
+  private _cache_pre = 'bussiness_prejudication_recording_';
   trade: TradeForm;
   constructor(
     private _router: Router,
     private _message: MessageService,
     private _localstorage: LocalstorageService,
-  ) {
-    /**
-     * 缓存前缀名以业务为单位，一个缓存前缀对应一个业务，一个缓存业务完成则删除该前缀的所有缓存
-     * @type {string}
-     */
-    this._localstorage.prefix = 'bussiness_prejudication_recording';
-  }
+  ) {}
   ngOnInit() {
-    let maybe_trade = this._localstorage.get('trade');
+    let maybe_trade = this._localstorage.get(this._cache_pre + 'trade');
     if (maybe_trade) {
       console.info(maybe_trade);
       this.trade = maybe_trade as TradeForm;

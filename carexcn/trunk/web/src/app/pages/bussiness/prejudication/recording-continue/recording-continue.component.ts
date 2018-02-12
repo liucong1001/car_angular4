@@ -27,6 +27,13 @@ import {FilingInfoModel} from '../../../../@core/model/bussiness/filing.info.mod
   styleUrls: ['./recording-continue.component.scss'],
 })
 export class RecordingContinueComponent implements OnInit {
+  /**
+   * 缓存服务的前缀
+   * 缓存前缀名以业务为单位，一个缓存前缀对应一个业务，一个缓存业务完成则删除该前缀的所有缓存
+   * @type {string}
+   * @private
+   */
+  private _cache_pre = 'bussiness_prejudication_recording_';
   photos: any[] = [{
     title: '行驶证正本',
     source: 'assets/images/camera1.jpg',
@@ -78,13 +85,7 @@ export class RecordingContinueComponent implements OnInit {
     private _router: Router,
     private _route: ActivatedRoute,
     private _localstorage: LocalstorageService,
-  ) {
-    /**
-     * 缓存前缀名以业务为单位，一个缓存前缀对应一个业务，一个缓存业务完成则删除该前缀的所有缓存
-     * @type {string}
-     */
-    this._localstorage.prefix = 'bussiness_prejudication_recording';
-  }
+  ) {}
   ngOnInit(): void {
     this._route.params.subscribe(param => {
       // this.trade.prejudication.business.archiveNo

@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angula
 import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Marketphotomap} from '../../../model/system/market-photo-map';
 import {MarketService} from '../../../data/system/market.service';
+import {LocalstorageService} from '../../../cache/localstorage.service';
 
 @Component({
   selector: 'ngx-ys-dynamic-photo-form',
@@ -40,7 +41,9 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
   constructor(
     private _market: MarketService,
     private fb: FormBuilder,
-  ) { }
+    private _localstorage: LocalstorageService,
+  ) {
+  }
   ngOnInit() {
     this.setCertificateConfig();
   }
@@ -133,6 +136,8 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
      * 注意判断名字是否为空和名字拿到的缓存名是否为空
      * 缓存名的缓存本来也该判断是否为空，但是循环中就可以判断了
      */
+    let cache = this._localstorage.get(this.data_localStrong_name);
+    console.info('dynamic cache', cache);
     // 在循环开始之前的该处，要拿到缓存的数据，循环时使用
     marketphotomap_arr.forEach(r => {
       photo_name_tmp[r.photoType] = r.name;

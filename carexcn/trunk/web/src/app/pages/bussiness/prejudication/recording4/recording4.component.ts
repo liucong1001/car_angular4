@@ -32,6 +32,13 @@ import {TradeForm} from '../../../../@core/model/bussiness/trade/trade.form';
   styleUrls: ['./recording4.component.scss'],
 })
 export class Recording4Component implements OnInit, OnDestroy {
+  /**
+   * 缓存服务的前缀
+   * 缓存前缀名以业务为单位，一个缓存前缀对应一个业务，一个缓存业务完成则删除该前缀的所有缓存
+   * @type {string}
+   * @private
+   */
+  private _cache_pre = 'bussiness_prejudication_recording_';
   linkManData: FilingInfoModel[] = [];
   linkman: any = {};
   linkmanSelected: FilingInfoModel = {};
@@ -104,13 +111,7 @@ export class Recording4Component implements OnInit, OnDestroy {
     private _localstorage: LocalstorageService,
     private _codeitem: CodeitemService,
     private _prejudicationService: PrejudicationService,
-  ) {
-    /**
-     * 缓存前缀名以业务为单位，一个缓存前缀对应一个业务，一个缓存业务完成则删除该前缀的所有缓存
-     * @type {string}
-     */
-    this._localstorage.prefix = 'bussiness_prejudication_recording';
-  }
+  ) {}
 
   /**
    * 页面初始化事件
@@ -126,7 +127,7 @@ export class Recording4Component implements OnInit, OnDestroy {
      * 读取车辆缓存数据：主要是车牌
      * @type {any}
      */
-    let maybe_vehicle = this._localstorage.get('vehicle');
+    let maybe_vehicle = this._localstorage.get(this._cache_pre + 'vehicle');
     console.info('maybe_vehicle', maybe_vehicle);
     if (maybe_vehicle) {
       this.vehicle = maybe_vehicle;
@@ -139,7 +140,7 @@ export class Recording4Component implements OnInit, OnDestroy {
          * 读取缓存的商户
          * @type {any}
          */
-        let maybe_dealer = this._localstorage.get('dealer');
+        let maybe_dealer = this._localstorage.get(this._cache_pre + 'dealer');
         console.info('maybe_dealer', maybe_dealer);
         if (maybe_dealer) {
           this.dealer = maybe_dealer;
@@ -148,15 +149,15 @@ export class Recording4Component implements OnInit, OnDestroy {
            * @type {boolean}
            */
           this.dealerIsOk = true;
-          this.linkManData = this._localstorage.get('linkmandata');
-          this.linkmanSelected = this._localstorage.get('linkmanSelected');
+          this.linkManData = this._localstorage.get(this._cache_pre + 'linkmandata');
+          this.linkmanSelected = this._localstorage.get(this._cache_pre + 'linkmanSelected');
           this.linkman = this.linkmanSelected;
         }
-        let maybe_certificate_type = this._localstorage.get('certType');
+        let maybe_certificate_type = this._localstorage.get(this._cache_pre + 'certType');
         if (maybe_certificate_type) {
           this.certTypeSelected = maybe_certificate_type;
         }
-        let maybe_seller_form = this._localstorage.get('seller_form');
+        let maybe_seller_form = this._localstorage.get(this._cache_pre + 'seller_form');
         console.info('maybe_seller_form', maybe_seller_form);
         if (maybe_seller_form) {
           this._formGroup.patchValue({
@@ -189,12 +190,12 @@ export class Recording4Component implements OnInit, OnDestroy {
     //   let trade = res.json() as TradeForm;
     //   if ( trade.archiveNo ) {
     //     // console.info(trade);
-    //     this._localstorage.set('trade', trade);
-    //     this._localstorage.del('linkmanSelected');
-    //     this._localstorage.del('linkmandata');
-    //     this._localstorage.del('dealer');
-    //     this._localstorage.del('vehicle');
-    //     this._localstorage.del('seller_form');
+    //     this._localstorage.set(this._cache_pre + 'trade', trade);
+    //     this._localstorage.del(this._cache_pre + 'linkmanSelected');
+    //     this._localstorage.del(this._cache_pre + 'linkmandata');
+    //     this._localstorage.del(this._cache_pre + 'dealer');
+    //     this._localstorage.del(this._cache_pre + 'vehicle');
+    //     this._localstorage.del(this._cache_pre + 'seller_form');
     //     this._router.navigateByUrl('/pages/bussiness/prejudication/recording-last');
     //   }
     // }).catch(e => {
