@@ -7,43 +7,43 @@
     </div>
   </nb-card-header>
   <nb-card-body>
-    <form [@visibilityChanged]="visibility" (submit)="codeList.reload()">
+    <form [@visibilityChanged]="visibility"  [formGroup]="form">
       <div class="row">
         <div class="col-sm-2">
           <div class="form-group form-group-sm">
-            <select class="form-control" name="type" [(ngModel)]="time.type">
+            <select class="form-control" name="type" formControlName="collectType">
               <option value="">汇总方式</option>
-              <option value="1">日</option>
-              <option value="2">月</option>
-              <option value="3">任意时间</option>
+              <option value="0">日</option>
+              <option value="1">月</option>
+              <option value="2">任意时间</option>
             </select>
           </div>
         </div>
-        <div class="col-sm-2" *ngIf="time.type == '1'">
+        <div class="col-sm-2" *ngIf="form.value.collectType=='0'">
           <div class="form-group form-group-sm">
-            <ngx-ys-calendar [placeholder]="'日'"></ngx-ys-calendar>
+            <ngx-ys-calendar [placeholder]="'日'" (_calendarValue)="getDayValue($event)" ></ngx-ys-calendar>
           </div>
         </div>
-        <div class="col-sm-2"  *ngIf="time.type == '2'">
+        <div class="col-sm-2" *ngIf="form.value.collectType=='1'">
           <div class="form-group form-group-sm">
-            <ngx-ys-calendar [placeholder]="'月'"></ngx-ys-calendar>
+            <ngx-ys-calendar [placeholder]="'月'" [dateFormat]="'yy-mm'" (_calendarValue)="getMonthValue($event)"  ></ngx-ys-calendar>
           </div>
         </div>
-        <div class="col-sm-2"  *ngIf="time.type == '3'">
+        <div class="col-sm-2"  *ngIf="form.value.collectType=='2'">
           <div class="form-group form-group-sm">
-            <ngx-ys-calendar [placeholder]="'开始时间'"></ngx-ys-calendar>
+            <ngx-ys-calendar [placeholder]="'开始时间'" (_calendarValue)="getstartDateValue($event)" ></ngx-ys-calendar>
           </div>
         </div>
-        <div class="col-sm-2"  *ngIf="time.type == '3'">
+        <div class="col-sm-2" *ngIf="form.value.collectType=='2'">
           <div class="form-group form-group-sm">
-            <ngx-ys-calendar [placeholder]="'结束时间'"></ngx-ys-calendar>
+            <ngx-ys-calendar [placeholder]="'结束时间'" (_calendarValue)="getendDateValue($event)" ></ngx-ys-calendar>
           </div>
         </div>
         <div class="col-sm-2">
-          <button type="submit" class="btn btn btn-primary btn-block"><i class="ion-search"></i>查询</button>
+          <button type="submit" class="btn btn btn-primary btn-block" (click)="search()"><i class="ion-search"></i>查询</button>
         </div>
         <div class="col-sm-2">
-          <button type="reset" class="btn btn-outline-primary btn-block"><i class="ion-archive"></i>导出</button>
+          <button type="button" class="btn btn-outline-primary btn-block" (click)="export()"><i class="ion-archive"></i>导出</button>
         </div>
       </div>
     </form>
@@ -56,7 +56,12 @@
           <th>返现金额</th>
           <th>车辆台数(/台)</th>
         </tr>
-        <tr></tr>
+        <tr *ngFor="let item of dataList">
+           <th>{{item.name}}</th>
+           <th>{{item.id}}</th>
+           <th>{{item.discount}}</th>
+           <th>{{item.count}}</th>
+        </tr>
       </table>
     </div>
   </nb-card-body>

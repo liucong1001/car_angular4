@@ -1,10 +1,15 @@
 import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { DatePipe } from '@angular/common';
+import {RebateFormService} from '../../../@core/data/common-aution/rebateForm.service';
+import {MessageService} from '../../../@core/utils/message.service';
 
 @Component({
   selector: 'ngx-rebate-form',
   templateUrl: './rebate-form.component.html',
   styleUrls: ['./rebate-form.component.scss'],
+  providers:[DatePipe,RebateFormService,MessageService],
   // 定义动画
   animations: [
     trigger('visibilityChanged', [
@@ -18,9 +23,10 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 })
 export class RebateFormComponent implements OnInit, OnChanges {
 
-  constructor() { }
+  constructor(private fb: FormBuilder,private datePipe: DatePipe,private rebateFormService:RebateFormService,
+   private msg:MessageService) { }
 
-  visibility = 'hidden';
+  visibility = 'shown';
   showFilter = false;
   // 列表搜索表单隐藏显示切换
   toggle() {
@@ -32,11 +38,59 @@ export class RebateFormComponent implements OnInit, OnChanges {
   }
   // 组件初始华
   ngOnInit(): void {
-    this.time = {type: ''};
+
   }
+  form: FormGroup = this.fb.group({
+    collectType: ['', [Validators.required]],
+    dayDate: [''],
+    monthDate: ['', ],
+    startDate: [''],
+    endDate: [''],
+  });
   // 列表搜索条件对象
   filter: any = {};
-  time: {
-    type: string;
-  };
+  //查询数据定义
+
+  dataList:any = [];
+
+  getDayValue($event){
+    this.form.patchValue({dayDate:this.datePipe.transform($event, 'yyyy-MM-dd')});
+  }
+  getMonthValue($event){
+    this.form.patchValue({monthDate:this.datePipe.transform($event, 'yyyy-MM')});
+  }
+  getstartDateValue($event) {
+    this.form.patchValue({startDate:this.datePipe.transform($event, 'yyyy-MM-dd')});
+  }
+  getendDateValue($event) {
+    this.form.patchValue({endDate:this.datePipe.transform($event, 'yyyy-MM-dd')});
+  }
+
+  search(){
+    console.log('查询',this.form.value);
+    this.rebateFormService.search(this.form.value).then(res=>{
+        this.dataList  = res;
+        if(res.length==0){
+          this.msg.success('','没有查询到任何内容');
+        }
+    }).catch(err=>{
+         this.msg.error('查询失败',err.json().message);
+    })
+  }
+  export(){
+    this.rebateFormService.exportExcel(this.form.value).then(res=>{
+
+      var blob = new Blob([res], {type: "application/vnd.ms-excel"});
+      var objectUrl = URL.createObjectURL(blob);
+      var filename="返点报表"+'.xls';
+      if (window.navigator.msSaveOrOpenBlob) {// For IE:
+        navigator.msSaveBlob(blob, filename);
+      }else{ // For other browsers:
+        URL.revokeObjectURL(objectUrl);
+      }
+
+    }).catch(err=>{
+      this.msg.error('导出失败',err.json().message);
+    })
+  }
 }

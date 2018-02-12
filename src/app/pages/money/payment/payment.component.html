@@ -10,6 +10,11 @@
           <input type="text" class="form-control" placeholder="流水号" [(ngModel)]="archiveNo"
                  (ngModelChange)="archiveNoChange($event)"/>
       </div>
+      <div class="col-md-2">
+          <select name=""  *ngFor=" let i of typeList" class="form-control">
+            <option value="i"  *ngFor=" let i of typeList">{{i | businessTypePipe}}</option>
+          </select>
+      </div>
     </div>
     <hr>
 
