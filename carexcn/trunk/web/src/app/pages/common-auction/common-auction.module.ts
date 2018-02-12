@@ -10,6 +10,7 @@ import {UiModule} from '../../@core/ui/ui.module';
 import { EditProjectComponent } from './auction-manage/edit-project/edit-project.component';
 import { EditCarComponent } from './auction-manage/edit-car/edit-car.component';
 import { CarDetailsComponent } from './discount-balance/balance-details/car-details/car-details.component';
+import { CarListComponent } from './discount-balance/balance-details/car-list/car-list.component';
 
 @NgModule({
   imports: [

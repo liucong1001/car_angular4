@@ -14,8 +14,11 @@ import {MultiSelectModule} from 'primeng/primeng';
 import { PaymentOrderComponent } from './payment-order/payment-order.component';
 import { OrderCancelComponent } from './order-cancel/order-cancel.component';
 import {SystemModule as CoreSystemModule} from '../../@core/data/system/system.module';
+import {BusinessTypePipe} from '../../@core/data/bussiness/businessType.pipe';
 
-
+const components = [
+  BusinessTypePipe,
+];
 @NgModule({
   imports: [
     ThemeModule,  /*标签*/
@@ -32,6 +35,7 @@ import {SystemModule as CoreSystemModule} from '../../@core/data/system/system.m
   ],
   declarations: [
     ...routedComponents,
+    ...components
   ],
 })
 export class MoneyModule { }

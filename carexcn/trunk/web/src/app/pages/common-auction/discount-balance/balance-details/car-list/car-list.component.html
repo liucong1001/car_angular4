@@ -1,0 +1,53 @@
+<nb-card>
+  <nb-card-header class="d-flex">
+    <div class="p-2 mr-auto">车辆列表</div>
+    <div class="p2">
+      <button type="button" class="btn btn-sm btn-outline-success" (click)="toggle()" [ngClass]="{'active':showFilter}" ><i class="ion-funnel"></i></button>
+    </div>
+    <div class="p2">
+      <a [routerLink]="'..'" class="btn btn-secondary btn-sm">返回</a>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <form [@visibilityChanged]="visibility" (submit)="codeList.reload()">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="项目名称"/>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="商户名称"/>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="开票日期"/>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="预审日期"/>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group form-group-sm">
+            <select class="form-control" name="summary">
+              <option value="">--选择状态--</option>
+              <option value="1">未过户</option>
+              <option value="2">已过户</option>
+              <option value="3">已结算</option>
+              <option value="4">流拍</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-7"></div>
+        <div class="col-sm-2">
+          <button type="submit" class="btn btn btn-primary btn-block"><i class="ion-search"></i>查询</button>
+        </div>
+      </div>
+    </form>
+    <ngx-table #codeList [url]="pagerUrl"  [columns]="columns" [filter]="filter"></ngx-table>
+  </nb-card-body>
+</nb-card>

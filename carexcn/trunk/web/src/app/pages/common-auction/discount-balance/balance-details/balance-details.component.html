@@ -37,7 +37,7 @@
             <td> {{item.creator?.userName}}</td>
             <td>{{item.createTime | date:'yyyy-MM-dd HH:mm:ss '}}</td>
             <td>{{item.status==1?'已支付':'未支付'}}</td>
-            <td><a [routerLink]="'/pages/common-auction/auction-manage/cars-manage'"  [queryParams]="{id:item.saleProject.id}">车辆详情</a></td>
+            <td><a [routerLink]="'car-list'"  [queryParams]="{id:item.saleProject.id}">车辆详情</a></td>
           </ng-container>
         </tr>
 
@@ -48,7 +48,7 @@
           <td>{{item.creator.userName}}</td>
           <td>{{item.createTime | date:'yyyy-MM-dd HH:mm:ss '}}</td>
           <td>{{item.status==1?'已支付':'未支付'}}</td>
-          <td><a href="ng#/sale/project/balance/car?id={{item.id}}">车辆详情</a></td>
+          <td><a [routerLink]="'car-list'"  [queryParams]="{id:item.saleProject.id}">车辆详情</a></td>
         </ng-container>
       </tr>
     </table>
