@@ -26,7 +26,8 @@ export class AddProjectComponent implements OnInit, OnChanges {
                   private _prejudication: PrejudicationService,
                   public router: Router,
                   public commonAutionService:commonAutionService,
-                  private fb: FormBuilder,) {this._localstorage.prefix = 'bussiness_prejudication_recording'; }
+                  private fb: FormBuilder,
+  ) {}
 
   carLsnumPrefixDefault = '鄂A';
   carLsnumIsOk = false;
