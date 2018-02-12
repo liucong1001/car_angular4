@@ -11,6 +11,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MarketService} from '../../../../@core/data/system/market.service';
 import {FilingInfoModel} from '../../../../@core/model/bussiness/filing.info.model';
 import {UserService} from '../../../../@core/data/users.service';
+import {Marketphotomap} from '../../../../@core/model/system/market-photo-map';
 
 /**
  * 预审录入2--接口与页面的交互逻辑
@@ -26,16 +27,10 @@ import {UserService} from '../../../../@core/data/users.service';
   styleUrls: ['./recording2.component.scss'],
 })
 export class Recording2Component implements OnInit, OnDestroy {
-  photos: any[] = [{
-    title: '身份证正面',
-    source: 'assets/images/camera1.jpg',
-  }, {
-    title: '身份证反面',
-    source: 'assets/images/camera2.jpg',
-  }];
   public certType: Codeitem[];
   public certTypeSelected: Codeitem;
   merchant: MerchantModel = {name: ''};
+  certificateFormConfig: Marketphotomap;
   linkmanSelected: FilingInfoModel = {};
   public _formGroup: FormGroup = this._formBuilder.group({
     seller: this._formBuilder.group({
@@ -63,6 +58,7 @@ export class Recording2Component implements OnInit, OnDestroy {
     private _idcard: IdcardService,
     private _message: MessageService,
     private _localstorage: LocalstorageService,
+    private common_localstorage: LocalstorageService,
     private _code: CodeService,
     private _codeitem: CodeitemService,
     private _market: MarketService,
@@ -105,6 +101,16 @@ export class Recording2Component implements OnInit, OnDestroy {
     if (maybe_seller_form) {
       this._formGroup.patchValue(maybe_seller_form);
     }
+    /**
+     * 卖家证件类型表单配置
+     * @type {{}}
+     */
+    this.certificateFormConfig = {
+      isApp: '0',
+      certificateCode: '00', // 证件类型代码集
+      business: '01', //  01 预审  02 过户
+      formName: '预审录入卖家', // 表单名称
+    } as Marketphotomap;
   }
 
   /**
@@ -114,6 +120,8 @@ export class Recording2Component implements OnInit, OnDestroy {
     // console.info('exec on destroy.');
     this._localstorage.set('certType', this.certTypeSelected);
     this._localstorage.set('seller_form', this._formGroup.value);
+    this._localstorage.set('seller_photos', this._formGroup.get('_photos_'));
+    this.common_localstorage.set('seller_info__dynamic_photos', this._localstorage.prefix + 'seller_photos');
   }
 
   /**

@@ -21,6 +21,10 @@ export class SellerInfoComponent implements OnInit {
    */
   @Input() btn_show = true;
   /**
+   * 证件表单配置
+   */
+  @Input() certificateFormConfig: Marketphotomap;
+  /**
    * 当前商户实例
    */
   @Input() merchant: MerchantModel;
@@ -62,19 +66,6 @@ export class SellerInfoComponent implements OnInit {
   };
   @Input() showCheshang = true;
   public autoinput_cheshang_source_url = '/rest/merchant/filing/deal/';
-
-  /**
-   * 图片清单
-   * @type {{title: string; source: string}[]}
-   */
-  photos: any[] = [{
-    title: '身份证正面',
-    source: 'assets/images/camera1.jpg',
-  }, {
-    title: '身份证反面',
-    source: 'assets/images/camera2.jpg',
-  }];
-
   /**
    * 当前选择的车商
    * @type {string}
@@ -122,12 +113,13 @@ export class SellerInfoComponent implements OnInit {
     if (! this.certType) {
       this._codeitem.list('certType').then(res => this.certType = res as Codeitem[]);
     }
-    this.certTypeSelecteFunc('');
+    this.certTypeSelecteFunc(this.seller.controls.certType.value);
   }
   /**
    * 初始化照片动态表单
    */
   certTypeSelecteFunc(event) {
+    this.certificateFormConfig.certificateCode = event;
     let sellerPhotos = this.seller.get('_photos_') as FormGroup;
     if (sellerPhotos) {
       this.seller.removeControl('_photos_');

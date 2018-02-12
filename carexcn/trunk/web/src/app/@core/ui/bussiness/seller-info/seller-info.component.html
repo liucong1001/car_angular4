@@ -9,7 +9,7 @@
     <!-- 修改此处，把选择证件类型之后，的动态组件相关操作都移动到动态组件当中去，由动态组件完成该操作 -->
     <ngx-ys-dynamic-photo-form
       [photos]="seller.get('_photos_')"
-      [certType]="seller.value.certType"
+      [certificateFormConfig]="certificateFormConfig"
       [btn_show]="btn_show"
     ></ngx-ys-dynamic-photo-form>
     <div class="input-group">

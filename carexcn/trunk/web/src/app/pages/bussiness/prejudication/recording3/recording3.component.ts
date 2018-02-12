@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {LocalstorageService} from '../../../../@core/cache/localstorage.service';
 import {Codeitem} from '../../../../@core/model/system/codeitem';
 import {CodeitemService} from '../../../../@core/data/system/codeitem.service';
+import {Marketphotomap} from '../../../../@core/model/system/market-photo-map';
 
 /**
  * 预审录入3--接口与页面的交互逻辑
@@ -18,22 +19,10 @@ import {CodeitemService} from '../../../../@core/data/system/codeitem.service';
   styleUrls: ['./recording3.component.scss'],
 })
 export class Recording3Component implements OnInit, OnDestroy {
+  certificateFormConfig: Marketphotomap;
   useCharacter: Codeitem[];
   vehicleType: Codeitem[];
   vehicleSize: Codeitem[];
-  photos: any[] = [{
-    title: '行驶证正本',
-    source: 'assets/images/camera1.jpg',
-  }, {
-    title: '行驶证副本',
-    source: 'assets/images/camera2.jpg',
-  }, {
-    title: '登记证书首页',
-    source: 'assets/images/camera3.jpg',
-  }, {
-    title: '登记证书末页',
-    source: 'assets/images/camera4.jpg',
-  }];
   public _formGroup: FormGroup = this._formBuilder.group({
     // brandModel: ['1', [Validators.maxLength(50)]], // 厂牌型号实体Id
     labelCode: ['宝马WBA1A110', [Validators.required]], // 厂牌型号名称
@@ -69,6 +58,7 @@ export class Recording3Component implements OnInit, OnDestroy {
     private _router: Router,
     private _formBuilder: FormBuilder,
     private _localstorage: LocalstorageService,
+    private common_localstorage: LocalstorageService,
     private _codeitem: CodeitemService,
   ) {
     /**
@@ -102,6 +92,16 @@ export class Recording3Component implements OnInit, OnDestroy {
     // if (maybe_seller_form) {
     //   this._formGroup.patchValue(maybe_seller_form);
     // }
+    /**
+     * 卖家证件类型表单配置
+     * @type {{}}
+     */
+    this.certificateFormConfig = {
+      isApp: '0',
+      // certificateCode: '00', // 证件类型代码集 // 只要符合表单就行
+      business: '01', //  01 预审  02 过户
+      formName: '预审录入车辆', // 表单名称
+    } as Marketphotomap;
   }
   /**
    * 页面销毁前
@@ -109,6 +109,8 @@ export class Recording3Component implements OnInit, OnDestroy {
   ngOnDestroy() {
     console.info('exec on destroy.');
     this._localstorage.set('vehicle', this._formGroup.value);
+    this._localstorage.set('vehicle_photos', this._formGroup.get('_photos_'));
+    this.common_localstorage.set('cardetail__dynamic_photos', this._localstorage.prefix + 'vehicle_photos');
   }
 
   onSubmit() {

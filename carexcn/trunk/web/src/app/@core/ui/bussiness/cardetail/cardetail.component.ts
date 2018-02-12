@@ -5,6 +5,7 @@ import {Codeitem} from '../../../model/system/codeitem';
 import {FilingInfoModel} from '../../../model/bussiness/filing.info.model';
 import {CodeitemService} from '../../../data/system/codeitem.service';
 import {ErrorMessage} from '../../valid-error/valid-error.component';
+import {Marketphotomap} from '../../../model/system/market-photo-map';
 
 @Component({
   selector: 'ngx-ys-cardetail',
@@ -21,6 +22,10 @@ export class CardetailComponent implements OnInit {
    * 卖家表单
    */
   @Input() vehicle: FormGroup;
+  /**
+   * 证件表单配置
+   */
+  @Input() certificateFormConfig: Marketphotomap;
   /**
    * 错误实例
    * @type {{error}}
@@ -120,6 +125,7 @@ export class CardetailComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private message: MessageService,
+    private fb: FormBuilder,
     private _codeitem: CodeitemService,
   ) { }
 
@@ -145,6 +151,7 @@ export class CardetailComponent implements OnInit {
     if (! this.vehicleRange) {
       this._codeitem.list('vehicleRange').then(res => this.vehicleRange = res as Codeitem[]);
     }
+    this.vehicle.addControl('_photos_', this.fb.group({}));
   }
   readVehicleCard() {
     console.info('读取行驶证');

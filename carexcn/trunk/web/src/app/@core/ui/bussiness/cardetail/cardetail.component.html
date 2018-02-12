@@ -5,7 +5,11 @@
     </div>
   </nb-card-header>
   <nb-card-body [formGroup]="vehicle">
-    <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source" [btn_show]="btn_show"></ngx-ys-camera>
+    <ngx-ys-dynamic-photo-form
+      [photos]="vehicle.get('_photos_')"
+      [certificateFormConfig]="certificateFormConfig"
+      [btn_show]="btn_show"
+    ></ngx-ys-dynamic-photo-form>
     <div class="input-group">
       <div class="input-group">
         <span class="input-group-addon">车牌号</span>
