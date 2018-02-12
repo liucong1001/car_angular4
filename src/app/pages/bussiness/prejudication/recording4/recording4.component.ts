@@ -8,7 +8,6 @@ import {MerchantModel} from '../../../../@core/model/bussiness/merchant.model';
 import {FilingService} from '../../../../@core/data/merchant/filing.service';
 import {MessageService} from '../../../../@core/utils/message.service';
 import {Codeitem} from '../../../../@core/model/system/codeitem';
-import {ErrorMessage} from '../../../../@core/ui/valid-error/valid-error.component';
 import {CodeitemService} from '../../../../@core/data/system/codeitem.service';
 import {PrejudicationService} from '../../../../@core/data/bussiness/prejudication.service';
 import {SellerForm} from '../../../../@core/model/bussiness/trade/seller.form';
@@ -33,19 +32,6 @@ import {TradeForm} from '../../../../@core/model/bussiness/trade/trade.form';
   styleUrls: ['./recording4.component.scss'],
 })
 export class Recording4Component implements OnInit, OnDestroy {
-  photos: any[] = [{
-    title: '行驶证正本',
-    source: 'assets/images/camera1.jpg',
-  }, {
-    title: '行驶证副本',
-    source: 'assets/images/camera2.jpg',
-  }, {
-    title: '登记证书首页',
-    source: 'assets/images/camera3.jpg',
-  }, {
-    title: '登记证书末页',
-    source: 'assets/images/camera4.jpg',
-  }];
   linkManData: FilingInfoModel[] = [];
   linkman: any = {};
   linkmanSelected: FilingInfoModel = {};
@@ -130,7 +116,6 @@ export class Recording4Component implements OnInit, OnDestroy {
    * 页面初始化事件
    */
   ngOnInit() {
-    console.info('exec on init.');
     /**
      * 默认车牌前缀
      */
@@ -142,6 +127,7 @@ export class Recording4Component implements OnInit, OnDestroy {
      * @type {any}
      */
     let maybe_vehicle = this._localstorage.get('vehicle');
+    console.info('maybe_vehicle', maybe_vehicle);
     if (maybe_vehicle) {
       this.vehicle = maybe_vehicle;
       /**
@@ -154,6 +140,7 @@ export class Recording4Component implements OnInit, OnDestroy {
          * @type {any}
          */
         let maybe_dealer = this._localstorage.get('dealer');
+        console.info('maybe_dealer', maybe_dealer);
         if (maybe_dealer) {
           this.dealer = maybe_dealer;
           /**
@@ -170,6 +157,7 @@ export class Recording4Component implements OnInit, OnDestroy {
           this.certTypeSelected = maybe_certificate_type;
         }
         let maybe_seller_form = this._localstorage.get('seller_form');
+        console.info('maybe_seller_form', maybe_seller_form);
         if (maybe_seller_form) {
           this._formGroup.patchValue({
             vehicle: maybe_vehicle,
@@ -180,35 +168,38 @@ export class Recording4Component implements OnInit, OnDestroy {
         this._codeitem.list('useCharacter').then(res => this.useCharacter = res as Codeitem[]);
         this._codeitem.list('vehicleType').then(res => this.vehicleType = res as Codeitem[]);
         this._codeitem.list('vehicleSize').then(res => this.vehicleSize = res as Codeitem[]);
+        console.info(this._formGroup.value);
       }
     }
   }
   onSubmit() {
-    let preVehicle = this._formGroup.value.vehicle as PreVehicleModel;
-    preVehicle.filingInfo = this.linkmanSelected;
-    this._prejudicationService.create({
-      photos: {},
-      trusteePhotos: {},
-      seller: this._formGroup.value.seller as PersonModel,
-    } as SellerForm, {
-      photos: {},
-      preVehicle: preVehicle,
-      // newCarsPrice: '',
-    } as PreVehicleForm).then(res => {
-      let trade = res.json() as TradeForm;
-      if ( trade.archiveNo ) {
-        // console.info(trade);
-        this._localstorage.set('trade', trade);
-        this._localstorage.del('linkmanSelected');
-        this._localstorage.del('linkmandata');
-        this._localstorage.del('dealer');
-        this._localstorage.del('vehicle');
-        this._localstorage.del('seller_form');
-        this._router.navigateByUrl('/pages/bussiness/prejudication/recording-last');
-      }
-    }).catch(e => {
-      console.info(e);
-    });
+    console.info(this._formGroup.value);
+    return false;
+    // let preVehicle = this._formGroup.value.vehicle as PreVehicleModel;
+    // preVehicle.filingInfo = this.linkmanSelected;
+    // this._prejudicationService.create({
+    //   photos: {},
+    //   trusteePhotos: {},
+    //   seller: this._formGroup.value.seller as PersonModel,
+    // } as SellerForm, {
+    //   photos: {},
+    //   preVehicle: preVehicle,
+    //   // newCarsPrice: '',
+    // } as PreVehicleForm).then(res => {
+    //   let trade = res.json() as TradeForm;
+    //   if ( trade.archiveNo ) {
+    //     // console.info(trade);
+    //     this._localstorage.set('trade', trade);
+    //     this._localstorage.del('linkmanSelected');
+    //     this._localstorage.del('linkmandata');
+    //     this._localstorage.del('dealer');
+    //     this._localstorage.del('vehicle');
+    //     this._localstorage.del('seller_form');
+    //     this._router.navigateByUrl('/pages/bussiness/prejudication/recording-last');
+    //   }
+    // }).catch(e => {
+    //   console.info(e);
+    // });
   }
   /**
    * 页面销毁前

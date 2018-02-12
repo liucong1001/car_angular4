@@ -21,7 +21,11 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
    * @private
    */
   @Input() photos: FormGroup;
-  @Input() certType: string;
+  /**
+   * 证件类型表单获取的配置
+   */
+  @Input() certificateFormConfig: Marketphotomap;
+  @Input() data_localStrong_name = '';
   @Input() btn_show = true;
   @Input() btn_show_check = false;
   /**
@@ -32,14 +36,13 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
   @Output() _wrong_checked = new EventEmitter();
   private wrong_checked: Array<ChangeCheckedValueModel> = [];
   private photos_name: Object;
-  private _certType: string;
   protected objectKeys = Object.keys;
   constructor(
     private _market: MarketService,
     private fb: FormBuilder,
   ) { }
   ngOnInit() {
-    this.setCertificateConfig(this._certType);
+    this.setCertificateConfig();
   }
 
   /**
@@ -68,13 +71,15 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    if (this._certType === undefined) {
-      this._certType = this.certType;
-    }
-    if (this._certType !== this.certType ) {
-      this._certType = this.certType;
-      this.setCertificateConfig(this._certType);
-    }
+    // if (this._certificateFormConfig === undefined) {
+    //   this._certificateFormConfig = this.certificateFormConfig;
+    // }
+    // console.info('compare', this._certificateFormConfig);
+    // console.info('compare', this.certificateFormConfig);
+    // if (this._certificateFormConfig !== this.certificateFormConfig ) {
+    //   this._certificateFormConfig = this.certificateFormConfig;
+      this.setCertificateConfig();
+    // }
     // if (this.photos) {
     //   Object.keys(this.photos.controls).forEach(key1 => {
     //     let keys = [];
@@ -91,18 +96,30 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
     //   this.photos_keys = [];
     // }
   }
+
+  /**
+   * 得到图片表单控件列表
+   * @param {string} photoType
+   * @returns {Array<AbstractControl>}
+   */
   getPhotoFormControls(photoType: string): Array<AbstractControl> {
     return (this.photos.get(photoType) as FormArray).controls;
   }
-  setCertificateConfig(certType) {
-    this._market.getCertificateConfig({
-      isApp: '0',
-      certificateCode: certType, // 证件类型代码集
-      business: '01', //  01 预审  02 过户
-      formName: '预审录入卖家', // 表单名称
-    } as Marketphotomap).then(res => this.initPhotoMap(res.json() as [Marketphotomap]));
+
+  /**
+   * 配置证件类型
+   */
+  setCertificateConfig() {
+    console.info('setCertificateConfig');
+    this._market.getCertificateConfig(this.certificateFormConfig).then(res => this.initPhotoMap(res.json() as [Marketphotomap]));
   }
+
+  /**
+   * 处理动态图片表单初始化
+   * @param {[Marketphotomap]} marketphotomap_arr
+   */
   initPhotoMap(marketphotomap_arr: [Marketphotomap]) {
+    console.info(' 处理动态图片初始化 ');
     /**
      * 需要处理的事情：
      * 拿到 sort，name，min，max，photoType
@@ -111,12 +128,23 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
      */
     let photo_name_tmp = {};
     let photo_url_tmp = {};
+    /**
+     * 根据缓存的名字拿到缓存的数据，在初始化的过程中，完成对表单的默认赋值
+     */
+    // 在循环开始之前的该处，要拿到缓存的数据，循环时使用
     marketphotomap_arr.forEach(r => {
       photo_name_tmp[r.photoType] = r.name;
       if ( r.photoExample ) {
+        /**
+         * 示例图片的值，暂存在此处，不能作为直接的值存储和使用，只能作为拍照上传控件的备用图片使用
+         * @type {string}
+         */
         photo_url_tmp[r.photoType] = 'id:' + (r.photoExample ? r.photoExample.fileId : '');
         let i = 0;
         while (i < r.min) {
+          /**
+           * 在初始化的过程中，根据循环的photoType判断是否有缓存好的值，来完成对表单的默认赋值
+           */
           this.photos.addControl(r.photoType, new FormArray([
             new FormControl({
               value: '', // 'id:' + (r.photoExample ? r.photoExample.fileId : ''),
@@ -132,6 +160,7 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
     this.photos_name = photo_name_tmp;
     this.photos_url = photo_url_tmp;
   }
+
   /**
    * 初始化动态图片表单
    * @param {[Marketphotomap]} marketphotomap_arr
