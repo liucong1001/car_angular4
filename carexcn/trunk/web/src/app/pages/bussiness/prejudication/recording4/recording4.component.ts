@@ -161,7 +161,7 @@ export class Recording4Component implements OnInit, OnDestroy {
           this.certTypeSelected = maybe_certificate_type;
         }
         let maybe_seller_form = this._localstorage.get(this._cache_pre + 'seller_form');
-        console.info('maybe_seller_form', maybe_seller_form);
+        // console.info('maybe_seller_form', maybe_seller_form);
         if (maybe_seller_form) {
           this._formGroup.patchValue({
             vehicle: maybe_vehicle,
@@ -193,33 +193,43 @@ export class Recording4Component implements OnInit, OnDestroy {
     } as Marketphotomap;
   }
   onSubmit() {
-    console.info('提交时页面数据', this._formGroup.value);
-    return false;
-    // let preVehicle = this._formGroup.value.vehicle as PreVehicleModel;
-    // preVehicle.filingInfo = this.linkmanSelected;
-    // this._prejudicationService.create({
-    //   photos: {},
-    //   trusteePhotos: {},
-    //   seller: this._formGroup.value.seller as PersonModel,
-    // } as SellerForm, {
-    //   photos: {},
-    //   preVehicle: preVehicle,
-    //   // newCarsPrice: '',
-    // } as PreVehicleForm).then(res => {
-    //   let trade = res.json() as TradeForm;
-    //   if ( trade.archiveNo ) {
-    //     // console.info(trade);
-    //     this._localstorage.set(this._cache_pre + 'trade', trade);
-    //     this._localstorage.del(this._cache_pre + 'linkmanSelected');
-    //     this._localstorage.del(this._cache_pre + 'linkmandata');
-    //     this._localstorage.del(this._cache_pre + 'dealer');
-    //     this._localstorage.del(this._cache_pre + 'vehicle');
-    //     this._localstorage.del(this._cache_pre + 'seller_form');
-    //     this._router.navigateByUrl('/pages/bussiness/prejudication/recording-last');
-    //   }
-    // }).catch(e => {
-    //   console.info(e);
-    // });
+    let maybe_vehicle = this._localstorage.get(this._cache_pre + 'vehicle');
+    let preVehicle = maybe_vehicle as PreVehicleModel;
+    preVehicle.filingInfo = this.linkmanSelected;
+    let maybe_seller_form = this._localstorage.get(this._cache_pre + 'seller_form');
+    this._prejudicationService.create({
+      // SellerForm
+      photos: this._localstorage.get('bussiness_prejudication_recording_seller_photos'),
+      trusteePhotos: {},
+      seller: maybe_seller_form.seller as PersonModel,
+    } as SellerForm, {
+      // PreVehicleForm
+      photos: this._localstorage.get('bussiness_prejudication_recording_vehicle_photos'),
+      preVehicle: preVehicle,
+      // newCarsPrice: '',
+    } as PreVehicleForm).then(res => {
+      let trade = res.json() as TradeForm;
+      /**
+       * 接口返回成功
+       * 且发现有  车辆流水号 archiveNo 则
+       * 1、设定订单缓存
+       * 2、删除预审录入缓存
+       * 3、跳转到成功提示
+       */
+      if ( trade.archiveNo ) {
+        this._localstorage.set(this._cache_pre + 'trade', trade);
+        // this._localstorage.del(this._cache_pre + 'linkmanSelected');
+        // this._localstorage.del(this._cache_pre + 'linkmandata');
+        // this._localstorage.del(this._cache_pre + 'dealer');
+        // this._localstorage.del(this._cache_pre + 'vehicle');
+        // this._localstorage.del(this._cache_pre + 'seller_form');
+        // this._localstorage.del('cardetail__dynamic_photos');
+        // this._localstorage.del('seller_info__dynamic_photos');
+        this._router.navigateByUrl('/pages/bussiness/prejudication/recording-last');
+      }
+    }).catch(e => {
+      console.info(e);
+    });
   }
   /**
    * 页面销毁前
