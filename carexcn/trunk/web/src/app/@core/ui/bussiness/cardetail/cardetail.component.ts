@@ -151,6 +151,7 @@ export class CardetailComponent implements OnInit {
     if (! this.vehicleRange) {
       this._codeitem.list('vehicleRange').then(res => this.vehicleRange = res as Codeitem[]);
     }
+    console.info('车辆组件初始化时的表单', this.vehicle);
     this.vehicle.addControl('_photos_', this.fb.group({}));
   }
   readVehicleCard() {

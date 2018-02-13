@@ -8,7 +8,7 @@
   </nb-card-body>
 </nb-card>
 <div ngForm="_formGroup">
-  <ngx-ys-seller-info [merchant]="merchant" [seller]="_formGroup.controls.seller" [certificateFormConfig]="sellerCertificateFormConfig"></ngx-ys-seller-info>
+  <ngx-ys-seller-info [merchant]="merchant" [seller]="_formGroup.controls.seller" [certificateFormConfig]="certificateFormConfig"></ngx-ys-seller-info>
 </div>
 <div class="float-right">
   <button class="btn btn-primary btn-lg" (click)="onSubmit()" [disabled]="_formGroup.invalid">下一步</button>

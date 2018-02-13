@@ -172,7 +172,7 @@ export class Recording4Component implements OnInit, OnDestroy {
         this._codeitem.list('useCharacter').then(res => this.useCharacter = res as Codeitem[]);
         this._codeitem.list('vehicleType').then(res => this.vehicleType = res as Codeitem[]);
         this._codeitem.list('vehicleSize').then(res => this.vehicleSize = res as Codeitem[]);
-        console.info(this._formGroup.value);
+        console.info('当前页面初始化时数据 recording4 ', this._formGroup.value);
       }
     }
     /**
@@ -193,7 +193,7 @@ export class Recording4Component implements OnInit, OnDestroy {
     } as Marketphotomap;
   }
   onSubmit() {
-    console.info(this._formGroup.value);
+    console.info('提交时页面数据', this._formGroup.value);
     return false;
     // let preVehicle = this._formGroup.value.vehicle as PreVehicleModel;
     // preVehicle.filingInfo = this.linkmanSelected;
