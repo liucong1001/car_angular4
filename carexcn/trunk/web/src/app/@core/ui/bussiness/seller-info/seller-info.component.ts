@@ -112,27 +112,18 @@ export class SellerInfoComponent implements OnInit {
     if (! this.certType) {
       this._codeitem.list('certType').then(res => this.certType = res as Codeitem[]);
     }
-    console.info('值1', this.seller.value);
     this.certTypeSelecteFunc(this.seller.controls.certType.value);
-    console.info('卖家组件初始化时的表单2', this.seller);
-    console.info('值2', this.seller.value);
   }
   /**
    * 初始化照片动态表单
    */
   certTypeSelecteFunc(event) {
     this.certificateFormConfig.certificateCode = event;
-    console.info('值3', this.seller.value);
     let sellerPhotos = this.seller.get('_photos_') as FormGroup;
     if (sellerPhotos) {
       this.seller.removeControl('_photos_');
     }
-    console.info('值4', this.seller.value);
-    console.info('seller 4', this.seller);
-    console.info('值4.2', this.seller.value);
     this.seller.addControl('_photos_', this.fb.group({}));
-    console.info('seller 5', this.seller);
-    console.info('值5', this.seller.value);
   }
 
   /**
