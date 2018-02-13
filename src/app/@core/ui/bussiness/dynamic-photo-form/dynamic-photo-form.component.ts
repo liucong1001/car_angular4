@@ -42,8 +42,7 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
     private _market: MarketService,
     private fb: FormBuilder,
     private _localstorage: LocalstorageService,
-  ) {
-  }
+  ) {}
   ngOnInit() {
     this.setCertificateConfig();
   }
@@ -113,7 +112,6 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
    * 配置证件类型
    */
   setCertificateConfig() {
-    console.info('setCertificateConfig');
     this._market.getCertificateConfig(this.certificateFormConfig).then(res => this.initPhotoMap(res.json() as [Marketphotomap]));
   }
 
@@ -122,7 +120,6 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
    * @param {[Marketphotomap]} marketphotomap_arr
    */
   initPhotoMap(marketphotomap_arr: [Marketphotomap]) {
-    console.info(' 处理动态图片初始化 ');
     /**
      * 需要处理的事情：
      * 拿到 sort，name，min，max，photoType
@@ -136,8 +133,14 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
      * 注意判断名字是否为空和名字拿到的缓存名是否为空
      * 缓存名的缓存本来也该判断是否为空，但是循环中就可以判断了
      */
-    let cache = this._localstorage.get(this.data_localStrong_name);
-    console.info('dynamic cache', cache);
+    let cache_name = this._localstorage.get(this.data_localStrong_name);
+    let marketphotomap_cache = null;
+    if (null !== cache_name) {
+      marketphotomap_cache = this._localstorage.get(cache_name);
+      console.info('读取动态表单的对应缓存数据' + cache_name, marketphotomap_cache);
+    } else {
+      console.info('读取动态表单的对应缓存数据cache_name  空');
+    }
     // 在循环开始之前的该处，要拿到缓存的数据，循环时使用
     marketphotomap_arr.forEach(r => {
       photo_name_tmp[r.photoType] = r.name;
@@ -152,9 +155,17 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
           /**
            * 在初始化的过程中，根据循环的photoType判断是否有缓存好的值，来完成对表单的默认赋值
            */
+          console.info('marketphotomap_cache[' + r.photoType + ']', marketphotomap_cache);
+          let photo_value = '';
+          if (null !== marketphotomap_cache) {
+            photo_value = marketphotomap_cache[r.photoType][i] ? marketphotomap_cache[r.photoType][i] : '';
+            console.info('照片的最终值', photo_value);
+          } else {
+            console.info('读取动态表单的对应缓存数据marketphotomap_cache  空');
+          }
           this.photos.addControl(r.photoType, new FormArray([
             new FormControl({
-              value: '', // 'id:' + (r.photoExample ? r.photoExample.fileId : ''),
+              value: photo_value,
               disabled: false,
             }, Validators.required),
           ]));

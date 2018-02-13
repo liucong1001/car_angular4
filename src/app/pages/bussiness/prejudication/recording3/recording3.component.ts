@@ -41,12 +41,12 @@ export class Recording3Component implements OnInit, OnDestroy {
     registrationDate: ['20080924', [Validators.required]], // 行驶证注册日期
     useCharacter: ['01', [Validators.required]], // 使用性质代码
     useNature: ['01', [Validators.required]], // 车辆性质
-    displacement: ['1', [Validators.required]], // 设置排量
+    displacement: ['01', [Validators.required]], // 设置排量
     range: ['01', [Validators.required]], // 排量区间代码
     size: ['01', [Validators.required]], // 车辆大小代码
     mileage: ['1000', [Validators.required]], // 行驶里程
     otherConditions: ['1', [Validators.required]], // 其它状况说明
-    origin: ['武汉', [Validators.required]], // 车辆产地
+    origin: ['01', [Validators.required]], // 车辆产地
     fee: ['284', [Validators.required]], // 手续费
 
     // eeee: ['', [Validators.maxLength(50)]],
