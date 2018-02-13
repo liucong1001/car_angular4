@@ -15,6 +15,7 @@ import {PreVehicleForm} from '../../../../@core/model/bussiness/trade/preVehicle
 import {PersonModel} from '../../../../@core/model/bussiness/trade/person.model';
 import {PreVehicleModel} from '../../../../@core/model/bussiness/trade/preVehicle/preVehicle.model';
 import {TradeForm} from '../../../../@core/model/bussiness/trade/trade.form';
+import {Marketphotomap} from '../../../../@core/model/system/market-photo-map';
 
 /**
  * 预审录入4--接口与页面的交互逻辑
@@ -39,6 +40,8 @@ export class Recording4Component implements OnInit, OnDestroy {
    * @private
    */
   private _cache_pre = 'bussiness_prejudication_recording_';
+  sellerCertificateFormConfig: Marketphotomap;
+  vehicleCertificateFormConfig: Marketphotomap;
   linkManData: FilingInfoModel[] = [];
   linkman: any = {};
   linkmanSelected: FilingInfoModel = {};
@@ -172,6 +175,22 @@ export class Recording4Component implements OnInit, OnDestroy {
         console.info(this._formGroup.value);
       }
     }
+    /**
+     * 卖家证件类型表单配置
+     * @type {{}}
+     */
+    this.sellerCertificateFormConfig = {
+      isApp: '0',
+      certificateCode: '00', // 证件类型代码集
+      business: '01', //  01 预审  02 过户
+      formName: '预审录入卖家', // 表单名称
+    } as Marketphotomap;
+    this.vehicleCertificateFormConfig = {
+      isApp: '0',
+      // certificateCode: '00', // 证件类型代码集 // 只要符合表单就行
+      business: '01', //  01 预审  02 过户
+      formName: '预审录入车辆', // 表单名称
+    } as Marketphotomap;
   }
   onSubmit() {
     console.info(this._formGroup.value);

@@ -120,10 +120,12 @@ export class Recording2Component implements OnInit, OnDestroy {
    * 页面销毁前
    */
   ngOnDestroy() {
-    // console.info('exec on destroy.');
+    console.info('222exec on destroy.');
+    console.info(this._formGroup.get('seller'));
+    console.info(this._formGroup.get('seller').get('_photos_'));
     this._localstorage.set(this._cache_pre + 'certType', this.certTypeSelected);
     this._localstorage.set(this._cache_pre + 'seller_form', this._formGroup.value);
-    this._localstorage.set(this._cache_pre + 'seller_photos', this._formGroup.get('_photos_'));
+    this._localstorage.set(this._cache_pre + 'seller_photos', this._formGroup.get('seller').get('_photos_').value);
     this._localstorage.set('seller_info__dynamic_photos', this._cache_pre + 'seller_photos');
   }
 
