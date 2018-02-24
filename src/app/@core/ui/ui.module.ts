@@ -3,6 +3,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CameraComponent} from './camera/camera.component';
+import {CameraCarexcnComponent} from './camera/camera-carexcn.component';
 import {CalendarModule, FileUploadModule, AutoCompleteModule, DropdownModule, MultiSelectModule} from 'primeng/primeng';
 import {CameraUploadComponent} from './camera/camera-upload.component';
 import { CameraModalComponent } from './camera/camera-modal/camera-modal.component';
@@ -31,6 +32,7 @@ import {InputWithPhotoDirective} from './bussiness/photo-detail/input-with-photo
 
 const COMPONENTS = [
   CameraComponent,
+  CameraCarexcnComponent,
   CameraModalComponent,
   CameraUploadComponent,
   CalendarComponent,
