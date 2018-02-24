@@ -37,7 +37,7 @@
             <td> {{item.creator?.userName}}</td>
             <td>{{item.createTime | date:'yyyy-MM-dd HH:mm:ss '}}</td>
             <td>{{item.status==1?'已支付':'未支付'}}</td>
-            <td><a [routerLink]="'car-list'"  [queryParams]="{id:item.saleProject.id}">车辆详情</a></td>
+            <td><a  class="badge badge-primary link" (click)="carLink()">车辆详情</a></td>
           </ng-container>
         </tr>
 
@@ -48,7 +48,7 @@
           <td>{{item.creator.userName}}</td>
           <td>{{item.createTime | date:'yyyy-MM-dd HH:mm:ss '}}</td>
           <td>{{item.status==1?'已支付':'未支付'}}</td>
-          <td><a [routerLink]="'car-list'"  [queryParams]="{id:item.saleProject.id}">车辆详情</a></td>
+          <td><a class="badge badge-primary link" (click)="carLink()">车辆详情</a></td>
         </ng-container>
       </tr>
     </table>
@@ -58,17 +58,17 @@
       <div class="col-sm-2"></div>
       <div class="col-sm-8">
         <table  class="table table-bordered">
-          <tr class="">
+          <tr class="align-items-center">
             <td>已结算</td>
             <td>已支付</td>
             <td>待支付</td>
             <td></td>
           </tr>
           <tr>
-            <td>{{discounted}}</td>
-            <td>{{paying}}</td>
-            <td>{{pay}}</td>
-            <td> <button class="btn btn-success" (click)="payAccount()" >支付</button> </td>
+            <td class="align-middle">{{discounted}}</td>
+            <td class="align-middle">{{paying}}</td>
+            <td class="align-middle">{{pay}}</td>
+            <td class="align-middle"><button class="btn btn-sm btn-success" (click)="payAccount()" *ngIf="payButton">支付</button></td>
           </tr>
         </table>
       </div>

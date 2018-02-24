@@ -35,6 +35,30 @@ export class commonAutionCarService {
     })
   }
 
+  /**
+   * 删除车辆
+   * @param id
+   * @returns {Promise<Response>}
+   */
+  public  delete(id:string):Promise<any>{
+    const url = `${this.path}/delete/${id}`;
+    return this.http.delete(url).toPromise().then(function (res) {
+      return res.json() as any;
+    });
+  }
+
+  /**
+   * 流拍车辆
+   * @param id
+   * @returns {Promise<TResult2|TResult1>}
+   */
+  public  misCar(id:string):Promise<any>{
+    const url = `${this.path}/misCar/${id}`;
+    return this.http.put(url,null).toPromise().then(function (res) {
+      return res.json() as any;
+    });
+  }
+
 
 
 }

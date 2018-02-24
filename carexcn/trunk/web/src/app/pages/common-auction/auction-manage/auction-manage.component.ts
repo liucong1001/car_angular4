@@ -1,10 +1,12 @@
 import {Component, OnChanges, OnInit, SimpleChanges,TemplateRef,ViewChild } from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import {Column} from '../../../@core/ui/table/table.component';
 import {CodemapCell, CustomCell} from '../../../@core/ui/table/cell';
 import {Router} from '@angular/router';
 import {TextCell} from '../../../@core/ui/table/cell.text.component';
 import {Menu, MenuCell} from '../../../@core/ui/table/cell.menu.component';
+import {commonAutionBalanceService} from  '../../../@core/data/common-aution/balance.service';
+import {MessageService} from '../../../@core/utils/message.service';
+import {Column, TableComponent} from '../../../@core/ui/table/table.component';
 
 @Component({
   selector: 'ngx-auction-manage',
@@ -26,10 +28,13 @@ import {Menu, MenuCell} from '../../../@core/ui/table/cell.menu.component';
       transition('shown <=> hidden', [animate('100ms ease-in-out'), animate('100ms')]),
     ]),
   ],
+  providers:[commonAutionBalanceService],
 })
 export class AuctionManageComponent implements OnInit, OnChanges {
-
-  constructor(private router: Router) { }
+  @ViewChild(TableComponent) itemList: TableComponent;
+  constructor(private router: Router,
+              private commonAutionBalanceService:commonAutionBalanceService,
+              private message:MessageService) { }
 
   visibility = 'hidden';
   showFilter = false;
@@ -59,7 +64,7 @@ export class AuctionManageComponent implements OnInit, OnChanges {
         title: '', titleClass: 'w-10 text-center', cell: new MenuCell(
         [
           new Menu('编辑', '', this.edit.bind(this)),
-          new Menu('禁用', '', this.disable),
+          new Menu('删除', '', this.delete.bind(this)),
         ],
         new Menu('车辆管理', '', this.carLink.bind(this)), 'text-center',
       )} as Column,
@@ -82,6 +87,14 @@ export class AuctionManageComponent implements OnInit, OnChanges {
 
   edit(row: any) {
     this.router.navigate(['/pages/common-auction/auction-manage/edit-project', { id:row.id}]);
+  }
+  delete(row:any){
+    this.commonAutionBalanceService.delete(row.id).then(res=>{
+      this.message.success('','删除成功！');
+      this.itemList.reload();
+    }).catch(err=>{
+      this.message.error('删除失败',err.json().message);
+    });
   }
 
   disable(row: any) {
