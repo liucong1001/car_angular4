@@ -23,19 +23,6 @@ import {PrejudicationService} from '../../../../@core/data/bussiness/prejudicati
   styleUrls: ['./judication.component.scss'],
 })
 export class JudicationComponent implements OnInit {
-  photos: any[] = [{
-    title: '行驶证正本',
-    source: 'assets/images/camera1.jpg',
-  }, {
-    title: '行驶证副本',
-    source: 'assets/images/camera2.jpg',
-  }, {
-    title: '登记证书首页',
-    source: 'assets/images/camera3.jpg',
-  }, {
-    title: '登记证书末页',
-    source: 'assets/images/camera4.jpg',
-  }];
   public archiveNo = '';
   public trade: TradeForm;
   public tradeList: [TradeForm];

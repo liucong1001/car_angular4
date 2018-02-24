@@ -8,17 +8,22 @@
 <!--<ngx-ys-seller-info-->
   <!--[merchant]="dealer"-->
   <!--[seller]="_formGroup.controls.seller"-->
-  <!--[errors]="errors.seller"-->
+  <!--[certificateFormConfig]="sellerCertificateFormConfig"-->
   <!--[btn_show]="false"-->
-  <!--[showCheshang]="false"-->
 <!--&gt;</ngx-ys-seller-info>-->
 
-<ngx-ys-carlist *ngIf="tradeList" [tradeList]="tradeList"  (_selected)='onChangeSelected($event)' [showAddButton]="false"></ngx-ys-carlist>
+<ngx-ys-carlist
+  *ngIf="tradeList"
+  [tradeList]="tradeList"
+  (_selected)='onChangeSelected($event)'
+  [listType]="'checkbox'"
+></ngx-ys-carlist>
 
 <ngx-ys-cardetail
   *ngIf="tradeList"
-  [photos]="photos"
+  [btn_show]="false"
   [vehicle]="_formGroup.controls.vehicle"
+  [certificateFormConfig]="vehicleCertificateFormConfig"
 ></ngx-ys-cardetail>
 
 <div class="float-right">

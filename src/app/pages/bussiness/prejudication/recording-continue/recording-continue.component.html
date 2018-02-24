@@ -9,7 +9,7 @@
   *ngIf="tradeList"
   [tradeList]="tradeList"
   (_selected)='onChangeSelectedCar($event)'
-  [showAddButton]="true"
+  [listType]="'add'"
 ></ngx-ys-carlist>
 
 <ngx-ys-cardetail
