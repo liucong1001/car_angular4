@@ -16,6 +16,7 @@ import {PersonModel} from '../../../../@core/model/bussiness/trade/person.model'
 import {PreVehicleModel} from '../../../../@core/model/bussiness/trade/preVehicle/preVehicle.model';
 import {TradeForm} from '../../../../@core/model/bussiness/trade/trade.form';
 import {Marketphotomap} from '../../../../@core/model/system/market-photo-map';
+import {FileSystemService} from "../../../../@core/data/system/file-system.service";
 
 /**
  * 预审录入4--接口与页面的交互逻辑
@@ -113,6 +114,7 @@ export class Recording4Component implements OnInit, OnDestroy {
     private _filingService: FilingService,
     private _localstorage: LocalstorageService,
     private _codeitem: CodeitemService,
+    private _file: FileSystemService,
     private _prejudicationService: PrejudicationService,
   ) {}
 
@@ -199,12 +201,12 @@ export class Recording4Component implements OnInit, OnDestroy {
     let maybe_seller_form = this._localstorage.get(this._cache_pre + 'seller_form');
     this._prejudicationService.create({
       // SellerForm
-      photos: this._localstorage.get('bussiness_prejudication_recording_seller_photos'),
+      photos: this._file.filterPhotosValue(this._localstorage.get('bussiness_prejudication_recording_seller_photos')),
       trusteePhotos: {},
       seller: maybe_seller_form.seller as PersonModel,
     } as SellerForm, {
       // PreVehicleForm
-      photos: this._localstorage.get('bussiness_prejudication_recording_vehicle_photos'),
+      photos: this._file.filterPhotosValue(this._localstorage.get('bussiness_prejudication_recording_vehicle_photos')),
       preVehicle: preVehicle,
       // newCarsPrice: '',
     } as PreVehicleForm).then(res => {
