@@ -4,13 +4,20 @@
       <span class="cameras-card-title">{{ car_list_title || '已添加车辆'}}</span>
     </div>
   </nb-card-header>
-  <nb-card-body *ngIf="!useCheckBox">
-    <button class="btn btn-info btn-tn margin_10" *ngFor="let trade of tradeList" (click)="selected(trade)">{{trade.preVehicle.preVehicle.plateNumber}}</button>
-    <button class="btn btn-info btn-tn" *ngIf="showAddButton" (click)="addNew()">添加车辆</button>
-  </nb-card-body>
-  <nb-card-body *ngIf="useCheckBox">
-    <nb-checkbox class="margin_10" *ngFor="let trade of tradeList">
-      <button class="btn btn-info btn-tn" (click)="selected(trade)">{{trade.preVehicle.preVehicle.plateNumber}}</button>
-    </nb-checkbox>
+  <nb-card-body>
+  <ng-container [ngSwitch]="listType">
+    <ng-template [ngSwitchCase]="'checkbox'">
+        <nb-checkbox class="margin_10" *ngFor="let trade of tradeList">
+          <button class="btn btn-info btn-tn" (click)="selected(trade)">{{trade.preVehicle.preVehicle.plateNumber}}</button>
+        </nb-checkbox>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'add'">
+        <button class="btn btn-info btn-tn margin_10" *ngFor="let trade of tradeList" (click)="selected(trade)">{{trade.preVehicle.preVehicle.plateNumber}}</button>
+        <button class="btn btn-info btn-tn margin_10" (click)="addNew()">添加车辆</button>
+    </ng-template>
+    <ng-template ngSwitchDefault>
+        <button class="btn btn-info btn-tn margin_10" *ngFor="let trade of tradeList" (click)="selected(trade)">{{trade.preVehicle.preVehicle.plateNumber}}</button>
+    </ng-template>
+  </ng-container>
   </nb-card-body>
 </nb-card>
