@@ -5,15 +5,32 @@ import {TextCell} from '../../../../../@core/ui/table/cell.text.component';
 import {Menu, MenuCell} from '../../../../../@core/ui/table/cell.menu.component';
 import {Router, ActivatedRoute} from '@angular/router';
 import {CodemapCell, CustomCell} from '../../../../../@core/ui/table/cell';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'ngx-car-list',
   templateUrl: './car-list.component.html',
-  styleUrls: ['./car-list.component.scss']
+  styleUrls: ['./car-list.component.scss'],
+  styles: [`
+    form {
+      overflow: hidden;
+    }
+  `,
+  ],
+  // 定义动画
+  animations: [
+    trigger('visibilityChanged', [
+      // state 控制不同的状态下对应的不同的样式
+      state('shown', style({height: 'auto'})),
+      state('hidden', style({height: '0px', opacity: '0'})),
+      // transition 控制状态到状态以什么样的方式来进行转换
+      transition('shown <=> hidden', [animate('100ms ease-in-out'), animate('100ms')]),
+    ]),
+  ],
 })
 export class CarListComponent implements OnInit {
 
-  constructor(private router: Router, private route: ActivatedRoute, ) { }
+  constructor(private router: Router, private route: ActivatedRoute,private _location: Location ) { }
 
   visibility = 'hidden';
   showFilter = false;
@@ -51,14 +68,6 @@ export class CarListComponent implements OnInit {
     {title: '金额三', titleClass: 'w-20 text-center', cell: new TextCell('discount')} as Column,
     {title: '发票号', titleClass: 'w-20 text-center', cell: new TextCell('bill')} as Column,
     {title: '状态', titleClass: 'w-20 text-center', cell: new CodemapCell('status','saleCarStatus')} as Column,
-    {
-      title: '操作', titleClass: 'w-25 text-center', cell: new MenuCell(
-      [
-        new Menu('编辑', '', this.edit.bind(this)),
-        new Menu('禁用', '', this.disable),
-      ],
-      new Menu('修改', '', this.view), 'text-center',
-    )} as Column,
   ];
 
   // 列表菜单回调
@@ -76,6 +85,9 @@ export class CarListComponent implements OnInit {
   add() {
     // this.router.navigateByUrl('/pages/common-auction/auction-manage/add-car');
     this.router.navigate(['/pages/common-auction/auction-manage/add-car', { id:this.paramsId}]);
+  }
+  back(){
+    this._location.back();
   }
 
 

@@ -61,4 +61,16 @@ export class commonAutionBalanceService {
     })
 }
 
+  /**
+   * 删除项目
+   * @param id
+   * @returns {Promise<Response>}
+   */
+  public  delete(id:string):Promise<any>{
+  const url = `${this.path}/delete/${id}`;
+  return this.http.delete(url).toPromise().then(function (res) {
+     return res.json() as any ;
+  });
+ }
+
 }

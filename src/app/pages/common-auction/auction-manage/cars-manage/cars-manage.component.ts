@@ -1,11 +1,12 @@
-import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, OnChanges, OnInit, SimpleChanges, TemplateRef, ViewChild} from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import {Column} from '../../../../@core/ui/table/table.component';
 import {TextCell} from '../../../../@core/ui/table/cell.text.component';
 import {Menu, MenuCell} from '../../../../@core/ui/table/cell.menu.component';
 import {Router, ActivatedRoute} from '@angular/router';
 import {CodemapCell, CustomCell} from '../../../../@core/ui/table/cell';
-
+import {commonAutionCarService} from  '../../../../@core/data/common-aution/car.service';
+import {MessageService} from '../../../../@core/utils/message.service';
+import {Column, TableComponent} from '../../../../@core/ui/table/table.component';
 
 @Component({
   selector: 'ngx-cars-manage',
@@ -27,10 +28,13 @@ import {CodemapCell, CustomCell} from '../../../../@core/ui/table/cell';
       transition('shown <=> hidden', [animate('100ms ease-in-out'), animate('100ms')]),
     ]),
   ],
+  providers:[commonAutionCarService],
 })
 export class CarsManageComponent implements OnInit, OnChanges {
-
-  constructor(private router: Router, private route: ActivatedRoute, ) { }
+  @ViewChild(TableComponent) itemList: TableComponent;
+  constructor(private router: Router, private route: ActivatedRoute,
+              private commonAutionCarService:commonAutionCarService,
+              private message:MessageService) { }
 
   visibility = 'hidden';
   showFilter = false;
@@ -72,7 +76,8 @@ export class CarsManageComponent implements OnInit, OnChanges {
       title: '操作', titleClass: 'w-25 text-center', cell: new MenuCell(
         [
           new Menu('编辑', '', this.edit.bind(this)),
-          new Menu('禁用', '', this.disable),
+          new Menu('删除', '', this.delete.bind(this)),
+          new Menu('流拍', '', this.misCar.bind(this)),
         ],
         new Menu('修改', '', this.view), 'text-center',
       )} as Column,
@@ -85,7 +90,22 @@ export class CarsManageComponent implements OnInit, OnChanges {
   edit(row: any) {
     this.router.navigate(['/pages/common-auction/auction-manage/edit-car', { id:row.id}]);
   }
-
+  delete(row:any){
+    this.commonAutionCarService.delete(row.id).then(res=>{
+      this.message.success('','删除成功！');
+      this.itemList.reload();
+    }).catch(err=>{
+      this.message.error('删除失败',err.json().message);
+    })
+  }
+  misCar(row:any){
+    this.commonAutionCarService.misCar(row.id).then(res=>{
+      this.message.success('','流拍成功！');
+      this.itemList.reload();
+    }).catch(err=>{
+      this.message.error('流拍失败',err.json().message);
+    })
+  }
   disable(row: any) {
 
   }
