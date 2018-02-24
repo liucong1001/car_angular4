@@ -9,6 +9,7 @@ import {FormBuilder, FormControl, FormGroup, ValidationErrors, Validators} from 
 import {PreVehicleForm} from '../../../../@core/model/bussiness/trade/preVehicle.form';
 import {PreVehicleModel} from '../../../../@core/model/bussiness/trade/preVehicle/preVehicle.model';
 import {FilingInfoModel} from '../../../../@core/model/bussiness/filing.info.model';
+import {Marketphotomap} from '../../../../@core/model/system/market-photo-map';
 
 /**
  * 预审录入 继续录入/批量录入 --接口与页面的交互逻辑
@@ -27,6 +28,7 @@ import {FilingInfoModel} from '../../../../@core/model/bussiness/filing.info.mod
   styleUrls: ['./recording-continue.component.scss'],
 })
 export class RecordingContinueComponent implements OnInit {
+  certificateFormConfig: Marketphotomap;
   /**
    * 缓存服务的前缀
    * 缓存前缀名以业务为单位，一个缓存前缀对应一个业务，一个缓存业务完成则删除该前缀的所有缓存
@@ -93,6 +95,16 @@ export class RecordingContinueComponent implements OnInit {
         this.archiveNo = param.archiveNo;
       }
     });
+    /**
+     * 卖家证件类型表单配置
+     * @type {{}}
+     */
+    this.certificateFormConfig = {
+      isApp: '0',
+      // certificateCode: '00', // 证件类型代码集 // 只要符合表单就行
+      business: '01', //  01 预审  02 过户
+      formName: '预审录入车辆', // 表单名称
+    } as Marketphotomap;
   }
   onChangeSelectedCar(trade: TradeForm): void {
     if (null === trade) {
