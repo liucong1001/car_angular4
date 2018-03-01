@@ -7,9 +7,9 @@
   <nb-card-body>
   <ng-container [ngSwitch]="listType">
     <ng-template [ngSwitchCase]="'checkbox'">
-        <nb-checkbox class="margin_10" *ngFor="let trade of tradeList">
-          <button class="btn btn-info btn-tn" (click)="selected(trade)">{{trade.preVehicle.preVehicle.plateNumber}}</button>
-        </nb-checkbox>
+      <nb-checkbox *ngFor="let trade of tradeList" class="margin_10" name="carsChecked" (change)="checkboxChanged($event,trade)">
+        <button class="btn btn-info btn-tn" (click)="selected(trade)">{{trade.preVehicle.preVehicle.plateNumber}}</button>
+      </nb-checkbox>
     </ng-template>
     <ng-template [ngSwitchCase]="'add'">
         <button class="btn btn-info btn-tn margin_10" *ngFor="let trade of tradeList" (click)="selected(trade)">{{trade.preVehicle.preVehicle.plateNumber}}</button>

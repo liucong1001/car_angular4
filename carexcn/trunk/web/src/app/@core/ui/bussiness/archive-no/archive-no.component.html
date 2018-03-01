@@ -16,7 +16,7 @@
       </div>
       <div class="input-group">
         <span class="input-group-addon">代办商户</span>
-        <label class="form-control">{{trade.preVehicle.preVehicle.filingInfo.merchant.account.accountName || ''}}</label>
+        <label class="form-control">{{ trade.preVehicle.preVehicle.merchant.name }}</label>
         <!--<ngx-ys-autoinput [results_resource_url]="autoinput_shanghu_source_url"-->
         <!--(_value)="getSelectedDealer($event)"-->
         <!--[showProperty]="'name'"-->
@@ -28,7 +28,7 @@
     <div class="input-group">
       <div class="input-group">
         <span class="input-group-addon">代办人</span>
-        <label class="form-control">{{trade.seller.seller.name || ''}}</label>
+        <label class="form-control">{{trade.preVehicle.preVehicle.filingInfo.name || ''}}</label>
         <!--<select class="form-control" [disabled]="true" [(ngModel)]="linkman" (change)="linkmanSelecteFunc()" [compareWith]="linkmanCompareWithFunc">-->
         <!--<option value="">&#45;&#45;请选择&#45;&#45;</option>-->
         <!--<option *ngFor="let linkmanitem of linkManData" [ngValue]="linkmanitem">{{linkmanitem.name}}</option>-->
@@ -36,7 +36,7 @@
       </div>
       <div class="input-group">
         <span class="input-group-addon">代办人手机</span>
-        <input class="form-control" type="text"  [disabled]="true" [value]="trade.seller.seller.phone || null "/>
+        <input class="form-control" type="text"  [disabled]="true" [value]="trade.preVehicle.preVehicle.filingInfo.phone || null "/>
       </div>
     </div>
     <div class="prompt">{{prompt}}</div>

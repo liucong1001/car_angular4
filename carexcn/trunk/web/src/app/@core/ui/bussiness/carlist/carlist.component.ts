@@ -23,7 +23,7 @@ export class CarlistComponent implements OnInit {
    * @type {EventEmitter<any>}
    * @private
    */
-  @Output('_selectCar') private _selectCar = new EventEmitter();
+  @Output('_checkCars') private _checkCars = new EventEmitter();
   /**
    * 1、选中的哪个车辆的触发事件
    * 2、添加新车辆的触发事件(选中一辆空车)
@@ -41,5 +41,14 @@ export class CarlistComponent implements OnInit {
   }
   addNew() {
     this._selected.emit(null);
+  }
+  public checkCars: TradeForm[] = [];
+  checkboxChanged(event, trade?: TradeForm) {
+    if (event.returnValue) {
+      this.checkCars.push(trade);
+    } else {
+      this.checkCars = this.checkCars.filter(t => t !== trade);
+    }
+    this._checkCars.emit(this.checkCars);
   }
 }

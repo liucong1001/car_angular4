@@ -17,7 +17,10 @@ export class ArchiveNoComponent implements OnInit {
   @Output('_trade') private _trade = new EventEmitter();
   public trade: TradeForm = {
     prejudication: {business: {archiveNo: ''}},
-    preVehicle: {preVehicle: {filingInfo: {merchant: {account: {}}}}},
+    preVehicle: {preVehicle: {
+      filingInfo: {},
+      merchant: {},
+    }},
     seller: {seller: {}},
   };
   public tradeList: [TradeForm];
@@ -35,7 +38,9 @@ export class ArchiveNoComponent implements OnInit {
   getTradeByArchiveNo(archiveNo) {
     this._prejudicationService.carList(archiveNo).then(res => {
       this.tradeList = res.json() as [TradeForm];
+      // console.info('trade[0]', this.tradeList[0]);
       this.trade = this.tradeList[0] as TradeForm;
+      // console.info('trade as result', this.trade);
       this._tradeList.emit(this.tradeList);
       this._trade.emit(this.trade);
     }).catch(e => {
