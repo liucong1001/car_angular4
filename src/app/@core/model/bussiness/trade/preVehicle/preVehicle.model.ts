@@ -1,4 +1,5 @@
 import {FilingInfoModel} from '../../filing.info.model';
+import {MerchantModel} from '../../merchant.model';
 
 export class PreVehicleModel {
   /**
@@ -65,4 +66,8 @@ export class PreVehicleModel {
    * 业务手续费
    */
   fee?: string;
+  /**
+   * 商户标识（存id）
+   */
+  merchant?: MerchantModel;
 }

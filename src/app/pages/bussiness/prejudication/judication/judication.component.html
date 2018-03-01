@@ -15,7 +15,9 @@
 <ngx-ys-carlist
   *ngIf="tradeList"
   [tradeList]="tradeList"
+  [car_list_title]="'审核车辆列表'"
   (_selected)='onChangeSelected($event)'
+  (_checkCars)="onChangeCheckCars($event)"
   [listType]="'checkbox'"
 ></ngx-ys-carlist>
 

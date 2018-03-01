@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CarService} from '../../../../@core/data/bussiness/car.service';
-import {CarModel} from '../../../../@core/model/bussiness/car.model';
 import {MessageService} from '../../../../@core/utils/message.service';
 import {WebcamService} from '../../../../@core/device/webcam.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -9,6 +8,7 @@ import {TradeForm} from '../../../../@core/model/bussiness/trade/trade.form';
 import {TradeService} from '../../../../@core/data/bussiness/trade.service';
 import {LocalstorageService} from '../../../../@core/cache/localstorage.service';
 import {PrejudicationService} from '../../../../@core/data/bussiness/prejudication.service';
+import {Marketphotomap} from '../../../../@core/model/system/market-photo-map';
 
 /**
  * 预审业务 - 预审审核 - 核对信息 --—接口与页面的交互逻辑
@@ -23,6 +23,8 @@ import {PrejudicationService} from '../../../../@core/data/bussiness/prejudicati
   styleUrls: ['./judication.component.scss'],
 })
 export class JudicationComponent implements OnInit {
+  private _cache_pre = 'bussiness_prejudication_recording_';
+  vehicleCertificateFormConfig: Marketphotomap;
   public archiveNo = '';
   public trade: TradeForm;
   public tradeList: [TradeForm];
@@ -67,7 +69,6 @@ export class JudicationComponent implements OnInit {
    * @param {LocalstorageService} _localstorage
    */
   constructor(
-    private message: MessageService,
     private carService: CarService,
     private webcam: WebcamService,
     private _router: Router,
@@ -77,19 +78,31 @@ export class JudicationComponent implements OnInit {
     private _prejudicationService: PrejudicationService,
     private _formBuilder: FormBuilder,
     private _localstorage: LocalstorageService,
-  ) {
-  }
+  ) {}
   ngOnInit(): void {
     this._route.params.subscribe(param => {
-      // this.trade.prejudication.business.archiveNo
       if (param.archiveNo) {
         this.archiveNo = param.archiveNo;
       }
     });
+    /**
+     * 卖家证件类型表单配置
+     * @type {{}}
+     */
+    this.vehicleCertificateFormConfig = {
+      isApp: '0',
+      // certificateCode: '00', // 证件类型代码集 // 只要符合表单就行
+      business: '01', //  01 预审  02 过户
+      formName: '预审录入车辆', // 表单名称
+    } as Marketphotomap;
   }
   onSubmit() {
-    this._message.info('操作提示', '审核功能待照片功能一同完成');
-    // this._router.navigateByUrl('/pages/bussiness/prejudication/judication-photo');
+    if (1 > this.judicationTrade.length) {
+      this._message.warning('错误', '请选择至少一个车辆以通过审核。');
+    } else {
+      this._localstorage.set(this._cache_pre + 'judication_trade', this.judicationTrade);
+      this._router.navigateByUrl('/pages/bussiness/prejudication/judication-photo');
+    }
   }
   reBack() {
     this._router.navigateByUrl('/pages/bussiness/prejudication');
@@ -105,9 +118,12 @@ export class JudicationComponent implements OnInit {
       this._formGroup.reset();
       this._message.info('添加车辆', '添加新车辆');
     } else {
-      console.info(trade.preVehicle.preVehicle);
       this._formGroup.patchValue({vehicle: trade.preVehicle.preVehicle});
       this._message.info('查看车辆', trade.preVehicle.preVehicle.plateNumber);
     }
+  }
+  public judicationTrade: TradeForm[] = [];
+  onChangeCheckCars(trades): void {
+    this.judicationTrade = trades;
   }
 }

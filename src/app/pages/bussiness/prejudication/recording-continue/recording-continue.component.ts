@@ -10,6 +10,7 @@ import {PreVehicleForm} from '../../../../@core/model/bussiness/trade/preVehicle
 import {PreVehicleModel} from '../../../../@core/model/bussiness/trade/preVehicle/preVehicle.model';
 import {FilingInfoModel} from '../../../../@core/model/bussiness/filing.info.model';
 import {Marketphotomap} from '../../../../@core/model/system/market-photo-map';
+import {FileSystemService} from '../../../../@core/data/system/file-system.service';
 
 /**
  * 预审录入 继续录入/批量录入 --接口与页面的交互逻辑
@@ -86,6 +87,7 @@ export class RecordingContinueComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private _router: Router,
     private _route: ActivatedRoute,
+    private _file: FileSystemService,
     private _localstorage: LocalstorageService,
   ) {}
   ngOnInit(): void {
@@ -105,6 +107,20 @@ export class RecordingContinueComponent implements OnInit {
       business: '01', //  01 预审  02 过户
       formName: '预审录入车辆', // 表单名称
     } as Marketphotomap;
+    /**
+     * 可能的缓存
+     * @type {any | any}
+     */
+    let maybe_vehicle = this._localstorage.get(this._cache_pre + 'continue_vehicle');
+    if (maybe_vehicle) {
+      this._formGroup.patchValue(maybe_vehicle);
+      let maybe_continue_archiveNo = this._localstorage.get(this._cache_pre + 'continue_archiveNo');
+      if (maybe_continue_archiveNo) {
+        this.archiveNo = maybe_continue_archiveNo;
+      }
+    } else {
+      console.info(maybe_vehicle);
+    }
   }
   onChangeSelectedCar(trade: TradeForm): void {
     if (null === trade) {
@@ -120,11 +136,15 @@ export class RecordingContinueComponent implements OnInit {
   }
 
   onSubmit() {
-    console.info(this.trade);
+    console.info(this.trade.prejudication.business.archiveNo);
+    this._localstorage.set(this._cache_pre + 'continue_archiveNo', this.trade.prejudication.business.archiveNo);
+    this._localstorage.set(this._cache_pre + 'continue_vehicle', this._formGroup.value);
     let preVehicle = this._formGroup.value.vehicle as PreVehicleModel;
     preVehicle.filingInfo = this.trade.preVehicle.preVehicle.filingInfo as FilingInfoModel;
+    console.info(this._formGroup.get('vehicle').value);
+    console.info(this._formGroup.get('vehicle').get('_photos_').value);
     this._prejudicationService.addCar(this.trade.prejudication.id, {
-      photos: {},
+      photos: this._file.filterPhotosValue(this._formGroup.get('vehicle').get('_photos_').value),
       preVehicle: preVehicle,
       // newCarsPrice: '',
     } as PreVehicleForm).then(res => {
