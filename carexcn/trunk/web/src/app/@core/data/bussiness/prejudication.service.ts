@@ -68,13 +68,16 @@ export class PrejudicationService {
    * @param {string} id   prejudication.bussiness.id
    * @returns {Promise<any>}
    */
-  public review(id: string, tradeIds: Array<string>): Promise<any> {
+  public review(id: string, tradeIds: Array<string>, reviewPhotos: object, sellerinfo: object): Promise<any> {
     return this.http.put(this.api_url_base, {
       prejudication: {
         cloudUser: this.currentUser.cloudUser,
         id: id,
       },
-      seller: {}, // TODO: seller.reviewPhotos
+      seller: {
+        reviewPhotos: reviewPhotos,
+        seller: sellerinfo,
+      },
       tradeIds: tradeIds,
     } as ReviewForm).toPromise();
   }

@@ -98,7 +98,7 @@ export class JudicationComponent implements OnInit {
   }
   onSubmit() {
     if (1 > this.judicationTrade.length) {
-      this._message.warning('错误', '请选择至少一个车辆以通过审核。');
+      this._message.warning('错误提示', '请选择至少一个车辆。');
     } else {
       this._localstorage.set(this._cache_pre + 'judication_trade', this.judicationTrade);
       this._router.navigateByUrl('/pages/bussiness/prejudication/judication-photo');
