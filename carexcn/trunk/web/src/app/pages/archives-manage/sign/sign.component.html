@@ -3,33 +3,36 @@
     <div class="p-2 mr-auto">档案到达</div>
   </nb-card-header>
   <nb-card-body>
-    <form (submit)="codeList.reload()">
+
       <div class="row">
-        <div class="col-sm-6">
-          <div class="form-group form-group-sm">
-            请输入车管所流水号：
-            <input class="form-control input-custom" name="code" type="text" placeholder="请输入车管所流水号后回车"/>
+        <div class="col-sm-2">请输入车管所流水号：</div>
+        <div class="col-sm-3">
+          <div class="form-group">
+            <input class="form-control " name="code"  (keyup)="codeSearch($event)"  [(ngModel)]="model.code" type="text" placeholder="请输入车管所流水号后回车"/>
           </div>
         </div>
-        <div class="col-sm-6">
-          <div class="form-group form-group-sm">
-            请输入流水号：
-            <input class="form-control input-custom" name="code" type="text" placeholder="请输入流水号后回车"/>
-          </div>
-        </div>
-        <div class="col-sm-2">
-          <button type="submit" class="btn btn btn-primary btn-block">车牌号查询</button>
-        </div>
-        <div class="col-sm-5">
-          <div class="form-group form-group-sm">
-            <input class="form-control input-custom" name="code" type="text" placeholder=""/>
+        <div class="col-sm-2">请输入流水号：</div>
+        <div class="col-sm-3">
+          <div class="form-group ">
+            <input class="form-control " name="archivesNo" (keyup)="arcNoSearch($event)" [(ngModel)]="archivesNo" type="text" placeholder="请输入流水号后回车"/>
           </div>
         </div>
       </div>
-    </form>
+
+      <div class="row">
+        <div class="col-sm-2">
+          <button type="submit" class="btn btn btn-primary btn-block">车牌号查询</button>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group">
+            <input class="form-control " name="plateNumber" (keyup)="plateNumberSearch($event)"   [(ngModel)]="plateNumber" type="text" placeholder="车牌号"/>
+          </div>
+        </div>
+      </div>
+
   </nb-card-body>
   <nb-card-body>
-    <table border="1">
+    <table class="table table-bordered table-striped">
       <tr>
         <th>序号</th>
         <th>车管所流水号</th>
@@ -37,7 +40,16 @@
         <th>车牌号</th>
         <th>状态</th>
       </tr>
-      <tr></tr>
+      <tr *ngFor=" let item of record ;let i =index;">
+        <th>{{i+1}}</th>
+        <th>{{item.code}}</th>
+        <th>{{item.archivesNo}}</th>
+        <th>{{item.plateNumber}}</th>
+        <th>
+          <span [ngClass]=" item.status.css">{{item.status.text}}</span>&nbsp;&nbsp;
+          <span (click)="cancel(item,i)" class="text-danger"><span class=""></span> 取消</span>
+        </th>
+      </tr>
     </table>
   </nb-card-body>
 </nb-card>

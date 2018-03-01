@@ -2,7 +2,6 @@
   <nb-card-header class="d-flex">
     <div class="p-2 mr-auto">档案查询</div>
     <div class="p2">
-      <!--<a [routerLink]="'edit'" class="btn btn-primary btn-sm">新增</a>-->
       <button type="button" class="btn btn-sm btn-outline-success" (click)="toggle()" [ngClass]="{'active':showFilter}" ><i class="ion-funnel"></i></button>
     </div>
   </nb-card-header>
@@ -11,12 +10,12 @@
       <div class="row">
         <div class="col-sm-3">
           <div class="form-group form-group-sm">
-            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="流水号"/>
+            <input class="form-control" [(ngModel)]="filter.archivesNo" name="archivesNo" type="text" placeholder="流水号"/>
           </div>
         </div>
         <div class="col-sm-3">
           <div class="form-group form-group-sm">
-            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="车牌号"/>
+            <input class="form-control" [(ngModel)]="filter.plateNumber" name="plateNumber" type="text" placeholder="车牌号"/>
           </div>
         </div>
         <div class="col-sm-3">
@@ -26,28 +25,28 @@
         </div>
         <div class="col-sm-3">
           <div class="form-group form-group-sm">
-            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="商户名称"/>
+            <input class="form-control" [(ngModel)]="filter['merchant.name']" name="name" type="text" placeholder="商户名称"/>
           </div>
         </div>
         <div class="col-sm-2">
           <div class="form-group form-group-sm">
-            <select class="form-control">
-              <option value="">已送出档案</option>
-              <option value="">未到达档案</option>
-              <option value="">已到达档案</option>
-              <option value="">已签收档案</option>
-              <option value="">未签收档案</option>
+            <select class="form-control" [(ngModel)]="filter.stat" name="stat" >
+              <option value="0">已送出档案</option>
+              <option value="1">未到达档案</option>
+              <option value="2">已到达档案</option>
+              <option value="3">已签收档案</option>
+              <option value="4">未签收档案</option>
             </select>
           </div>
         </div>
         <div class="col-sm-2">
           <div class="form-group form-group-sm">
-            <ngx-ys-calendar [placeholder]="'起始日期'"></ngx-ys-calendar>
+            <ngx-ys-calendar [placeholder]="'起始日期'" (_calendarValue)="getStartTime($event)"></ngx-ys-calendar>
           </div>
         </div>
         <div class="col-sm-2">
           <div class="form-group form-group-sm">
-            <ngx-ys-calendar [placeholder]="'结束日期'"></ngx-ys-calendar>
+            <ngx-ys-calendar [placeholder]="'结束日期'" (_calendarValue)="getEndTime($event)"></ngx-ys-calendar>
           </div>
         </div>
         <div class="col-sm-2">
@@ -58,6 +57,6 @@
         </div>
       </div>
     </form>
-    <ngx-table #codeList [url]="'/rest/sys/codemap/pager'" [columns]="columns" [filter]="filter"></ngx-table>
+    <ngx-table #codeList [url]="'/rest/business/trade/archives/pager'" [columns]="columns" [filter]="filter"></ngx-table>
   </nb-card-body>
 </nb-card>

@@ -6,4 +6,5 @@ export const visibilityToggle = trigger('visibilityChanged', [
   state('hidden', style({ height: '0px',  opacity: '0'})),
   // transition 控制状态到状态以什么样的方式来进行转换
   transition('shown <=> hidden', [animate('100ms ease-in-out'), animate('100ms')] ),
-]);
+])
+;
