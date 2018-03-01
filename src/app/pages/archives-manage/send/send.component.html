@@ -3,38 +3,40 @@
     <div class="p-2 mr-auto">档案送出</div>
   </nb-card-header>
   <nb-card-body>
-    <form (submit)="codeList.reload()">
-      <div class="row">
-        <!--<div class="col-sm-2">
+      <div class="row ">
+        <div class="col-md-2  align-middle font-weight-bold text-center"> 请输入号码:</div>
+        <div class="col-md-4">
+            <input class="form-control " type="text" [(ngModel)]= 'archivesCode' placeholder="请扫码车管所业务流水号后再扫描交易流水号"  (keyup)="codeSearch($event)"/>
+        </div>
+        <div class="col-md-2">
           <div class="form-group form-group-sm">
-            <span>请输入号码：</span>
-            &lt;!&ndash;<input class="form-control" name="code" type="text" placeholder="请扫码车管所业务流水号后再扫描交易流水号"/>&ndash;&gt;
-          </div>
-        </div>-->
-        <div class="col-sm-7">
-          <div class="form-group form-group-sm">
-            请输入号码：
-            <input class="form-control input-custom" name="code" type="text" placeholder="请扫码车管所业务流水号后再扫描交易流水号"/>
+            <button type="submit" class="btn btn btn-primary btn-block" (click)="toggle()">档案自提</button>
           </div>
         </div>
-        <div class="col-sm-2">
-          <div class="form-group form-group-sm">
-            <button type="submit" class="btn btn btn-primary btn-block">档案自提</button>
-          </div>
+        <div class="col-md-2 form-group form-group-sm" *ngIf="showPlatenumber">
+          <input type="text" maxlength="8"  [(ngModel)]= 'plateNumber' placeholder="请输入车牌号后回车"  class="form-control" (keyup)="plateNumberSearch($event)">
         </div>
       </div>
-    </form>
   </nb-card-body>
   <nb-card-body>
-    <table border="1">
+    <table class="table table-bordered table-striped">
       <tr>
         <th>序号</th>
-        <th>车管流水号</th>
+        <th width="200px">车管流水号</th>
         <th>流水号</th>
         <th>车牌号</th>
-        <th>状态</th>
+        <th width="200px">状态</th>
       </tr>
-      <tr></tr>
+      <tr *ngFor=" let item of record ;let i =index;">
+        <th>{{i+1}}</th>
+        <th>{{item.code}}</th>
+        <th>{{item.archivesNo}}</th>
+        <th>{{item.plateNumber}}</th>
+        <th>
+           <span [ngClass]=" item.status.css">{{item.status.text}}</span>&nbsp;&nbsp;
+           <span (click)="cancel(item,i)" class="text-danger"><span class=""></span> 取消</span>
+        </th>
+      </tr>
     </table>
   </nb-card-body>
 </nb-card>
