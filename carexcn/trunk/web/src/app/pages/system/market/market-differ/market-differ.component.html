@@ -1,0 +1,76 @@
+<nb-card>
+  <nb-card-header>市场差异配置</nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="form" class="container">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label>是否需要委托人</label>
+            <select name="" formControlName="entrust" class="form-control">
+              <option value="">--选择是否需要委托人--</option>
+              <option value="1">是</option>
+              <option value="0">否</option>
+            </select>
+          </div>
+          <ngx-valid-error [errors]="errors.entrust" [control]="form.get('entrust')"></ngx-valid-error>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label>卖方是否需要价格</label>
+            <select name="" formControlName="sellerPrice" class="form-control">
+              <option value="">--选泽卖方是否需要价格--</option>
+              <option value="1">是</option>
+              <option value="0">否</option>
+            </select>
+          </div>
+          <ngx-valid-error [errors]="errors.sellerPrice" [control]="form.get('sellerPrice')"></ngx-valid-error>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label>卖方是否需要里程</label>
+            <select name="" formControlName="sellerMileage" class="form-control">
+              <option value="">--选择卖方是否需要里程--</option>
+              <option value="1">是</option>
+              <option value="0">否</option>
+            </select>
+          </div>
+          <ngx-valid-error [errors]="errors.sellerMileage" [control]="form.get('sellerMileage')"></ngx-valid-error>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label>买方是否需要价格</label>
+            <select name="" formControlName="buyerPrice" class="form-control">
+              <option value="">--选择买方是否需要价格--</option>
+              <option value="1">是</option>
+              <option value="0">否</option>
+            </select>
+          </div>
+          <ngx-valid-error [errors]="errors.buyerPrice" [control]="form.get('buyerPrice')"></ngx-valid-error>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label>是否显示图片</label>
+            <select name="" formControlName="picture" class="form-control">
+              <option value="">--选择是否显示图片--</option>
+              <option value="1">是</option>
+              <option value="0">否</option>
+            </select>
+          </div>
+          <ngx-valid-error [errors]="errors.picture" [control]="form.get('picture')"></ngx-valid-error>
+        </div>
+      </div>
+      <p-footer>
+        <div class="row">
+          <div class="col-sm-1">
+            <button class="btn btn-info btn-sm" (click)='save()' [disabled]="form.invalid">保存</button>
+          </div>
+          <div class="col-sm-1">
+            <button class="btn  btn-default btn-sm" (click)="back()">返回</button>
+          </div>
+        </div>
+      </p-footer>
+    </form>
+  </nb-card-body>
+</nb-card>
