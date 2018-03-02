@@ -60,6 +60,7 @@ export class MarketComponent implements OnInit, OnChanges {
           new Menu('业务费用', '', this.feeLink.bind(this)),
           new Menu('PC证件维护', '', this.photoLink.bind(this)),
           new Menu('App证件维护', '', this.photoLinkApp.bind(this)),
+          new Menu('市场差异配置','',this.differ.bind(this)),
         ],
         new Menu('更多', '', this.view), 'text-center',
       )} as Column,
@@ -93,6 +94,10 @@ export class MarketComponent implements OnInit, OnChanges {
 
   photoLinkApp(row: any) {
     this.router.navigate( ['/pages/system/market/market/photo', { id: row.id , marketName: row.name,isApp:1}]);
+  }
+
+  differ(row:any){
+    this.router.navigate(['/pages/system/market/market/differ',{ id: row.id }])
   }
 
 }

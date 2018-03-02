@@ -27,6 +27,7 @@ import { RoleEditComponent } from './role/role-edit/role-edit.component';
 import { PhotoExampleComponent } from './photo-example/photo-example.component';
 import { PhotoExampleAddComponent } from './photo-example/photo-example-add/photo-example-add.component';
 import { PhotoExampleEditComponent } from './photo-example/photo-example-edit/photo-example-edit.component';
+import { MarketDifferComponent } from './market/market-differ/market-differ.component';
 
 const routes: Routes = [{
   path: '',
@@ -52,6 +53,7 @@ const routes: Routes = [{
     {path: 'market/market/fee/edit', component: MarketFeeEditComponent},
     {path: 'market/market/photo', component: MarketPhotoComponent},
     {path: 'market/market/photo/edit', component: MarketPhotoEditComponent},
+    {path: 'market/market/differ', component: MarketDifferComponent},
     {path: 'role', component: RoleComponent},
     {path: 'role/add', component: RoleAddComponent},
     {path: 'role/edit', component: RoleEditComponent},
@@ -72,5 +74,5 @@ export const routedComponents = [
   TransfercityComponent, TransferCityEditComponent, BlacklistComponent, BlacklistEditComponent,
   CartypeComponent, CartypeEditComponent, PermissionComponent, AreaComponent , MarketComponent, MarketEditComponent,
   MarketBrandComponent, MarketFeeComponent, MarketFeeEditComponent, MarketPhotoComponent, MarketPhotoEditComponent,
-  RoleComponent, RoleAddComponent, RoleEditComponent,
+  RoleComponent, RoleAddComponent, RoleEditComponent,MarketDifferComponent,
 ];
