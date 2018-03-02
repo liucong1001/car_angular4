@@ -85,6 +85,12 @@ export class JudicationComponent implements OnInit {
         this.archiveNo = param.archiveNo;
       }
     });
+    if (! this.archiveNo) {
+      let maybe_continue_archiveNo = this._localstorage.get(this._cache_pre + 'judication_archiveNo');
+      if (maybe_continue_archiveNo) {
+        this.archiveNo = maybe_continue_archiveNo;
+      }
+    }
     /**
      * 卖家证件类型表单配置
      * @type {{}}
@@ -97,6 +103,9 @@ export class JudicationComponent implements OnInit {
     } as Marketphotomap;
   }
   onSubmit() {
+    console.info(this.judicationTrade.length);
+    console.info(this.judicationTrade);
+    this._localstorage.set(this._cache_pre + 'judication_archiveNo', this.trade.prejudication.business.archiveNo);
     if (1 > this.judicationTrade.length) {
       this._message.warning('错误提示', '请选择至少一个车辆。');
     } else {

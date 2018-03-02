@@ -31,6 +31,26 @@ export class CarlistComponent implements OnInit {
    * @private
    */
   @Output('_selected') private _selected = new EventEmitter();
+  private statusArr = {
+    '01': '已录入', // 可以进行审核，其它状态不可以做审核操作
+    '02': '已审核',
+    '03': '已完成',
+    '04': '已删除',
+    '05': '待录入',
+    '06': '录入中',
+    '07': '已退回',
+  };
+  /**
+   * 应标识为已通过审核的状态
+   * @type {string[]}
+   */
+  private checkedStatus = [
+    '02',
+    '03',
+  ];
+  private canCheckingStatus = [
+    '01',
+  ];
   constructor() {}
 
   ngOnInit() {
@@ -44,11 +64,16 @@ export class CarlistComponent implements OnInit {
   }
   public checkCars: TradeForm[] = [];
   checkboxChanged(event, trade?: TradeForm) {
-    if (event.returnValue) {
+    // console.info('event', event);
+    // console.info('checked', event.checked);
+    // console.info('target.checked', event.target.checked);
+    // console.info('returnValue', event.returnValue);
+    if (event.target.checked) {
       this.checkCars.push(trade);
     } else {
       this.checkCars = this.checkCars.filter(t => t !== trade);
     }
+    console.info(this.checkCars);
     this._checkCars.emit(this.checkCars);
   }
 }
