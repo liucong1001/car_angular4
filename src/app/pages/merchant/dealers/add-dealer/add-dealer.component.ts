@@ -137,6 +137,7 @@ export class AddDealerComponent implements OnInit {
         this.message.success('创建成功', '创建商户成功');
         this.router.navigateByUrl('/pages/merchant/bussinessman');
       }).catch(err => {
+        console.info(err);
         this.message.error('操作失败', err.json().message);
       });
     }

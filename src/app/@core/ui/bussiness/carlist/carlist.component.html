@@ -7,16 +7,29 @@
   <nb-card-body>
   <ng-container [ngSwitch]="listType">
     <ng-template [ngSwitchCase]="'checkbox'">
-      <nb-checkbox *ngFor="let trade of tradeList" class="margin_10" name="carsChecked" (change)="checkboxChanged($event,trade)">
-        <button class="btn btn-info btn-tn" (click)="selected(trade)">{{trade.preVehicle.preVehicle.plateNumber}}</button>
-      </nb-checkbox>
+      <div class="margin_10">
+        <label class="custom-control custom-checkbox" *ngFor="let trade of tradeList">
+        <input type="checkbox" class="custom-control-input"
+               [name]="trade.preVehicle.preVehicle.plateNumber"
+               (change)="checkboxChanged($event,trade)"
+               [checked]="checkedStatus.indexOf(trade.prejudicationStatus) > -1"
+               [disabled]="! (canCheckingStatus.indexOf(trade.prejudicationStatus) > -1)" />
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">
+          <button class="btn btn-primary btn-tn" (click)="selected(trade)">
+            {{trade.preVehicle.preVehicle.plateNumber}}
+            [{{statusArr[trade.prejudicationStatus]}}]
+          </button>
+        </span>
+        </label>
+      </div>
     </ng-template>
     <ng-template [ngSwitchCase]="'add'">
-        <button class="btn btn-info btn-tn margin_10" *ngFor="let trade of tradeList" (click)="selected(trade)">{{trade.preVehicle.preVehicle.plateNumber}}</button>
+        <button class="btn btn-primary btn-tn margin_10" *ngFor="let trade of tradeList" (click)="selected(trade)">{{trade.preVehicle.preVehicle.plateNumber}}</button>
         <button class="btn btn-info btn-tn margin_10" (click)="addNew()">添加车辆</button>
     </ng-template>
     <ng-template ngSwitchDefault>
-        <button class="btn btn-info btn-tn margin_10" *ngFor="let trade of tradeList" (click)="selected(trade)">{{trade.preVehicle.preVehicle.plateNumber}}</button>
+        <button class="btn btn-primary btn-tn margin_10" *ngFor="let trade of tradeList" (click)="selected(trade)">{{trade.preVehicle.preVehicle.plateNumber}}</button>
     </ng-template>
   </ng-container>
   </nb-card-body>

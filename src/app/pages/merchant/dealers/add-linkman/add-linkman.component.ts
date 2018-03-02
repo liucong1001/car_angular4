@@ -154,7 +154,7 @@ export class AddLinkmanComponent implements OnInit {
         this.router.navigate(['/pages/merchant/bussinessman/linkman', { id: this._merchant.id}]);
       }).catch(err => {
         console.info(err);
-        // this.message.error('操作失败', err.json().message);
+        this.message.error('操作失败', err.json().message);
       });
     }
   }
