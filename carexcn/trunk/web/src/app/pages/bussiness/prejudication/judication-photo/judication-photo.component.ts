@@ -69,7 +69,12 @@ export class JudicationPhotoComponent implements OnInit {
       }
     }
     console.info('review_ids', review_ids);
-    this._prejudicationService.review(review_id, review_ids, this._file.filterPhotosValue(this.reviewSeller), sellerinfo).then(res => {
+    this._prejudicationService.review(
+      review_id,
+      review_ids,
+      this._file.filterPhotosValue(this.reviewSeller),
+      sellerinfo,
+    ).then(res => {
       console.info(res);
     }).catch(err => {
       console.info(err);
