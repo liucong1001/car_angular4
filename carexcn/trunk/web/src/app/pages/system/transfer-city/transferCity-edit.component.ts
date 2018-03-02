@@ -58,11 +58,16 @@ export class TransferCityEditComponent implements OnInit {
     this.route.params.subscribe(p => {
       if (p.id) {
         this.transferCityService.get(p.id).then(res => {
-
           this.cityDefault = res.city;
           this.managementDefault = res.management;
            this.isDataAvailable = true;
+           this.form.patchValue({
+             city:this.cityDefault,
+             management: this.managementDefault,
+           });
         });
+      }else{
+          this.isDataAvailable = true;
       }
     });
   }
@@ -81,9 +86,10 @@ export class TransferCityEditComponent implements OnInit {
    */
   saved = false;
 
-
+  findCityInfo:object = {};
+  cityInfoShow:boolean=false;
   /**
-   * 输入提示，模糊搜索
+   * 提档地(转出地)
    * @param event
    */
   getAutoCityValue(event) {
@@ -92,8 +98,14 @@ export class TransferCityEditComponent implements OnInit {
       this.form.patchValue({
         city: event,
       });
+      console.log('转出地',event);
+      this.transferCityService.check(this.form.value.city.id).then(res=>{
+           this.findCityInfo = res;
+           this.cityInfoShow = true;
+      })
     }
   }
+
   getAutoManagementValue(event) {
     if (this.auto_input_value_management !== event) {
        this.auto_input_value_management = event;
@@ -104,11 +116,12 @@ export class TransferCityEditComponent implements OnInit {
   }
 
   save() {
-    // if (this.form.invalid) {
-    //   return false;
-    // }
+    console.log('表单', this.form.value);
+    if (this.form.invalid) {
+      return false;
+    }
     const codemap = this.form.value ;
-    console.log('车管所', codemap);
+
     this.transferCityService.save(codemap).then(res => {
       this.message.success('保存成功', '代码集保存成功');
       this.saved = true;
@@ -117,6 +130,7 @@ export class TransferCityEditComponent implements OnInit {
       this.message.error('保存失败', err.json().message);
     });
   }
+
   back() {
     this.router.navigateByUrl('/pages/system/transfercity');
   }

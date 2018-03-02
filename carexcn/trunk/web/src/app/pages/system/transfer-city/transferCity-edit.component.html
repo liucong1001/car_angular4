@@ -3,14 +3,7 @@
     <nb-card-header>车管所信息维护</nb-card-header>
     <nb-card-body>
         <form [formGroup]="form" (ngSubmit)="save()">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-group" *ngIf="isDataAvailable">
-                        <label>转出地:</label>
-                        <ngx-ys-autoinput [results_resource_url]="city_source_url_city" (_value)="getAutoCityValue($event)" [showProperty]="'name'"  [defaultValue]="cityDefault" ></ngx-ys-autoinput>
-                    </div>
-                </div>
-            </div>
+
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group" *ngIf="isDataAvailable">
@@ -21,6 +14,19 @@
                         -- 必须输入车管所
                     </div>
                 </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group" *ngIf="isDataAvailable">
+                  <label>转出地:</label>
+                  <ngx-ys-autoinput [results_resource_url]="city_source_url_city" (_value)="getAutoCityValue($event)" [showProperty]="'name'"  [defaultValue]="cityDefault" ></ngx-ys-autoinput>
+                </div>
+              </div>
+              <div class="col-sm-6 text-danger" *ngIf="cityInfoShow">
+                   <p><b>曾经所属：</b> </p>
+                   <p>车管所 :{{this.findCityInfo.management.name}} : 转出地:{{this.findCityInfo.city.name}}</p>
+              </div>
             </div>
 
             <div class="row">

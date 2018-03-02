@@ -17,6 +17,17 @@ export class TransferCityService {
     return this.http.post(this.path, model).toPromise().then((res) => res.json() as TransferCitymap);
   }
 
+
+  /**
+   * 检查车管所
+   * @param model
+   * @returns {Promise<TResult2|TransferCitymap>}
+   */
+  public check(cityId:string):Promise<TransferCitymap>{
+    const  url = `${this.path}/city/${cityId}`;
+    return this.http.get(url).toPromise().then((res) => res.json() as TransferCitymap);
+  }
+
   public searchArea(event) {
     const url = '/rest/sys/area?key=' + event.query;
     return this.http.get(url).toPromise().then(res => res.json());

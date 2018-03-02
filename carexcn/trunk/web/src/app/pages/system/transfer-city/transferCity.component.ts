@@ -1,12 +1,13 @@
 /**
  * 车辆管理所管理组件
  */
-import {Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import {Component, OnChanges, OnInit, SimpleChanges,TemplateRef, ViewChild } from '@angular/core';
 import {Menu, MenuCell} from '../../../@core/ui/table/cell.menu.component';
 import {Column} from '../../../@core/ui/table/table.component';
 import {TextCell} from '../../../@core/ui/table/cell.text.component';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {ActivatedRoute, Router} from '@angular/router';
+import {CodemapCell, CustomCell} from '../../../@core/ui/table/cell';
 
 @Component({
   selector: 'ngx-transfercity',
@@ -42,6 +43,18 @@ export class TransfercityComponent implements OnInit, OnChanges {
   }
   // 组件初始华
   ngOnInit(): void {
+    this.columns =  [
+      {title: '提档车管所', titleClass: '', cell: new TextCell('management.name')} as Column,
+      {title: '转出地', titleClass: '', cell: new TextCell('city.name')} as Column,
+      {title: '创建时间', titleClass: '', cell: new CustomCell(this.createTimeCell)} as Column,
+      {title: '操作', titleClass: 'w-25 text-center', cell: new MenuCell(
+        [
+          new Menu('编辑', '', this.edit.bind(this)),
+          new Menu('禁用', '', this.disable),
+        ],
+        new Menu('查看', '', this.view), 'text-center',
+      )} as Column,
+    ];
   }
 
   constructor(
@@ -49,20 +62,11 @@ export class TransfercityComponent implements OnInit, OnChanges {
     private route: ActivatedRoute,
   ) { }
 
+  @ViewChild('createTimeCell') private createTimeCell: TemplateRef<any>;
   // 列表搜索条件对象
   filter: any = {};
   // 列表列定义
-  columns: Column[] = [
-    {title: '转出地', titleClass: '', cell: new TextCell('city.name')} as Column,
-    {title: '提档车管所', titleClass: '', cell: new TextCell('management.name')} as Column,
-    {title: '操作', titleClass: 'w-25 text-center', cell: new MenuCell(
-      [
-        new Menu('编辑', '', this.edit.bind(this)),
-        new Menu('禁用', '', this.disable),
-      ],
-      new Menu('查看', '', this.view), 'text-center',
-    )} as Column,
-  ];
+  columns: Column[] ;
   /**
    * 列表菜单回调
    * @row any
