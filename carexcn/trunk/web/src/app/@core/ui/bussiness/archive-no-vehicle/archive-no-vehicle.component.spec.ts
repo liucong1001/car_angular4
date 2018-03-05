@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DirectRecordingComponent } from './direct-recording.component';
+import { ArchiveNoVehicleComponent } from './archive-no-vehicle.component';
 
-describe('DirectRecordingComponent', () => {
-  let component: DirectRecordingComponent;
-  let fixture: ComponentFixture<DirectRecordingComponent>;
+describe('ArchiveNoVehicleComponent', () => {
+  let component: ArchiveNoVehicleComponent;
+  let fixture: ComponentFixture<ArchiveNoVehicleComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DirectRecordingComponent ]
+      declarations: [ ArchiveNoVehicleComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DirectRecordingComponent);
+    fixture = TestBed.createComponent(ArchiveNoVehicleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

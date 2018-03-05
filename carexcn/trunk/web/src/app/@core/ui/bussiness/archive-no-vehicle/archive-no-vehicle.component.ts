@@ -1,14 +1,14 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TradeForm} from '../../../model/bussiness/trade/trade.form';
-import {PrejudicationService} from '../../../data/bussiness/prejudication.service';
 import {MessageService} from '../../../utils/message.service';
+import {TransferService} from '../../../data/bussiness/transfer.service';
 
 @Component({
-  selector: 'ngx-ys-archive-no',
-  templateUrl: './archive-no.component.html',
-  styleUrls: ['./archive-no.component.scss'],
+  selector: 'ngx-archive-no-vehicle',
+  templateUrl: './archive-no-vehicle.component.html',
+  styleUrls: ['./archive-no-vehicle.component.scss'],
 })
-export class ArchiveNoComponent implements OnInit {
+export class ArchiveNoVehicleComponent implements OnInit {
   @Input() archiveNo = '';
   @Input() pageTitle = '';
   @Input() canEdit = false;
@@ -18,15 +18,15 @@ export class ArchiveNoComponent implements OnInit {
   public trade: TradeForm = {
     prejudication: {business: {archiveNo: ''}},
     preVehicle: {preVehicle: {
-      filingInfo: {},
-      merchant: {},
-    }},
+        filingInfo: {},
+        merchant: {},
+      }},
     seller: {seller: {}},
   };
   public tradeList: [TradeForm];
   constructor(
     private _message: MessageService,
-    private _prejudicationService: PrejudicationService,
+    private _transferService: TransferService,
   ) { }
 
   ngOnInit() {
@@ -36,15 +36,16 @@ export class ArchiveNoComponent implements OnInit {
   }
 
   /**
-   * 根据预审批次号获取预审业务对象(拿到车辆列表)
+   * 根据车辆流水号获取预审业务对象(拿到车辆列表)
    * @param archiveNo 预审业务流水号(预审批次号)
    */
   getTradeByArchiveNo(archiveNo) {
-    this._prejudicationService.carList(archiveNo).then(res => {
-      this.tradeList = res.json() as [TradeForm];
-      // console.info('trade[0]', this.tradeList[0]);
+    this._transferService.selectCar(archiveNo).then(res => {
+      let trade = res.json() as TradeForm;
+      this.tradeList = [trade] as [TradeForm];
+      console.info('trade[0]', this.tradeList[0]);
       this.trade = this.tradeList[0] as TradeForm;
-      // console.info('trade as result', this.trade);
+      console.info('trade as result', this.trade);
       this._tradeList.emit(this.tradeList);
       this._trade.emit(this.trade);
     }).catch(e => {
@@ -52,5 +53,4 @@ export class ArchiveNoComponent implements OnInit {
       this._message.info('操作提示', error.message);
     });
   }
-
 }
