@@ -29,6 +29,7 @@ import { YsCardComponent } from './bussiness/ys-card/ys-card.component';
 import { DynamicPhotoFormComponent } from './bussiness/dynamic-photo-form/dynamic-photo-form.component';
 import { PhotoDetailComponent } from './bussiness/photo-detail/photo-detail.component';
 import {InputWithPhotoDirective} from './bussiness/photo-detail/input-with-photo.directive';
+import { ArchiveNoVehicleComponent } from './bussiness/archive-no-vehicle/archive-no-vehicle.component';
 
 const COMPONENTS = [
   CameraComponent,
@@ -54,6 +55,7 @@ const COMPONENTS = [
   YsCardComponent,
   DynamicPhotoFormComponent,
   PhotoDetailComponent,
+  ArchiveNoVehicleComponent,
 ];
 
 @NgModule({

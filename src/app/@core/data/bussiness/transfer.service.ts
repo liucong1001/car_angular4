@@ -27,6 +27,15 @@ export class TransferService {
   }
 
   /**
+   * 根据车辆流水号 查询 车辆对象信息
+   * @param {string} archiveNo
+   * @returns {Promise<any>}
+   */
+  public selectCar(archiveNo: string): Promise<any> {
+    return this.http.get('/rest/business/trade?archiveNo=' + archiveNo).toPromise();
+  }
+
+  /**
    * 过户审核
    * @param {ReviewForm} form
    * @returns {Promise<any>}

@@ -31,10 +31,11 @@ export class PrejudicationService {
       preVehicle: preVehicle,
     } as TradeForm).toPromise();
   }
+
   /**
-   * 获取车辆列表
-   * @param {TradeForm} form  clouduser  seller卖方对象实例  PreVehicle对象实例
-   * @returns {Promise<any>} TODO: 检查完善
+   * 根据预审批次号获取预审业务对象(拿到车辆列表)
+   * @param {string} archiveNo 预审业务流水号(预审批次号)
+   * @returns {Promise<any>}
    */
   public carList(archiveNo: string): Promise<any> {
     return this.http.get(this.api_url_base + '?archiveNo=' + archiveNo).toPromise();

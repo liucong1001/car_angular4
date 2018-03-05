@@ -1,13 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {CarService} from '../../../../@core/data/bussiness/car.service';
 import {MessageService} from '../../../../@core/utils/message.service';
-import {WebcamService} from '../../../../@core/device/webcam.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {TradeForm} from '../../../../@core/model/bussiness/trade/trade.form';
 import {TradeService} from '../../../../@core/data/bussiness/trade.service';
 import {LocalstorageService} from '../../../../@core/cache/localstorage.service';
-import {PrejudicationService} from '../../../../@core/data/bussiness/prejudication.service';
 import {Marketphotomap} from '../../../../@core/model/system/market-photo-map';
 
 /**
@@ -58,24 +55,18 @@ export class JudicationComponent implements OnInit {
   /**
    * 构造函数
    * @param {MessageService} message
-   * @param {CarService} carService
-   * @param {WebcamService} webcam
    * @param {Router} _router
    * @param {ActivatedRoute} _route
    * @param {TradeService} _trade
    * @param {MessageService} _message
-   * @param {PrejudicationService} _prejudicationService
    * @param {FormBuilder} _formBuilder
    * @param {LocalstorageService} _localstorage
    */
   constructor(
-    private carService: CarService,
-    private webcam: WebcamService,
     private _router: Router,
     private _route: ActivatedRoute,
     private _trade: TradeService,
     private _message: MessageService,
-    private _prejudicationService: PrejudicationService,
     private _formBuilder: FormBuilder,
     private _localstorage: LocalstorageService,
   ) {}

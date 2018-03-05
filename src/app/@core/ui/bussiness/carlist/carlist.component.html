@@ -1,4 +1,4 @@
-<nb-card>
+<nb-card *ngIf="tradeList.length > 1 || listType === 'add'">
   <nb-card-header>
     <div class="cameras-card-header">
       <span class="cameras-card-title">{{ car_list_title || '已添加车辆'}}</span>
