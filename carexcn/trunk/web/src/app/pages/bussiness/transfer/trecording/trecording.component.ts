@@ -69,8 +69,7 @@ export class TrecordingComponent implements OnInit {
     private _message: MessageService,
     private _formBuilder: FormBuilder,
     private _localstorage: LocalstorageService,
-  ) {
-  }
+  ) {}
   getTradeByArchiveNoComponent(trade) {
     this.trade = trade;
     this._formGroup.controls.seller.patchValue(this.trade.seller.seller);
