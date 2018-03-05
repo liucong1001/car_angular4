@@ -10,18 +10,20 @@
   [tradeList]="tradeList"
 ></ngx-ys-carlist>
 
+<ngx-ys-seller-info
+  *ngIf="trade"
+  [btn_show]="false"
+  [certificateFormConfig]="sellerCertificateFormConfig"
+  [merchant]="trade.preVehicle.preVehicle.filingInfo.merchant"
+  [seller]="_formGroup.controls.seller"
+></ngx-ys-seller-info>
+
 <ngx-ys-cardetail
   *ngIf="tradeList"
   [btn_show]="false"
   [vehicle]="_formGroup.controls.vehicle"
   [certificateFormConfig]="vehicleCertificateFormConfig"
 ></ngx-ys-cardetail>
-
-<!--<ngx-ys-seller-info-->
-  <!--*ngIf="trade"-->
-  <!--[merchant]="trade.preVehicle.preVehicle.filingInfo.merchant"-->
-  <!--[seller]="_formGroup.controls.seller"-->
-<!--&gt;</ngx-ys-seller-info>-->
 
 <div class="float-right">
   <button class="btn btn-primary btn-lg" (click)="onSubmit()" *ngIf="tradeList">下一步</button> &nbsp;

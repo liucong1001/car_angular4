@@ -15,6 +15,7 @@ import {LocalstorageService} from '../../../../@core/cache/localstorage.service'
 export class TrecordingComponent implements OnInit {
   private _cache_pre = 'bussiness_transfer_recording_';
   vehicleCertificateFormConfig: Marketphotomap;
+  sellerCertificateFormConfig: Marketphotomap;
   public archiveNo = '';
   public trade: TradeForm;
   public tradeList: [TradeForm];
@@ -87,6 +88,16 @@ export class TrecordingComponent implements OnInit {
      * 卖家证件类型表单配置
      * @type {{}}
      */
+    this.sellerCertificateFormConfig = {
+      isApp: '0',
+      certificateCode: '00', // 证件类型代码集
+      business: '01', //  01 预审  02 过户
+      formName: '预审录入卖家', // 表单名称
+    } as Marketphotomap;
+    /**
+     * 车辆证件类型表单配置
+     * @type {Marketphotomap}
+     */
     this.vehicleCertificateFormConfig = {
       isApp: '0',
       // certificateCode: '00', // 证件类型代码集 // 只要符合表单就行
@@ -114,7 +125,7 @@ export class TrecordingComponent implements OnInit {
       this._message.warning('错误提示', '请选择至少一个车辆。');
     } else {
       this._localstorage.set(this._cache_pre + 'trade', this.tradeList);
-      // this._router.navigateByUrl('/pages/bussiness/transfer/trecording2');
+      this._router.navigateByUrl('/pages/bussiness/transfer/trecording2');
     }
   }
 }
