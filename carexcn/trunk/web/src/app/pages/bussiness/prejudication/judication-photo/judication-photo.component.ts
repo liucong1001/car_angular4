@@ -100,9 +100,9 @@ export class JudicationPhotoComponent implements OnInit {
       this._message.success('操作成功！', '有' + review_ids.length + '个车辆审核通过。');
     }).catch(err => {
       console.info(err);
-      console.info(err.json());
-      console.info(err.json().message);
-      this._message.error('操作失败!', err.json().message);
+      console.info(err);
+      console.info(err.message);
+      this._message.error('操作失败!', err.message);
     });
   }
 }

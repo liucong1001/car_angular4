@@ -179,9 +179,11 @@ export class RecordingComponent implements OnInit, OnDestroy {
   onSubmit() {
     if (this.vehicle.plateNumber.length > 5 ) {
       this._prejudication.checkCar(this.vehicle.plateNumber, this.linkmanSelected.id).then(res => {
+        console.info(res);
         this._router.navigateByUrl('/pages/bussiness/prejudication/recording2');
       }).catch(e => {
-        this._message.error('录入错误', e.json().message);
+        console.info(e);
+        this._message.error('录入错误', e.message);
       });
     } else {
       this._message.error('车牌号错误', '您的车牌号可能没有填写完');

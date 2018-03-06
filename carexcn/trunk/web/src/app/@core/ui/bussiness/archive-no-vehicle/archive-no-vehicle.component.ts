@@ -41,7 +41,7 @@ export class ArchiveNoVehicleComponent implements OnInit {
    */
   getTradeByArchiveNo(archiveNo) {
     this._transferService.selectCar(archiveNo).then(res => {
-      let trade = res.json() as TradeForm;
+      let trade = res as TradeForm;
       this.tradeList = [trade] as [TradeForm];
       console.info('trade[0]', this.tradeList[0]);
       this.trade = this.tradeList[0] as TradeForm;
@@ -49,7 +49,7 @@ export class ArchiveNoVehicleComponent implements OnInit {
       this._tradeList.emit(this.tradeList);
       this._trade.emit(this.trade);
     }).catch(e => {
-      const error = e.json();
+      const error = e;
       this._message.info('操作提示', error.message);
     });
   }

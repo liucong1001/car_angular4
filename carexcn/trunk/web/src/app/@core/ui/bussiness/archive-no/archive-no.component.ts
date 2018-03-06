@@ -41,14 +41,14 @@ export class ArchiveNoComponent implements OnInit {
    */
   getTradeByArchiveNo(archiveNo) {
     this._prejudicationService.carList(archiveNo).then(res => {
-      this.tradeList = res.json() as [TradeForm];
+      this.tradeList = res as [TradeForm];
       // console.info('trade[0]', this.tradeList[0]);
       this.trade = this.tradeList[0] as TradeForm;
       // console.info('trade as result', this.trade);
       this._tradeList.emit(this.tradeList);
       this._trade.emit(this.trade);
     }).catch(e => {
-      const error = e.json();
+      const error = e;
       this._message.info('操作提示', error.message);
     });
   }
