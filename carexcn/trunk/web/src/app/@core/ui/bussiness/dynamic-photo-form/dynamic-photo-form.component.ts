@@ -137,9 +137,9 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
     let marketphotomap_cache = null;
     if (null !== cache_name) {
       marketphotomap_cache = this._localstorage.get(cache_name);
-      // console.info('读取动态表单的对应缓存数据' + cache_name, marketphotomap_cache);
+      console.info('读取动态表单的对应缓存数据' + cache_name, marketphotomap_cache);
     } else {
-      // console.info('读取动态表单的对应缓存数据cache_name  空');
+      console.info('读取动态表单的对应缓存数据cache_name  空');
     }
     // 在循环开始之前的该处，要拿到缓存的数据，循环时使用
     marketphotomap_arr.forEach(r => {
@@ -155,7 +155,7 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
           /**
            * 在初始化的过程中，根据循环的photoType判断是否有缓存好的值，来完成对表单的默认赋值
            */
-          // console.info('marketphotomap_cache[' + r.photoType + ']', marketphotomap_cache);
+          console.info('marketphotomap_cache[' + r.photoType + ']', marketphotomap_cache);
           let photo_value = '';
           if (null !== marketphotomap_cache) {
             photo_value = marketphotomap_cache[r.photoType][i] ? marketphotomap_cache[r.photoType][i] : '';

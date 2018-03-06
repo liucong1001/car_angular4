@@ -24,6 +24,18 @@ export class BussinessFormGroup {
     Trustee: this.trustee,
     // flag: ['', [Validators.required]],
   });
+  public buyer = this._formBuilder.group({
+    certType: ['', [Validators.required]],
+    certCode: ['', [Validators.required]],
+    name: ['', [Validators.required, Validators.maxLength(64)]],
+    endDate: ['', [Validators.required]],
+    phone: ['', [Validators.required]],
+    trusteeType: ['0', [Validators.required]],
+    address: ['', [Validators.required]],
+    buyerAddress: ['', [Validators.required]],
+    Trustee: this.trustee,
+    // flag: ['', [Validators.required]],
+  });
   public vehicle = this._formBuilder.group({
     // brandModel: [{ value: '', disabled: false }, [Validators.maxLength(50)]], // 厂牌型号实体Id
     labelCode: [{ value: '', disabled: false }, [Validators.required]],

@@ -1,4 +1,3 @@
-import {Http} from '@angular/http';
 import {Injectable} from '@angular/core';
 import {DeviceService} from '../../device/device.service';
 
@@ -6,7 +5,6 @@ import {DeviceService} from '../../device/device.service';
 export class FileSystemService {
   private path = '/rest/files/file/'; // {file_id}
   constructor(
-    private http: Http,
     private device: DeviceService,
   ) {}
   public getFileUrlByTmp(file_temp: string): string {

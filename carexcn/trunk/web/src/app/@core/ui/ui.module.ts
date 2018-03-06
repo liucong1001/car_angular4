@@ -30,6 +30,7 @@ import { DynamicPhotoFormComponent } from './bussiness/dynamic-photo-form/dynami
 import { PhotoDetailComponent } from './bussiness/photo-detail/photo-detail.component';
 import {InputWithPhotoDirective} from './bussiness/photo-detail/input-with-photo.directive';
 import { ArchiveNoVehicleComponent } from './bussiness/archive-no-vehicle/archive-no-vehicle.component';
+import { BuyerInfoComponent } from './bussiness/buyer-info/buyer-info.component';
 
 const COMPONENTS = [
   CameraComponent,
@@ -44,6 +45,7 @@ const COMPONENTS = [
   CarlistComponent,
   CardetailComponent,
   SellerInfoComponent,
+  BuyerInfoComponent,
   TrusterInfoComponent,
   ArchiveNoComponent,
   FormFilterComponent,
