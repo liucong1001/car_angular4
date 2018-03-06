@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MessageService} from '../../../../@core/utils/message.service';
 import {Router} from '@angular/router';
 import {TradeForm} from '../../../../@core/model/bussiness/trade/trade.form';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {Marketphotomap} from '../../../../@core/model/system/market-photo-map';
 import {TradeService} from '../../../../@core/data/bussiness/trade.service';
 import {LocalstorageService} from '../../../../@core/cache/localstorage.service';

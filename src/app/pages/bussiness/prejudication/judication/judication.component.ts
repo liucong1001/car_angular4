@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MessageService} from '../../../../@core/utils/message.service';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {TradeForm} from '../../../../@core/model/bussiness/trade/trade.form';
 import {TradeService} from '../../../../@core/data/bussiness/trade.service';
 import {LocalstorageService} from '../../../../@core/cache/localstorage.service';
