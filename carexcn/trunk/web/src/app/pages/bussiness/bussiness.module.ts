@@ -25,13 +25,15 @@ import {MobileRecordingComponent} from './mobile-recording/mobile-recording.comp
 import { MobileTestComponent } from './mobile-recording/mobile-test/mobile-test.component';
 import { MobileReviewComponent } from './mobile-recording/mobile-review/mobile-review.component';
 import { MobileInputComponent } from './mobile-recording/mobile-input/mobile-input.component';
-import {CertTypePipe} from  '../../@core/data/bussiness/certTypePipe';
+import {CertTypePipe} from '../../@core/data/bussiness/certTypePipe';
+import {BussinessFormGroup} from './bussiness.form-group';
 
 @NgModule({
   imports: [
     ThemeModule,
     CommonModule,
     BussinessRoutingModule,
+    BussinessFormGroup,
     UiModule,
     CacheModule,
     SystemModule,

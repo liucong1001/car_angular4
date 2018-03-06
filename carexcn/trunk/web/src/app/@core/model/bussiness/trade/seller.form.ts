@@ -1,4 +1,4 @@
-import {PersonModel} from './person.model';
+import {SellerModel} from './seller.model';
 
 /**
  * 卖方对象实例
@@ -17,5 +17,5 @@ export class SellerForm {
    * 受托人图片列表<map>   [可选]
    */
   trusteePhotos?: object;
-  seller?: PersonModel;
+  seller?: SellerModel;
 }
