@@ -63,6 +63,9 @@ export class SellerInfoComponent implements OnInit {
     address: [
       new ErrorMessage('required', '必须填写地址！'),
     ],
+    sellerAddress: [
+      new ErrorMessage('required', '必须填写地址！'),
+    ],
   };
   @Input() showCheshang = true;
   public autoinput_cheshang_source_url = '/rest/merchant/filing/deal/';

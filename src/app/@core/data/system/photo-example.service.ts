@@ -92,6 +92,7 @@ export class PhotoExampleService {
       name: 0,
       certCode: 80,
       address: 40,
+      sellerAddress: 40,
     },
     '04': {// 附件类型身份证背面
       endDate: 90,
@@ -121,6 +122,7 @@ export class PhotoExampleService {
         name: '03', // 附件类型身份证正面
         certCode: '03', // 附件类型身份证正面
         address: '03', // 附件类型身份证正面
+        sellerAddress: '03', // 附件类型身份证正面
         endDate: '04', // 附件类型身份证背面
       },
     },

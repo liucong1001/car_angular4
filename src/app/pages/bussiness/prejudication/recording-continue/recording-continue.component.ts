@@ -11,6 +11,7 @@ import {PreVehicleModel} from '../../../../@core/model/bussiness/trade/preVehicl
 import {FilingInfoModel} from '../../../../@core/model/bussiness/filing.info.model';
 import {Marketphotomap} from '../../../../@core/model/system/market-photo-map';
 import {FileSystemService} from '../../../../@core/data/system/file-system.service';
+import {BussinessFormGroup} from '../../bussiness.form-group';
 
 /**
  * 预审录入 继续录入/批量录入 --接口与页面的交互逻辑
@@ -55,36 +56,14 @@ export class RecordingContinueComponent implements OnInit {
   public trade: TradeForm;
   public tradeList: [TradeForm];
   public _formGroup: FormGroup = this._formBuilder.group({
-    vehicle: this._formBuilder.group({
-      // brandModel: [{ value: '', disabled: false }, [Validators.maxLength(50)]], // 厂牌型号实体Id
-      labelCode: [{ value: '', disabled: false }, [Validators.required]],
-      vehicleType: [{ value: '', disabled: false }, [Validators.required]],
-      plateNumber: [{ value: '', disabled: false }, [Validators.required]],
-      frameNumber: [{ value: '', disabled: false }, [Validators.required]],
-      // engineNumber: [{ value: '', disabled: false }, [Validators.required]],
-      registration: [{ value: '', disabled: false }, [Validators.required, Validators.maxLength(12)]],
-      registrationDate: [{ value: '', disabled: false }, [Validators.maxLength(50)]],
-      useCharacter: [{ value: '', disabled: false }, [Validators.required]],
-      useNature: [{ value: '', disabled: false }, [Validators.maxLength(50)]],
-      displacement: [{ value: '', disabled: false }, [Validators.maxLength(50)]],
-      range: [{ value: '', disabled: false }, [Validators.maxLength(50)]],
-      size: [{ value: '', disabled: false }, [Validators.required]],
-      mileage: [{ value: '', disabled: false }, [Validators.required]],
-      otherConditions: [{ value: '', disabled: false }, [Validators.maxLength(50)]],
-      origin: [{ value: '', disabled: false }, [Validators.maxLength(50)]],
-      fee: [{ value: '', disabled: false }, [Validators.required]],
-      // eeee: [{ value: '', disabled: false }, [Validators.maxLength(50)]],
-      /**
-       * TODO: 注意 eeee 字段，后台可能暂未准备好接收，但是是业务必须的字段
-       * TODO: 注意 eeee 字段的错误信息
-       */
-    }),
+    vehicle: this._bussinessFormGroup.vehicle,
   });
   constructor(
     private _trade: TradeService,
     private _message: MessageService,
     private _prejudicationService: PrejudicationService,
     private _formBuilder: FormBuilder,
+    private _bussinessFormGroup: BussinessFormGroup,
     private _router: Router,
     private _route: ActivatedRoute,
     private _file: FileSystemService,
@@ -111,15 +90,17 @@ export class RecordingContinueComponent implements OnInit {
      * 可能的缓存
      * @type {any | any}
      */
-    let maybe_vehicle = this._localstorage.get(this._cache_pre + 'continue_vehicle');
-    if (maybe_vehicle) {
-      this._formGroup.patchValue(maybe_vehicle);
-      let maybe_continue_archiveNo = this._localstorage.get(this._cache_pre + 'continue_archiveNo');
-      if (maybe_continue_archiveNo) {
-        this.archiveNo = maybe_continue_archiveNo;
+    if (!this.archiveNo) {
+      let maybe_vehicle = this._localstorage.get(this._cache_pre + 'continue_vehicle');
+      if (maybe_vehicle) {
+        this._formGroup.patchValue(maybe_vehicle);
+        let maybe_continue_archiveNo = this._localstorage.get(this._cache_pre + 'continue_archiveNo');
+        if (maybe_continue_archiveNo) {
+          this.archiveNo = maybe_continue_archiveNo;
+        }
+      } else {
+        console.info(maybe_vehicle);
       }
-    } else {
-      console.info(maybe_vehicle);
     }
   }
   onChangeSelectedCar(trade: TradeForm): void {

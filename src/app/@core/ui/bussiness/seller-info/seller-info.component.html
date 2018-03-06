@@ -86,14 +86,14 @@
     <div class="input-group">
       <div class="input-group">
         <span class="input-group-addon">地址</span>
-        <input type="text" placeholder="" class="form-control" formControlName="address"
+        <input type="text" placeholder="" class="form-control" formControlName="sellerAddress"
                ngxInputWithPhoto
                [iwp_photoDetailTmp]="photoDetailTemplate"
                [iwp_photos_url]="seller.get('_photos_').value"
                [iwp_certType]="seller.value.certType"
                [iwp_formName]="'record.sellerForm'"
-               [ngClass]="{'form-control-danger':seller.get('address').invalid && seller.get('address').touched}"/>
-        <ngx-valid-error [errors]="errors.address" [control]="seller.get('address')"></ngx-valid-error>
+               [ngClass]="{'form-control-danger':seller.get('sellerAddress').invalid && seller.get('sellerAddress').touched}"/>
+        <ngx-valid-error [errors]="errors.sellerAddress" [control]="seller.get('sellerAddress')"></ngx-valid-error>
       </div>
     </div>
   </nb-card-body>

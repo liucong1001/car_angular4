@@ -7,11 +7,12 @@ import {LocalstorageService} from '../../../../@core/cache/localstorage.service'
 import {CodeService} from '../../../../@core/data/system/code.service';
 import {CodeitemService} from '../../../../@core/data/system/codeitem.service';
 import {Codeitem} from '../../../../@core/model/system/codeitem';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {MarketService} from '../../../../@core/data/system/market.service';
 import {FilingInfoModel} from '../../../../@core/model/bussiness/filing.info.model';
 import {UserService} from '../../../../@core/data/users.service';
 import {Marketphotomap} from '../../../../@core/model/system/market-photo-map';
+import {BussinessFormGroup} from '../../bussiness.form-group';
 
 /**
  * 预审录入2--接口与页面的交互逻辑
@@ -40,27 +41,11 @@ export class Recording2Component implements OnInit, OnDestroy {
   certificateFormConfig: Marketphotomap;
   linkmanSelected: FilingInfoModel = {};
   public _formGroup: FormGroup = this._formBuilder.group({
-    seller: this._formBuilder.group({
-      certType: ['', [Validators.required]],
-      certCode: ['', [Validators.required]],
-      name: ['', [Validators.required, Validators.maxLength(64)]],
-      endDate: ['', [Validators.required]],
-      phone: ['', [Validators.required]],
-      trusteeType: ['0', [Validators.required]],
-      address: ['', [Validators.required]],
-      Trustee: this._formBuilder.group({
-        certCode: ['', [Validators.required]],
-        name: ['', [Validators.required, Validators.maxLength(64)]],
-        endDate: ['', [Validators.required]],
-        phone: ['', [Validators.required]],
-        trusteeType: ['0', [Validators.required]],
-        address: ['', [Validators.required]],
-      }),
-      // flag: ['', [Validators.required]],
-    }),
+    seller: this._bussinessFormGroup.seller,
   });
   constructor(
     private _formBuilder: FormBuilder,
+    private _bussinessFormGroup: BussinessFormGroup,
     private _router: Router,
     private _idcard: IdcardService,
     private _message: MessageService,

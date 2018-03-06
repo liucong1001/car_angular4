@@ -5,6 +5,7 @@ import {LocalstorageService} from '../../../../@core/cache/localstorage.service'
 import {Codeitem} from '../../../../@core/model/system/codeitem';
 import {CodeitemService} from '../../../../@core/data/system/codeitem.service';
 import {Marketphotomap} from '../../../../@core/model/system/market-photo-map';
+import {BussinessFormGroup} from '../../bussiness.form-group';
 
 /**
  * 预审录入3--接口与页面的交互逻辑
@@ -30,31 +31,7 @@ export class Recording3Component implements OnInit, OnDestroy {
   useCharacter: Codeitem[];
   vehicleType: Codeitem[];
   vehicleSize: Codeitem[];
-  public _formGroup: FormGroup = this._formBuilder.group({
-    // brandModel: ['1', [Validators.maxLength(50)]], // 厂牌型号实体Id
-    labelCode: ['宝马WBA1A110', [Validators.required]], // 厂牌型号名称
-    vehicleType: ['01', [Validators.required]], // 车辆类型代码
-    plateNumber: ['', [Validators.required]], // 车牌号
-    frameNumber: ['LVGBE40K28G244297', [Validators.required]], // 车架号
-    // engineNumber: ['C466626', [Validators.required]],
-    registration: ['1', [Validators.required, Validators.maxLength(12)]], // 登记证书号 行驶证号
-    registrationDate: ['20080924', [Validators.required]], // 行驶证注册日期
-    useCharacter: ['01', [Validators.required]], // 使用性质代码
-    useNature: ['01', [Validators.required]], // 车辆性质
-    displacement: ['01', [Validators.required]], // 设置排量
-    range: ['01', [Validators.required]], // 排量区间代码
-    size: ['01', [Validators.required]], // 车辆大小代码
-    mileage: ['1000', [Validators.required]], // 行驶里程
-    otherConditions: ['1', [Validators.required]], // 其它状况说明
-    origin: ['01', [Validators.required]], // 车辆产地
-    fee: ['284', [Validators.required]], // 手续费
-
-    // eeee: ['', [Validators.maxLength(50)]],
-    /**
-     * TODO: 注意 eeee 字段，后台可能暂未准备好接收，但是是业务必须的字段
-     * TODO: 注意 eeee 字段的错误信息
-     */
-  });
+  public _formGroup: FormGroup = this._bussinessFormGroup.vehicleAndData;
 
   /**
    * 构造函数
@@ -65,6 +42,7 @@ export class Recording3Component implements OnInit, OnDestroy {
   constructor(
     private _router: Router,
     private _formBuilder: FormBuilder,
+    private _bussinessFormGroup: BussinessFormGroup,
     private _localstorage: LocalstorageService,
     private _codeitem: CodeitemService,
   ) {}
