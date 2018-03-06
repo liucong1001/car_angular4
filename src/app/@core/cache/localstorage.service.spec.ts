@@ -5,7 +5,7 @@ import { LocalstorageService } from './localstorage.service';
 describe('LocalstorageService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [LocalstorageService]
+      providers: [LocalstorageService],
     });
   });
 

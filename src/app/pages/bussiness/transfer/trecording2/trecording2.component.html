@@ -5,6 +5,12 @@
   (_trade)="getTradeByArchiveNoComponent($event)"
 ></ngx-archive-no-vehicle>
 
+<ngx-ys-buyer-info
+  [buyer]="_formGroup.controls.buyer"
+  [certificateFormConfig]="buyerCertificateFormConfig"
+  [btn_show]="false"
+></ngx-ys-buyer-info>
+
 <div class="float-right">
   <button class="btn btn-primary btn-lg" (click)="onSubmit()">确认提交</button> &nbsp;
 </div>

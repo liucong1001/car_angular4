@@ -3,16 +3,16 @@ import {TradeForm} from '../../model/bussiness/trade/trade.form';
 import {ReviewForm} from '../../model/bussiness/review/review.form';
 import {SellerForm} from '../../model/bussiness/trade/seller.form';
 import {PreVehicleForm} from '../../model/bussiness/trade/preVehicle.form';
-import {Http} from '@angular/http';
 import {UserService} from '../users.service';
 import {MarketStaff} from '../../model/system/market-staff';
+import {RestService} from '../../utils/rest.service';
 
 @Injectable()
 export class PrejudicationService {
   public currentUser: MarketStaff;
   constructor(
     public userService: UserService,
-    public http: Http,
+    public http: RestService,
   ) {
     this.currentUser = this.userService.getCurrentLoginUser();
   }
