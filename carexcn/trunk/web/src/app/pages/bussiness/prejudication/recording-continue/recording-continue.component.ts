@@ -5,7 +5,7 @@ import {TradeService} from '../../../../@core/data/bussiness/trade.service';
 import {LocalstorageService} from '../../../../@core/cache/localstorage.service';
 import {TradeForm} from '../../../../@core/model/bussiness/trade/trade.form';
 import {PrejudicationService} from '../../../../@core/data/bussiness/prejudication.service';
-import {FormBuilder, FormControl, FormGroup, ValidationErrors, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, ValidationErrors} from '@angular/forms';
 import {PreVehicleForm} from '../../../../@core/model/bussiness/trade/preVehicle.form';
 import {PreVehicleModel} from '../../../../@core/model/bussiness/trade/preVehicle/preVehicle.model';
 import {FilingInfoModel} from '../../../../@core/model/bussiness/filing.info.model';

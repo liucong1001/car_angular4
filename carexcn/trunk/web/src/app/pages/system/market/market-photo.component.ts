@@ -23,15 +23,15 @@ export class MarketPhotoComponent implements OnInit {
 
   marketId = '';
   marketName = '';
-  marketisApp ='';
+  marketisApp = '';
   photoType = '';
  market = {
    id: '',
    name: '',
  };
   marketData = {
-     market:this.market,
-     isApp :'',
+     market: this.market,
+     isApp : '',
   };
   /**
    * 添加查询数据
@@ -41,7 +41,7 @@ export class MarketPhotoComponent implements OnInit {
     business : '',
     certificateCode: '',
     formName: '',
-    isApp:'',
+    isApp: '',
     market : {
        id:  this.marketId,
        name: this.marketName,
@@ -63,16 +63,16 @@ export class MarketPhotoComponent implements OnInit {
       this.marketId = params['id'];
       this.marketName = params['marketName'];
       this.marketisApp = params['isApp'];
-       if(this.marketisApp=='0'){
-           this.photoType='PC端';
-       } else if(this.marketisApp=='1'){
-           this.photoType='APP端';
+       if (this.marketisApp == '0'){
+           this.photoType = 'PC端';
+       } else if (this.marketisApp == '1'){
+           this.photoType = 'APP端';
        }
 
 
       this.market.id = this.marketId;
       this.market.name = this.marketName;
-      this.marketData.isApp=this.marketisApp;
+      this.marketData.isApp = this.marketisApp;
       this.searchData.market.id =  params['id'];
       this.searchData.market.name = this.marketName;
       this.searchData.isApp = this.marketisApp;
@@ -122,10 +122,9 @@ export class MarketPhotoComponent implements OnInit {
   filter: any = {};
 
   ngOnInit() {
-    this.marketService.getBusiness(this.marketData).then(res =>{
+    this.marketService.getBusiness(this.marketData).then(res => {
       this.business = res;
-      console.log(this.business[0]);
-      this.selecctBusiness({data: this.business[0], index: 0})
+      this.selecctBusiness({data: this.business[0], index: 0});
     });
   }
 
@@ -152,7 +151,9 @@ export class MarketPhotoComponent implements OnInit {
   }
 
   edit(data) {
-    this.router.navigate(['/pages/system/market/market/photo/edit', { marketId: this.marketId, marketName: this.marketName, id: data.id,marketisApp:this.marketisApp }]);
+    this.router.navigate(['/pages/system/market/market/photo/edit', {
+      marketId: this.marketId, marketName: this.marketName, id: data.id, marketisApp: this.marketisApp,
+    }]);
   }
 
   /**
@@ -160,8 +161,14 @@ export class MarketPhotoComponent implements OnInit {
    */
 
   add() {
-    this.router.navigate(['/pages/system/market/market/photo/edit', { marketId: this.marketId, marketName: this.marketName ,marketisApp:this.marketisApp,
-      business:this.searchData.business,certificateCode:this.searchData.certificateCode,formName:this.searchData.formName}]);
+    this.router.navigate(['/pages/system/market/market/photo/edit', {
+      marketId: this.marketId,
+      marketName: this.marketName ,
+      marketisApp: this.marketisApp,
+      business: this.searchData.business,
+      certificateCode: this.searchData.certificateCode,
+      formName: this.searchData.formName,
+    }]);
   }
 
   back() {

@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {LocalstorageService} from '../../../../@core/cache/localstorage.service';
 import {Codeitem} from '../../../../@core/model/system/codeitem';
 import {CodeitemService} from '../../../../@core/data/system/codeitem.service';

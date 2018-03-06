@@ -4,11 +4,12 @@ import { MarketBrandmap } from './../../model/system/marketbrand';
 import { Marketmap } from './../../model/system/Marketmap';
 import {Marketfeemap} from './../../model/system/market-fee-map';
 import {Marketphotomap} from './../../model/system/market-photo-map';
+import {RestService} from '../../utils/rest.service';
 
 @Injectable()
 export class MarketService {
   private path = '/rest/manager/market';
-  constructor(private http: Http) {
+  constructor(private http: Http, private rest: RestService) {
   }
   /**
    * 根据市场，业务，证件和表单名称查询证件配置信息 [clh021@gmail.com]
@@ -16,7 +17,7 @@ export class MarketService {
    * @returns {Promise<any>}
    */
   public getCertificateConfig(model: Marketphotomap): Promise<any> {
-    return this.http.post(this.path + '/photo/config/photo', model).toPromise();
+    return this.rest.post(this.path + '/photo/config/photo', model).toPromise();
     // return this.http.post('/rest/sys/market/photo/config/photo/', model).toPromise();
   }
   /**

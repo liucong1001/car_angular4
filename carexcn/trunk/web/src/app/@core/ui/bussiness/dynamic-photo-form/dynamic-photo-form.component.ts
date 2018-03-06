@@ -141,6 +141,7 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
     } else {
       console.info('读取动态表单的对应缓存数据cache_name  空');
     }
+    console.info('marketphotomap_arr', marketphotomap_arr);
     // 在循环开始之前的该处，要拿到缓存的数据，循环时使用
     marketphotomap_arr.forEach(r => {
       photo_name_tmp[r.photoType] = r.name;
