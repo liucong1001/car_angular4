@@ -170,7 +170,7 @@ export class Recording4Component implements OnInit, OnDestroy {
       preVehicle: preVehicle,
       // newCarsPrice: '',
     } as PreVehicleForm).then(res => {
-      let trade = res.json() as TradeForm;
+      let trade = res as TradeForm;
       /**
        * 接口返回成功
        * 且发现有  车辆流水号 archiveNo 则
@@ -190,7 +190,7 @@ export class Recording4Component implements OnInit, OnDestroy {
         this._router.navigateByUrl('/pages/bussiness/prejudication/recording-last');
       }
     }).catch(e => {
-      console.info(e);
+      this._message.error('录入错误', e.message);
     });
   }
   /**

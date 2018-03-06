@@ -12,7 +12,7 @@ export class PrejudicationService {
   public currentUser: MarketStaff;
   constructor(
     public userService: UserService,
-    public http: RestService,
+    public rest: RestService,
   ) {
     this.currentUser = this.userService.getCurrentLoginUser();
   }
@@ -25,7 +25,7 @@ export class PrejudicationService {
    * @returns {Promise<any>}
    */
   public create(seller: SellerForm, preVehicle: PreVehicleForm): Promise<any> {
-    return this.http.post(this.api_url_base, {
+    return this.rest.post(this.api_url_base, {
       cloudUser: this.currentUser.cloudUser,
       seller: seller,
       preVehicle: preVehicle,
@@ -38,7 +38,7 @@ export class PrejudicationService {
    * @returns {Promise<any>}
    */
   public carList(archiveNo: string): Promise<any> {
-    return this.http.get(this.api_url_base + '?archiveNo=' + archiveNo).toPromise();
+    return this.rest.get(this.api_url_base + '?archiveNo=' + archiveNo).toPromise();
   }
 
   /**
@@ -48,7 +48,7 @@ export class PrejudicationService {
    * @returns {Promise<any>}
    */
   public addCar(id: string, preVehicle: PreVehicleForm): Promise<any> {
-    return this.http.post(this.api_url_base + '/' + id, {
+    return this.rest.post(this.api_url_base + '/' + id, {
       cloudUser: this.currentUser.cloudUser,
       preVehicle: preVehicle,
     } as TradeForm).toPromise();
@@ -61,7 +61,7 @@ export class PrejudicationService {
    * @returns {Promise<any>}
    */
   public checkCar(plateNumber: string, filingInfoId: string): Promise<any> {
-    return this.http.get('/rest/business/trade/check?plateNumber=' + plateNumber + '&filingInfoId=' + filingInfoId).toPromise();
+    return this.rest.get('/rest/business/trade/check?plateNumber=' + plateNumber + '&filingInfoId=' + filingInfoId).toPromise();
   }
 
   /**
@@ -70,7 +70,7 @@ export class PrejudicationService {
    * @returns {Promise<any>}
    */
   public review(id: string, tradeIds: Array<string>, reviewPhotos: object, sellerinfo: object): Promise<any> {
-    return this.http.put(this.api_url_base, {
+    return this.rest.put(this.api_url_base, {
       prejudication: {
         cloudUser: this.currentUser.cloudUser,
         id: id,

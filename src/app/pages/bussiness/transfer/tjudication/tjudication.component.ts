@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {WebcamService} from '../../../../@core/device/webcam.service';
-import {CarService} from '../../../../@core/data/bussiness/car.service';
 import {CarModel} from '../../../../@core/model/bussiness/car.model';
 import {Router} from '@angular/router';
 import {MessageService} from '../../../../@core/utils/message.service';
-import {TradeForm} from "../../../../@core/model/bussiness/trade/trade.form";
+import {TradeForm} from '../../../../@core/model/bussiness/trade/trade.form';
 
 @Component({
   selector: 'ngx-tjudication',
@@ -30,9 +29,9 @@ export class TjudicationComponent implements OnInit {
    * @param {WebcamService} webcam
    * @param {Router} _router
    */
-  constructor(private message: MessageService, private carService: CarService, private webcam: WebcamService, private _router: Router) {
-    this.carService.getCar('1').then((res) => this.carData = res as CarModel);
-    this.carService.getCars('1').then((res) => this.carsData = res as CarModel[]);
+  constructor(private message: MessageService, private webcam: WebcamService, private _router: Router) {
+    // this.carService.getCar('1').then((res) => this.carData = res as CarModel);
+    // this.carService.getCars('1').then((res) => this.carsData = res as CarModel[]);
   }
   ngOnInit(): void {
   }

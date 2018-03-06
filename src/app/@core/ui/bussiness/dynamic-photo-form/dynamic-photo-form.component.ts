@@ -112,7 +112,7 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
    * 配置证件类型
    */
   setCertificateConfig() {
-    this._market.getCertificateConfig(this.certificateFormConfig).then(res => this.initPhotoMap(res.json() as [Marketphotomap]));
+    this._market.getCertificateConfig(this.certificateFormConfig).then(res => this.initPhotoMap(res as [Marketphotomap]));
   }
 
   /**

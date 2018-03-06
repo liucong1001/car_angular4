@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
-import {Http} from '@angular/http';
 import {TradeForm} from '../../model/bussiness/trade/trade.form';
+import {RestService} from '../../utils/rest.service';
 
 @Injectable()
 export class TradeService {
-  constructor(private http: Http) {}
+  constructor(private rest: RestService) {}
   private api_url_base = '/rest/business/trade';
 
   /**
@@ -13,7 +13,7 @@ export class TradeService {
    * @returns {Promise<any>}
    */
   public get(archiveNo: string): Promise<TradeForm> {
-    return this.http.get(this.api_url_base + '?archiveNo=' + archiveNo).toPromise().then((res) => res.json() as TradeForm);
+    return this.rest.get(this.api_url_base + '?archiveNo=' + archiveNo).toPromise().then((res) => res as TradeForm);
   }
 
   /**
@@ -22,7 +22,7 @@ export class TradeService {
    * @returns {Promise<any>}
    */
   public update(form: TradeForm): Promise<any> {
-    return this.http.put(this.api_url_base, form).toPromise();
+    return this.rest.put(this.api_url_base, form).toPromise();
   }
 
 }

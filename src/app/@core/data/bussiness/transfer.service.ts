@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
-import {Http} from '@angular/http';
 import {TradeForm} from '../../model/bussiness/trade/trade.form';
 import {ReviewForm} from '../../model/bussiness/review/review.form';
+import {RestService} from '../../utils/rest.service';
 
 @Injectable()
 export class TransferService {
-  constructor(private http: Http) {}
+  constructor(private rest: RestService) {}
   private api_url_base = '/rest/business/trade/transfer';
   /**
    * 创建过户车辆
@@ -13,7 +13,7 @@ export class TransferService {
    * @returns {Promise<any>} TODO: 检查完善
    */
   public create(form: TradeForm): Promise<any> {
-    return this.http.post(this.api_url_base, form).toPromise();
+    return this.rest.post(this.api_url_base, form).toPromise();
   }
 
   /**
@@ -23,7 +23,7 @@ export class TransferService {
    * @returns {Promise<any>}
    */
   public addCar(id: string, form: TradeForm): Promise<any> {
-    return this.http.post(this.api_url_base + '/' + id, form).toPromise();
+    return this.rest.post(this.api_url_base + '/' + id, form).toPromise();
   }
 
   /**
@@ -32,7 +32,7 @@ export class TransferService {
    * @returns {Promise<any>}
    */
   public selectCar(archiveNo: string): Promise<any> {
-    return this.http.get('/rest/business/trade?archiveNo=' + archiveNo).toPromise();
+    return this.rest.get('/rest/business/trade?archiveNo=' + archiveNo).toPromise();
   }
 
   /**
@@ -41,6 +41,6 @@ export class TransferService {
    * @returns {Promise<any>}
    */
   public review(form: ReviewForm): Promise<any> {
-    return this.http.put(this.api_url_base, form).toPromise();
+    return this.rest.put(this.api_url_base, form).toPromise();
   }
 }

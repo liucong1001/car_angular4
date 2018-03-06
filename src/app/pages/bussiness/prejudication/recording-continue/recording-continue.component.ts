@@ -132,7 +132,7 @@ export class RecordingContinueComponent implements OnInit {
       console.info(res);
       this._message.info('操作提示', '车辆添加成功！');
       this._prejudicationService.carList(this.trade.prejudication.business.archiveNo).then(r => {
-        this.tradeList = r.json() as [TradeForm];
+        this.tradeList = r as [TradeForm];
       }).catch(e => {
         console.info(e);
       });
