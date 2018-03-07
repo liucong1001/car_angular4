@@ -85,7 +85,7 @@ export class Recording3Component implements OnInit, OnDestroy {
     console.info('exec on destroy.');
     this._localstorage.set(this._cache_pre + 'vehicle', this._formGroup.value);
     this._localstorage.set(this._cache_pre + 'vehicle_photos', this._formGroup.get('_photos_').value);
-    this._localstorage.set('cardetail__dynamic_photos', this._cache_pre + 'vehicle_photos');
+    this._localstorage.set('dynamic_photos_cardetail', this._cache_pre + 'vehicle_photos');
   }
 
   onSubmit() {

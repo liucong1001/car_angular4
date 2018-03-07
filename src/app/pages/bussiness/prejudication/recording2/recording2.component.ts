@@ -111,7 +111,7 @@ export class Recording2Component implements OnInit, OnDestroy {
     this._localstorage.set(this._cache_pre + 'certType', this.certTypeSelected);
     this._localstorage.set(this._cache_pre + 'seller_form', this._formGroup.value);
     this._localstorage.set(this._cache_pre + 'seller_photos', this._formGroup.get('seller').get('_photos_').value);
-    this._localstorage.set('seller_info__dynamic_photos', this._cache_pre + 'seller_photos');
+    this._localstorage.set('dynamic_photos_seller_info', this._cache_pre + 'seller_photos');
   }
 
   /**
