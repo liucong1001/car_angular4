@@ -177,7 +177,9 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
       }
     });
     this.photos_name = photo_name_tmp;
+    console.info('dynamic photos_name', this.photos_name);
     this.photos_url = photo_url_tmp;
+    console.info('dynamic photos_url', this.photos_url);
   }
 
   /**

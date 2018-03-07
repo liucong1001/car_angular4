@@ -185,8 +185,8 @@ export class Recording4Component implements OnInit, OnDestroy {
         // this._localstorage.del(this._cache_pre + 'dealer');
         // this._localstorage.del(this._cache_pre + 'vehicle');
         // this._localstorage.del(this._cache_pre + 'seller_form');
-        // this._localstorage.del('cardetail__dynamic_photos');
-        // this._localstorage.del('seller_info__dynamic_photos');
+        // this._localstorage.del('dynamic_photos_cardetail');
+        // this._localstorage.del('dynamic_photos_seller_info');
         this._router.navigateByUrl('/pages/bussiness/prejudication/recording-last');
       }
     }).catch(e => {
