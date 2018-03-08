@@ -1,0 +1,152 @@
+.bill{
+  padding:20px;
+  background: #fffdfb;
+  font-family:宋体;
+  color:#9d261d;
+}
+@media screen and (max-width:2000px) {
+  .bill{
+    zoom:100%;
+  }
+}
+@media screen and (max-width: 1400px) {
+  .bill{
+    zoom:100%;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .bill{
+    zoom:80%;
+  }
+}
+.bill input{
+  border:0;
+  width:100%;
+  height:28px;
+  background-color: transparent;
+  outline: none;
+}
+.bill input:focus{
+  border: 0;
+  outline: none;
+}
+.bill .bill-title{
+  text-align: center;
+  font-size:24px;
+  font-weight: 700;
+}
+.bill .bill-body{
+  position: relative;
+  font-family: 楷体;
+  font-size:16px;
+  border: 2px solid #9d261d;
+}
+.bill .bill-row{
+  line-height:30px;
+  margin-top:-1px;
+}
+.bill .bill-row:first-child{
+  margin-top:0;
+}
+.bill .bill-body .bill-cell{
+  border-left:1px solid #9d261d;
+  border-top:1px solid #9d261d;
+  float:left;
+  margin:0;
+  /*	margin-left:-1px;
+      margin-top: -1px;*/
+  height:30px;
+  padding: 0 5px;
+}
+.bill .bill-row :first-child{
+  border-left: 0;
+}
+.bill .span1{
+  width:5%;
+}
+.bill .span2{
+  width:10%;
+}
+.bill .span3{
+  width:15%;
+}
+.bill .span4{
+  width:20%;
+}
+.bill .span5{
+  width:25%;
+}
+.bill .span6{
+  width:30%;
+}
+.bill .span7{
+  width:35%;
+}
+.bill .span8{
+  width:40%;
+}
+.bill .span9{
+  width:45%;
+}
+.bill .span10{
+  width:50%;
+}
+.bill .span11{
+  width:55%;
+}
+.bill .span12{
+  width:60%;
+}
+.bill .span13{
+  width:65%;
+}
+.bill .span14{
+  width:70%;
+}
+.bill .span15{
+  width:75%;
+}
+.bill .span16{
+  width:80%;
+}
+.bill .span17{
+  width:85%;
+}
+.bill .span18{
+  width:90%;
+}
+.bill .span19{
+  width:95%;
+}
+.bill .span20{
+  width:100%;
+}
+.bill .bill-body .offset9{
+  margin-left:45%;
+}
+.bill .bill-body .rowspan2{
+  height:60px;line-height: 30px;
+}
+
+.bill .bill-date{
+  position: absolute;
+  top:-30px;
+  left:0;
+
+}
+
+.bill .bill-no{
+  position: absolute;
+  top:-30px;
+  right:0;
+}
+.bill .bill-no input{
+  width:120px;
+}
+
+.bill .input-dropdown li{
+  padding:0 10px;
+}
+.button_print{
+  padding-top: 30px;
+}

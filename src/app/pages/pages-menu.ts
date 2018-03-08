@@ -82,8 +82,12 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'ion-social-usd-outline',
     children: [
       {
-        title: '开具发票',
-        link: '/pages/money/print-invoice',
+        title: '发票打印',
+        link: '/pages/money/print',
+      },
+      {
+        title: '发票查询',
+        link: '/pages/money/printList',
       },
       {
         title: '订单管理',

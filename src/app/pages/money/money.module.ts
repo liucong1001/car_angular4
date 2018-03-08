@@ -15,6 +15,9 @@ import { PaymentOrderComponent } from './payment-order/payment-order.component';
 import { OrderCancelComponent } from './order-cancel/order-cancel.component';
 import {SystemModule as CoreSystemModule} from '../../@core/data/system/system.module';
 import {BusinessTypePipe} from '../../@core/data/bussiness/businessType.pipe';
+import { PrintComponent } from './print/print.component';
+import { PrintSuccessComponent } from './print/print-success/print-success.component';
+import { PrintListComponent } from './print/print-list/print-list.component';
 
 const components = [
   BusinessTypePipe,
@@ -35,7 +38,7 @@ const components = [
   ],
   declarations: [
     ...routedComponents,
-    ...components
+    ...components,
   ],
 })
 export class MoneyModule { }
