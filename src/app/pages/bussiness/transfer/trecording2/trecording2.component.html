@@ -5,10 +5,11 @@
   (_trade)="getTradeByArchiveNoComponent($event)"
 ></ngx-archive-no-vehicle>
 
-<ngx-ys-buyer-info
+<ngx-ys-buyer-info *ngIf="trade"
   [buyer]="_formGroup.controls.buyer"
   [certificateFormConfig]="buyerCertificateFormConfig"
-  [btn_show]="false"
+  [merchant]="trade.preVehicle.preVehicle.merchant"
+  [cheshang]="trade.preVehicle.preVehicle.filingInfo"
 ></ngx-ys-buyer-info>
 
 <div class="float-right">

@@ -39,13 +39,13 @@ export class ArchiveNoVehicleComponent implements OnInit {
    * 根据车辆流水号获取预审业务对象(拿到车辆列表)
    * @param archiveNo 预审业务流水号(预审批次号)
    */
-  getTradeByArchiveNo(archiveNo) {
+  public getTradeByArchiveNo(archiveNo) {
     this._transferService.selectCar(archiveNo).then(res => {
       let trade = res as TradeForm;
       this.tradeList = [trade] as [TradeForm];
-      console.info('trade[0]', this.tradeList[0]);
+      // console.info('trade[0]', this.tradeList[0]);
       this.trade = this.tradeList[0] as TradeForm;
-      console.info('trade as result', this.trade);
+      // console.info('trade as result', this.trade);
       this._tradeList.emit(this.tradeList);
       this._trade.emit(this.trade);
     }).catch(e => {
