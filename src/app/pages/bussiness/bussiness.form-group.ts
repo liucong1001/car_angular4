@@ -36,6 +36,8 @@ export class BussinessFormGroup {
     Trustee: this.trustee,
     // flag: ['', [Validators.required]],
   });
+  public vehicleTransfer = this._formBuilder.group({
+  });
   public vehicle = this._formBuilder.group({
     // brandModel: [{ value: '', disabled: false }, [Validators.maxLength(50)]], // 厂牌型号实体Id
     labelCode: [{ value: '', disabled: false }, [Validators.required]],

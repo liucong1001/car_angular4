@@ -18,12 +18,14 @@ export class Trecording2Component implements OnInit {
   vehicleCertificateFormConfig: Marketphotomap;
   sellerCertificateFormConfig: Marketphotomap;
   buyerCertificateFormConfig: Marketphotomap;
+  vehicleTransferCertificateFormConfig: Marketphotomap;
   public archiveNo = '';
   public trade: TradeForm;
   // public trade: TradeForm = {preVehicle: {preVehicle: {filingInfo: {}, merchant: {}}}};
   public tradeList: [TradeForm];
   public _formGroup: FormGroup = this._formBuilder.group({
     buyer: this._bussinessFormGroup.buyer,
+    vehicleTransfer: this._bussinessFormGroup.vehicleTransfer,
   });
   constructor(
     private _router: Router,
@@ -68,6 +70,12 @@ export class Trecording2Component implements OnInit {
       certificateCode: '00', // 证件类型代码集
       business: '02', //  01 预审  02 过户
       formName: '过户录入买家', // 表单名称
+    } as Marketphotomap;
+    this.vehicleTransferCertificateFormConfig = {
+      isApp: '0',
+      certificateCode: '00', // 证件类型代码集
+      business: '02', //  01 预审  02 过户
+      formName: '过户录入车辆', // 表单名称
     } as Marketphotomap;
   }
   onSubmit() {

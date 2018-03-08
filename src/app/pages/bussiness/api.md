@@ -107,7 +107,7 @@
       photos 				买录入图片列表<map>  与车相关的图片可能有； 增值税发票，消费税发票，委托书(一车一委托，委托人的委托书)，代办证明(海南的一车一委托)
       TransferVehicle 			<obj>
         id
-        FilingInfo	备案人对象实例	id  代办员的Id，
+        FilingInfo	备案人对象实例	id  过户的代办员的Id，
         merchant    商户 
         vehicleManagement  车管所
         billMemo    发表备注

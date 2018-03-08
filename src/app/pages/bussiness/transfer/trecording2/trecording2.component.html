@@ -4,7 +4,10 @@
   (_tradeList)="getTradeListByArchiveNoComponent($event)"
   (_trade)="getTradeByArchiveNoComponent($event)"
 ></ngx-archive-no-vehicle>
-
+<ngx-ys-car-transfer
+  [vehicleTransfer]="_formGroup.controls.vehicleTransfer"
+  [certificateFormConfig]="vehicleTransferCertificateFormConfig"
+></ngx-ys-car-transfer>
 <ngx-ys-buyer-info *ngIf="trade"
   [buyer]="_formGroup.controls.buyer"
   [certificateFormConfig]="buyerCertificateFormConfig"

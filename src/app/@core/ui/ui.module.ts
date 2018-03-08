@@ -31,6 +31,7 @@ import { PhotoDetailComponent } from './bussiness/photo-detail/photo-detail.comp
 import {InputWithPhotoDirective} from './bussiness/photo-detail/input-with-photo.directive';
 import { ArchiveNoVehicleComponent } from './bussiness/archive-no-vehicle/archive-no-vehicle.component';
 import { BuyerInfoComponent } from './bussiness/buyer-info/buyer-info.component';
+import { CarTransferComponent } from './bussiness/car-transfer/car-transfer.component';
 
 const COMPONENTS = [
   CameraComponent,
@@ -58,6 +59,7 @@ const COMPONENTS = [
   DynamicPhotoFormComponent,
   PhotoDetailComponent,
   ArchiveNoVehicleComponent,
+  CarTransferComponent,
 ];
 
 @NgModule({
