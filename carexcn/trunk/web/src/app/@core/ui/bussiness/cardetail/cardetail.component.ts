@@ -19,7 +19,7 @@ export class CardetailComponent implements OnInit {
    */
   @Input() btn_show? = true;
   /**
-   * 卖家表单
+   * 车辆表单
    */
   @Input() vehicle: FormGroup;
   /**
