@@ -37,6 +37,11 @@ export class BussinessFormGroup {
     // flag: ['', [Validators.required]],
   });
   public vehicleTransfer = this._formBuilder.group({
+    vehicleManagement: ['', [Validators.required]],
+    billMemo: ['', [Validators.required]],
+    evaluatePrice: ['', [Validators.required]],
+    bargainPrice: ['', [Validators.required]],
+    fee: ['', [Validators.required]],
   });
   public vehicle = this._formBuilder.group({
     // brandModel: [{ value: '', disabled: false }, [Validators.maxLength(50)]], // 厂牌型号实体Id
