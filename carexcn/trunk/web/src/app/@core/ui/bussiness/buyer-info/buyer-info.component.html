@@ -1,5 +1,5 @@
 <!--<ngx-ys-photo-detail #photoDetailTemplate></ngx-ys-photo-detail>-->
-<!--<nb-card>-->
+<nb-card>
   <nb-card-header>
     <div class="cameras-card-header">
       <span class="cameras-card-title">买方信息</span>
@@ -9,102 +9,102 @@
     <div class="input-group">
       <div class="input-group">
         <span class="input-group-addon">代办商户</span>
-        <ngx-ys-autoinput [results_resource_url]="autoinput_shanghu_source_url" (_value)="getSelectedDealer($event)" [showProperty]="'name'" [defaultValue]="dealer"></ngx-ys-autoinput>
+        <ngx-ys-autoinput [results_resource_url]="autoinput_shanghu_source_url" (_value)="getSelectedDealer($event)" [showProperty]="'name'" [defaultValue]="merchant"></ngx-ys-autoinput>
+      </div>
+      <div class="input-group" *ngIf="showCheshang">
+        <span class="input-group-addon">车商</span>
+        <ngx-ys-autoinput [results_resource_url]="autoinput_cheshang_source_url" (_value)="getSelectedCheshang($event)"
+                          [showProperty]="'name'" [defaultValue]="cheshang" [placeholder]="'不是车商'"></ngx-ys-autoinput>
       </div>
     </div>
     <!-- 修改此处，把选择证件类型之后，的动态组件相关操作都移动到动态组件当中去，由动态组件完成该操作 -->
-    <!--<ngx-ys-dynamic-photo-form-->
-      <!--[photos]="buyer.get('_photos_')"-->
-      <!--[certificateFormConfig]="certificateFormConfig"-->
-      <!--[data_localStrong_name]="'dynamic_photos_buyer_info'"-->
-      <!--[btn_show]="btn_show"-->
-    <!--&gt;</ngx-ys-dynamic-photo-form>-->
-    <!--<div class="input-group">-->
-      <!--<div class="input-group" *ngIf="showCheshang">-->
-        <!--<span class="input-group-addon">车商</span>-->
-        <!--<ngx-ys-autoinput [results_resource_url]="autoinput_cheshang_source_url" (_value)="getSelectedCheshang($event)"-->
-                          <!--[showProperty]="'name'" [defaultValue]="cheshang" [placeholder]="'不是车商'"></ngx-ys-autoinput>-->
-      <!--</div>-->
-      <!--<div class="input-group">-->
-        <!--<span class="input-group-addon">是否委托</span>-->
-        <!--<select class="form-control" formControlName="trusteeType" (change)="trusteeTypeChange()">-->
-          <!--<option value="1">是</option>-->
-          <!--<option value="0">否</option>-->
+    <ngx-ys-dynamic-photo-form
+      [photos]="buyer.get('_photos_')"
+      [certificateFormConfig]="certificateFormConfig"
+      [data_localStrong_name]="'dynamic_photos_buyer_info'"
+      [btn_show]="btn_show"
+    ></ngx-ys-dynamic-photo-form>
+    <div class="input-group">
+      <div class="input-group">
+        <span class="input-group-addon">是否委托</span>
+        <select class="form-control" formControlName="trusteeType" (change)="trusteeTypeChange()">
+          <option value="1">是</option>
+          <option value="0">否</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">证件类型</span>
+        <ngx-ys-codeitem-droplist formControlName="certType" [ifDisabled]="!btn_show" [codeMap]="'certType'" (_selectedValue)="certTypeSelecteFunc($event)" style="width: 100%;"></ngx-ys-codeitem-droplist>
+        <!--<ngx-ys-codeitem-droplist formControlName="certType" [ifDisabled]="false" (_selectedValue)="certificateTypeSelecteFunc($event)" [codeMap]="'certType'" style="width: 100%;"></ngx-ys-codeitem-droplist>-->
+        <!--要拿到实体数据-->
+        <!--<select class="form-control" formControlName="certType" (change)="certificateTypeSelecteFunc()" [compareWith]="certificateTypeCompareWithFunc">-->
+        <!--<select class="form-control" formControlName="certType" (change)="certTypeSelecteFunc()">-->
+        <!--<option *ngFor="let code of certType" [ngValue]="code.code">{{code.name}}</option>-->
         <!--</select>-->
-      <!--</div>-->
-      <!--<div class="input-group">-->
-        <!--<span class="input-group-addon">证件类型</span>-->
-        <!--<ngx-ys-codeitem-droplist formControlName="certType" [ifDisabled]="!btn_show" [codeMap]="'certType'" (_selectedValue)="certTypeSelecteFunc($event)" style="width: 100%;"></ngx-ys-codeitem-droplist>-->
-        <!--&lt;!&ndash;<ngx-ys-codeitem-droplist formControlName="certType" [ifDisabled]="false" (_selectedValue)="certificateTypeSelecteFunc($event)" [codeMap]="'certType'" style="width: 100%;"></ngx-ys-codeitem-droplist>&ndash;&gt;-->
-        <!--&lt;!&ndash;要拿到实体数据&ndash;&gt;-->
-        <!--&lt;!&ndash;<select class="form-control" formControlName="certType" (change)="certificateTypeSelecteFunc()" [compareWith]="certificateTypeCompareWithFunc">&ndash;&gt;-->
-        <!--&lt;!&ndash;<select class="form-control" formControlName="certType" (change)="certTypeSelecteFunc()">&ndash;&gt;-->
-        <!--&lt;!&ndash;<option *ngFor="let code of certType" [ngValue]="code.code">{{code.name}}</option>&ndash;&gt;-->
-        <!--&lt;!&ndash;</select>&ndash;&gt;-->
-        <!--<ngx-valid-error [errors]="errors.certType" [control]="buyer.get('certType')"></ngx-valid-error>-->
-      <!--</div>-->
-    <!--</div>-->
+        <ngx-valid-error [errors]="errors.certType" [control]="buyer.get('certType')"></ngx-valid-error>
+      </div>
+    </div>
 
-    <!--<div class="input-group">-->
-      <!--<div class="input-group">-->
-        <!--<span class="input-group-addon">姓名</span>-->
-        <!--<input type="text" placeholder=""-->
-               <!--ngxInputWithPhoto-->
-               <!--[iwp_photoDetailTmp]="photoDetailTemplate"-->
-               <!--[iwp_photos_url]="buyer.get('_photos_').value"-->
-               <!--[iwp_certType]="buyer.value.certType"-->
-               <!--[iwp_formName]="'record.buyer'"-->
-               <!--class="form-control" formControlName="name"-->
-               <!--[ngClass]="{'form-control-danger':buyer.get('name').invalid && buyer.get('name').touched}"/>-->
-        <!--<ngx-valid-error [errors]="errors.name" [control]="buyer.get('name')"></ngx-valid-error>-->
-      <!--</div>-->
-      <!--<div class="input-group">-->
-        <!--<span class="input-group-addon">手机</span>-->
-        <!--<input type="text" placeholder="" class="form-control" formControlName="phone"-->
-               <!--[ngClass]="{'form-control-danger':buyer.get('phone').invalid && buyer.get('phone').touched}"/>-->
-        <!--<ngx-valid-error [errors]="errors.phone" [control]="buyer.get('phone')"></ngx-valid-error>-->
-      <!--</div>-->
-      <!--<button class="btn btn-primary btn-sm" (click)="readIdCard()">读取身份证</button>-->
-    <!--</div>-->
-    <!--<div class="input-group">-->
-      <!--<div class="input-group">-->
-        <!--<span class="input-group-addon">证件号码</span>-->
-        <!--<input type="text" placeholder="" class="form-control" formControlName="certCode"-->
-               <!--ngxInputWithPhoto-->
-               <!--[iwp_photoDetailTmp]="photoDetailTemplate"-->
-               <!--[iwp_photos_url]="buyer.get('_photos_').value"-->
-               <!--[iwp_certType]="buyer.value.certType"-->
-               <!--[iwp_formName]="'record.buyerForm'"-->
-               <!--[ngClass]="{'form-control-danger':buyer.get('certCode').invalid && buyer.get('certCode').touched}"/>-->
-        <!--<ngx-valid-error [errors]="errors.certCode" [control]="buyer.get('certCode')"></ngx-valid-error>-->
-      <!--</div>-->
-      <!--<div class="input-group">-->
-        <!--<span class="input-group-addon">证件有效期</span>-->
-        <!--<input type="text" placeholder="" class="form-control" formControlName="endDate"-->
-               <!--ngxInputWithPhoto-->
-               <!--[iwp_photoDetailTmp]="photoDetailTemplate"-->
-               <!--[iwp_photos_url]="buyer.get('_photos_').value"-->
-               <!--[iwp_certType]="buyer.value.certType"-->
-               <!--[iwp_formName]="'record.buyerForm'"-->
-               <!--[ngClass]="{'form-control-danger':buyer.get('endDate').invalid && buyer.get('endDate').touched}"/>-->
-        <!--<ngx-valid-error [errors]="errors.endDate" [control]="buyer.get('endDate')"></ngx-valid-error>-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="input-group">-->
-      <!--<div class="input-group">-->
-        <!--<span class="input-group-addon">地址</span>-->
-        <!--<input type="text" placeholder="" class="form-control" formControlName="buyerAddress"-->
-               <!--ngxInputWithPhoto-->
-               <!--[iwp_photoDetailTmp]="photoDetailTemplate"-->
-               <!--[iwp_photos_url]="buyer.get('_photos_').value"-->
-               <!--[iwp_certType]="buyer.value.certType"-->
-               <!--[iwp_formName]="'record.buyerForm'"-->
-               <!--[ngClass]="{'form-control-danger':buyer.get('buyerAddress').invalid && buyer.get('buyerAddress').touched}"/>-->
-        <!--<ngx-valid-error [errors]="errors.buyerAddress" [control]="buyer.get('buyerAddress')"></ngx-valid-error>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</nb-card-body>-->
-<!--</nb-card>-->
+    <div class="input-group">
+      <div class="input-group">
+        <span class="input-group-addon">姓名</span>
+        <input type="text" placeholder=""
+               ngxInputWithPhoto
+               [iwp_photoDetailTmp]="photoDetailTemplate"
+               [iwp_photos_url]="buyer.get('_photos_').value"
+               [iwp_certType]="buyer.value.certType"
+               [iwp_formName]="'record.buyer'"
+               class="form-control" formControlName="name"
+               [ngClass]="{'form-control-danger':buyer.get('name').invalid && buyer.get('name').touched}"/>
+        <ngx-valid-error [errors]="errors.name" [control]="buyer.get('name')"></ngx-valid-error>
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">手机</span>
+        <input type="text" placeholder="" class="form-control" formControlName="phone"
+               [ngClass]="{'form-control-danger':buyer.get('phone').invalid && buyer.get('phone').touched}"/>
+        <ngx-valid-error [errors]="errors.phone" [control]="buyer.get('phone')"></ngx-valid-error>
+      </div>
+      <button class="btn btn-primary btn-sm" (click)="readIdCard()">读取身份证</button>
+    </div>
+    <div class="input-group">
+      <div class="input-group">
+        <span class="input-group-addon">证件号码</span>
+        <input type="text" placeholder="" class="form-control" formControlName="certCode"
+               ngxInputWithPhoto
+               [iwp_photoDetailTmp]="photoDetailTemplate"
+               [iwp_photos_url]="buyer.get('_photos_').value"
+               [iwp_certType]="buyer.value.certType"
+               [iwp_formName]="'record.buyerForm'"
+               [ngClass]="{'form-control-danger':buyer.get('certCode').invalid && buyer.get('certCode').touched}"/>
+        <ngx-valid-error [errors]="errors.certCode" [control]="buyer.get('certCode')"></ngx-valid-error>
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">证件有效期</span>
+        <input type="text" placeholder="" class="form-control" formControlName="endDate"
+               ngxInputWithPhoto
+               [iwp_photoDetailTmp]="photoDetailTemplate"
+               [iwp_photos_url]="buyer.get('_photos_').value"
+               [iwp_certType]="buyer.value.certType"
+               [iwp_formName]="'record.buyerForm'"
+               [ngClass]="{'form-control-danger':buyer.get('endDate').invalid && buyer.get('endDate').touched}"/>
+        <ngx-valid-error [errors]="errors.endDate" [control]="buyer.get('endDate')"></ngx-valid-error>
+      </div>
+    </div>
+    <div class="input-group">
+      <div class="input-group">
+        <span class="input-group-addon">地址</span>
+        <input type="text" placeholder="" class="form-control" formControlName="buyerAddress"
+               ngxInputWithPhoto
+               [iwp_photoDetailTmp]="photoDetailTemplate"
+               [iwp_photos_url]="buyer.get('_photos_').value"
+               [iwp_certType]="buyer.value.certType"
+               [iwp_formName]="'record.buyerForm'"
+               [ngClass]="{'form-control-danger':buyer.get('buyerAddress').invalid && buyer.get('buyerAddress').touched}"/>
+        <ngx-valid-error [errors]="errors.buyerAddress" [control]="buyer.get('buyerAddress')"></ngx-valid-error>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
 
-<!--<ngx-ys-truster-info *ngIf="'1' == buyer.get('trusteeType').value" [merchant]="merchant"-->
-                     <!--[Trustee]="buyer.controls.Trustee" [showCheshang]="showCheshang"></ngx-ys-truster-info>-->
+<ngx-ys-truster-info *ngIf="'1' == buyer.get('trusteeType').value" [merchant]="merchant"
+                     [Trustee]="buyer.controls.Trustee" [showCheshang]="showCheshang"></ngx-ys-truster-info>

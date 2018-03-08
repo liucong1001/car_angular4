@@ -85,7 +85,7 @@
     transferStatus			过户业务对象状态   0已录入;1已审核;2已完成;3已删除;4待录入;5正在录入;6已退回;  [修改时必须]
     buyer 					买方对象实例	     [过户业务时(创建)必须]
       reviewPhotos  		买方审核图片列表<map>
-      photos 				买方录入图片列表<map>
+      photos 				买方录入图片列表<map>  指纹头像，证件
       trusteePhotos 		受托人图片列表<map>
       buyer
         id
@@ -104,11 +104,11 @@
             FilingInfo卖方受托人的备案人实例	id
   
     TransferVehicle			过户车辆对象实例	    [过户时(创建和增加)必须]
-      photos 				卖方录入图片列表<map>
+      photos 				买录入图片列表<map>  与车相关的图片可能有； 增值税发票，消费税发票，委托书(一车一委托，委托人的委托书)，代办证明(海南的一车一委托)
       TransferVehicle 			<obj>
         id
-        FilingInfo	备案人对象实例	id
-        merchant    商户
+        FilingInfo	备案人对象实例	id  代办员的Id，
+        merchant    商户 
         vehicleManagement  车管所
         billMemo    发表备注
         evaluatePrice	评估价格 number	
@@ -116,7 +116,7 @@
         fee	手续费 number	
         review 审核状态 0 - 未审核 1 - 已审核
         invalid 业务状态
-      preVehicleId 		预审车辆标识
+      preVehicleId 		预审车辆标识     preVehicle.preVehicle.id
   
   
   

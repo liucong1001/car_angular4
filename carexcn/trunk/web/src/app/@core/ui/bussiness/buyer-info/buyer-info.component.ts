@@ -27,9 +27,14 @@ export class BuyerInfoComponent implements OnInit {
    */
   @Input() certificateFormConfig: Marketphotomap;
   /**
-   * 当前商户实例
+   * 默认选择的卖家的商户，或当前选择商户实例
    */
   @Input() merchant: MerchantModel = {id: null};
+  /**
+   * 默认选择的卖家的车商，或当前选择的车商
+   * @type {string}
+   */
+  @Input() cheshang: FilingInfoModel;
   /**
    * 证件类型清单
    */
@@ -44,7 +49,7 @@ export class BuyerInfoComponent implements OnInit {
    */
   @Input() errors?: object = {
     certType: [
-      new ErrorMessage('required', '必须填写证件类型！'),
+      new ErrorMessage('required', '必填'),
     ],
     certCode: [
       new ErrorMessage('required', '必须填写证件号码！'),
@@ -71,11 +76,6 @@ export class BuyerInfoComponent implements OnInit {
   };
   @Input() showCheshang = true;
   public autoinput_cheshang_source_url = '/rest/merchant/filing/deal/';
-  /**
-   * 当前选择的车商
-   * @type {string}
-   */
-  cheshang = '';
 
   /**
    * 构造函数
@@ -107,11 +107,9 @@ export class BuyerInfoComponent implements OnInit {
    * 页面初始化事件
    */
   ngOnInit() {
-    if (null === this.merchant) {
-      // 应该要允许选择商户，再选择车商
-    } else {
-      this.autoinput_cheshang_source_url += this.merchant.id + '/';
-    }
+    console.info('buyerinfo merchant', this.merchant);
+    console.info('buyerinfo cheshang', this.cheshang);
+    this.autoinput_cheshang_source_url += this.merchant.id + '/';
     /**
      * 默认不用填写委托人
      */
@@ -123,7 +121,7 @@ export class BuyerInfoComponent implements OnInit {
       this._codeitem.list('certType').then(res => this.certType = res as Codeitem[]);
     }
     console.info('this.buyer.value', this.buyer.value);
-    // this.certTypeSelecteFunc(this.buyer.controls.certType.value);
+    this.certTypeSelecteFunc(this.buyer.controls.certType.value);
   }
   /**
    * 初始化照片动态表单
