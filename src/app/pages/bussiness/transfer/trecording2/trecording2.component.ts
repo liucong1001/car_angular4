@@ -7,6 +7,13 @@ import {MessageService} from '../../../../@core/utils/message.service';
 import {TradeForm} from '../../../../@core/model/bussiness/trade/trade.form';
 import {Marketphotomap} from '../../../../@core/model/system/market-photo-map';
 import {BussinessFormGroup} from '../../bussiness.form-group';
+import {TransferService} from "../../../../@core/data/bussiness/transfer.service";
+import {BuyerForm} from "../../../../@core/model/bussiness/trade/buyer.form";
+import {TransferVehicleForm} from "../../../../@core/model/bussiness/trade/transferVehicle.form";
+import {TransferVehicleModel} from "../../../../@core/model/bussiness/trade/transferVehicle/transferVehicle.model";
+import {BuyerModel} from "../../../../@core/model/bussiness/trade/buyer.model";
+import {FileSystemService} from "../../../../@core/data/system/file-system.service";
+import {FilingInfoModel} from "../../../../@core/model/bussiness/filing.info.model";
 
 @Component({
   selector: 'ngx-trecording2',
@@ -34,6 +41,8 @@ export class Trecording2Component implements OnInit {
     private _formBuilder: FormBuilder,
     private _bussinessFormGroup: BussinessFormGroup,
     private _localstorage: LocalstorageService,
+    private _transfer: TransferService,
+    private _file: FileSystemService,
   ) { }
   getTradeByArchiveNoComponent(trade) {
     // console.info('trade', trade);
@@ -105,7 +114,28 @@ export class Trecording2Component implements OnInit {
     this._localstorage.set(this._cache_pre + 'buyer_photos', this._formGroup.get('buyer').get('_photos_').value);
     this._localstorage.set('dynamic_photos_buyer_info', this._cache_pre + 'buyer_photos');
     this._localstorage.set(this._cache_pre + 'vehicleTransfer', this._formGroup.get('vehicleTransfer').value);
-    // this._router.navigateByUrl('/pages/bussiness/transfer/trecording-last');
+    /**
+     * 发送提交请求
+     */
+    let transferVehicle = this._formGroup.get('vehicleTransfer').value as TransferVehicleModel;
+    // transferVehicle.vehicleManagement = {};
+    delete transferVehicle.vehicleManagement;
+    transferVehicle.filingInfo = this.trade.preVehicle.preVehicle.filingInfo as FilingInfoModel;
+    this._transfer.create(
+      this.trade.archiveNo,
+      this._file.filterPhotosValue(this._formGroup.get('buyer').get('_photos_').value),
+      this._formGroup.get('buyer').value as BuyerModel,
+      {},
+      // this._formGroup.get('vehicleTransfer').value as TransferVehicleModel,
+      transferVehicle,
+      this.trade.preVehicle.preVehicle.id,
+    ).then(res => {
+      console.info('res', res);
+      this._router.navigateByUrl('/pages/bussiness/transfer/trecording-last');
+    }).catch(e => {
+      console.info('e', e);
+      this._message.error('错误', e.message);
+    });
   }
 
 }

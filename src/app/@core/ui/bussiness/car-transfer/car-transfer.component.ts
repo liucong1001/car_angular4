@@ -39,4 +39,10 @@ export class CarTransferComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * 获取车辆管理
+   */
+  getSelectedVehicleManagement(event) {
+    console.info(event);
+  }
 }

@@ -61,7 +61,7 @@ export class PhotoExampleService {
    */
   public getPhotoScroller(fieldName: string, certType: string, formName: string): Promise<number> {
     return this.getPhotoTypeConfigByFieldName(fieldName, certType, formName).then(photoType => {
-      console.info(photoType);
+      // console.info(photoType);
       if (photoType) {
         return this.getPhotoScrollerYConfig(fieldName, photoType);
       } else {

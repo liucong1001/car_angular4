@@ -14,7 +14,7 @@ export class TransferVehicleModel {
   /**
    * 车管所
    */
-  vehicleManagement?: string;
+  vehicleManagement?: object;
   /**
    * 发表备注
    */
