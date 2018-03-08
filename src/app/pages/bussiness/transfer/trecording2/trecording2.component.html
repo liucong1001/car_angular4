@@ -4,10 +4,7 @@
   (_tradeList)="getTradeListByArchiveNoComponent($event)"
   (_trade)="getTradeByArchiveNoComponent($event)"
 ></ngx-archive-no-vehicle>
-<ngx-ys-car-transfer
-  [vehicleTransfer]="_formGroup.controls.vehicleTransfer"
-  [certificateFormConfig]="vehicleTransferCertificateFormConfig"
-></ngx-ys-car-transfer>
+
 <ngx-ys-buyer-info *ngIf="trade"
   [buyer]="_formGroup.controls.buyer"
   [certificateFormConfig]="buyerCertificateFormConfig"
@@ -15,6 +12,11 @@
   [cheshang]="trade.preVehicle.preVehicle.filingInfo"
 ></ngx-ys-buyer-info>
 
+<ngx-ys-car-transfer
+  [vehicleTransfer]="_formGroup.controls.vehicleTransfer"
+  [certificateFormConfig]="vehicleTransferCertificateFormConfig"
+></ngx-ys-car-transfer>
+
 <div class="float-right">
-  <button class="btn btn-primary btn-lg" (click)="onSubmit()">确认提交</button> &nbsp;
+  <button class="btn btn-primary btn-lg" (click)="onSubmit()" [disabled]="_formGroup.invalid">确认提交</button> &nbsp;
 </div>

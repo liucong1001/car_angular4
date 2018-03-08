@@ -85,7 +85,12 @@ export class PhotoExampleService {
         // '?photoType' + photoType + '&fieldName' + fieldName
         // ).toPromise();
     }
-    return this.photo_scrollery_config_cache.then(scroller => scroller[photoType][fieldName]);
+    return this.photo_scrollery_config_cache.then(scroller => {
+      // console.info('photo_scrollery_config_cache scroller', scroller);
+      // console.info('photoType', photoType);
+      // console.info('fieldName', fieldName);
+      return scroller[photoType][fieldName];
+    });
   }
   private photo_scrollery_config = {
     '03': {// 附件类型身份证正面
@@ -93,6 +98,7 @@ export class PhotoExampleService {
       certCode: 80,
       address: 40,
       sellerAddress: 40,
+      buyerAddress: 40, // 被坑了3分钟
     },
     '04': {// 附件类型身份证背面
       endDate: 90,
@@ -113,7 +119,13 @@ export class PhotoExampleService {
       //   // '?certType' + certType + '&formName' + formName + '&fieldName' + fieldName
       //   // ).toPromise();
     }
-    return this.field_name_photo_config_cache.then(conf => conf[certType][formName][fieldName]);
+    return this.field_name_photo_config_cache.then(conf => {
+      // console.info('field_name_photo_config_cache conf', conf);
+      // console.info('certType', certType);
+      // console.info('formName', formName);
+      // console.info('fieldName', fieldName);
+      return conf[certType][formName][fieldName];
+    });
   }
   private field_name_photo_config = {
     // 证件类型
@@ -123,6 +135,14 @@ export class PhotoExampleService {
         certCode: '03', // 附件类型身份证正面
         address: '03', // 附件类型身份证正面
         sellerAddress: '03', // 附件类型身份证正面
+        endDate: '04', // 附件类型身份证背面
+      },
+      'transfer.buyerForm': {
+        name: '03', // 附件类型身份证正面
+        certCode: '03', // 附件类型身份证正面
+        address: '03', // 附件类型身份证正面
+        sellerAddress: '03', // 附件类型身份证正面
+        buyerAddress: '03', // 坑了3分钟
         endDate: '04', // 附件类型身份证背面
       },
     },

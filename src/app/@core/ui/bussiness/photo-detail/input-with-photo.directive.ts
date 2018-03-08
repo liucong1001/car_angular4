@@ -21,25 +21,31 @@ export class InputWithPhotoDirective {
   @Input() iwp_photos_url: Array<string>;
   @HostListener('focus', ['$event'])
   focus(event) {
-    this._photo.getPhotoTypeConfigByFieldName(this._control.name, this.iwp_certType, this.iwp_formName).then(photoType => {
-      if (photoType) {
-        if (this.iwp_photos_url[photoType][0]) {
-          this._photo.getPhotoScrollerYConfig(this._control.name, photoType).then(scroller => {
-            this.iwp_photoDetailTmp.setTop(scroller);
-            this.iwp_photoDetailTmp.setPhotoUrl(this.iwp_photos_url[photoType][0]);
-            this.iwp_photoDetailTmp.ifShow(true);
-          });
+    if (this.iwp_certType) {
+      this._photo.getPhotoTypeConfigByFieldName(this._control.name, this.iwp_certType, this.iwp_formName).then(photoType => {
+        if (photoType) {
+          if (this.iwp_photos_url[photoType][0]) {
+            this._photo.getPhotoScrollerYConfig(this._control.name, photoType).then(scroller => {
+              this.iwp_photoDetailTmp.setTop(scroller);
+              this.iwp_photoDetailTmp.setPhotoUrl(this.iwp_photos_url[photoType][0]);
+              this.iwp_photoDetailTmp.ifShow(true);
+            });
+          } else {
+            console.info(' 当前没有上传图片，忽略放大显示');
+          }
         } else {
-          console.info(' 当前没有上传图片，忽略放大显示');
+          throw new Error('无法获取正确的 photoType');
         }
-      } else {
-        throw new Error('无法获取正确的 photoType');
-      }
-    });
+      });
+    } else {
+      console.info('没有选择证件类型，请先选择证件类型。');
+    }
   }
   @HostListener('blur', ['$event'])
   blur(event) {
-    this.iwp_photoDetailTmp.ifShow(false);
+    if (this.iwp_photoDetailTmp) {
+      this.iwp_photoDetailTmp.ifShow(false);
+    }
   }
 
   /**

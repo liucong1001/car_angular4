@@ -142,6 +142,7 @@ export class BuyerInfoComponent implements OnInit {
    */
   getSelectedCheshang(value) {
     value.certCode = value.filingPerson.certCode;
+    console.info(value);
     this.buyer.patchValue(value);
   }
 
