@@ -1,6 +1,6 @@
 import {Component, EventEmitter, forwardRef, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'ngx-ys-calendar',
   templateUrl: './calendar.component.html',
@@ -9,7 +9,7 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
     provide: NG_VALUE_ACCESSOR,
     multi: true,
     useExisting: forwardRef(() => CalendarComponent),
-  }],
+  }, DatePipe,],
 })
 /**
  * 目前完成为基本可用
@@ -30,7 +30,7 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
   /**
    * 构造函数
    */
-  constructor() {
+  constructor(private datePipe: DatePipe) {
     this.zh_CN = {
       firstDayOfWeek: 0,
       dayNames: ['日', '一', '二', '三', '四', '五', '六'],
@@ -41,6 +41,7 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
       today: '今天',
       clear: '清除',
     };
+
   }
   writeValue(obj: any): void {
     this.dateFormat = obj;
@@ -56,6 +57,6 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
   }
   _onSelect(_event) {
     this.registFunc(_event);
-    this._calendarValue.emit(_event);
+    this._calendarValue.emit(this.datePipe.transform(_event, 'yyyy-MM-dd'));
   }
 }
