@@ -39,6 +39,7 @@ export class AutoinputComponent implements OnInit, ControlValueAccessor {
     }
     if (this.defaultValue != null || this.defaultValue !== undefined) {
       this.value = this.defaultValue;
+      console.info('auto input value', this.value);
     }
   }
   search(_event) {
