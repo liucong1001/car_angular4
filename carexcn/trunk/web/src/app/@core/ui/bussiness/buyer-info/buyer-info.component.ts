@@ -107,8 +107,8 @@ export class BuyerInfoComponent implements OnInit {
    * 页面初始化事件
    */
   ngOnInit() {
-    console.info('buyerinfo merchant', this.merchant);
-    console.info('buyerinfo cheshang', this.cheshang);
+    // console.info('buyerinfo merchant', this.merchant);
+    // console.info('buyerinfo cheshang', this.cheshang);
     this.autoinput_cheshang_source_url += this.merchant.id + '/';
     /**
      * 默认不用填写委托人
@@ -120,7 +120,7 @@ export class BuyerInfoComponent implements OnInit {
     if (! this.certType) {
       this._codeitem.list('certType').then(res => this.certType = res as Codeitem[]);
     }
-    console.info('this.buyer.value', this.buyer.value);
+    // console.info('this.buyer.value', this.buyer.value);
     this.certTypeSelecteFunc(this.buyer.controls.certType.value);
   }
   /**
@@ -142,7 +142,7 @@ export class BuyerInfoComponent implements OnInit {
    */
   getSelectedCheshang(value) {
     value.certCode = value.filingPerson.certCode;
-    console.info(value);
+    // console.info(value);
     this.buyer.patchValue(value);
   }
 
@@ -182,7 +182,7 @@ export class BuyerInfoComponent implements OnInit {
       if (res) { // 初始化读卡器正常
         this.idcard.read().then((idcardData) => {
           this._message.success('身份证', '读取成功');
-          console.info(idcardData);
+          // console.info(idcardData);
           this.buyer.patchValue({
             address: idcardData.Address,
             // birthday: idcardData.Birthday,

@@ -2,6 +2,7 @@ import {FilingInfoModel} from '../../filing.info.model';
 import {MerchantModel} from '../../merchant.model';
 
 export class PreVehicleModel {
+  id?: string;
   /**
    * 备案人对象实例{id}
    */

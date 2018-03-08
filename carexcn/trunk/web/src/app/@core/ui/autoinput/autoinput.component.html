@@ -1,9 +1,28 @@
-<p-autoComplete [(ngModel)]="value" [suggestions]="results"
-                (completeMethod)="search($event)"
-                [forceSelection]="false"
-                [styleClass]="'ui-autocomplete-panel-ys'"
-                [emptyMessage]="'没有可选的结果'"
-                [field]="showProperty"
-                [disabled]="disabled"
-                (onSelect)="selectedValue($event)"
-                [placeholder]="placeholder"></p-autoComplete>
+<!--对显示属性的子属性字段的支持-->
+<div *ngIf="showProperty.indexOf('.') > 1; then showPropertyChildBlock else showPropertyBlock"></div>
+<ng-template #showPropertyBlock>
+  <p-autoComplete [(ngModel)]="value" [suggestions]="results"
+                  (completeMethod)="search($event)"
+                  [forceSelection]="false"
+                  [styleClass]="'ui-autocomplete-panel-ys'"
+                  [emptyMessage]="'没有可选的结果'"
+                  [field]="showProperty"
+                  [disabled]="disabled"
+                  (onSelect)="selectedValue($event)"
+                  [placeholder]="placeholder"></p-autoComplete>
+</ng-template>
+<ng-template #showPropertyChildBlock>
+  {{ showProperty | json }}
+  <p-autoComplete [(ngModel)]="value" [suggestions]="results"
+                  (completeMethod)="search($event)"
+                  [forceSelection]="false"
+                  [styleClass]="'ui-autocomplete-panel-ys'"
+                  [emptyMessage]="'没有可选的结果'"
+                  [disabled]="disabled"
+                  (onSelect)="selectedValue($event)"
+                  [placeholder]="placeholder">
+    <ng-template let-it pTemplate="item">
+      {{ it | json }} <!-- TODO: 这一块还有问题，未能显示字段值的子属性，在处理车管所时必须此特性！ -->
+    </ng-template>
+  </p-autoComplete>
+</ng-template>

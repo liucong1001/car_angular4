@@ -8,14 +8,14 @@ export class BuyerForm {
   /**
    * 买方审核图片列表<map>
    */
-  reviewPhotos: object;
+  reviewPhotos?: object;
   /**
    * 买方录入图片列表<map>
    */
-  photos: object;
+  photos?: object;
   /**
    * 受托人图片列表<map>
    */
-  trusteePhotos: object;
-  buyer: PersonModel;
+  trusteePhotos?: object;
+  buyer?: PersonModel;
 }

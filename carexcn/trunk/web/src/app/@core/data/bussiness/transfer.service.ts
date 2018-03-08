@@ -2,18 +2,52 @@ import {Injectable} from '@angular/core';
 import {TradeForm} from '../../model/bussiness/trade/trade.form';
 import {ReviewForm} from '../../model/bussiness/review/review.form';
 import {RestService} from '../../utils/rest.service';
+import {MarketStaff} from '../../model/system/market-staff';
+import {UserService} from '../users.service';
+import {BuyerForm} from '../../model/bussiness/trade/buyer.form';
+import {TransferVehicleForm} from '../../model/bussiness/trade/transferVehicle.form';
+import {TransferVehicleModel} from '../../model/bussiness/trade/transferVehicle/transferVehicle.model';
+import {BuyerModel} from '../../model/bussiness/trade/buyer.model';
+import {FilingInfoModel} from "../../model/bussiness/filing.info.model";
 
 @Injectable()
 export class TransferService {
-  constructor(private rest: RestService) {}
+  public currentUser: MarketStaff;
+  constructor(
+    public userService: UserService,
+    private rest: RestService,
+  ) {
+    this.currentUser = this.userService.getCurrentLoginUser();
+  }
   private api_url_base = '/rest/business/trade/transfer';
   /**
    * 创建过户车辆
-   * @param {TradeForm} form  clouduser  buyer买方对象实例  TransferVehicle对象实例
+   * @param {TradeForm} form  clouduser  buyer买方对象实例  TransferVehicle 对象实例
    * @returns {Promise<any>} TODO: 检查完善
    */
-  public create(form: TradeForm): Promise<any> {
-    return this.rest.post(this.api_url_base, form).toPromise();
+  public create(
+    archiveNo: string,
+    buyerPhotos: object,
+    buyer: BuyerModel,
+    transferVehiclePhotos: object,
+    transferVehicle: TransferVehicleModel,
+    vehicleId: string,
+  ): Promise<any> {
+    return this.rest.post(this.api_url_base, {
+      archiveNo: archiveNo,
+      cloudUser: this.currentUser.cloudUser,
+      buyer: {
+        reviewPhotos: {},
+        photos: buyerPhotos,
+        trusteePhotos: {},
+        buyer: buyer,
+      } as BuyerForm,
+      transferVehicle: {
+        photos: transferVehiclePhotos,
+        transferVehicle: transferVehicle,
+        PreVehicleId: vehicleId,
+      }, // TODO: 过户车辆的实体应该要建立
+    } as TradeForm).toPromise();
   }
 
   /**
