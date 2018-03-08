@@ -87,8 +87,8 @@
       TransferVehicle 			<obj>
         id
         FilingInfo	备案人对象实例	id  过户的代办员的Id，
-        merchant    商户 
-        vehicleManagement  车管所
+        merchant    商户 {}
+        vehicleManagement  车管所 {}
         billMemo    发表备注
         evaluatePrice	评估价格 number	
         bargainPrice	成交价格 number	

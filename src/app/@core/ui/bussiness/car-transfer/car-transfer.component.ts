@@ -28,6 +28,11 @@ export class CarTransferComponent implements OnInit {
    * @type {{error}}
    */
   @Input() errors?: object = {
+    vehicleManagement: [new ErrorMessage('required', '必须填写车管所')],
+    billMemo: [new ErrorMessage('required', '必须填写')],
+    evaluatePrice: [new ErrorMessage('required', '必须填写')],
+    bargainPrice: [new ErrorMessage('required', '必须填写')],
+    fee: [new ErrorMessage('required', '必须填写')],
   };
   constructor() { }
 
