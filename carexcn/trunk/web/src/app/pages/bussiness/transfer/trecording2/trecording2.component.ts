@@ -77,9 +77,34 @@ export class Trecording2Component implements OnInit {
       business: '02', //  01 预审  02 过户
       formName: '过户录入车辆', // 表单名称
     } as Marketphotomap;
+    /**
+     * 处理缓存数据
+     * @type {any | any}
+     */
+    let maybe_vehicleTransfer = this._localstorage.get(this._cache_pre + 'vehicleTransfer');
+    if (maybe_vehicleTransfer) {
+      let maybe_buyer = this._localstorage.get(this._cache_pre + 'buyer');
+      if (maybe_buyer) {
+        this._formGroup.patchValue({
+          buyer: maybe_buyer,
+          vehicleTransfer: maybe_vehicleTransfer,
+        });
+        this._localstorage.get(this._cache_pre + 'buyer_photos');
+      } else {
+        this._formGroup.patchValue({
+          vehicleTransfer: maybe_vehicleTransfer,
+        });
+      }
+    }
   }
   onSubmit() {
-    console.info('_formGroup.value', this._formGroup.value);
+    /**
+     * 处理缓存数据
+     */
+    this._localstorage.set(this._cache_pre + 'buyer', this._formGroup.get('buyer').value);
+    this._localstorage.set(this._cache_pre + 'buyer_photos', this._formGroup.get('buyer').get('_photos_').value);
+    this._localstorage.set('dynamic_photos_buyer_info', this._cache_pre + 'buyer_photos');
+    this._localstorage.set(this._cache_pre + 'vehicleTransfer', this._formGroup.get('vehicleTransfer').value);
     // this._router.navigateByUrl('/pages/bussiness/transfer/trecording-last');
   }
 

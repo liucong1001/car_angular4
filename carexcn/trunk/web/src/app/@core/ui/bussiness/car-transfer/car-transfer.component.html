@@ -19,7 +19,7 @@
         <ngx-valid-error [errors]="errors.vehicleManagement" [control]="vehicleTransfer.get('vehicleManagement')"></ngx-valid-error>
       </div>
       <div class="input-group">
-        <span class="input-group-addon">发表备注</span>
+        <span class="input-group-addon">发票备注</span>
         <input type="text" placeholder="" class="form-control" formControlName="billMemo"
                [ngClass]="{'form-control-danger':vehicleTransfer.get('billMemo').invalid && vehicleTransfer.get('billMemo').touched}"/>
         <ngx-valid-error [errors]="errors.billMemo" [control]="vehicleTransfer.get('billMemo')"></ngx-valid-error>

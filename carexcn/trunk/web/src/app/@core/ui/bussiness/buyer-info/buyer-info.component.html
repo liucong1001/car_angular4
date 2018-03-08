@@ -1,4 +1,4 @@
-<!--<ngx-ys-photo-detail #photoDetailTemplate></ngx-ys-photo-detail>-->
+<ngx-ys-photo-detail #photoDetailTemplate></ngx-ys-photo-detail>
 <nb-card>
   <nb-card-header>
     <div class="cameras-card-header">
@@ -53,7 +53,7 @@
                [iwp_photoDetailTmp]="photoDetailTemplate"
                [iwp_photos_url]="buyer.get('_photos_').value"
                [iwp_certType]="buyer.value.certType"
-               [iwp_formName]="'record.buyer'"
+               [iwp_formName]="'transfer.buyerForm'"
                class="form-control" formControlName="name"
                [ngClass]="{'form-control-danger':buyer.get('name').invalid && buyer.get('name').touched}"/>
         <ngx-valid-error [errors]="errors.name" [control]="buyer.get('name')"></ngx-valid-error>
@@ -74,7 +74,7 @@
                [iwp_photoDetailTmp]="photoDetailTemplate"
                [iwp_photos_url]="buyer.get('_photos_').value"
                [iwp_certType]="buyer.value.certType"
-               [iwp_formName]="'record.buyerForm'"
+               [iwp_formName]="'transfer.buyerForm'"
                [ngClass]="{'form-control-danger':buyer.get('certCode').invalid && buyer.get('certCode').touched}"/>
         <ngx-valid-error [errors]="errors.certCode" [control]="buyer.get('certCode')"></ngx-valid-error>
       </div>
@@ -85,7 +85,7 @@
                [iwp_photoDetailTmp]="photoDetailTemplate"
                [iwp_photos_url]="buyer.get('_photos_').value"
                [iwp_certType]="buyer.value.certType"
-               [iwp_formName]="'record.buyerForm'"
+               [iwp_formName]="'transfer.buyerForm'"
                [ngClass]="{'form-control-danger':buyer.get('endDate').invalid && buyer.get('endDate').touched}"/>
         <ngx-valid-error [errors]="errors.endDate" [control]="buyer.get('endDate')"></ngx-valid-error>
       </div>
@@ -98,7 +98,7 @@
                [iwp_photoDetailTmp]="photoDetailTemplate"
                [iwp_photos_url]="buyer.get('_photos_').value"
                [iwp_certType]="buyer.value.certType"
-               [iwp_formName]="'record.buyerForm'"
+               [iwp_formName]="'transfer.buyerForm'"
                [ngClass]="{'form-control-danger':buyer.get('buyerAddress').invalid && buyer.get('buyerAddress').touched}"/>
         <ngx-valid-error [errors]="errors.buyerAddress" [control]="buyer.get('buyerAddress')"></ngx-valid-error>
       </div>
