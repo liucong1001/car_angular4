@@ -13,31 +13,31 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: '预审录入',
-        link: '/pages/bussiness/prejudication/recording',
+        link: '/pages/business/prejudication/recording',
       },
       {
         title: '预审批量添加',
-        link: '/pages/bussiness/prejudication/continue',
+        link: '/pages/business/prejudication/continue',
       },
       {
         title: '预审审核',
-        link: '/pages/bussiness/prejudication/judication',
+        link: '/pages/business/prejudication/judication',
       },
       {
         title: '过户录入',
-        link: '/pages/bussiness/transfer/trecording',
+        link: '/pages/business/transfer/trecording',
       },
       {
         title: '过户批量添加',
-        link: '/pages/bussiness/transfer/continue',
+        link: '/pages/business/transfer/continue',
       },
       {
         title: '过户审核',
-        link: '/pages/bussiness/transfer/tjudication',
+        link: '/pages/business/transfer/tjudication',
       },
       {
         title: '手机端录入',
-        link: '/pages/bussiness/mobile-recording',
+        link: '/pages/business/mobile-recording',
       },
     ],
   },
@@ -47,7 +47,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
       {
         title: '商户备案',
-        link: '/pages/merchant/bussinessman',
+        link: '/pages/merchant/businessman',
       },
       {
         title: '商户财务维护',

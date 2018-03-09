@@ -4,12 +4,12 @@ import {MessageService} from '../../../../@core/utils/message.service';
 import {FingerService} from '../../../../@core/device/finger.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MerchantService} from '../../../../@core/data/merchant/merchant.service';
-import {FilingInfoModel} from '../../../../@core/model/bussiness/filing.info.model';
-import {MerchantModel} from '../../../../@core/model/bussiness/merchant.model';
+import {FilingInfoModel} from '../../../../@core/model/business/filing.info.model';
+import {MerchantModel} from '../../../../@core/model/business/merchant.model';
 import {ActivatedRoute, Router} from '@angular/router';
-import {FilingInfoForm} from '../../../../@core/model/bussiness/filing.info.form';
+import {FilingInfoForm} from '../../../../@core/model/business/filing.info.form';
 import {FilingService} from '../../../../@core/data/merchant/filing.service';
-import {FilingPersonModel} from '../../../../@core/model/bussiness/filing.person.model';
+import {FilingPersonModel} from '../../../../@core/model/business/filing.person.model';
 import {ErrorMessage} from '../../../../@core/ui/valid-error/valid-error.component';
 import {UserService} from '../../../../@core/data/users.service';
 
@@ -151,7 +151,7 @@ export class AddLinkmanComponent implements OnInit {
       // TODO: 以后在此处 MerchantForm 添加 photos 添加附件
       this.filingService.add({filingInfo: filinginfo} as FilingInfoForm).then(res => {
         this.message.success('创建成功', '创建备案人成功');
-        this.router.navigate(['/pages/merchant/bussinessman/linkman', { id: this._merchant.id}]);
+        this.router.navigate(['/pages/merchant/businessman/linkman', { id: this._merchant.id}]);
       }).catch(err => {
         console.info(err);
         this.message.error('操作失败', err.json().message);

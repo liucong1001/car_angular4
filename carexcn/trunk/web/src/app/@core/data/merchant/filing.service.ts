@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {RestService} from '../../utils/rest.service';
-import {FilingInfoForm} from '../../model/bussiness/filing.info.form';
+import {FilingInfoForm} from '../../model/business/filing.info.form';
 import {Http} from '@angular/http';
-import {FilingInfoModel} from "../../model/bussiness/filing.info.model";
+import {FilingInfoModel} from "../../model/business/filing.info.model";
 
 /**
  * 备案人备案信息，相关接口

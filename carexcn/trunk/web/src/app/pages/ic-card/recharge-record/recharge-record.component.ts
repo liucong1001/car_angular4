@@ -4,11 +4,11 @@ import {Column} from '../../../@core/ui/table/table.component';
 import {Menu, MenuCell} from '../../../@core/ui/table/cell.menu.component';
 import {TextCell} from '../../../@core/ui/table/cell.text.component';
 import {CARDS} from '../../../@core/data/ic-card/iccard';
-import {Card} from '../../../@core/model/bussiness/card';
+import {Card} from '../../../@core/model/business/card';
 import {CustomCell} from '../../../@core/ui/table/cell';
 import {ActivatedRoute, Router} from '@angular/router';
 
-// import {CarModel} from "../../../@core/model/bussiness/car.model";
+// import {CarModel} from "../../../@core/model/business/car.model";
 import 'rxjs/add/observable/of';
 import {Http} from '@angular/http';
 

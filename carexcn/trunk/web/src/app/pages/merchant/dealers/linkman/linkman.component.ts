@@ -6,7 +6,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Menu, MenuCell} from '../../../../@core/ui/table/cell.menu.component';
 import {MessageService} from '../../../../@core/utils/message.service';
 import {Location} from '@angular/common';
-import {MerchantModel} from '../../../../@core/model/bussiness/merchant.model';
+import {MerchantModel} from '../../../../@core/model/business/merchant.model';
 import {MerchantService} from '../../../../@core/data/merchant/merchant.service';
 import {CustomCell} from '../../../../@core/ui/table/cell';
 import {CommonDialogService} from '../../../../@core/utils/common-dialog.service';
@@ -139,10 +139,10 @@ export class LinkmanComponent implements OnInit {
    * 跳转到添加备案人
    */
   addLinkman() {
-    this.router.navigate(['/pages/merchant/bussinessman/add-linkman', { id: this.merchantId}]);
+    this.router.navigate(['/pages/merchant/businessman/add-linkman', { id: this.merchantId}]);
   }
   edit(row) {
-    this.router.navigate(['/pages/merchant/bussinessman/edit-linkman', { linkman_id: row.id}]);
+    this.router.navigate(['/pages/merchant/businessman/edit-linkman', { linkman_id: row.id}]);
   }
   delete(row) {
     /**

@@ -4,7 +4,7 @@ import {MessageService} from '../../../@core/utils/message.service';
 import {IcCardOperationService}from '../../../@core/data/ic-card/card.service'
 import { changePasswordModel} from '../../../@core/model/icCard/changePassword';
 import {IccardService} from '../../../@core/device/iccard.service';
-import {IccardModel, IccardOperaModel} from '../../../@core/model/bussiness/iccard.model';
+import {IccardModel, IccardOperaModel} from '../../../@core/model/business/iccard.model';
 
 @Component({
   selector: 'ngx-password-change',

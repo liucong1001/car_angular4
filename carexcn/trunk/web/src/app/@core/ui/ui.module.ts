@@ -15,23 +15,23 @@ import { CodeitemDroplistComponent } from './codeitem-droplist/codeitem-droplist
 import { DroplistComponent } from './droplist/droplist.component';
 import { ThemeModule } from '../../@theme/theme.module';
 import { FormFilterComponent } from './form-filter/form-filter.component';
-import {CarlistComponent} from './bussiness/carlist/carlist.component';
-import {CardetailComponent} from './bussiness/cardetail/cardetail.component';
-import { SellerInfoComponent } from './bussiness/seller-info/seller-info.component';
-import { TrusterInfoComponent } from './bussiness/truster-info/truster-info.component';
-import { ArchiveNoComponent } from './bussiness/archive-no/archive-no.component';
+import {CarlistComponent} from './business/carlist/carlist.component';
+import {CardetailComponent} from './business/cardetail/cardetail.component';
+import { SellerInfoComponent } from './business/seller-info/seller-info.component';
+import { TrusterInfoComponent } from './business/truster-info/truster-info.component';
+import { ArchiveNoComponent } from './business/archive-no/archive-no.component';
 import {ErrorClassDirective} from './form/error-class.directive';
 import { InputComponent } from './form/input/input.component';
 import { SelectComponent } from './form/select/select.component';
 import { CodemirrorComponent } from './form/codemirror/codemirror.component';
 import {CodemirrorModule} from 'ng2-codemirror';
-import { YsCardComponent } from './bussiness/ys-card/ys-card.component';
-import { DynamicPhotoFormComponent } from './bussiness/dynamic-photo-form/dynamic-photo-form.component';
-import { PhotoDetailComponent } from './bussiness/photo-detail/photo-detail.component';
-import {InputWithPhotoDirective} from './bussiness/photo-detail/input-with-photo.directive';
-import { ArchiveNoVehicleComponent } from './bussiness/archive-no-vehicle/archive-no-vehicle.component';
-import { BuyerInfoComponent } from './bussiness/buyer-info/buyer-info.component';
-import { CarTransferComponent } from './bussiness/car-transfer/car-transfer.component';
+import { YsCardComponent } from './business/ys-card/ys-card.component';
+import { DynamicPhotoFormComponent } from './business/dynamic-photo-form/dynamic-photo-form.component';
+import { PhotoDetailComponent } from './business/photo-detail/photo-detail.component';
+import {InputWithPhotoDirective} from './business/photo-detail/input-with-photo.directive';
+import { ArchiveNoVehicleComponent } from './business/archive-no-vehicle/archive-no-vehicle.component';
+import { BuyerInfoComponent } from './business/buyer-info/buyer-info.component';
+import { CarTransferComponent } from './business/car-transfer/car-transfer.component';
 
 const COMPONENTS = [
   CameraComponent,

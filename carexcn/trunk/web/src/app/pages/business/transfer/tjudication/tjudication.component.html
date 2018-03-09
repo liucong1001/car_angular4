@@ -1,0 +1,10 @@
+<ngx-ys-archive-no
+  [pageTitle]="'过户业务 - 预审审核 - 买方审核'"
+  [archiveNo]="archiveNo"
+  (_tradeList)="getTradeListByArchiveNoComponent($event)"
+  (_trade)="getTradeByArchiveNoComponent($event)"
+></ngx-ys-archive-no>
+
+<div class="float-right">
+  <button class="btn btn-primary btn-lg" (click)="onSubmit()">审核</button>
+</div>

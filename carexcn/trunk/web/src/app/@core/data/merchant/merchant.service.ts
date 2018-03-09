@@ -1,7 +1,7 @@
 import {Injectable, isDevMode} from '@angular/core';
 import {Http} from '@angular/http';
-import {MerchantForm} from '../../model/bussiness/merchant.form';
-import {SonMerchantForm} from '../../model/bussiness/son.merchant.form';
+import {MerchantForm} from '../../model/business/merchant.form';
+import {SonMerchantForm} from '../../model/business/son.merchant.form';
 
 @Injectable()
 export class MerchantService {

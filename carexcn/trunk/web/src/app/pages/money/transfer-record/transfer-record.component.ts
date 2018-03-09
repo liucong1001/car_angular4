@@ -3,7 +3,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 import {Column} from '../../../@core/ui/table/table.component';
 import {TextCell} from '../../../@core/ui/table/cell.text.component';
 import {Menu, MenuCell} from '../../../@core/ui/table/cell.menu.component';
-import {CardModel} from '../../../@core/model/bussiness/card.model';
+import {CardModel} from '../../../@core/model/business/card.model';
 
 
 @Component({

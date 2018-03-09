@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {MessageService} from '../../../@core/utils/message.service';
-import {CarModel} from '../../../@core/model/bussiness/car.model';
-import {IdcardModel} from '../../../@core/model/bussiness/idcard.model';
+import {CarModel} from '../../../@core/model/business/car.model';
+import {IdcardModel} from '../../../@core/model/business/idcard.model';
 import {IdcardService} from '../../../@core/device/idcard.service';
 import {IccardService} from '../../../@core/device/iccard.service';
-import {IccardModel, IccardOperaModel} from '../../../@core/model/bussiness/iccard.model';
+import {IccardModel, IccardOperaModel} from '../../../@core/model/business/iccard.model';
 import {FingerService} from '../../../@core/device/finger.service';
 import {RestService} from '../../../@core/utils/rest.service';
 import {CodeTransPipe} from '../../../@core/data/system/code.trans.pipe';

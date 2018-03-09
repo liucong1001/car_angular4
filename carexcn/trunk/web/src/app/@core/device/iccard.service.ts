@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {DeviceService} from './device.service';
 import {reject} from 'q';
-import {IccardOperaModel} from '../model/bussiness/iccard.model';
+import {IccardOperaModel} from '../model/business/iccard.model';
 import {MessageService} from '../utils/message.service';
 
 @Injectable()

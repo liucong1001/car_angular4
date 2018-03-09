@@ -11,7 +11,7 @@ import { LinkmanComponent } from './dealers/linkman/linkman.component';
 import {UiModule} from '../../@core/ui/ui.module';
 import { AddDealerComponent } from './dealers/add-dealer/add-dealer.component';
 import { EditDealerComponent } from './dealers/edit-dealer/edit-dealer.component';
-import { BussinessmanComponent } from './dealers/bussinessman/bussinessman.component';
+import { BusinessmanComponent } from './dealers/businessman/businessman.component';
 import { AddLinkmanComponent } from './dealers/add-linkman/add-linkman.component';
 import { FinanceComponent } from './finance/finance.component';
 import { DetailsComponent } from './finance/details/details.component';
@@ -36,7 +36,7 @@ import { EditLinkmanComponent } from './dealers/edit-linkman/edit-linkman.compon
     LinkmanComponent,
     AddDealerComponent,
     EditDealerComponent,
-    BussinessmanComponent,
+    BusinessmanComponent,
     AddLinkmanComponent,
     FinanceComponent,
     DetailsComponent,

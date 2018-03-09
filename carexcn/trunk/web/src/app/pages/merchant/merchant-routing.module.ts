@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {LinkmanComponent} from './dealers/linkman/linkman.component';
 import {AddDealerComponent} from './dealers/add-dealer/add-dealer.component';
 import {EditDealerComponent} from './dealers/edit-dealer/edit-dealer.component';
-import {BussinessmanComponent} from './dealers/bussinessman/bussinessman.component';
+import {BusinessmanComponent} from './dealers/businessman/businessman.component';
 import {AddLinkmanComponent} from './dealers/add-linkman/add-linkman.component';
 import {EditLinkmanComponent} from './dealers/edit-linkman/edit-linkman.component';
 import {FinanceComponent}from './finance/finance.component';
@@ -14,12 +14,12 @@ const routes: Routes = [{
   path: '',
   component: MerchantComponent,
   children: [
-    {path: 'bussinessman', component: BussinessmanComponent},
-    {path: 'bussinessman/linkman', component: LinkmanComponent},
-    {path: 'bussinessman/add-linkman', component: AddLinkmanComponent},
-    {path: 'bussinessman/edit-linkman', component: EditLinkmanComponent},
-    {path: 'bussinessman/add', component: AddDealerComponent},
-    {path: 'bussinessman/edit', component: EditDealerComponent},
+    {path: 'businessman', component: BusinessmanComponent},
+    {path: 'businessman/linkman', component: LinkmanComponent},
+    {path: 'businessman/add-linkman', component: AddLinkmanComponent},
+    {path: 'businessman/edit-linkman', component: EditLinkmanComponent},
+    {path: 'businessman/add', component: AddDealerComponent},
+    {path: 'businessman/edit', component: EditDealerComponent},
     {path: 'finance', component: FinanceComponent},
     {path: 'finance/binding', component: BindingComponent},
 ],
@@ -31,5 +31,5 @@ const routes: Routes = [{
 })
 export class MerchantRoutingModule { }
 export const routedComponents = [
-  MerchantComponent , BussinessmanComponent,FinanceComponent,BindingComponent
+  MerchantComponent , BusinessmanComponent,FinanceComponent,BindingComponent
 ];

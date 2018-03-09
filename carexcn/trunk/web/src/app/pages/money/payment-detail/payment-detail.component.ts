@@ -1,6 +1,6 @@
 import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import {CardModel} from '../../../@core/model/bussiness/card.model';
+import {CardModel} from '../../../@core/model/business/card.model';
 
 
 @Component({
