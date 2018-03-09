@@ -18,7 +18,6 @@ import { TjudicationComponent } from './transfer/tjudication/tjudication.compone
 import { Trecording2Component } from './transfer/trecording2/trecording2.component';
 import { TrecordingLastComponent } from './transfer/trecording-last/trecording-last.component';
 import { TjudicationPhotoComponent } from './transfer/tjudication-photo/tjudication-photo.component';
-import { TjudicationFingerComponent } from './transfer/tjudication-finger/tjudication-finger.component';
 import {SystemModule} from '../../@core/data/system/system.module';
 import {CacheModule} from '../../@core/cache/cache.module';
 import {MobileRecordingComponent} from './mobile-recording/mobile-recording.component';
@@ -55,7 +54,6 @@ import {BusinessFormGroup} from './business.form-group';
     Trecording2Component,
     TrecordingLastComponent,
     TjudicationPhotoComponent,
-    TjudicationFingerComponent,
     MobileRecordingComponent,
     MobileTestComponent,
     MobileReviewComponent,

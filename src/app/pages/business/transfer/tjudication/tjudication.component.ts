@@ -7,6 +7,7 @@ import {TradeForm} from '../../../../@core/model/business/trade/trade.form';
 import {LocalstorageService} from '../../../../@core/cache/localstorage.service';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {BusinessFormGroup} from "../../business.form-group";
+import {Marketphotomap} from "../../../../@core/model/system/market-photo-map";
 
 @Component({
   selector: 'ngx-tjudication',
@@ -19,6 +20,7 @@ export class TjudicationComponent implements OnInit {
   public trade: TradeForm;
   public tradeList: [TradeForm];
   public test= '';
+  vehicleCertificateFormConfig: Marketphotomap;
   public _formGroup: FormGroup = this._formBuilder.group({
     vehicle: this._businessFormGroup.vehicle,
   });
@@ -42,6 +44,16 @@ export class TjudicationComponent implements OnInit {
     if (maybe_archiveNo) {
       this.archiveNo = maybe_archiveNo;
     }
+    /**
+     * 卖家证件类型表单配置
+     * @type {{}}
+     */
+    this.vehicleCertificateFormConfig = {
+      isApp: '0',
+      // certificateCode: '00', // 证件类型代码集 // 只要符合表单就行
+      business: '01', //  01 预审  02 过户
+      formName: '过户录入车辆', // 表单名称
+    } as Marketphotomap;
   }
   onChangeSelected(trade: TradeForm): void {
     if (null === trade) {
@@ -69,7 +81,14 @@ export class TjudicationComponent implements OnInit {
   }
   onSubmit() {
     console.info('onSubmit');
-    this._localstorage.set(this._cache_pre + 'archiveNo', this.trade.archiveNo);
-    // this._router.navigateByUrl('/pages/business/transfer/tjudication-phone');
+    console.info(this.judicationTrade.length);
+    console.info(this.judicationTrade);
+    this._localstorage.set(this._cache_pre + 'archiveNo', this.trade.transfer.business.archiveNo);
+    if (1 > this.judicationTrade.length) {
+      this._message.warning('错误提示', '请选择至少一个车辆。');
+    } else {
+      this._localstorage.set(this._cache_pre + 'trade', this.judicationTrade);
+      this._router.navigateByUrl('/pages/business/transfer/tjudication-photo');
+    }
   }
 }

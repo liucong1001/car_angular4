@@ -14,6 +14,13 @@
   [listType]="'checkbox'"
 ></ngx-ys-carlist-transfer>
 
+<ngx-ys-cardetail
+  *ngIf="tradeList"
+  [btn_show]="false"
+  [vehicle]="_formGroup.controls.vehicle"
+  [certificateFormConfig]="vehicleCertificateFormConfig"
+></ngx-ys-cardetail>
+
 <div class="float-right">
   <button class="btn btn-primary btn-lg" (click)="onSubmit()">审核</button>
 </div>

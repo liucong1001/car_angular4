@@ -53,16 +53,47 @@ export class CarlistTransferComponent implements OnInit {
   ];
   constructor() {}
 
+  /**
+   * 批次下只有一辆车时
+   * 1、自动选上这辆车
+   * 2、自动聚焦该车辆显示详情
+   */
   ngOnInit() {
+    if (('checkbox' === this.listType && 1 === this.tradeList.length)) {
+      this.checkboxChanged(
+        {target: {checked: true}},
+        this.tradeList[0],
+      );
+      this.selected(this.tradeList[0]);
+    }
   }
 
+  /**
+   * 单击某辆车以查看车辆详情
+   * @param {TradeForm} trade
+   */
   selected(trade: TradeForm) {
     this._selected.emit(trade);
   }
+
+  /**
+   * 添加新车辆的操作
+   */
   addNew() {
     this._selected.emit(null);
   }
+
+  /**
+   * 勾选的车辆集合 （一般用于审核勾选）
+   * @type {any[]}
+   */
   public checkCars: TradeForm[] = [];
+
+  /**
+   * 勾选某辆车的操作
+   * @param event
+   * @param {TradeForm} trade
+   */
   checkboxChanged(event, trade?: TradeForm) {
     // console.info('event', event);
     // console.info('checked', event.checked);

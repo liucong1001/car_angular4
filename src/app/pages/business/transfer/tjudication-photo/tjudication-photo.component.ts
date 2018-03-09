@@ -60,6 +60,7 @@ export class TjudicationPhotoComponent implements OnInit {
     this.location.back();
   }
   onSubmit() {
-    this.router.navigateByUrl('http://localhost/pages/business/transfer/tjudication-finger');
+    console.info('on submit');
+    // this.router.navigateByUrl('/pages/business/transfer/tjudication-finger');
   }
 }
