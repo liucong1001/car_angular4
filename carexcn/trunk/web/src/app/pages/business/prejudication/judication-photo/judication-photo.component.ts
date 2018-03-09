@@ -61,7 +61,17 @@ export class JudicationPhotoComponent implements OnInit {
       // console.log(error);
     });
   }
+
+  /**
+   * 头像提交值
+   * @type {string}
+   */
   public avatarPhotosToSubmit = '';
+
+  /**
+   * 拍照事件
+   * @param event
+   */
   changeAvatar(event) {
     this.avatarPhotosToSubmit = event;
   }
@@ -86,7 +96,6 @@ export class JudicationPhotoComponent implements OnInit {
         review_ids.push(trade.prejudication.id);
       }
     }
-    // console.info('review_ids', review_ids);
     this._prejudicationService.review(
       review_id,
       review_ids,

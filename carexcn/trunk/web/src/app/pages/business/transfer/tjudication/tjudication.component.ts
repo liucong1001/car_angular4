@@ -87,7 +87,7 @@ export class TjudicationComponent implements OnInit {
     if (1 > this.judicationTrade.length) {
       this._message.warning('错误提示', '请选择至少一个车辆。');
     } else {
-      this._localstorage.set(this._cache_pre + 'trade', this.judicationTrade);
+      this._localstorage.set(this._cache_pre + 'judication_trade', this.judicationTrade);
       this._router.navigateByUrl('/pages/business/transfer/tjudication-photo');
     }
   }

@@ -1,7 +1,26 @@
 <nb-card>
   <nb-card-header>
     <div class="cameras-card-header">
-      <span class="cameras-card-title">过户业务 - 买方审核 - 买方拍照</span>
+      <span class="cameras-card-title">过户业务 - 过户审核 - 买方拍照</span>
     </div>
   </nb-card-header>
+  <nb-card-body>
+    <!--指纹需要另外的按钮不适合在动态表单中处理-->
+    <!--<ngx-ys-dynamic-photo-form-->
+    <!--[photos]="vehicle.get('_photos_')"-->
+    <!--[certificateFormConfig]="buyerCertificateFormConfig"-->
+    <!--[data_localStrong_name]="'dynamic_photos_cardetail'"-->
+    <!--[btn_show]="btn_show"-->
+    <!--&gt;</ngx-ys-dynamic-photo-form>-->
+    <ngx-ys-camera [title]="avatar.title" [source]="avatar.source" (_changeSource)="changeAvatar($event)"></ngx-ys-camera>
+    <div class="input-group">
+      <button class="btn btn-primary btn-sm" (click)="fingerRead()">指纹读取</button>
+    </div>
+    <div class="input-group">
+      <img [src]="fingerImgUrl" alt="指纹照片" style="max-width: 256px;max-height: 288px;">
+    </div>
+    <div class="float-right">
+      <button class="btn btn-primary btn-lg" (click)="onSubmit()">审核通过</button>
+    </div>
+  </nb-card-body>
 </nb-card>

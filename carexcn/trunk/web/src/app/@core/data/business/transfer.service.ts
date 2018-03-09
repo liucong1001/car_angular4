@@ -9,6 +9,7 @@ import {TransferVehicleForm} from '../../model/business/trade/transferVehicle.fo
 import {TransferVehicleModel} from '../../model/business/trade/transferVehicle/transferVehicle.model';
 import {BuyerModel} from '../../model/business/trade/buyer.model';
 import {FilingInfoModel} from "../../model/business/filing.info.model";
+import {SellerForm} from "../../model/business/trade/seller.form";
 
 @Injectable()
 export class TransferService {
@@ -80,10 +81,23 @@ export class TransferService {
 
   /**
    * 过户审核
-   * @param {ReviewForm} form
+   * @param {string} id
+   * @param {Array<string>} tradeIds
+   * @param {object} reviewPhotos
+   * @param {object} sellerinfo
    * @returns {Promise<any>}
    */
-  public review(form: ReviewForm): Promise<any> {
-    return this.rest.put(this.api_url_base, form).toPromise();
+  public review(id: string, tradeIds: Array<string>, reviewPhotos: object, buyerInfo: BuyerForm): Promise<any> {
+    return this.rest.put(this.api_url_base, {
+      transfer: {
+        cloudUser: this.currentUser.cloudUser,
+        id: id,
+      },
+      buyer: {
+        reviewPhotos: reviewPhotos,
+        buyer: buyerInfo,
+      },
+      tradeIds: tradeIds,
+    } as ReviewForm).toPromise();
   }
 }
