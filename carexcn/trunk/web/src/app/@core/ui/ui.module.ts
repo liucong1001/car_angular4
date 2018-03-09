@@ -30,6 +30,7 @@ import { DynamicPhotoFormComponent } from './business/dynamic-photo-form/dynamic
 import { PhotoDetailComponent } from './business/photo-detail/photo-detail.component';
 import {InputWithPhotoDirective} from './business/photo-detail/input-with-photo.directive';
 import { ArchiveNoVehicleComponent } from './business/archive-no-vehicle/archive-no-vehicle.component';
+import { ArchiveNoTransferComponent } from './business/archive-no-transfer/archive-no-transfer.component';
 import { BuyerInfoComponent } from './business/buyer-info/buyer-info.component';
 import { CarTransferComponent } from './business/car-transfer/car-transfer.component';
 
@@ -59,6 +60,7 @@ const COMPONENTS = [
   DynamicPhotoFormComponent,
   PhotoDetailComponent,
   ArchiveNoVehicleComponent,
+  ArchiveNoTransferComponent,
   CarTransferComponent,
 ];
 
