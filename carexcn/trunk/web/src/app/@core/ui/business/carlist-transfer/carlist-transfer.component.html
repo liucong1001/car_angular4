@@ -1,4 +1,5 @@
-<nb-card *ngIf="tradeList.length > 0 || listType === 'add'">
+<!--TODO：审核只有一辆车时不显示车辆列表-->
+<nb-card *ngIf="!('checkbox' === listType && tradeList.length < 2)">
   <nb-card-header>
     <div class="cameras-card-header">
       <span class="cameras-card-title">{{ car_list_title || '已添加车辆'}}</span>
