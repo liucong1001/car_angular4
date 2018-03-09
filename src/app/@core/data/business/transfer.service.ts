@@ -51,6 +51,15 @@ export class TransferService {
   }
 
   /**
+   * 根据过户批次号获取过户业务对象(拿到车辆列表)
+   * @param {string} archiveNo 过户业务流水号(过户批次号)
+   * @returns {Promise<any>}
+   */
+  public carList(archiveNo: string): Promise<any> {
+    return this.rest.get(this.api_url_base + '?archiveNo=' + archiveNo).toPromise();
+  }
+
+  /**
    * 增加过户车辆
    * @param {string} id  trade.transfer.id
    * @param {TradeForm} form  clouduser  TransferVehicle对象实例
