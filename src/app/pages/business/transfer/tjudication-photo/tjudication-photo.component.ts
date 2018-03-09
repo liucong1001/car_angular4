@@ -83,7 +83,7 @@ export class TjudicationPhotoComponent implements OnInit {
     console.info('fingerBase64', this.fingerBase64);
     console.info('judication_trades', judication_trades);
     let review_id = (judication_trades[0] as TradeForm).transfer.business.id;
-    let sellerinfo = (judication_trades[0] as TradeForm).seller.seller;
+    let buyerInfo = (judication_trades[0] as TradeForm).buyer.buyer;
     // console.info('review_id', review_id);
     let review_ids = [];
     for (let tmp in judication_trades) {
@@ -100,7 +100,7 @@ export class TjudicationPhotoComponent implements OnInit {
         '33': [this.avatarPhotosToSubmit], // 买家头像
         '34': [this.fingerImgPhotosToSubmit], // 买家指纹
       }),
-      sellerinfo,
+      buyerInfo,
     ).then(res => {
       // console.info(res);
       this._message.success('操作成功！', '有' + review_ids.length + '个车辆审核通过。');

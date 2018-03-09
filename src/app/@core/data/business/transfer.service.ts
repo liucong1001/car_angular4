@@ -88,6 +88,7 @@ export class TransferService {
    * @returns {Promise<any>}
    */
   public review(id: string, tradeIds: Array<string>, reviewPhotos: object, buyerInfo: BuyerForm): Promise<any> {
+    console.info('this.currentUser', this.currentUser);
     return this.rest.put(this.api_url_base, {
       transfer: {
         cloudUser: this.currentUser.cloudUser,
