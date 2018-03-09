@@ -4,6 +4,7 @@ import {CarModel} from '../../../../@core/model/business/car.model';
 import {Router} from '@angular/router';
 import {MessageService} from '../../../../@core/utils/message.service';
 import {TradeForm} from '../../../../@core/model/business/trade/trade.form';
+import {LocalstorageService} from '../../../../@core/cache/localstorage.service';
 
 @Component({
   selector: 'ngx-tjudication',
@@ -11,6 +12,8 @@ import {TradeForm} from '../../../../@core/model/business/trade/trade.form';
   styleUrls: ['./tjudication.component.scss'],
 })
 export class TjudicationComponent implements OnInit {
+  private _cache_pre = 'business_transfer_judication_';
+  public archiveNo = '201803090001020004';
   public trade: TradeForm;
   public tradeList: [TradeForm];
   public test= '';
@@ -29,21 +32,26 @@ export class TjudicationComponent implements OnInit {
    * @param {WebcamService} webcam
    * @param {Router} _router
    */
-  constructor(private message: MessageService, private webcam: WebcamService, private _router: Router) {
-    // this.carService.getCar('1').then((res) => this.carData = res as CarModel);
-    // this.carService.getCars('1').then((res) => this.carsData = res as CarModel[]);
-  }
+  constructor(
+    private _message: MessageService,
+    private _localstorage: LocalstorageService,
+    private _router: Router,
+  ) {}
   ngOnInit(): void {
-  }
-  onChangeSelectingCar(car: CarModel): void {
-    this.carData = car;
-    this.message.info(this.carData.lsnum, '当前车辆');
+    let maybe_archiveNo = this._localstorage.get(this._cache_pre + 'archiveNo');
+    console.info('maybe_archiveNo', maybe_archiveNo);
+    if (maybe_archiveNo) {
+      this.archiveNo = maybe_archiveNo;
+    }
   }
   onSubmit() {
-    this._router.navigateByUrl('/pages/business/transfer/tjudication-phone');
+    console.info('onSubmit');
+    this._localstorage.set(this._cache_pre + 'archiveNo', this.trade.archiveNo);
+    // this._router.navigateByUrl('/pages/business/transfer/tjudication-phone');
   }
   reBack() {
-    this._router.navigateByUrl('/pages/business/transfer/trecording-last');
+    console.info('reback');
+    // this._router.navigateByUrl('/pages/business/transfer/trecording-last');
   }
   getTradeByArchiveNoComponent(trade) {
     this.trade = trade;

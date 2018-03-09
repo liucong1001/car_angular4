@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TradeForm} from '../../../model/business/trade/trade.form';
 import {PrejudicationService} from '../../../data/business/prejudication.service';
 import {MessageService} from '../../../utils/message.service';
+import {TransferService} from "../../../data/business/transfer.service";
 
 @Component({
   selector: 'ngx-ys-archive-no',
@@ -10,6 +11,7 @@ import {MessageService} from '../../../utils/message.service';
 })
 export class ArchiveNoComponent implements OnInit {
   @Input() archiveNo = '';
+  @Input() tradeType = '';
   @Input() pageTitle = '';
   @Input() canEdit = false;
   @Input() prompt? = '';
@@ -27,6 +29,7 @@ export class ArchiveNoComponent implements OnInit {
   constructor(
     private _message: MessageService,
     private _prejudicationService: PrejudicationService,
+    private _transferService: TransferService,
   ) { }
 
   ngOnInit() {
@@ -40,17 +43,33 @@ export class ArchiveNoComponent implements OnInit {
    * @param archiveNo 预审业务流水号(预审批次号)
    */
   getTradeByArchiveNo(archiveNo) {
-    this._prejudicationService.carList(archiveNo).then(res => {
-      this.tradeList = res as [TradeForm];
-      // console.info('trade[0]', this.tradeList[0]);
-      this.trade = this.tradeList[0] as TradeForm;
-      // console.info('trade as result', this.trade);
-      this._tradeList.emit(this.tradeList);
-      this._trade.emit(this.trade);
-    }).catch(e => {
-      const error = e;
-      this._message.info('操作提示', error.message);
-    });
+    console.info('this.tradeType', this.tradeType);
+    if ('transfer-judication' === this.tradeType) {
+      console.info('this.tradeType', this.tradeType);
+      this._transferService.carList(archiveNo).then(res => {
+        this.tradeList = res as [TradeForm];
+        // console.info('trade[0]', this.tradeList[0]);
+        this.trade = this.tradeList[0] as TradeForm;
+        // console.info('trade as result', this.trade);
+        this._tradeList.emit(this.tradeList);
+        this._trade.emit(this.trade);
+      }).catch(e => {
+        const error = e;
+        this._message.info('操作提示', error.message);
+      });
+    } else {
+      this._prejudicationService.carList(archiveNo).then(res => {
+        this.tradeList = res as [TradeForm];
+        // console.info('trade[0]', this.tradeList[0]);
+        this.trade = this.tradeList[0] as TradeForm;
+        // console.info('trade as result', this.trade);
+        this._tradeList.emit(this.tradeList);
+        this._trade.emit(this.trade);
+      }).catch(e => {
+        const error = e;
+        this._message.info('操作提示', error.message);
+      });
+    }
   }
 
 }
