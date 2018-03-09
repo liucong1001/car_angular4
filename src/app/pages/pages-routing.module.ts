@@ -13,9 +13,9 @@ const routes: Routes = [{
     canActivate: [AuthGuardService],
     component: DashboardComponent,
   }, {
-    path: 'bussiness',
+    path: 'business',
     canActivate: [AuthGuardService],
-    loadChildren: './bussiness/bussiness.module#BussinessModule',
+    loadChildren: './business/business.module#BusinessModule',
   }, {
     path: 'ic-card',
     loadChildren: './ic-card/ic-card.module#IcCardModule',

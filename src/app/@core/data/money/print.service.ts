@@ -1,6 +1,6 @@
 import {Injectable, isDevMode} from '@angular/core';
 import {Http} from '@angular/http';
-import {CardModel} from '../../model/bussiness/card.model';
+import {CardModel} from '../../model/business/card.model';
 import {IcCardRechargemap} from '../../model/icCard/recharge';
 import  {changePasswordModel} from '../../model/icCard/changePassword'
 import {paymentOrderPayModel} from '../../model/money/paymentOrder.model'

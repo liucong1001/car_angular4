@@ -3,9 +3,9 @@ import {MessageService} from '../../../../@core/utils/message.service';
 import {Location} from '@angular/common';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MerchantService} from '../../../../@core/data/merchant/merchant.service';
-import {MerchantForm} from '../../../../@core/model/bussiness/merchant.form';
+import {MerchantForm} from '../../../../@core/model/business/merchant.form';
 import {Http} from '@angular/http';
-import {MerchantModel} from '../../../../@core/model/bussiness/merchant.model';
+import {MerchantModel} from '../../../../@core/model/business/merchant.model';
 import {Router} from '@angular/router';
 import {ErrorMessage} from '../../../../@core/ui/valid-error/valid-error.component';
 import {UserService} from "../../../../@core/data/users.service";
@@ -135,7 +135,7 @@ export class AddDealerComponent implements OnInit {
       // TODO: 以后在此处 MerchantForm 添加 photos 添加附件
       this.merchantService.add({ merchant: merchant} as MerchantForm).then(res => {
         this.message.success('创建成功', '创建商户成功');
-        this.router.navigateByUrl('/pages/merchant/bussinessman');
+        this.router.navigateByUrl('/pages/merchant/businessman');
       }).catch(err => {
         console.info(err);
         this.message.error('操作失败', err.json().message);

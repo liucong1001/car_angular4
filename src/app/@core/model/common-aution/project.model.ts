@@ -1,6 +1,6 @@
 
-import {FilingInfoModel} from '../bussiness/filing.info.model';
-import {MerchantModel} from '../bussiness/merchant.model';
+import {FilingInfoModel} from '../business/filing.info.model';
+import {MerchantModel} from '../business/merchant.model';
 import {commonAutionService} from "../../data/common-aution/project.service";
 
 

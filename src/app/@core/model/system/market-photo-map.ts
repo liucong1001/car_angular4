@@ -1,4 +1,4 @@
-import {photoExample} from '../bussiness/photo-example.model';
+import {photoExample} from '../business/photo-example.model';
 
 /**
  *市场证件模型

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {IccardModel, IccardOperaModel} from '../../../../@core/model/bussiness/iccard.model';
+import {IccardModel, IccardOperaModel} from '../../../../@core/model/business/iccard.model';
 import {MessageService} from '../../../../@core/utils/message.service';
 import {IccardService} from '../../../../@core/device/iccard.service';
 import {Location} from '@angular/common';
 import {MerchantService} from '../../../../@core/data/merchant/merchant.service';
 import {Http} from '@angular/http';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {MerchantModel} from '../../../../@core/model/bussiness/merchant.model';
+import {MerchantModel} from '../../../../@core/model/business/merchant.model';
 import {Router, ActivatedRoute} from '@angular/router';
 import {ErrorMessage} from "../../../../@core/ui/valid-error/valid-error.component";
 import { FinanceBindService } from './../../../../@core/data/merchant/financeBind.service';

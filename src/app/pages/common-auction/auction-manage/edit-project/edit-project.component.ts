@@ -1,11 +1,11 @@
 import {Component, OnDestroy, OnInit,OnChanges,SimpleChanges} from '@angular/core';
 import {MessageService} from '../../../../@core/utils/message.service';
-import {FilingInfoModel} from '../../../../@core/model/bussiness/filing.info.model';
+import {FilingInfoModel} from '../../../../@core/model/business/filing.info.model';
 import {FilingService} from '../../../../@core/data/merchant/filing.service';
 import {LocalstorageService} from '../../../../@core/cache/localstorage.service';
-import {MerchantModel} from '../../../../@core/model/bussiness/merchant.model';
-import {PreVehicleModel} from '../../../../@core/model/bussiness/trade/preVehicle/preVehicle.model';
-import {PrejudicationService} from '../../../../@core/data/bussiness/prejudication.service';
+import {MerchantModel} from '../../../../@core/model/business/merchant.model';
+import {PreVehicleModel} from '../../../../@core/model/business/trade/preVehicle/preVehicle.model';
+import {PrejudicationService} from '../../../../@core/data/business/prejudication.service';
 import { ActivatedRoute, Router, ActivatedRouteSnapshot, RouterState, RouterStateSnapshot } from '@angular/router';
 import {commonAutionService} from  '../../../../@core/data/common-aution/project.service';
 import { FormBuilder, FormGroup, Validators, FormsModule } from '@angular/forms';

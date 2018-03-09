@@ -1,4 +1,4 @@
-import {AccountModel} from './../bussiness/account.model';
+import {AccountModel} from './../business/account.model';
 /**
  * ic卡——充值对象
  */

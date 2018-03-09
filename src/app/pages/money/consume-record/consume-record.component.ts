@@ -1,8 +1,8 @@
 import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-// import {CardModel} from '../../../@core/model/bussiness/card.model';
+// import {CardModel} from '../../../@core/model/business/card.model';
 import {DeviceService} from '../../../@core/device/device.service';
-import {Card} from '../../../@core/model/bussiness/card';
+import {Card} from '../../../@core/model/business/card';
 import {CARDS} from '../../../@core/data/ic-card/iccard';
 
 @Component({

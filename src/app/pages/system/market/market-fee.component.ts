@@ -1,4 +1,4 @@
-import { IdcardModel } from './../../../@core/model/bussiness/idcard.model';
+import { IdcardModel } from './../../../@core/model/business/idcard.model';
 import { Marketfeemap } from './../../../@core/model/system/market-fee-map';
 import { Component, OnInit, ViewChild,TemplateRef } from '@angular/core';
 import { Menu, MenuCell } from '../../../@core/ui/table/cell.menu.component';

@@ -1,4 +1,4 @@
-import {Card} from '../../model/bussiness/card';
+import {Card} from '../../model/business/card';
 
 export const CARDS: Card[] = [
   {number: '11111111111111', id: 'A001'},
