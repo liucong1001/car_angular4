@@ -66,10 +66,13 @@ export class PrejudicationService {
 
   /**
    * 预审审核
-   * @param {string} id   prejudication.business.id
+   * @param {string} id
+   * @param {Array<string>} tradeIds
+   * @param {object} reviewPhotos
+   * @param {object} sellerinfo
    * @returns {Promise<any>}
    */
-  public review(id: string, tradeIds: Array<string>, reviewPhotos: object, sellerinfo: object): Promise<any> {
+  public review(id: string, tradeIds: Array<string>, reviewPhotos: object, sellerInfo: SellerForm): Promise<any> {
     return this.rest.put(this.api_url_base, {
       prejudication: {
         cloudUser: this.currentUser.cloudUser,
@@ -77,7 +80,7 @@ export class PrejudicationService {
       },
       seller: {
         reviewPhotos: reviewPhotos,
-        seller: sellerinfo,
+        seller: sellerInfo,
       },
       tradeIds: tradeIds,
     } as ReviewForm).toPromise();

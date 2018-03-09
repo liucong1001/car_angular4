@@ -52,7 +52,7 @@ const routes: Routes = [
     component: TjudicationComponent,
   },
   {
-    path: 'transfer/tjudication-phone',
+    path: 'transfer/tjudication-photo',
     component: TjudicationPhotoComponent,
   },
   {
