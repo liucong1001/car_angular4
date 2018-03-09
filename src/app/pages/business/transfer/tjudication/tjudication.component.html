@@ -5,6 +5,15 @@
   (_trade)="getTradeByArchiveNoComponent($event)"
 ></ngx-ys-archive-no-transfer>
 
+<ngx-ys-carlist-transfer
+  *ngIf="tradeList"
+  [tradeList]="tradeList"
+  [car_list_title]="'审核车辆列表'"
+  (_selected)='onChangeSelected($event)'
+  (_checkCars)="onChangeCheckCars($event)"
+  [listType]="'checkbox'"
+></ngx-ys-carlist-transfer>
+
 <div class="float-right">
   <button class="btn btn-primary btn-lg" (click)="onSubmit()">审核</button>
 </div>
