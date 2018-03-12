@@ -1,0 +1,31 @@
+<nb-card>
+  <nb-card-header>
+    发票打印成功
+  </nb-card-header>
+  <nb-card-body>
+    <div class="row text-center">
+      <span class="sucessPrint ">发票打印成功，发票号码是:</span>
+      <hr>
+      <button ng-click="back()" class="btn">继续打票</button>
+      <button ng-click="createOrder()" class="btn">创建订单</button>
+
+      <div class="panel-body">
+        <div class="tipError">
+          <h3>打印发票异常情况处理办法</h3>
+          <p class="text-left">1、打印发票号错误，请执行以下操作：</p>
+          <div class="text-left">
+            <a class="link">
+              我要修改发票
+            </a>
+          </div>
+          <p class="text-left">2、打印机未打印发票，请执行以下操作：</p>
+          <div class="text-left">
+            <a class="link" ng-click="returnBill()">
+              我要回退发票
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

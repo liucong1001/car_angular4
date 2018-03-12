@@ -1,0 +1,9 @@
+<ng-container *ngIf="idValue">
+  <img [src]="imageUrl()" alt=""
+       class="img-rounded"
+       [ngStyle]="{'height':height+'px'}"
+       (click)="showPicModal(idValue)"
+       onerror="this.style.display='none'">
+
+  <div (click)="showPicModal(idValue)" class="pic-modal-area"></div>
+</ng-container>
