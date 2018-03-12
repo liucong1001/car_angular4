@@ -13,6 +13,7 @@ import { OrderCancelComponent } from './order-cancel/order-cancel.component';
 import { PrintComponent } from './print/print.component';
 import { PrintSuccessComponent } from './print/print-success/print-success.component';
 import { PrintListComponent } from './print/print-list/print-list.component';
+import { PayAgainComponent } from './pay-again/pay-again.component';
 
 
 const routes: Routes = [{
@@ -31,7 +32,8 @@ const routes: Routes = [{
     {path: 'order/cancel', component: OrderCancelComponent},
     {path: 'print', component: PrintComponent},
     {path: 'print/success', component: PrintSuccessComponent},
-    {path: 'printList', component: PrintListComponent},
+    {path: 'billSearch', component: PrintListComponent},
+    {path: 'payAgain', component: PayAgainComponent},
     ],
 }];
 
@@ -53,5 +55,6 @@ export const routedComponents = [
   OrderCancelComponent,
   PrintComponent,
   PrintSuccessComponent,
-  PrintListComponent
+  PrintListComponent,
+  PayAgainComponent,
 ];

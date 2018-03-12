@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {TradeService} from "../../../@core/data/bussiness/trade.service";
-import {TradeForm} from "../../../@core/model/bussiness/trade/trade.form";
+import {TradeService} from "../../../@core/data/business/trade.service";
+import {TradeForm} from "../../../@core/model/business/trade/trade.form";
 import {PrintService} from "../../../@core/data/money/print.service";
 import {TradeBill} from "../../../@core/model/money/print.model";
 import {MessageService} from '../../../@core/utils/message.service';

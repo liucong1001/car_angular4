@@ -24,7 +24,12 @@ const routes: Routes = [{
     path: 'money',
     loadChildren: './money/money.module#MoneyModule',
     canActivate: [AuthGuardService],
-  }, {
+  },
+    {
+      path: 'bill',
+      loadChildren: './bill/bill.module#BillModule',
+      canActivate: [AuthGuardService],
+    },{
     path: 'archives-manage',
     canActivate: [AuthGuardService],
     loadChildren: './archives-manage/archives-manage.module#ArchivesManageModule',

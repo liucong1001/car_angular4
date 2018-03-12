@@ -56,10 +56,11 @@ export class PrintComponent implements OnInit {
   print(){
      console.log('点击了开票',this.tradeBill);
      this.printService.print(this.printId,this.tradeBill).then(res=>{
-       this.router.navigate( ['/pages/money/print/success', { id: '2' ,}]);
+       this.router.navigate( ['/pages/money/print/success', { billNo: this.tradeBill.billNo ,}]);
 
      }).catch(err=>{
        this.message.error('开票失败',err.json().message);
+       this.msg = err.json().message;
      });
   }
 // extern /pager
