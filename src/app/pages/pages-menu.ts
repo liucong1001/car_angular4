@@ -39,6 +39,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: '手机端录入',
         link: '/pages/business/mobile-recording',
       },
+      {
+        title: '变更业务',
+        link: '/pages/business/change',
+      },
     ],
   },
   {
@@ -76,19 +80,27 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/ic-card/card-manage',
       },
     ],
+  },{
+    title: '票据管理',
+    icon: 'ion-social-usd-outline',
+    children: [
+      {
+        title: '发票打印',
+        link: '/pages/bill/print',
+      },
+      {
+        title: '发票查询',
+        link: '/pages/bill/search',
+      },
+      {
+        title: '退票',
+        link: '/pages/bill/refund',
+      }]
   },
   {
     title: '缴费支付',
     icon: 'ion-social-usd-outline',
     children: [
-      {
-        title: '发票打印',
-        link: '/pages/money/print',
-      },
-      {
-        title: '发票查询',
-        link: '/pages/money/printList',
-      },
       {
         title: '订单管理',
         link: '/pages/money/order-manage',
@@ -100,6 +112,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
       {
         title: 'IC卡消费记录',
         link: '/pages/money/consume-record',
+      },
+      {
+        title: '补缴',
+        link: '/pages/money/payAgain',
       },
       // {
       //   title: 'IC卡转账记录',

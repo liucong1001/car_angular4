@@ -6,6 +6,8 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 import {visibilityToggle} from "../../../@core/ui/animations/toggle.animation";
 import {ActivatedRoute, Router} from '@angular/router';
 import {CodemapCell, CustomCell} from '../../../@core/ui/table/cell';
+import {FileSystemService} from "../../../@core/data/system/file-system.service";
+// FileSystemService
 
 @Component({
   selector: 'ngx-ys-mobile-recording',
@@ -30,7 +32,10 @@ export class MobileRecordingComponent implements OnInit {
   constructor(
     public router: Router,
     private route: ActivatedRoute,
+    private file:FileSystemService,
   ) { }
+
+  @ViewChild('disableSignTemp') private disableSignTemp: TemplateRef<any>;
 
   ngOnInit() {
     // this.filter.preStatusList='12';
@@ -43,6 +48,7 @@ export class MobileRecordingComponent implements OnInit {
       {title: '状态', titleClass: '', cell: new CodemapCell('prejudicationStatus', 'prejudicationStatus')} as Column,
       {title: '类型(卖方|买方)', titleClass: 'w-15 text-center', cell:new CustomCell(this.TypeCell)} as Column,
       {title: '商户', titleClass: '', cell: new TextCell('preVehicle.preVehicle.merchant.name')} as Column,
+      {title: 'seller图片', titleClass: '', cell: new CustomCell(this.disableSignTemp)} as Column,
       {title: '操作', titleClass: 'w-15 text-center', cell: new MenuCell(
         [
           new Menu('预览', '', this.review.bind(this)),
@@ -63,6 +69,12 @@ export class MobileRecordingComponent implements OnInit {
   }
   review(row:any){
     this.router.navigate( ['/pages/business/mobile-recording/review', { archiveNo: row.archiveNo }]);
+  }
+
+  object(data){
+      if(Object.keys(data).length==0){
+        return true
+      }
   }
 
 

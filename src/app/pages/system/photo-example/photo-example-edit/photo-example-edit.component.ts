@@ -10,7 +10,7 @@ import {FileSystemService} from '../../../../@core/data/system/file-system.servi
   selector: 'ngx-photo-example-edit',
   templateUrl: './photo-example-edit.component.html',
   styleUrls: ['./photo-example-edit.component.scss'],
-  providers: [PhotoExampleService],
+  providers: [PhotoExampleService,FileSystemService],
 })
 export class PhotoExampleEditComponent implements OnInit {
 
@@ -33,6 +33,7 @@ export class PhotoExampleEditComponent implements OnInit {
           this.form.patchValue(this.photoExampleModel);
           this.photos.source = 'id:' + this.photoExampleModel.photos.photoExample[0].id;
           this.photoForm.photoExample[0] = this.photoExampleModel.photos.photoExample[0];
+          console.log('source', this.photos.source);
         });
       }
     });
@@ -80,6 +81,9 @@ export class PhotoExampleEditComponent implements OnInit {
     }).catch(err => {
       this.message.error('保存失败', err.json().message);
     });
+  }
+  imageUrl(){
+    return  this.file.getRealFileUrl('id:4028f2ea6217e3c7016218392ff70000');
   }
 
   back() {

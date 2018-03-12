@@ -15,6 +15,9 @@
            <button class="btn btn-primary" (click)="print()">开票</button>
         </div>
       </div>
+     <div class="row">
+          <div class="col-md-6"> <p class="text-danger">{{msg}}</p> </div>
+     </div>
    </nb-card-header>
     <nb-card-body>
       <div class="bill">
@@ -66,10 +69,10 @@
             <p class="bill-cell span2">登记证号</p>
             <!--trans.vehicle.registration-->
             <p class="bill-cell span4"><input type="text" [(ngModel)]="trade.preVehicle?.preVehicle.registratio"/></p>
-            <p class="bill-cell span2">车辆类型1</p>
+            <p class="bill-cell span2">车辆类型</p>
             <p class="bill-cell span5">
-              <!--trans.vehicle.vehicleType-->
-              <input type="text" [(ngModel)]="trade.preVehicle?.preVehicle.vehicleType"/>
+              <span>{{trade.preVehicle?.preVehicle.vehicleType  |code_trans: 'vehicleType' | async }}</span>
+              <!--<input type="text" [(ngModel)]="trade.preVehicle?.preVehicle.vehicleType"/>-->
             </p>
             <div class="clearfix"></div>
           </div>

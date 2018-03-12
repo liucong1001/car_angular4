@@ -32,9 +32,11 @@ export class PrintListComponent implements OnInit {
       {title: '流水号', titleClass: '', cell: new TextCell('archiveNo')} as Column,
       {title: '车牌号', titleClass: '', cell: new TextCell('preVehicle.preVehicle.plateNumber')} as Column,
       {title: '里程(公里)', titleClass: '', cell: new TextCell('preVehicle.preVehicle.mileage')} as Column,
+      {title: '状态', titleClass: '', cell: new CodemapCell('prejudicationStatus', 'prejudicationStatus')} as Column,
       {title: '出售价', titleClass: '', cell: new TextCell('name')} as Column,
-      {title: '购买价', titleClass: '', cell: new TextCell('billObjects[0].bill.status')} as Column,
-      {title: '开票状态', titleClass: '', cell: new CodemapCell('billObjects', 'prejudicationStatus')} as Column,
+      // payCount 代开票 大于0就需要去开票 有票需要开     bills.bill.status 为02 可以去开票 然后bills里面id有值
+      {title: '代开票', titleClass: '', cell: new TextCell('payCount')} as Column,
+      {title: '开票状态', titleClass: '', cell: new TextCell('validCount')} as Column,
       {title: '操作', titleClass: 'w-25 text-center', cell: new MenuCell(
         [
           new Menu('开票', '', this.edit.bind(this)),
