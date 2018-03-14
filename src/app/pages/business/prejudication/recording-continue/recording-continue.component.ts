@@ -140,6 +140,7 @@ export class RecordingContinueComponent implements OnInit {
       });
     }).catch(e => {
       console.info(e);
+      this._message.error('操作失败', e.message);
     });
     // this._router.navigateByUrl('/pages/business/prejudication/recording-last');
   }
