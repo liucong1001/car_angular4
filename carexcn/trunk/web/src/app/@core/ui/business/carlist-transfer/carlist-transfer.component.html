@@ -26,7 +26,12 @@
       </div>
     </ng-template>
     <ng-template [ngSwitchCase]="'add'">
-        <button class="btn btn-primary btn-tn margin_10" *ngFor="let trade of tradeList" (click)="selected(trade)">{{trade.preVehicle.preVehicle.plateNumber}}</button>
+        <button class="btn btn-primary btn-tn margin_10"
+                *ngFor="let trade of tradeList"
+                (click)="selected(trade)">
+          {{trade.preVehicle.preVehicle.plateNumber}}
+          [{{statusArr[trade.transferStatus]}}]
+        </button>
         <button class="btn btn-info btn-tn margin_10" (click)="addNew()">添加车辆</button>
     </ng-template>
     <ng-template ngSwitchDefault>

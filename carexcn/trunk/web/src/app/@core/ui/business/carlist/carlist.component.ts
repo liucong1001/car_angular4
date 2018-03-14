@@ -15,7 +15,6 @@ import {TradeForm} from '../../../model/business/trade/trade.form';
 })
 export class CarlistComponent implements OnInit {
   @Input() tradeList: Array<TradeForm>;
-  @Input() cars; // TODO: 过户完成后删除该参数
   @Input() car_list_title;
   @Input() listType?;
   /**
