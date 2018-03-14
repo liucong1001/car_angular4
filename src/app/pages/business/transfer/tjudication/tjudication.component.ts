@@ -16,7 +16,7 @@ import {Marketphotomap} from "../../../../@core/model/system/market-photo-map";
 })
 export class TjudicationComponent implements OnInit {
   private _cache_pre = 'business_transfer_judication_';
-  public archiveNo = '201803090001020004';
+  public archiveNo = '';
   public trade: TradeForm;
   public tradeList: [TradeForm];
   public test= '';
@@ -40,7 +40,7 @@ export class TjudicationComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     let maybe_archiveNo = this._localstorage.get(this._cache_pre + 'archiveNo');
-    console.info('maybe_archiveNo', maybe_archiveNo);
+    // console.info('maybe_archiveNo', maybe_archiveNo);
     if (maybe_archiveNo) {
       this.archiveNo = maybe_archiveNo;
     }

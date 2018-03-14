@@ -27,6 +27,18 @@ export class ArchiveNoTransferComponent implements OnInit {
   ngOnInit() {
     if (this.archiveNo) {
       this.getTradeByArchiveNo(this.archiveNo);
+    } else {
+      this.trade = {
+        transfer: {
+          business: {},
+        },
+        transferVehicle: {
+          transferVehicle: {
+            merchant: {},
+            filingInfo: {},
+          },
+        },
+      };
     }
   }
 

@@ -1,4 +1,4 @@
-<nb-card *ngIf="trade">
+<nb-card>
   <nb-card-header>
     <div class="cameras-card-header">
       <span class="cameras-card-title">{{pageTitle || '业务查询'}}</span>
@@ -11,8 +11,8 @@
     <div class="input-group">
       <div class="input-group">
         <span class="input-group-addon">批次号</span>
-        <input class="form-control" type="text" placeholder="输入批次号以查询" [(ngModel)]="trade.transfer.business.archiveNo" #archiveNo/>
-        <button class="btn btn-primary btn-sm" (click)="getTradeByArchiveNo(archiveNo.value)" [disabled]="archiveNo.value.length !== 18">查询</button>
+        <input class="form-control" type="text" placeholder="输入批次号以查询" [(ngModel)]="trade.transfer.business.archiveNo" #archiveNoInput/>
+        <button class="btn btn-primary btn-sm" (click)="getTradeByArchiveNo(archiveNoInput.value)" [disabled]="archiveNoInput.value.length !== 18">查询</button>
       </div>
       <div class="input-group">
         <span class="input-group-addon">代办商户</span>
