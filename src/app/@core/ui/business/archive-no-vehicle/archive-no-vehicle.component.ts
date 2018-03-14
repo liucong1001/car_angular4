@@ -30,6 +30,15 @@ export class ArchiveNoVehicleComponent implements OnInit {
   ngOnInit() {
     if (this.archiveNo) {
       this.getTradeByArchiveNo(this.archiveNo);
+    } else {
+      this.trade = {
+        preVehicle: {
+          preVehicle: {
+            merchant: {},
+            filingInfo: {},
+          },
+        },
+      };
     }
   }
 
