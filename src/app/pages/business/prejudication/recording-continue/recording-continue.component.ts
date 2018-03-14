@@ -132,7 +132,9 @@ export class RecordingContinueComponent implements OnInit {
       console.info(res);
       this._message.info('操作提示', '车辆添加成功！');
       this._prejudicationService.carList(this.trade.prejudication.business.archiveNo).then(r => {
+        console.info('添加车辆成功后，的返回 r', r);
         this.tradeList = r as [TradeForm];
+        console.info('添加车辆成功后，的交易详情 this.tradeList', this.tradeList);
       }).catch(e => {
         console.info(e);
       });
