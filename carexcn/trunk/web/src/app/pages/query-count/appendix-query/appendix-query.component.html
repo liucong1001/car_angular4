@@ -54,25 +54,25 @@
             <ngx-ys-calendar [placeholder]="'入库审核截止日期'" (_calendarValue)="getExamineEndDate($event)" [(ngModel)]="filter.examineEndDate" name="examineEndDate" ></ngx-ys-calendar>
           </div>
         </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.inReviewUser" name="code" type="inReviewUser" placeholder="预审录入员" />
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.outReviewUser" name="outReviewUser" type="text" placeholder="预审审核员" />
+          </div>
+        </div>
 
         <div class="col-sm-2">
           <div class="form-group form-group-sm">
-            <input class="form-control" [(ngModel)]="filter.inExamineUser" name="inExamineUser" type="text" placeholder="入库操作员" />
+            <input class="form-control" [(ngModel)]="filter.inExamineUser" name="inExamineUser" type="text" placeholder="过户录入员" />
           </div>
         </div>
         <div class="col-sm-2">
           <div class="form-group form-group-sm">
-            <input class="form-control" [(ngModel)]="filter.outExamineUser" name="outExamineUser" type="text" placeholder="出库操作员" />
-          </div>
-        </div>
-        <div class="col-sm-2">
-          <div class="form-group form-group-sm">
-            <input class="form-control" [(ngModel)]="filter.inReviewUser" name="code" type="inReviewUser" placeholder="入库审核员" />
-          </div>
-        </div>
-        <div class="col-sm-2">
-          <div class="form-group form-group-sm">
-            <input class="form-control" [(ngModel)]="filter.outReviewUser" name="outReviewUser" type="text" placeholder="出库审核员" />
+            <input class="form-control" [(ngModel)]="filter.outExamineUser" name="outExamineUser" type="text" placeholder="过户审核员" />
           </div>
         </div>
         <div class="col-sm-2">
@@ -147,7 +147,7 @@
               <input type="checkbox" id="buyer_idCardBg" checked="checked" (change)="toggle_photo(3)" />
               <label for="buyer_fingerprintImg"> 买家指纹</label>
               <input type="checkbox" id="buyer_fingerprintImg" checked="checked" (change)="toggle_photo(4)" />
-              <label for="buyer_businessCert"> 组织机构证书(正)</label>
+              <label for="buyer_businessCert"> 组织机构证书</label>
               <input type="checkbox" id="buyer_businessCert" checked="checked" (change)="toggle_photo(5)" />
               <!-- <label for="buyer_businessCertBg"> 组织机构证书(反)</label>
               <input type="checkbox" id="buyer_businessCertBg" checked="checked" (change)="toggle_photo(6)" /> -->
@@ -221,7 +221,7 @@
   {{data.seller?.reviewPhotos&& data.seller?.reviewPhotos['31']&&data.seller.reviewPhotos['31'][0].id}}
   <!-- [hidden]="data.seller?.reviewPhotos&& data.seller?.reviewPhotos['31']"  -->
  <ngx-img  [idValue]="data.seller?.reviewPhotos&& data.seller?.reviewPhotos['31']&&data.seller.reviewPhotos['31'][0].id"
-           
+
            [height]="150"></ngx-img>
 </ng-template>
 <!-- 卖家身份证正面 -->
@@ -230,7 +230,7 @@
   {{data.seller?.photos&& data.seller?.photos['03']&&data.seller.photos['03'][0].id}}
       <!-- [hidden]="data.seller?.photos&& data.seller?.photos['03']" -->
  <ngx-img  [idValue]="data.seller?.photos&& data.seller?.photos['03']&&data.seller.photos['03'][0].id"
-       
+
            [height]="150"></ngx-img>
 </ng-template>
 
@@ -240,7 +240,7 @@
     <!-- [hidden]="data.seller?.photos&& data.seller?.photos['04']" -->
   {{data.seller?.photos&& data.seller?.photos['03']&&data.seller.photos['04'][0].id}}
  <ngx-img  [idValue]="data.seller?.photos&& data.seller?.photos['04']&&data.seller.photos['04'][0].id"
-         
+
            [height]="150"></ngx-img>
 </ng-template>
 
@@ -250,7 +250,7 @@
   {{data.seller?.reviewPhotos&& data.seller?.reviewPhotos['32']&&data.seller.reviewPhotos['32'][0].id}}
   <!-- [hidden]="data.seller?.reviewPhotos&& data.seller?.reviewPhotos['32']" -->
  <ngx-img [idValue]="data.seller?.reviewPhotos&& data.seller?.reviewPhotos['32']&&data.seller.reviewPhotos['32'][0].id"
-          
+
            [height]="150"></ngx-img>
 </ng-template>
 
@@ -260,7 +260,7 @@
   {{data.seller?.photos&& data.seller?.photos['02']&&data.seller.photos['02'][0].id}}
   <!-- [hidden]="data.seller?.photos&& data.seller?.photos['02']" -->
  <ngx-img  [idValue]="data.seller?.photos&& data.seller?.photos['02']&&data.seller.photos['02'][0].id"
-         
+
            [height]="150"></ngx-img>
 </ng-template>
 
@@ -271,7 +271,7 @@
   {{data.seller?.photos&& data.seller?.trusteePhotos['31']&&data.seller.trusteePhotos['31'][0].id}}
   <!-- [hidden]="data.seller?.trusteePhotos&& data.seller?.trusteePhotos['31']" -->
  <ngx-img  [idValue]="data.seller?.trusteePhotos&& data.seller?.trusteePhotos['31']&&data.seller.trusteePhotos['31'][0].id"
-          
+
            [height]="150"></ngx-img>
 </ng-template>
 
@@ -281,7 +281,7 @@
   {{data.seller?.trusteePhotos&& data.seller?.trusteePhotos['32']&&data.seller.trusteePhotos['32'][0].id}}
   <!-- [hidden]="data.seller?.trusteePhotos&& data.seller?.trusteePhotos['31']" -->
  <ngx-img  [idValue]="data.seller?.trusteePhotos&& data.seller?.trusteePhotos['31']&&data.seller.trusteePhotos['32'][0].id"
-          
+
            [height]="150"></ngx-img>
 </ng-template>
 
@@ -291,7 +291,7 @@
   {{data.seller?.trusteePhotos&& data.seller?.trusteePhotos['21']&&data.seller.trusteePhotos['21'][0].id}}
   <!-- [hidden]="data.seller?.trusteePhotos&& data.seller?.trusteePhotos['21']" -->
  <ngx-img  [idValue]="data.seller?.trusteePhotos&& data.seller?.trusteePhotos['21']&&data.seller.trusteePhotos['21'][0].id"
-          
+
            [height]="150"></ngx-img>
 </ng-template>
 
@@ -301,7 +301,7 @@
   {{data.seller?.photos&& data.seller?.trusteePhotos['22']&&data.seller.trusteePhotos['22'][0].id}}
   <!-- [hidden]="data.seller?.trusteePhotos&& data.seller?.trusteePhotos['22']" -->
  <ngx-img  [idValue]="data.seller?.trusteePhotos&& data.seller?.trusteePhotos['22']&&data.seller.trusteePhotos['22'][0].id"
-       
+
            [height]="150"></ngx-img>
 </ng-template>
 
@@ -311,9 +311,9 @@
   {{data.seller?.photos&& data.seller?.photos['27']&&data.seller.photos['27'][0].id}}
   <!-- [hidden]="data.seller?.photos&& data.seller?.photos['27']" -->
  <ngx-img  [idValue]="data.seller?.photos&& data.seller?.photos['27']&&data.seller.photos['27'][0].id"
-         
+
            [height]="150"></ngx-img>
-</ng-template> 
+</ng-template>
 
 <!-- 买方审核头像  未写-->
 <ng-template #buyer_regPhoto let-data  >
@@ -321,7 +321,7 @@
   {{data.buyer?.reviewPhotos&& data.buyer?.reviewPhotos['33']&&data.buyer.reviewPhotos['33'][0].id}}
   <!-- [hidden]="data.buyer?.reviewPhotos&& data.buyer?.reviewPhotos['33']" -->
  <ngx-img  [idValue]="data.buyer?.reviewPhotos&& data.buyer?.reviewPhotos['33']&&data.buyer.reviewPhotos['33'][0].id"
-      
+
            [height]="150"></ngx-img>
 </ng-template>
 
@@ -331,7 +331,7 @@
        {{data.buyer?.photos&& data.buyer?.photos['03']&&data.buyer.photos['03'][0].id}}
        <!-- [hidden]="data.buyer?.photos&& data.buyer?.photos['03']" -->
  <ngx-img  [idValue]="data.buyer?.photos&& data.buyer?.photos['03']&&data.buyer.photos['03'][0].id"
-       
+
            [height]="150"></ngx-img>
 </ng-template>
 
@@ -341,7 +341,7 @@
   {{data.buyer?.photos&& data.buyer?.photos['04']&&data.buyer.photos['04'][0].id}}
   <!-- [hidden]="data.buyer?.photos&& data.buyer?.photos['04']" -->
  <ngx-img [idValue]="data.buyer?.photos&& data.buyer?.photos['04']&&data.buyer.photos['04'][0].id"
-          
+
            [height]="150"></ngx-img>
 </ng-template>
 
@@ -351,7 +351,7 @@
   {{data.buyer?.reviewPhotos&& data.buyer?.reviewPhotos['34']&&data.buyer.reviewPhotos['34'][0].id}}
   <!-- [hidden]="data.buyer?.reviewPhotos&& data.buyer?.reviewPhotos['34']" -->
  <ngx-img  [idValue]="data.buyer?.reviewPhotos&& data.buyer?.reviewPhotos['34']&&data.buyer.reviewPhotos['34'][0].id"
-          
+
            [height]="150"></ngx-img>
 </ng-template>
 
@@ -361,19 +361,19 @@
   {{data.buyer?.photos&& data.buyer?.photos['02']&&data.buyer.photos['02'][0].id}}
   <!--      [hidden]="data.buyer?.photos&& data.buyer?.photos['02']" -->
  <ngx-img [idValue]="data.buyer?.photos&& data.buyer?.photos['02']&&data.buyer.photos['02'][0].id"
-      
+
            [height]="150"></ngx-img>
 </ng-template>
-<!-- 
+<!--
 <!--  组织机构证书(反) 未写-->
 <ng-template #buyer_businessCertBg let-data  >
   <!-- {{ object( data.buyer.photos)?'无':data.buyer.photos['01'][0].id}} -->
   {{data.buyer?.photos&& data.buyer?.photos['01']&&data.buyer.photos['01'][0].id}}
   <!-- [hidden]="data.buyer?.photos&& data.buyer?.photos['01']" -->
  <ngx-img  [idValue]="data.buyer?.photos&& data.buyer?.photos['01']&&data.buyer.photos['01'][0].id"
-       
+
            [height]="150"></ngx-img>
-</ng-template> 
+</ng-template>
 -->
 
 <!-- 买方受托人图像 -->
@@ -382,7 +382,7 @@
   {{data.buyer?.trusteePhotos&& data.buyer?.trusteePhotos['33']&&data.buyer.trusteePhotos['33'][0].id}}
   <!-- [hidden]="data.buyer?.trusteePhotos&& data.buyer?.trusteePhotos['33']" -->
  <ngx-img [idValue]="data.buyer?.trusteePhotos&& data.buyer?.trusteePhotos['33']&&data.buyer.trusteePhotos['33'][0].id"
-      
+
            [height]="150"></ngx-img>
 </ng-template>
 
@@ -392,7 +392,7 @@
   {{data.buyer?.trusteePhotos&& data.buyer?.trusteePhotos['34']&&data.buyer.trusteePhotos['34'][0].id}}
   <!-- [hidden]="data.buyer?.trusteePhotos&& data.buyer?.trusteePhotos['34']" -->
  <ngx-img  [idValue]="data.buyer?.trusteePhotos&& data.buyer?.trusteePhotos['34']&&data.buyer.trusteePhotos['34'][0].id"
-        
+
            [height]="150"></ngx-img>
 </ng-template>
 
@@ -402,7 +402,7 @@
   {{data.buyer?.trusteePhotos&& data.buyer?.trusteePhotos['21']&&data.buyer.trusteePhotos['21'][0].id}}
   <!-- [hidden]="data.buyer?.trusteePhotos&& data.buyer?.trusteePhotos['21']" -->
  <ngx-img [idValue]="data.buyer?.trusteePhotos&& data.buyer?.trusteePhotos['21']&&data.buyer.trusteePhotos['21'][0].id"
-         
+
            [height]="150"></ngx-img>
 </ng-template>
 
@@ -412,7 +412,7 @@
   {{data.buyer?.trusteePhotos&& data.buyer?.trusteePhotos['22']&&data.buyer.trusteePhotos['22'][0].id}}
   <!-- [hidden]="data.buyer?.trusteePhotos&& data.buyer?.trusteePhotos['22']" -->
  <ngx-img [idValue]="data.buyer?.trusteePhotos&& data.buyer?.trusteePhotos['22']&&data.buyer.trusteePhotos['22'][0].id"
-        
+
            [height]="150"></ngx-img>
 </ng-template>
 
@@ -422,7 +422,7 @@
   {{data.buyer?.reviewPhotos&& data.buyer?.reviewPhotos['27']&&data.buyer.reviewPhotos['27'][0].id}}
   <!-- [hidden]="data.buyer?.reviewPhotos&& data.buyer?.reviewPhotos['27']" -->
  <ngx-img  [idValue]="data.buyer?.reviewPhotos&& data.buyer?.reviewPhotos['27']&&data.buyer.reviewPhotos['27'][0].id"
-    
+
            [height]="150"></ngx-img>
 </ng-template>
 
@@ -432,7 +432,7 @@
     <!-- [hidden]="data.preVehicle?.photos&& data.preVehicle?.photos['17']" -->
   {{data.preVehicle?.photos&& data.preVehicle?.photos['17']&&data.preVehicle.photos['17'][0].id}}
  <ngx-img  [idValue]="data.preVehicle?.photos&& data.preVehicle?.photos['17']&&data.preVehicle.photos['17'][0].id"
-         
+
            [height]="150"></ngx-img>
 </ng-template>
 
@@ -442,7 +442,7 @@
   <!-- [hidden]="data.preVehicle?.photos&& data.preVehicle?.photos['20']" -->
   {{data.preVehicle?.photos&& data.preVehicle?.photos['20']&&data.preVehicle.photos['20'][0].id}}
  <ngx-img  [idValue]="data.preVehicle?.photos&& data.preVehicle?.photos['20']&&data.preVehicle.photos['20'][0].id"
-         
+
            [height]="150"></ngx-img>
 </ng-template>
 
@@ -452,7 +452,7 @@
   <!-- [hidden]="data.preVehicle?.photos&& data.preVehicle?.photos['18']" -->
   {{data.preVehicle?.photos&& data.preVehicle?.photos['18']&&data.preVehicle.photos['18'][0].id}}
  <ngx-img [idValue]="data.preVehicle?.photos&& data.preVehicle?.photos['18']&&data.preVehicle.photos['18'][0].id"
-          
+
            [height]="150"></ngx-img>
 </ng-template>
 
@@ -462,10 +462,10 @@
   <!-- [hidden]="data.preVehicle?.photos&& data.preVehicle?.photos['19']" -->
   {{data.preVehicle?.photos&& data.preVehicle?.photos['19']&&data.preVehicle.photos['19'][0].id}}
  <ngx-img  [idValue]="data.preVehicle?.photos&& data.preVehicle?.photos['19']&&data.preVehicle.photos['19'][0].id"
-           
+
            [height]="150"></ngx-img>
 </ng-template>
-<!-- 
+<!--
   没看到  公证书
 <ng-template #notarizationFile1 let-data  >
   {{ object( data.seller.photos)?'无':data.seller.photos['01'][0].id}}
@@ -530,7 +530,7 @@
   {{data.preVehicle?.photos&& data.preVehicle?.photos['23']&&data.preVehicle.photos['23'][0].id}}
   <!-- [hidden]="data.preVehicle?.photos&& data.preVehicle?.photos['23']" -->
  <ngx-img [idValue]="data.preVehicle?.photos&& data.preVehicle?.photos['23']&&data.preVehicle.photos['23'][0].id"
-         
+
            [height]="150"></ngx-img>
 </ng-template>
 
@@ -542,7 +542,7 @@
   {{data.preVehicle?.photos&& data.preVehicle?.photos['23']&&data.preVehicle.photos['23'][0].id}}
   <!-- [hidden]="data.preVehicle?.photos&& data.preVehicle?.photos['23']" -->
  <ngx-img  [idValue]="data.preVehicle?.photos&& data.preVehicle?.photos['23']&&data.preVehicle.photos['23'][0].id"
-      
+
            [height]="150"></ngx-img>
 </ng-template>
 
@@ -554,7 +554,7 @@
   {{data.preVehicle?.photos&& data.preVehicle?.photos['23']&&data.preVehicle.photos['23'][0].id}}
   <!-- [hidden]="data.preVehicle?.photos&& data.preVehicle?.photos['23']" -->
  <ngx-img  [idValue]="data.preVehicle?.photos&& data.preVehicle?.photos['23']&&data.preVehicle.photos['23'][0].id"
-        
+
            [height]="150"></ngx-img>
 </ng-template>
 
@@ -566,7 +566,7 @@
   {{data.preVehicle?.photos&& data.preVehicle?.photos['23']&&data.preVehicle.photos['23'][0].id}}
   <!-- [hidden]="data.preVehicle?.photos&& data.preVehicle?.photos['23']" -->
  <ngx-img  [idValue]="data.preVehicle?.photos&& data.preVehicle?.photos['23']&&data.preVehicle.photos['23'][0].id"
-         
+
            [height]="150"></ngx-img>
 </ng-template>
 
@@ -577,7 +577,7 @@
   {{data.preVehicle?.photos&& data.preVehicle?.photos['23']&&data.preVehicle.photos['23'][0].id}}
   <!-- [hidden]="data.preVehicle?.photos&& data.preVehicle?.photos['23']" -->
  <ngx-img  [idValue]="data.preVehicle?.photos&& data.preVehicle?.photos['23']&&data.preVehicle.photos['23'][0].id"
-       
+
            [height]="150"></ngx-img>
 </ng-template>
 
@@ -588,7 +588,7 @@
   {{data.preVehicle?.photos&& data.preVehicle?.photos['23']&&data.preVehicle.photos['23'][0].id}}
   <!-- [hidden]="data.preVehicle?.photos&& data.preVehicle?.photos['23']" -->
  <ngx-img  [idValue]="data.preVehicle?.photos&& data.preVehicle?.photos['23']&&data.preVehicle.photos['23'][0].id"
-         
+
            [height]="150"></ngx-img>
 </ng-template>
 

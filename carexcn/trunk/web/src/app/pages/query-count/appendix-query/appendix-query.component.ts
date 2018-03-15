@@ -32,7 +32,7 @@ export class AppendixQueryComponent implements OnInit, OnChanges {
 
   constructor() {
     this.type = '01';
-
+    this.filter.billStatus='';
   }
 
   visibility = 'hidden';
