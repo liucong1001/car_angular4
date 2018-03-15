@@ -26,14 +26,14 @@ export class SearchComponent implements OnInit {
     this.visibility = this.showFilter ? 'shown' : 'hidden';
   }
   constructor(public router: Router,) { }
-
+  // transferStatus
   ngOnInit(): void {
     this.columns =[
       {title: '流水号', titleClass: '', cell: new TextCell('archiveNo')} as Column,
       {title: '车牌号', titleClass: '', cell: new TextCell('preVehicle.preVehicle.plateNumber')} as Column,
       {title: '里程(公里)', titleClass: '', cell: new TextCell('preVehicle.preVehicle.mileage')} as Column,
-      {title: '状态', titleClass: '', cell: new CodemapCell('prejudicationStatus', 'prejudicationStatus')} as Column,
-      {title: '出售价', titleClass: '', cell: new TextCell('name')} as Column,
+      {title: '预审', titleClass: '', cell: new CodemapCell('prejudicationStatus', 'prejudicationStatus')} as Column,
+      {title: '过户', titleClass: '', cell: new CodemapCell('transferStatus', 'transferStatus')} as Column,
       // payCount 代开票 大于0就需要去开票 有票需要开     bills.bill.status 为02 可以去开票 然后bills里面id有值
       {title: '代开票', titleClass: '', cell: new TextCell('payCount')} as Column,
       {title: '开票状态', titleClass: '', cell: new TextCell('validCount')} as Column,
