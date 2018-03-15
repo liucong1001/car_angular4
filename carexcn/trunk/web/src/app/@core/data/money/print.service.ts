@@ -23,12 +23,12 @@ export class PrintService {
   }
 
   /**
-   * 开票接口
+   * 开票接口  (相关票据操作）
    * @param id
    * @param model
    * @returns {Promise<TResult2|TResult1>}
    */
-  public print(id:string,model:TradeBill):Promise<any>{
+  public recordBill(id:string,model:TradeBill):Promise<any>{
     const url = `${this.path}/${id}`;
     return this.http.put(url,model).toPromise().then(function (res) {
       return res.json() as any;

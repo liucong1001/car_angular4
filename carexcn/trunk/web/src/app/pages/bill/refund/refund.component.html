@@ -1,4 +1,173 @@
 <nb-card>
-   <nb-card-header>退票</nb-card-header>
-   <nb-card-body></nb-card-body>
+   <nb-card-header>
+     <div class="p-2 mr-auto">退票</div>
+     <hr>
+     <div class="row">
+       <div class="col-md-3">
+         <label >流水号：</label>
+         <input type="text" class="form-control"   [(ngModel)]="archivesNo" placeholder="请输入或扫描流水号" maxlength="16" (keyup)="argNoSearch($event)">
+       </div>
+       <div class="col-md-2">
+         <label >车牌号(鄂A)：</label>
+         <input type="text" class="form-control" placeholder="请输入车牌号" maxlength="6">
+       </div>
+       <div class="col-md-6 button_print">
+         <button class="btn btn-primary" (click)="refund()" >退票</button>
+       </div>
+     </div>
+     <div class="row">
+         <div class="col-md-2">曾经使用过的发票号{{selectBillNo}}:</div>
+         <div class="col-md-8">
+            <span *ngFor=" let item of billList">
+              <!--<label ngbButtonLabel class="btn btn-outline-success">-->
+                <!--<input ngbButton type="radio"  value="{{item.id}}"  [(ngModel)]="selectBillNo" name="billNoList"> {{item.billNo}}-->
+              <!--</label>-->
+               <label class="custom-control custom-radio">
+                  <input type="radio" class="custom-control-input" value="{{item.id}}" [(ngModel)]="selectBillNo" name="billNoList">
+                  <span class="custom-control-indicator"></span>
+                  <span class="custom-control-description">{{item.billNo}}</span>
+              </label>
+           </span>
+         </div>
+
+     </div>
+   </nb-card-header>
+
+   <nb-card-body>
+     <div class="bill">
+       <div class="bill-title">
+         <p>二　手　车　销　售　统　一　发　票</p>
+         <p>发　　票　　联</p>
+       </div>
+       <div class="bill-body">
+         <div class="bill-row">
+           <p class="bill-cell span4">买方单位/个人</p>
+           <!--trans.buyer.name-->
+           <p class="bill-cell span6"><input type="text" [(ngModel)]="trade.buyer?.buyer.name"/></p>
+           <p class="bill-cell span4">单位代码/身份证号码</p>
+           <!--trans.buyer.certCode-->
+           <p class="bill-cell span6"><input type="text" [(ngModel)]="trade.buyer?.buyer.certCode"/></p>
+           <div class="clearfix"></div>
+         </div>
+         <div class="bill-row">
+           <p class="bill-cell span4">买方单位/个人住址</p>
+           <!--trans.buyer.address-->
+           <p class="bill-cell span10"><input type="text" [(ngModel)]="trade.buyer?.buyer.address"/></p>
+           <p class="bill-cell span1">电话</p>
+           <!--trans.buyer.phone-->
+           <p class="bill-cell span5"><input type="text" [(ngModel)]="trade.buyer?.buyer.phone"/></p>
+           <div class="clearfix"></div>
+         </div>
+         <div class="bill-row">
+           <p class="bill-cell span4">卖方方单位/个人</p>
+           <!--trans.seller.name-->
+           <p class="bill-cell span6"><input type="text" [(ngModel)]="trade.seller?.seller.name"/></p>
+           <p class="bill-cell span4">单位代码/身份证号码</p>
+           <!--trans.seller.certCode-->
+           <p class="bill-cell span6"><input type="text" [(ngModel)]="trade.seller?.seller.certCode" /></p>
+           <div class="clearfix"></div>
+         </div>
+         <div class="bill-row">
+           <p class="bill-cell span4">卖方单位/个人住址</p>
+           <!--trans.vehicleAddress-->
+           <p class="bill-cell span10"><input type="text" [(ngModel)]="trade.seller?.seller.address"/></p>
+           <p class="bill-cell span1">电话</p>
+           <!--trans.seller.phone-->
+           <p class="bill-cell span5"><input type="text" [(ngModel)]="trade.seller?.seller.phone"/></p>
+           <div class="clearfix"></div>
+         </div>
+         <div class="bill-row">
+           <p class="bill-cell span4">车牌照号</p>
+           <!--trans.vehicle.plateNumber-->
+           <p class="bill-cell span3"><input type="text" [(ngModel)]="trade.preVehicle?.preVehicle.plateNumber"/></p>
+           <p class="bill-cell span2">登记证号</p>
+           <!--trans.vehicle.registration-->
+           <p class="bill-cell span4"><input type="text" [(ngModel)]="trade.preVehicle?.preVehicle.registratio"/></p>
+           <p class="bill-cell span2">车辆类型</p>
+           <p class="bill-cell span5">
+             <span>{{trade.preVehicle?.preVehicle.vehicleType  |code_trans: 'vehicleType' | async }}</span>
+             <!--<input type="text" [(ngModel)]="trade.preVehicle?.preVehicle.vehicleType"/>-->
+           </p>
+           <div class="clearfix"></div>
+         </div>
+         <div class="bill-row">
+           <p class="bill-cell span4">车驾号/车辆识别代码</p>
+           <!--trans.vehicle.frameNumber-->
+           <p class="bill-cell span3"><input type="text" [(ngModel)]="trade.preVehicle?.preVehicle.frameNumber"/></p>
+           <p class="bill-cell span2">厂牌型号</p>
+           <!--trans.vehicle.labelCode-->
+           <p class="bill-cell span4"><input type="text" [(ngModel)]="trade.preVehicle?.preVehicle.labelCode"/></p>
+           <p class="bill-cell span2">转入地</p>
+           <p class="bill-cell span5">
+             <!--trans.vehicle.vehicleManage-->
+             <input type="text"   *ngIf="isGetDate" [(ngModel)]="trade.transferVehicle?.transferVehicle.vehicleManagement"/>
+           </p>
+           <div class="clearfix"></div>
+         </div>
+         <div class="bill-row">
+           <p class="bill-cell span4">车价合计（大写）</p>
+           <p class="bill-cell span10">
+             <!--{{trade.transfer?.transferVehicle.bargainPrice}}-->
+             <!--{{trans.bargainPrice | amountHZ}} -->
+           </p>
+           <p class="bill-cell span1">小写</p>
+           <!--trans.bargainPrice-->
+           <p class="bill-cell span5"><input type="text" [(ngModel)]="a"/></p>
+           <div class="clearfix"></div>
+         </div>
+         <div class="bill-row">
+           <p class="bill-cell span4">经营、拍卖单位</p>
+           <p class="bill-cell span16"></p>
+           <div class="clearfix"></div>
+         </div>
+         <div class="bill-row">
+           <p class="bill-cell span4">经营、拍卖单位地址</p>
+           <p class="bill-cell span8"></p>
+           <p class="bill-cell span3">纳税人识别号</p>
+           <p class="bill-cell span5"></p>
+           <div class="clearfix"></div>
+         </div>
+         <div class="bill-row">
+           <p class="bill-cell span4">开户银行、帐号</p>
+           <p class="bill-cell span12"></p>
+           <p class="bill-cell span1">电话</p>
+           <p class="bill-cell span3"></p>
+           <div class="clearfix"></div>
+         </div>
+         <div class="bill-row">
+           <p class="bill-cell span4 rowspan2">二手车市场</p>
+           <p class="bill-cell span5 rowspan2"></p>
+           <p class="bill-cell span3">纳税人识别号</p>
+           <p class="bill-cell span8"></p>
+           <p class="bill-cell offset8 span3">地址</p>
+           <p class="bill-cell span8"></p>
+           <div class="clearfix"></div>
+         </div>
+         <div class="bill-row">
+           <p class="bill-cell span4">开户银行、帐号</p>
+           <p class="bill-cell span12"></p>
+           <p class="bill-cell span1">电话</p>
+           <p class="bill-cell span3"></p>
+           <div class="clearfix"></div>
+         </div>
+         <div class="bill-row">
+           <!--{{trans.memo}}-->
+           <p class="bill-cell span20" ng-if="!memoShow">备注:  </p>
+           <div class="clearfix"></div>
+         </div>
+         <div class="row" >
+           <div class="bill-date" style="margin-top:-35px"><span>开票日期:</span>
+             <!--<a href="" class="glyphicon glyphicon-calendar" ng-click="dateOpened = true"></a>-->
+             <ngx-ys-calendar [placeholder]="'开票日期'"    (_calendarValue)="getPrintTime($event)"></ngx-ys-calendar>
+             <!--<input type="text"  ng-change="sel(billDate)" style="width:200px;" ng-click="dateOpened = true" current-text="今天" clear-text="清空" uib-datepicker-popup="yyyy年M月d日" [(ngModel)]="billDate" is-open="dateOpened" datepicker-options="dateOptions" ng-required="true" close-text="隐藏"  />-->
+           </div>
+           <div class="bill-no" style="margin-top:-35px">
+             发票代码:<input [(ngModel)]="tradeBill.billCode" required maxlength="12"/><br>
+             发票号码(<span class="text-danger">将要使用</span>)：<input [(ngModel)]="tradeBill.billNo" required type="text" maxlength="8"/>
+           </div>
+         </div>
+
+       </div>
+     </div>
+   </nb-card-body>
 </nb-card>

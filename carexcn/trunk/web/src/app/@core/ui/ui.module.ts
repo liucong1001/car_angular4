@@ -35,6 +35,7 @@ import { BuyerInfoComponent } from './business/buyer-info/buyer-info.component';
 import { CarTransferComponent } from './business/car-transfer/car-transfer.component';
 import {CarlistTransferComponent} from "./business/carlist-transfer/carlist-transfer.component";
 import { ImgComponent } from './img/img.component';
+import { ReportFormSearchComponent } from './report-form-search/report-form-search.component';
 
 const COMPONENTS = [
   CameraComponent,
@@ -93,6 +94,7 @@ const COMPONENTS = [
 
   declarations: [
     ...COMPONENTS,
+    ReportFormSearchComponent,
   ],
 })
 export class UiModule {

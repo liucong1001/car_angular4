@@ -15,7 +15,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class PrintComponent implements OnInit {
   // 2018021100010001  2018030100010001
-  a:string;
   archivesNo:string;
   trade = new TradeForm();
   tradeBill= new TradeBill();
@@ -34,6 +33,7 @@ export class PrintComponent implements OnInit {
    * @param event
    */
   argNoSearch(event:any){
+    this.msg = '';
     if(event.keyCode == 13&&String(this.archivesNo).length==16){
       this.tradeService.get(this.archivesNo).then(res=>{
         this.trade = res;
@@ -55,7 +55,7 @@ export class PrintComponent implements OnInit {
 
   print(){
     console.log('点击了开票',this.tradeBill);
-    this.printService.print(this.printId,this.tradeBill).then(res=>{
+    this.printService.recordBill(this.printId,this.tradeBill).then(res=>{
       this.router.navigate( ['/pages/money/print/success', { billNo: this.tradeBill.billNo ,}]);
 
     }).catch(err=>{
@@ -63,5 +63,4 @@ export class PrintComponent implements OnInit {
       this.msg = err.json().message;
     });
   }
-// extern /pager
 }

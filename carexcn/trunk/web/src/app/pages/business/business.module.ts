@@ -26,6 +26,7 @@ import { MobileReviewComponent } from './mobile-recording/mobile-review/mobile-r
 import { MobileInputComponent } from './mobile-recording/mobile-input/mobile-input.component';
 import {CertTypePipe} from '../../@core/data/business/certTypePipe';
 import {BusinessFormGroup} from './business.form-group';
+import {ChangeComponent} from "./change/change.component";
 
 @NgModule({
   imports: [
@@ -59,6 +60,7 @@ import {BusinessFormGroup} from './business.form-group';
     MobileReviewComponent,
     MobileInputComponent,
     CertTypePipe,
+    ChangeComponent,
   ],
 })
 export class BusinessModule {
