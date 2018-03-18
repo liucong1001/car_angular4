@@ -14,3 +14,9 @@ ng g m test --routing
 ng  g c test/testapi --routing
 ```
 外网访问工具下载地址 ：https://github.com/getlantern/forum/issues/833
+
+前台待封装任务：
+  1.获取当前登录人员的信息，包括权限。。
+  2.获取当前市场的信息 包括地址位置信息，电话。。
+  3.报表时间查询（开始时间，结束时间，查询）。
+  4.导出Excel报表服务层封装。
