@@ -17,6 +17,7 @@ import {MobileRecordingComponent} from './mobile-recording/mobile-recording.comp
 import { MobileTestComponent } from './mobile-recording/mobile-test/mobile-test.component';
 import { MobileReviewComponent } from './mobile-recording/mobile-review/mobile-review.component';
 import { MobileInputComponent } from './mobile-recording/mobile-input/mobile-input.component';
+import {ChangeComponent} from "./change/change.component";
 
 const routes: Routes = [
   {
@@ -86,6 +87,10 @@ const routes: Routes = [
   {
     path: 'prejudication/judication-photo',
     component: JudicationPhotoComponent,
+  },
+  {
+    path: 'change',
+    component: ChangeComponent,
   },
   {
     path: '',

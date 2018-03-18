@@ -21,7 +21,7 @@ export class SalesRankComponent implements OnInit, OnChanges {
 
   constructor(private location: Location) { }
 
-  visibility = 'hidden';
+  visibility = 'shown';
   showFilter = false;
 
   // 列表搜索表单隐藏显示切换
@@ -43,6 +43,17 @@ export class SalesRankComponent implements OnInit, OnChanges {
   /*返回*/
   goBack() {
     this.location.back();
+  }
+
+  /**时间在result对象中取值即可得到开始时间，结束时间
+   * {startDate: "2018-03-06", endDate: "2018-03-22"}
+   * @param result
+   */
+  search(result){
+    console.info('表一search:',result)
+  }
+  export(result){
+    console.info('表一',result);
   }
 
 }

@@ -67,6 +67,7 @@ const COMPONENTS = [
   CarTransferComponent,
   CarlistTransferComponent,
   ImgComponent,
+  ReportFormSearchComponent,
 ];
 
 @NgModule({
@@ -94,7 +95,6 @@ const COMPONENTS = [
 
   declarations: [
     ...COMPONENTS,
-    ReportFormSearchComponent,
   ],
 })
 export class UiModule {

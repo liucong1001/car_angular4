@@ -2,43 +2,13 @@
   <nb-card-header class="d-flex">
     <div class="p-2 mr-auto">二手车销售排行</div>
     <div class="p2">
-      <!--<a [routerLink]="'edit'" class="btn btn-primary btn-sm">新增</a>-->
       <button type="button" class="btn btn-sm btn-outline-success" (click)="toggle(visibility)" [ngClass]="{'active':showFilter}" ><i class="ion-funnel"></i></button>
     </div>
   </nb-card-header>
   <nb-card-body>
-    <form [@visibilityChanged]="visibility" (submit)="codeList.reload()">
-      <div class="row">
-        <div class="col-sm-4">
-          <div class="form-group form-group-sm">
-            <span>起始日期：</span>
-            <ngx-ys-calendar class="input-custom" [placeholder]="'选择报表开始时间'"></ngx-ys-calendar>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="form-group form-group-sm">
-            <span>截止日期：</span>
-            <ngx-ys-calendar class="input-custom" [placeholder]="'选择报表截止时间'"></ngx-ys-calendar>
-          </div>
-        </div>
-        <div class="col-sm-3">
-          <div class="form-group form-group-sm span-padding">
-            <span>前</span>
-            <select class="form-control" name="summary">
-              <option value="">5</option>
-              <option value="">20</option>
-            </select>
-            <span>条</span>
-          </div>
-        </div>
-        <div class="col-sm-8"></div>
-        <div class="col-sm-2 form-group">
-          <button type="submit" class="btn btn btn-primary"><i class="ion-search"></i>查询</button>
-        </div>
-        <div class="col-sm-2 form-group">
-          <button type="reset" class="btn btn-outline-primary" ><i class="ion-archive"></i>导出</button>
-        </div>
-      </div>
+    <form [@visibilityChanged]="visibility" >
+      <ngx-report-form-search  (btn_search)="search($event)" (btn_export)="export($event)" [startText]="'开始时间'" [endText]="'结束时间'" >
+      </ngx-report-form-search>
     </form>
     <div class="height"></div>
     <div class="margin-top">

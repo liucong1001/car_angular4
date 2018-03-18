@@ -49,7 +49,11 @@ const routes: Routes = [{
     path: 'system',
     canActivate: [AuthGuardService],
     loadChildren: './system/system.module#SystemModule',
-  }, {
+  },{
+      path: 'reportForm',
+      canActivate: [AuthGuardService],
+      loadChildren: './report-form/report-form.module#ReportFormModule',
+    },{
     path: 'manager',
     canActivate: [AuthGuardService],
     loadChildren: './manager/manager.module#ManagerModule',
