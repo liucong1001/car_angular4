@@ -39,7 +39,7 @@ export class BusinessFormGroup {
   public vehicleTransfer = this._formBuilder.group({
     vehicleManagement: ['', [Validators.required]],
     billMemo: ['', [Validators.required]],
-    evaluatePrice: ['', [Validators.required]],
+    evaluatePrice: [''], // 不要求必填，后台配置该参数是否必填
     bargainPrice: ['', [Validators.required]],
     fee: ['', [Validators.required]],
   });
@@ -49,7 +49,7 @@ export class BusinessFormGroup {
     vehicleType: [{ value: '', disabled: false }, [Validators.required]],
     plateNumber: [{ value: '', disabled: false }, [Validators.required]],
     frameNumber: [{ value: '', disabled: false }, [Validators.required]],
-    // engineNumber: [{ value: '', disabled: false }, [Validators.required]],
+    engineNumber: [{ value: '', disabled: false }, [Validators.required]], // 发动机号必须
     registration: [{ value: '', disabled: false }, [Validators.required, Validators.maxLength(12)]],
     registrationDate: [{ value: '', disabled: false }, [Validators.maxLength(50)]],
     useCharacter: [{ value: '', disabled: false }, [Validators.required]],
@@ -73,7 +73,7 @@ export class BusinessFormGroup {
     vehicleType: ['01', [Validators.required]], // 车辆类型代码
     plateNumber: ['', [Validators.required]], // 车牌号
     frameNumber: ['LVGBE40K28G244297', [Validators.required]], // 车架号
-    // engineNumber: ['C466626', [Validators.required]],
+    engineNumber: ['C466626', [Validators.required]], // 发动机号必须
     registration: ['1', [Validators.required, Validators.maxLength(12)]], // 登记证书号 行驶证号
     registrationDate: ['20080924', [Validators.required]], // 行驶证注册日期
     useCharacter: ['01', [Validators.required]], // 使用性质代码

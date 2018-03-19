@@ -34,10 +34,10 @@
         <ngx-valid-error [errors]="errors.frameNumber" [control]="vehicle.get('frameNumber')"></ngx-valid-error>
       </div>
       <div class="input-group">
-        <span class="input-group-addon">发动机号engineNumber</span>
-        <input type="text" placeholder="" class="form-control" formControlName="frameNumber"
-               [ngClass]="{'form-control-danger':vehicle.get('frameNumber').invalid && vehicle.get('frameNumber').touched}"/>
-        <ngx-valid-error [errors]="errors.frameNumber" [control]="vehicle.get('frameNumber')"></ngx-valid-error>
+        <span class="input-group-addon">发动机号</span>
+        <input type="text" placeholder="" class="form-control" formControlName="engineNumber"
+               [ngClass]="{'form-control-danger':vehicle.get('engineNumber').invalid && vehicle.get('engineNumber').touched}"/>
+        <ngx-valid-error [errors]="errors.engineNumber" [control]="vehicle.get('engineNumber')"></ngx-valid-error>
       </div>
       <div class="input-group">
         <span class="input-group-addon">行驶证注册日期</span>
