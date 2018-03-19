@@ -43,17 +43,16 @@ export class MobileRecordingComponent implements OnInit {
       {title: '流水号', titleClass: '', cell: new TextCell('archiveNo')} as Column,
       {title: '车牌号', titleClass: '', cell: new TextCell('preVehicle.preVehicle.plateNumber')} as Column,
       {title: '里程(公里)', titleClass: '', cell: new TextCell('preVehicle.preVehicle.mileage')} as Column,
-      {title: '出售价', titleClass: '', cell: new TextCell('name')} as Column,
-      {title: '购买价', titleClass: '', cell: new TextCell('name')} as Column,
+      // {title: '出售价', titleClass: '', cell: new TextCell('name')} as Column,
+      // {title: '购买价', titleClass: '', cell: new TextCell('name')} as Column,
       {title: '状态', titleClass: '', cell: new CodemapCell('prejudicationStatus', 'prejudicationStatus')} as Column,
       {title: '类型(卖方|买方)', titleClass: 'w-15 text-center', cell:new CustomCell(this.TypeCell)} as Column,
       {title: '商户', titleClass: '', cell: new TextCell('preVehicle.preVehicle.merchant.name')} as Column,
-      {title: 'seller图片', titleClass: '', cell: new CustomCell(this.disableSignTemp)} as Column,
+      // {title: 'seller图片', titleClass: '', cell: new CustomCell(this.disableSignTemp)} as Column,
       {title: '操作', titleClass: 'w-15 text-center', cell: new MenuCell(
         [
-          new Menu('预览', '', this.review.bind(this)),
         ],
-        new Menu('更多', '', this.view), 'text-center',
+        new Menu('预览', '', this.review.bind(this)), 'text-center',
       )} as Column,
     ];
   }
