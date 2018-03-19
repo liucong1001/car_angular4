@@ -45,6 +45,8 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
   ) {}
   ngOnInit() {
     this.setCertificateConfig();
+    console.info('dynamic-photo-form.component.ts photos_name', this.photos_name);
+    console.info('dynamic-photo-form.component.ts photos.controls', this.photos.value);
   }
 
   /**
@@ -73,30 +75,7 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    // if (this._certificateFormConfig === undefined) {
-    //   this._certificateFormConfig = this.certificateFormConfig;
-    // }
-    // console.info('compare', this._certificateFormConfig);
-    // console.info('compare', this.certificateFormConfig);
-    // if (this._certificateFormConfig !== this.certificateFormConfig ) {
-    //   this._certificateFormConfig = this.certificateFormConfig;
-      this.setCertificateConfig();
-    // }
-    // if (this.photos) {
-    //   Object.keys(this.photos.controls).forEach(key1 => {
-    //     let keys = [];
-    //     Object.keys((this.photos.get(key1) as FormArray).controls).forEach( key2 => {
-    //       console.info(key1 + '--' + key2 + ' value:' + JSON.stringify(this.photos.get(key1).get(key2).value));
-    //       console.info(this.photos.get(key1).get(key2));
-    //       // let key_child = {key2: this.photos.get(key1).get(key2)};
-    //       keys.push(key2);
-    //     });
-    //     this.photos_keys.push(key1);
-    //   });
-    //   console.info(this.photos_keys);
-    // } else {
-    //   this.photos_keys = [];
-    // }
+    this.setCertificateConfig();
   }
 
   /**
@@ -105,7 +84,10 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
    * @returns {Array<AbstractControl>}
    */
   getPhotoFormControls(photoType: string): Array<AbstractControl> {
-    return (this.photos.get(photoType) as FormArray).controls;
+    let controls = (this.photos.get(photoType) as FormArray).controls;
+    // TODO: 只有两个图片的页面中，执行了很多次，要想办法查出原因，优化性能
+    // console.info('controls:', controls.length, controls);
+    return controls;
   }
 
   /**

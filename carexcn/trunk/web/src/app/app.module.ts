@@ -6,7 +6,7 @@
 import { APP_BASE_HREF } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { CoreModule } from './@core/core.module';
 
@@ -19,6 +19,7 @@ import {ToasterModule} from 'angular2-toaster';
 import 'style-loader!angular2-toaster/toaster.css';
 import {ReactiveFormsModule} from '@angular/forms';
 import {PipesModule} from './@core/pipes/pipes.module';
+import {GlobalErrorHandler} from './@core/global-error-handler';
 
 @NgModule({
   declarations: [AppComponent],
@@ -38,7 +39,7 @@ import {PipesModule} from './@core/pipes/pipes.module';
   ],
   bootstrap: [AppComponent],
   providers: [
-
+    // { provide: ErrorHandler, useClass: GlobalErrorHandler},
     { provide: APP_BASE_HREF, useValue: '/'},
   ],
 })

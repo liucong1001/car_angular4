@@ -16,7 +16,17 @@ export class ArchiveNoTransferComponent implements OnInit {
   @Input() prompt? = '';
   @Output('_tradeList') private _tradeList = new EventEmitter();
   @Output('_trade') private _trade = new EventEmitter();
-  public trade: TradeForm;
+  public trade: TradeForm = {
+    transfer: {
+      business: {},
+    },
+    transferVehicle: {
+      transferVehicle: {
+        merchant: {},
+        filingInfo: {},
+      },
+    },
+  };
   public tradeList: [TradeForm];
   constructor(
     private _message: MessageService,
@@ -27,18 +37,6 @@ export class ArchiveNoTransferComponent implements OnInit {
   ngOnInit() {
     if (this.archiveNo) {
       this.getTradeByArchiveNo(this.archiveNo);
-    } else {
-      this.trade = {
-        transfer: {
-          business: {},
-        },
-        transferVehicle: {
-          transferVehicle: {
-            merchant: {},
-            filingInfo: {},
-          },
-        },
-      };
     }
   }
 
