@@ -13,7 +13,7 @@
     <!--&gt;</ngx-ys-dynamic-photo-form>-->
     <div class="input-group">
       <div class="input-group">
-        <span class="input-group-addon">车管所</span>
+        <span class="input-group-addon">转出地车管所</span>
         <!-- TODO: 这一块还有问题，未能显示字段值的子属性，在处理车管所时必须此特性！-->
         <!--<ngx-ys-autoinput-->
           <!--[results_resource_url]="'/rest/manager/vehicle/management/list/'"-->
@@ -26,10 +26,10 @@
         <ngx-valid-error [errors]="errors.vehicleManagement" [control]="vehicleTransfer.get('vehicleManagement')"></ngx-valid-error>
       </div>
       <div class="input-group">
-        <span class="input-group-addon">发票备注</span>
-        <input type="text" placeholder="" class="form-control" formControlName="billMemo"
-               [ngClass]="{'form-control-danger':vehicleTransfer.get('billMemo').invalid && vehicleTransfer.get('billMemo').touched}"/>
-        <ngx-valid-error [errors]="errors.billMemo" [control]="vehicleTransfer.get('billMemo')"></ngx-valid-error>
+        <span class="input-group-addon">成交价格</span>
+        <input type="text" placeholder="" class="form-control" formControlName="bargainPrice"
+               [ngClass]="{'form-control-danger':vehicleTransfer.get('bargainPrice').invalid && vehicleTransfer.get('bargainPrice').touched}"/>
+        <ngx-valid-error [errors]="errors.bargainPrice" [control]="vehicleTransfer.get('bargainPrice')"></ngx-valid-error>
       </div>
     </div>
     <div class="input-group">
@@ -40,10 +40,10 @@
         <ngx-valid-error [errors]="errors.evaluatePrice" [control]="vehicleTransfer.get('evaluatePrice')"></ngx-valid-error>
       </div>
       <div class="input-group">
-        <span class="input-group-addon">成交价格</span>
-        <input type="text" placeholder="" class="form-control" formControlName="bargainPrice"
-               [ngClass]="{'form-control-danger':vehicleTransfer.get('bargainPrice').invalid && vehicleTransfer.get('bargainPrice').touched}"/>
-        <ngx-valid-error [errors]="errors.bargainPrice" [control]="vehicleTransfer.get('bargainPrice')"></ngx-valid-error>
+        <span class="input-group-addon">发票备注</span>
+        <input type="text" placeholder="" class="form-control" formControlName="billMemo"
+               [ngClass]="{'form-control-danger':vehicleTransfer.get('billMemo').invalid && vehicleTransfer.get('billMemo').touched}"/>
+        <ngx-valid-error [errors]="errors.billMemo" [control]="vehicleTransfer.get('billMemo')"></ngx-valid-error>
       </div>
       <div class="input-group">
         <span class="input-group-addon">手续费</span>

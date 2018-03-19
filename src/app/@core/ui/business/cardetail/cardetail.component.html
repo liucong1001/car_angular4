@@ -19,25 +19,25 @@
         <ngx-valid-error [errors]="errors.plateNumber" [control]="vehicle.get('plateNumber')"></ngx-valid-error>
       </div>
       <div class="input-group">
+        <span class="input-group-addon">登记证书编号</span>
+        <input type="text" placeholder="" class="form-control" formControlName="registration"
+               [ngClass]="{'form-control-danger':vehicle.get('registration').invalid && vehicle.get('registration').touched}"/>
+        <ngx-valid-error [errors]="errors.registration" [control]="vehicle.get('registration')"></ngx-valid-error>
+      </div>
+      <button class="btn btn-primary btn-sm" (click)="readVehicleCard()">读取行驶证</button>
+    </div>
+    <div class="input-group">
+      <div class="input-group">
         <span class="input-group-addon">车架号</span>
         <input type="text" placeholder="" class="form-control" formControlName="frameNumber"
                [ngClass]="{'form-control-danger':vehicle.get('frameNumber').invalid && vehicle.get('frameNumber').touched}"/>
         <ngx-valid-error [errors]="errors.frameNumber" [control]="vehicle.get('frameNumber')"></ngx-valid-error>
       </div>
-      <button class="btn btn-primary btn-sm" (click)="readVehicleCard()">读取行驶证</button>
-    </div>
-    <div class="input-group">
-      <!--<div class="input-group">-->
-        <!--<span class="input-group-addon">发动机号</span>-->
-        <!--<input type="text" placeholder="" class="form-control" formControlName="engineNumber"-->
-               <!--[ngClass]="{'form-control-danger':vehicle.get('engineNumber').invalid && vehicle.get('engineNumber').touched}"/>-->
-        <!--<ngx-valid-error [errors]="errors.engineNumber" [control]="vehicle.get('engineNumber')"></ngx-valid-error>-->
-      <!--</div>-->
       <div class="input-group">
-        <span class="input-group-addon">行驶证号</span>
-        <input type="text" placeholder="" class="form-control" formControlName="registration"
-               [ngClass]="{'form-control-danger':vehicle.get('registration').invalid && vehicle.get('registration').touched}"/>
-        <ngx-valid-error [errors]="errors.registration" [control]="vehicle.get('registration')"></ngx-valid-error>
+        <span class="input-group-addon">发动机号engineNumber</span>
+        <input type="text" placeholder="" class="form-control" formControlName="frameNumber"
+               [ngClass]="{'form-control-danger':vehicle.get('frameNumber').invalid && vehicle.get('frameNumber').touched}"/>
+        <ngx-valid-error [errors]="errors.frameNumber" [control]="vehicle.get('frameNumber')"></ngx-valid-error>
       </div>
       <div class="input-group">
         <span class="input-group-addon">行驶证注册日期</span>
