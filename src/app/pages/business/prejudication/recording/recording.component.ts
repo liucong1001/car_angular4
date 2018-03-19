@@ -73,8 +73,7 @@ export class RecordingComponent implements OnInit, OnDestroy {
     private _filingService: FilingService,
     private _localstorage: LocalstorageService,
     private _prejudication: PrejudicationService,
-  ) {
-  }
+  ) {}
 
   linkManData: FilingInfoModel[] = [];
   linkman: any = {};
@@ -192,6 +191,7 @@ export class RecordingComponent implements OnInit, OnDestroy {
 
   /**
    * 车牌号填写完的事件
+   * TODO: 必须先可以输入并验证好车牌号，然后才让进行代办商户代办人的选择，才可以进行下一步
    */
   carLsnumBlur() {
     /**
@@ -200,12 +200,16 @@ export class RecordingComponent implements OnInit, OnDestroy {
      * 是否属于黑名单
      * 是否属于公车拍卖，如果是应该要拿到公车拍卖的车辆信息
      */
-    this.carLsnumIsOk = true;
-    // this._carService.checkCarLsnum(lsnum).then(res => {
-    //   this.carLsnumIsOk = true;
-    //   return true;
-    // }).catch(err => {
-    //   this._message.error('错误', err);
-    // });
+    if (this.vehicle.plateNumber.length >= 5) {
+      this._prejudication.checkCar(this.vehicle.plateNumber, this.linkmanSelected.id).then(res => {
+        console.info(res);
+        // this._router.navigateByUrl('/pages/business/prejudication/recording2');
+      }).catch(e => {
+        console.info(e);
+        this._message.error('录入错误', e.message);
+      });
+    } else {
+      this._message.error('车牌号错误', '您的车牌号可能没有填写完');
+    }
   }
 }

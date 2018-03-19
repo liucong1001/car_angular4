@@ -17,13 +17,18 @@
 .ui-autocomplete-panel-ys ul li {
   line-height: 1.5;
 }
+.nb-theme-cosmic .ui-inputtext {
+  border-color:  #342e73;
+}
 .ui-inputtext {
   padding: 0.75rem 1.125rem;
-  color: #ffffff;
-  background-color: #37317a;
-  border: 2px solid #342e73;
+  border: 2px solid;
   font-family: Roboto;
   border-radius: 0.5rem;
+}
+.nb-theme-cosmic .ui-inputtext {
+  color: #ffffff;
+  background-color: #07070e;
 }
 .ui-inputtext {
   display: block;
@@ -77,22 +82,27 @@
   position: absolute;
   top: 3.25rem !important;
 }
-.ui-widget-content {
-  border: 1px solid #342e73;
+.nb-theme-cosmic .ui-widget-content {
+  border-color: #342e73;
   background: #37317a;
   color: #fff;
+}
+.ui-widget-content {
+  border: 1px solid;
 }
 .ui-datepicker .ui-datepicker-header a {
   color: #d1d1ff;
   text-align: center;
   line-height: 1.8em;
 }
+.nb-theme-cosmic .ui-corner-all {
+  background-color: #37317a;
+  border-color: #342e73 !important;
+}
 .ui-corner-all {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   border-radius: 0.5em;
-  background-color: #37317a;
-  border-color: #342e73 !important;
 }
 .ui-datepicker table {
   width: 100%;
@@ -119,9 +129,11 @@
   text-align: right;
   text-decoration: none;
 }
-.ui-datepicker.ui-widget .ui-datepicker-calendar thead th {
-  padding: 8px;
+.nb-theme-cosmic .ui-datepicker .ui-widget .ui-datepicker-calendar thead th {
   background: #3d3780;
+}
+.ui-datepicker .ui-widget .ui-datepicker-calendar thead th {
+  padding: 8px;
 }
 .ui-datepicker th {
   padding: 0.7em 0.3em;
@@ -155,13 +167,15 @@
   display: none;
   background: #000;
 }
+.nb-theme-cosmic .ui-datepicker .ui-datepicker-title select {
+  background-color: #3d3780;
+  border-color: #2c2863;
+  color: white;
+}
 .ui-datepicker .ui-datepicker-title select {
   font-size: 1em;
   margin: 0.125em;
   vertical-align: middle;
-  background-color: #3d3780;
-  color: white;
-  border-color: #2c2863;
 }
 .ui-datepicker select.ui-datepicker-year {
   width: 40%;
@@ -187,10 +201,12 @@
   line-height: 1.8em;
   text-align: center;
 }
-.ui-widget-header {
+.nb-theme-cosmic .ui-widget-header {
   border: 1px solid #d9d9d9;
   background: #3d3780;
   color: #d1d1ff;
+}
+.ui-widget-header {
   font-weight: normal;
 }
 .ui-datepicker.ui-widget .ui-datepicker-calendar {
@@ -202,9 +218,12 @@
   border-collapse: collapse;
   margin: 0 0 0.4em;
 }
+.nb-theme-cosmic .ui-calendar input {
+  border-color: #342e73;
+}
 .ui-calendar input {
   width: 100% !important;
-  border: 2px solid #342e73;
+  border: 2px solid;
   border-radius: 0.5em;
 }
 .ui-calendar {
@@ -217,37 +236,40 @@
 .nb-theme-cosmic a:focus, .nb-theme-cosmic a:hover {
   color: white;
 }
-.ui-datepicker.ui-widget .ui-datepicker-calendar td a.ui-state-highlight {
+.nb-theme-cosmic .ui-datepicker.ui-widget .ui-datepicker-calendar td a.ui-state-highlight {
   background-color: #7659ff;
   color: #ffffff;
 }
-.ui-dropdown .ui-dropdown-trigger {
+.nb-theme-cosmic .ui-dropdown .ui-dropdown-trigger {
   background: #37317a;
   border-color: #37317a;
 }
-ngx-ys-calendar table {
+.nb-theme-cosmic ngx-ys-calendar table {
   //border: 1px solid red;
   background: #3d3780;
 }
-.ui-datepicker td span, .ui-datepicker td a {
+.nb-theme-cosmic .ui-datepicker td span, .ui-datepicker td a {
   background: #3d3780;
   color: white;
 }
-.ui-dropdown .ui-dropdown-trigger .fa {
+.nb-theme-cosmic .ui-dropdown .ui-dropdown-trigger .fa {
   margin-top: 1em;
   color: #fffafa !important;
 }
-ngx-ys-codeitem-droplist, ngx-ys-droplist {
+.nb-theme-cosmic ngx-ys-codeitem-droplist, ngx-ys-droplist {
   border: 1px solid #342e73;
   border-radius: 0.5em;
   background: #342e73;
 }
-::-webkit-input-placeholder {
+ngx-ys-codeitem-droplist, ngx-ys-droplist {
+   border-radius: 0.5em;
+ }
+.nb-theme-cosmic ::-webkit-input-placeholder {
   color: #a1a1e5;
 }
-.ui-inputtext:enabled:hover {
+.nb-theme-cosmic .ui-inputtext:enabled:hover {
   border-color: #7659ff;
 }
-.ui-dropdown:not(.ui-state-disabled):hover {
+.nb-theme-cosmic .ui-dropdown:not(.ui-state-disabled):hover {
   background-color: #342e73 !important;
 }
