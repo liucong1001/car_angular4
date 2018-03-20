@@ -1,5 +1,4 @@
 import { ToPermTreeNode } from './../../permission/permission-pipe';
-import { FormsRoutingModule } from './../../../forms/forms-routing.module';
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { ActivatedRoute, Router, ActivatedRouteSnapshot, RouterState, RouterStateSnapshot } from '@angular/router';
