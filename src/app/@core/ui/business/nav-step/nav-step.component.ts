@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
 import {MenuItem} from 'primeng/primeng';
 
 @Component({
@@ -8,6 +8,7 @@ import {MenuItem} from 'primeng/primeng';
   encapsulation: ViewEncapsulation.None,
 })
 export class NavStepComponent implements OnInit {
+  @Input() items: Array<MenuItem>;
   /**
    * 本组件提供可配置化的步骤导航功能
    * 1、明显清晰的步骤说明
@@ -15,12 +16,5 @@ export class NavStepComponent implements OnInit {
    * 3、方便的页面跳转
    */
   constructor() { }
-  items: MenuItem[];
-  ngOnInit() {
-    this.items = [
-      {label: '第一步'},
-      {label: '第二步'},
-      {label: '第三步'},
-    ];
-  }
+  ngOnInit() {}
 }
