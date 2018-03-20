@@ -91,6 +91,11 @@ export class PayOrderForm {
   public accountId: string;
 
   public items: any[];
+  /**
+   * 流水号类型
+   */
+  public arcNoType:string;
+
 }
 
 

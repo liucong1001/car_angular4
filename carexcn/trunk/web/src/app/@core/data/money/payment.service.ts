@@ -13,7 +13,7 @@ export class PaymentService {
   }
 
   /**
-   * 创建订单
+   * 二手车创建订单
    * @param model
    * @returns {Promise<TResult2|TResult1>}
    */
@@ -22,6 +22,18 @@ export class PaymentService {
       return this.http.post(url,model).toPromise().then(function (res) {
         return res.json() as any;
       })
+  }
+
+  /**
+   * 市场创建订单
+   * @param model
+   * @returns {Promise<TResult2|TResult1>}
+   */
+  public  createMarketOrder(model:any){
+    const url = `${this.path}/actno/add`;
+    return this.http.post(url,model).toPromise().then(function (res) {
+      return res.json() as any;
+    })
   }
 
   /**

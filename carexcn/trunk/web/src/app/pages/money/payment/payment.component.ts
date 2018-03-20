@@ -55,6 +55,7 @@ export class PaymentComponent implements OnInit, OnChanges {
        if((event.keyCode == 13 ||event.type=='click')&&String(this.archiveNo).length==16) {
          /* 二手车流水处理 */
           this.arcNoType = '1';
+         this.payOrder.arcNoType = this.arcNoType;
           this.typeList = [];
          console.log('二手车流水号：',this.archiveNo);
          this.paymentService.getPay(this.archiveNo).then(res=>{
@@ -74,6 +75,7 @@ export class PaymentComponent implements OnInit, OnChanges {
        }else if((event.keyCode == 13 ||event.type=='click')&&String(this.archiveNo).length==13){
          /* 市场流水处理*/
          this.arcNoType = '0';
+         this.payOrder.arcNoType = this.arcNoType;
          this.typeList = [];
          console.log('市场流水号：',this.archiveNo);
          this.paymentService.getMarketBusiness().then(res=>{
@@ -106,6 +108,7 @@ export class PaymentComponent implements OnInit, OnChanges {
     this.payOrder = {
       shouldAmount:0,
        actualAmount:0,
+       arcNoType:'',
        accountId:'',
           items:[],
      };
@@ -150,6 +153,7 @@ export class PaymentComponent implements OnInit, OnChanges {
           shouldAmount: result[i].money,
           invoice:      result[i].invoice,
           businessType: result[i].businessType,
+          // arcNoType:this.arcNoType,
           // archiveNo:   this.businessObjectPayment.archiveNo,
           // accountName: this.businessObjectPayment.accountName,
         })
@@ -201,16 +205,30 @@ export class PaymentComponent implements OnInit, OnChanges {
   creatOrder(){
     // this.feeSum();
      console.log("创建订单",this.payOrder);
-     this.paymentService.createOrder(this.payOrder).then(res=>{
-        this.message.success('','创建订单成功！')
-       if(res.complete =='0'){
-         this.router.navigate( ['/pages/money/payment/order', { id: res.id }]);
-       }else if(res.complete =='3'){
-         this.router.navigate( ['/pages/money/order-manage']);
-       }
-     }).catch(err=>{
-        this.message.error('',err.json().message);
-     })
+     if(this.payOrder.arcNoType == '1'){//二手车业务
+       this.paymentService.createOrder(this.payOrder).then(res=>{
+         this.message.success('','创建订单成功！')
+         if(res.complete =='0'){
+           this.router.navigate( ['/pages/money/payment/order', { id: res.id }]);
+         }else if(res.complete =='3'){
+           this.router.navigate( ['/pages/money/order-manage']);
+         }
+       }).catch(err=>{
+         this.message.error('',err.json().message);
+       })
+     }else if(this.payOrder.arcNoType == '0'){ //市场业务
+       this.paymentService.createMarketOrder(this.payOrder).then(res=>{
+         this.message.success('','创建订单成功！')
+         if(res.complete =='0'){
+           this.router.navigate( ['/pages/money/payment/order', { id: res.id }]);
+         }else if(res.complete =='3'){
+           this.router.navigate( ['/pages/money/order-manage']);
+         }
+       }).catch(err=>{
+         this.message.error('',err.json().message);
+       })
+     }
+
   }
 
   remove(data,index){
