@@ -5,12 +5,12 @@
   (_trade)="getTradeByArchiveNoComponent($event)"
 ></ngx-archive-no-vehicle>
 
-<ngx-ys-buyer-info *ngIf="trade"
-  [buyer]="_formGroup.controls.buyer"
-  [certificateFormConfig]="buyerCertificateFormConfig"
-  [merchant]="trade.preVehicle.preVehicle.merchant"
-  [cheshang]="trade.preVehicle.preVehicle.filingInfo"
-></ngx-ys-buyer-info>
+<!--<ngx-ys-buyer-info *ngIf="trade"-->
+  <!--[buyer]="_formGroup.controls.buyer"-->
+  <!--[certificateFormConfig]="buyerCertificateFormConfig"-->
+  <!--[merchant]="trade.preVehicle.preVehicle.merchant"-->
+  <!--[cheshang]="trade.preVehicle.preVehicle.filingInfo"-->
+<!--&gt;</ngx-ys-buyer-info>-->
 
 <ngx-ys-car-transfer
   [vehicleTransfer]="_formGroup.controls.vehicleTransfer"

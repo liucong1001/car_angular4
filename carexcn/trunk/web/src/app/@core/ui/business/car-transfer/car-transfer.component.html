@@ -15,14 +15,14 @@
       <div class="input-group">
         <span class="input-group-addon">转出地车管所</span>
         <!-- TODO: 这一块还有问题，未能显示字段值的子属性，在处理车管所时必须此特性！-->
-        <!--<ngx-ys-autoinput-->
-          <!--[results_resource_url]="'/rest/manager/vehicle/management/list/'"-->
-          <!--(_value)="getSelectedVehicleManagement($event)"-->
-          <!--[showProperty]="'management.name'"-->
-          <!--[defaultValue]="vehicleTransfer.get('vehicleManagement').value"-->
-        <!--&gt;</ngx-ys-autoinput>-->
-        <input type="text" placeholder="" class="form-control" formControlName="vehicleManagement"
-               [ngClass]="{'form-control-danger':vehicleTransfer.get('vehicleManagement').invalid && vehicleTransfer.get('vehicleManagement').touched}"/>
+        <ngx-ys-autoinput
+          [results_resource_url]="'/rest/manager/vehicle/management/list/'"
+          (_value)="getSelectedVehicleManagement($event)"
+          [showProperty]="'createTime'"
+          [defaultValue]="vehicleTransfer.get('vehicleManagement').value"
+        ></ngx-ys-autoinput>
+        <!--<input type="text" placeholder="" class="form-control" formControlName="vehicleManagement"-->
+               <!--[ngClass]="{'form-control-danger':vehicleTransfer.get('vehicleManagement').invalid && vehicleTransfer.get('vehicleManagement').touched}"/>-->
         <ngx-valid-error [errors]="errors.vehicleManagement" [control]="vehicleTransfer.get('vehicleManagement')"></ngx-valid-error>
       </div>
       <div class="input-group">

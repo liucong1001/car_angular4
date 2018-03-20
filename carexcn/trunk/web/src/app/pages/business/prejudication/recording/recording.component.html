@@ -8,18 +8,19 @@
     <div class="input-group">
       <div class="input-group">
         <span class="input-group-addon">车牌号</span>
-        <input class="form-control" placeholder="请输入车牌号" type="text" [(ngModel)]="vehicle.plateNumber" (blur)="carLsnumBlur()" />
+        <!--<input class="form-control" placeholder="请输入车牌号" type="text" [(ngModel)]="vehicle.plateNumber" (blur)="vehicleLsnumBlur()" />-->
+        <input class="form-control" placeholder="请输入车牌号" type="text" [(ngModel)]="vehicle.plateNumber" />
         <!--TODO: 必须先可以输入并验证好车牌号，然后才让进行代办商户代办人的选择，才可以进行下一步-->
       </div>
       <div class="input-group">
         <span class="input-group-addon">代办商户</span>
-        <ngx-ys-autoinput [results_resource_url]="autoinput_shanghu_source_url" (_value)="getSelectedDealer($event)" [showProperty]="'name'" [defaultValue]="dealer"></ngx-ys-autoinput>
+        <ngx-ys-autoinput [disabled]="vehicleLsnumWrong" [results_resource_url]="autoinput_shanghu_source_url" (_value)="getSelectedDealer($event)" [showProperty]="'name'" [defaultValue]="dealer"></ngx-ys-autoinput>
       </div>
     </div>
     <div class="input-group">
       <div class="input-group">
         <span class="input-group-addon">代办人</span>
-        <select class="form-control" [disabled]="!dealerIsOk" [(ngModel)]="linkman" (change)="linkmanSelecteFunc()" [compareWith]="linkmanCompareWithFunc">
+        <select class="form-control" [disabled]="dealerWrong" [(ngModel)]="linkman" (change)="linkmanSelecteFunc()" [compareWith]="linkmanCompareWithFunc">
           <option value="">--请选择--</option>
           <option *ngFor="let linkmanitem of linkManData" [ngValue]="linkmanitem">{{linkmanitem.name}}</option>
         </select>
