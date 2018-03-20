@@ -141,12 +141,12 @@
   font-weight: 700;
   border: 0;
 }
-.ui-datepicker.ui-widget .ui-datepicker-calendar td a {
+.ui-datepicker .ui-widget .ui-datepicker-calendar td a {
   border: 0 none;
   text-align: center;
   padding: 8px;
 }
-.ui-datepicker.ui-widget .ui-datepicker-header {
+.ui-datepicker .ui-widget .ui-datepicker-header {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
@@ -209,7 +209,7 @@
 .ui-widget-header {
   font-weight: normal;
 }
-.ui-datepicker.ui-widget .ui-datepicker-calendar {
+.ui-datepicker .ui-widget .ui-datepicker-calendar {
   margin: 0;
 }
 .ui-datepicker table {
@@ -230,7 +230,7 @@
   position: relative;
   display: inline-block;
 }
-.ui-datepicker.ui-widget .ui-datepicker-calendar td {
+.ui-datepicker .ui-widget .ui-datepicker-calendar td {
   border-bottom: 1px solid rgba(42, 42, 42, 0.5) !important;
 }
 .nb-theme-cosmic a:focus, .nb-theme-cosmic a:hover {

@@ -1,0 +1,56 @@
+.nb-theme-cosmic .ui-state-default {
+  background-color: #3d3780;
+  a {
+    color: #ffffff;
+  }
+}
+.nb-theme-default .ui-state-default {
+  background-color: #ffffff;
+  a {
+    color: #555555;
+  }
+}
+.nb-theme-cosmic .ui-steps-number {
+  background-color: #37317a;
+  color: #ffffff;
+}
+.nb-theme-default .ui-steps-number {
+  background-color: #555555;
+  color: #ffffff;
+}
+.nb-theme-default .ui-state-highlight {
+  .ui-steps-title {
+    color: #555555;
+  }
+}
+ngx-ys-nav-step {
+  p-steps {
+    line-height: 60px;
+    .ys-nav-step {
+      ul {
+        li {
+          .ui-menuitem-link {
+
+          }
+          a {
+            padding: 0 15px 0 15px !important;
+            .ui-steps-number {
+              font-size: unset;
+              float: left;
+              display: inline-block;
+              width: 36px;
+              height: 36px;
+              line-height: 36px;
+              border-radius: 50%;
+              margin-top: 11px;
+              margin-right: 5px;
+            }
+            .ui-steps-title {
+              float: right;
+            }
+          }
+        }
+      }
+    }
+  }
+}
