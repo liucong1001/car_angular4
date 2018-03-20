@@ -42,6 +42,7 @@ export class MarketFeeComponent implements OnInit {
    this. columns =  [
      { title: '费用名', titleClass: '', cell: new TextCell('name') } as Column,
      { title: '业务类型', titleClass: '', cell: new CodemapCell('businessType', 'businessType') } as Column,
+     { title: '流水类型', titleClass: '', cell: new CodemapCell('arcNoType', 'arcNoType') } as Column,
      { title: '价格类型', titleClass: '', cell: new CustomCell(this.priceTypeCell) } as Column,
      { title: '费用', titleClass: '', cell: new TextCell('money') } as Column,
      { title: '计入开票', titleClass: '', cell: new CustomCell(this.invoice) } as Column,

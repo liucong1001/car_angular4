@@ -40,6 +40,10 @@ export class BusinessObjectPayment {
    */
   public businessType?:string;
   /**
+   * 流水号类型
+   */
+  public  arcNoType?:string;
+  /**
    * 应收金额
    */
   public shouldAmount: number;

@@ -35,6 +35,7 @@ export class MarketFeeEditComponent implements OnInit {
             id: res.id,
             name: res.name,
             businessType: res.businessType,
+            arcNoType: res.arcNoType,
             priceType: res.priceType,
             money: res.money,
             invoice: res.invoice,
@@ -67,6 +68,7 @@ export class MarketFeeEditComponent implements OnInit {
   form: FormGroup = this.fb.group({
     name: ['', [Validators.required]],
     businessType: ['', [Validators.required]],
+    arcNoType:['', [Validators.required]],
     money: ['', [Validators.required]],
     invoice: ['', [Validators.required]],
     discount: ['', [Validators.required]],
@@ -86,6 +88,9 @@ export class MarketFeeEditComponent implements OnInit {
     ],
     businessType: [
       new ErrorMessage('required', '业务类型必须填写！'),
+    ],
+    arcNoType: [
+      new ErrorMessage('required', '流水类型必须填写！'),
     ],
     money: [
       new ErrorMessage('required', '费用必须填写！'),
