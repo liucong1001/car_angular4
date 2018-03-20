@@ -248,7 +248,7 @@
   //border: 1px solid red;
   background: #3d3780;
 }
-.nb-theme-cosmic .ui-datepicker td span, .ui-datepicker td a {
+.nb-theme-cosmic .ui-datepicker td span, .nb-theme-cosmic .ui-datepicker td a {
   background: #3d3780;
   color: white;
 }
@@ -256,7 +256,10 @@
   margin-top: 1em;
   color: #fffafa !important;
 }
-.nb-theme-cosmic ngx-ys-codeitem-droplist, ngx-ys-droplist {
+.nb-theme-cosmic .ui-datepicker.ui-widget .ui-datepicker-calendar thead th{
+  background-color: unset;
+}
+.nb-theme-cosmic ngx-ys-codeitem-droplist, .nb-theme-cosmic ngx-ys-droplist {
   border: 1px solid #342e73;
   border-radius: 0.5em;
   background: #342e73;
