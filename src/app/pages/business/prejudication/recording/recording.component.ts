@@ -8,6 +8,7 @@ import {LocalstorageService} from '../../../../@core/cache/localstorage.service'
 import {MerchantModel} from '../../../../@core/model/business/merchant.model';
 import {PreVehicleModel} from '../../../../@core/model/business/trade/preVehicle/preVehicle.model';
 import {PrejudicationService} from '../../../../@core/data/business/prejudication.service';
+import {CurrentMarketService} from '../../../../@core/data/current-market.service';
 
 /**
  * 预审录入1--接口与页面的交互逻辑
@@ -50,9 +51,9 @@ export class RecordingComponent implements OnInit, OnDestroy {
     title: '商户联系人确认单',
     source: 'assets/images/camera4.jpg',
   }];
-  carLsnumPrefixDefault = '鄂A';
-  carLsnumIsOk = false;
-  dealerIsOk = false;
+  private vehicleLsnumPrefixDefault = '鄂A';
+  private vehicleLsnumWrong = true;
+  private dealerWrong = false;
   /**
    * 商户搜索资源
    * @type {string}
@@ -67,13 +68,17 @@ export class RecordingComponent implements OnInit, OnDestroy {
    * @param {LocalstorageService} _localstorage
    */
   constructor(
+    public _cm: CurrentMarketService,
     private _router: Router,
     private _formbuilder: FormBuilder,
     private _message: MessageService,
     private _filingService: FilingService,
     private _localstorage: LocalstorageService,
     private _prejudication: PrejudicationService,
-  ) {}
+  ) {
+    // let tmp = this._cm.getCurrentMarket();
+    // console.info('tmp', tmp);
+  }
 
   linkManData: FilingInfoModel[] = [];
   linkman: any = {};
@@ -84,12 +89,11 @@ export class RecordingComponent implements OnInit, OnDestroy {
    * 页面初始化事件
    */
   ngOnInit() {
-    // console.info('exec on init.');
     /**
      * 默认车牌前缀
      */
     if (this.vehicle.plateNumber.length < 1) {
-      this.vehicle.plateNumber = this.carLsnumPrefixDefault;
+      this.vehicle.plateNumber = this.vehicleLsnumPrefixDefault;
     }
     /**
      * 读取车辆缓存数据：主要是车牌
@@ -102,7 +106,7 @@ export class RecordingComponent implements OnInit, OnDestroy {
        * 如果车牌确认填写了
        */
       if (5 < (this.vehicle.plateNumber).length) {
-        this.carLsnumIsOk = true;
+        this.vehicleLsnumWrong = false;
         /**
          * 读取缓存的商户
          * @type {any}
@@ -114,7 +118,7 @@ export class RecordingComponent implements OnInit, OnDestroy {
            * 缓存联系人相关数据
            * @type {boolean}
            */
-          this.dealerIsOk = true;
+          this.dealerWrong = false;
           this.linkManData = this._localstorage.get(this._cache_pre + 'linkmandata');
           this.linkmanSelected = this._localstorage.get(this._cache_pre + 'linkmanSelected');
           this.linkman = this.linkmanSelected;
@@ -153,7 +157,7 @@ export class RecordingComponent implements OnInit, OnDestroy {
     this.dealer = dealer;
     this._message.info('获取商户', dealer.name);
     this._filingService.agency(dealer.id).then(res => {
-      this.dealerIsOk = true;
+      this.dealerWrong = false;
       this.linkman = ''; // 使 --请选择--  选项高亮
       this.linkManData = res as FilingInfoModel[];
       // console.info(this.linkManData);
@@ -167,9 +171,7 @@ export class RecordingComponent implements OnInit, OnDestroy {
    * @param value
    */
   linkmanSelecteFunc() {
-    // console.info(this.linkman);
     this.linkmanSelected = this.linkman;
-    // console.info(this.linkmanSelected);
   }
 
   /**
@@ -178,6 +180,7 @@ export class RecordingComponent implements OnInit, OnDestroy {
   onSubmit() {
     if (this.vehicle.plateNumber.length > 5 ) {
       this._prejudication.checkCar(this.vehicle.plateNumber, this.linkmanSelected.id).then(res => {
+        this.vehicleLsnumWrong = false;
         console.info(res);
         this._router.navigateByUrl('/pages/business/prejudication/recording2');
       }).catch(e => {
@@ -193,11 +196,11 @@ export class RecordingComponent implements OnInit, OnDestroy {
    * 车牌号填写完的事件
    * TODO: 必须先可以输入并验证好车牌号，然后才让进行代办商户代办人的选择，才可以进行下一步
    */
-  carLsnumBlur() {
+  vehicleLsnumBlur() {
     /**
      * 检查车牌号
-     * 是否已经重复录入
      * 是否属于黑名单
+     * 是否已经重复录入
      * 是否属于公车拍卖，如果是应该要拿到公车拍卖的车辆信息
      */
     if (this.vehicle.plateNumber.length >= 5) {

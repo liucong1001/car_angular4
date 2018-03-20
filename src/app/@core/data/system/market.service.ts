@@ -112,7 +112,6 @@ export class MarketService {
    * @param id
    * @returns {Promise<TResult2|Marketphotomap>}
    */
-
   public getPhoto(id: String): Promise<Marketphotomap> {
     const url = `${this.path}/photo/config/${id}`;
     return this.http.get(url).toPromise().then(function (res) {

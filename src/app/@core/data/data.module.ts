@@ -12,10 +12,12 @@ import {BusinessModule} from './business/business.module';
 import {IcCardModule} from './ic-card/ic-card.module';
 import {MerchantModule} from './merchant/merchant.module';
 import {LoggingService} from './logging.service';
+import {CurrentMarketService} from './current-market.service';
 
 const SERVICES = [
   LoggingService,
   UserService,
+  CurrentMarketService,
   ElectricityService,
   StateService,
   SmartTableService,
