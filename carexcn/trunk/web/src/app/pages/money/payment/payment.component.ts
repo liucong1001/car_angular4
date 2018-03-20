@@ -24,6 +24,7 @@ export class PaymentComponent implements OnInit, OnChanges {
   //每条记录之和
   list = [];
   archiveNo:'';
+  businessType:string;
 
   /**
    *  下方列表对象
@@ -48,49 +49,81 @@ export class PaymentComponent implements OnInit, OnChanges {
   }
   type:string;
   typeList =[];
-  archiveNoChange(arcNo:string){
-     console.log('监听',arcNo,'长度',arcNo.length);
-       if(arcNo.length==16){
+  arcNoType :string;
+  archiveNoChange(event:any){
+       console.log('事件',event.type);
+       if((event.keyCode == 13 ||event.type=='click')&&String(this.archiveNo).length==16) {
+         /* 二手车流水处理 */
+          this.arcNoType = '1';
+          this.typeList = [];
+         console.log('二手车流水号：',this.archiveNo);
+         this.paymentService.getPay(this.archiveNo).then(res=>{
+           console.log('数组长度',res.length);
+           for(var i in res){
+             this.typeList.push(res[i].business.businessType);
+           }
+           console.log('业务数组',this.typeList);
+           if(res.length==1){
+             // 返回只有一种业务类型
+             this.type=res[0].business.businessType;
+             this.search(this.archiveNo,this.type,res[0].id,this.arcNoType);
+           }else  {
+             // 返回多种业务类型
+           }
+         })
+       }else if((event.keyCode == 13 ||event.type=='click')&&String(this.archiveNo).length==13){
+         /* 市场流水处理*/
+         this.arcNoType = '0';
+         this.typeList = [];
+         console.log('市场流水号：',this.archiveNo);
+         this.paymentService.getMarketBusiness().then(res=>{
+           this.typeList = res;
+           console.log('市场业务',this.typeList);
+         })
+         // this.search(this.archiveNo,null,null,this.arcNoType);
+         // this.getArcFee(this.archiveNo,null,this.arcNoType);
+       }else {
+         return false
+       }
+  }
 
-        this.paymentService.getPay(arcNo).then(res=>{
-             console.log('数组长度',res.length);
-             for(var i in res){
-                 this.typeList.push(res[i].business.businessType);
-             }
-             console.log('业务数组',this.typeList);
-             if(res.length==1){
-               // 返回只有一种业务类型
-               this.type=res[0].business.businessType;
-               this.search(arcNo,this.type,res[0].id);
-             }else  {
-               // 返回多种业务类型
-             }
-
-        })
-      }
+  selectBusiness(type:string){
+     console.log('选择的业务',type);
+     for(var i=0;i<this.payOrder.items.length;i++){
+         if(this.payOrder.items[i].payment.archiveNo ==this.archiveNo&&this.payOrder.items[i].payment.businessType==type){
+           this.message.warning('','该项费用已存在！');
+           return false;
+         }
+     }
+    this.getArcFee(this.archiveNo,type,this.arcNoType);
+    this.itemInit();
   }
   // 组件初始华
   ngOnInit() {
-
-    this.payOrderItem.payment = new BusinessObjectPayment();
-    this.payOrderItem.items = [];
-    /**
-     * 初始化订单对象
-     */
+    this.itemInit();
+    this.businessType = '0';
+    /*初始化订单对象*/
     this.payOrder = {
       shouldAmount:0,
        actualAmount:0,
        accountId:'',
           items:[],
-     }
+     };
+  }
+
+  /**
+   * 列表每条数据初始化
+   */
+  itemInit(){
+    this.payOrderItem.payment = new BusinessObjectPayment();
+    this.payOrderItem.items = [];
   }
 
   /**
    * 根据流水号或者车牌号查询
    * @param data
    */
-  search(data,type,id){
-
+  search(data,type,id,arcNoType){
     this.payOrderItem.items = [];
     this.paymentService.getArcInfo(data).then(res=>{
       this.payOrderItem.payment = {
@@ -99,33 +132,49 @@ export class PaymentComponent implements OnInit, OnChanges {
         businessObjectId:id,
         businessType:type,
         accountName:res.preVehicle.preVehicle.merchant.name,
+        arcNoType:'1',
       };
-      this.payOrder.accountId = res.preVehicle.preVehicle.merchant.account.id;
-
-          this.paymentService.getArcFee(data,type).then(result=>{
-
-            for( var i in result){
-              this.payOrderItem.items.push({
-                name:         result[i].name,
-                feeType:      result[i].priceType,
-                money:        result[i].money.split(','),
-                shouldAmount: result[i].money,
-                invoice:      result[i].invoice,
-                businessType: result[i].businessType,
-                // archiveNo:   this.businessObjectPayment.archiveNo,
-                // accountName: this.businessObjectPayment.accountName,
-              })
-            }
-            this.payOrder.items.push({payment:this.payOrderItem.payment,items:this.payOrderItem.items});
-            console.log('列表创建数据',this.list);
-            console.log('表单对象', this.payOrder);
-
-          }).catch(err=>{
-            this.message.error('查询失败',err.message);
-          })
-
+     this.payOrder.accountId = res.preVehicle.preVehicle.merchant.account.id;
+     this.getArcFee(data,type,arcNoType);
     });
   }
+
+  getArcFee(data,type,arcNoType){
+
+    this.paymentService.getArcFee(data,type,arcNoType).then(result=>{
+      for( var i in result){
+        this.payOrderItem.items.push({
+          name:         result[i].name,
+          feeType:      result[i].priceType,
+          money:        result[i].money.split(','),
+          shouldAmount: result[i].money,
+          invoice:      result[i].invoice,
+          businessType: result[i].businessType,
+          // archiveNo:   this.businessObjectPayment.archiveNo,
+          // accountName: this.businessObjectPayment.accountName,
+        })
+      }
+      if(String(data).length==13){
+        this.payOrderItem.payment = {
+          archiveNo:data,
+          shouldAmount:0,
+          businessObjectId:null,
+          businessType:type,
+          accountName:null,
+          arcNoType:'0',
+        };
+      }
+      this.payOrder.items.push({payment:this.payOrderItem.payment,items:this.payOrderItem.items});
+      this.feeSum();
+      console.log('列表创建数据',this.list);
+      console.log('表单对象', this.payOrder);
+
+    }).catch(err=>{
+      this.message.error('查询失败',err.message);
+    })
+  }
+
+
 
 
   /**

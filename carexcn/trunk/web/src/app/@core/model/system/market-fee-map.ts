@@ -24,6 +24,11 @@ export class Marketfeemap {
    * 业务类型
    */
   public businessType: any;
+
+  /**
+   * 流水类型
+   */
+  public arcNoType: any;
   /**
    * 费用金额
    */

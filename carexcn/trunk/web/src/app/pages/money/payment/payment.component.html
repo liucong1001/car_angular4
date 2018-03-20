@@ -2,74 +2,77 @@
   <nb-card-header class="d-flex">
     <div class="p-2 mr-auto">创建订单</div>
   </nb-card-header>
-
   <nb-card-body>
     <div class="row  form-group">
-      <label  class="col-md-2 col-form-label text-right">请输入流水号搜索</label>
+      <label class="col-md-2 col-form-label text-right">请输入流水号搜索</label>
       <div class="col-md-3 ">
-          <input type="text" class="form-control" placeholder="流水号" [(ngModel)]="archiveNo"
-                 (ngModelChange)="archiveNoChange($event)"/>
+        <input type="text" class="form-control" placeholder="流水号" [(ngModel)]="archiveNo"
+               (keyup)="archiveNoChange($event)"/>
       </div>
-      <div class="col-md-2">
-          <select name=""  *ngFor=" let i of typeList" class="form-control">
-            <option value="i"  *ngFor=" let i of typeList">{{i | businessTypePipe}}</option>
-          </select>
+      <div class="col-md-3" *ngIf="typeList.length!=0" >
+        <select name="" class="form-control text-center" [(ngModel)]="businessType"
+                (ngModelChange)="selectBusiness(businessType)">
+          <option value="0">--请选择{{arcNoType | code_trans: 'arcNoType' | async}}业务类型--</option>
+          <option value="{{i}}" *ngFor=" let i of typeList">{{i | code_trans: 'businessType' | async }}</option>
+        </select>
       </div>
+      <div class="col-md-1" *ngIf="typeList.length!=0"> <button class="btn btn-success btn-sm" (click)="selectBusiness(businessType)">创建收费项</button> </div>
     </div>
     <hr>
 
     <div class="container fee card" *ngFor=" let i of payOrder.items;let idx=index ">
       <div class="row  card-header">
         <div class="col-md-3">流水号：{{i.payment.archiveNo}}</div>
-        <div class="col-nd-3">商户：{{i.payment.accountName}}</div>
-        <div class="col-md-5"></div>
-        <div class="col-md-1" (click)="remove(i,idx)">删除</div>
+        <div class="col-nd-3" *ngIf="i.payment.accountName">商户：{{i.payment.accountName}}</div>
+        <div class="col-nd-3">业务类型：{{i.payment.businessType | code_trans: 'businessType' | async}}</div>
+        <div class="col-md-3">流水类型：{{i.payment.arcNoType | code_trans: 'arcNoType' | async}}</div>
+        <div class="col-md-offset-11 delete" (click)="remove(i,idx)"><i class="ion-close-round"></i> 删除</div>
       </div>
-       <div class="card-body">
-
-         <div class="feeList  float-left" *ngFor=" let item of i.items ">
-
-        <div class="feeLabel "><label> {{item.name}}: </label></div>
-        <!--固定-->
-        <div *ngIf="item.feeType=='01'" ng-init="item.shouldAmount=item.money" class="col-md-31">
-          {{item.money}}
-        </div>
-        <!--可选-->
-        <div *ngIf="item.feeType=='02'" class="col-md-31">
-          <!--{{item.money}}-->
-          <select name="" id="" [(ngModel)]="item.shouldAmount" class="custom-select " (ngModelChange)="feeSum($event)">
-            <option value="null" selected>--请选择费用--</option>
-            <option [value]="i" *ngFor=" let i of item.money ">{{i}}</option>
-          </select>
-        </div>
-        <!--计算-->
-        <div *ngIf="item.feeType=='03'" ng-init="item.shouldAmount=item.money" class="col-md-31">
-          <u> {{item.money}}</u>
-        </div>
-        <!--手填-->
-        <div *ngIf="item.feeType=='04'" class="col-md-31">
-          <input type="text" [(ngModel)]="item.shouldAmount" class=" form-control-sm" (ngModelChange)="feeSum($event)">
+      <div class="card-body">
+        <div class="feeList  float-left" *ngFor=" let item of i.items ">
+          <div class="feeLabel "><label> {{item.name}}: </label></div>
+          <!--固定-->
+          <div *ngIf="item.feeType=='01'" ng-init="item.shouldAmount=item.money" class="feeItem">
+            {{item.money}}
+          </div>
+          <!--可选-->
+          <div *ngIf="item.feeType=='02'" class="feeItem">
+            <!--{{item.money}}-->
+            <select name="" id="" [(ngModel)]="item.shouldAmount" class="custom-select "
+                    (ngModelChange)="feeSum($event)">
+              <option value="null" selected>--请选择费用--</option>
+              <option [value]="i" *ngFor=" let i of item.money ">{{i}}</option>
+            </select>
+          </div>
+          <!--计算-->
+          <div *ngIf="item.feeType=='03'" ng-init="item.shouldAmount=item.money" class="feeItem">
+            <u> {{item.money}}</u>
+          </div>
+          <!--手填-->
+          <div *ngIf="item.feeType=='04'" class="feeItem">
+            <input type="text" [(ngModel)]="item.shouldAmount" class=" form-control-sm"
+                   (ngModelChange)="feeSum($event)">
+          </div>
         </div>
       </div>
-       </div>
     </div>
   </nb-card-body>
 
   <nb-card-footer>
     <div class="row ">
       <div class="col-md-4"></div>
-      <div class=" col-md-2  text-center text-danger"> <b *ngIf="payOrder.shouldAmount">应收金额：{{payOrder.shouldAmount}}</b></div>
-      <div class="col-md-1 text-danger" *ngIf="payOrder.shouldAmount"> <b>实收金额：</b> </div>
+      <div class=" col-md-2  text-center text-danger"><b
+        *ngIf="payOrder.shouldAmount">应收金额：{{payOrder.shouldAmount}}</b></div>
+      <div class="col-md-1 text-danger" *ngIf="payOrder.shouldAmount"><b>实收金额：</b></div>
       <div class=" col-md-2  text-center text-danger">
-        <input type="number"  class="form-control" [(ngModel)]="payOrder.actualAmount" *ngIf="payOrder.shouldAmount">
+        <input type="number" class="form-control" [(ngModel)]="payOrder.actualAmount" *ngIf="payOrder.shouldAmount">
       </div>
       <div class="col-md-1">
         <button class="btn btn-success btn-sm " (click)="creatOrder()">创建订单</button>
       </div>
       <!--<div class="col-md-1">-->
-        <!--<button class="btn btn-warning btn-sm">审批</button>-->
+      <!--<button class="btn btn-warning btn-sm">审批</button>-->
       <!--</div>-->
     </div>
   </nb-card-footer>
-
 </nb-card>
