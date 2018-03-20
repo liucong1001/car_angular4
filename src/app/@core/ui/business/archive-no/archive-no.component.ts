@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TradeForm} from '../../../model/business/trade/trade.form';
 import {PrejudicationService} from '../../../data/business/prejudication.service';
 import {MessageService} from '../../../utils/message.service';
-import {TransferService} from "../../../data/business/transfer.service";
+import {TransferService} from '../../../data/business/transfer.service';
 
 @Component({
   selector: 'ngx-ys-archive-no',
