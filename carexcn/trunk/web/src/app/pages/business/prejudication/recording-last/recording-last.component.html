@@ -1,7 +1,11 @@
 <nb-card class="">
   <nb-card-header>
     <div class="cameras-card-header">
-      <span class="cameras-card-title">录入成功！</span>
+      <span class="cameras-card-title">预审录入</span>
+      <ngx-ys-nav-step
+        [steps]="_businessFormGroup.stepMenuPrejudicationRecording"
+        [activeIndex]="4"
+      ></ngx-ys-nav-step>
     </div>
   </nb-card-header>
   <nb-card-body class="text-center">

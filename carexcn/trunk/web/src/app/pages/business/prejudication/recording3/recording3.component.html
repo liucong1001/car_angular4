@@ -1,5 +1,18 @@
+<nb-card>
+  <nb-card-header>
+    <div class="cameras-card-header">
+      <span class="cameras-card-title">预审录入</span>
+      <ngx-ys-nav-step
+        [steps]="_businessFormGroup.stepMenuPrejudicationRecording"
+        [activeIndex]="2"
+      ></ngx-ys-nav-step>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+  </nb-card-body>
+</nb-card>
 <ngx-ys-cardetail
-  [car_detail_title]="'预审业务 - 预审录入 3 - 车辆信息'"
+  [car_detail_title]="'车辆信息'"
   [vehicle]="_formGroup"
   [certificateFormConfig]="certificateFormConfig"
 ></ngx-ys-cardetail>
