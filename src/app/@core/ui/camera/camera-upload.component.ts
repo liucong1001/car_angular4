@@ -40,7 +40,7 @@ import {MessageService} from '../../utils/message.service';
 export class CameraUploadComponent implements OnInit {
   @Input('upload_url') upload_url;
   @Output('_new_img_url') private _new_img_url = new EventEmitter();
-
+  @Output('_progress') private _progress = new EventEmitter();
   /**
    * 构造函数
    * 目前暂时只适配了开发环境[自己搭建的调试环境]
@@ -54,8 +54,7 @@ export class CameraUploadComponent implements OnInit {
   ngOnInit() {
   }
   uploadBefore($event) {
-    // $event.xhr.open('POST', this.upload_url, true);
-    // $event.xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+    this._progress.emit(1);
     $event.xhr.setRequestHeader ('Accept', 'application/json');
   }
   /**
@@ -63,7 +62,7 @@ export class CameraUploadComponent implements OnInit {
    * @param $event
    */
   uploadProgress($event) {
-    // this.message.info('上传进度', $event.progress + '%');
+    this._progress.emit($event.progress);
   }
 
   /**

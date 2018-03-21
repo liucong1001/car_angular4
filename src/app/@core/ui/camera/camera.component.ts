@@ -57,6 +57,7 @@ export class CameraComponent implements OnInit, ControlValueAccessor, OnChanges 
   @Output() _wrong_checked = new EventEmitter();
   private webcam_has_show = false;
   private wrong_checked = false;
+  private uploadProgress: number = 0;
 
   /**
    * 构造函数
@@ -156,6 +157,15 @@ export class CameraComponent implements OnInit, ControlValueAccessor, OnChanges 
       this.afterGetFileName('tmp:' + res.file[0], res.file[0]);
     });
   }
+
+  /**
+   * 设置上传进度条
+   * @param event
+   */
+  onProgressGrow(event) {
+    this.uploadProgress = Number(event);
+  }
+
   /**
    * 本地照片上传成功时显示
    * @param source
