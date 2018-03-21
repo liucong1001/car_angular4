@@ -1,19 +1,8 @@
 <nb-auth-block>
-  <!--<h2 class="title">登录</h2>-->
   <div style="text-align: center;"><img src="assets/images/logo.png" title="易驹所" width="250px;"></div>
-  <!--<small class="form-text sub-title">欢迎使用易驹所二手车交易平台！</small>-->
   <br /><br />
   <form autocomplete="nope" [formGroup]="form" (ngSubmit)="login()">
-    <!--<div class="form-group">-->
-      <!--<label class="sr-only" for="input-market">市场编号</label>-->
-      <!--<input autofocus="" type="text" class="form-control" id="input-market" placeholder="市场编号" formControlName="market"-->
-             <!--[ngClass]="{'form-control-danger':form.get('market').invalid && form.get('market').touched}">-->
-    <!--</div>-->
-    <!--<div class="text-danger" *ngIf="form.get('market').touched && form.get('market').hasError('required')">-->
-      <!--&#45;&#45; 请输入市场编号-->
-    <!--</div>-->
-
-
+    <input type="hidden" formControlName="market">
     <div class="form-group">
       <label class="sr-only" for="input-user">用户名</label>
       <input autofocus="" type="text" class="form-control" id="input-user" placeholder="用户名" formControlName="loginName"
