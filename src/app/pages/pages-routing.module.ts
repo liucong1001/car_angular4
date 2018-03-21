@@ -62,6 +62,9 @@ const routes: Routes = [{
     canActivate: [AuthGuardService],
     loadChildren: './merchant/merchant.module#MerchantModule',
   }, {
+      path: 'example',
+      loadChildren: './example/example.module#ExampleModule',
+  }, {
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full',

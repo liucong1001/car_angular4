@@ -8,6 +8,7 @@ import {IccardModel, IccardOperaModel} from '../../../@core/model/business/iccar
 import {FingerService} from '../../../@core/device/finger.service';
 import {RestService} from '../../../@core/utils/rest.service';
 import {CodeTransPipe} from '../../../@core/data/system/code.trans.pipe';
+import {CurrentMarketService} from '../../../@core/data/current-market.service';
 
 @Component({
   selector: 'ngx-ui-example',
@@ -70,8 +71,16 @@ export class UiExampleComponent implements OnInit {
   test2Pipe(code: string, codemap: string) {
     this.codetrans.transform(codemap, code).then(res => this.codeTransValue = res);
   }
-  test1Click(url) {
-    this.rest.get(url).subscribe(res => {
+  currentMarketData;
+  getCurrentMarket() {
+    this.currentMarket.getCurrentMarket().then(res => {
+      console.info('当前市场相关信息:', res);
+      this.currentMarketData = res;
+    });
+  }
+  test1ClickUrl = '';
+  test1Click() {
+    this.rest.get(this.test1ClickUrl).subscribe(res => {
       console.info(res);
     });
   }
@@ -98,6 +107,7 @@ export class UiExampleComponent implements OnInit {
     private finger: FingerService,
     private rest: RestService,
     private codetrans: CodeTransPipe,
+    private currentMarket: CurrentMarketService,
   ) {
   }
 
