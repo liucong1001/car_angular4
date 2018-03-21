@@ -20,6 +20,9 @@ import {MessageService} from '../../utils/message.service';
       filter: alpha(opacity=0);
       cursor: pointer;
     }
+    .fa-plus:before {
+      content: "\\f0ee" !important;
+    }
     .ui-button-icon-left {
       left: 0em !important;
     }
@@ -28,11 +31,15 @@ import {MessageService} from '../../utils/message.service';
     }
     .ui-button {
       background: rgba(68, 59, 113, 0) !important;
-      height: 20px;
+      height: 24px;
+      width: 26px;
       border: none !important;
+      margin-right: 0;
     }
     .ui-button-icon-only .fa, .ui-button-text-icon-left .fa, .ui-button-text-icon-right .fa {
-      margin-top: -.35em !important;
+      /*margin-top: -.35em !important;*/
+      /*margin-left: 1px;*/
+      font-size: larger;
     }
     `],
   encapsulation: ViewEncapsulation.None,
