@@ -1,1 +1,7 @@
-<p-steps [model]="items" styleClass="ys-nav-step"></p-steps>
+<p-steps
+  [model]="steps"
+  [activeIndex]="activeIndex"
+  [readonly]="false"
+  styleClass="ys-nav-step"
+  (activeIndexChange)="activeIndexChangeEvent($event)"
+></p-steps>

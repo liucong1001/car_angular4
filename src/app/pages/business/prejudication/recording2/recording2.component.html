@@ -1,7 +1,11 @@
 <nb-card>
   <nb-card-header>
     <div class="cameras-card-header">
-      <span class="cameras-card-title">预审业务 - 预审录入 2 - 车商与卖方</span>
+      <span class="cameras-card-title">预审录入</span>
+      <ngx-ys-nav-step
+        [steps]="_businessFormGroup.stepMenuPrejudicationRecording"
+        [activeIndex]="1"
+      ></ngx-ys-nav-step>
     </div>
   </nb-card-header>
   <nb-card-body>

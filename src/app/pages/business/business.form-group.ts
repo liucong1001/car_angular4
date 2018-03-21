@@ -4,6 +4,17 @@ import {NgModule} from '@angular/core';
 @NgModule({
 })
 export class BusinessFormGroup {
+  /**
+   * 预审录入步骤导航初始化数据
+   * @param {FormBuilder} _formBuilder
+   */
+  public stepMenuPrejudicationRecording = [
+    {label: '录入检查', routerLink: '/pages/business/prejudication/recording'},
+    {label: '卖方信息', routerLink: '/pages/business/prejudication/recording2'},
+    {label: '车辆信息', routerLink: '/pages/business/prejudication/recording3'},
+    {label: '信息确认', routerLink: '/pages/business/prejudication/recording4'},
+    {label: '录入完成', routerLink: '/pages/business/prejudication/recording-last'},
+  ];
   public trustee = this._formBuilder.group({
     certCode: ['', [Validators.required]],
     name: ['', [Validators.required, Validators.maxLength(64)]],
@@ -92,6 +103,7 @@ export class BusinessFormGroup {
      * TODO: 注意 eeee 字段的错误信息
      */
   });
+
   constructor(
     private _formBuilder: FormBuilder,
   ) {}

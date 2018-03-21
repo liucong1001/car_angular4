@@ -9,6 +9,7 @@ import {MerchantModel} from '../../../../@core/model/business/merchant.model';
 import {PreVehicleModel} from '../../../../@core/model/business/trade/preVehicle/preVehicle.model';
 import {PrejudicationService} from '../../../../@core/data/business/prejudication.service';
 import {CurrentMarketService} from '../../../../@core/data/current-market.service';
+import {BusinessFormGroup} from '../../business.form-group';
 
 /**
  * 预审录入1--接口与页面的交互逻辑
@@ -75,6 +76,7 @@ export class RecordingComponent implements OnInit, OnDestroy {
     private _filingService: FilingService,
     private _localstorage: LocalstorageService,
     private _prejudication: PrejudicationService,
+    private _businessFormGroup: BusinessFormGroup,
   ) {
     // let tmp = this._cm.getCurrentMarket();
     // console.info('tmp', tmp);
