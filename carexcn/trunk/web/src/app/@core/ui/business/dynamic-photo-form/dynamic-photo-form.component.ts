@@ -140,7 +140,7 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
            */
           console.info('marketphotomap_cache[' + r.photoType + ']', marketphotomap_cache);
           let photo_value = '';
-          if (null !== marketphotomap_cache) {
+          if (null !== marketphotomap_cache && marketphotomap_cache[r.photoType]) {
             photo_value = marketphotomap_cache[r.photoType][i] ? marketphotomap_cache[r.photoType][i] : '';
             // console.info('照片的最终值', photo_value);
           } else {
