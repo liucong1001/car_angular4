@@ -2,8 +2,7 @@ import {Injectable} from '@angular/core';
 import {Marketmap} from '../model/system/marketmap';
 import {MarketStaff} from '../model/system/market-staff';
 import {UserService} from './users.service';
-import {MarketService} from './system/market.service';
-import {Marketfeemap} from '../model/system/market-fee-map';
+import {RestService} from '../utils/rest.service';
 
 @Injectable()
 /**
@@ -13,23 +12,17 @@ import {Marketfeemap} from '../model/system/market-fee-map';
 export class CurrentMarketService {
   public currentUser: MarketStaff;
   private currentMarket: Promise<Marketmap>;
-  private currentMarketFee: Promise<Marketfeemap>;
+  private path = '/rest/manager/market/config';
   constructor(
     public _user: UserService,
-    private _market: MarketService,
+    private _rest: RestService,
   ) {
     this.currentUser = this._user.getCurrentLoginUser();
   }
   public getCurrentMarket(): Promise<Marketmap> {
     if (! this.currentMarket) {
-      this.currentMarket = this._market.getMarket(this.currentUser.market.id);
+      this.currentMarket = this._rest.get(this.path).toPromise();
     }
     return this.currentMarket;
   }
-  // public getCurrentMarketFee(): Promise<Marketfeemap> {
-  //   if (! this.currentMarketFee) {
-  //     this.currentMarketFee = this._market.getFee(this.currentUser.market.id);
-  //   }
-  //   return this.currentMarketFee;
-  // }
 }
