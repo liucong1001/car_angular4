@@ -33,7 +33,8 @@ export class NavStepComponent implements OnInit {
       for (let menu in this.steps) {
         if (Number(menu) > this.activeIndex) {
           this.steps[menu].disabled = true;
-          delete this.steps[menu].routerLink;
+        } else {
+          this.steps[menu].disabled = false;
         }
       }
     }
