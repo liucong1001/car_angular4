@@ -6,13 +6,6 @@
     </div>
   </nb-card-header>
   <nb-card-body [formGroup]="seller">
-    <!-- 修改此处，把选择证件类型之后，的动态组件相关操作都移动到动态组件当中去，由动态组件完成该操作 -->
-    <ngx-ys-dynamic-photo-form
-      [photos]="seller.get('_photos_')"
-      [certificateFormConfig]="certificateFormConfig"
-      [data_localStrong_name]="'dynamic_photos_seller_info'"
-      [btn_show]="btn_show"
-    ></ngx-ys-dynamic-photo-form>
     <div class="input-group">
       <div class="input-group" *ngIf="showCheshang">
         <span class="input-group-addon">车商</span>
@@ -38,6 +31,13 @@
         <ngx-valid-error [errors]="errors.certType" [control]="seller.get('certType')"></ngx-valid-error>
       </div>
     </div>
+    <!-- TODO: 修改此处，把选择证件类型之后，的动态组件相关操作都移动到动态组件当中去，由动态组件完成该操作 -->
+    <ngx-ys-dynamic-photo-form
+      [photos]="seller.get('_photos_')"
+      [certificateFormConfig]="certificateFormConfig"
+      [data_localStrong_name]="'dynamic_photos_seller_info'"
+      [btn_show]="btn_show"
+    ></ngx-ys-dynamic-photo-form>
     <div class="input-group">
       <div class="input-group">
         <span class="input-group-addon">姓名</span>
