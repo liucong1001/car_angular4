@@ -71,10 +71,7 @@
         </nb-tabset>
       </nb-card>
     </div>
-    <div class="input-group">
-      <button class="btn btn-primary btn-sm" (click)="getCurrentMarket()">当前市场相关信息</button>
-      <textarea [style.width]="'100%'" readonly [ngModel]="currentMarketData | json"></textarea>
-    </div>
+
     <div class="input-group">
       <input type="text" placeholder="URL地址测试" class="form-control" [(ngModel)]="test1ClickUrl"/>
       <button class="btn btn-primary btn-sm" (click)="test1Click()">测试1</button>

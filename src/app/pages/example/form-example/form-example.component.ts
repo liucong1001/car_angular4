@@ -56,7 +56,6 @@ export class FormExampleComponent implements OnInit {
 
   ngOnInit() {
   }
-
   getCurrentTheme() {
     this._message.info('当前主题', this.currentTheme);
   }

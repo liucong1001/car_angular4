@@ -80,7 +80,8 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/ic-card/card-manage',
       },
     ],
-  },{
+  },
+  {
     title: '票据管理',
     icon: 'ion-social-usd-outline',
     children: [
@@ -220,6 +221,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
     title: '示例',
     icon: 'ion-ios-briefcase-outline',
     children: [
+      {
+        title: '后端检查',
+        link: '/pages/example/api-check',
+      },
       {
         title: '表单示例',
         link: '/pages/example/form-example',
