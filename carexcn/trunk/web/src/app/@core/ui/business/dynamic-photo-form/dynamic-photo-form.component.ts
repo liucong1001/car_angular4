@@ -94,7 +94,8 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
    * 配置证件类型
    */
   setCertificateConfig() {
-    this._market.getCertificateConfig(this.certificateFormConfig).then(res => this.initPhotoMap(res as [Marketphotomap]));
+    this._market.getCertificateConfig(this.certificateFormConfig)
+      .then(res => this.initPhotoMap(res as [Marketphotomap]));
   }
 
   /**
@@ -119,11 +120,11 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
     let marketphotomap_cache = null;
     if (null !== cache_name) {
       marketphotomap_cache = this._localstorage.get(cache_name);
-      console.info('读取动态表单的对应缓存数据' + cache_name, marketphotomap_cache);
+      // console.info('读取动态表单的对应缓存数据' + cache_name, marketphotomap_cache);
     } else {
-      console.info('读取动态表单的对应缓存数据cache_name  空');
+      // console.info('读取动态表单的对应缓存数据cache_name  空');
     }
-    console.info('marketphotomap_arr', marketphotomap_arr);
+    // console.info('marketphotomap_arr', marketphotomap_arr);
     // 在循环开始之前的该处，要拿到缓存的数据，循环时使用
     marketphotomap_arr.forEach(r => {
       photo_name_tmp[r.photoType] = r.name;
@@ -138,7 +139,7 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
           /**
            * 在初始化的过程中，根据循环的photoType判断是否有缓存好的值，来完成对表单的默认赋值
            */
-          console.info('marketphotomap_cache[' + r.photoType + ']', marketphotomap_cache);
+          // console.info('marketphotomap_cache[' + r.photoType + ']', marketphotomap_cache);
           let photo_value = '';
           if (null !== marketphotomap_cache && marketphotomap_cache[r.photoType]) {
             photo_value = marketphotomap_cache[r.photoType][i] ? marketphotomap_cache[r.photoType][i] : '';
@@ -155,13 +156,14 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
           i++;
         }
       } else {
+        // console.info('r.photoExample', r);
         throw new Error('表单为“' + r.formName + '”的“' + r.name + '”缺少关联的示例图片，请添加');
       }
     });
     this.photos_name = photo_name_tmp;
-    console.info('dynamic photos_name', this.photos_name);
+    // console.info('dynamic photos_name', this.photos_name);
     this.photos_url = photo_url_tmp;
-    console.info('dynamic photos_url', this.photos_url);
+    // console.info('dynamic photos_url', this.photos_url);
   }
 
   /**

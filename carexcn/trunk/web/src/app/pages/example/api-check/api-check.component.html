@@ -1,0 +1,59 @@
+
+<nb-card>
+  <nb-card-header>
+    <div class="cameras-card-header">
+      <span class="cameras-card-title">接口测试</span>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+
+    <div class="input-group">
+      <select class="form-control" [(ngModel)]="test1ClickType" style="width: 100px;">
+        <option value="GET">GET</option>
+        <option value="POST">POST</option>
+      </select>
+      <div class="input-group">
+        <input type="text" placeholder="URL地址测试" class="form-control" [(ngModel)]="test1ClickUrl"/>
+      </div>
+      <button class="btn btn-primary btn-sm" (click)="test1Click()">测试1</button>
+    </div>
+
+  </nb-card-body>
+</nb-card>
+
+
+<nb-card>
+  <nb-card-header>
+    <div class="cameras-card-header">
+      <span class="cameras-card-title">常规配置检查</span>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="input-group">
+      <textarea [style.width]="'100%'" readonly [ngModel]="currentMarketData | json"></textarea>
+      <button class="btn btn-primary btn-sm" (click)="getCurrentMarket()">当前市场信息</button>
+    </div>
+    <div class="input-group">
+      <div class="input-group">
+        <span class="input-group-addon">业务类型</span>
+        <select class="form-control" [(ngModel)]="getCertificateFormConfig_business">
+          <option value="01">预审</option>
+          <option value="02">过户</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">证件类型</span>
+        <ngx-ys-codeitem-droplist [(ngModel)]="getCertificateFormConfig_certificateCode" [ifDisabled]="false" [codeMap]="'certType'" (_selectedValue)="certTypeSelecteFunc($event)" style="width: 100%;"></ngx-ys-codeitem-droplist>
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">表单名称</span>
+        <select class="form-control" [(ngModel)]="getCertificateFormConfig_formName">
+          <option value="预审录入卖家">预审录入卖家</option>
+          <option value="预审录入买家">预审录入买家</option>
+          <option value="预审录入车辆">预审录入车辆</option>
+        </select>
+      </div>
+      <button class="btn btn-primary btn-sm" (click)="getCertificateFormConfig()">证件示例检查</button>
+    </div>
+  </nb-card-body>
+</nb-card>
