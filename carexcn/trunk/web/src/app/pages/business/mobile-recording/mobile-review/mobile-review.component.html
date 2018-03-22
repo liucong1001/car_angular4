@@ -1,60 +1,76 @@
-<nb-card>
-   <nb-card-header>
-      移动端录入-预审
-   </nb-card-header>
-   <nb-card-body *ngIf="tradeInfo">
-    <form [formGroup]="form" class="container">
-         <div class="card">
-           <div class="card-header card-title">
-             商户：{{tradeInfo.prejudication.preVehicle.merchant.name}}
-           </div>
-         </div>
+<ngx-archive-no-vehicle
+  [pageTitle]="'手机端录入 - 预览'"
+  [archiveNo]="archiveNo"
+  [canEdit]="false"
+  (_tradeList)="getTradeListByArchiveNoComponent($event)"
+  (_trade)="getTradeByArchiveNoComponent($event)"
+></ngx-archive-no-vehicle>
 
-         <div class="card">
-           <div class="card-header card-title">
-             卖方基本信息(个人)
-           </div>
-           <div class="card-block">
-               <div class="row card-text">
-                   <div class="col-md-6">车辆牌照号:{{tradeInfo.preVehicle.preVehicle.plateNumber}}</div>
-                   <div class="col-md-6">手机号:{{tradeInfo.seller.seller.phone}}</div>
-               </div>
-               <div class="row card-text">
-                   <div class="col-md-6">出售价格:{{tradeInfo.preVehicle.newCarsPrice}}</div>
-                   <div class="col-md-6">里程:{{tradeInfo.preVehicle.preVehicle.mileage}}</div>
-               </div>
-           </div>
-         </div>
+<ngx-ys-seller-info
+  *ngIf="trade"
+  [btn_show]="false"
+  [certificateFormConfig]="sellerCertificateFormConfig"
+  [merchant]="trade.preVehicle.preVehicle.filingInfo.merchant"
+  [seller]="_formGroup.controls.seller"
+></ngx-ys-seller-info>
 
-         <div class="card">
-           <div class="card-header card-title">
-             卖方附件
-           </div>
-           <div class="card-block">
-             <div class="row" >
-                 <!--<div class="col-md-3"><img [src]="tradeInfo.seller.photos" alt="item.objectType">  </div>-->
+<!--<nb-card>-->
+   <!--<nb-card-header>-->
+      <!--移动端录入-预审-->
+   <!--</nb-card-header>-->
+   <!--<nb-card-body *ngIf="tradeInfo">-->
+    <!--<form [formGroup]="form" class="container">-->
+         <!--<div class="card">-->
+           <!--<div class="card-header card-title">-->
+             <!--商户：{{tradeInfo.prejudication.preVehicle.merchant.name}}-->
+           <!--</div>-->
+         <!--</div>-->
 
-                 <!--<ngx-ys-dynamic-photo-form-->
-                   <!--[photos]="tradeInfo.preVehicle.photos"-->
-                   <!--[certType]="18"-->
-                   <!--[btn_show]="btn_show"-->
-                 <!--&gt;</ngx-ys-dynamic-photo-form>-->
-             </div>
-           </div>
-         </div>
-         <div class="card">
-           <div class="card-header card-title">错误原因</div>
-           <div class="card-body">
-             <textarea class="form-control" rows="3"  formControlName="reason" placeholder="请输入错误原因..."></textarea>
-           </div>
-         </div>
-    </form>
-   </nb-card-body>
-   <nb-card-footer>
-       <div class="row">
-          <div class="col-md-1"> <button class="btn btn-danger btn-sm" (click)="back()">回退</button>  </div>
-          <div class="col-md-1"> <button class="btn btn-success btn-sm " (click)="startInput()">开始录入</button> </div>
-          <div class="col-md-2"> <a routerLink=".." class="  btn btn-secondary btn-sm ">返回</a> </div>
-       </div>
-   </nb-card-footer>
-</nb-card>
+         <!--<div class="card">-->
+           <!--<div class="card-header card-title">-->
+             <!--卖方基本信息(个人)-->
+           <!--</div>-->
+           <!--<div class="card-block">-->
+               <!--<div class="row card-text">-->
+                   <!--<div class="col-md-6">车辆牌照号:{{tradeInfo.preVehicle.preVehicle.plateNumber}}</div>-->
+                   <!--<div class="col-md-6">手机号:{{tradeInfo.seller.seller.phone}}</div>-->
+               <!--</div>-->
+               <!--<div class="row card-text">-->
+                   <!--<div class="col-md-6">出售价格:{{tradeInfo.preVehicle.newCarsPrice}}</div>-->
+                   <!--<div class="col-md-6">里程:{{tradeInfo.preVehicle.preVehicle.mileage}}</div>-->
+               <!--</div>-->
+           <!--</div>-->
+         <!--</div>-->
+
+         <!--<div class="card">-->
+           <!--<div class="card-header card-title">-->
+             <!--卖方附件-->
+           <!--</div>-->
+           <!--<div class="card-block">-->
+             <!--<div class="row" >-->
+                 <!--&lt;!&ndash;<div class="col-md-3"><img [src]="tradeInfo.seller.photos" alt="item.objectType">  </div>&ndash;&gt;-->
+
+                 <!--&lt;!&ndash;<ngx-ys-dynamic-photo-form&ndash;&gt;-->
+                   <!--&lt;!&ndash;[photos]="tradeInfo.preVehicle.photos"&ndash;&gt;-->
+                   <!--&lt;!&ndash;[certType]="18"&ndash;&gt;-->
+                   <!--&lt;!&ndash;[btn_show]="btn_show"&ndash;&gt;-->
+                 <!--&lt;!&ndash;&gt;</ngx-ys-dynamic-photo-form>&ndash;&gt;-->
+             <!--</div>-->
+           <!--</div>-->
+         <!--</div>-->
+         <!--<div class="card">-->
+           <!--<div class="card-header card-title">错误原因</div>-->
+           <!--<div class="card-body">-->
+             <!--<textarea class="form-control" rows="3"  formControlName="reason" placeholder="请输入错误原因..."></textarea>-->
+           <!--</div>-->
+         <!--</div>-->
+    <!--</form>-->
+   <!--</nb-card-body>-->
+   <!--<nb-card-footer>-->
+       <!--<div class="row">-->
+          <!--<div class="col-md-1"> <button class="btn btn-danger btn-sm" (click)="back()">回退</button>  </div>-->
+          <!--<div class="col-md-1"> <button class="btn btn-success btn-sm " (click)="startInput()">开始录入</button> </div>-->
+          <!--<div class="col-md-2"> <a routerLink=".." class="  btn btn-secondary btn-sm ">返回</a> </div>-->
+       <!--</div>-->
+   <!--</nb-card-footer>-->
+<!--</nb-card>-->

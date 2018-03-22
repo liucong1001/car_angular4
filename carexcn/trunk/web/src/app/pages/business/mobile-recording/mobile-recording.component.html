@@ -7,7 +7,7 @@
     </div>
   </nb-card-header>
   <nb-card-body>
-    <form [@visibilityChanged]="visibility" (submit)="codeList.reload()">
+    <form *ngIf="showFilter" (submit)="codeList.reload()">
       <div class="row">
         <div class="col-sm-3">
           <div class="form-group form-group-sm">
@@ -36,11 +36,3 @@
   </nb-card-body>
 </nb-card>
 <ng-template #TypeCell let-data let-cell="cell">{{data.seller.seller.certType | certTypePipe}}</ng-template>
-<!--source ? file.getRealFileUrl(source) : file.getRealFileUrl(example_source))-->
-
-<ng-template #disableSignTemp let-data  >
-  {{data.seller?.photos&&data.seller?.photos['03']&&data.seller?.photos['03'][0].id}}
-  <!--<ngx-img  [idValue]="object( data.seller.photos)?null:data.seller.photos['03'][0].id"-->
-            <!--[hidden]="object( data.seller.photos)"-->
-            <!--[height]="150"></ngx-img>-->
-</ng-template>
