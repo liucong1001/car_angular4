@@ -113,6 +113,7 @@ export class CameraCarexcnComponent implements OnInit, ControlValueAccessor, OnC
   getWrongCheckedIndex() {
     return this.title + '_' + this.source;
   }
+
   /**
    * 是否选中的状态切换
    */

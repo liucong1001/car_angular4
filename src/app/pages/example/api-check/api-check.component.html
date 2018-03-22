@@ -30,7 +30,7 @@
   </nb-card-header>
   <nb-card-body>
     <div class="input-group">
-      <textarea [style.width]="'100%'" readonly [ngModel]="currentMarketData | json"></textarea>
+      <textarea class="textareaLine" [style.width]="'100%'" readonly [ngModel]="currentMarketData | json"></textarea>
       <button class="btn btn-primary btn-sm" (click)="getCurrentMarket()">当前市场信息</button>
     </div>
     <div class="input-group">

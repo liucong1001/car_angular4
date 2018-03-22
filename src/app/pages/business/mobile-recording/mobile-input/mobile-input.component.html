@@ -1,75 +1,22 @@
-<nb-card>
-  <nb-card-header>
-    移动端录入-开始录入
-  </nb-card-header>
+<ngx-archive-no-vehicle
+  [pageTitle]="'手机端录入 - 预览'"
+  [archiveNo]="archiveNo"
+  [canEdit]="false"
+  (_tradeList)="getTradeListByArchiveNoComponent($event)"
+  (_trade)="getTradeByArchiveNoComponent($event)"
+></ngx-archive-no-vehicle>
 
-  <nb-card-body  [formGroup]="form" >
-    <div class="card">
-      <div class="card-header card-title" *ngIf="tradeInfo.prejudication">
-        商户：{{tradeInfo.prejudication.preVehicle.merchant.name}}
-      </div>
-    </div>
-    <div class="card" formGroupName="seller">
-      <div class="card-header card-title">
-        卖方基本信息(个人)
-      </div>
-      <div class="card-block">
-        <div class="center">*此处是图片展示区</div>
-        <div class="row">
-          <div class="col-sm-6">
-            <div class="form-group">
-              <label>卖方名称</label>
-              <input type="text" class="form-control" name="name" placeholder="卖方名称"
-                     formControlName="name">
-            </div>
-          </div>
-          <div class="col-sm-3">
-            <div class="form-group">
-              <label>证件号码</label>
-              <input type="text" class="form-control" name="name" placeholder="证件号码"
-                     formControlName="name">
-            </div>
-          </div>
-          <div class="col-sm-3">
-            <div class="form-group">
-              <label>证件有效期</label>
-              <input type="text" class="form-control" name="name" placeholder="证件有效期"
-                     formControlName="name">
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-8">
-            <div class="form-group">
-              <label>地址</label>
-              <input type="text" class="form-control" name="name" placeholder="地址"
-                     formControlName="name">
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="form-group">
-              <label>手机号</label>
-              <input type="text" class="form-control" name="name" placeholder="手机号"
-                     formControlName="name">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+<ngx-ys-seller-info
+  *ngIf="trade"
+  [btn_show]="false"
+  [certificateFormConfig]="sellerCertificateFormConfig"
+  [merchant]="trade.preVehicle.preVehicle.filingInfo.merchant"
+  [seller]="_formGroup.controls.seller"
+></ngx-ys-seller-info>
 
-    <div class="card">
-      <!--<div class="card-block">-->
-        <div class="row" >
-          车辆信息
-        </div>
-      <!--</div>-->
-    </div>
-
-  </nb-card-body>
-  <nb-card-footer>
-    <div class="row">
-      <div class="col-md-2"> <button class="btn btn-danger btn-sm" (click)="save()" >提交出库信息</button>  </div>
-      <div class="col-md-1"> <button class="btn btn-default btn-sm ">返回</button> </div>
-    </div>
-  </nb-card-footer>
-</nb-card>
+<ngx-ys-cardetail
+  *ngIf="tradeList"
+  [btn_show]="false"
+  [vehicle]="_formGroup.controls.vehicle"
+  [certificateFormConfig]="null"
+></ngx-ys-cardetail>
