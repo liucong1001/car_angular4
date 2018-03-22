@@ -30,7 +30,6 @@ const components = [
   declarations: [
     ...routedComponents,
     ...components,
-
   ],
 })
 export class MoneyModule { }

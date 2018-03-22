@@ -1,0 +1,62 @@
+<nb-card>
+  <nb-card-header class="d-flex">
+    <div class="p-2 mr-auto">订单退费</div>
+    <div class="p2">
+      <a [routerLink]="'..'"  class="btn btn-secondary btn-sm">返回</a>
+    </div>
+  </nb-card-header>
+   <nb-card-body>
+       <div class="row">
+         <div class="col-md-8"></div>
+         <div class="col-md-2">
+           <select name=""  class="form-control" [(ngModel)]="payStatus">
+             <option value="">选择退费方式</option>
+             <option value="0">ic卡退款</option>
+             <option value="1">退还现金</option>
+           </select>
+         </div>
+         <div class="col-md-2">
+           <button type="button" class="btn btn-outline-success" (click)="readIccard()">启用读卡器</button>
+         </div>
+       </div>
+
+     <div class="row form-inline form-group">
+       <div class="col-md-6 text-center"> <b>订单信息</b>  </div>
+     </div>
+     <div class="row form-inline form-group">
+       <div class="col-md-2"><label for="">流水号：</label> </div>
+       <div class="col-md-4">{{arcInfo?.archiveNo}}</div>
+     </div>
+     <div class="row form-inline form-group">
+       <div class="col-md-2"><label for="">费用类型：</label> </div>
+       <div class="col-md-4">{{arcInfo?.businessType | code_trans: 'businessType' | async}}</div>
+     </div>
+     <div class="row form-inline form-group">
+       <div class="col-md-2"><label for="">金额：</label> </div>
+       <div class="col-md-4">{{arcInfo?.shouldAmount}}</div>
+     </div>
+     <hr>
+     <div class="row form-inline form-group">
+       <div class="col-md-6 text-center"> <b>ic卡信息</b>  </div>
+     </div>
+     <div class="row form-inline form-group">
+       <div class="col-md-2"><label for="">卡号：</label> </div>
+       <div class="col-md-4">{{icCardInfo.CardNumber}}</div>
+     </div>
+     <div class="row form-inline form-group">
+       <div class="col-md-2"><label for="">账户名称：</label> </div>
+       <div class="col-md-4" *ngIf="getCardData.icAccount">{{getCardData.icAccount.ownedAccount.accountName}}</div>
+     </div>
+     <div class="row form-inline form-group">
+       <div class="col-md-2"><label for="">当前余额：</label> </div>
+       <div class="col-md-4" *ngIf="getCardData.icAccount">{{getCardData.icAccount.balance}} </div>
+     </div>
+     <div class="row form-inline form-group">
+       <div class="col-md-2"><label for="">应退金额：</label> </div>
+       <div class="col-md-4" ><input type="number" class="form-control" placeholder="应退金额" [(ngModel)]="icCardPayMoney"></div>
+     </div>
+     <div class="row">
+         <div class="col-md-2"><button class="btn btn-danger" (click)="cancel()">退费</button></div>
+     </div>
+   </nb-card-body>
+</nb-card>
