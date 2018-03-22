@@ -111,6 +111,8 @@ export class OrderRefundComponent implements OnInit {
   /**
    * 退费
    */
+
+
   cancel(){
     if(this.payStatus =='0'){
         this.order.icCardNo = this.icCardInfo.CardNumber;
@@ -121,5 +123,10 @@ export class OrderRefundComponent implements OnInit {
       this.router.navigate( ['/pages/money/order/cancel']);
     })
   }
+
+  statusChange(event){
+    this.order.payStatus = event;
+  }
+
 
 }
