@@ -7,7 +7,6 @@
     </nb-card-header>
 
     <nb-card-body>
-
       <div class="row header">
          <div class="col-md-1">订单号：</div> <div class="col-md-3">{{OrderInfo.id}}</div>
          <div class="col-md-2">订单金额:{{OrderInfo.shouldAmount}}</div>
@@ -28,7 +27,10 @@
                <td>{{item.accountName}}</td>
                <td>{{item.shouldAmount}}</td>
                <td>{{item.finishType | code_trans: 'finishType' | async }}</td>
-               <td> <button class="btn btn-sm btn-default" (click)="delete(item.id)">删除</button> </td>
+               <td>
+                  <button *ngIf="item.finishType=='0'" class="btn btn-sm btn-danger" (click)="delete(item.id)">删除</button>
+                  <button *ngIf="item.finishType=='1'" class="btn btn-sm btn-warning" (click)="refund(item.id)">退费</button>
+               </td>
             </tr>
          </tbody>
       </table>

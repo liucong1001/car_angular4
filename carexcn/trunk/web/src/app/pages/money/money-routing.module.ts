@@ -14,6 +14,7 @@ import { PrintComponent } from './print/print.component';
 import { PrintSuccessComponent } from './print/print-success/print-success.component';
 import { PrintListComponent } from './print/print-list/print-list.component';
 import { PayAgainComponent } from './pay-again/pay-again.component';
+import { OrderRefundComponent } from './order-cancel/order-refund/order-refund.component';
 
 
 const routes: Routes = [{
@@ -30,6 +31,7 @@ const routes: Routes = [{
     {path: 'print-invoice', component: PrintInvoiceComponent},
     {path: 'payment/order', component: PaymentOrderComponent},
     {path: 'order/cancel', component: OrderCancelComponent},
+    {path: 'order/cancel/refund', component: OrderRefundComponent},
     {path: 'print', component: PrintComponent},
     {path: 'print/success', component: PrintSuccessComponent},
     {path: 'billSearch', component: PrintListComponent},
@@ -57,4 +59,5 @@ export const routedComponents = [
   PrintSuccessComponent,
   PrintListComponent,
   PayAgainComponent,
+  OrderRefundComponent
 ];

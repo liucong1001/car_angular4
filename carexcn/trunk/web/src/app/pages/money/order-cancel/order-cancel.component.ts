@@ -45,5 +45,8 @@ export class OrderCancelComponent implements OnInit {
         this.message.error('',err.json().message);
      });
  }
-
+  refund(id){
+    // this.router.navigate( ['/pages/system/market/market/edit', { id: row.id ,area:row.area}]);
+    this.router.navigate( ['/pages/money/order/cancel/refund',{id:id}]);
+  }
 }
