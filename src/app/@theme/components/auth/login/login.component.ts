@@ -3,6 +3,7 @@ import {NB_AUTH_TOKEN_WRAPPER_TOKEN, NbAuthJWTToken, NbAuthService} from '@nebul
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthSessionToken} from '../../../../@core/data/security/auth-session-token';
+// import {NbThemeService} from '@nebular/theme';
 
 /**
  * 登录页面组件
@@ -14,9 +15,18 @@ import {AuthSessionToken} from '../../../../@core/data/security/auth-session-tok
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authService: NbAuthService, private fb: FormBuilder, private router: Router) { }
+  currentTheme: string = 'cosmic';
+  constructor(
+    private authService: NbAuthService,
+    private fb: FormBuilder,
+    private router: Router,
+    // private themeService: NbThemeService,
+  ) {}
 
   ngOnInit() {
+    // this.themeService.getJsTheme().subscribe(theme => {
+    //   this.currentTheme = theme.name;
+    // });
     this.authService.logout('email').toPromise().then(res => {
       // console.log(res);
     }).catch(err => {
