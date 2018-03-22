@@ -9,7 +9,7 @@ import { AnalyticsService } from './@core/utils/analytics.service';
 @Component({
   selector: 'ngx-app',
   template: `
-    <toaster-container ></toaster-container>
+    <toaster-container></toaster-container>
     <router-outlet></router-outlet>
   `,
 })
