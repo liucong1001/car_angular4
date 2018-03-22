@@ -2,9 +2,9 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TradeForm} from '../../../model/business/trade/trade.form';
 import {MessageService} from '../../../utils/message.service';
 import {TransferService} from '../../../data/business/transfer.service';
-import {FilingInfoModel} from "../../../model/business/filing.info.model";
-import {FilingService} from "../../../data/merchant/filing.service";
-import {MerchantModel} from "../../../model/business/merchant.model";
+import {FilingInfoModel} from '../../../model/business/filing.info.model';
+import {FilingService} from '../../../data/merchant/filing.service';
+import {MerchantModel} from '../../../model/business/merchant.model';
 
 @Component({
   selector: 'ngx-archive-no-vehicle',
