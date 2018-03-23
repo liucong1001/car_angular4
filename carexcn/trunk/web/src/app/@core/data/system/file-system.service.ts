@@ -1,24 +1,67 @@
 import {Injectable} from '@angular/core';
 import {DeviceService} from '../../device/device.service';
 
+/**
+ * 文件服务
+ */
 @Injectable()
 export class FileSystemService {
+  /**
+   * 文件服务接口地址前缀
+   * @type {string}
+   */
   private path = '/rest/files/file/'; // {file_id}
+  /**
+   * 注入设备服务
+   * @param {DeviceService} device
+   */
   constructor(
     private device: DeviceService,
   ) {}
+
+  /**
+   * 通过临时文件名获取URL访问路径
+   * @param {string} file_temp
+   * @returns {string}
+   */
   public getFileUrlByTmp(file_temp: string): string {
     return this.device.pre_access_url_tmp + file_temp.substring(4);
   }
+
+  /**
+   * 通过临时文件名获取真实文件名
+   * 一般用户传递后台数据
+   * @param {string} file_temp
+   * @returns {string}
+   */
   public getFileNameByTmp(file_temp: string): string {
     return file_temp.substring(4);
   }
+
+  /**
+   * 通过文件ID获取** TODO: it is not been done
+   * @param {string} file_id
+   * @returns {string}
+   */
   public getFileObjectById(file_id: string): string {
     return file_id.substring(3);
   }
+
+  /**
+   * 通过文件ID获取URL访问路径
+   * @param {string} file_id
+   * @returns {string}
+   */
   public getFileUrlById(file_id: string): string {
     return this.path + file_id.substring(3);
   }
+
+  /**
+   * 解析动态图片组件照片序列的值
+   * 一般解析出的结果用于传输给后台接口
+   * @param photoFormValue
+   * @returns {{}}
+   */
   public filterPhotosValue(photoFormValue) {
     let result = {};
     for (let key in photoFormValue) {
@@ -35,9 +78,18 @@ export class FileSystemService {
       }
       result[key] = tmp_array;
     }
-    console.info('result', result);
+    // console.info('result', result);
     return result;
   }
+
+  /**
+   * 通过文件定义名获取真实的访问路径
+   * 支持文件id定义的方式
+   * 支持临时文件定义的方式
+   * 支持易驹所照片文件对象定义的方式 TODO: 然而暂时还不能放在后面适配
+   * @param file
+   * @returns {string}
+   */
   public getRealFileUrl(file: any): string {
     if ( 'string' === typeof(file) ) {
       if (file.length > 0) {
@@ -69,6 +121,10 @@ export class FileSystemService {
     }
   }
 }
+
+/**
+ * 易驹所照片文件类定义
+ */
 export class CameraCarexcnFileDescrption {
   objectId?: string;
   filePath?: string;
