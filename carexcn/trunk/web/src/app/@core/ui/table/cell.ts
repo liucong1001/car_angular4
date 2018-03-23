@@ -13,7 +13,6 @@ export class Cell implements OnInit {
       this.cellClass = 'cell';
     }
   }
-
   constructor(public type: string, public cellClass?: string) {}
 }
 

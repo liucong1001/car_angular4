@@ -44,17 +44,29 @@ export class MenuCell extends Cell {
 }
 
 export class Menu {
+  /**
+   * 构建菜单结构
+   * @param {string} text  显示菜单文字
+   * @param {string} icon  菜单图标
+   * @param {MenuOnClick | string} callback  菜单回调函数 或 跳转的URL[routerLink]
+   * @param {MenuOnClick | string} show  是否显示该菜单项的可选判断条件
+   * @param {MenuOnClick | string} cellFilter  对菜单显示文字进行过滤的回调函数
+   */
   constructor(
     public text: string,
     public icon: string,
     public callback: MenuOnClick | string,
     public show?: MenuOnClick | string,
+    public cellFilter?: MenuOnClick | null,
   ) {}
   public isCallback(): boolean {
     return typeof(this.callback) === 'function';
   }
   public isUrl(): boolean {
     return typeof(this.callback) === 'string';
+  }
+  public ifCellFilter(): boolean {
+    return typeof(this.cellFilter) === 'function';
   }
 }
 
