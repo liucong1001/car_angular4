@@ -36,8 +36,8 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
    */
   @Output() _wrong_checked = new EventEmitter();
   private wrong_checked: Array<ChangeCheckedValueModel> = [];
-  private photos_name: Object;
-  protected objectKeys = Object.keys;
+  public photos_name: Object;
+  public objectKeys = Object.keys;
   constructor(
     private _market: MarketService,
     private fb: FormBuilder,

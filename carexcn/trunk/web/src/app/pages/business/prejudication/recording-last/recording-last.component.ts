@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {LocalstorageService} from '../../../../@core/cache/localstorage.service';
 import {MessageService} from '../../../../@core/utils/message.service';
 import {TradeForm} from '../../../../@core/model/business/trade/trade.form';
+import {BusinessFormGroup} from "../../business.form-group";
 
 /**
  * 录入成功的提示
@@ -28,6 +29,7 @@ export class RecordingLastComponent implements OnInit {
     private _router: Router,
     private _message: MessageService,
     private _localstorage: LocalstorageService,
+    public _businessFormGroup: BusinessFormGroup,
   ) {}
   ngOnInit() {
     let maybe_trade = this._localstorage.get(this._cache_pre + 'trade');

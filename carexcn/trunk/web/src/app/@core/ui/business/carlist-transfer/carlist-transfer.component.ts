@@ -31,7 +31,7 @@ export class CarlistTransferComponent implements OnInit {
    * @private
    */
   @Output('_selected') private _selected = new EventEmitter();
-  private statusArr = {
+  public statusArr = {
     '01': '已录入', // 可以进行审核，其它状态不可以做审核操作
     '02': '已审核',
     '03': '已完成',
@@ -44,11 +44,11 @@ export class CarlistTransferComponent implements OnInit {
    * 应标识为已通过审核的状态
    * @type {string[]}
    */
-  private checkedStatus = [
+  public checkedStatus = [
     '02',
     '03',
   ];
-  private canCheckingStatus = [
+  public canCheckingStatus = [
     '01',
   ];
   constructor() {}

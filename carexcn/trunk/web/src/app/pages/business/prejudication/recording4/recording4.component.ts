@@ -68,7 +68,7 @@ export class Recording4Component implements OnInit, OnDestroy {
   public autoinput_shanghu_source_url = '/rest/merchant/list/';
   constructor(
     private _formBuilder: FormBuilder,
-    private _businessFormGroup: BusinessFormGroup,
+    public _businessFormGroup: BusinessFormGroup,
     private _router: Router,
     private _message: MessageService,
     private _filingService: FilingService,

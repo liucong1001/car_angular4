@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormGroup} from "@angular/forms";
-import {Marketphotomap} from "../../../model/system/market-photo-map";
-import {ErrorMessage} from "../../valid-error/valid-error.component";
+import {FormGroup} from '@angular/forms';
+import {Marketphotomap} from '../../../model/system/market-photo-map';
+import {ErrorMessage} from '../../valid-error/valid-error.component';
 
 @Component({
   selector: 'ngx-ys-car-transfer',

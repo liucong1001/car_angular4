@@ -5,11 +5,8 @@ import {RestService} from '../../utils/rest.service';
 import {MarketStaff} from '../../model/system/market-staff';
 import {UserService} from '../users.service';
 import {BuyerForm} from '../../model/business/trade/buyer.form';
-import {TransferVehicleForm} from '../../model/business/trade/transferVehicle.form';
 import {TransferVehicleModel} from '../../model/business/trade/transferVehicle/transferVehicle.model';
 import {BuyerModel} from '../../model/business/trade/buyer.model';
-import {FilingInfoModel} from "../../model/business/filing.info.model";
-import {SellerForm} from "../../model/business/trade/seller.form";
 
 @Injectable()
 export class TransferService {

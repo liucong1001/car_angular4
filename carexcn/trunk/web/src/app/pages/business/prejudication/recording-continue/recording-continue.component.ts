@@ -52,7 +52,7 @@ export class RecordingContinueComponent implements OnInit {
     source: 'assets/images/camera4.jpg',
   }];
   public archiveNo = '';
-  private notNewCar = false;
+  public notNewCar = false;
   public trade: TradeForm;
   public tradeList: [TradeForm];
   public _formGroup: FormGroup = this._formBuilder.group({

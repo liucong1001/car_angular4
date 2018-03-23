@@ -14,10 +14,10 @@ import {Trecording2Component} from './transfer/trecording2/trecording2.component
 import {TrecordingLastComponent} from './transfer/trecording-last/trecording-last.component';
 import {TjudicationPhotoComponent} from './transfer/tjudication-photo/tjudication-photo.component';
 import {MobileRecordingComponent} from './mobile-recording/mobile-recording.component';
-import { MobileTestComponent } from './mobile-recording/mobile-test/mobile-test.component';
-import { MobileReviewComponent } from './mobile-recording/mobile-review/mobile-review.component';
-import { MobileInputComponent } from './mobile-recording/mobile-input/mobile-input.component';
-import {ChangeComponent} from "./change/change.component";
+import {MobileTestComponent} from './mobile-recording/mobile-test/mobile-test.component';
+import {MobileReviewComponent} from './mobile-recording/mobile-review/mobile-review.component';
+import {MobileInputComponent} from './mobile-recording/mobile-input/mobile-input.component';
+import {ChangeComponent} from './change/change.component';
 
 const routes: Routes = [
   {

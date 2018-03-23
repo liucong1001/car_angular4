@@ -18,7 +18,7 @@ export class PhotoDetailComponent implements OnInit, AfterViewChecked { // OnCha
    * [额外说明]：动态图片表单不能在为选择证件类型时input中绑定单个url
    * 但是方便的在选择证件类型时取到所有url，这种情况建议存入缓存中，会自动读取对比
    */
-  @Input() private photoUrl = '';
+  @Input() public photoUrl = '';
   private url: string;
   /**
    * 区域定位百分比的数字
@@ -39,11 +39,11 @@ export class PhotoDetailComponent implements OnInit, AfterViewChecked { // OnCha
    * 是否显示的开关
    * @type {boolean}
    */
-  @Input() private display = false;
+  @Input() public display = false;
   @ViewChild('img') private img: ElementRef;
   @ViewChild('div') private div: ElementRef;
   constructor(
-    private _file: FileSystemService,
+    public _file: FileSystemService,
     // private _example: PhotoExampleService,
   ) {}
   ngOnInit() {

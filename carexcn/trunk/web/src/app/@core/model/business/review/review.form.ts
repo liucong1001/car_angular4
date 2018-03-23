@@ -1,8 +1,8 @@
 /**
  * 过户车辆对象实例	    [过户时(创建和增加)必须]
  */
-import {BuyerForm} from "../trade/buyer.form";
-import {SellerForm} from "../trade/seller.form";
+import {BuyerForm} from '../trade/buyer.form';
+import {SellerForm} from '../trade/seller.form';
 
 export class ReviewForm {
   /**
