@@ -8,7 +8,7 @@ describe('CarlistComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CarlistComponent ]
+      declarations: [ CarlistComponent ],
     })
     .compileComponents();
   }));

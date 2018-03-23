@@ -8,7 +8,7 @@ describe('DynamicPhotoFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DynamicPhotoFormComponent ]
+      declarations: [ DynamicPhotoFormComponent ],
     })
     .compileComponents();
   }));

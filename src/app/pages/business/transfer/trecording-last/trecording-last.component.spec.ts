@@ -8,7 +8,7 @@ describe('TrecordingLastComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TrecordingLastComponent ]
+      declarations: [ TrecordingLastComponent ],
     })
     .compileComponents();
   }));

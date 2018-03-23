@@ -8,7 +8,7 @@ describe('NavStepComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NavStepComponent ]
+      declarations: [ NavStepComponent ],
     })
     .compileComponents();
   }));
