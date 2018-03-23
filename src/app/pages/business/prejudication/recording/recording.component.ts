@@ -53,8 +53,8 @@ export class RecordingComponent implements OnInit, OnDestroy {
     source: 'assets/images/camera4.jpg',
   }];
   private vehicleLsnumPrefixDefault = '鄂A';
-  private vehicleLsnumWrong = true;
-  private dealerWrong = false;
+  public vehicleLsnumWrong = true;
+  public dealerWrong = false;
   /**
    * 商户搜索资源
    * @type {string}
@@ -76,7 +76,7 @@ export class RecordingComponent implements OnInit, OnDestroy {
     private _filingService: FilingService,
     private _localstorage: LocalstorageService,
     private _prejudication: PrejudicationService,
-    private _businessFormGroup: BusinessFormGroup,
+    public _businessFormGroup: BusinessFormGroup,
   ) {
     // let tmp = this._cm.getCurrentMarket();
     // console.info('tmp', tmp);

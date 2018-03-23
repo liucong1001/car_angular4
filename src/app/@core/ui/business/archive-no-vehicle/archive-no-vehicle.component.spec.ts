@@ -8,7 +8,7 @@ describe('ArchiveNoVehicleComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ArchiveNoVehicleComponent ]
+      declarations: [ ArchiveNoVehicleComponent ],
     })
     .compileComponents();
   }));

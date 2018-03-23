@@ -45,7 +45,7 @@ export class Recording2Component implements OnInit, OnDestroy {
   });
   constructor(
     private _formBuilder: FormBuilder,
-    private _businessFormGroup: BusinessFormGroup,
+    public _businessFormGroup: BusinessFormGroup,
     private _router: Router,
     private _idcard: IdcardService,
     private _message: MessageService,

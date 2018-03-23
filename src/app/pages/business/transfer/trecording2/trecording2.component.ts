@@ -7,13 +7,11 @@ import {MessageService} from '../../../../@core/utils/message.service';
 import {TradeForm} from '../../../../@core/model/business/trade/trade.form';
 import {Marketphotomap} from '../../../../@core/model/system/market-photo-map';
 import {BusinessFormGroup} from '../../business.form-group';
-import {TransferService} from "../../../../@core/data/business/transfer.service";
-import {BuyerForm} from "../../../../@core/model/business/trade/buyer.form";
-import {TransferVehicleForm} from "../../../../@core/model/business/trade/transferVehicle.form";
-import {TransferVehicleModel} from "../../../../@core/model/business/trade/transferVehicle/transferVehicle.model";
-import {BuyerModel} from "../../../../@core/model/business/trade/buyer.model";
-import {FileSystemService} from "../../../../@core/data/system/file-system.service";
-import {FilingInfoModel} from "../../../../@core/model/business/filing.info.model";
+import {TransferService} from '../../../../@core/data/business/transfer.service';
+import {TransferVehicleModel} from '../../../../@core/model/business/trade/transferVehicle/transferVehicle.model';
+import {BuyerModel} from '../../../../@core/model/business/trade/buyer.model';
+import {FileSystemService} from '../../../../@core/data/system/file-system.service';
+import {FilingInfoModel} from '../../../../@core/model/business/filing.info.model';
 
 @Component({
   selector: 'ngx-trecording2',

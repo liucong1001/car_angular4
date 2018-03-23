@@ -14,5 +14,5 @@ export class AccountModel {
   /**
    *id
    */
-  id?:string;
+  id?: string;
 }

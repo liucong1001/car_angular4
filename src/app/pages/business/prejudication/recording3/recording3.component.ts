@@ -42,7 +42,7 @@ export class Recording3Component implements OnInit, OnDestroy {
   constructor(
     private _router: Router,
     private _formBuilder: FormBuilder,
-    private _businessFormGroup: BusinessFormGroup,
+    public _businessFormGroup: BusinessFormGroup,
     private _localstorage: LocalstorageService,
     private _codeitem: CodeitemService,
   ) {}

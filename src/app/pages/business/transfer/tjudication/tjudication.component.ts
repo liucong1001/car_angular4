@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {WebcamService} from '../../../../@core/device/webcam.service';
-import {CarModel} from '../../../../@core/model/business/car.model';
 import {Router} from '@angular/router';
 import {MessageService} from '../../../../@core/utils/message.service';
 import {TradeForm} from '../../../../@core/model/business/trade/trade.form';
 import {LocalstorageService} from '../../../../@core/cache/localstorage.service';
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {BusinessFormGroup} from "../../business.form-group";
-import {Marketphotomap} from "../../../../@core/model/system/market-photo-map";
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {BusinessFormGroup} from '../../business.form-group';
+import {Marketphotomap} from '../../../../@core/model/system/market-photo-map';
 
 @Component({
   selector: 'ngx-tjudication',

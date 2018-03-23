@@ -4,9 +4,8 @@ import {FingerService} from '../../../../@core/device/finger.service';
 import {Marketphotomap} from '../../../../@core/model/system/market-photo-map';
 import {LocalstorageService} from '../../../../@core/cache/localstorage.service';
 import {FileSystemService} from '../../../../@core/data/system/file-system.service';
-import {PrejudicationService} from '../../../../@core/data/business/prejudication.service';
 import {TradeForm} from '../../../../@core/model/business/trade/trade.form';
-import {TransferService} from "../../../../@core/data/business/transfer.service";
+import {TransferService} from '../../../../@core/data/business/transfer.service';
 
 @Component({
   selector: 'ngx-tjudication-photo',
