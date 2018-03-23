@@ -46,8 +46,11 @@
   
   手机端录入打回            /rest/business/trade/back  put  ()
           archiveNo 车辆流水号
-          reason 打回原因
-          photoCodes 退回照片类型代码表
+          preReason 打回原因
+          prePhotoCodes 退回照片类型代码表
+              <string>  eg:'01,03,05'照片类型01的照片被打回
+          transferReason 打回原因
+          transferPhotoCodes 退回照片类型代码表
               <string>  eg:'01,03,05'照片类型01的照片被打回
 
 ```
