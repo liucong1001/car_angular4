@@ -35,6 +35,7 @@ import {PriceTypePipe} from  '../../@core/data/system/priceType.pipe';
 import {FeeBooleanPipe} from  '../../@core/data/system/feeBoolean.pipe';
 import { MarketDifferComponent } from './market/market-differ/market-differ.component';
 import { BatchComponent } from './batch/batch.component';
+import { PasswordComponent } from './market-staff/password/password.component';
 // import { MarketDifferComponent } from './market/market-differ/market-differ.component'
 const components = [
   CodeitemEditComponent,
@@ -52,6 +53,7 @@ const components = [
   PriceTypePipe,FeeBooleanPipe,
   MarketDifferComponent,
   BatchComponent,
+  PasswordComponent
 ];
 
 @NgModule({
