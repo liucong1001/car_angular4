@@ -36,23 +36,25 @@
        <div class="col-md-4">{{arcInfo?.shouldAmount}}</div>
      </div>
      <hr>
-     <div class="row form-inline form-group">
-       <div class="col-md-6 text-center"> <b>ic卡信息</b>  </div>
-     </div>
-     <div class="row form-inline form-group">
-       <div class="col-md-2"><label for="">卡号：</label> </div>
-       <div class="col-md-4">{{icCardInfo.CardNumber}}</div>
-     </div>
-     <div class="row form-inline form-group">
-       <div class="col-md-2"><label for="">账户名称：</label> </div>
-       <div class="col-md-4" *ngIf="getCardData.icAccount">{{getCardData.icAccount.ownedAccount.accountName}}</div>
-     </div>
-     <div class="row form-inline form-group">
-       <div class="col-md-2"><label for="">当前余额：</label> </div>
-       <div class="col-md-4" *ngIf="getCardData.icAccount">{{getCardData.icAccount.balance}} </div>
+     <div *ngIf="payStatus=='0'">
+       <div class="row form-inline form-group">
+         <div class="col-md-6 text-center"> <b>ic卡信息</b>  </div>
+       </div>
+       <div class="row form-inline form-group">
+         <div class="col-md-2"><label for="">卡号：</label> </div>
+         <div class="col-md-4">{{icCardInfo.CardNumber}}</div>
+       </div>
+       <div class="row form-inline form-group">
+         <div class="col-md-2"><label for="">账户名称：</label> </div>
+         <div class="col-md-4" *ngIf="getCardData.icAccount">{{getCardData.icAccount.ownedAccount.accountName}}</div>
+       </div>
+       <div class="row form-inline form-group">
+         <div class="col-md-2"><label for="">当前余额：</label> </div>
+         <div class="col-md-4" *ngIf="getCardData.icAccount">{{getCardData.icAccount.balance}} </div>
+       </div>
      </div>
      <div class="row">
-         <div class="col-md-2"><button class="btn btn-danger" (click)="cancel()">退费</button></div>
+       <div class="col-md-2"><button class="btn btn-danger" (click)="cancel()">退费</button></div>
      </div>
    </nb-card-body>
 </nb-card>

@@ -38,6 +38,7 @@ export class OrderCancelComponent implements OnInit {
   }
 
  delete(id){
+    console.log('删除',id);
      this.orderCancelService.orderArcDelete(id).then(res=>{
        this.message.success('','删除成功！');
        this.ngOnInit();
