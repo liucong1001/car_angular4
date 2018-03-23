@@ -188,3 +188,14 @@ all_transferVehicle: {
     "review": "0",
     "invalid": "0"
 }
+vehicleManagement: { 车管所
+	"city": Area:{ 城市
+
+	},
+	"memo": "", 备注
+	"management": Area:{ 地区
+
+	},
+	"spell": "", 拼音
+	"invalid": "" 删除标记（1无效，0有效）
+}
