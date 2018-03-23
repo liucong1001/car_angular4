@@ -88,5 +88,12 @@ export class MarketStaffService {
     return this.http.put(this.url, staff).toPromise();
   }
 
-
+  /**
+   * 重置密码
+   * @param {string} id
+   * @return {Promise<any>}
+   */
+  public resetPwd(id: string): Promise<any> {
+    return this.http.get(`${this.url}/reset/${id}`).toPromise();
+  }
 }

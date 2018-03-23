@@ -52,6 +52,7 @@ export class MarketStaffComponent implements OnInit {
       {title: '状态', titleClass: '', cell: new CustomCell(this.statusCell)} as Column,
       {title: '操作', titleClass: '', cell: new MenuCell([
           new Menu('编辑', '', this.edit.bind(this)),
+          new Menu('重置密码', '', this.resetPwd.bind(this)),
        ],
        new Menu('查看', '', 'view/:id')),
       },
@@ -59,6 +60,14 @@ export class MarketStaffComponent implements OnInit {
   }
   edit(row:any){
     this.router.navigate( ['/pages/system/market/staff/edit', { id: row.id }]);
+  }
+
+  resetPwd(row:any){
+    this.staffService.resetPwd(row.id).then(res =>{
+      this.message.success('成功', '重置成功！');
+    }).catch(err =>{
+      this.message.error('失败', err.message);
+    });
   }
 
   changeStatus(row) {
