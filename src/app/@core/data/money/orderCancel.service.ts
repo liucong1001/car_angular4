@@ -23,22 +23,19 @@ export class OrderCancelService {
     return this.http.delete(url).toPromise()
   }
 
+
   /**
    * 删除订单中单条流水号
    * @param id
    * @returns {Promise<TResult2|TResult1>}
    */
   public  orderArcDelete(id: String): Promise<any> {
-    const url = `${this.path}/payorder/pamnet/`+id;
+    // const url = `${this.path}/payorder/pamnet/`+id;
+    const url = `${this.path}/payment/remove/`+id;
     return this.http.delete(url).toPromise().then(function (res) {
       return res.json() as any;
     });
   }
-
-
-
-
-
 
   /**
    * 订单中--单笔流水撤销   不存在了  只有未缴费的才能撤销，缴费了的不能撤销
