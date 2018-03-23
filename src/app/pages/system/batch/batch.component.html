@@ -1,0 +1,8 @@
+<nb-card>
+  <nb-card-header class="d-flex">
+    <div class="p-2 mr-auto">数据下载</div>
+  </nb-card-header>
+  <nb-card-body>
+    <ngx-table [url]="'/rest/sys/batch/pager'" [columns]="columns" [filter]="filter"></ngx-table>
+  </nb-card-body>
+</nb-card>

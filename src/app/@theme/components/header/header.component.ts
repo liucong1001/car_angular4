@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
 
   user: MarketStaff;
 
-  userMenu = [{ title: '个人资料' }, { title: '注销' , url: '/auth/login'}];
+  userMenu = [{ title: '个人资料' }, {title: '修改密码', url:''}, { title: '注销' , url: '/auth/login'}];
 
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,

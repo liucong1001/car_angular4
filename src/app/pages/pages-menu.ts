@@ -207,6 +207,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
       {title: '市场员工', link: '/pages/system/market/staff'},
       {title: '角色管理', link: '/pages/system/role'},
       {title: '附件类型', link: '/pages/system/photo-example'},
+      {title: '数据下载', link: '/pages/system/batch'},
     ],
   },
   {

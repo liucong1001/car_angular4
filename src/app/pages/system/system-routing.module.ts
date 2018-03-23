@@ -28,6 +28,7 @@ import { PhotoExampleComponent } from './photo-example/photo-example.component';
 import { PhotoExampleAddComponent } from './photo-example/photo-example-add/photo-example-add.component';
 import { PhotoExampleEditComponent } from './photo-example/photo-example-edit/photo-example-edit.component';
 import { MarketDifferComponent } from './market/market-differ/market-differ.component';
+import { BatchComponent } from './batch/batch.component';
 
 const routes: Routes = [{
   path: '',
@@ -60,6 +61,7 @@ const routes: Routes = [{
     {path: 'photo-example', component: PhotoExampleComponent},
     {path: 'photo-example/add', component: PhotoExampleAddComponent},
     {path: 'photo-example/edit', component: PhotoExampleEditComponent},
+    {path: 'batch', component: BatchComponent},
   ],
 }];
 
