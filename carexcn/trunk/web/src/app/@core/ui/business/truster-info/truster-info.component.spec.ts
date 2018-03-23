@@ -8,7 +8,7 @@ describe('TrusterInfoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TrusterInfoComponent ]
+      declarations: [ TrusterInfoComponent ],
     })
     .compileComponents();
   }));

@@ -8,7 +8,7 @@ describe('Trecording2Component', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ Trecording2Component ]
+      declarations: [ Trecording2Component ],
     })
     .compileComponents();
   }));

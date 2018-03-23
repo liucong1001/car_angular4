@@ -8,7 +8,7 @@ describe('TjudicationPhotoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TjudicationPhotoComponent ]
+      declarations: [ TjudicationPhotoComponent ],
     })
     .compileComponents();
   }));

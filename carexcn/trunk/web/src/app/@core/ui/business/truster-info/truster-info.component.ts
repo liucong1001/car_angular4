@@ -46,6 +46,8 @@ export class TrusterInfoComponent implements OnInit {
       new ErrorMessage('required', '必须填写地址！'),
     ],
   };
+  @Input() btn_show;
+  @Input() cheshang;
   @Input() showCheshang = true;
   public autoinput_cheshang_source_url = '/rest/merchant/filing/deal/';
   /**
