@@ -15,7 +15,8 @@ export class ArchiveNoVehicleComponent implements OnInit {
   @Input() archiveNo = '';
   @Input() pageTitle = '';
   @Input() canEdit = false;
-  @Input() prompt? = '';
+  @Input() showSelectBtn = true;
+  @Input() prompt? = ''; // 组件显示窗底部的备注，说明文字
   @Input() autoinput_shanghu_source_url = '/rest/merchant/list/';
   @Output('_tradeList') private _tradeList = new EventEmitter();
   @Output('_trade') private _trade = new EventEmitter();

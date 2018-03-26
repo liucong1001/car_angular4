@@ -11,8 +11,8 @@
     <div class="input-group">
       <div class="input-group">
         <span class="input-group-addon">车辆流水号</span>
-        <input class="form-control" type="number" placeholder="输入车辆流水号" [(ngModel)]="trade.archiveNo" #archiveNo/>
-        <button class="btn btn-primary btn-sm" (click)="getTradeByArchiveNo(archiveNo.value)" [disabled]="archiveNo.value.length !== 16">查询</button>
+        <input [readonly]="!showSelectBtn" class="form-control" type="number" placeholder="输入车辆流水号" [(ngModel)]="trade.archiveNo" #archiveNo/>
+        <button *ngIf="showSelectBtn" class="btn btn-primary btn-sm" (click)="getTradeByArchiveNo(archiveNo.value)" [disabled]="archiveNo.value.length !== 16">查询</button>
       </div>
       <div class="input-group">
         <span class="input-group-addon">代办商户</span>

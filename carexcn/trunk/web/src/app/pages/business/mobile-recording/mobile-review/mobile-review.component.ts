@@ -30,18 +30,36 @@ export class MobileReviewComponent implements OnInit {
    */
   public tradeList: [TradeForm];
   public _formGroup: FormGroup = this._formBuilder.group({
-    seller: this._businessFormGroup.seller,
-    vehicle: this._businessFormGroup.vehicle,
+    // seller: this._businessFormGroup.seller,
+    // vehicle: this._businessFormGroup.vehicle,
+    seller_photos_: new FormGroup({}),
+    // seller_reviewPhotos_: new FormGroup({}),
+    seller_trusteePhotos_: new FormGroup({}),
+    preVehicle_photos_: new FormGroup({}),
+    buyer_photos_: new FormGroup({}),
+    // buyer_reviewPhotos_: new FormGroup({}),
+    buyer_trusteePhotos_: new FormGroup({}),
+    transferVehicle_photos_: new FormGroup({}),
   });
-  vehicleCertificateFormConfig: Marketphotomap;
-  sellerCertificateFormConfig: Marketphotomap;
+  /**
+   * 车辆证件类型表单配置
+   *  isApp    // 是否APP
+   *  certificateCode // 证件类型代码集 // 只要符合表单就行
+   *  business // 证件类型代码集 // 只要符合表单就行
+   *  formName // 预审录入车辆', // 表单名称
+   * @type {{}}
+   */
+  preVehicleCertificateFormConfig: Marketphotomap = {isApp: '0', business: '01', formName: '预审录入车辆'} as Marketphotomap;
+  buyerCertificateFormConfig: Marketphotomap = {isApp: '0', business: '01', formName: '预审录入买家'} as Marketphotomap;
+  sellerCertificateFormConfig: Marketphotomap = {isApp: '0', business: '01', formName: '预审录入卖家'} as Marketphotomap;
+
   constructor(
     private _router: Router,
     private _route: ActivatedRoute,
     private _trade: TradeService,
     private _message: MessageService,
     private _formBuilder: FormBuilder,
-    private _businessFormGroup: BusinessFormGroup,
+    // private _businessFormGroup: BusinessFormGroup,
   ) {
   }
 
@@ -51,47 +69,26 @@ export class MobileReviewComponent implements OnInit {
         this.archiveNo = param.archiveNo;
       }
     });
-    /**
-     * 卖家证件类型表单配置
-     * @type {{}}
-     */
-    this.sellerCertificateFormConfig = {
-      isApp: '0',
-      certificateCode: '00', // 证件类型代码集
-      business: '01', //  01 预审  02 过户
-      formName: '预审录入卖家', // 表单名称
-    } as Marketphotomap;
-    /**
-     * 车辆证件类型表单配置
-     * @type {Marketphotomap}
-     */
-    this.vehicleCertificateFormConfig = {
-      isApp: '0',
-      // certificateCode: '00', // 证件类型代码集 // 只要符合表单就行
-      business: '01', //  01 预审  02 过户
-      formName: '预审录入车辆', // 表单名称
-    } as Marketphotomap;
   }
-
-  onChangeSelectedCar(trade: TradeForm): void {
-    if (null === trade) {
-      this._formGroup.reset();
-      this._message.info('添加车辆', '添加新车辆');
-    } else {
-      this._formGroup.patchValue({vehicle: trade.preVehicle.preVehicle});
-      this._message.info('查看车辆', trade.preVehicle.preVehicle.plateNumber);
+  photoForCertificateTypeReady = false;
+  setPhotosCertificateTypeReady() {
+    // 车辆照片，无所谓证件类型，车辆要拍的照片与车辆无关与市场有关，只关联市场配置。
+    if ( this.trade.seller ) {
+      this.sellerCertificateFormConfig.certificateCode = this.trade.seller.seller.certType;
     }
+    if ( this.trade.buyer ) {
+      this.buyerCertificateFormConfig.certificateCode = this.trade.buyer.buyer.certType;
+    }
+    this.photoForCertificateTypeReady = true;
   }
 
   getTradeByArchiveNoComponent(trade) {
-    this.trade = trade;
-    this._formGroup.controls.seller.patchValue(this.trade.seller.seller);
+    this.trade = trade as TradeForm;
+    console.info('trade', trade);
+    this.setPhotosCertificateTypeReady();
+    // this._formGroup.controls.seller.patchValue(this.trade.seller.seller);
   }
 
-  getTradeListByArchiveNoComponent(tradeList) {
-    this.tradeList = tradeList;
-    this.onChangeSelectedCar(tradeList[0]);
-  }
 
   // form: FormGroup = this.fb.group({
   //   cloudUser: ['0001'],
@@ -100,8 +97,6 @@ export class MobileReviewComponent implements OnInit {
   //   photoCodes: ['', [Validators.required, Validators.maxLength(2)]],
   //   reason: ['第一张照片不符合要求', [Validators.required]],
   // });
-
-
 
   // back() {
   //    console.log('打回对象', this.form.value);

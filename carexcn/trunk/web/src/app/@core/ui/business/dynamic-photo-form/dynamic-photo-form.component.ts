@@ -116,13 +116,19 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
      * 注意判断名字是否为空和名字拿到的缓存名是否为空
      * 缓存名的缓存本来也该判断是否为空，但是循环中就可以判断了
      */
-    let cache_name = this._localstorage.get(this.data_localStrong_name);
     let marketphotomap_cache = null;
-    if (null !== cache_name) {
-      marketphotomap_cache = this._localstorage.get(cache_name);
-      // console.info('读取动态表单的对应缓存数据' + cache_name, marketphotomap_cache);
-    } else {
-      // console.info('读取动态表单的对应缓存数据cache_name  空');
+    /**
+     * 如果有设定缓存名
+     * 就从缓存名对应的缓存取数据
+     */
+    if (this.data_localStrong_name) {
+      let cache_name = this._localstorage.get(this.data_localStrong_name);
+      if (null !== cache_name) {
+        marketphotomap_cache = this._localstorage.get(cache_name);
+        // console.info('读取动态表单的对应缓存数据' + cache_name, marketphotomap_cache);
+      } else {
+        // console.info('读取动态表单的对应缓存数据cache_name  空');
+      }
     }
     // console.info('marketphotomap_arr', marketphotomap_arr);
     // 在循环开始之前的该处，要拿到缓存的数据，循环时使用
