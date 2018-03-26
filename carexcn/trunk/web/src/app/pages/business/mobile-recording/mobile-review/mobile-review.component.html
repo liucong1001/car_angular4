@@ -119,15 +119,15 @@
 <nb-card *ngIf="wrong_checked.length > 0">
   <nb-card-header>
     <div class="cameras-card-header">
-      <span class="cameras-card-title">打回原因</span>
+      <span class="cameras-card-title">回退原因</span>
     </div>
   </nb-card-header>
   <nb-card-body>
-    <textarea class="form-control" rows="3"  [(ngModel)]="reason" placeholder="请输入打回原因..."></textarea>
+    <textarea class="form-control" rows="3"  [(ngModel)]="reason" placeholder="请输入回退原因..."></textarea>
   </nb-card-body>
   <nb-card-footer>
     <div class="col-sm-3 float-right">
-        <button type="button" class="btn btn-danger btn-block" (click)="back()">打回</button>
+        <button type="button" class="btn btn-danger btn-block" (click)="back()">回退</button>
     </div>
 
     <div class="col-sm-3 float-right">

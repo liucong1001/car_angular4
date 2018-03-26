@@ -2,7 +2,7 @@ import {ModuleWithProviders, NgModule} from '@angular/core';
 import {PrejudicationService} from './prejudication.service';
 import {TradeService} from './trade.service';
 import {TransferService} from './transfer.service';
-import {TransferDirectService} from './transfer-direct.service';
+import {MobileRecordingService} from './mobile-recording.service';
 
 /**
  * 导出服务
@@ -12,7 +12,7 @@ const SERVICES = [
   PrejudicationService,
   TradeService,
   TransferService,
-  TransferDirectService,
+  MobileRecordingService,
 ];
 
 /**
