@@ -7,6 +7,7 @@ import {MobileRecordingService} from '../../../../@core/data/business/mobile-rec
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {BusinessFormGroup} from '../../business.form-group';
 import {Marketphotomap} from '../../../../@core/model/system/market-photo-map';
+import {ChangeCheckedValueModel} from '../../../../@core/ui/business/dynamic-photo-form/dynamic-photo-form.component';
 
 
 @Component({
@@ -92,9 +93,27 @@ export class MobileReviewComponent implements OnInit {
     this.setPhotosCertificateTypeReady();
     // this._formGroup.controls.seller.patchValue(this.trade.seller.seller);
   }
+  public wrong_checked: Array<ChangeCheckedValueModel> = [];
+  wrongChecked(v: ChangeCheckedValueModel) {
+    if (v.status) {
+      /**
+       * 要添加到屏蔽项
+       */
+      this.wrong_checked.push(v);
+    } else {
+      /**
+       * 如果在屏蔽项中，要移除出去
+       */
+      this.wrong_checked = this.wrong_checked.filter(r => r.title !== v.title);
+    }
+    this.reason = '';
+    this.wrong_checked.forEach(r => {
+      this.reason += r.title + ' 不够清晰' + "\r";
+    });
+  }
   reason = '';
   back() {
-     console.info('打回对象', this._formGroup.value);
+     console.info('打回对象', this.wrong_checked);
      console.info('打回原因', this.reason);
     // this.mobileinfoService.back(this._formGroup.value).then(res => {
     //   this.message.success('', '回退成功!');

@@ -20,6 +20,7 @@
         [certificateFormConfig]="buyerCertConf"
         [btn_show]="false"
         [btn_show_check]="true"
+        (_wrong_checked)="wrongChecked($event)"
       ></ngx-ys-dynamic-photo-form>
     </nb-card-body>
   </nb-card>
@@ -37,6 +38,7 @@
         [certificateFormConfig]="buyerTrusteeCertConf"
         [btn_show]="false"
         [btn_show_check]="true"
+        (_wrong_checked)="wrongChecked($event)"
       ></ngx-ys-dynamic-photo-form>
     </nb-card-body>
   </nb-card>
@@ -54,6 +56,7 @@
         [certificateFormConfig]="sellerCertConf"
         [btn_show]="false"
         [btn_show_check]="true"
+        (_wrong_checked)="wrongChecked($event)"
       ></ngx-ys-dynamic-photo-form>
     </nb-card-body>
   </nb-card>
@@ -70,6 +73,7 @@
         [certificateFormConfig]="sellerTrusteeCertConf"
         [btn_show]="false"
         [btn_show_check]="true"
+        (_wrong_checked)="wrongChecked($event)"
       ></ngx-ys-dynamic-photo-form>
     </nb-card-body>
   </nb-card>
@@ -87,6 +91,7 @@
         [certificateFormConfig]="preVehicleCertConf"
         [btn_show]="false"
         [btn_show_check]="true"
+        (_wrong_checked)="wrongChecked($event)"
       ></ngx-ys-dynamic-photo-form>
     </nb-card-body>
   </nb-card>
@@ -104,13 +109,14 @@
         [certificateFormConfig]="transferVehicleCertConf"
         [btn_show]="false"
         [btn_show_check]="true"
+        (_wrong_checked)="wrongChecked($event)"
       ></ngx-ys-dynamic-photo-form>
     </nb-card-body>
   </nb-card>
 
 </ng-container>
 
-<nb-card>
+<nb-card *ngIf="wrong_checked.length > 0">
   <nb-card-header>
     <div class="cameras-card-header">
       <span class="cameras-card-title">打回原因</span>
@@ -133,3 +139,4 @@
     </div>
   </nb-card-footer>
 </nb-card>
+<br /><br /><br /><br />
