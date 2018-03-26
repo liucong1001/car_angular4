@@ -34,27 +34,29 @@ export class MobileRecordingComponent implements OnInit {
       {title: '里程(公里)', titleClass: '', cell: new TextCell('preVehicle.preVehicle.mileage')} as Column,
       {title: '卖方类型', titleClass: 'w-15 text-center', cell: new CustomCell(this.TypeCell)} as Column,
       {title: '商户', titleClass: '', cell: new TextCell('preVehicle.preVehicle.merchant.name')} as Column,
-      {title: '预审', titleClass: 'w-15 text-center', cell: new MenuCell(
-          [
-            new Menu('录入', '', this.prejudication.bind(this), this.showPrejudication.bind(this)),
-          ],
-          new Menu('.', '', this.review.bind(this), '', this.showPrejudicationState.bind(this)), 'text-center',
-        )
-      } as Column,
-      {title: '过户', titleClass: 'w-15 text-center', cell: new MenuCell(
-          [
-            new Menu('录入', '', this.transfer.bind(this), this.showTransfer.bind(this)),
-          ],
-          new Menu('.', '', this.review.bind(this), '', this.showTransferState.bind(this)), 'text-center',
-        )
-      } as Column,
+      // {title: '预审', titleClass: 'w-15 text-center', cell: new MenuCell(
+      //     [
+      //       new Menu('录入', '', this.prejudication.bind(this), this.showPrejudication.bind(this)),
+      //     ],
+      //     new Menu('.', '', this.review.bind(this), '', this.showPrejudicationState.bind(this)), 'text-center',
+      //   )
+      // } as Column,
+      {title: '预审', titleClass: '', cell: new CodemapCell('prejudicationStatus', 'prejudicationStatus')} as Column,
+      // {title: '过户', titleClass: 'w-15 text-center', cell: new MenuCell(
+      //     [
+      //       new Menu('录入', '', this.transfer.bind(this), this.showTransfer.bind(this)),
+      //     ],
+      //     new Menu('.', '', this.review.bind(this), '', this.showTransferState.bind(this)), 'text-center',
+      //   )
+      // } as Column,
+      {title: '过户', titleClass: '', cell: new CodemapCell('transferStatus', 'transferStatus')} as Column,
       {
-        title: '解锁', titleClass: 'w-15 text-center', cell: new MenuCell(
+        title: '操作', titleClass: 'w-15 text-center', cell: new MenuCell(
           [
-            new Menu('买家', '', this.unlockBuyer.bind(this)),
-            new Menu('卖家', '', this.unlockSeller.bind(this)),
+            new Menu('解锁买家', '', this.unlockBuyer.bind(this)),
+            new Menu('解锁卖家', '', this.unlockSeller.bind(this)),
           ],
-          new Menu('解锁', '', this.view), 'text-center',
+          new Menu('预览录入', '', this.review.bind(this)), 'text-center',
         )
       } as Column,
     ];
