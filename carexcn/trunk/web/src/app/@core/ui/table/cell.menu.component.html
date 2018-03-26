@@ -8,10 +8,10 @@
       <ng-container *ngIf="!menu.show || menu.show(data)">
         <li [ngClass]="[menu.icon,'dropdown-item', 'clickable']">
           <a *ngIf="menu.isCallback()" (click)="menu.callback(data)">
-            {{menu.text}}
+            {{menu.ifCellFilter() ? menu.cellFilter(data,drop) : menu.text}}
           </a>
           <a *ngIf="menu.isUrl()" [routerLink]="[menu.callback, data]">
-            {{menu.text}}
+            {{menu.ifCellFilter() ? menu.cellFilter(data,drop) : menu.text}}
           </a>
         </li>
       </ng-container>

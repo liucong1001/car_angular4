@@ -5,6 +5,7 @@ import {TextCell} from '../../../@core/ui/table/cell.text.component';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CodemapCell, CustomCell} from '../../../@core/ui/table/cell';
 import {FileSystemService} from '../../../@core/data/system/file-system.service';
+import {MessageService} from '../../../@core/utils/message.service';
 // FileSystemService
 
 @Component({
@@ -22,6 +23,7 @@ export class MobileRecordingComponent implements OnInit {
 
   constructor(
     public router: Router,
+    private _message: MessageService,
     private route: ActivatedRoute,
     private file: FileSystemService,
   ) { }
@@ -53,13 +55,21 @@ export class MobileRecordingComponent implements OnInit {
       {
         title: '操作', titleClass: 'w-15 text-center', cell: new MenuCell(
           [
-            new Menu('解锁买家', '', this.unlockBuyer.bind(this)),
-            new Menu('解锁卖家', '', this.unlockSeller.bind(this)),
+            new Menu('解锁买家', '', this.unlockBuyer.bind(this), this.showUnlockBuyer.bind(this)),
+            new Menu('解锁卖家', '', this.unlockSeller.bind(this), this.showUnlockSeller.bind(this)),
           ],
-          new Menu('预览录入', '', this.review.bind(this)), 'text-center',
-        )
+          new Menu('预览录入', '', this.review.bind(this), '', this.getRecordingText.bind(this)), 'text-center',
+        ),
       } as Column,
     ];
+  }
+
+  private getRecordingText(row: any, text?: string) {
+    if ('05' === row.transferStatus || '05' === row.prejudicationStatus) {
+      return '预览录入';
+    } else {
+      return '不可录入';
+    }
   }
 
   /**
@@ -77,13 +87,33 @@ export class MobileRecordingComponent implements OnInit {
   };
 
   /**
+   * 卖家解锁按钮是否显示
+   * @param row
+   * @param {string} text
+   * @returns {boolean}
+   */
+  private showUnlockSeller(row: any, text?: string) {
+    return '06' === row.prejudicationStatus;
+  }
+
+  /**
+   * 买家解锁按钮是否显示
+   * @param row
+   * @param {string} text
+   * @returns {boolean}
+   */
+  private showUnlockBuyer(row: any, text?: string) {
+    return '06' === row.transferStatus;
+  }
+
+  /**
    * 显示过户录入状态的文字
    * @param row
    * @param {string} text
    * @returns {any}
    */
   private showTransferState(row: any, text?: string) {
-    return this.statusArr[row.transferStatus] ? this.statusArr[row.transferStatus] : "[未知状态:" + row.transferStatus + "]";
+    return this.statusArr[row.transferStatus] ? this.statusArr[row.transferStatus] : '[未知状态:' + row.transferStatus + ']';
   }
 
   /**
@@ -93,7 +123,7 @@ export class MobileRecordingComponent implements OnInit {
    * @returns {any}
    */
   private showPrejudicationState(row: any, text?: string) {
-    return this.statusArr[row.prejudicationStatus] ? this.statusArr[row.prejudicationStatus] : "[未知状态:" + row.prejudicationStatus + "]";
+    return this.statusArr[row.prejudicationStatus] ? this.statusArr[row.prejudicationStatus] : '[未知状态:' + row.prejudicationStatus + ']';
   }
 
   /**
@@ -158,7 +188,11 @@ export class MobileRecordingComponent implements OnInit {
   // 列表列定义
   public columns: Column[] ;
   public review(row: any) {
-    this.router.navigate( ['/pages/business/mobile-recording/review', { archiveNo: row.archiveNo }]);
+    if ('05' === row.transferStatus || '05' === row.prejudicationStatus) {
+      this.router.navigate(['/pages/business/mobile-recording/review', {archiveNo: row.archiveNo}]);
+    } else {
+      this._message.warning('操作无效', '当前不可进行录入操作');
+    }
   }
   public object(data) {
     if (Object.keys(data).length === 0) {
