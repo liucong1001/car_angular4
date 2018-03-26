@@ -92,28 +92,21 @@ export class MobileReviewComponent implements OnInit {
     this.setPhotosCertificateTypeReady();
     // this._formGroup.controls.seller.patchValue(this.trade.seller.seller);
   }
-
-
-  // form: FormGroup = this.fb.group({
-  //   cloudUser: ['0001'],
-  //   archiveNo: ['', [Validators.required]],
-  //   type: [''],
-  //   photoCodes: ['', [Validators.required, Validators.maxLength(2)]],
-  //   reason: ['第一张照片不符合要求', [Validators.required]],
-  // });
-
-  // back() {
-  //    console.log('打回对象', this.form.value);
-  //   this.mobileService.back(this.form.value).then(res => {
-  //     this.message.success('', '回退成功!');
-  //   });
-  //   //   .catch(err=>{
-  //   //   this.message.error('回退失败',err.json().message);
-  //   // })
-  // }
-  // startInput(){
-  //   this.router.navigate( ['/pages/business/mobile-recording/input', { archiveNo: this.archiveNo }]);
-  // }
+  reason = '';
+  back() {
+     console.info('打回对象', this._formGroup.value);
+     console.info('打回原因', this.reason);
+    // this.mobileinfoService.back(this._formGroup.value).then(res => {
+    //   this.message.success('', '回退成功!');
+    // });
+    //   .catch(err=>{
+    //   this.message.error('回退失败',err.json().message);
+    // })
+  }
+  startInput() {
+    console.info('startInput');
+    // this.router.navigate( ['/pages/business/mobile-recording/input', { archiveNo: this.archiveNo }]);
+  }
 
 
 }
