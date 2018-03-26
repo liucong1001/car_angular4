@@ -45,8 +45,6 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
   ) {}
   ngOnInit() {
     this.setCertificateConfig();
-    console.info('dynamic-photo-form.component.ts photos_name', this.photos_name);
-    console.info('dynamic-photo-form.component.ts photos.controls', this.photos.value);
   }
 
   /**
@@ -75,7 +73,7 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    this.setCertificateConfig();
+    // this.setCertificateConfig();
   }
 
   /**
@@ -94,6 +92,7 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
    * 配置证件类型
    */
   setCertificateConfig() {
+    console.info('this.certificateFormConfig', this.certificateFormConfig);
     this._market.getCertificateConfig(this.certificateFormConfig)
       .then(res => this.initPhotoMap(res as [Marketphotomap]));
   }
@@ -167,9 +166,9 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
       }
     });
     this.photos_name = photo_name_tmp;
-    // console.info('dynamic photos_name', this.photos_name);
+    console.info('dynamic photos_name', this.photos_name);
     this.photos_url = photo_url_tmp;
-    // console.info('dynamic photos_url', this.photos_url);
+    console.info('dynamic photos_url', this.photos_url);
   }
 
   /**
