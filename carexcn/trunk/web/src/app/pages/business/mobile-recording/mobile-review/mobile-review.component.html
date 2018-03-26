@@ -7,7 +7,7 @@
 ></ngx-archive-no-vehicle>
 <!--准备好所有证件类型字段集才要展现照片-->
 <ng-container *ngIf="photoForCertificateTypeReady">
-  <nb-card *ngIf="trade.buyer">
+  <nb-card>
     <nb-card-header>
       <div class="cameras-card-header">
         <span class="cameras-card-title">买方照片集</span>
@@ -15,15 +15,16 @@
     </nb-card-header>
     <nb-card-body>
       <ngx-ys-dynamic-photo-form
+        *ngIf="trade.buyer && trade.buyer.photos !== {}"
         [photos]="_formGroup.controls.buyer_photos_"
-        [certificateFormConfig]="buyerCertificateFormConfig"
+        [certificateFormConfig]="buyerCertConf"
         [btn_show]="false"
         [btn_show_check]="true"
       ></ngx-ys-dynamic-photo-form>
     </nb-card-body>
   </nb-card>
 
-  <nb-card *ngIf="trade.buyer && trade.buyer.trusteePhotos">
+  <nb-card>
     <nb-card-header>
       <div class="cameras-card-header">
         <span class="cameras-card-title">买方委托人照片集</span>
@@ -31,15 +32,16 @@
     </nb-card-header>
     <nb-card-body>
       <ngx-ys-dynamic-photo-form
+        *ngIf="trade.buyer && objectKeys(trade.buyer.trusteePhotos).length !== 0"
         [photos]="_formGroup.controls.buyer_trusteePhotos_"
-        [certificateFormConfig]="buyerCertificateFormConfig"
+        [certificateFormConfig]="buyerTrusteeCertConf"
         [btn_show]="false"
         [btn_show_check]="true"
       ></ngx-ys-dynamic-photo-form>
     </nb-card-body>
   </nb-card>
 
-  <nb-card *ngIf="trade.seller">
+  <nb-card>
     <nb-card-header>
       <div class="cameras-card-header">
         <span class="cameras-card-title">卖方照片集</span>
@@ -47,14 +49,15 @@
     </nb-card-header>
     <nb-card-body>
       <ngx-ys-dynamic-photo-form
+        *ngIf="trade.seller && objectKeys(trade.seller.photos).length !== 0"
         [photos]="_formGroup.controls.seller_photos_"
-        [certificateFormConfig]="sellerCertificateFormConfig"
+        [certificateFormConfig]="sellerCertConf"
         [btn_show]="false"
         [btn_show_check]="true"
       ></ngx-ys-dynamic-photo-form>
     </nb-card-body>
   </nb-card>
-  <nb-card *ngIf="trade.seller && trade.seller.trusteePhotos">
+  <nb-card>
     <nb-card-header>
       <div class="cameras-card-header">
         <span class="cameras-card-title">卖方委托人照片集</span>
@@ -62,15 +65,16 @@
     </nb-card-header>
     <nb-card-body>
       <ngx-ys-dynamic-photo-form
+        *ngIf="trade.seller && objectKeys(trade.seller.trusteePhotos).length !== 0"
         [photos]="_formGroup.controls.seller_photos_"
-        [certificateFormConfig]="sellerCertificateFormConfig"
+        [certificateFormConfig]="sellerTrusteeCertConf"
         [btn_show]="false"
         [btn_show_check]="true"
       ></ngx-ys-dynamic-photo-form>
     </nb-card-body>
   </nb-card>
 
-  <nb-card *ngIf="trade.preVehicle">
+  <nb-card>
     <nb-card-header>
       <div class="cameras-card-header">
         <span class="cameras-card-title">预审车辆照片集</span>
@@ -78,8 +82,9 @@
     </nb-card-header>
     <nb-card-body>
       <ngx-ys-dynamic-photo-form
+        *ngIf="trade.preVehicle && objectKeys(trade.preVehicle.photos).length !== 0"
         [photos]="_formGroup.controls.preVehicle_photos_"
-        [certificateFormConfig]="preVehicleCertificateFormConfig"
+        [certificateFormConfig]="preVehicleCertConf"
         [btn_show]="false"
         [btn_show_check]="true"
       ></ngx-ys-dynamic-photo-form>
@@ -87,7 +92,7 @@
   </nb-card>
 
 
-  <nb-card *ngIf="trade.transferVehicle">
+  <nb-card *ngIf="trade.transferVehicle && objectKeys(trade.transferVehicle.photos).length !== 0">
     <nb-card-header>
       <div class="cameras-card-header">
         <span class="cameras-card-title">过户车辆照片集</span>
@@ -96,7 +101,7 @@
     <nb-card-body>
       <ngx-ys-dynamic-photo-form
         [photos]="_formGroup.controls.transferVehicle_photos_"
-        [certificateFormConfig]="transferVehicle.photos"
+        [certificateFormConfig]="transferVehicleCertConf"
         [btn_show]="false"
         [btn_show_check]="true"
       ></ngx-ys-dynamic-photo-form>

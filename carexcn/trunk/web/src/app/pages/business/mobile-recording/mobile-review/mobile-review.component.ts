@@ -29,6 +29,7 @@ export class MobileReviewComponent implements OnInit {
    * 交易表单的集合
    */
   public tradeList: [TradeForm];
+  public objectKeys = Object.keys;
   public _formGroup: FormGroup = this._formBuilder.group({
     // seller: this._businessFormGroup.seller,
     // vehicle: this._businessFormGroup.vehicle,
@@ -49,9 +50,12 @@ export class MobileReviewComponent implements OnInit {
    *  formName // 预审录入车辆', // 表单名称
    * @type {{}}
    */
-  preVehicleCertificateFormConfig: Marketphotomap = {isApp: '0', business: '01', formName: '预审录入车辆'} as Marketphotomap;
-  buyerCertificateFormConfig: Marketphotomap = {isApp: '0', business: '01', formName: '预审录入买家'} as Marketphotomap;
-  sellerCertificateFormConfig: Marketphotomap = {isApp: '0', business: '01', formName: '预审录入卖家'} as Marketphotomap;
+  preVehicleCertConf: Marketphotomap = {isApp: '0', business: '01', formName: '预审录入车辆'} as Marketphotomap;
+  transferVehicleCertConf: Marketphotomap = {isApp: '0', business: '01', formName: '过户录入车辆'} as Marketphotomap;
+  buyerCertConf: Marketphotomap = {isApp: '0', business: '01', formName: '预审录入买家'} as Marketphotomap;
+  sellerCertConf: Marketphotomap = {isApp: '0', business: '01', formName: '预审录入卖家'} as Marketphotomap;
+  buyerTrusteeCertConf: Marketphotomap = {isApp: '0', business: '01', formName: '预审录入买家委托人'} as Marketphotomap;
+  sellerTrusteeCertConf: Marketphotomap = {isApp: '0', business: '01', formName: '预审录入卖家委托人'} as Marketphotomap;
 
   constructor(
     private _router: Router,
@@ -74,10 +78,10 @@ export class MobileReviewComponent implements OnInit {
   setPhotosCertificateTypeReady() {
     // 车辆照片，无所谓证件类型，车辆要拍的照片与车辆无关与市场有关，只关联市场配置。
     if ( this.trade.seller ) {
-      this.sellerCertificateFormConfig.certificateCode = this.trade.seller.seller.certType;
+      this.sellerCertConf.certificateCode = this.trade.seller.seller.certType;
     }
     if ( this.trade.buyer ) {
-      this.buyerCertificateFormConfig.certificateCode = this.trade.buyer.buyer.certType;
+      this.buyerCertConf.certificateCode = this.trade.buyer.buyer.certType;
     }
     this.photoForCertificateTypeReady = true;
   }
