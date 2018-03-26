@@ -3,7 +3,7 @@ import {TradeService} from '../../../../@core/data/business/trade.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MessageService} from '../../../../@core/utils/message.service';
 import {TradeForm} from '../../../../@core/model/business/trade/trade.form';
-import {MobileService} from '../../../../@core/data/business/mobile.service';
+import {MobileRecordingService} from '../../../../@core/data/business/mobile-recording.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {BusinessFormGroup} from '../../business.form-group';
 import {Marketphotomap} from '../../../../@core/model/system/market-photo-map';
@@ -12,7 +12,7 @@ import {Marketphotomap} from '../../../../@core/model/system/market-photo-map';
   selector: 'ngx-mobile-input',
   templateUrl: './mobile-input.component.html',
   styleUrls: ['./mobile-input.component.scss'],
-  providers: [TradeService, MobileService],
+  providers: [TradeService, MobileRecordingService],
 })
 export class MobileInputComponent implements OnInit {
   /**
