@@ -6,7 +6,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {CodemapCell, CustomCell} from '../../../@core/ui/table/cell';
 import {FileSystemService} from '../../../@core/data/system/file-system.service';
 import {MessageService} from '../../../@core/utils/message.service';
-// FileSystemService
 
 @Component({
   selector: 'ngx-ys-mobile-recording',
@@ -187,8 +186,15 @@ export class MobileRecordingComponent implements OnInit {
   public filter: any = {};
   // 列表列定义
   public columns: Column[] ;
+
+  /**
+   * 进行预览的操作
+   * 预览无问题才能进行录入操作
+   * @param row
+   */
   public review(row: any) {
     if ('05' === row.transferStatus || '05' === row.prejudicationStatus) {
+      this._message.info('缺省', '发送录入中的状态请求');
       this.router.navigate(['/pages/business/mobile-recording/review', {archiveNo: row.archiveNo}]);
     } else {
       this._message.warning('操作无效', '当前不可进行录入操作');
