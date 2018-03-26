@@ -14,7 +14,6 @@ import {ChangeCheckedValueModel} from '../../../../@core/ui/business/dynamic-pho
   selector: 'ngx-mobile-review',
   templateUrl: './mobile-review.component.html',
   styleUrls: ['./mobile-review.component.scss'],
-  providers: [TradeService, MobileRecordingService],
 })
 export class MobileReviewComponent implements OnInit {
   /**
@@ -64,6 +63,7 @@ export class MobileReviewComponent implements OnInit {
     private _trade: TradeService,
     private _message: MessageService,
     private _formBuilder: FormBuilder,
+    private _mobileRecord: MobileRecordingService,
     // private _businessFormGroup: BusinessFormGroup,
   ) {
   }
@@ -113,14 +113,13 @@ export class MobileReviewComponent implements OnInit {
   }
   reason = '';
   back() {
-     console.info('打回对象', this.wrong_checked);
-     console.info('打回原因', this.reason);
-    // this.mobileinfoService.back(this._formGroup.value).then(res => {
-    //   this.message.success('', '回退成功!');
-    // });
-    //   .catch(err=>{
-    //   this.message.error('回退失败',err.json().message);
-    // })
+     console.info('回退对象', this.wrong_checked);
+     console.info('回退原因', this.reason);
+    this._mobileRecord.back(this._formGroup.value).then(res => {
+      this._message.success('', '回退成功!');
+    }).catch(err=>{
+      this._message.error('回退失败',err.message);
+    })
   }
   startInput() {
     console.info('startInput');
