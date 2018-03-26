@@ -51,18 +51,23 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
    * 动态图片中是否选中状态的切换
    */
   changeChecked(v: ChangeCheckedValueModel) {
-    if (v.status) {
-      /**
-       * 要添加到屏蔽项
-       */
-      this.wrong_checked.push(v);
-    } else {
-      /**
-       * 如果在屏蔽项中，要移除出去
-       */
-      this.wrong_checked = this.wrong_checked.filter(r => r.title !== v.title);
-    }
+    // if (v.status) {
+    //   /**
+    //    * 要添加到屏蔽项
+    //    */
+    //   this.wrong_checked.push(v);
+    // } else {
+    //   /**
+    //    * 如果在屏蔽项中，要移除出去
+    //    */
+    //   this.wrong_checked = this.wrong_checked.filter(r => r.title !== v.title);
+    // }
+    // this._wrong_checked.emit(this.wrong_checked);
     // console.info(v);
+    /**
+     * 提交所有事件给调用组件处理，他们会处理的更顺手。
+     */
+    this._wrong_checked.emit(v);
   }
 
   /**
