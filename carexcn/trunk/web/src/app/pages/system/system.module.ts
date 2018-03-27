@@ -36,7 +36,10 @@ import {FeeBooleanPipe} from  '../../@core/data/system/feeBoolean.pipe';
 import { MarketDifferComponent } from './market/market-differ/market-differ.component';
 import { BatchComponent } from './batch/batch.component';
 import { PasswordComponent } from './market-staff/password/password.component';
-// import { MarketDifferComponent } from './market/market-differ/market-differ.component'
+import { MarketBasicComponent } from './market/market-basic/market-basic.component';
+import { MarketBasicEditComponent } from './market/market-basic/market-basic-edit/market-basic-edit.component';
+import { MarketBasicAddComponent } from './market/market-basic/market-basic-add/market-basic-add.component';
+
 const components = [
   CodeitemEditComponent,
   ToPermTreeNode,
@@ -53,7 +56,10 @@ const components = [
   PriceTypePipe,FeeBooleanPipe,
   MarketDifferComponent,
   BatchComponent,
-  PasswordComponent
+  PasswordComponent,
+  MarketBasicComponent,
+  MarketBasicEditComponent,
+  MarketBasicAddComponent
 ];
 
 @NgModule({
