@@ -65,11 +65,15 @@ export class FileSystemService {
   public filterPhotosValue(photoFormValue) {
     let result = {};
     for (let key in photoFormValue) {
-      if (!photoFormValue.hasOwnProperty(key)) continue;
+      if (!photoFormValue.hasOwnProperty(key)) {
+        continue;
+      }
       let obj = photoFormValue[key];
       let tmp_array: Array<CameraCarexcnFileDescrption> = [];
       for (let prop in obj) {
-        if (!obj.hasOwnProperty(prop)) continue;
+        if (!obj.hasOwnProperty(prop)) {
+          continue;
+        }
         if (obj[prop].startsWith('id:')) {
           tmp_array.push({objectId: this.getFileUrlById(obj[prop])} as CameraCarexcnFileDescrption);
         } else if (obj[prop].startsWith('tmp:')) {
@@ -126,6 +130,16 @@ export class FileSystemService {
  * 易驹所照片文件类定义
  */
 export class CameraCarexcnFileDescrption {
-  objectId?: string;
+  cloudUser?: string;
+  deleted?: boolean;
+  fileExtName?: string;
   filePath?: string;
+  fileType?: string;
+  id?: string;
+  /**
+   * 文件对象ID，显示文件用此ID
+   */
+  objectId?: string;
+  objectType?: string;
+  sortNumber?: number | null;
 }

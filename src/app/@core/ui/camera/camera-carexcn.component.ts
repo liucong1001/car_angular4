@@ -16,6 +16,9 @@ import {FileSystemService, CameraCarexcnFileDescrption} from './../../data/syste
     useExisting: forwardRef(() => CameraCarexcnComponent),
   }],
 })
+/**
+ * 拍照组件完全为易驹所后台接口文件属性所定制
+ */
 export class CameraCarexcnComponent implements OnInit, ControlValueAccessor, OnChanges {
 // export class CameraCarexcnComponent {
   /**
