@@ -96,4 +96,15 @@ export class MarketStaffService {
   public resetPwd(id: string): Promise<any> {
     return this.http.get(`${this.url}/reset/${id}`).toPromise();
   }
+
+  /**
+   * 修改密码
+   * @param oldPwd 原始密码
+   * @param oncePwd 新密码
+   * @param twice 第二次输入新密码
+   * @returns {Promise<Object>}
+     */
+  public updatePwd(oldPwd: string, oncePwd: string, twicePwd: string): Promise<any> {
+    return this.http.post(`${this.url}/update/pwd?oldPwd=`+oldPwd+'&oncePwd='+oncePwd+'&twicePwd='+twicePwd, {}).toPromise();
+  }
 }
