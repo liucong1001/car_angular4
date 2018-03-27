@@ -50,12 +50,12 @@ export class MobileReviewComponent implements OnInit {
    *  formName // 预审录入车辆', // 表单名称
    * @type {{}}
    */
-  preVehicleCertConf: Marketphotomap = {isApp: '0', business: '01', formName: '预审录入车辆'} as Marketphotomap;
-  transferVehicleCertConf: Marketphotomap = {isApp: '0', business: '01', formName: '过户录入车辆'} as Marketphotomap;
-  buyerCertConf: Marketphotomap = {isApp: '0', business: '01', formName: '预审录入买家'} as Marketphotomap;
-  sellerCertConf: Marketphotomap = {isApp: '0', business: '01', formName: '预审录入卖家'} as Marketphotomap;
-  buyerTrusteeCertConf: Marketphotomap = {isApp: '0', business: '01', formName: '预审录入买家委托人'} as Marketphotomap;
-  sellerTrusteeCertConf: Marketphotomap = {isApp: '0', business: '01', formName: '预审录入卖家委托人'} as Marketphotomap;
+  preVehicleCertConf: Marketphotomap = {business: '01', formName: '预审录入车辆'} as Marketphotomap;
+  transferVehicleCertConf: Marketphotomap = {business: '01', formName: '过户录入车辆'} as Marketphotomap;
+  buyerCertConf: Marketphotomap = {business: '01', formName: '预审录入买家'} as Marketphotomap;
+  sellerCertConf: Marketphotomap = {business: '01', formName: '预审录入卖家'} as Marketphotomap;
+  buyerTrusteeCertConf: Marketphotomap = {business: '01', formName: '预审录入买家委托人'} as Marketphotomap;
+  sellerTrusteeCertConf: Marketphotomap = {business: '01', formName: '预审录入卖家委托人'} as Marketphotomap;
 
   constructor(private _router: Router,
               private _route: ActivatedRoute,

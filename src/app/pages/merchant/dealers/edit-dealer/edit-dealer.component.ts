@@ -9,7 +9,8 @@ import {Router, ActivatedRoute} from '@angular/router';
 import {UserService} from '../../../../@core/data/users.service';
 import {MerchantFormGroup} from '../merchant.form-group';
 import {Marketphotomap} from '../../../../@core/model/system/market-photo-map';
-import {FileSystemService} from "../../../../@core/data/system/file-system.service";
+import {FileSystemService} from '../../../../@core/data/system/file-system.service';
+import {LocalstorageService} from '../../../../@core/cache/localstorage.service';
 
 /**
  * 添加商户
@@ -20,6 +21,7 @@ import {FileSystemService} from "../../../../@core/data/system/file-system.servi
   styleUrls: ['./edit-dealer.component.scss'],
 })
 export class EditDealerComponent implements OnInit {
+  photos_cache_name = 'merchant_dealers_edit_dealer';
   /**
    * 构造函数
    * @param {MessageService} message
@@ -29,6 +31,7 @@ export class EditDealerComponent implements OnInit {
     private _route: ActivatedRoute,
     private _message: MessageService,
     private _location: Location,
+    private _localstorage: LocalstorageService,
     private _formBuilder: FormBuilder,
     private _merchantFormGroup: MerchantFormGroup,
     private _merchantService: MerchantService,
@@ -50,6 +53,7 @@ export class EditDealerComponent implements OnInit {
             this.DisableSignLabel = '启用';
             this.DisableSignValue = false;
           }
+          this._localstorage.set(this.photos_cache_name, res.photos);
         });
       }
     });
@@ -94,7 +98,6 @@ export class EditDealerComponent implements OnInit {
    */
   _formPhotos: FormGroup = this._merchantFormGroup.photos;
   merchantCertificateFormConfig = {
-    isApp: '0',
     // certificateCode: '00', // 证件类型代码集 // 只要符合表单就行
     business: '19', //  01 预审  02 过户
     formName: '商户管理照片集', // 表单名称

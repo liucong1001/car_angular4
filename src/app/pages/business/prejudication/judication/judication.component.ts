@@ -66,7 +66,6 @@ export class JudicationComponent implements OnInit {
      * @type {{}}
      */
     this.vehicleCertificateFormConfig = {
-      isApp: '0',
       // certificateCode: '00', // 证件类型代码集 // 只要符合表单就行
       business: '01', //  01 预审  02 过户
       formName: '预审录入车辆', // 表单名称

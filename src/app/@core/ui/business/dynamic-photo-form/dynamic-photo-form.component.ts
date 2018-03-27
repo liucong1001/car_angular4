@@ -26,7 +26,16 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
    * 证件类型表单获取的配置
    */
   @Input() certificateFormConfig: Marketphotomap;
+  /**
+   * 一般用于多次组件封装时使用
+   * @type {string}
+   */
   @Input() data_localStrong_name = '';
+  /**
+   * 一般用于直接调用本组件时使用
+   * @type {string}
+   */
+  @Input() cache_data_localStrong_name = '';
   @Input() btn_show = true;
   @Input() btn_show_check = false;
   /**
@@ -115,11 +124,13 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
    * 缓存名的缓存本来也该判断是否为空，但是循环中就可以判断了
    */
   getMaybeMarketphotoMap() {
+    if (this.cache_data_localStrong_name) {
+      return this._localstorage.get(this.cache_data_localStrong_name);
     /**
      * 如果有设定缓存名
      * 就从缓存名对应的缓存取数据
      */
-    if (this.data_localStrong_name) {
+    } else if (this.data_localStrong_name) {
       let cache_name = this._localstorage.get(this.data_localStrong_name);
       if (null !== cache_name) {
         return this._localstorage.get(cache_name);
