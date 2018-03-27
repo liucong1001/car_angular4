@@ -56,7 +56,17 @@ export class MobileReviewComponent implements OnInit {
   sellerCertConf: Marketphotomap = {business: '01', formName: '预审录入卖家'} as Marketphotomap;
   buyerTrusteeCertConf: Marketphotomap = {business: '01', formName: '预审录入买家委托人'} as Marketphotomap;
   sellerTrusteeCertConf: Marketphotomap = {business: '01', formName: '预审录入卖家委托人'} as Marketphotomap;
-
+  /**
+   * 是否允许进行勾选打回的操作
+   * 为了允许查看又不让操作的情况
+   * @type {boolean}
+   */
+  btn_show_check = false;
+  /**
+   * 是否声明为查看
+   * @type {boolean}
+   */
+  btn_show_check_false_just_view = false;
   constructor(private _router: Router,
               private _route: ActivatedRoute,
               private _trade: TradeService,
@@ -71,6 +81,9 @@ export class MobileReviewComponent implements OnInit {
     this._route.params.subscribe(param => {
       if (param.archiveNo) {
         this.archiveNo = param.archiveNo;
+      }
+      if (param.view) {
+        this.btn_show_check_false_just_view = true;
       }
     });
   }
@@ -91,6 +104,9 @@ export class MobileReviewComponent implements OnInit {
   getTradeByArchiveNoComponent(trade) {
     this.trade = trade as TradeForm;
     console.info('trade', trade);
+    if (('05' === trade.transferStatus || '05' === trade.prejudicationStatus) && !this.btn_show_check_false_just_view) {
+      this.btn_show_check = true;
+    }
     this.setPhotosCertificateTypeReady();
     // this._formGroup.controls.seller.patchValue(this.trade.seller.seller);
   }

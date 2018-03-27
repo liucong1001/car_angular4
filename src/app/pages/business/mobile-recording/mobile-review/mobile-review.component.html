@@ -19,7 +19,7 @@
         [photos]="_formGroup.controls.buyer_photos_"
         [certificateFormConfig]="buyerCertConf"
         [btn_show]="false"
-        [btn_show_check]="true"
+        [btn_show_check]="btn_show_check"
         (_wrong_checked)="wrongChecked($event)"
       ></ngx-ys-dynamic-photo-form>
     </nb-card-body>
@@ -37,7 +37,7 @@
         [photos]="_formGroup.controls.buyer_trusteePhotos_"
         [certificateFormConfig]="buyerTrusteeCertConf"
         [btn_show]="false"
-        [btn_show_check]="true"
+        [btn_show_check]="btn_show_check"
         (_wrong_checked)="wrongChecked($event)"
       ></ngx-ys-dynamic-photo-form>
     </nb-card-body>
@@ -55,7 +55,7 @@
         [photos]="_formGroup.controls.seller_photos_"
         [certificateFormConfig]="sellerCertConf"
         [btn_show]="false"
-        [btn_show_check]="true"
+        [btn_show_check]="btn_show_check"
         (_wrong_checked)="wrongChecked($event)"
       ></ngx-ys-dynamic-photo-form>
     </nb-card-body>
@@ -72,7 +72,7 @@
         [photos]="_formGroup.controls.seller_photos_"
         [certificateFormConfig]="sellerTrusteeCertConf"
         [btn_show]="false"
-        [btn_show_check]="true"
+        [btn_show_check]="btn_show_check"
         (_wrong_checked)="wrongChecked($event)"
       ></ngx-ys-dynamic-photo-form>
     </nb-card-body>
@@ -90,7 +90,7 @@
         [photos]="_formGroup.controls.preVehicle_photos_"
         [certificateFormConfig]="preVehicleCertConf"
         [btn_show]="false"
-        [btn_show_check]="true"
+        [btn_show_check]="btn_show_check"
         (_wrong_checked)="wrongChecked($event)"
       ></ngx-ys-dynamic-photo-form>
     </nb-card-body>
@@ -108,7 +108,7 @@
         [photos]="_formGroup.controls.transferVehicle_photos_"
         [certificateFormConfig]="transferVehicleCertConf"
         [btn_show]="false"
-        [btn_show_check]="true"
+        [btn_show_check]="btn_show_check"
         (_wrong_checked)="wrongChecked($event)"
       ></ngx-ys-dynamic-photo-form>
     </nb-card-body>
@@ -135,7 +135,7 @@
     </div>
 
     <div class="col-sm-3 float-right">
-        <button type="button" class="btn btn-default btn-block" (click)="back()">返回</button>
+        <button type="button" class="btn btn-primary btn-block" (click)="back()">返回</button>
     </div>
   </nb-card-footer>
 </nb-card>

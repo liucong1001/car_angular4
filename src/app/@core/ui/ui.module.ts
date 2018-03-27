@@ -3,7 +3,6 @@ import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CameraComponent} from './camera/camera.component';
-import {CameraCarexcnComponent} from './camera/camera-carexcn.component';
 import {
   CalendarModule,
   FileUploadModule,
@@ -45,6 +44,7 @@ import {CarlistTransferComponent} from './business/carlist-transfer/carlist-tran
 import {ImgComponent} from './img/img.component';
 import {ReportFormSearchComponent} from './report-form-search/report-form-search.component';
 import {NavStepComponent} from './business/nav-step/nav-step.component';
+import {CameraCarexcnComponent} from './camera-carexcn/camera-carexcn.component';
 
 const COMPONENTS = [
   CameraComponent,

@@ -204,7 +204,9 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
           }
           console.info('r', r);
           console.info('marketphotomap_cache', marketphotomap_cache);
-          console.info('marketphotomap_cache[r.photoType]', marketphotomap_cache[r.photoType]);
+          if (marketphotomap_cache) {
+            console.info('marketphotomap_cache[r.photoType]', marketphotomap_cache[r.photoType]);
+          }
           console.info('photo_value', photo_value);
           this.addPhoto({photoType: r.photoType, photoValue: photo_value});
           i++;
