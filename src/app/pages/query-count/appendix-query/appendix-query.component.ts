@@ -138,22 +138,23 @@ export class AppendixQueryComponent implements OnInit, OnChanges {
   // examineEndDate:string ;
 // 成交起始日期
   getAchieveStartDate($event) {
-    this.filter.achieveStartDate = $event + ' 00:00:00';
+    // + ' 00:00:00'
+    this.filter.achieveStartDate = $event ;
   }
 
   // 成交完成日期
   getAchieveEndDate($event) {
-    this.filter.achieveEndDate = $event + ' 23:59:59';
+    this.filter.achieveEndDate = $event ;
   }
 
   // 入库审核开始日期
   getExamineStartDate($event) {
-    this.filter.examineStartDate = $event + ' 00:00:00';
+    this.filter.examineStartDate = $event ;
   }
 
   // 入库截止日期
   getExamineEndDate($event) {
-    this.filter.examineEndDate = $event + ' 23:59:59';
+    this.filter.examineEndDate = $event ;
   }
 
 

@@ -7,4 +7,8 @@
   [yearNavigator]="true"
   yearRange="{{yearRange}}"
   (onSelect)="_onSelect($event)"
+  showButtonBar="true"
+  todayButtonStyleClass="ui-button-secondar"
+  clearButtonStyleClass="ui-button-danger"
+  (onClearClick)="clear($event)"
 ></p-calendar>
