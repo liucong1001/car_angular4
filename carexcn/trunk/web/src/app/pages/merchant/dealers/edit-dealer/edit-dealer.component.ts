@@ -98,7 +98,6 @@ export class EditDealerComponent implements OnInit {
    */
   _formPhotos: FormGroup = this._merchantFormGroup.photos;
   merchantCertificateFormConfig = {
-    // certificateCode: '00', // 证件类型代码集 // 只要符合表单就行
     business: '19', //  01 预审  02 过户
     formName: '商户管理照片集', // 表单名称
   } as Marketphotomap;

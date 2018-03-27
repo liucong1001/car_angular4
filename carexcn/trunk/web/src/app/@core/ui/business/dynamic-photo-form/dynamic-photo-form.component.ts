@@ -28,6 +28,8 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
   @Input() certificateFormConfig: Marketphotomap;
   /**
    * 一般用于多次组件封装时使用
+   * 公共组件不必反复传递参数，使用组件默认缓存名
+   * 调用方只需按照约定设置好缓存即可自动读取。
    * @type {string}
    */
   @Input() data_localStrong_name = '';
@@ -153,6 +155,7 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
      * 添加按钮后的逻辑与结合
      * TODO: 照片选拍的情况
      */
+    console.info('photoValue', photoValue);
     this.photos.addControl(photoType, new FormArray([
       new FormControl({
         value: photoValue,
@@ -175,7 +178,8 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
     let photo_name_tmp = {}; let photo_url_tmp = {};
     // 在循环开始之前的该处，要拿到缓存的数据，循环时使用
     let marketphotomap_cache = this.getMaybeMarketphotoMap();
-    // console.info('marketphotomap_arr', marketphotomap_arr);
+    console.info('marketphotomap_arr', marketphotomap_arr);
+    console.info('marketphotomap_cache', marketphotomap_cache);
     marketphotomap_arr.forEach(r => {
       photo_name_tmp[r.photoType] = r.name;
       if ( r.photoExample ) {
@@ -198,6 +202,10 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
           } else {
             // console.info('读取动态表单的对应缓存数据marketphotomap_cache  空');
           }
+          console.info('r', r);
+          console.info('marketphotomap_cache', marketphotomap_cache);
+          console.info('marketphotomap_cache[r.photoType]', marketphotomap_cache[r.photoType]);
+          console.info('photo_value', photo_value);
           this.addPhoto({photoType: r.photoType, photoValue: photo_value});
           i++;
         }
