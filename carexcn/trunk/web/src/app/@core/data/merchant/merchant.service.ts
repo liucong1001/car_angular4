@@ -1,32 +1,33 @@
 import {Injectable, isDevMode} from '@angular/core';
 import {Http} from '@angular/http';
+import {RestService} from '../../utils/rest.service';
 import {MerchantForm} from '../../model/business/merchant.form';
 import {SonMerchantForm} from '../../model/business/son.merchant.form';
 
 @Injectable()
 export class MerchantService {
-  constructor(private http: Http) {}
+  constructor(private rest: RestService) {}
   private api_url_base = '/rest/merchant';
   public add(model: MerchantForm): Promise<MerchantForm> {
-    return this.http.post(this.api_url_base, model).toPromise().then((res) => res.json() as MerchantForm);
+    return this.rest.post(this.api_url_base, model).toPromise();
   }
   public update(model: MerchantForm): Promise<MerchantForm> {
-    return this.http.put(this.api_url_base, model).toPromise().then((res) => res.json() as MerchantForm);
+    return this.rest.put(this.api_url_base, model).toPromise();
   }
   public del(id: string): Promise<any> {
-    return this.http.delete(this.api_url_base + '/' + id).toPromise();
+    return this.rest.delete(this.api_url_base + '/' + id).toPromise();
   }
   public get(id: string): Promise<MerchantForm> {
-    return this.http.get(this.api_url_base + '/' + id).toPromise().then((res) => res.json() as MerchantForm);
+    return this.rest.get(this.api_url_base + '/' + id).toPromise();
   }
   public start(id: string): Promise<any> {
-    return this.http.put(this.api_url_base + '/start/' + id, null).toPromise();
+    return this.rest.put(this.api_url_base + '/start/' + id, null).toPromise();
   }
   public stop(id: string): Promise<any> {
-    return this.http.put(this.api_url_base + '/stop/' + id, null).toPromise();
+    return this.rest.put(this.api_url_base + '/stop/' + id, null).toPromise();
   }
   public createSon(sonForm: SonMerchantForm): Promise<any> {
-    return this.http.post('/rest/son/merchant', sonForm).toPromise();
+    return this.rest.post('/rest/son/merchant', sonForm).toPromise();
   }
 }
 

@@ -7,17 +7,17 @@
         <!--再循环出photoType中的各个照片数组-->
         <div *ngFor="let photo of getPhotoFormControls(photoType)">
           <!--数组中的每个元素都是一个最终的 controls 值-->
-          <!--<ng-template *ngIf="photos_name.hasOwnProperty(photoType) && photos_url.hasOwnProperty(photoType)">-->
-            <ngx-ys-camera
-              [title]="photos_name[photoType]"
-              [source]="photo.value"
-              [example_source]="photos_url[photoType]"
-              [btn_show]="btn_show"
-              [formControl]="photo"
-              [btn_check]="btn_show_check"
-              (_wrong_checked)="changeChecked($event)"
-            ></ngx-ys-camera>
-          <!--</ng-template>-->
+          <ng-template #wrong_message>可能是配置的原因导致，以下数据可能不含{{photoType}}属性，但这是必须的。<hr /> {{ photos_name | json }}</ng-template>
+          <ngx-ys-camera
+            *ngIf="(photos_name && photos_url && photos_name[photoType] && photos_url[photoType]); else wrong_message"
+            [title]="photos_name[photoType]"
+            [source]="photo.value"
+            [example_source]="photos_url[photoType]"
+            [btn_show]="btn_show"
+            [formControl]="photo"
+            [btn_check]="btn_show_check"
+            (_wrong_checked)="changeChecked($event)"
+          ></ngx-ys-camera>
         </div>
       </div>
     </div>

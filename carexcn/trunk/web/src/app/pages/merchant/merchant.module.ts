@@ -18,11 +18,13 @@ import { DetailsComponent } from './finance/details/details.component';
 import { BindingComponent } from './finance/binding/binding.component';
 import { AddComponent } from './finance/add/add.component';
 import { EditLinkmanComponent } from './dealers/edit-linkman/edit-linkman.component';
+import { MerchantFormGroup } from './dealers/merchant.form-group';
 
 @NgModule({
   imports: [
     CommonModule,
     MerchantRoutingModule,
+    MerchantFormGroup,
     FormsModule,
     ThemeModule,
     HttpModule,

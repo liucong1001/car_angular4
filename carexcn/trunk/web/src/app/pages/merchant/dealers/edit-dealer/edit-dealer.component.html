@@ -111,8 +111,10 @@
           </div>
         </div>
         <div class="col-sm-12" style="margin-bottom: 1rem;">
-            <ngx-ys-camera *ngFor="let photo of photos" [title]="photo.title" [source]="photo.source"
-                           (_changeSource)="onChangeSource($event,photo)" [col_sm_6]="'col-sm-6'"></ngx-ys-camera>
+          <ngx-ys-dynamic-photo-form
+            [photos]="_formPhotos"
+            [certificateFormConfig]="merchantCertificateFormConfig"
+          ></ngx-ys-dynamic-photo-form>
         </div>
         <div class="col-sm-12">
           <div class="col-sm-3 float-right">

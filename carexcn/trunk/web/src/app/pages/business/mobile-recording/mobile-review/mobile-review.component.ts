@@ -57,14 +57,13 @@ export class MobileReviewComponent implements OnInit {
   buyerTrusteeCertConf: Marketphotomap = {isApp: '0', business: '01', formName: '预审录入买家委托人'} as Marketphotomap;
   sellerTrusteeCertConf: Marketphotomap = {isApp: '0', business: '01', formName: '预审录入卖家委托人'} as Marketphotomap;
 
-  constructor(
-    private _router: Router,
-    private _route: ActivatedRoute,
-    private _trade: TradeService,
-    private _message: MessageService,
-    private _formBuilder: FormBuilder,
-    private _mobileRecord: MobileRecordingService,
-    // private _businessFormGroup: BusinessFormGroup,
+  constructor(private _router: Router,
+              private _route: ActivatedRoute,
+              private _trade: TradeService,
+              private _message: MessageService,
+              private _formBuilder: FormBuilder,
+              private _mobileRecord: MobileRecordingService,
+              // private _businessFormGroup: BusinessFormGroup,
   ) {
   }
 
@@ -75,13 +74,15 @@ export class MobileReviewComponent implements OnInit {
       }
     });
   }
+
   photoForCertificateTypeReady = false;
+
   setPhotosCertificateTypeReady() {
     // 车辆照片，无所谓证件类型，车辆要拍的照片与车辆无关与市场有关，只关联市场配置。
-    if ( this.trade.seller ) {
+    if (this.trade.seller) {
       this.sellerCertConf.certificateCode = this.trade.seller.seller.certType;
     }
-    if ( this.trade.buyer ) {
+    if (this.trade.buyer) {
       this.buyerCertConf.certificateCode = this.trade.buyer.buyer.certType;
     }
     this.photoForCertificateTypeReady = true;
@@ -93,7 +94,9 @@ export class MobileReviewComponent implements OnInit {
     this.setPhotosCertificateTypeReady();
     // this._formGroup.controls.seller.patchValue(this.trade.seller.seller);
   }
+
   public wrong_checked: Array<ChangeCheckedValueModel> = [];
+
   wrongChecked(v: ChangeCheckedValueModel) {
     if (v.status) {
       /**
@@ -108,23 +111,25 @@ export class MobileReviewComponent implements OnInit {
     }
     this.reason = '';
     this.wrong_checked.forEach(r => {
-      this.reason += r.title + ' 不够清晰' + "\r";
+      this.reason += r.title + ' 不够清晰' + '\r';
     });
   }
+
   reason = '';
+
   back() {
-     console.info('回退对象', this.wrong_checked);
-     console.info('回退原因', this.reason);
+    console.info('回退对象', this.wrong_checked);
+    console.info('回退原因', this.reason);
     this._mobileRecord.back(this._formGroup.value).then(res => {
       this._message.success('', '回退成功!');
-    }).catch(err=>{
-      this._message.error('回退失败',err.message);
-    })
+    }).catch(err => {
+      this._message.error('错误', err);
+      //   this._message.error('回退失败', e.message);
+    });
   }
+
   startInput() {
     console.info('startInput');
     // this.router.navigate( ['/pages/business/mobile-recording/input', { archiveNo: this.archiveNo }]);
   }
-
-
 }
