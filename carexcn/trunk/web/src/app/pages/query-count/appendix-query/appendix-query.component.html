@@ -34,24 +34,25 @@
           <button type="submit" class="btn btn btn-primary">
             <i class="ion-search"></i>查询</button>
         </div>
+        <h3>{{filter.achieveStartDate }}</h3>
         <div class="col-sm-2">
           <div class="form-group form-group-sm">
-            <ngx-ys-calendar [placeholder]="'成交起始日期'"  (_calendarValue)="getAchieveStartDate($event)" [(ngModel)]="filter.achieveStartDate" name="achieveStartDate" ></ngx-ys-calendar>
+             <ngx-ys-calendar [placeholder]="'成交起始日期'"  [date]="filter.achieveStartDate"    (_calendarValue)="getAchieveStartDate($event)"  ></ngx-ys-calendar>
           </div>
         </div>
         <div class="col-sm-2">
           <div class="form-group form-group-sm">
-            <ngx-ys-calendar [placeholder]="'成交截止日期'" (_calendarValue)="getAchieveEndDate($event)" [(ngModel)]="filter.achieveEndDate" name="achieveEndDate" ></ngx-ys-calendar>
+            <ngx-ys-calendar [placeholder]="'成交截止日期'" [date]="filter.achieveEndDate"  (_calendarValue)="getAchieveEndDate($event)" ></ngx-ys-calendar>
           </div>
         </div>
         <div class="col-sm-2">
           <div class="form-group form-group-sm">
-            <ngx-ys-calendar [placeholder]="'入库审核起始日期'" (_calendarValue)="getExamineStartDate($event)" [(ngModel)]="filter.examineStartDate" name="examineStartDate" ></ngx-ys-calendar>
+            <ngx-ys-calendar [placeholder]="'入库审核起始日期'" [date]="filter.examineStartDate"  (_calendarValue)="getExamineStartDate($event)"  ></ngx-ys-calendar>
           </div>
         </div>
         <div class="col-sm-2">
           <div class="form-group form-group-sm">
-            <ngx-ys-calendar [placeholder]="'入库审核截止日期'" (_calendarValue)="getExamineEndDate($event)" [(ngModel)]="filter.examineEndDate" name="examineEndDate" ></ngx-ys-calendar>
+            <ngx-ys-calendar [placeholder]="'入库审核截止日期'"  [date]="filter.examineEndDate"  (_calendarValue)="getExamineEndDate($event)"  ></ngx-ys-calendar>
           </div>
         </div>
         <div class="col-sm-2">

@@ -21,6 +21,7 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
   @Input() dateFormat = 'yy-mm-dd';
   @Input() defaultDate = '';
   @Input() yearRange = '2010:2050';
+  @Input() date = '';
   @Output() _calendarValue = new EventEmitter();
   /**
    * 本地化
@@ -59,4 +60,8 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
     this.registFunc(_event);
     this._calendarValue.emit(this.datePipe.transform(_event, 'yyyy-MM-dd'));
   }
+  clear(event){
+    this._calendarValue.emit(this.datePipe.transform(null, 'yyyy-MM-dd'));
+  }
+
 }
