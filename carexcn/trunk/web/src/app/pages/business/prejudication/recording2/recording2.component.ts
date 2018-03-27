@@ -94,7 +94,6 @@ export class Recording2Component implements OnInit, OnDestroy {
      * @type {{}}
      */
     this.certificateFormConfig = {
-      isApp: '0',
       certificateCode: '00', // 证件类型代码集
       business: '01', //  01 预审  02 过户
       formName: '预审录入卖家', // 表单名称

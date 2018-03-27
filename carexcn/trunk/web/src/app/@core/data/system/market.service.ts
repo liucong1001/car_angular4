@@ -11,13 +11,25 @@ export class MarketService {
   private path = '/rest/manager/market';
   constructor(private http: Http, private rest: RestService) {
   }
+  private certificateConfigCache = {};
   /**
    * 根据市场，业务，证件和表单名称查询证件配置信息 [clh021@gmail.com]
+   * 自动将 isApp属性配置为PC
    * @param {Marketphotomap} model
-   * @returns {Promise<any>}
+   * @returns {Promise<Array<Marketphotomap>>}
    */
-  public getCertificateConfig(model: Marketphotomap): Promise<any> {
-    return this.rest.post(this.path + '/photo/config/photo', model).toPromise();
+  public getCertificateConfig(model: Marketphotomap): Promise<Array<Marketphotomap>> {
+    model.isApp = '0';
+    let lastReturn: Promise<Array<Marketphotomap>>;
+    if (this.certificateConfigCache[model.business + model.formName + model.certificateCode]) {
+      // console.info('证件配置服务，用的是缓存', model.business + model.formName + model.certificateCode);
+      lastReturn = this.certificateConfigCache[model.business + model.formName + model.certificateCode];
+    } else {
+      lastReturn = this.certificateConfigCache[
+        model.business + model.formName + model.certificateCode
+        ] = this.rest.post(this.path + '/photo/config/photo', model).toPromise();
+    }
+    return lastReturn;
     // return this.http.post('/rest/sys/market/photo/config/photo/', model).toPromise();
   }
   /**
