@@ -55,9 +55,9 @@ export class CameraComponent implements OnInit, ControlValueAccessor, OnChanges 
    * @private
    */
   @Output() _wrong_checked = new EventEmitter();
-  private webcam_has_show = false;
-  private wrong_checked = false;
-  private uploadProgress: number = 0;
+  protected webcam_has_show = false;
+  protected wrong_checked = false;
+  protected uploadProgress = 0;
 
   /**
    * 构造函数
@@ -66,11 +66,11 @@ export class CameraComponent implements OnInit, ControlValueAccessor, OnChanges 
    * @param {FileUploadModule} upld
    */
   constructor(
-    private message: MessageService,
-    private webcam: WebcamService,
-    private modalService: NgbModal,
-    private device: DeviceService,
-    private file: FileSystemService,
+    protected message: MessageService,
+    protected webcam: WebcamService,
+    protected modalService: NgbModal,
+    protected device: DeviceService,
+    protected file: FileSystemService,
   ) {
   }
 

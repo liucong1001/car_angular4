@@ -52,12 +52,18 @@ export class MobileRecordingComponent implements OnInit {
       // } as Column,
       {title: '过户', titleClass: '', cell: new CodemapCell('transferStatus', 'transferStatus')} as Column,
       {
-        title: '操作', titleClass: 'w-15 text-center', cell: new MenuCell(
+        title: '', titleClass: 'w-15 text-center', cell: new MenuCell(
+          [],
+          new Menu('预览', '', this.view.bind(this)), 'text-center',
+        ),
+      } as Column,
+      {
+        title: '', titleClass: 'w-15 text-center', cell: new MenuCell(
           [
             new Menu('解锁买家', '', this.unlockBuyer.bind(this), this.showUnlockBuyer.bind(this)),
             new Menu('解锁卖家', '', this.unlockSeller.bind(this), this.showUnlockSeller.bind(this)),
           ],
-          new Menu('预览录入', '', this.review.bind(this), '', this.getRecordingText.bind(this)), 'text-center',
+          new Menu('录入', '', this.review.bind(this), '', this.getRecordingText.bind(this)), 'text-center',
         ),
       } as Column,
     ];
@@ -131,6 +137,7 @@ export class MobileRecordingComponent implements OnInit {
    * @param drop
    */
   view(row: any, drop: any) {
+    this.router.navigate(['/pages/business/mobile-recording/review', {archiveNo: row.archiveNo, view: 1}]);
   }
 
   /**
