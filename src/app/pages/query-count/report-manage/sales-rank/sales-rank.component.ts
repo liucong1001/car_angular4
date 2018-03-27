@@ -1,6 +1,8 @@
 import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {Location} from '@angular/common';
+import {ReportManageService} from "../../../../@core/data/query-count/report-manage.service";
+
 
 @Component({
   selector: 'ngx-sales-rank',
@@ -16,10 +18,11 @@ import {Location} from '@angular/common';
       transition('shown <=> hidden', [animate('100ms ease-in-out'), animate('100ms')]),
     ]),
   ],
+  providers:[ReportManageService],
 })
 export class SalesRankComponent implements OnInit, OnChanges {
 
-  constructor(private location: Location) { }
+  constructor(private location: Location,private reportService:ReportManageService) { }
 
   visibility = 'shown';
   showFilter = false;
@@ -52,8 +55,16 @@ export class SalesRankComponent implements OnInit, OnChanges {
   search(result){
     console.info('表一search:',result)
   }
+
+  /**
+   * 导出Excel表
+   * @param result
+   */
   export(result){
-    console.info('表一',result);
+    this.reportService.down(result.startDate,result.endDate).then(res=>{
+          this.reportService.saveExcel(res,'二手车销售排行表');
+    })
   }
+
 
 }
