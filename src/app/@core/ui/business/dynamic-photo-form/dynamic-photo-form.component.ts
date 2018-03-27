@@ -92,16 +92,64 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
     // console.info('controls:', controls.length, controls);
     return controls;
   }
-
   /**
    * 配置证件类型
    */
   setCertificateConfig() {
     console.info('this.certificateFormConfig', this.certificateFormConfig);
     this._market.getCertificateConfig(this.certificateFormConfig)
-      .then(res => this.initPhotoMap(res as [Marketphotomap]));
+      .then(res => {
+        this.initPhotoMap(res as [Marketphotomap]);
+      });
   }
 
+  /**
+   * 图片参数最终形态
+   * 为优化在模板中循环产生的执行顺序问题
+   * 将在此处保存好最终形态给模板循环
+   */
+  propertyYsCamera;
+  /**
+   * 根据缓存的名字拿到缓存的数据，在初始化的过程中，完成对表单的默认赋值
+   * 注意判断名字是否为空和名字拿到的缓存名是否为空
+   * 缓存名的缓存本来也该判断是否为空，但是循环中就可以判断了
+   */
+  getMaybeMarketphotoMap() {
+    /**
+     * 如果有设定缓存名
+     * 就从缓存名对应的缓存取数据
+     */
+    if (this.data_localStrong_name) {
+      let cache_name = this._localstorage.get(this.data_localStrong_name);
+      if (null !== cache_name) {
+        return this._localstorage.get(cache_name);
+        // console.info('读取动态表单的对应缓存数据' + cache_name, marketphotomap_cache);
+      } else {
+        // console.info('读取动态表单的对应缓存数据cache_name  空');
+      }
+    }
+    return null;
+  }
+
+  /**
+   * 为当前动态组件添加一张照片
+   */
+  addPhoto({photoType, photoValue, photoDisable = false}: {photoType: string, photoValue: string, photoDisable?: boolean}): void {
+    /**
+     * TODO: 这里还将考虑手动增加照片的情况
+     * 添加照片的按钮，
+     * 添加按钮所需要的参数数据
+     * 添加按钮后的逻辑与结合
+     * TODO: 照片选拍的情况
+     */
+    this.photos.addControl(photoType, new FormArray([
+      new FormControl({
+        value: photoValue,
+        disabled: photoDisable,
+      }, Validators.required, // 目前添加的照片均为必拍照片
+      ),
+    ]));
+  }
   /**
    * 处理动态图片表单初始化
    * @param {[Marketphotomap]} marketphotomap_arr
@@ -113,34 +161,16 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
      * 需要处理的最终数据为：
      * photos:{photoType:['1.jpg','2.jpg','3.jpg']}
      */
-    let photo_name_tmp = {};
-    let photo_url_tmp = {};
-    /**
-     * 根据缓存的名字拿到缓存的数据，在初始化的过程中，完成对表单的默认赋值
-     * 注意判断名字是否为空和名字拿到的缓存名是否为空
-     * 缓存名的缓存本来也该判断是否为空，但是循环中就可以判断了
-     */
-    let marketphotomap_cache = null;
-    /**
-     * 如果有设定缓存名
-     * 就从缓存名对应的缓存取数据
-     */
-    if (this.data_localStrong_name) {
-      let cache_name = this._localstorage.get(this.data_localStrong_name);
-      if (null !== cache_name) {
-        marketphotomap_cache = this._localstorage.get(cache_name);
-        // console.info('读取动态表单的对应缓存数据' + cache_name, marketphotomap_cache);
-      } else {
-        // console.info('读取动态表单的对应缓存数据cache_name  空');
-      }
-    }
-    // console.info('marketphotomap_arr', marketphotomap_arr);
+    let photo_name_tmp = {}; let photo_url_tmp = {};
     // 在循环开始之前的该处，要拿到缓存的数据，循环时使用
+    let marketphotomap_cache = this.getMaybeMarketphotoMap();
+    // console.info('marketphotomap_arr', marketphotomap_arr);
     marketphotomap_arr.forEach(r => {
       photo_name_tmp[r.photoType] = r.name;
       if ( r.photoExample ) {
         /**
-         * 示例图片的值，暂存在此处，不能作为直接的值存储和使用，只能作为拍照上传控件的备用图片使用
+         * 示例图片的值，暂存在此处
+         * 不能作为直接的值存储和使用，只能作为拍照上传控件的备用图片使用
          * @type {string}
          */
         photo_url_tmp[r.photoType] = 'id:' + (r.photoExample ? r.photoExample.fileId : '');
@@ -157,12 +187,7 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
           } else {
             // console.info('读取动态表单的对应缓存数据marketphotomap_cache  空');
           }
-          this.photos.addControl(r.photoType, new FormArray([
-            new FormControl({
-              value: photo_value,
-              disabled: false,
-            }, Validators.required),
-          ]));
+          this.addPhoto({photoType: r.photoType, photoValue: photo_value});
           i++;
         }
       } else {
