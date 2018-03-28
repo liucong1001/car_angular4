@@ -5,7 +5,7 @@ import {ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR} from '@angular/forms
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {CameraModalComponent} from './camera-modal/camera-modal.component';
 import {DeviceService} from '../../device/device.service';
-import {FileSystemService} from './../../data/system/file-system.service';
+import {CameraCarexcnFileDescrption, FileSystemService} from './../../data/system/file-system.service';
 
 @Component({
   selector: 'ngx-ys-camera',
@@ -27,7 +27,7 @@ export class CameraComponent implements OnInit, ControlValueAccessor, OnChanges 
    * source = 'id:12346156fd564';
    */
   @Input() title;
-  @Input() source;
+  @Input() source: string | CameraCarexcnFileDescrption;
   /**
    * 当照片值为空时显示示例照片
    */
@@ -76,9 +76,15 @@ export class CameraComponent implements OnInit, ControlValueAccessor, OnChanges 
 
   writeValue(obj: any): void {
     if ( 'string' === typeof(obj) ) {
+      if ( 'string' === typeof(this.source) ) {
+        this.source = obj;
+      } else if ( 'object' === typeof(this.source) ) {
+        this.source.frontendField = 'tmp:' + obj;
+      }
+    } else if ( 'object' === typeof(obj) ) {
       this.source = obj;
-      this.ngOnChanges();
     }
+    this.ngOnChanges();
   }
 
   registFunc(value: any) {}
@@ -89,9 +95,17 @@ export class CameraComponent implements OnInit, ControlValueAccessor, OnChanges 
   registerOnTouched(fn: any): void {
   }
   ngOnChanges() {
-    // this.source = this.file.getRealFileUrl(this.source);
+    console.info('图片对应数据：', this.source);
+    if (this.source) {
+      this.imageUrl = this.file.getRealFileUrl(this.source);
+    } else {
+      this.imageUrl = this.file.getRealFileUrl(this.example_source);
+    }
+    console.info('图片最终显示地址：' + this.imageUrl);
   }
-  ngOnInit() {}
+  imageUrl = '';
+  ngOnInit() {
+  }
 
   /**
    *  显示或隐藏摄像头窗口
@@ -113,7 +127,7 @@ export class CameraComponent implements OnInit, ControlValueAccessor, OnChanges 
    * @returns {string}
    */
   getWrongCheckedIndex() {
-    return this.title + '_' + this.source;
+    // return this.title + '_' + this.source;
   }
   /**
    * 是否选中的状态切换
@@ -138,14 +152,23 @@ export class CameraComponent implements OnInit, ControlValueAccessor, OnChanges 
    * 拿到图片后统一处理的事
    * @param {string} file
    */
-  afterGetFileName(file: string, value: string) {
+  afterGetFileName(fileTmp: string, value: string) {
     /**
      * 显示当前新图片
      */
-    this.source = this.file.getFileUrlByTmp(file);
     console.info('显示当前新图片', this.source);
-    this._changeSource.emit(file);
-    this.registFunc(file);
+    console.info('图片', fileTmp);
+    if ( 'string' === typeof(this.source) ) {
+      this.imageUrl = this.file.getFileUrlByTmp(fileTmp);
+      this.source = fileTmp;
+    } else if ('object' === typeof(this.source)) {
+      this.source = this.source as CameraCarexcnFileDescrption;
+      this.source.frontendField = fileTmp;
+      this.imageUrl = this.file.getFileUrlByTmp(fileTmp);
+    }
+    console.info('显示当前新图片', this.source);
+    this._changeSource.emit(this.source);
+    this.registFunc(this.source);
   }
 
   /**

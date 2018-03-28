@@ -1,4 +1,4 @@
-<nb-card>
+<nb-card *ngIf="merchantPhotos">
   <nb-card-header class="d-flex">
     <div class="p-2 mr-auto">修改商户</div>
     <div class="p2">
@@ -114,7 +114,7 @@
           <ngx-ys-dynamic-photo-form
             [photos]="_formPhotos"
             [certificateFormConfig]="merchantCertificateFormConfig"
-            [cache_data_localStrong_name]="photos_cache_name"
+            [data]="merchantPhotos"
           ></ngx-ys-dynamic-photo-form>
         </div>
         <div class="col-sm-12">
