@@ -9,7 +9,7 @@ import {Router, ActivatedRoute} from '@angular/router';
 import {UserService} from '../../../../@core/data/users.service';
 import {MerchantFormGroup} from '../merchant.form-group';
 import {Marketphotomap} from '../../../../@core/model/system/market-photo-map';
-import {FileSystemService} from '../../../../@core/data/system/file-system.service';
+import {CameraCarexcnFileDescrption, FileSystemService} from '../../../../@core/data/system/file-system.service';
 import {LocalstorageService} from '../../../../@core/cache/localstorage.service';
 
 /**
@@ -21,7 +21,6 @@ import {LocalstorageService} from '../../../../@core/cache/localstorage.service'
   styleUrls: ['./edit-dealer.component.scss'],
 })
 export class EditDealerComponent implements OnInit {
-  photos_cache_name = 'merchant_dealers_edit_dealer';
   /**
    * 构造函数
    * @param {MessageService} message
@@ -41,7 +40,8 @@ export class EditDealerComponent implements OnInit {
   ngOnInit() {
     this._route.params.subscribe(p => {
       if (p.id) {
-        this._merchantService.get(p.id).then( res => {
+        this._merchantService.get(p.id).then(res => {
+          console.info('res', res);
           const _merchant = res.merchant as MerchantModel;
           this.pid = _merchant.id;
           this._formGroup.patchValue(_merchant);
@@ -53,11 +53,13 @@ export class EditDealerComponent implements OnInit {
             this.DisableSignLabel = '启用';
             this.DisableSignValue = false;
           }
-          this._localstorage.set(this.photos_cache_name, res.photos);
+          this.merchantPhotos = res.photos;
+          console.info('this.merchantPhotos', this.merchantPhotos);
         });
       }
     });
   }
+  merchantPhotos: CameraCarexcnFileDescrption[];
   pid = '';
   DisableSignLabel = '';
   DisableSignValue: boolean;
@@ -96,18 +98,22 @@ export class EditDealerComponent implements OnInit {
    * @type {FormGroup}
    * @private
    */
-  _formPhotos: FormGroup = this._merchantFormGroup.photos;
+  // _formPhotos: FormGroup = this._merchantFormGroup.photos; // 注意此处不可以使用公共定义的FormGroup
+  _formPhotos: FormGroup = this._formBuilder.group({});
   merchantCertificateFormConfig = {
     business: '19', //  01 预审  02 过户
     formName: '商户管理照片集', // 表单名称
   } as Marketphotomap;
   save() {
     if (this._formGroup.invalid) {
+      // this._message.error('填写错误', JSON.stringify(this._formGroup.errors));
       this._message.error('填写错误', JSON.stringify(this._formGroup.errors));
       return false;
     } else {
       let merchant = this._formGroup.value as MerchantModel;
       merchant.cloudUser = this._userService.getCurrentLoginUser().cloudUser;
+      // console.info('照片表单数据', this._formPhotos.value);
+      // console.info('过滤表单后的', this._file.filterPhotosValue(this._formPhotos.value));
       this._merchantService.update({
         merchant: merchant,
         photos: this._file.filterPhotosValue(this._formPhotos.value),

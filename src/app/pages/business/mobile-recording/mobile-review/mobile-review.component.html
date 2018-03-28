@@ -7,76 +7,76 @@
 ></ngx-archive-no-vehicle>
 <!--准备好所有证件类型字段集才要展现照片-->
 <ng-container *ngIf="photoForCertificateTypeReady">
-  <nb-card>
-    <nb-card-header>
-      <div class="cameras-card-header">
-        <span class="cameras-card-title">买方照片集</span>
-      </div>
-    </nb-card-header>
-    <nb-card-body>
-      <!--*ngIf="trade.buyer && trade.buyer.photos !== {}"-->
-      <ngx-ys-dynamic-photo-form
-        [photos]="_formGroup.controls.buyer_photos_"
-        [certificateFormConfig]="buyerCertConf"
-        [btn_show]="false"
-        [btn_show_check]="btn_show_check"
-        (_wrong_checked)="wrongChecked($event)"
-      ></ngx-ys-dynamic-photo-form>
-    </nb-card-body>
-  </nb-card>
+  <!--<nb-card>-->
+    <!--<nb-card-header>-->
+      <!--<div class="cameras-card-header">-->
+        <!--<span class="cameras-card-title">买方照片集</span>-->
+      <!--</div>-->
+    <!--</nb-card-header>-->
+    <!--<nb-card-body>-->
+      <!--&lt;!&ndash;*ngIf="trade.buyer && trade.buyer.photos !== {}"&ndash;&gt;-->
+      <!--<ngx-ys-dynamic-photo-form-->
+        <!--[photos]="_formGroup.controls.buyer_photos_"-->
+        <!--[certificateFormConfig]="buyerCertConf"-->
+        <!--[btn_show]="false"-->
+        <!--[btn_show_check]="btn_show_check"-->
+        <!--(_wrong_checked)="wrongChecked($event)"-->
+      <!--&gt;</ngx-ys-dynamic-photo-form>-->
+    <!--</nb-card-body>-->
+  <!--</nb-card>-->
 
-  <nb-card>
-    <nb-card-header>
-      <div class="cameras-card-header">
-        <span class="cameras-card-title">买方委托人照片集</span>
-      </div>
-    </nb-card-header>
-    <nb-card-body>
-      <!--*ngIf="trade.buyer && objectKeys(trade.buyer.trusteePhotos).length !== 0"-->
-      <ngx-ys-dynamic-photo-form
-        [photos]="_formGroup.controls.buyer_trusteePhotos_"
-        [certificateFormConfig]="buyerTrusteeCertConf"
-        [btn_show]="false"
-        [btn_show_check]="btn_show_check"
-        (_wrong_checked)="wrongChecked($event)"
-      ></ngx-ys-dynamic-photo-form>
-    </nb-card-body>
-  </nb-card>
+  <!--<nb-card>-->
+    <!--<nb-card-header>-->
+      <!--<div class="cameras-card-header">-->
+        <!--<span class="cameras-card-title">买方委托人照片集</span>-->
+      <!--</div>-->
+    <!--</nb-card-header>-->
+    <!--<nb-card-body>-->
+      <!--&lt;!&ndash;*ngIf="trade.buyer && objectKeys(trade.buyer.trusteePhotos).length !== 0"&ndash;&gt;-->
+      <!--<ngx-ys-dynamic-photo-form-->
+        <!--[photos]="_formGroup.controls.buyer_trusteePhotos_"-->
+        <!--[certificateFormConfig]="buyerTrusteeCertConf"-->
+        <!--[btn_show]="false"-->
+        <!--[btn_show_check]="btn_show_check"-->
+        <!--(_wrong_checked)="wrongChecked($event)"-->
+      <!--&gt;</ngx-ys-dynamic-photo-form>-->
+    <!--</nb-card-body>-->
+  <!--</nb-card>-->
 
-  <nb-card>
-    <nb-card-header>
-      <div class="cameras-card-header">
-        <span class="cameras-card-title">卖方照片集</span>
-      </div>
-    </nb-card-header>
-    <nb-card-body>
-      <!--*ngIf="trade.seller && objectKeys(trade.seller.photos).length !== 0"-->
-      <ngx-ys-dynamic-photo-form
-        [photos]="_formGroup.controls.seller_photos_"
-        [certificateFormConfig]="sellerCertConf"
-        [btn_show]="false"
-        [btn_show_check]="btn_show_check"
-        (_wrong_checked)="wrongChecked($event)"
-      ></ngx-ys-dynamic-photo-form>
-    </nb-card-body>
-  </nb-card>
-  <nb-card>
-    <nb-card-header>
-      <div class="cameras-card-header">
-        <span class="cameras-card-title">卖方委托人照片集</span>
-      </div>
-    </nb-card-header>
-    <nb-card-body>
-      <!--*ngIf="trade.seller && objectKeys(trade.seller.trusteePhotos).length !== 0"-->
-      <ngx-ys-dynamic-photo-form
-        [photos]="_formGroup.controls.seller_photos_"
-        [certificateFormConfig]="sellerTrusteeCertConf"
-        [btn_show]="false"
-        [btn_show_check]="btn_show_check"
-        (_wrong_checked)="wrongChecked($event)"
-      ></ngx-ys-dynamic-photo-form>
-    </nb-card-body>
-  </nb-card>
+  <!--<nb-card>-->
+    <!--<nb-card-header>-->
+      <!--<div class="cameras-card-header">-->
+        <!--<span class="cameras-card-title">卖方照片集</span>-->
+      <!--</div>-->
+    <!--</nb-card-header>-->
+    <!--<nb-card-body>-->
+      <!--&lt;!&ndash;*ngIf="trade.seller && objectKeys(trade.seller.photos).length !== 0"&ndash;&gt;-->
+      <!--<ngx-ys-dynamic-photo-form-->
+        <!--[photos]="_formGroup.controls.seller_photos_"-->
+        <!--[certificateFormConfig]="sellerCertConf"-->
+        <!--[btn_show]="false"-->
+        <!--[btn_show_check]="btn_show_check"-->
+        <!--(_wrong_checked)="wrongChecked($event)"-->
+      <!--&gt;</ngx-ys-dynamic-photo-form>-->
+    <!--</nb-card-body>-->
+  <!--</nb-card>-->
+  <!--<nb-card>-->
+    <!--<nb-card-header>-->
+      <!--<div class="cameras-card-header">-->
+        <!--<span class="cameras-card-title">卖方委托人照片集</span>-->
+      <!--</div>-->
+    <!--</nb-card-header>-->
+    <!--<nb-card-body>-->
+      <!--&lt;!&ndash;*ngIf="trade.seller && objectKeys(trade.seller.trusteePhotos).length !== 0"&ndash;&gt;-->
+      <!--<ngx-ys-dynamic-photo-form-->
+        <!--[photos]="_formGroup.controls.seller_photos_"-->
+        <!--[certificateFormConfig]="sellerTrusteeCertConf"-->
+        <!--[btn_show]="false"-->
+        <!--[btn_show_check]="btn_show_check"-->
+        <!--(_wrong_checked)="wrongChecked($event)"-->
+      <!--&gt;</ngx-ys-dynamic-photo-form>-->
+    <!--</nb-card-body>-->
+  <!--</nb-card>-->
 
   <nb-card>
     <nb-card-header>
@@ -89,6 +89,7 @@
       <ngx-ys-dynamic-photo-form
         [photos]="_formGroup.controls.preVehicle_photos_"
         [certificateFormConfig]="preVehicleCertConf"
+        [data]="trade.preVehicle.photos"
         [btn_show]="false"
         [btn_show_check]="btn_show_check"
         (_wrong_checked)="wrongChecked($event)"
@@ -98,23 +99,23 @@
 
 
   <!--*ngIf="trade.transferVehicle && objectKeys(trade.transferVehicle.photos).length !== 0"-->
-  <nb-card
-  >
-    <nb-card-header>
-      <div class="cameras-card-header">
-        <span class="cameras-card-title">过户车辆照片集</span>
-      </div>
-    </nb-card-header>
-    <nb-card-body>
-      <ngx-ys-dynamic-photo-form
-        [photos]="_formGroup.controls.transferVehicle_photos_"
-        [certificateFormConfig]="transferVehicleCertConf"
-        [btn_show]="false"
-        [btn_show_check]="btn_show_check"
-        (_wrong_checked)="wrongChecked($event)"
-      ></ngx-ys-dynamic-photo-form>
-    </nb-card-body>
-  </nb-card>
+  <!--<nb-card-->
+  <!--&gt;-->
+    <!--<nb-card-header>-->
+      <!--<div class="cameras-card-header">-->
+        <!--<span class="cameras-card-title">过户车辆照片集</span>-->
+      <!--</div>-->
+    <!--</nb-card-header>-->
+    <!--<nb-card-body>-->
+      <!--<ngx-ys-dynamic-photo-form-->
+        <!--[photos]="_formGroup.controls.transferVehicle_photos_"-->
+        <!--[certificateFormConfig]="transferVehicleCertConf"-->
+        <!--[btn_show]="false"-->
+        <!--[btn_show_check]="btn_show_check"-->
+        <!--(_wrong_checked)="wrongChecked($event)"-->
+      <!--&gt;</ngx-ys-dynamic-photo-form>-->
+    <!--</nb-card-body>-->
+  <!--</nb-card>-->
 
 </ng-container>
 

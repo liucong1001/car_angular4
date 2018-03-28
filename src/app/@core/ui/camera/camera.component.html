@@ -1,4 +1,4 @@
-<div class="camera float-left {{col_sm_6}}" [style.background-image]="'url(' + (source ? file.getRealFileUrl(source) : file.getRealFileUrl(example_source)) + ')'">
+<div class="camera float-left {{col_sm_6}}" [style.background-image]="'url(' + imageUrl + ')'">
   <div (click)="showPicModal(source)" class="pic-modal-area"></div>
   <a *ngIf="btn_check"
      [class]="wrong_checked ? 'flag error' : 'flag success'"

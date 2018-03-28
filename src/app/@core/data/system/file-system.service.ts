@@ -57,6 +57,21 @@ export class FileSystemService {
   }
 
   /**
+   * 根据字符串文件名获取易驹所文件对象
+   * @param {string} file
+   * @returns {CameraCarexcnFileDescrption}
+   */
+  public getCarexcnFileByFile(file: string): CameraCarexcnFileDescrption {
+    if (file.length > 0) {
+      if (file.startsWith('id:')) {
+        return {objectId: this.getFileUrlById(file)} as CameraCarexcnFileDescrption;
+      } else if (file.startsWith('tmp:')) {
+        return {filePath: this.getFileNameByTmp(file)} as CameraCarexcnFileDescrption;
+      }
+    }
+    return null;
+  }
+  /**
    * 解析动态图片组件照片序列的值
    * 一般解析出的结果用于传输给后台接口
    * @param photoFormValue
@@ -74,15 +89,26 @@ export class FileSystemService {
         if (!obj.hasOwnProperty(prop)) {
           continue;
         }
-        if (obj[prop].startsWith('id:')) {
-          tmp_array.push({objectId: this.getFileUrlById(obj[prop])} as CameraCarexcnFileDescrption);
-        } else if (obj[prop].startsWith('tmp:')) {
-          tmp_array.push({filePath: this.getFileNameByTmp(obj[prop])} as CameraCarexcnFileDescrption);
+        // console.info('类型:', typeof(obj[prop]));
+        if ( 'string' === typeof(obj[prop]) ) {
+          tmp_array.push(this.getCarexcnFileByFile(obj[prop]));
+        } else if ('object' === typeof(obj[prop])) {
+          let carexcnFile = obj[prop] as CameraCarexcnFileDescrption;
+          if (carexcnFile.frontendField) {
+            console.info('frontend', carexcnFile);
+            let tmp = this.getCarexcnFileByFile(carexcnFile.frontendField);
+            if (tmp) {
+              tmp_array.push(tmp);
+            } else {
+              console.error('对象转存失败了', carexcnFile.frontendField, tmp);
+            }
+          } else {
+            // return null; // 本函数用于传输数据给后台，如果不存在 frontendField 则不传递值，实则不修改该表单数据
+          }
         }
       }
       result[key] = tmp_array;
     }
-    // console.info('result', result);
     return result;
   }
 
@@ -121,7 +147,12 @@ export class FileSystemService {
       }
     } else if ('object' === typeof(file)) {
       let tmp = file as CameraCarexcnFileDescrption;
-      return 'id:' + tmp.objectId;
+      // console.info('取到文件对象', tmp);
+      if (tmp.frontendField) {
+        return this.getRealFileUrl(tmp.frontendField);
+      } else {
+        return this.getFileUrlById('id:' + tmp.id);
+      }
     }
   }
 }
@@ -142,4 +173,8 @@ export class CameraCarexcnFileDescrption {
   objectId?: string;
   objectType?: string;
   sortNumber?: number | null;
+  frontendField?: string;
+  // frontendField1?: string;
+  // frontendField2?: string;
+  // frontendField3?: string;
 }
