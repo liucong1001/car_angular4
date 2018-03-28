@@ -14,8 +14,8 @@
       </div>
     </nb-card-header>
     <nb-card-body>
+      <!--*ngIf="trade.buyer && trade.buyer.photos !== {}"-->
       <ngx-ys-dynamic-photo-form
-        *ngIf="trade.buyer && trade.buyer.photos !== {}"
         [photos]="_formGroup.controls.buyer_photos_"
         [certificateFormConfig]="buyerCertConf"
         [btn_show]="false"
@@ -32,8 +32,8 @@
       </div>
     </nb-card-header>
     <nb-card-body>
+      <!--*ngIf="trade.buyer && objectKeys(trade.buyer.trusteePhotos).length !== 0"-->
       <ngx-ys-dynamic-photo-form
-        *ngIf="trade.buyer && objectKeys(trade.buyer.trusteePhotos).length !== 0"
         [photos]="_formGroup.controls.buyer_trusteePhotos_"
         [certificateFormConfig]="buyerTrusteeCertConf"
         [btn_show]="false"
@@ -50,8 +50,8 @@
       </div>
     </nb-card-header>
     <nb-card-body>
+      <!--*ngIf="trade.seller && objectKeys(trade.seller.photos).length !== 0"-->
       <ngx-ys-dynamic-photo-form
-        *ngIf="trade.seller && objectKeys(trade.seller.photos).length !== 0"
         [photos]="_formGroup.controls.seller_photos_"
         [certificateFormConfig]="sellerCertConf"
         [btn_show]="false"
@@ -67,8 +67,8 @@
       </div>
     </nb-card-header>
     <nb-card-body>
+      <!--*ngIf="trade.seller && objectKeys(trade.seller.trusteePhotos).length !== 0"-->
       <ngx-ys-dynamic-photo-form
-        *ngIf="trade.seller && objectKeys(trade.seller.trusteePhotos).length !== 0"
         [photos]="_formGroup.controls.seller_photos_"
         [certificateFormConfig]="sellerTrusteeCertConf"
         [btn_show]="false"
@@ -85,8 +85,8 @@
       </div>
     </nb-card-header>
     <nb-card-body>
+      <!--*ngIf="trade.preVehicle && objectKeys(trade.preVehicle.photos).length !== 0"-->
       <ngx-ys-dynamic-photo-form
-        *ngIf="trade.preVehicle && objectKeys(trade.preVehicle.photos).length !== 0"
         [photos]="_formGroup.controls.preVehicle_photos_"
         [certificateFormConfig]="preVehicleCertConf"
         [btn_show]="false"
@@ -97,7 +97,9 @@
   </nb-card>
 
 
-  <nb-card *ngIf="trade.transferVehicle && objectKeys(trade.transferVehicle.photos).length !== 0">
+  <!--*ngIf="trade.transferVehicle && objectKeys(trade.transferVehicle.photos).length !== 0"-->
+  <nb-card
+  >
     <nb-card-header>
       <div class="cameras-card-header">
         <span class="cameras-card-title">过户车辆照片集</span>

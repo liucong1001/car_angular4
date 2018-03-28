@@ -1,19 +1,15 @@
 正在紧锣密鼓的适配后端接口文件属性，请稍后
-<!--__{{preYsCameraDataState | json}}={{preYsCameraData.length}}=-->
-<!--<ng-template *ngIf="preYsCameraDataState">-->
-  <!--<div *ngFor="let i of objectKeys(photos.controls)">-->
-    <!--11f1f1f1-->
-  <!--</div>-->
-  <!--<ng-template *ngFor="let i of preYsCameraData">-->
-    <!--akakakak-->
-    <!--&lt;!&ndash;<ngx-ys-camera-carexcn&ndash;&gt;-->
-      <!--&lt;!&ndash;[_title]="i.title"&ndash;&gt;-->
-      <!--&lt;!&ndash;[_source]="i.source"&ndash;&gt;-->
-      <!--&lt;!&ndash;[_example_source]="i.example_source"&ndash;&gt;-->
-      <!--&lt;!&ndash;[_btn_show]="i.btn_show"&ndash;&gt;-->
-      <!--&lt;!&ndash;[_formControl]="i.formControl"&ndash;&gt;-->
-      <!--&lt;!&ndash;[_btn_check]="i.btn_check"&ndash;&gt;-->
-      <!--&lt;!&ndash;(_wrong_checked)="changeChecked($event)"&ndash;&gt;-->
-    <!--&lt;!&ndash;&gt;</ngx-ys-camera-carexcn>&ndash;&gt;-->
-  <!--</ng-template>-->
-<!--</ng-template>-->
+<!--{{objectKeys(preYsCameraData) | json}}-->
+<!--{{preYsCameraDataState}}-->
+<ng-container *ngFor="let i of preYsCameraData">
+  =
+  <!--<ngx-ys-camera-carexcn-->
+  <!--[_title]="i.title"-->
+  <!--[_source]="i.source"-->
+  <!--[_example_source]="i.example_source"-->
+  <!--[_btn_show]="i.btn_show"-->
+  <!--[_formControl]="i.formControl"-->
+  <!--[_btn_check]="i.btn_check"-->
+  <!--(_wrong_checked)="changeChecked($event)"-->
+  <!--&gt;</ngx-ys-camera-carexcn>-->
+</ng-container>
