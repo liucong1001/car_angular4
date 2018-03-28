@@ -205,21 +205,14 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
           let photo_value = '';
           if (null !== marketphotomap_cache && marketphotomap_cache[r.photoType]) {
             photo_value = marketphotomap_cache[r.photoType][i] ? marketphotomap_cache[r.photoType][i] : '';
-            // console.info('照片的最终值', photo_value);
+            console.info('照片的最终值' + (marketphotomap_cache[r.photoType][i] ? '有缓存' : '无缓存'), photo_value);
           } else {
             // console.info('读取动态表单的对应缓存数据marketphotomap_cache  空');
           }
-          console.info('r', r);
-          console.info('marketphotomap_cache', marketphotomap_cache);
-          if (marketphotomap_cache) {
-            console.info('marketphotomap_cache[r.photoType]', marketphotomap_cache[r.photoType]);
-          }
-          console.info('photo_value', photo_value);
           this.addPhoto({photoType: r.photoType, photoValue: photo_value});
           i++;
         }
       } else {
-        // console.info('r.photoExample', r);
         throw new Error('表单为“' + r.formName + '”的“' + r.name + '”缺少关联的示例图片，请添加');
       }
     });
