@@ -1,7 +1,7 @@
 import {Component, EventEmitter, forwardRef, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {MessageService} from '../../utils/message.service';
 import {WebcamService} from '../../device/webcam.service';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {CameraModalComponent} from './camera-modal/camera-modal.component';
 import {DeviceService} from '../../device/device.service';

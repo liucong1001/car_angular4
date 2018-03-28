@@ -3,6 +3,18 @@ import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validat
 import {Marketphotomap} from '../../../model/system/market-photo-map';
 import {MarketService} from '../../../data/system/market.service';
 import {LocalstorageService} from '../../../cache/localstorage.service';
+import {CameraCarexcnFileDescrption} from '../../../data/system/file-system.service';
+
+export class YsCarexcnCamera {
+  constructor(
+    public title: string,
+    public source: CameraCarexcnFileDescrption,
+    public example_source: string,
+    public btn_show: boolean,
+    public formControl: AbstractControl[],
+    public btn_check: boolean,
+  ) {}
+}
 
 @Component({
   selector: 'ngx-ys-dynamic-photo-form',
@@ -155,7 +167,7 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
      * 添加按钮后的逻辑与结合
      * TODO: 照片选拍的情况
      */
-    console.info('photoValue', photoValue);
+    console.info('照片地址值 photoValue', photoValue);
     this.photos.addControl(photoType, new FormArray([
       new FormControl({
         value: photoValue,
@@ -178,8 +190,8 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
     let photo_name_tmp = {}; let photo_url_tmp = {};
     // 在循环开始之前的该处，要拿到缓存的数据，循环时使用
     let marketphotomap_cache = this.getMaybeMarketphotoMap();
-    console.info('marketphotomap_arr', marketphotomap_arr);
-    console.info('marketphotomap_cache', marketphotomap_cache);
+    // console.info('必须要拍的证件类型 marketphotomap_arr', marketphotomap_arr);
+    // console.info('照片缓存数据 marketphotomap_cache', marketphotomap_cache);
     marketphotomap_arr.forEach(r => {
       photo_name_tmp[r.photoType] = r.name;
       if ( r.photoExample ) {
@@ -194,7 +206,7 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
           /**
            * 在初始化的过程中，根据循环的photoType判断是否有缓存好的值，来完成对表单的默认赋值
            */
-          // console.info('marketphotomap_cache[' + r.photoType + ']', marketphotomap_cache);
+          console.info('照片缓存好的值 marketphotomap_cache[' + r.photoType + ']', marketphotomap_cache);
           let photo_value = '';
           if (null !== marketphotomap_cache && marketphotomap_cache[r.photoType]) {
             photo_value = marketphotomap_cache[r.photoType][i] ? marketphotomap_cache[r.photoType][i] : '';
@@ -217,9 +229,42 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
       }
     });
     this.photos_name = photo_name_tmp;
-    console.info('dynamic photos_name', this.photos_name);
+    // console.info('dynamic photos_name', this.photos_name);
     this.photos_url = photo_url_tmp;
-    console.info('dynamic photos_url', this.photos_url);
+    // console.info('dynamic photos_url', this.photos_url);
+
+    this.preDataNotInTemplate();
+  }
+  preYsCameraDataState = false;
+  preYsCameraData: YsCarexcnCamera[] = [];
+
+  /**
+   * 此处处理数据，原先是在模板中处理的多重循环
+   * 循环中有数据不匹配的可能性，模板中并不方便匹配和排查，而且调用控制器函数性能也不好
+   * 所以
+   * 在此处处理好所有数据，模板只负责简单的展示工作
+   * 当出现有数据不符合预期时也可及时排查
+   */
+  preDataNotInTemplate() {
+    let keys = Object.keys(this.photos.controls);
+    console.info(':::keys', keys);
+    // <!--先循环出 photos(formGroup)中的photoType(controls)-->
+    keys.forEach((photoType, idx, array) => {
+      // <!--再循环出photoType中的各个照片数组-->
+      let photo = (this.photos.get(photoType) as FormArray).controls;
+      // <!--数组中的每个元素都是一个最终的 controls 值-->
+      this.preYsCameraData.push(new YsCarexcnCamera(
+        this.photos_name[photoType],
+        photo.values() as CameraCarexcnFileDescrption,
+        this.photos_url[photoType],
+        this.btn_show,
+        photo,
+        this.btn_show_check,
+      ));
+      console.info(':::photoType', photoType);
+      console.info(':::this.preYsCameraData', this.preYsCameraData);
+    });
+    this.preYsCameraDataState = true;
   }
 
   /**

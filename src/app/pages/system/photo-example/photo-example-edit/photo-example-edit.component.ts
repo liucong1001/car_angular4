@@ -10,20 +10,19 @@ import {FileSystemService} from '../../../../@core/data/system/file-system.servi
   selector: 'ngx-photo-example-edit',
   templateUrl: './photo-example-edit.component.html',
   styleUrls: ['./photo-example-edit.component.scss'],
-  providers: [PhotoExampleService,FileSystemService],
+  providers: [PhotoExampleService, FileSystemService],
 })
 export class PhotoExampleEditComponent implements OnInit {
 
   photoExampleModel = new PhotoExampleModel();
 
-  constructor(
-    private fb: FormBuilder,
-    private message: MessageService,
-    private photoExampleService: PhotoExampleService,
-    public router: Router,
-    private route: ActivatedRoute,
-    private file: FileSystemService,
-  ) {}
+  constructor(private fb: FormBuilder,
+              private message: MessageService,
+              private photoExampleService: PhotoExampleService,
+              public router: Router,
+              private route: ActivatedRoute,
+              private file: FileSystemService) {
+  }
 
   ngOnInit() {
     this.route.params.subscribe(p => {
@@ -33,7 +32,7 @@ export class PhotoExampleEditComponent implements OnInit {
           this.form.patchValue(this.photoExampleModel);
           this.photos.source = 'id:' + this.photoExampleModel.photos.photoExample[0].id;
           this.photoForm.photoExample[0] = this.photoExampleModel.photos.photoExample[0];
-          console.log('source', this.photos.source);
+          // console.info('source', this.photos.source);
         });
       }
     });
@@ -66,7 +65,7 @@ export class PhotoExampleEditComponent implements OnInit {
     photoExample: this.fb.group({
       photoType: [null, [Validators.required]],
       scale: [null, [Validators.required]],
-      name:[null,[Validators.required]],
+      name: [null, [Validators.required]],
       id: [null, [Validators.required]],
     }),
   });
@@ -82,7 +81,7 @@ export class PhotoExampleEditComponent implements OnInit {
       this.message.error('保存失败', err.json().message);
     });
   }
-  imageUrl(){
+  imageUrl() {
     return  this.file.getRealFileUrl('id:4028f2ea6217e3c7016218392ff70000');
   }
 

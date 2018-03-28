@@ -121,7 +121,7 @@ export class FileSystemService {
       }
     } else if ('object' === typeof(file)) {
       let tmp = file as CameraCarexcnFileDescrption;
-      return '';
+      return 'id:' + tmp.objectId;
     }
   }
 }

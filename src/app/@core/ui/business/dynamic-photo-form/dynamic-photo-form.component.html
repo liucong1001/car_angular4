@@ -1,25 +1,19 @@
-<div *ngIf="photos">
-  <!--<button (click)="getPhotoChecked()">getPhotoChecked</button>-->
-  <div [formGroup]="photos">
-    <!--先循环出 photos(formGroup)中的photoType(controls)-->
-    <div *ngFor="let photoType of objectKeys(photos.controls)">
-      <div formArray="photoType">
-        <!--再循环出photoType中的各个照片数组-->
-        <div *ngFor="let photo of getPhotoFormControls(photoType)">
-          <!--数组中的每个元素都是一个最终的 controls 值-->
-          <ng-template #wrong_message>可能是配置的原因导致，以下数据可能不含{{photoType}}属性，但这是必须的。<hr /> {{ photos_name | json }}</ng-template>
-          <ngx-ys-camera
-            *ngIf="(photos_name && photos_url && photos_name[photoType] && photos_url[photoType]); else wrong_message"
-            [title]="photos_name[photoType]"
-            [source]="photo.value"
-            [example_source]="photos_url[photoType]"
-            [btn_show]="btn_show"
-            [formControl]="photo"
-            [btn_check]="btn_show_check"
-            (_wrong_checked)="changeChecked($event)"
-          ></ngx-ys-camera>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+正在紧锣密鼓的适配后端接口文件属性，请稍后
+<!--__{{preYsCameraDataState | json}}={{preYsCameraData.length}}=-->
+<!--<ng-template *ngIf="preYsCameraDataState">-->
+  <!--<div *ngFor="let i of objectKeys(photos.controls)">-->
+    <!--11f1f1f1-->
+  <!--</div>-->
+  <!--<ng-template *ngFor="let i of preYsCameraData">-->
+    <!--akakakak-->
+    <!--&lt;!&ndash;<ngx-ys-camera-carexcn&ndash;&gt;-->
+      <!--&lt;!&ndash;[_title]="i.title"&ndash;&gt;-->
+      <!--&lt;!&ndash;[_source]="i.source"&ndash;&gt;-->
+      <!--&lt;!&ndash;[_example_source]="i.example_source"&ndash;&gt;-->
+      <!--&lt;!&ndash;[_btn_show]="i.btn_show"&ndash;&gt;-->
+      <!--&lt;!&ndash;[_formControl]="i.formControl"&ndash;&gt;-->
+      <!--&lt;!&ndash;[_btn_check]="i.btn_check"&ndash;&gt;-->
+      <!--&lt;!&ndash;(_wrong_checked)="changeChecked($event)"&ndash;&gt;-->
+    <!--&lt;!&ndash;&gt;</ngx-ys-camera-carexcn>&ndash;&gt;-->
+  <!--</ng-template>-->
+<!--</ng-template>-->
