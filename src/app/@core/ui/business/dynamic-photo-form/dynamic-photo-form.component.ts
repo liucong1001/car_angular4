@@ -101,6 +101,7 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
+    console.info('ngOnChanges', this.preYsCameraData);
     // this.setCertificateConfig();
   }
 
@@ -126,12 +127,6 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
       });
   }
 
-  /**
-   * 图片参数最终形态
-   * 为优化在模板中循环产生的执行顺序问题
-   * 将在此处保存好最终形态给模板循环
-   */
-  propertyYsCamera;
   /**
    * 根据缓存的名字拿到缓存的数据，在初始化的过程中，完成对表单的默认赋值
    * 注意判断名字是否为空和名字拿到的缓存名是否为空
@@ -235,7 +230,18 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
 
     this.preDataNotInTemplate();
   }
+
+  /**
+   * 图片参数是否准备好的状态
+   * @type {boolean}
+   */
   preYsCameraDataState = false;
+
+  /**
+   * 图片参数最终形态
+   * 为优化在模板中循环产生的执行顺序问题
+   * 将在此处保存好最终形态给模板循环
+   */
   preYsCameraData: YsCarexcnCamera[] = [];
 
   /**
