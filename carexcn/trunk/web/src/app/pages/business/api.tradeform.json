@@ -1,34 +1,33 @@
 {
-    "cloudUser": "0001", [所有情况必须]
-    "archiveNo": "2018031900010001", 车辆流水号 [预审后的过户操作必须][修改必须]
-    "prejudication": {  预审业务对象
+    "cloudUser": "0001",
+    "archiveNo": "2018031900010001",
+    "prejudication": {
         "cloudUser": "0001","createUserId": "1","createTime": null,
         "lastModifyTime": null,"lastModifyUserId": null,"id": "4028b881623babc001623c43b0dc000a",
-        "business": {}, 预审业务
-        "fromFlag": "01",来源标记 0 pc 1 app
-        "invalid": "0",是否有效 0 有效 1 无效
+        "business": {},
+        "fromFlag": "01",
+        "invalid": "0",
         "version": 0,
         "archiveNo": "2018031900010001","status": "01",
-        "seller": {"all_model_seller"},
+        "seller": "{all_model_seller}",
         "preVehicle": {}
     },
-    "prejudicationStatus": "01",预审业务对象状态
-    0已录入;1已审核;2已完成;3已删除;4待录入;5正在录入;6已退回; [修改操作时必须]
-    "seller": { 卖方对象实例  [预审和直接过户时(创建)必须]
-        "reviewPhotos": {}, 卖方审核图片列表<map> [审核时]
-        "photos": {}, 卖方录入图片列表<map> [创建时]
-        "trusteePhotos": {}, 受托人图片列表<map>   [可选]
-        "seller": {"all_model_seller"}
+    "prejudicationStatus": "01",
+    "seller": {
+        "reviewPhotos": {},
+        "photos": {},
+        "trusteePhotos": {},
+        "seller": "{all_model_seller}"
     },
-    "preVehicle": { 预审车辆对象实例	   [预审和直接过户时(创建和增加)必须]
-        "photos": {}, 卖方录入图片列表
+    "preVehicle": {
+        "photos": {},
         "preVehicle": {}, 
-        "newCarsPrice": null 新车价格 number  [录入时必须]
+        "newCarsPrice": null
     },
-    "transfer": { 过户业务对象实例（结构同prejudication）
+    "transfer": {
         "cloudUser": "0001","createUserId": "1","createTime": 1521451399060,
         "lastModifyTime": null,"lastModifyUserId": null,"id": "4028b881623babc001623d91f79c0023",
-        "business": {}, 过户业务
+        "business": {},
         "fromFlag": "01",
         "invalid": "0","version": 0,"status": "01",
         "prejudication": {
@@ -37,28 +36,26 @@
             "id": "4028b881623babc001623c43b0dc000a",
             "business": {},
             "fromFlag": "01","invalid": "0","version": 0,"archiveNo": "2018031900010001","status": "01",
-            "seller": {"all_model_seller"},
+            "seller": "{all_model_seller}",
             "preVehicle": {}
         },
-        "buyer": {"all_model_buyer"},
+        "buyer": "{all_model_buyer}",
         "transferVehicle": {}
     },
-    "transferStatus": null, 过户业务对象状态
-    0已录入;1已审核;2已完成;3已删除;4待录入;5正在录入;6已退回;  [修改时必须]
+    "transferStatus": null,
     "buyer": {
-        "reviewPhotos": {}, 买方审核图片列表
-        "photos": {}, 买方录入图片列表，指纹头像，证件
-        "trusteePhotos": {}, 受托人图片列表
-        "buyer": {"all_model_buyer"}
+        "reviewPhotos": {},
+        "photos": {},
+        "trusteePhotos": {},
+        "buyer": "{all_model_buyer}"
     },
-    "transferVehicle": { 过户车辆对象实例	    [过户时(创建和增加)必须]
-        "photos": {}, 买录入图片列表
-        与车相关的图片可能有； 增值税发票，消费税发票，委托书(一车一委托，委托人的委托书)，代办证明(海南的一车一委托)
-        "transferVehicle": {},"preVehicleId": "4028b881623babc001623c43b09a0007"
-    }
-}
+    "transferVehicle": {
+        "photos": {},
+        "transferVehicle": {},
+        "preVehicleId": "4028b881623babc001623c43b09a0007"
+    },
 
-all_photos: {
+"all_photos": {
     "03": [{
             "cloudUser": "0001","id": "4028b881623babc001623d91f7270020",
             "objectType": "买方图片","objectId": "4028b881623babc001623d91f70b001f",
@@ -73,8 +70,8 @@ all_photos: {
             "filePath": "2018/03/19/0001010001/vehicle/00010001/211181120null.jpg",
             "deleted": false
     }]
-}
-all_merchant: {
+},
+"all_merchant": {
     "cloudUser": "0001","createUserId": "1","createTime": 1514517017000,
     "lastModifyTime": null,"lastModifyUserId": null,"id": "8a80cb8160a03f5e0160a03fb32d0002",
     "name": "汉口北3","code": "HKB3","certCode": "hankoube-3","address": "湖北武汉汉口",
@@ -87,7 +84,7 @@ all_merchant: {
         "accountName": null,"accountNo": null,"flag": null
     },"flag": "0"
 },
-all_filingPerson: {
+"all_filingPerson": {
     "cloudUser": "0001","createUserId": null,
     "createTime": null,"lastModifyTime": null,"lastModifyUserId": null,
     "id": "4028f22460d998f50160d9b1c7720008",
@@ -95,8 +92,8 @@ all_filingPerson: {
     "status": null,"type": "1","roles": null,"telephone": null,
     "permissons": [],
     "initPwd": null,"certCode": "420110190001010002","perms": null,"agency": null
-}
-all_filingInfo: {
+},
+"all_filingInfo": {
     "cloudUser": "0001","createUserId": null,
     "createTime": null,"lastModifyTime": null,"lastModifyUserId": null,
     "id": "4028f22460d998f50160d9b1c7720009",
@@ -106,27 +103,27 @@ all_filingInfo: {
     "merchant": {},
     "filingPerson": {}
 },
-all_vehicle: {
+"all_vehicle": {
     "cloudUser": "0001","createUserId": null,
     "createTime": null,"lastModifyTime": null,"lastModifyUserId": null,
     "id": "4028b881623babc001623c43b07e0004","plateNumber": "鄂A0319",
     "lock": "0","lockReason": null,"lockUser": null,"complete": "0"
-}
-all_business: {
+},
+"all_business": {
     "cloudUser": "0001","createUserId": null,
     "createTime": null,"lastModifyTime": null,"lastModifyUserId": null,
     "id": "4028b881623babc001623d91f705001e",
-    "businessType": "02",业务类型代码值 预审 01 过户 02(后面可能要统一到代码集)
-    "archiveNo": "201803190001020001",业务流水号(预审批次号)
-    "invalid": "0", 是否有效 0 有效 1 无效
-    "ownerId": null 业务所有者标识 (目前仅预审业务含值，标识直接过户)
-}
-all_trustee: {
+    "businessType": "02",
+    "archiveNo": "201803190001020001",
+    "invalid": "0",
+    "ownerId": null
+},
+"all_trustee": {
 	"endDate": null,
 	"Phone": null,
-	"filingInfo": {} 卖方受托人的备案人实例
-}
-all_model_buyer: {
+	"filingInfo": {}
+},
+"all_model_buyer": {
     "cloudUser": "0001","createUserId": null,
     "createTime": null,"lastModifyTime": null,"lastModifyUserId": null,
     "id": "4028b881623babc001623d91f70b001f","tradeType": "0",
@@ -136,66 +133,63 @@ all_model_buyer: {
     "trusteeType": "0","buyerAddress": "湖北武汉","flag": null,
     "buyerTrustee": {},
     "type": null
-}
-all_model_seller: {
+},
+"all_model_seller": {
     "cloudUser": "0001","createUserId": null,
     "createTime": null,"lastModifyTime": null,"lastModifyUserId": null,
     "id": "4028b881623babc001623c43af6b0001",
     "tradeType": "0","certType": "03","certCode": "420110190001010001",
     "name": "可交易不可代办人","endDate": "20181212","phone": "17012345678",
-    "filingInfo": {}, 备案人对象实例
+    "filingInfo": {},
     "reviewType": "1","trusteeType": "0","sellerAddress": "湖北武汉",
-    "sellerTrustee": {},  卖方委托人对象实例	name
+    "sellerTrustee": {},
     "flag": null,"type": null
-}
-all_preVehicle: {
+},
+"all_preVehicle": {
     "cloudUser": "0001","createUserId": null,
     "createTime": null,"lastModifyTime": null,"lastModifyUserId": null,
     "id": "4028b881623babc001623c43b09a0007",
     "vehicle": {},
-    "filingInfo": {}, 备案人对象实例
+    "filingInfo": {},
     "merchant": {},
     "brandModel": "4028b881623babc001623c43b0960006",
-    "labelCode": "宝马WBA1A110", 厂牌型号名称
-    "vehicleType": "01", 车辆类型代码
+    "labelCode": "宝马WBA1A110",
+    "vehicleType": "01",
     "plateNumber": "鄂A0319","frameNumber": "LVGBE40K28G244297",
-    "registration": "1", 登记证书号
-    "registrationDate": 20080000, 登记证书注册日期
-    "useCharacter": "01", 使用性质代码 
-    "useNature": "01",车辆性质
-    "displacement": "01", 设置排量
-    "range": "01", 排量区间代码
-    "size": "01", 车辆大小代码
-    "mileage": 1000, 行驶里程 number	
-    "otherConditions": "1", 其它状况说明
-    "origin": "01", 车辆产地
-    "fee": 284, 手续费
-    "review": "0", 审核状态 0 - 未审核 1 - 已审核
-    "invalid": "0"  业务状态
-}
-all_transferVehicle: {
+    "registration": "1",
+    "registrationDate": 20080000,
+    "useCharacter": "01",
+    "useNature": "01",
+    "displacement": "01",
+    "range": "01",
+    "size": "01",
+    "mileage": 1000,	
+    "otherConditions": "1",
+    "origin": "01",
+    "fee": 284,
+    "review": "0",
+    "invalid": "0"
+},
+"all_transferVehicle": {
     "cloudUser": "0001","createUserId": null,
     "createTime": null,"lastModifyTime": null,"lastModifyUserId": null,
     "id": "4028b881623babc001623d91f7910022",
     "filingInfo": {},
     "merchant": {},
-    "vehicleManagement": {}, 车管所
+    "vehicleManagement": {},
     "managementFromMobile": null,
-    "billMemo": "11", 发表备注
-    "evaluatePrice": 888, 评估价格 number	
-    "bargainPrice": 9999, 成交价格 number	
+    "billMemo": "11",
+    "evaluatePrice": 888,
+    "bargainPrice": 9999,
     "fee": 22,
     "review": "0",
     "invalid": "0"
+},
+"vehicleManagement": {
+	"city": "{Area}",
+	"memo": "",
+	"management": "{Area}",
+	"spell": "",
+	"invalid": ""
 }
-vehicleManagement: { 车管所
-	"city": Area:{ 城市
-
-	},
-	"memo": "", 备注
-	"management": Area:{ 地区
-
-	},
-	"spell": "", 拼音
-	"invalid": "" 删除标记（1无效，0有效）
 }

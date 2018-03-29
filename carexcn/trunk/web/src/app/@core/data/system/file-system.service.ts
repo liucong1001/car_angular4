@@ -173,6 +173,7 @@ export class CameraCarexcnFileDescrption {
   objectId?: string;
   objectType?: string;
   sortNumber?: number | null;
+  rotate?: number;
   frontendField?: string;
   // frontendField1?: string;
   // frontendField2?: string;
