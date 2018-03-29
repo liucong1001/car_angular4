@@ -14,7 +14,7 @@
     <!--&gt;</ngx-ys-dynamic-photo-form>-->
     <ngx-ys-camera [title]="avatar.title" [source]="avatar.source" (_changeSource)="changeAvatar($event)"></ngx-ys-camera>
     <div class="input-group">
-      <button class="btn btn-primary btn-sm" (click)="fingerRead()">指纹读取</button>
+      <button class="btn btn-primary btn-sm" (click)="fingerRead()">采集指纹</button>
     </div>
     <div class="input-group">
       <img [src]="fingerImgUrl" alt="指纹照片" style="max-width: 256px;max-height: 288px;">
