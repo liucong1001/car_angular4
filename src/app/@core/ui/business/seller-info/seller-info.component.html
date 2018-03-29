@@ -13,13 +13,6 @@
                           [showProperty]="'name'" [defaultValue]="cheshang" [placeholder]="'不是车商'"></ngx-ys-autoinput>
       </div>
       <div class="input-group">
-        <span class="input-group-addon">是否委托</span>
-        <select class="form-control" formControlName="trusteeType" (change)="trusteeTypeChange()">
-          <option value="1">是</option>
-          <option value="0">否</option>
-        </select>
-      </div>
-      <div class="input-group">
         <span class="input-group-addon">证件类型</span>
         <ngx-ys-codeitem-droplist formControlName="certType" [ifDisabled]="!btn_show" [codeMap]="'certType'" (_selectedValue)="certTypeSelecteFunc($event)" style="width: 100%;"></ngx-ys-codeitem-droplist>
         <!--<ngx-ys-codeitem-droplist formControlName="certType" [ifDisabled]="false" (_selectedValue)="certificateTypeSelecteFunc($event)" [codeMap]="'certType'" style="width: 100%;"></ngx-ys-codeitem-droplist>-->
@@ -29,6 +22,13 @@
           <!--<option *ngFor="let code of certType" [ngValue]="code.code">{{code.name}}</option>-->
         <!--</select>-->
         <ngx-valid-error [errors]="errors.certType" [control]="seller.get('certType')"></ngx-valid-error>
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">是否委托</span>
+        <select class="form-control" formControlName="trusteeType" (change)="trusteeTypeChange()">
+          <option value="1">是</option>
+          <option value="0">否</option>
+        </select>
       </div>
     </div>
     <!-- TODO: 修改此处，把选择证件类型之后，的动态组件相关操作都移动到动态组件当中去，由动态组件完成该操作 -->
@@ -57,7 +57,7 @@
                [ngClass]="{'form-control-danger':seller.get('phone').invalid && seller.get('phone').touched}"/>
         <ngx-valid-error [errors]="errors.phone" [control]="seller.get('phone')"></ngx-valid-error>
       </div>
-      <button class="btn btn-primary btn-sm" (click)="readIdCard()">读取身份证</button>
+      <button class="btn btn-primary btn-sm" (click)="readIdCard()">二代证读卡</button>
     </div>
     <div class="input-group">
       <div class="input-group">
