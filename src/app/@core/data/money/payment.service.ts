@@ -55,18 +55,27 @@ export class PaymentService {
    */
 
   public getArcFee(arc:string,type:string,arcNoType:string):Promise<any>{
-    const url = `rest/business/trade/cost?archiveNo=`+arc+'&type='+type+`&arcNoType=`+arcNoType;
-    return this.http.get(url).toPromise().then(function (res) {
-      return res.json() as any;
-    });
+    if(arc.length==13){
+      const url = `rest/manager/market/cost/cost?type=`+type;
+      return this.http.get(url).toPromise().then(function (res) {
+        return res.json() as any;
+      });
+    }else if(arc.length==16){
+      const url = `rest/business/trade/cost?archiveNo=`+arc+'&type='+type+`&arcNoType=`+arcNoType;
+      return this.http.get(url).toPromise().then(function (res) {
+        return res.json() as any;
+      });
+    }
   }
+
 
   /**
    * 获取市场（流水）业务类型
    * @returns {Promise<TResult2|TResult1>}
    */
   public  getMarketBusiness():Promise<any>{
-    const  url = `rest/business/trade/cost/market`;
+    // const  url = `rest/business/trade/cost/market`;
+    const  url = `rest/manager/market/cost/business/type`;
     return this.http.get(url).toPromise().then(res=>{
       return res.json() as any;
     })

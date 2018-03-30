@@ -1,0 +1,54 @@
+<nb-card>
+  <nb-card-header>添加市场</nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="form" (ngSubmit)="save()" class="container">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label>市场名称:</label>
+            <input type="text" class="form-control" formControlName="name" placeholder="市场名称" [ngClass]="{'form-control-danger':form.get('name').hasError('required') && form.get('name').touched}">
+          </div>
+          <div class="text-danger" *ngIf="form.get('name').hasError('required') && form.get('name').touched">
+            -- 必须输入市场名称
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label>市场代码:</label>
+            <input type="text" class="form-control" formControlName="cloudUser" placeholder="市场代码" [ngClass]="{'form-control-danger':form.get('cloudUser').hasError('required') && form.get('cloudUser').touched}">
+          </div>
+          <div class="text-danger" *ngIf="form.get('cloudUser').hasError('required') && form.get('cloudUser').touched">
+            -- 必须输入市场代码
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group" >
+            <label>地区:</label>
+            <ngx-ys-autoinput *ngIf="isDataAvailable" [results_resource_url]="city_source_url" (_value)="getAutoCityValue($event)" [showProperty]="'name'" [defaultValue]="cityDefault"></ngx-ys-autoinput>
+          </div>
+          <div class="text-danger" *ngIf="form.get('area').hasError('required') && form.get('area').touched">
+            -- 必须输入地区
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label>备注:</label>
+            <input type="text" class="form-control" formControlName="memo" placeholder="备注">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-1">
+          <button type="submit" class="btn btn-sm btn-info " [disabled]="form.invalid">保存</button>
+        </div>
+        <div class="col-sm-1">
+          <button type="button" class="btn btn-sm btn-default " (click)='back()' >返回</button>
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+</nb-card>
+

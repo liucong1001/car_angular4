@@ -36,8 +36,6 @@ export class MarketEditComponent implements OnInit {
         this.route.params.subscribe(p => {
 
           if (p.id) {
-                // console.log('城市参数',JSON.stringify(p));
-
                 this.marketService.getMarket(p.id).then(res =>{
                   this.isEdit = true;
                   this.cityDefault = res.area;

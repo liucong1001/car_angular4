@@ -39,6 +39,7 @@ import { PasswordComponent } from './market-staff/password/password.component';
 import { MarketBasicComponent } from './market/market-basic/market-basic.component';
 import { MarketBasicEditComponent } from './market/market-basic/market-basic-edit/market-basic-edit.component';
 import { MarketBasicAddComponent } from './market/market-basic/market-basic-add/market-basic-add.component';
+import { MarketAddComponent } from './market/market-add.component';
 
 const components = [
   CodeitemEditComponent,
@@ -59,7 +60,8 @@ const components = [
   PasswordComponent,
   MarketBasicComponent,
   MarketBasicEditComponent,
-  MarketBasicAddComponent
+  MarketBasicAddComponent,
+  MarketAddComponent,
 ];
 
 @NgModule({

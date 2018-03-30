@@ -2,6 +2,7 @@ import { MarketStaffEditComponent } from './market-staff/market-staff-edit/marke
 import { MarketPhotoEditComponent } from './market/market-photo-edit/market-photo-edit.component';
 import { MarketFeeEditComponent } from './market/market-fee-edit/market-fee-edit.component';
 import { MarketEditComponent } from './market/market-edit.component';
+import { MarketAddComponent } from './market/market-add.component';
 import { MarketComponent } from './market/market.component';
 import { CartypeComponent } from './cartype/cartype.component';
 import { CartypeEditComponent } from './cartype/cartype-edit.component';
@@ -51,6 +52,7 @@ const routes: Routes = [{
     {path: 'area', component: AreaComponent},
     {path: 'market/market', component: MarketComponent},
     {path: 'market/market/edit', component: MarketEditComponent},
+    {path: 'market/market/add', component: MarketAddComponent},
     {path: 'market/staff', component: MarketStaffComponent},
     {path: 'market/staff/add', component: MarketStaffAddComponent},
     {path: 'market/staff/edit', component: MarketStaffEditComponent},
@@ -83,7 +85,7 @@ export class SystemRoutingModule { }
 export const routedComponents = [
   SystemComponent, CodeComponent, CodeEditComponent,
   TransfercityComponent, TransferCityEditComponent, BlacklistComponent, BlacklistEditComponent,
-  CartypeComponent, CartypeEditComponent, PermissionComponent, AreaComponent , MarketComponent, MarketEditComponent,
+  CartypeComponent, CartypeEditComponent, PermissionComponent, AreaComponent , MarketComponent, MarketEditComponent,MarketAddComponent,
   MarketBrandComponent, MarketFeeComponent, MarketFeeEditComponent, MarketPhotoComponent, MarketPhotoEditComponent,
   RoleComponent, RoleAddComponent, RoleEditComponent,MarketDifferComponent,PasswordComponent,MarketBasicComponent,MarketBasicEditComponent,
   MarketBasicAddComponent

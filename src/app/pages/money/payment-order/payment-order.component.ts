@@ -111,12 +111,13 @@ export class PaymentOrderComponent implements OnInit {
    // },{
    //
    // });
+    console.log('OrderInfo对象',this.OrderInfo);
     this.payMoneyModel=[{
       //ic卡支付
       payStatus:this.payStatus,
       payAmount:this.icCardPayMoney,
       payIcCard:this.icCardInfo.CardNumber,
-      businessID:this.OrderInfo.business.id,
+      // businessID:this.OrderInfo.business.id,
       payOrderId:this.OrderInfo.id,
       passWord:'123456',
       cloudUser:'0001',
@@ -125,7 +126,7 @@ export class PaymentOrderComponent implements OnInit {
       payStatus:'1',
       payAmount:this.cashPayMoney,
       payIcCard:null,
-      businessID:this.OrderInfo.business.id,
+      // businessID:this.OrderInfo.business.id,
       payOrderId:this.OrderInfo.id,
       passWord:null,
       cloudUser:'0001',

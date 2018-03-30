@@ -1,8 +1,4 @@
 import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {animate, state, style, transition, trigger} from '@angular/animations';
-import {TextCell} from '../../../@core/ui/table/cell.text.component';
-import {Column} from '../../../@core/ui/table/table.component';
-import {Menu, MenuCell} from "../../../@core/ui/table/cell.menu.component";
 import  {PaymentService} from "../../../@core/data/money/payment.service";
 import {SelectItem} from 'primeng/primeng';
 import {MessageService} from '../../../@core/utils/message.service';
@@ -144,6 +140,7 @@ export class PaymentComponent implements OnInit, OnChanges {
 
   getArcFee(data,type,arcNoType){
 
+
     this.paymentService.getArcFee(data,type,arcNoType).then(result=>{
       for( var i in result){
         this.payOrderItem.items.push({
@@ -153,9 +150,6 @@ export class PaymentComponent implements OnInit, OnChanges {
           shouldAmount: result[i].money,
           invoice:      result[i].invoice,
           businessType: result[i].businessType,
-          // arcNoType:this.arcNoType,
-          // archiveNo:   this.businessObjectPayment.archiveNo,
-          // accountName: this.businessObjectPayment.accountName,
         })
       }
       if(String(data).length==13){
@@ -176,6 +170,9 @@ export class PaymentComponent implements OnInit, OnChanges {
     }).catch(err=>{
       this.message.error('查询失败',err.message);
     })
+
+
+
   }
 
 
