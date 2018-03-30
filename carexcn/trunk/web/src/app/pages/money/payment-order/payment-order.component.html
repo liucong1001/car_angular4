@@ -3,12 +3,12 @@
     <div class="p-2 mr-auto">订单缴费</div>
     <div class="p-2">
       <select name=""  class="form-control" [(ngModel)]="payStatus">
-        <option value="">选择其他付款方式</option>
+        <option value="0">IC卡支付</option>
         <option value="1">现金支付</option>
       </select>
     </div>
     <div class="p2">
-      <button type="button" class="btn btn-outline-success" (click)="readIccard()">启用读卡器</button>
+      <button type="button" class="btn btn-outline-success form-control" (click)="readIccard()">启用读卡器</button>
     </div>
   </nb-card-header>
 
@@ -61,7 +61,7 @@
     </div>
     <div class="row form-inline form-group">
       <div class="col-md-2"><label for="">总扣除：</label> </div>
-      <div class="col-md-4 text-danger" *ngIf="(icCardPayMoney)">{{icCardPayMoney+cashPayMoney}}</div>
+      <div class="col-md-4 text-danger" >{{icCardPayMoney+cashPayMoney}}</div>
     </div>
   </nb-card-body>
 

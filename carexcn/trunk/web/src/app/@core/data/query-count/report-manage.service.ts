@@ -21,6 +21,7 @@ export class ReportManageService {
     a.download = name+".xls";
     a.click();
   }
+  // vehicle  report
 
   public  down(startDate:String,endDate:String):Promise<any>{
      const url= `rest/report/export?startDate=`+startDate+'&endDate='+endDate;
