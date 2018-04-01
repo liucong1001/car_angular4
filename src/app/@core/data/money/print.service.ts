@@ -10,10 +10,9 @@ import {TradeBill} from "../../model/money/print.model";
 
 @Injectable()
 export class PrintService {
-  private path = '/rest/business/trade/bill';
+  private path = '/rest/business/trade/business';
   constructor(private http: Http) {
   }
-
 
   public createBill(archiveNo: String): Promise<any> {
     const url = `${this.path}?archiveNo=`+archiveNo;

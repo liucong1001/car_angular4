@@ -56,17 +56,20 @@ export class PaymentComponent implements OnInit, OnChanges {
          console.log('二手车流水号：',this.archiveNo);
          this.paymentService.getPay(this.archiveNo).then(res=>{
            console.log('数组长度',res.length);
-           for(var i in res){
-             this.typeList.push(res[i].business.businessType);
-           }
-           console.log('业务数组',this.typeList);
-           if(res.length==1){
-             // 返回只有一种业务类型
-             this.type=res[0].business.businessType;
-             this.search(this.archiveNo,this.type,res[0].id,this.arcNoType);
-           }else  {
-             // 返回多种业务类型
-           }
+           // for(var i in res){
+           //   this.typeList.push(res[i].business.businessType);
+           // }
+           // console.log('业务数组',this.typeList);
+           // if(res.length==1){
+           //   // 返回只有一种业务类型
+           //   this.type=res[0].business.businessType;
+           //   this.search(this.archiveNo,this.type,res[0].id,this.arcNoType);
+           // }else  {
+           //   // 返回多种业务类型
+           // }
+           this.typeList.push(res.type);
+           this.type = res.type;
+           this.search(this.archiveNo,this.type,res.id,this.arcNoType);
          })
        }else if((event.keyCode == 13 ||event.type=='click')&&String(this.archiveNo).length==13){
          /* 市场流水处理*/

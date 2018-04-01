@@ -41,7 +41,7 @@ export class PrintComponent implements OnInit {
       });
       this.printService.createBill(this.archivesNo).then(res=>{
         for(var i=0;i<res.length;i++){
-          if(res[i].business.businessType =='11'){
+          if(res[i].type =='11'){
             this.printId=res[i].id;
           }
         }

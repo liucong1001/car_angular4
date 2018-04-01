@@ -62,11 +62,11 @@ export class RefundComponent implements OnInit {
   }
 
   /**
-   * 执行退票操作
+   * 执行退票操作   businessType 21:退票
    */
   refund() {
     console.log('开始退票', this.archivesNo, this.selectBillNo);
-    this.bill.createBill('14', this.archivesNo, this.selectBillNo).then(res => {
+    this.bill.createBill('21', this.archivesNo, this.selectBillNo).then(res => {
       alert('退票成功！');
     })
   }
