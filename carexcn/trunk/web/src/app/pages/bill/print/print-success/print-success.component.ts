@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, ActivatedRouteSnapshot, RouterState, RouterStateSnapshot } from '@angular/router';
 
 @Component({
   selector: 'ngx-print-success',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrintSuccessComponent implements OnInit {
 
-  constructor() { }
+
+  billNo:string;
+  constructor(  private route: ActivatedRoute,) {
+    this.route.params.subscribe(p => {
+    if (p.billNo) {
+      this.billNo=p.billNo;
+    }
+  }); }
 
   ngOnInit() {
   }
+  back(){
+    // this.router.navigate( ['/pages/money/print/']);
+  }
+  createOrder(){
 
+  }
 }

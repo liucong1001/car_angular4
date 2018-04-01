@@ -9,7 +9,8 @@
         <input type="text" class="form-control" placeholder="流水号" [(ngModel)]="archiveNo"
                (keyup)="archiveNoChange($event)"/>
       </div>
-      <div class="col-md-3" *ngIf="typeList.length!=0" >
+      <!--*ngIf="typeList.length!=0"-->
+      <div class="col-md-3"  *ngIf="arcNoType=='0'">
         <select name="" class="form-control text-center" [(ngModel)]="businessType"
                 (ngModelChange)="selectBusiness(businessType)">
           <option value="0">--请选择{{arcNoType | code_trans: 'arcNoType' | async}}业务类型--</option>

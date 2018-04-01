@@ -32,6 +32,7 @@ import {Column, TableComponent} from '../../../@core/ui/table/table.component';
 })
 export class OrderManageComponent implements OnInit, OnChanges {
   @ViewChild('createTimeCell') private createTimeCell: TemplateRef<any>;
+  @ViewChild('arcNoTemp') private arcNoTemp: TemplateRef<any>;
   constructor(private router: Router,private orderCancelService:OrderCancelService,private message:MessageService) {
   }
 
@@ -54,41 +55,36 @@ export class OrderManageComponent implements OnInit, OnChanges {
 
   // 组件初始华
   ngOnInit(): void {
-  }
-
-  // 列表搜索条件对象
-  filter: any = {};
-  // 列表列定义
-  columns: Column[] = [
-    {title: '订单号', titleClass: 'w-25 text-center', cell: new TextCell('id')} as Column,
-    {title: '实收金额', titleClass: 'w-10 text-center', cell: new TextCell('actualAmount')} as Column,
-    {title: '应收金额', titleClass: 'w-10 text-center', cell: new TextCell('shouldAmount')} as Column,
-    {title: '业务类型', titleClass: 'w-15 text-center', cell: new CodemapCell('business.businessType','businessType')} as Column,
-    {title: '状态', titleClass: 'w-10 text-center', cell: new CodemapCell('complete','orderStatus')} as Column,
-    {title: '创建时间', titleClass: 'w-20 text-center', cell: new CustomCell(this.createTimeCell)} as Column,
-    {
-      title: '', titleClass: 'w-15 text-center', cell: new MenuCell(
+    this.columns =  [
+      {title: '订单号', titleClass: 'w-25 text-center', cell: new TextCell('id')} as Column,
+      {title: '实收金额', titleClass: 'w-10 text-center', cell: new TextCell('actualAmount')} as Column,
+      {title: '应收金额', titleClass: 'w-10 text-center', cell: new TextCell('shouldAmount')} as Column,
+      {title: '业务类型', titleClass: 'w-15 text-center', cell: new CustomCell(this.arcNoTemp)} as Column,
+      {title: '状态', titleClass: 'w-10 text-center', cell: new CodemapCell('complete','orderStatus')} as Column,
+      {title: '创建时间', titleClass: 'w-20 text-center', cell: new CustomCell(this.createTimeCell)} as Column,
+      {
+        title: '', titleClass: 'w-15 text-center', cell: new MenuCell(
         [
-          new Menu('编辑', '', 'edit'),
           new Menu('缴费', '', this.payOrder.bind(this)),
           new Menu('删除', '', this.delete.bind(this)),
           new Menu('订单撤销', '', this.cancelOrder.bind(this)),
         ],
         new Menu('查看', '', this.view), 'text-center',
-        )} as Column,
-  ];
+      )} as Column,
+    ];
+  }
+
+  // 列表搜索条件对象
+  filter: any = {};
+  // 列表列定义
+  columns: Column[] ;
 
   // 列表菜单回调
   view(row: any, drop: any) {
   }
-
-  edit(row: any) {
-  }
-
   disable(row: any) {
 
   }
-
   payOrder(row:any){
     this.router.navigate( ['/pages/money/payment/order', { id: row.id }]);
   }

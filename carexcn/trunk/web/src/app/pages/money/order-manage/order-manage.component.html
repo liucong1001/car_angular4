@@ -56,3 +56,4 @@
   </nb-card-body>
 </nb-card>
 <ng-template #createTimeCell  let-data let-cell="cell"><span >{{data.createTime | date:"yyyy-MM-dd HH:mm:ss"}}</span></ng-template>
+<ng-template #arcNoTemp  let-data let-cell="cell"><span >{{data.arcNoType=='0'?'市场业务':'二手车业务'}}</span></ng-template>

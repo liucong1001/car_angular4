@@ -5,7 +5,7 @@ import {Http} from '@angular/http';
 export   class BillService{
 
   constructor(private http: Http) {}
-  private path = '/rest/business/trade/bill';
+  private path = '/rest/business/trade/business';
 
   /**
    * 票据业务类型代码
@@ -32,8 +32,8 @@ export   class BillService{
    * @param billId
    * @returns {Promise<TResult2|TResult1>}
    */
-  public createBill(type:string,archiveNo:string,billId:string):Promise<any>{
-    return this.http.post(this.path, {type:type,archiveNo:archiveNo,billId:billId}).toPromise().then((res) => res.json() as any);
+  public createBill(type:string,archiveNo:string,srcBillId:string):Promise<any>{
+    return this.http.post(this.path, {type:type,archiveNo:archiveNo,srcBillId:srcBillId}).toPromise().then((res) => res.json() as any);
   }
 
 }

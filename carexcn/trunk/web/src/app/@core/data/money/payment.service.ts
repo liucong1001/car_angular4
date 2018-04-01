@@ -95,7 +95,7 @@ export class PaymentService {
   }
   // 通过流水获取待缴费的票据业务对象列表
   public  getPay(arc:string):Promise<any>{
-    const url = `/rest/business/trade/bill/needpay?archiveNo=`+arc;
+    const url = `/rest/business/trade/business/needpay?archiveNo=`+arc;
     return this.http.get(url).toPromise().then(function (res) {
       return res.json() as any;
     });

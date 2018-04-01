@@ -36,6 +36,7 @@ export class SearchComponent implements OnInit {
       {title: '过户', titleClass: '', cell: new CodemapCell('transferStatus', 'transferStatus')} as Column,
       // payCount 代开票 大于0就需要去开票 有票需要开     bills.bill.status 为02 可以去开票 然后bills里面id有值
       {title: '代开票', titleClass: '', cell: new TextCell('payCount')} as Column,
+      //数组第一个状态
       {title: '开票状态', titleClass: '', cell: new TextCell('validCount')} as Column,
       {title: '操作', titleClass: 'w-25 text-center', cell: new MenuCell(
         [
