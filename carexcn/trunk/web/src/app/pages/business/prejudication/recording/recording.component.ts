@@ -8,7 +8,6 @@ import {LocalstorageService} from '../../../../@core/cache/localstorage.service'
 import {MerchantModel} from '../../../../@core/model/business/merchant.model';
 import {PreVehicleModel} from '../../../../@core/model/business/trade/preVehicle/preVehicle.model';
 import {PrejudicationService} from '../../../../@core/data/business/prejudication.service';
-import {CurrentMarketService} from '../../../../@core/data/current-market.service';
 import {BusinessFormGroup} from '../../business.form-group';
 
 /**
@@ -36,30 +35,9 @@ export class RecordingComponent implements OnInit, OnDestroy {
    * @private
    */
   private _cache_pre = 'business_prejudication_recording_';
-  /**
-   *  搜索确认商户联系人时调取对应信息
-   */
-  cameras: any[] = [{
-    title: '联系人身份证正面',
-    source: 'assets/images/camera1.jpg',
-  }, {
-    title: '联系人身份证反面',
-    source: 'assets/images/camera2.jpg',
-  }, {
-    title: '代办联系人头像',
-    source: 'assets/images/camera3.jpg',
-  }, {
-    title: '商户联系人确认单',
-    source: 'assets/images/camera4.jpg',
-  }];
   private vehicleLsnumPrefixDefault = '鄂A';
   public vehicleLsnumWrong = true;
-  public dealerWrong = false;
-  /**
-   * 商户搜索资源
-   * @type {string}
-   */
-  public autoinput_shanghu_source_url = '/rest/merchant/list/';
+  public merchantWrong = false;
   /**
    * 构造函数
    * @param {Router} _router
@@ -69,7 +47,6 @@ export class RecordingComponent implements OnInit, OnDestroy {
    * @param {LocalstorageService} _localstorage
    */
   constructor(
-    public _cm: CurrentMarketService,
     private _router: Router,
     private _formbuilder: FormBuilder,
     private _message: MessageService,
@@ -85,7 +62,7 @@ export class RecordingComponent implements OnInit, OnDestroy {
   linkManData: FilingInfoModel[] = [];
   linkman: any = {};
   linkmanSelected: FilingInfoModel = {};
-  dealer: MerchantModel = {};
+  merchant: MerchantModel = {};
   vehicle: PreVehicleModel = {plateNumber: ''};
   /**
    * 页面初始化事件
@@ -113,14 +90,14 @@ export class RecordingComponent implements OnInit, OnDestroy {
          * 读取缓存的商户
          * @type {any}
          */
-        let maybe_dealer = this._localstorage.get(this._cache_pre + 'dealer');
-        if (maybe_dealer) {
-          this.dealer = maybe_dealer;
+        let maybe_merchant = this._localstorage.get(this._cache_pre + 'merchant');
+        if (maybe_merchant) {
+          this.merchant = maybe_merchant;
           /**
            * 缓存联系人相关数据
            * @type {boolean}
            */
-          this.dealerWrong = false;
+          this.merchantWrong = false;
           this.linkManData = this._localstorage.get(this._cache_pre + 'linkmandata');
           this.linkmanSelected = this._localstorage.get(this._cache_pre + 'linkmanSelected');
           this.linkman = this.linkmanSelected;
@@ -137,7 +114,7 @@ export class RecordingComponent implements OnInit, OnDestroy {
     // console.info('exec on destroy.');
     this._localstorage.set(this._cache_pre + 'linkmanSelected', this.linkmanSelected);
     this._localstorage.set(this._cache_pre + 'linkmandata', this.linkManData);
-    this._localstorage.set(this._cache_pre + 'dealer', this.dealer);
+    this._localstorage.set(this._cache_pre + 'merchant', this.merchant);
     this._localstorage.set(this._cache_pre + 'vehicle', this.vehicle);
   }
 
@@ -155,15 +132,13 @@ export class RecordingComponent implements OnInit, OnDestroy {
    * 选择好了商户的事件
    * @param value
    */
-  getSelectedDealer(dealer) {
-    this.dealer = dealer;
-    this._message.info('获取商户', dealer.name);
-    this._filingService.agency(dealer.id).then(res => {
-      this.dealerWrong = false;
+  getSelectedMerchant(merchant) {
+    this.merchant = merchant;
+    this._message.info('获取商户', merchant.name);
+    this._filingService.agency(merchant.id).then(res => {
+      this.merchantWrong = false;
       this.linkman = ''; // 使 --请选择--  选项高亮
       this.linkManData = res as FilingInfoModel[];
-      // console.info(this.linkManData);
-      // console.info(this.linkmanSelected);
     });
   }
 

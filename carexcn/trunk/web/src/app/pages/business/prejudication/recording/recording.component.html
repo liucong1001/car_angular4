@@ -18,14 +18,27 @@
       </div>
       <div class="input-group">
         <span class="input-group-addon">代办商户</span>
-        <ngx-ys-autoinput [disabled]="vehicleLsnumWrong" [results_resource_url]="autoinput_shanghu_source_url" (_value)="getSelectedDealer($event)" [showProperty]="'name'" [defaultValue]="dealer"></ngx-ys-autoinput>
+        <!--
+          [disabled]="vehicleLsnumWrong"
+        -->
+        <ngx-ys-autoinput
+          [results_resource_url]="'/rest/merchant/list/'"
+          (_value)="getSelectedMerchant($event)"
+          [showProperty]="'name'"
+          [defaultValue]="merchant"
+        ></ngx-ys-autoinput>
       </div>
     </div>
     <div class="input-group">
       <div class="input-group">
         <span class="input-group-addon">代办人</span>
-        <select class="form-control" [disabled]="dealerWrong" [(ngModel)]="linkman" (change)="linkmanSelecteFunc()" [compareWith]="linkmanCompareWithFunc">
-          <option value="">--请选择--</option>
+          <!--[disabled]="dealerWrong"-->
+        <select
+          class="form-control"
+          [(ngModel)]="linkman"
+          (change)="linkmanSelecteFunc()"
+          [compareWith]="linkmanCompareWithFunc"
+        ><option value="">--请选择--</option>
           <option *ngFor="let linkmanitem of linkManData" [ngValue]="linkmanitem">{{linkmanitem.name}}</option>
         </select>
       </div>
@@ -34,13 +47,13 @@
         <input class="form-control" placeholder="请先选择商户和代办人" type="text"  [disabled]="true" [value]="linkmanSelected.phone || null "/>
       </div>
     </div>
-    <div class="camera col-sm-6 float-left" *ngFor="let camera of cameras"
-         [style.background-image]="'url(' + camera.source + ')'">
-      <span>{{ camera.title }}</span>
-    </div>
+    <!--<div class="camera col-sm-6 float-left" *ngFor="let camera of cameras"-->
+         <!--[style.background-image]="'url(' + camera.source + ')'">-->
+      <!--<span>{{ camera.title }}</span>-->
+    <!--</div>-->
   </nb-card-body>
   <nb-card-footer>
-    <span> &nbsp; &nbsp; * 请UI修改默认图片 <!-- TODO:* 请UI修改默认图片 -->
+    <span>
       <div class="size-container">
         <div class="float-right">
           <button class="btn btn-primary btn-lg" (click)="onSubmit()" [disabled]="!linkmanSelected.phone">下一步</button>
