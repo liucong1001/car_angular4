@@ -101,6 +101,10 @@ export class MarketBasicAddComponent implements OnInit {
   };
 
   save() {
+    if (this.form.invalid) {
+      this.message.error('提交失败', '有数据不合法');
+      return false;
+    }
     this.globalConfigService.create(this.form.value).then(res => {
       this.message.success('保存成功', '配置添加成功');
       this.back();
