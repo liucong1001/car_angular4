@@ -148,7 +148,7 @@
             <!--<input type="text"  ng-change="sel(billDate)" style="width:200px;" ng-click="dateOpened = true" current-text="今天" clear-text="清空" uib-datepicker-popup="yyyy年M月d日" [(ngModel)]="billDate" is-open="dateOpened" datepicker-options="dateOptions" ng-required="true" close-text="隐藏"  />-->
           </div>
           <div class="bill-no" style="margin-top:-35px">
-            发票代码:<input [(ngModel)]="tradeBill.billCode" required maxlength="12"/><br>
+            发票代码:<input [(ngModel)]="tradeBill.billCode" type="text" required maxlength="12"/><br>
             发票号码(<span class="text-danger">将要使用</span>)：<input [(ngModel)]="tradeBill.billNo" required type="text" maxlength="8"/>
           </div>
         </div>

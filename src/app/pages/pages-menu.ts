@@ -118,17 +118,13 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: '补缴',
         link: '/pages/money/payAgain',
       },
-      // {
-      //   title: 'IC卡转账记录',
-      //   link: '/pages/money/transfer-record',
-      // },
-      // {
-      //   title: '支付详情查询',
-      //   link: '/pages/money/payment-detail',
-      // },
       {
         title: 'IC卡流水查询',
         link: '/pages/money/turnover-detail',
+      },
+      {
+        title: '订单退费列表',
+        link: '/pages/money/payedCancel',
       },
     ],
   },

@@ -10,7 +10,7 @@ export class PrintSuccessComponent implements OnInit {
 
 
   billNo:string;
-  constructor(  private route: ActivatedRoute,) {
+  constructor(  private route: ActivatedRoute, public router: Router,) {
     this.route.params.subscribe(p => {
     if (p.billNo) {
       this.billNo=p.billNo;
@@ -19,10 +19,15 @@ export class PrintSuccessComponent implements OnInit {
 
   ngOnInit() {
   }
-  back(){
-    // this.router.navigate( ['/pages/money/print/']);
-  }
-  createOrder(){
 
+  back(){
+    console.log('SaaS');
+    this.router.navigate( ['/pages/bill/print']);
   }
+
+  createOrder(){
+    console.log("创建订单");
+    this.router.navigate( ['/pages/money/payment']);
+  }
+
 }

@@ -26,6 +26,9 @@ export class PrintComponent implements OnInit {
               public router: Router,) { }
 
   ngOnInit() {
+    // 随机生成发票代码，发票号码
+    this.tradeBill.billCode = String(Math.round(Math.random()*10000000000)) ;
+    this.tradeBill.billNo = String(Math.round(Math.random()*100000000))
   }
 
   /**
@@ -38,14 +41,17 @@ export class PrintComponent implements OnInit {
       this.tradeService.get(this.archivesNo).then(res=>{
         this.trade = res;
         this.isGetDate = true;
+        this.printId = res.business.id;
       });
-      this.printService.createBill(this.archivesNo).then(res=>{
-        for(var i=0;i<res.length;i++){
-          if(res[i].type =='11'){
-            this.printId=res[i].id;
-          }
-        }
-      });
+      // this.printService.createBill(this.archivesNo).then(res=>{
+      //   for(var i=0;i<res.length;i++){
+      //
+      //     if(res[i].type =='11'){
+      //       this.printId=res[i].id;
+      //     }
+      //
+      //   }
+      // });
     }
   }
 
@@ -56,7 +62,7 @@ export class PrintComponent implements OnInit {
   print(){
     console.log('点击了开票',this.tradeBill);
     this.printService.recordBill(this.printId,this.tradeBill).then(res=>{
-      this.router.navigate( ['/pages/money/print/success', { billNo: this.tradeBill.billNo ,}]);
+      this.router.navigate( ['/pages/bill/print/success', { billNo: this.tradeBill.billNo ,}]);
 
     }).catch(err=>{
       this.message.error('开票失败',err.json().message);

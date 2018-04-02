@@ -32,8 +32,8 @@ export   class BillService{
    * @param billId
    * @returns {Promise<TResult2|TResult1>}
    */
-  public createBill(type:string,archiveNo:string,srcBillId:string):Promise<any>{
-    return this.http.post(this.path, {type:type,archiveNo:archiveNo,srcBillId:srcBillId}).toPromise().then((res) => res.json() as any);
+  public createBill(type:string,archiveNo:string,srcBillId:string,needModify:boolean):Promise<any>{
+    return this.http.post(this.path, {type:type,archiveNo:archiveNo,srcBillId:srcBillId,needModify:needModify}).toPromise().then((res) => res.json() as any);
   }
 
 }

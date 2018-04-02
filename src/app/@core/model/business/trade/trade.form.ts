@@ -45,6 +45,10 @@ export class TradeForm {
    * [修改时必须]
    */
   transferStatus?: string;
+
   buyer?: BuyerForm;
+
   transferVehicle?: TransferVehicleForm;
+
+  business?:{id:string};
 }

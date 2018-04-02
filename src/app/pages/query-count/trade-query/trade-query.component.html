@@ -229,3 +229,4 @@
     <ngx-table #codeList [url]="'/rest/business/trade/pager'" [columns]="columns" [filter]="filter"></ngx-table>
   </nb-card-body>
 </nb-card>
+<ng-template #billNoCell  let-data let-cell="cell"><span >{{data.bills[0]?.billNo}}</span></ng-template>

@@ -33,6 +33,7 @@ export class MarketFeeComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       this.marketId = params['id'];
       this.marketName = params['marketName'];
+      this.filter['market.id'] = this.marketId;
     });
   }
   // 列表列定义
