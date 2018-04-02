@@ -49,6 +49,10 @@ export class Recording2Component implements OnInit, OnDestroy {
    * 页面初始化事件
    */
   ngOnInit() {
+    /**
+     * 如果有缓存，则从缓存中恢复数据
+     * @type {any | any}
+     */
     let maybe_businessTradeForm = this._localstorage.get('business_recording_trade_form');
     if (maybe_businessTradeForm) {
       this.businessTradeForm = maybe_businessTradeForm as BusinessTradeForm;
@@ -59,13 +63,10 @@ export class Recording2Component implements OnInit, OnDestroy {
     if (!this.businessTradeForm.seller) {
       this.businessTradeForm.seller = {seller: {certType: '03'}} as Seller;
     }
-    console.info('businessTradeForm', this.businessTradeForm);
     /**
      * 因为 businessTradeForm 注定有值
      */
-    this._formGroup.patchValue(this.businessTradeForm.seller.seller);
-    // this.seller.controls.certType.value
-
+    this._formGroup.patchValue(this.businessTradeForm.seller);
 
     /**
      * 卖家证件类型表单配置
@@ -81,12 +82,18 @@ export class Recording2Component implements OnInit, OnDestroy {
    * 页面销毁前
    */
   ngOnDestroy() {
+    this.businessTradeForm.seller = this._formGroup.value as Seller;
+    this._localstorage.set('business_recording_trade_form', this.businessTradeForm);
   }
 
   /**
    * 转到下一页
+   * 按钮不应该禁用，即使表单未填写完，也要允许用户点击
+   * 点击事件应检查表单有效性以提醒用户
    */
   onSubmit() {
+    // [disabled]="_formGroup.invalid"
+    console.info('last', this._formGroup.value);
     this._router.navigateByUrl('/pages/business/prejudication/recording3');
   }
 }

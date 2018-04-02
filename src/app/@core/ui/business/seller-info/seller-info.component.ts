@@ -110,6 +110,7 @@ export class SellerInfoComponent implements OnInit {
     if (! this.certType) {
       this._codeitem.list('certType').then(res => this.certType = res as Codeitem[]);
     }
+    console.info('form seller.value', this.seller.value);
     this.certTypeSelecteFunc(this.seller.controls.certType.value);
   }
   /**
@@ -118,11 +119,11 @@ export class SellerInfoComponent implements OnInit {
   certTypeSelecteFunc(event) {
     console.info('照片动态表单', event);
     this.certificateFormConfig.certificateCode = event;
-    let sellerPhotos = this.seller.get('_photos_') as FormGroup;
+    let sellerPhotos = this.seller.get('photos') as FormGroup;
     if (sellerPhotos) {
-      this.seller.removeControl('_photos_');
+      this.seller.removeControl('photos');
     }
-    this.seller.addControl('_photos_', this.fb.group({}));
+    this.seller.addControl('photos', this.fb.group({}));
   }
 
   /**
