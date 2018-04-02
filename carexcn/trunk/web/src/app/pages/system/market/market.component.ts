@@ -61,6 +61,7 @@ export class MarketComponent implements OnInit, OnChanges {
           new Menu('PC证件维护', '', this.photoLink.bind(this)),
           new Menu('App证件维护', '', this.photoLinkApp.bind(this)),
           new Menu('App差异配置','',this.differ.bind(this)),
+          new Menu('基本配置', '', this.basicLink.bind(this)),
         ],
         new Menu('更多', '', this.view), 'text-center',
       )} as Column,
@@ -100,4 +101,7 @@ export class MarketComponent implements OnInit, OnChanges {
     this.router.navigate(['/pages/system/market/market/differ',{ id: row.id }])
   }
 
+  basicLink(row: any) {
+    this.router.navigate( ['/pages/system/market/market/basic', { cloudUser: row.cloudUser }]);
+  }
 }

@@ -1,3 +1,20 @@
-<p>
-  market-basic works!
-</p>
+<nb-card>
+  <nb-card-header class="d-flex">
+    <div class="p-2 mr-auto">市场配置管理</div>
+    <div class="p2">
+      <button (click)="add()" class="btn btn-primary btn-sm">新增</button>
+      <button type="button" class="btn btn-sm btn-outline-success" (click)="toggle()" [ngClass]="{'active':showFilter}" ><i class="ion-funnel"></i></button>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <ngx-table #codeList [url]="'/rest/common/global/config/pager'" [columns]="columns" [filter]="filter"></ngx-table>
+  </nb-card-body>
+  <nb-card-footer>
+    <div class="row">
+      <div class="col-sm-1 col-sm-offset-11">
+        <button type="button" class="btn btn-default btn-sm" (click)='back()'>返回</button>
+      </div>
+    </div>
+  </nb-card-footer>
+</nb-card>
+<ng-template #createTimeCell  let-data let-cell="cell"><span >{{data.createTime | date:"yyyy-MM-dd HH:mm:ss"}}</span></ng-template>
