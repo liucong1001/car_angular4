@@ -2,13 +2,13 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormBuilder} from '@angular/forms';
 import {MessageService} from '../../../../@core/utils/message.service';
-import {FilingInfoModel} from '../../../../@core/model/business/filing.info.model';
 import {FilingService} from '../../../../@core/data/merchant/filing.service';
 import {LocalstorageService} from '../../../../@core/cache/localstorage.service';
-import {MerchantModel} from '../../../../@core/model/business/merchant.model';
-import {PreVehicleModel} from '../../../../@core/model/business/trade/preVehicle/preVehicle.model';
 import {PrejudicationService} from '../../../../@core/data/business/prejudication.service';
 import {BusinessFormGroup} from '../../business.form-group';
+import {
+  BusinessTradeForm, FilingInfo, Merchant,
+} from '../../../../@core/model/business/restruct/business.trade.form';
 
 /**
  * 预审录入1--接口与页面的交互逻辑
@@ -34,10 +34,9 @@ export class RecordingComponent implements OnInit, OnDestroy {
    * @type {string}
    * @private
    */
-  private _cache_pre = 'business_prejudication_recording_';
-  private vehicleLsnumPrefixDefault = '鄂A';
-  public vehicleLsnumWrong = true;
-  public merchantWrong = false;
+  public businessTradeForm: BusinessTradeForm = {preVehicle: {preVehicle: {filingInfo: {phone: ''}, merchant: {}, plateNumber: ''}}};
+  public vehicleLsnumPrefixDefault = '鄂A';
+  public filingInfoItems: FilingInfo[] = [];
   /**
    * 构造函数
    * @param {Router} _router
@@ -59,11 +58,12 @@ export class RecordingComponent implements OnInit, OnDestroy {
     // console.info('tmp', tmp);
   }
 
-  linkManData: FilingInfoModel[] = [];
-  linkman: any = {};
-  linkmanSelected: FilingInfoModel = {};
-  merchant: MerchantModel = {};
-  vehicle: PreVehicleModel = {plateNumber: ''};
+  // public vehicleLsnumWrong = true;
+  // public merchantWrong = false;
+  // linkman: any = {};
+  // linkmanSelected: FilingInfoModel = {};
+  // merchant: MerchantModel = {};
+  // vehicle: PreVehicle2 = {plateNumber: ''};
   /**
    * 页面初始化事件
    */
@@ -71,38 +71,18 @@ export class RecordingComponent implements OnInit, OnDestroy {
     /**
      * 默认车牌前缀
      */
-    if (this.vehicle.plateNumber.length < 1) {
-      this.vehicle.plateNumber = this.vehicleLsnumPrefixDefault;
+    let maybe_businessTradeForm = this._localstorage.get('business_recording_trade_form');
+    if (maybe_businessTradeForm) {
+      this.businessTradeForm = maybe_businessTradeForm as BusinessTradeForm;
     }
-    /**
-     * 读取车辆缓存数据：主要是车牌
-     * @type {any}
-     */
-    let maybe_vehicle = this._localstorage.get(this._cache_pre + 'vehicle');
-    if (maybe_vehicle) {
-      this.vehicle = maybe_vehicle;
-      /**
-       * 如果车牌确认填写了
-       */
-      if (5 < (this.vehicle.plateNumber).length) {
-        this.vehicleLsnumWrong = false;
-        /**
-         * 读取缓存的商户
-         * @type {any}
-         */
-        let maybe_merchant = this._localstorage.get(this._cache_pre + 'merchant');
-        if (maybe_merchant) {
-          this.merchant = maybe_merchant;
-          /**
-           * 缓存联系人相关数据
-           * @type {boolean}
-           */
-          this.merchantWrong = false;
-          this.linkManData = this._localstorage.get(this._cache_pre + 'linkmandata');
-          this.linkmanSelected = this._localstorage.get(this._cache_pre + 'linkmanSelected');
-          this.linkman = this.linkmanSelected;
-        }
-      }
+    if (this.businessTradeForm.preVehicle.preVehicle.merchant.id) {
+      this._filingService.agency(this.businessTradeForm.preVehicle.preVehicle.merchant.id).then(res => {
+        console.info('res', res);
+        this.filingInfoItems = res as FilingInfo[];
+      });
+    }
+    if (this.businessTradeForm.preVehicle.preVehicle.plateNumber.length < 1) {
+      this.businessTradeForm.preVehicle.preVehicle.plateNumber = this.vehicleLsnumPrefixDefault;
     }
   }
 
@@ -111,11 +91,7 @@ export class RecordingComponent implements OnInit, OnDestroy {
    * @constructor
    */
   ngOnDestroy() {
-    // console.info('exec on destroy.');
-    this._localstorage.set(this._cache_pre + 'linkmanSelected', this.linkmanSelected);
-    this._localstorage.set(this._cache_pre + 'linkmandata', this.linkManData);
-    this._localstorage.set(this._cache_pre + 'merchant', this.merchant);
-    this._localstorage.set(this._cache_pre + 'vehicle', this.vehicle);
+    this._localstorage.set('business_recording_trade_form', this.businessTradeForm);
   }
 
   /**
@@ -124,7 +100,7 @@ export class RecordingComponent implements OnInit, OnDestroy {
    * @param {FilingInfoModel} linkman2
    * @returns {boolean | boolean}
    */
-  linkmanCompareWithFunc(linkman1: FilingInfoModel, linkman2: FilingInfoModel) {
+  filingInfoCompareWithFunc(linkman1: FilingInfo, linkman2: FilingInfo) {
     return (linkman1 && linkman2) ? linkman1.phone === linkman2.phone : false;
   }
 
@@ -133,39 +109,31 @@ export class RecordingComponent implements OnInit, OnDestroy {
    * @param value
    */
   getSelectedMerchant(merchant) {
-    this.merchant = merchant;
+    this.businessTradeForm.preVehicle.preVehicle.merchant = merchant as Merchant;
     this._message.info('获取商户', merchant.name);
     this._filingService.agency(merchant.id).then(res => {
-      this.merchantWrong = false;
-      this.linkman = ''; // 使 --请选择--  选项高亮
-      this.linkManData = res as FilingInfoModel[];
+      // this.merchantWrong = false;
+      this.businessTradeForm.preVehicle.preVehicle.filingInfo = ''; // 使 --请选择--  选项高亮
+      this.filingInfoItems = res as FilingInfo[];
+      // 下一步：注意保存商户和代办员的候选项，缓存，让选项展示出来
     });
-  }
-
-  /**
-   * 选择好了联系人的事件
-   * @param event
-   * @param value
-   */
-  linkmanSelecteFunc() {
-    this.linkmanSelected = this.linkman;
   }
 
   /**
    * 转入下一页面
    */
   onSubmit() {
-    if (this.vehicle.plateNumber.length > 5 ) {
-      this._prejudication.checkCar(this.vehicle.plateNumber, this.linkmanSelected.id).then(res => {
-        this.vehicleLsnumWrong = false;
-        console.info(res);
+    if (this.businessTradeForm.preVehicle.preVehicle.plateNumber.length > 5 ) {
+      // this._prejudication.checkCar(this.vehicle.plateNumber, this.linkmanSelected.id).then(res => {
+      //   this.vehicleLsnumWrong = false;
+      //   console.info(res);
         this._router.navigateByUrl('/pages/business/prejudication/recording2');
-      }).catch(e => {
-        console.info(e);
-        this._message.error('录入错误', e.message);
-      });
+      // }).catch(e => {
+      //   console.info(e);
+      //   this._message.error('录入错误', e.message);
+      // });
     } else {
-      this._message.error('车牌号错误', '您的车牌号可能没有填写完');
+      this._message.error('车牌号错误', '您的车牌号没有填写完');
     }
   }
 
@@ -180,16 +148,16 @@ export class RecordingComponent implements OnInit, OnDestroy {
      * 是否已经重复录入
      * 是否属于公车拍卖，如果是应该要拿到公车拍卖的车辆信息
      */
-    if (this.vehicle.plateNumber.length >= 5) {
-      this._prejudication.checkCar(this.vehicle.plateNumber, this.linkmanSelected.id).then(res => {
-        console.info(res);
-        // this._router.navigateByUrl('/pages/business/prejudication/recording2');
-      }).catch(e => {
-        console.info(e);
-        this._message.error('录入错误', e.message);
-      });
-    } else {
-      this._message.error('车牌号错误', '您的车牌号可能没有填写完');
-    }
+    // if (this.vehicle.plateNumber.length >= 5) {
+    //   // this._prejudication.checkCar(this.vehicle.plateNumber, this.linkmanSelected.id).then(res => {
+    //   //   console.info(res);
+    //     this._router.navigateByUrl('/pages/business/prejudication/recording2');
+    //   // }).catch(e => {
+    //   //   console.info(e);
+    //   //   this._message.error('录入错误', e.message);
+    //   // });
+    // } else {
+    //   this._message.error('车牌号错误', '您的车牌号可能没有填写完');
+    // }
   }
 }
