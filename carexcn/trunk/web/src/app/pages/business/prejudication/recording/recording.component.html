@@ -12,8 +12,13 @@
     <div class="input-group">
       <div class="input-group">
         <span class="input-group-addon">车牌号</span>
-        <!--<input class="form-control" placeholder="请输入车牌号" type="text" [(ngModel)]="vehicle.plateNumber" (blur)="vehicleLsnumBlur()" />-->
-        <input class="form-control" placeholder="请输入车牌号" type="text" [(ngModel)]="vehicle.plateNumber" />
+        <!-- (blur)="vehicleLsnumBlur()" -->
+        <input
+          class="form-control"
+          placeholder="请输入车牌号"
+          type="text"
+          [(ngModel)]="businessTradeForm.preVehicle.preVehicle.plateNumber"
+        />
         <!--TODO: 必须先可以输入并验证好车牌号，然后才让进行代办商户代办人的选择，才可以进行下一步-->
       </div>
       <div class="input-group">
@@ -25,7 +30,7 @@
           [results_resource_url]="'/rest/merchant/list/'"
           (_value)="getSelectedMerchant($event)"
           [showProperty]="'name'"
-          [defaultValue]="merchant"
+          [defaultValue]="businessTradeForm.preVehicle.preVehicle.merchant"
         ></ngx-ys-autoinput>
       </div>
     </div>
@@ -35,16 +40,21 @@
           <!--[disabled]="dealerWrong"-->
         <select
           class="form-control"
-          [(ngModel)]="linkman"
-          (change)="linkmanSelecteFunc()"
-          [compareWith]="linkmanCompareWithFunc"
+          [(ngModel)]="businessTradeForm.preVehicle.preVehicle.filingInfo"
+          [compareWith]="filingInfoCompareWithFunc"
         ><option value="">--请选择--</option>
-          <option *ngFor="let linkmanitem of linkManData" [ngValue]="linkmanitem">{{linkmanitem.name}}</option>
+          <option *ngFor="let item of filingInfoItems" [ngValue]="item">{{item.name}}</option>
         </select>
+        <!--[compareWith]="filingInfoCompareWithFunc"-->
       </div>
       <div class="input-group">
         <span class="input-group-addon">代办人手机</span>
-        <input class="form-control" placeholder="请先选择商户和代办人" type="text"  [disabled]="true" [value]="linkmanSelected.phone || null "/>
+        <input
+          class="form-control"
+          placeholder="请先选择商户和代办人"
+          type="text"
+          [disabled]="true"
+          [value]="businessTradeForm.preVehicle.preVehicle.filingInfo.phone || ''"/>
       </div>
     </div>
     <!--<div class="camera col-sm-6 float-left" *ngFor="let camera of cameras"-->
@@ -56,7 +66,7 @@
     <span>
       <div class="size-container">
         <div class="float-right">
-          <button class="btn btn-primary btn-lg" (click)="onSubmit()" [disabled]="!linkmanSelected.phone">下一步</button>
+          <button class="btn btn-primary btn-lg" (click)="onSubmit()" [disabled]="! businessTradeForm.preVehicle.preVehicle.filingInfo.phone">下一步</button>
         </div>
       </div>
     </span>
