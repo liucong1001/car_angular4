@@ -50,12 +50,12 @@ export class MobileReviewComponent implements OnInit {
    *  formName // 预审录入车辆', // 表单名称
    * @type {{}}
    */
-  preVehicleCertConf: Marketphotomap = {business: '01', formName: '预审录入车辆'} as Marketphotomap;
-  transferVehicleCertConf: Marketphotomap = {business: '01', formName: '过户录入车辆'} as Marketphotomap;
-  buyerCertConf: Marketphotomap = {business: '01', formName: '预审录入买家'} as Marketphotomap;
-  sellerCertConf: Marketphotomap = {business: '01', formName: '预审录入卖家'} as Marketphotomap;
-  buyerTrusteeCertConf: Marketphotomap = {business: '01', formName: '预审录入买家委托人'} as Marketphotomap;
-  sellerTrusteeCertConf: Marketphotomap = {business: '01', formName: '预审录入卖家委托人'} as Marketphotomap;
+  preVehicleCertConf: Marketphotomap = {formName: '预审录入车辆'} as Marketphotomap;
+  transferVehicleCertConf: Marketphotomap = {formName: '过户录入车辆'} as Marketphotomap;
+  buyerCertConf: Marketphotomap = {formName: '预审录入买家'} as Marketphotomap;
+  sellerCertConf: Marketphotomap = {formName: '预审录入卖家'} as Marketphotomap;
+  buyerTrusteeCertConf: Marketphotomap = {formName: '预审录入买家委托人'} as Marketphotomap;
+  sellerTrusteeCertConf: Marketphotomap = {formName: '预审录入卖家委托人'} as Marketphotomap;
   /**
    * 是否允许进行勾选打回的操作
    * 为了允许查看又不让操作的情况

@@ -9,12 +9,23 @@
     <div class="input-group">
       <div class="input-group" *ngIf="showCheshang">
         <span class="input-group-addon">车商</span>
-        <ngx-ys-autoinput [results_resource_url]="autoinput_cheshang_source_url" (_value)="getSelectedCheshang($event)"
-                          [showProperty]="'name'" [defaultValue]="cheshang" [placeholder]="'不是车商'"></ngx-ys-autoinput>
+        <ngx-ys-autoinput
+          [results_resource_url]="'/rest/merchant/filing/deal/' + merchant.id"
+          (_value)="getSelectedCheshang($event)"
+          [showProperty]="'name'"
+          [defaultValue]="cheshang"
+          [placeholder]="'不是车商'"
+        ></ngx-ys-autoinput>
       </div>
       <div class="input-group">
         <span class="input-group-addon">证件类型</span>
-        <ngx-ys-codeitem-droplist formControlName="certType" [ifDisabled]="!btn_show" [codeMap]="'certType'" (_selectedValue)="certTypeSelecteFunc($event)" style="width: 100%;"></ngx-ys-codeitem-droplist>
+        <ngx-ys-codeitem-droplist
+          formControlName="certType"
+          [ifDisabled]="!btn_show"
+          [codeMap]="'certType'"
+          (_selectedValue)="certTypeSelecteFunc($event)"
+          style="width: 100%;"
+        ></ngx-ys-codeitem-droplist>
         <!--<ngx-ys-codeitem-droplist formControlName="certType" [ifDisabled]="false" (_selectedValue)="certificateTypeSelecteFunc($event)" [codeMap]="'certType'" style="width: 100%;"></ngx-ys-codeitem-droplist>-->
         <!--要拿到实体数据-->
         <!--<select class="form-control" formControlName="certType" (change)="certificateTypeSelecteFunc()" [compareWith]="certificateTypeCompareWithFunc">-->
@@ -86,18 +97,18 @@
     <div class="input-group">
       <div class="input-group">
         <span class="input-group-addon">地址</span>
-        <input type="text" placeholder="" class="form-control" formControlName="sellerAddress"
+        <input type="text" placeholder="" class="form-control" formControlName="address"
                ngxInputWithPhoto
                [iwp_photoDetailTmp]="photoDetailTemplate"
                [iwp_photos_url]="seller.get('_photos_').value"
                [iwp_certType]="seller.value.certType"
                [iwp_formName]="'record.sellerForm'"
-               [ngClass]="{'form-control-danger':seller.get('sellerAddress').invalid && seller.get('sellerAddress').touched}"/>
-        <ngx-valid-error [errors]="errors.sellerAddress" [control]="seller.get('sellerAddress')"></ngx-valid-error>
+               [ngClass]="{'form-control-danger':seller.get('address').invalid && seller.get('address').touched}"/>
+        <ngx-valid-error [errors]="errors.address" [control]="seller.get('address')"></ngx-valid-error>
       </div>
     </div>
   </nb-card-body>
 </nb-card>
 
 <ngx-ys-truster-info *ngIf="'1' == seller.get('trusteeType').value" [merchant]="merchant"
-     [Trustee]="seller.controls.Trustee" [showCheshang]="showCheshang"></ngx-ys-truster-info>
+     [Trustee]="seller.get('Trustee')" [showCheshang]="showCheshang"></ngx-ys-truster-info>

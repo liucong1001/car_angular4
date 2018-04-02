@@ -33,7 +33,6 @@ export class TjudicationPhotoComponent implements OnInit {
      */
     this.buyerCertificateFormConfig = {
       // certificateCode: '00', // 证件类型代码集 // 只要符合表单就行
-      business: '02', //  01 预审  02 过户
       formName: '过户审核买家', // 表单名称
     } as Marketphotomap;
   }

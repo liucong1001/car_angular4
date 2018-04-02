@@ -13,6 +13,7 @@ import {FilingInfoModel} from '../../../../@core/model/business/filing.info.mode
 import {UserService} from '../../../../@core/data/users.service';
 import {Marketphotomap} from '../../../../@core/model/system/market-photo-map';
 import {BusinessFormGroup} from '../../business.form-group';
+import {BusinessTradeForm, Seller} from '../../../../@core/model/business/restruct/business.trade.form';
 
 /**
  * 预审录入2--接口与页面的交互逻辑
@@ -28,18 +29,10 @@ import {BusinessFormGroup} from '../../business.form-group';
   styleUrls: ['./recording2.component.scss'],
 })
 export class Recording2Component implements OnInit, OnDestroy {
-  /**
-   * 缓存服务的前缀
-   * 缓存前缀名以业务为单位，一个缓存前缀对应一个业务，一个缓存业务完成则删除该前缀的所有缓存
-   * @type {string}
-   * @private
-   */
-  private _cache_pre = 'business_prejudication_recording_';
+  public businessTradeForm: BusinessTradeForm = {preVehicle: {preVehicle: {}}};
   public certType: Codeitem[];
-  public certTypeSelected: Codeitem;
   merchant: MerchantModel = {name: ''};
   certificateFormConfig: Marketphotomap;
-  linkmanSelected: FilingInfoModel = {};
   public _formGroup: FormGroup = this._formBuilder.group({
     seller: this._businessFormGroup.seller,
   });
@@ -50,52 +43,36 @@ export class Recording2Component implements OnInit, OnDestroy {
     private _idcard: IdcardService,
     private _message: MessageService,
     private _localstorage: LocalstorageService,
-    private _code: CodeService,
-    private _codeitem: CodeitemService,
-    private _market: MarketService,
-    public _userService: UserService,
   ) {}
 
   /**
    * 页面初始化事件
    */
   ngOnInit() {
-    /**
-     * 市场 代办员
-     * @type {any | any}
-     */
-    let maybe_linkman = this._localstorage.get(this._cache_pre + 'linkmanSelected');
-    console.info('发现 linkmanSelected ：', maybe_linkman);
-    if (maybe_linkman) {
-      this.linkmanSelected = maybe_linkman;
+    let maybe_businessTradeForm = this._localstorage.get('business_recording_trade_form');
+    if (maybe_businessTradeForm) {
+      this.businessTradeForm = maybe_businessTradeForm as BusinessTradeForm;
     }
     /**
-     * 读取缓存的商户
-     * @type {any}
+     * 使身份证为默认自动选上;
      */
-    let maybe_merchant = this._localstorage.get(this._cache_pre + 'dealer');
-    console.info('发现 dealer ：', maybe_merchant);
-    if (maybe_merchant) {
-      this.merchant = maybe_merchant;
+    if (!this.businessTradeForm.seller) {
+      this.businessTradeForm.seller = {seller: {certType: '03'}} as Seller;
     }
-    let maybe_certificate_type = this._localstorage.get(this._cache_pre + 'certType');
-    console.info('发现 certType ：', maybe_certificate_type);
-    if (maybe_certificate_type) {
-      this.certTypeSelected = maybe_certificate_type;
-    }
-    this._codeitem.list('certType').then(res => this.certType = res as Codeitem[]);
-    let maybe_seller_form = this._localstorage.get(this._cache_pre + 'seller_form');
-    console.info('发现 seller_form ：', maybe_seller_form);
-    if (maybe_seller_form) {
-      this._formGroup.patchValue(maybe_seller_form);
-    }
+    console.info('businessTradeForm', this.businessTradeForm);
+    /**
+     * 因为 businessTradeForm 注定有值
+     */
+    this._formGroup.patchValue(this.businessTradeForm.seller.seller);
+    // this.seller.controls.certType.value
+
+
     /**
      * 卖家证件类型表单配置
      * @type {{}}
      */
     this.certificateFormConfig = {
-      certificateCode: '00', // 证件类型代码集
-      business: '01', //  01 预审  02 过户
+      certificateCode: '03', // 证件类型代码集
       formName: '预审录入卖家', // 表单名称
     } as Marketphotomap;
   }
@@ -104,13 +81,6 @@ export class Recording2Component implements OnInit, OnDestroy {
    * 页面销毁前
    */
   ngOnDestroy() {
-    console.info('222exec on destroy.');
-    console.info(this._formGroup.get('seller').value);
-    console.info(this._formGroup.get('seller').get('_photos_').value);
-    this._localstorage.set(this._cache_pre + 'certType', this.certTypeSelected);
-    this._localstorage.set(this._cache_pre + 'seller_form', this._formGroup.value);
-    this._localstorage.set(this._cache_pre + 'seller_photos', this._formGroup.get('seller').get('_photos_').value);
-    this._localstorage.set('dynamic_photos_seller_info', this._cache_pre + 'seller_photos');
   }
 
   /**
