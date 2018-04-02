@@ -125,6 +125,7 @@ export class MarketBasicEditComponent implements OnInit {
 
   save() {
     if (this.form.invalid) {
+      this.message.error('提交失败', '有数据不合法');
       return false;
     }
     this.globalConfigService.update(this.form.value).then(res => {
