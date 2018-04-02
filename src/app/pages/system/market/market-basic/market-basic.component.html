@@ -7,6 +7,39 @@
     </div>
   </nb-card-header>
   <nb-card-body>
+    <form [@visibilityChanged]="visibility" (submit)="codeList.reload()">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.printMarketName" name="printMarketName" type="text" placeholder="市场名称 - 模糊搜索"/>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.printMarketAddress" name="市场地址" type="text" placeholder="市场地址 - 模糊搜索"/>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.printMarketAccount" name="printMarketAccount" type="text" placeholder="市场开户账号 - 模糊搜索"/>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.printMarketPhone" name="printMarketPhone" type="text" placeholder="市场联系电话 - 模糊搜索"/>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-2">
+          <button type="submit" class="btn btn btn-primary btn-block">搜索</button>
+        </div>
+        <div class="col-sm-2">
+          <button type="reset" class="btn btn-outline-primary btn-block">重置</button>
+        </div>
+      </div>
+    </form>
     <ngx-table #codeList [url]="'/rest/common/global/config/pager'" [columns]="columns" [filter]="filter"></ngx-table>
   </nb-card-body>
   <nb-card-footer>
