@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PrintSuccessComponent } from './print-success.component';
+import { PayedCancelComponent } from './payed-cancel.component';
 
-describe('PrintSuccessComponent', () => {
-  let component: PrintSuccessComponent;
-  let fixture: ComponentFixture<PrintSuccessComponent>;
+describe('PayedCancelComponent', () => {
+  let component: PayedCancelComponent;
+  let fixture: ComponentFixture<PayedCancelComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PrintSuccessComponent ]
+      declarations: [ PayedCancelComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PrintSuccessComponent);
+    fixture = TestBed.createComponent(PayedCancelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

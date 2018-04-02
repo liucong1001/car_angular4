@@ -9,6 +9,7 @@ import {UiModule} from '../../@core/ui/ui.module';
 import {MultiSelectModule} from 'primeng/primeng';
 import {SystemModule as CoreSystemModule} from '../../@core/data/system/system.module';
 import {BusinessTypePipe} from '../../@core/data/business/businessType.pipe';
+import { PayedCancelComponent } from './payed-cancel/payed-cancel.component';
 
 const components = [
   BusinessTypePipe,
@@ -25,7 +26,6 @@ const components = [
     MultiSelectModule,
     CoreSystemModule,
     // AngularMultiSelectModule
-
   ],
   declarations: [
     ...routedComponents,

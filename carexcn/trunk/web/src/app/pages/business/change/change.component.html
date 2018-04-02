@@ -1,16 +1,57 @@
 <nb-card>
-   <nb-card-header>变更业务</nb-card-header>
+   <nb-card-header>
+     <p>变更业务</p>
+
+   </nb-card-header>
+
    <nb-card-body>
-        <div class="row ">
-            <label for="email" class="col-md-1">流水号:</label>
-            <div class="col-md-3 ">
-              <input type="text" class="form-control" id="email" placeholder="请输入流水号。。">
-            </div>
-            <div class="col-md-4">
-                 <button class="btn btn-sm btn-success">交易修改</button>
-                 <button class="btn btn-sm btn-warning">换票</button>
-                 <button class="btn btn-sm btn-danger">重开</button>
-            </div>
-        </div>
+     <div class="row ">
+       <label for="" class="col-md-1">流水号:</label>
+       <div class="col-md-3 ">
+         <input type="text" class="form-control" [(ngModel)]="archivesNo" placeholder="请输入或扫描流水号" maxlength="16" (keyup)="argNoSearch($event)">
+       </div>
+       <div class="col-md-4">
+         <button class="btn btn-sm btn-success">交易修改</button>
+         <button class="btn btn-sm btn-warning">换票</button>
+         <button class="btn btn-sm btn-danger">重开</button>
+       </div>
+     </div>
+     <br><br>
+     <hr>
+     <div class="row">
+       <div class="col-md-2">曾经使用过的发票号:</div>
+       <div class="col-md-8">
+            <span *ngFor=" let item of billList">
+               <label class="custom-control custom-radio">
+                  <input type="radio" class="custom-control-input" value="{{item.id}}" [(ngModel)]="selectBillNo" name="billNoList">
+                  <span class="custom-control-indicator"></span>
+                  <span class="custom-control-description">{{item.billNo}}</span>
+              </label>
+           </span>
+       </div>
+     </div>
    </nb-card-body>
+
+    <nb-card-body>
+       <div class="row">
+          <div class="col-md-2">
+             <select name="" id="" class="form-control" [(ngModel)]="businessType">
+               <option value="0">--选择换票方式--</option>
+               <option value="14">收费换票</option>
+               <option value="13">免费换票</option>
+             </select>
+          </div>
+         <div class="col-md-2">
+           <select name=""  [(ngModel)]="needModify" class="form-control">
+             <option value="">是否修改资料</option>
+              <option value="true">是</option>
+             <option value="false">否</option>
+           </select>
+         </div>
+         <div class="col-md-2">
+              <button class="btn btn-danger" (click)="changeBill()">确认换票</button>
+         </div>
+       </div>
+    </nb-card-body>
+
 </nb-card>

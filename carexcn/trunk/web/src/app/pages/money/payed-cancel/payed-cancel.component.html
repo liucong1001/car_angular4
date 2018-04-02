@@ -1,0 +1,33 @@
+<nb-card>
+  <nb-card-header class="d-flex">
+    <div class="p-2 mr-auto">订单退费列表</div>
+    <div class="p2">
+      <button type="button" class="btn btn-sm btn-outline-success" (click)="toggle()" [ngClass]="{'active':showFilter}" ><i class="ion-funnel"></i></button>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <form [@visibilityChanged]="visibility" (submit)="codeList.reload()">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.name" name="name" type="text" placeholder="订单号"/>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group form-group-sm">
+            <input class="form-control" [(ngModel)]="filter.cloudUser" name="cloudUser" type="text" placeholder="流水号"/>
+          </div>
+        </div>
+        <div class="col-sm-2">
+          <button type="submit" class="btn btn btn-primary btn-block">搜索</button>
+        </div>
+        <div class="col-sm-2">
+          <button type="reset" class="btn btn-outline-primary btn-block">重置</button>
+        </div>
+      </div>
+    </form>
+    <ngx-table #codeList [url]="'/rest/pay/backpayment/pager'" [columns]="columns" [filter]="filter"></ngx-table>
+  </nb-card-body>
+</nb-card>
+<ng-template #createTimeCell  let-data let-cell="cell"><span >{{data.createTime | date:"yyyy-MM-dd HH:mm:ss"}}</span></ng-template>
+<ng-template #arcNoCell  let-data let-cell="cell"><span >{{data.businessObjectPayment[0].archiveNo}}</span></ng-template>

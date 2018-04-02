@@ -12,8 +12,7 @@ import {OrderRefundService} from "../../../../@core/data/money/orderRefund.servi
 import {BusinessObjectPayment} from "../../../../@core/model/money/payment.model";
 import {OrderRefund} from "../../../../@core/model/money/orderRefund.model";
 
-// export  BusinessObjectPayment  OrderRefund
-// BusinessObjectPayment
+
 
 @Component({
   selector: 'ngx-order-refund',
@@ -29,14 +28,12 @@ export class OrderRefundComponent implements OnInit {
   constructor(private IcCardOperationService: IcCardOperationService,  public router: Router,
               private route: ActivatedRoute, private message: MessageService,private iccard: IccardService,
               private paymentOrderService:PaymentOrderService,private location: Location,
-              private orderRefundService:OrderRefundService
+              private orderRefundService:OrderRefundService,private _location: Location
   ) {
     this.route.params.subscribe((params: Params) => {
       if (params['id']) {
-        console.log('id',params['id']);
         this.order.paymentId =  params['id'];
         this.order.payStatus = this.payStatus;
-        console.log('对象',this.order);
          this.orderRefundService.getArcInfo(params['id']).then(res=>{
                 this.arcInfo = res;
          }).catch(err=>{
@@ -111,21 +108,22 @@ export class OrderRefundComponent implements OnInit {
   /**
    * 退费
    */
-
-
   cancel(){
     if(this.payStatus =='0'){
         this.order.icCardNo = this.icCardInfo.CardNumber;
     }
-     console.log('退费',this.order);
     this.orderRefundService.cancelPayment(this.order).then(res=>{
       this.message.success('','退费成功');
-      this.router.navigate( ['/pages/money/order/cancel']);
+      this.back();
     })
   }
 
   statusChange(event){
     this.order.payStatus = event;
+  }
+
+  back() {
+    this._location.back();
   }
 
 

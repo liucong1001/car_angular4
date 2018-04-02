@@ -11,11 +11,9 @@ import {PrintInvoiceComponent} from './print-invoice/print-invoice.component';
 import {PaymentOrderComponent} from './payment-order/payment-order.component';
 import { OrderCancelComponent } from './order-cancel/order-cancel.component';
 import { PrintComponent } from './print/print.component';
-import { PrintSuccessComponent } from './print/print-success/print-success.component';
-import { PrintListComponent } from './print/print-list/print-list.component';
 import { PayAgainComponent } from './pay-again/pay-again.component';
 import { OrderRefundComponent } from './order-cancel/order-refund/order-refund.component';
-
+import { PayedCancelComponent } from './payed-cancel/payed-cancel.component';
 
 const routes: Routes = [{
   path: '',
@@ -33,9 +31,8 @@ const routes: Routes = [{
     {path: 'order/cancel', component: OrderCancelComponent},
     {path: 'order/cancel/refund', component: OrderRefundComponent},
     {path: 'print', component: PrintComponent},
-    {path: 'print/success', component: PrintSuccessComponent},
-    {path: 'billSearch', component: PrintListComponent},
     {path: 'payAgain', component: PayAgainComponent},
+    {path: 'payedCancel', component: PayedCancelComponent},
     ],
 }];
 
@@ -56,8 +53,7 @@ export const routedComponents = [
   PaymentOrderComponent,
   OrderCancelComponent,
   PrintComponent,
-  PrintSuccessComponent,
-  PrintListComponent,
   PayAgainComponent,
-  OrderRefundComponent
+  OrderRefundComponent,
+  PayedCancelComponent
 ];

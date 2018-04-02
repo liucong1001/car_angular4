@@ -1,10 +1,9 @@
-import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, OnChanges, OnInit, SimpleChanges,TemplateRef,ViewChild } from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {TextCell} from '../../../@core/ui/table/cell.text.component';
 import {Column} from '../../../@core/ui/table/table.component';
 import {MenuCell, Menu} from '../../../@core/ui/table/cell.menu.component';
 import {CodemapCell, CustomCell} from '../../../@core/ui/table/cell';
-
 import {Router} from '@angular/router';
 
 @Component({
@@ -35,6 +34,7 @@ export class TradeQueryComponent implements OnInit, OnChanges {
   visibility = 'hidden';
   showFilter = false;
 
+  @ViewChild('billNoCell') private billNoCell: TemplateRef<any>;
   // 列表搜索表单隐藏显示切换
   toggle() {
     this.showFilter = !this.showFilter;
@@ -47,33 +47,34 @@ export class TradeQueryComponent implements OnInit, OnChanges {
 
   // 组件初始华
   ngOnInit(): void {
-  }
-
-  // 列表搜索条件对象
-  filter: any = {};
-  // 列表列定义  preVehicle.preVehicle.labelCode  vehicleType
-  columns: Column[] = [
-    {title: '流水号', titleClass: 'w-10 text-center', cell: new TextCell('archiveNo')} as Column,
-    {title: '车牌号', titleClass: 'w-10 text-center', cell: new TextCell('preVehicle.preVehicle.plateNumber')} as Column,
-    {title: '厂牌型号', titleClass: 'w-10 text-center', cell: new TextCell('preVehicle.preVehicle.labelCode')} as Column,
-    {title: '车辆类型', titleClass: 'w-10 text-center', cell: new CodemapCell('preVehicle.preVehicle.vehicleType','vehicleType')} as Column,
-    {title: '卖家状态', titleClass: 'w-10 text-center', cell: new CodemapCell('prejudication.status','tradeDataStatus')} as Column,
-    {title: '买家状态', titleClass: 'w-10 text-center', cell: new  CodemapCell('transfer.status','tradeDataStatus')} as Column,
-    {title: '商户编号', titleClass: 'w-10 text-center', cell: new TextCell('preVehicle.preVehicle.merchant.codeAndName')} as Column,
-    {title: '资料', titleClass: 'w-15 text-center', cell: new TextCell('name')} as Column,
-    {title: '开票状态', titleClass: 'w-10 text-center', cell: new TextCell('name')} as Column,
-    {title: '发票号', titleClass: 'w-10 text-center', cell: new TextCell('name')} as Column,
-    {title: '入库', titleClass: 'w-10 text-center', cell: new TextCell('name')} as Column,
-    {title: '出库', titleClass: 'w-10 text-center', cell: new TextCell('name')} as Column,
-    {
-      title: '查看', titleClass: 'w-15 text-center', cell: new MenuCell(
+    this.columns = [
+      {title: '流水号', titleClass: 'w-10 text-center', cell: new TextCell('archiveNo')} as Column,
+      {title: '车牌号', titleClass: 'w-10 text-center', cell: new TextCell('preVehicle.preVehicle.plateNumber')} as Column,
+      {title: '厂牌型号', titleClass: 'w-10 text-center', cell: new TextCell('preVehicle.preVehicle.labelCode')} as Column,
+      {title: '车辆类型', titleClass: 'w-10 text-center', cell: new CodemapCell('preVehicle.preVehicle.vehicleType','vehicleType')} as Column,
+      {title: '卖家状态', titleClass: 'w-10 text-center', cell: new CodemapCell('prejudication.status','tradeDataStatus')} as Column,
+      {title: '买家状态', titleClass: 'w-10 text-center', cell: new  CodemapCell('transfer.status','tradeDataStatus')} as Column,
+      {title: '商户编号', titleClass: 'w-10 text-center', cell: new TextCell('preVehicle.preVehicle.merchant.codeAndName')} as Column,
+      {title: '资料', titleClass: 'w-15 text-center', cell: new TextCell('name')} as Column,
+      {title: '开票状态', titleClass: 'w-10 text-center', cell: new TextCell('name')} as Column,
+      {title: '发票号', titleClass: 'w-10 text-center', cell: new CustomCell(this.billNoCell)} as Column,
+      {title: '业务状态', titleClass: 'w-10 text-center', cell: new CodemapCell('business.type','businessType')} as Column,
+      // {title: '出库', titleClass: 'w-10 text-center', cell: new TextCell('name')} as Column,
+      {
+        title: '查看', titleClass: 'w-15 text-center', cell: new MenuCell(
         [
           new Menu('编辑', '', 'edit'),
           new Menu('禁用', '', this.disable),
         ],
         new Menu('查看', '', this.view), 'text-center',
       )} as Column,
-  ];
+    ];
+  }
+
+  // 列表搜索条件对象
+  filter: any = {};
+
+  columns: Column[];
 
   // 列表菜单回调
   view(row: any, drop: any) {

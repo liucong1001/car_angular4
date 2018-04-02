@@ -50,15 +50,14 @@ export class MarketBrandComponent implements OnInit {
         private message: MessageService,
     ) {
         this.route.params.subscribe(p => {
-            if (p.code && p.name) {
-                this.form.setValue(p);
-                this.filter.marketmap = p.code;
-                if (p.code && p.name) {
-                    this.saved = true;
-                }
+            if (p.id) {
+              this.filter['market.id'] = p.id;
             }
         });
     }
+
+  ngOnInit() {
+  }
 
     form: FormGroup = this.fb.group({
         name: ['', [Validators.required]],
@@ -102,8 +101,7 @@ export class MarketBrandComponent implements OnInit {
       */
     filter: any = {};
 
-    ngOnInit() {
-    }
+
 
     closeModal() {
         // this.activeModal.close();

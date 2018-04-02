@@ -25,12 +25,13 @@ export class RefundComponent implements OnInit {
   msg: string;
   billList = [];
   selectBillNo: string;
-
+  needModify:boolean;
   constructor(private tradeService: TradeService, private printService: PrintService, private message: MessageService,
               public router: Router, private bill: BillService) {
   }
 
   ngOnInit() {
+    this.needModify=false;
   }
 
   argNoSearch(event: any) {
@@ -43,14 +44,15 @@ export class RefundComponent implements OnInit {
       this.tradeService.get(this.archivesNo).then(res => {
         this.trade = res;
         this.isGetDate = true;
+        this.printId = res.business.id;
       });
-      this.printService.createBill(this.archivesNo).then(res => {
-        for (var i = 0; i < res.length; i++) {
-          if (res[i].business.businessType == '11') {
-            this.printId = res[i].id;
-          }
-        }
-      });
+      // this.printService.createBill(this.archivesNo).then(res => {
+      //   for (var i = 0; i < res.length; i++) {
+      //     if (res[i].business.businessType == '11') {
+      //       this.printId = res[i].id;
+      //     }
+      //   }
+      // });
       /**
        *step2-
        */
@@ -66,7 +68,7 @@ export class RefundComponent implements OnInit {
    */
   refund() {
     console.log('开始退票', this.archivesNo, this.selectBillNo);
-    this.bill.createBill('21', this.archivesNo, this.selectBillNo).then(res => {
+    this.bill.createBill('21', this.archivesNo, this.selectBillNo,this.needModify).then(res => {
       alert('退票成功！');
     })
   }

@@ -16,12 +16,9 @@
        </div>
      </div>
      <div class="row">
-         <div class="col-md-2">曾经使用过的发票号1{{selectBillNo}}:</div>
+         <div class="col-md-2">曾经使用过的发票号:</div>
          <div class="col-md-8">
             <span *ngFor=" let item of billList">
-              <!--<label ngbButtonLabel class="btn btn-outline-success">-->
-                <!--<input ngbButton type="radio"  value="{{item.id}}"  [(ngModel)]="selectBillNo" name="billNoList"> {{item.billNo}}-->
-              <!--</label>-->
                <label class="custom-control custom-radio">
                   <input type="radio" class="custom-control-input" value="{{item.id}}" [(ngModel)]="selectBillNo" name="billNoList">
                   <span class="custom-control-indicator"></span>
@@ -29,7 +26,6 @@
               </label>
            </span>
          </div>
-
      </div>
    </nb-card-header>
 
