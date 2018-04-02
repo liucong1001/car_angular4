@@ -14,7 +14,7 @@
 <ngx-ys-cardetail
   [car_detail_title]="'车辆信息'"
   [vehicle]="_formGroup"
-  [certificateFormConfig]="certificateFormConfig"
+  [certificateFormConfig]="{formName: '预审录入车辆'}"
 ></ngx-ys-cardetail>
 <div class="float-right">
   <button class="btn btn-primary btn-lg" (click)="onSubmit()" [disabled]="_formGroup.invalid">下一步</button>

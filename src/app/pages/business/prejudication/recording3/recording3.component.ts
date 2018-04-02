@@ -4,8 +4,8 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {LocalstorageService} from '../../../../@core/cache/localstorage.service';
 import {Codeitem} from '../../../../@core/model/system/codeitem';
 import {CodeitemService} from '../../../../@core/data/system/codeitem.service';
-import {Marketphotomap} from '../../../../@core/model/system/market-photo-map';
 import {BusinessFormGroup} from '../../business.form-group';
+import {BusinessTradeForm} from '../../../../@core/model/business/restruct/business.trade.form';
 
 /**
  * 预审录入3--接口与页面的交互逻辑
@@ -20,14 +20,7 @@ import {BusinessFormGroup} from '../../business.form-group';
   styleUrls: ['./recording3.component.scss'],
 })
 export class Recording3Component implements OnInit, OnDestroy {
-  /**
-   * 缓存服务的前缀
-   * 缓存前缀名以业务为单位，一个缓存前缀对应一个业务，一个缓存业务完成则删除该前缀的所有缓存
-   * @type {string}
-   * @private
-   */
-  private _cache_pre = 'business_prejudication_recording_';
-  certificateFormConfig: Marketphotomap;
+  public businessTradeForm: BusinessTradeForm = {};
   useCharacter: Codeitem[];
   vehicleType: Codeitem[];
   vehicleSize: Codeitem[];
@@ -51,14 +44,22 @@ export class Recording3Component implements OnInit, OnDestroy {
    * 页面初始化事件
    */
   ngOnInit() {
-    let maybe_vehicle = this._localstorage.get(this._cache_pre + 'vehicle');
-    if (maybe_vehicle) {
-      this._formGroup.patchValue(maybe_vehicle);
-      let maybe_seller_form = this._localstorage.get(this._cache_pre + 'seller_form');
-      if (maybe_seller_form) {
-        this._formGroup.patchValue({});
-      }
+    /**
+     * 如果有缓存，则从缓存中恢复数据
+     * @type {any | any}
+     */
+    let maybe_businessTradeForm = this._localstorage.get('business_recording_trade_form');
+    if (maybe_businessTradeForm) {
+      this.businessTradeForm = maybe_businessTradeForm as BusinessTradeForm;
     }
+    // let maybe_vehicle = this._localstorage.get(this._cache_pre + 'vehicle');
+    // if (maybe_vehicle) {
+    //   this._formGroup.patchValue(maybe_vehicle);
+    //   let maybe_seller_form = this._localstorage.get(this._cache_pre + 'seller_form');
+    //   if (maybe_seller_form) {
+    //     this._formGroup.patchValue({});
+    //   }
+    // }
     this._codeitem.list('useCharacter').then(res => this.useCharacter = res as Codeitem[]);
     this._codeitem.list('vehicleType').then(res => this.vehicleType = res as Codeitem[]);
     this._codeitem.list('vehicleSize').then(res => this.vehicleSize = res as Codeitem[]);
@@ -67,23 +68,14 @@ export class Recording3Component implements OnInit, OnDestroy {
     // if (maybe_seller_form) {
     //   this._formGroup.patchValue(maybe_seller_form);
     // }
-    /**
-     * 卖家证件类型表单配置
-     * @type {{}}
-     */
-    this.certificateFormConfig = {
-      // certificateCode: '00', // 证件类型代码集 // 只要符合表单就行
-      formName: '预审录入车辆', // 表单名称
-    } as Marketphotomap;
   }
   /**
    * 页面销毁前
    */
   ngOnDestroy() {
-    console.info('exec on destroy.');
-    this._localstorage.set(this._cache_pre + 'vehicle', this._formGroup.value);
-    this._localstorage.set(this._cache_pre + 'vehicle_photos', this._formGroup.get('_photos_').value);
-    this._localstorage.set('dynamic_photos_cardetail', this._cache_pre + 'vehicle_photos');
+    // this._localstorage.set(this._cache_pre + 'vehicle', this._formGroup.value);
+    // this._localstorage.set(this._cache_pre + 'vehicle_photos', this._formGroup.get('_photos_').value);
+    // this._localstorage.set('dynamic_photos_cardetail', this._cache_pre + 'vehicle_photos');
   }
 
   onSubmit() {
