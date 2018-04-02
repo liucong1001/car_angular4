@@ -13,8 +13,8 @@
 </nb-card>
 <div ngForm="_formGroup">
   <ngx-ys-seller-info
-    [merchant]="merchant"
-    [seller]="_formGroup.controls.seller"
+    [merchant]="businessTradeForm.preVehicle.preVehicle.merchant"
+    [seller]="_formGroup.get('seller')"
     [certificateFormConfig]="certificateFormConfig"
   ></ngx-ys-seller-info>
 </div>

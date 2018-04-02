@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {MerchantModel} from '../../../model/business/merchant.model';
 import {Codeitem} from '../../../model/system/codeitem';
 import {ControlContainer, FormBuilder, FormGroup, NgForm} from '@angular/forms';
 import {IdcardService} from '../../../device/idcard.service';
@@ -7,6 +6,7 @@ import {MessageService} from '../../../utils/message.service';
 import {CodeitemService} from '../../../data/system/codeitem.service';
 import {ErrorMessage} from '../../valid-error/valid-error.component';
 import {Marketphotomap} from '../../../model/system/market-photo-map';
+import {Merchant} from '../../../model/business/restruct/business.trade.form';
 
 @Component({
   selector: 'ngx-ys-seller-info',
@@ -27,20 +27,20 @@ export class SellerInfoComponent implements OnInit {
   /**
    * 当前商户实例
    */
-  @Input() merchant: MerchantModel;
+  @Input() merchant: Merchant;
   /**
    * 证件类型清单
    */
   @Input() certType?: Codeitem[];
   /**
-   * 卖家表单
+   * 卖家表单,不包含照片等字段
    */
   @Input() seller: FormGroup;
   /**
    * 错误实例
    * @type {{}}
    */
-  @Input() errors?: object = {
+  @Input() errors? = {
     certType: [
       new ErrorMessage('required', '必须填写证件类型！'),
     ],
@@ -63,12 +63,8 @@ export class SellerInfoComponent implements OnInit {
     address: [
       new ErrorMessage('required', '必须填写地址！'),
     ],
-    sellerAddress: [
-      new ErrorMessage('required', '必须填写地址！'),
-    ],
   };
   @Input() showCheshang = true;
-  public autoinput_cheshang_source_url = '/rest/merchant/filing/deal/';
   /**
    * 当前选择的车商
    * @type {string}
@@ -108,7 +104,6 @@ export class SellerInfoComponent implements OnInit {
      * 默认不用填写委托人
      */
     this.seller.controls.Trustee.disable();
-    this.autoinput_cheshang_source_url += this.merchant.id + '/';
     /**
      * 设置好证件类型
      */
@@ -121,6 +116,7 @@ export class SellerInfoComponent implements OnInit {
    * 初始化照片动态表单
    */
   certTypeSelecteFunc(event) {
+    console.info('照片动态表单', event);
     this.certificateFormConfig.certificateCode = event;
     let sellerPhotos = this.seller.get('_photos_') as FormGroup;
     if (sellerPhotos) {

@@ -64,7 +64,6 @@ export class Trecording2Component implements OnInit {
      */
     this.sellerCertificateFormConfig = {
       certificateCode: '00', // 证件类型代码集
-      business: '02', //  01 预审  02 过户
       formName: '过户录入卖家', // 表单名称
     } as Marketphotomap;
     /**
@@ -73,12 +72,10 @@ export class Trecording2Component implements OnInit {
      */
     this.buyerCertificateFormConfig = {
       certificateCode: '00', // 证件类型代码集
-      business: '02', //  01 预审  02 过户
       formName: '过户录入买家', // 表单名称
     } as Marketphotomap;
     this.vehicleTransferCertificateFormConfig = {
       certificateCode: '00', // 证件类型代码集
-      business: '02', //  01 预审  02 过户
       formName: '过户录入车辆', // 表单名称
     } as Marketphotomap;
     /**

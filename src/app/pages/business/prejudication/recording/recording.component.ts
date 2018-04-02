@@ -28,12 +28,6 @@ import {
   styleUrls: ['./recording.component.scss'],
 })
 export class RecordingComponent implements OnInit, OnDestroy {
-  /**
-   * 缓存服务的前缀
-   * 缓存前缀名以业务为单位，一个缓存前缀对应一个业务，一个缓存业务完成则删除该前缀的所有缓存
-   * @type {string}
-   * @private
-   */
   public businessTradeForm: BusinessTradeForm = {preVehicle: {preVehicle: {filingInfo: {phone: ''}, merchant: {}, plateNumber: ''}}};
   public vehicleLsnumPrefixDefault = '鄂A';
   public filingInfoItems: FilingInfo[] = [];
@@ -68,9 +62,6 @@ export class RecordingComponent implements OnInit, OnDestroy {
    * 页面初始化事件
    */
   ngOnInit() {
-    /**
-     * 默认车牌前缀
-     */
     let maybe_businessTradeForm = this._localstorage.get('business_recording_trade_form');
     if (maybe_businessTradeForm) {
       this.businessTradeForm = maybe_businessTradeForm as BusinessTradeForm;
