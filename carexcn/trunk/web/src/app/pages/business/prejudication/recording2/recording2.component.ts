@@ -4,13 +4,8 @@ import {IdcardService} from '../../../../@core/device/idcard.service';
 import {MessageService} from '../../../../@core/utils/message.service';
 import {MerchantModel} from '../../../../@core/model/business/merchant.model';
 import {LocalstorageService} from '../../../../@core/cache/localstorage.service';
-import {CodeService} from '../../../../@core/data/system/code.service';
-import {CodeitemService} from '../../../../@core/data/system/codeitem.service';
 import {Codeitem} from '../../../../@core/model/system/codeitem';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {MarketService} from '../../../../@core/data/system/market.service';
-import {FilingInfoModel} from '../../../../@core/model/business/filing.info.model';
-import {UserService} from '../../../../@core/data/users.service';
 import {Marketphotomap} from '../../../../@core/model/system/market-photo-map';
 import {BusinessFormGroup} from '../../business.form-group';
 import {BusinessTradeForm, Seller} from '../../../../@core/model/business/restruct/business.trade.form';
@@ -93,7 +88,6 @@ export class Recording2Component implements OnInit, OnDestroy {
    */
   onSubmit() {
     // [disabled]="_formGroup.invalid"
-    console.info('last', this._formGroup.value);
     this._router.navigateByUrl('/pages/business/prejudication/recording3');
   }
 }
