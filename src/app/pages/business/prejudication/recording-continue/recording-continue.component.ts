@@ -12,6 +12,7 @@ import {FilingInfoModel} from '../../../../@core/model/business/filing.info.mode
 import {Marketphotomap} from '../../../../@core/model/system/market-photo-map';
 import {FileSystemService} from '../../../../@core/data/system/file-system.service';
 import {BusinessFormGroup} from '../../business.form-group';
+import {PreVehicle} from '../../../../@core/model/business/restruct/business.trade.form';
 
 /**
  * 预审录入 继续录入/批量录入 --接口与页面的交互逻辑
@@ -72,8 +73,8 @@ export class RecordingContinueComponent implements OnInit {
   ngOnInit(): void {
     this._route.params.subscribe(param => {
       // this.trade.prejudication.business.archiveNo
-      if (param.archiveNo) {
-        this.archiveNo = param.archiveNo;
+      if (param.batchNo) {
+        this.archiveNo = param.batchNo;
       }
     });
     /**
@@ -122,24 +123,22 @@ export class RecordingContinueComponent implements OnInit {
     preVehicle.filingInfo = this.trade.preVehicle.preVehicle.filingInfo as FilingInfoModel;
     console.info(this._formGroup.get('vehicle').value);
     console.info(this._formGroup.get('vehicle').get('_photos_').value);
-    this._prejudicationService.addCar(this.trade.prejudication.id, {
-      photos: this._file.filterPhotosValue(this._formGroup.get('vehicle').get('_photos_').value),
-      preVehicle: preVehicle,
-      // newCarsPrice: '',
-    } as PreVehicleForm).then(res => {
-      console.info(res);
-      this._message.info('操作提示', '车辆添加成功！');
-      this._prejudicationService.carList(this.trade.prejudication.business.archiveNo).then(r => {
-        console.info('添加车辆成功后，的返回 r', r);
-        this.tradeList = r as [TradeForm];
-        console.info('添加车辆成功后，的交易详情 this.tradeList', this.tradeList);
-      }).catch(e => {
-        console.info(e);
-      });
-    }).catch(e => {
-      console.info(e);
-      this._message.error('操作失败', e.message);
-    });
+    // this._prejudicationService.addCar(
+    //   this.trade.prejudication.id,
+    //   this. as PreVehicle).then(res => {
+    //   console.info(res);
+    //   this._message.info('操作提示', '车辆添加成功！');
+    //   this._prejudicationService.carList(this.trade.prejudication.business.archiveNo).then(r => {
+    //     console.info('添加车辆成功后，的返回 r', r);
+    //     this.tradeList = r as [TradeForm];
+    //     console.info('添加车辆成功后，的交易详情 this.tradeList', this.tradeList);
+    //   }).catch(e => {
+    //     console.info(e);
+    //   });
+    // }).catch(e => {
+    //   console.info(e);
+    //   this._message.error('操作失败', e.message);
+    // });
     // this._router.navigateByUrl('/pages/business/prejudication/recording-last');
   }
   reBack() {

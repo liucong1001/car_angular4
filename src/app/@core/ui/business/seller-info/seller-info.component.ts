@@ -6,7 +6,8 @@ import {MessageService} from '../../../utils/message.service';
 import {CodeitemService} from '../../../data/system/codeitem.service';
 import {ErrorMessage} from '../../valid-error/valid-error.component';
 import {Marketphotomap} from '../../../model/system/market-photo-map';
-import {Merchant} from '../../../model/business/restruct/business.trade.form';
+import {BusinessTradeForm, Merchant} from '../../../model/business/restruct/business.trade.form';
+import {LocalstorageService} from '../../../cache/localstorage.service';
 
 @Component({
   selector: 'ngx-ys-seller-info',
@@ -86,6 +87,7 @@ export class SellerInfoComponent implements OnInit {
     private message: MessageService,
     private fb: FormBuilder,
     private _codeitem: CodeitemService,
+    private _localstorage: LocalstorageService,
   ) {}
 
   /**
@@ -100,11 +102,15 @@ export class SellerInfoComponent implements OnInit {
       this.seller.controls.Trustee.disable();
     }
   }
-
+  businessTradeForm: BusinessTradeForm;
   /**
    * 页面初始化事件
    */
   ngOnInit() {
+    let maybe_businessTradeForm = this._localstorage.get('business_recording_trade_form');
+    if (maybe_businessTradeForm) {
+      this.businessTradeForm = maybe_businessTradeForm as BusinessTradeForm;
+    }
     /**
      * 重新定义 狭义的 卖家，让照片产生在广义的卖家里，表单可直接使用
      */

@@ -6,6 +6,8 @@ import {FilingInfoModel} from '../../../model/business/filing.info.model';
 import {CodeitemService} from '../../../data/system/codeitem.service';
 import {ErrorMessage} from '../../valid-error/valid-error.component';
 import {Marketphotomap} from '../../../model/system/market-photo-map';
+import {BusinessTradeForm} from '../../../model/business/restruct/business.trade.form';
+import {LocalstorageService} from '../../../cache/localstorage.service';
 
 @Component({
   selector: 'ngx-ys-cardetail',
@@ -136,9 +138,18 @@ export class CardetailComponent implements OnInit {
     private message: MessageService,
     private fb: FormBuilder,
     private _codeitem: CodeitemService,
+    private _localstorage: LocalstorageService,
   ) { }
 
+  businessTradeForm: BusinessTradeForm;
+  /**
+   * 页面初始化事件
+   */
   ngOnInit() {
+    let maybe_businessTradeForm = this._localstorage.get('business_recording_trade_form');
+    if (maybe_businessTradeForm) {
+      this.businessTradeForm = maybe_businessTradeForm as BusinessTradeForm;
+    }
     /**
      * 重新定义 狭义的 卖家，让照片产生在广义的卖家里，表单可直接使用
      */

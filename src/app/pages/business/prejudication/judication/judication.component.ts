@@ -51,8 +51,8 @@ export class JudicationComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this._route.params.subscribe(param => {
-      if (param.archiveNo) {
-        this.archiveNo = param.archiveNo;
+      if (param.batchNo) {
+        this.archiveNo = param.batchNo;
       }
     });
     if (! this.archiveNo) {
