@@ -142,8 +142,6 @@ export class PaymentComponent implements OnInit, OnChanges {
   }
 
   getArcFee(data,type,arcNoType){
-
-
     this.paymentService.getArcFee(data,type,arcNoType).then(result=>{
       for( var i in result){
         this.payOrderItem.items.push({
@@ -169,7 +167,6 @@ export class PaymentComponent implements OnInit, OnChanges {
       this.feeSum();
       console.log('列表创建数据',this.list);
       console.log('表单对象', this.payOrder);
-
     }).catch(err=>{
       this.message.error('查询失败',err.message);
     })

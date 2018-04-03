@@ -1,6 +1,6 @@
 <nb-card>
   <nb-card-header class="d-flex">
-    <div class="p-2 mr-auto">订单退费列表</div>
+    <div class="p-2 mr-auto">订单退费列表(流水号退费)</div>
     <div class="p2">
       <button type="button" class="btn btn-sm btn-outline-success" (click)="toggle()" [ngClass]="{'active':showFilter}" ><i class="ion-funnel"></i></button>
     </div>
@@ -30,4 +30,4 @@
   </nb-card-body>
 </nb-card>
 <ng-template #createTimeCell  let-data let-cell="cell"><span >{{data.createTime | date:"yyyy-MM-dd HH:mm:ss"}}</span></ng-template>
-<ng-template #arcNoCell  let-data let-cell="cell"><span >{{data.businessObjectPayment[0].archiveNo}}</span></ng-template>
+<ng-template #arcNoCell  let-data let-cell="cell"><span >{{data.businessObjectPayment[0]?.archiveNo}}</span></ng-template>

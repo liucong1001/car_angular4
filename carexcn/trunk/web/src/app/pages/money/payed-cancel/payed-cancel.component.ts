@@ -45,7 +45,7 @@ export class PayedCancelComponent implements OnInit {
       {title: '创建时间', titleClass: '', cell: new CustomCell(this.createTimeCell)} as Column ,
       {title: '操作', titleClass: 'w-25 text-center', cell: new MenuCell(
         [
-          new Menu('编辑', '', this.edit.bind(this)),
+          new Menu('退费', '', this.billRefund.bind(this)),
         ],
         new Menu('更多', '', this.view), 'text-center',
       )} as Column,
@@ -59,8 +59,13 @@ export class PayedCancelComponent implements OnInit {
   // 列表菜单回调
   view(row: any, drop: any) {
   }
-  edit(row: any) {
-    this.router.navigate( ['/pages/system/market/market/edit', { id: row.id ,area:row.area}]);
+
+  /**
+   * 发票退费
+   * @param row
+   */
+  billRefund(row: any) {
+    this.router.navigate( ['/pages/money/payedCancel/billRefund', { id: row.id }]);
   }
 
 
