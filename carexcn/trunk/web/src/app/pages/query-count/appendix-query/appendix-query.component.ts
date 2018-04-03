@@ -136,25 +136,25 @@ export class AppendixQueryComponent implements OnInit, OnChanges {
   // achieveEndDate:string ;
   // examineStartDate:string ;
   // examineEndDate:string ;
-// 成交起始日期
+// 过户审核起始日
   getAchieveStartDate($event) {
     // + ' 00:00:00'
-    this.filter.achieveStartDate = $event ;
+    this.filter.transferDateStart = $event ;
   }
 
-  // 成交完成日期
+  // 过户审核截止日
   getAchieveEndDate($event) {
-    this.filter.achieveEndDate = $event ;
+    this.filter.transferDateEnd = $event ;
   }
 
-  // 入库审核开始日期
+  // 预审审核起始日
   getExamineStartDate($event) {
-    this.filter.examineStartDate = $event ;
+    this.filter.preDateStart = $event ;
   }
 
-  // 入库截止日期
+  // 预审审核截止日
   getExamineEndDate($event) {
-    this.filter.examineEndDate = $event ;
+    this.filter.preDateEnd = $event ;
   }
 
 

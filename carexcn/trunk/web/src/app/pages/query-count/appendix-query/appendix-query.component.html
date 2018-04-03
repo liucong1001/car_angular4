@@ -37,53 +37,53 @@
         <h3>{{filter.achieveStartDate }}</h3>
         <div class="col-sm-2">
           <div class="form-group form-group-sm">
-             <ngx-ys-calendar [placeholder]="'成交起始日期'"  [date]="filter.achieveStartDate"    (_calendarValue)="getAchieveStartDate($event)"  ></ngx-ys-calendar>
+             <ngx-ys-calendar [placeholder]="'过户审核起始日'"  [date]="filter.transferDateStart"    (_calendarValue)="getAchieveStartDate($event)"  ></ngx-ys-calendar>
           </div>
         </div>
         <div class="col-sm-2">
           <div class="form-group form-group-sm">
-            <ngx-ys-calendar [placeholder]="'成交截止日期'" [date]="filter.achieveEndDate"  (_calendarValue)="getAchieveEndDate($event)" ></ngx-ys-calendar>
+            <ngx-ys-calendar [placeholder]="'过户审核截止日'" [date]="filter.transferDateEnd"  (_calendarValue)="getAchieveEndDate($event)" ></ngx-ys-calendar>
           </div>
         </div>
         <div class="col-sm-2">
           <div class="form-group form-group-sm">
-            <ngx-ys-calendar [placeholder]="'入库审核起始日期'" [date]="filter.examineStartDate"  (_calendarValue)="getExamineStartDate($event)"  ></ngx-ys-calendar>
+            <ngx-ys-calendar [placeholder]="'入库审核起始日期'" [date]="filter.preDateStart"  (_calendarValue)="getExamineStartDate($event)"  ></ngx-ys-calendar>
           </div>
         </div>
         <div class="col-sm-2">
           <div class="form-group form-group-sm">
-            <ngx-ys-calendar [placeholder]="'入库审核截止日期'"  [date]="filter.examineEndDate"  (_calendarValue)="getExamineEndDate($event)"  ></ngx-ys-calendar>
+            <ngx-ys-calendar [placeholder]="'入库审核截止日期'"  [date]="filter.preDateEnd"  (_calendarValue)="getExamineEndDate($event)"  ></ngx-ys-calendar>
           </div>
         </div>
         <div class="col-sm-2">
           <div class="form-group form-group-sm">
-            <input class="form-control" [(ngModel)]="filter.inReviewUser" name="code" type="inReviewUser" placeholder="预审录入员" />
+            <input class="form-control" [(ngModel)]="filter.preInputer" name="preInputer" type="text" placeholder="预审录入员" />
           </div>
         </div>
         <div class="col-sm-2">
           <div class="form-group form-group-sm">
-            <input class="form-control" [(ngModel)]="filter.outReviewUser" name="outReviewUser" type="text" placeholder="预审审核员" />
+            <input class="form-control" [(ngModel)]="filter.preReviewer" name="preReviewer" type="text" placeholder="预审审核员" />
           </div>
         </div>
 
         <div class="col-sm-2">
           <div class="form-group form-group-sm">
-            <input class="form-control" [(ngModel)]="filter.inExamineUser" name="inExamineUser" type="text" placeholder="过户录入员" />
+            <input class="form-control" [(ngModel)]="filter.transferInputer" name="transferInputer" type="text" placeholder="过户录入员" />
           </div>
         </div>
         <div class="col-sm-2">
           <div class="form-group form-group-sm">
-            <input class="form-control" [(ngModel)]="filter.outExamineUser" name="outExamineUser" type="text" placeholder="过户审核员" />
+            <input class="form-control" [(ngModel)]="filter.transferReviewer" name="transferReviewer" type="text" placeholder="过户审核员" />
           </div>
         </div>
         <div class="col-sm-2">
           <div class="form-group form-group-sm">
-            <input class="form-control" [(ngModel)]="filter.code" name="code" type="text" placeholder="商户编号" />
+            <input class="form-control" [(ngModel)]="filter.preMerchantNo" name="preMerchantNo" type="text" placeholder="商户编号" />
           </div>
         </div>
         <div class="col-sm-2">
           <div class="form-group form-group-sm">
-            <input class="form-control" [(ngModel)]="filter.name" name="name" type="text" placeholder="商户名称" />
+            <input class="form-control" [(ngModel)]="filter.preMerchantName" name="preMerchantName" type="text" placeholder="商户名称" />
           </div>
         </div>
         <div class="col-sm-3">
@@ -213,7 +213,7 @@
 
       </div>
     </form>
-    <ngx-table #codeList [url]="'/rest/business/trade/appendix'" [columns]="columns" [filter]="filter"></ngx-table>
+    <ngx-table #codeList [url]="'/rest/siness/trade/pager'" [columns]="columns" [filter]="filter"></ngx-table>
   </nb-card-body>
 </nb-card>
 <!-- 卖方审核头像 -->
