@@ -1,0 +1,39 @@
+<nb-card>
+  <nb-card-header class="d-flex">
+    <div class="p-2 mr-auto">发票退费</div>
+    <div class="p2">
+      <button class="btn btn-secondary btn-sm" (click)="back()">返回</button>
+    </div>
+  </nb-card-header>
+    <nb-card-body>
+     <div class="row">
+         <div class="col-md-2">流水号</div><div class="col-md-3">{{data?.businessObjectPayment[0].archiveNo}}</div>
+     </div>
+      <div class="card-body">
+        <div class="feeList  float-left" *ngFor=" let item of feeList ">
+          <div class="feeLabel "><label> {{item.name}}: </label></div>
+          <!--固定-->
+          <div *ngIf="item.priceType=='01'" ng-init="item.shouldAmount=item.money" class="feeItem">
+            {{item.money}}
+          </div>
+          <!--可选-->
+          <div *ngIf="item.priceType=='02'" class="feeItem">
+            <!--{{item.money}}-->
+            <select name="" id="" [(ngModel)]="item.shouldAmount" class="custom-select "
+                    (ngModelChange)="feeSum($event)">
+              <option value="null" selected>--请选择费用--</option>
+              <option [value]="i" *ngFor=" let i of item.money ">{{i}}</option>
+            </select>
+          </div>
+          <!--计算-->
+          <div *ngIf="item.priceType=='03'" ng-init="item.shouldAmount=item.money" class="feeItem">
+            <u> {{item.money}}</u>
+          </div>
+          <!--手填-->
+          <div *ngIf="item.priceType=='04'" class="feeItem">
+            <input type="text" [(ngModel)]="item.shouldAmount" class=" form-control-sm">
+          </div>
+        </div>
+      </div>
+    </nb-card-body>
+</nb-card>

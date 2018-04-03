@@ -6,7 +6,7 @@
     <div class="row">
       <div class="col-sm-4">
         <div class="form-group form-group-sm">
-          <a href="" (click)="banlance('sales-rank')">二手车销售排行</a>
+          <a [routerLink]="'sales-rank'" class="">二手车销售排行</a>
         </div>
       </div>
       <div class="col-sm-4">
@@ -36,10 +36,9 @@
       </div>
       <div class="col-sm-4">
         <div class="form-group form-group-sm">
-          <a href="" (click)="banlance('business-report')">商务部报表导出</a>
+          <a [routerLink]="'business-report'" class="">商务部报表导出</a>
         </div>
       </div>
-
     </div>
   </nb-card-body>
 </nb-card>

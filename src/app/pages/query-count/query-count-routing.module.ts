@@ -17,6 +17,7 @@ import {VehicleDaytradeComponent} from './report-manage/vehicle-daytrade/vehicle
 import { SeeMessageComponent } from './trade-query/see-message/see-message.component';
 import {TradeDetailsComponent} from './trades-query/trade-details/trade-details.component';
 import { CarDetailComponent } from './trades-query/car-detail/car-detail.component';
+import { BusinessReportComponent } from './report-manage/business-report/business-report.component';
 
 const routes: Routes = [{
   path: '',
@@ -35,6 +36,7 @@ const routes: Routes = [{
     {path: 'report-manage/year-trade', component: YearTradeComponent},
     {path: 'report-manage/day-trade', component: DayTradeComponent},
     {path: 'report-manage/vehicle-daytrade', component: VehicleDaytradeComponent},
+    {path: 'report-manage/business-report', component: BusinessReportComponent},
     {path: 'performance-check', component: PerformanceCheckComponent},
     {path: 'appendix-query', component: AppendixQueryComponent},
     {path: 'area-query', component: AreaQueryComponent},
@@ -64,5 +66,6 @@ export const routedComponents = [
   SeeMessageComponent,
   TradeDetailsComponent,
   CarDetailComponent,
+  BusinessReportComponent
 ];
 

@@ -59,8 +59,13 @@ export class BusinessObjectPayment {
    * 完成状态
    */
   public finishType?:string;
+  /**
+   * 退票业务对象里面才有这个属性
+   */
+  public paymentInfo?:BusinessObjectPaymentInfo;
 
 }
+
 //缴费订单---单条缴费对象
 export  class  PayOrderItemForm{
   /**

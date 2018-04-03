@@ -14,8 +14,7 @@ export class ReportManageComponent implements OnInit {
   }
   /*跳转*/
   banlance(report: string) {
-    this.router.navigateByUrl('/pages/query-count/report-manage/' + report);
-    return false;
+    this.router.navigate(['/pages/query-count/report-manage/'+report]);
   }
 
 }
