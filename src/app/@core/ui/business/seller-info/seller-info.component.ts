@@ -33,7 +33,12 @@ export class SellerInfoComponent implements OnInit {
    */
   @Input() certType?: Codeitem[];
   /**
-   * 卖家表单,不包含照片等字段
+   * 卖家表单,包含照片等字段
+   */
+  @Input() sellerObj: FormGroup;
+  /**
+   * 卖家表单,不包含照片
+   * 后期删除该属性，平滑过度属性
    */
   @Input() seller: FormGroup;
   /**
@@ -101,6 +106,13 @@ export class SellerInfoComponent implements OnInit {
    */
   ngOnInit() {
     /**
+     * 重新定义 狭义的 卖家，让照片产生在广义的卖家里，表单可直接使用
+     */
+    if (this.sellerObj && !this.seller) {
+      this.seller = this.sellerObj.get('seller') as FormGroup;
+      console.info('sellerObj', this.sellerObj);
+    }
+    /**
      * 默认不用填写委托人
      */
     this.seller.controls.Trustee.disable();
@@ -110,7 +122,6 @@ export class SellerInfoComponent implements OnInit {
     if (! this.certType) {
       this._codeitem.list('certType').then(res => this.certType = res as Codeitem[]);
     }
-    console.info('form seller.value', this.seller.value);
     this.certTypeSelecteFunc(this.seller.controls.certType.value);
   }
   /**

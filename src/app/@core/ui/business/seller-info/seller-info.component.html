@@ -1,5 +1,5 @@
 <ngx-ys-photo-detail #photoDetailTemplate></ngx-ys-photo-detail>
-<nb-card>
+<nb-card *ngIf="seller">
   <nb-card-header>
     <div class="cameras-card-header">
       <span class="cameras-card-title">卖方信息</span>
@@ -44,7 +44,7 @@
     </div>
     <!-- TODO: 修改此处，把选择证件类型之后，的动态组件相关操作都移动到动态组件当中去，由动态组件完成该操作 -->
     <ngx-ys-dynamic-photo-form
-      [photos]="seller.get('photos')"
+      [photos]="sellerObj.get('photos')"
       [certificateFormConfig]="certificateFormConfig"
       [data_localStrong_name]="'dynamic_photos_seller_info'"
       [btn_show]="btn_show"
@@ -55,7 +55,7 @@
         <input type="text" placeholder=""
                ngxInputWithPhoto
                [iwp_photoDetailTmp]="photoDetailTemplate"
-               [iwp_photos_url]="seller.get('photos').value"
+               [iwp_photos_url]="sellerObj.get('photos').value"
                [iwp_certType]="seller.value.certType"
                [iwp_formName]="'record.sellerForm'"
                class="form-control" formControlName="name"
@@ -76,7 +76,7 @@
         <input type="text" placeholder="" class="form-control" formControlName="certCode"
                ngxInputWithPhoto
                [iwp_photoDetailTmp]="photoDetailTemplate"
-               [iwp_photos_url]="seller.get('photos').value"
+               [iwp_photos_url]="sellerObj.get('photos').value"
                [iwp_certType]="seller.value.certType"
                [iwp_formName]="'record.sellerForm'"
                [ngClass]="{'form-control-danger':seller.get('certCode').invalid && seller.get('certCode').touched}"/>
@@ -87,7 +87,7 @@
         <input type="text" placeholder="" class="form-control" formControlName="endDate"
                ngxInputWithPhoto
                [iwp_photoDetailTmp]="photoDetailTemplate"
-               [iwp_photos_url]="seller.get('photos').value"
+               [iwp_photos_url]="sellerObj.get('photos').value"
                [iwp_certType]="seller.value.certType"
                [iwp_formName]="'record.sellerForm'"
                [ngClass]="{'form-control-danger':seller.get('endDate').invalid && seller.get('endDate').touched}"/>
@@ -100,7 +100,7 @@
         <input type="text" placeholder="" class="form-control" formControlName="address"
                ngxInputWithPhoto
                [iwp_photoDetailTmp]="photoDetailTemplate"
-               [iwp_photos_url]="seller.get('photos').value"
+               [iwp_photos_url]="sellerObj.get('photos').value"
                [iwp_certType]="seller.value.certType"
                [iwp_formName]="'record.sellerForm'"
                [ngClass]="{'form-control-danger':seller.get('address').invalid && seller.get('address').touched}"/>

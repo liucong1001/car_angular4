@@ -68,7 +68,7 @@ export class RecordingComponent implements OnInit, OnDestroy {
     }
     if (this.businessTradeForm.preVehicle.preVehicle.merchant.id) {
       this._filingService.agency(this.businessTradeForm.preVehicle.preVehicle.merchant.id).then(res => {
-        console.info('res', res);
+        // console.info('res', res);
         this.filingInfoItems = res as FilingInfo[];
       });
     }
