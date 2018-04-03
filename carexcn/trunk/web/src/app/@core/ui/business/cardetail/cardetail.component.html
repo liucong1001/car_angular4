@@ -6,7 +6,7 @@
   </nb-card-header>
   <nb-card-body [formGroup]="vehicle">
     <ngx-ys-dynamic-photo-form *ngIf="certificateFormConfig"
-      [photos]="vehicle.get('_photos_')"
+      [photos]="vehicleObj.get('photos')"
       [certificateFormConfig]="certificateFormConfig"
       [data_localStrong_name]="'dynamic_photos_cardetail'"
       [btn_show]="btn_show"
@@ -14,7 +14,7 @@
     <div class="input-group">
       <div class="input-group">
         <span class="input-group-addon">车牌号</span>
-        <input type="text" placeholder="" class="form-control" formControlName="plateNumber"
+        <input type="text" placeholder="" class="form-control" formControlName="plateNumber" [readonly]="plateNumberReadonly"
                [ngClass]="{'form-control-danger':vehicle.get('plateNumber').invalid && vehicle.get('plateNumber').touched}"/>
         <ngx-valid-error [errors]="errors.plateNumber" [control]="vehicle.get('plateNumber')"></ngx-valid-error>
       </div>

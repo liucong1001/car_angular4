@@ -2,10 +2,8 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {LocalstorageService} from '../../../../@core/cache/localstorage.service';
-import {Codeitem} from '../../../../@core/model/system/codeitem';
-import {CodeitemService} from '../../../../@core/data/system/codeitem.service';
 import {BusinessFormGroup} from '../../business.form-group';
-import {BusinessTradeForm} from '../../../../@core/model/business/restruct/business.trade.form';
+import {BusinessTradeForm, PreVehicle} from '../../../../@core/model/business/restruct/business.trade.form';
 
 /**
  * 预审录入3--接口与页面的交互逻辑
@@ -21,10 +19,10 @@ import {BusinessTradeForm} from '../../../../@core/model/business/restruct/busin
 })
 export class Recording3Component implements OnInit, OnDestroy {
   public businessTradeForm: BusinessTradeForm = {};
-  useCharacter: Codeitem[];
-  vehicleType: Codeitem[];
-  vehicleSize: Codeitem[];
-  public _formGroup: FormGroup = this._businessFormGroup.vehicleAndData;
+  public _formGroup: FormGroup = this._formBuilder.group({
+    preVehicle: this._businessFormGroup.vehicleAndData,
+    photos: this._formBuilder.group({}),
+  });
 
   /**
    * 构造函数
@@ -37,7 +35,6 @@ export class Recording3Component implements OnInit, OnDestroy {
     private _formBuilder: FormBuilder,
     public _businessFormGroup: BusinessFormGroup,
     private _localstorage: LocalstorageService,
-    private _codeitem: CodeitemService,
   ) {}
 
   /**
@@ -52,34 +49,38 @@ export class Recording3Component implements OnInit, OnDestroy {
     if (maybe_businessTradeForm) {
       this.businessTradeForm = maybe_businessTradeForm as BusinessTradeForm;
     }
-    // let maybe_vehicle = this._localstorage.get(this._cache_pre + 'vehicle');
-    // if (maybe_vehicle) {
-    //   this._formGroup.patchValue(maybe_vehicle);
-    //   let maybe_seller_form = this._localstorage.get(this._cache_pre + 'seller_form');
-    //   if (maybe_seller_form) {
-    //     this._formGroup.patchValue({});
-    //   }
-    // }
-    this._codeitem.list('useCharacter').then(res => this.useCharacter = res as Codeitem[]);
-    this._codeitem.list('vehicleType').then(res => this.vehicleType = res as Codeitem[]);
-    this._codeitem.list('vehicleSize').then(res => this.vehicleSize = res as Codeitem[]);
-
-    // let maybe_seller_form = this._localstorage.get('seller_form');
-    // if (maybe_seller_form) {
-    //   this._formGroup.patchValue(maybe_seller_form);
-    // }
+    if (this.businessTradeForm.preVehicle.preVehicle) {
+      this._formGroup.patchValue(this.businessTradeForm.preVehicle);
+    }
   }
+
   /**
    * 页面销毁前
    */
   ngOnDestroy() {
-    // this._localstorage.set(this._cache_pre + 'vehicle', this._formGroup.value);
-    // this._localstorage.set(this._cache_pre + 'vehicle_photos', this._formGroup.get('_photos_').value);
-    // this._localstorage.set('dynamic_photos_cardetail', this._cache_pre + 'vehicle_photos');
+    this.businessTradeForm.preVehicle = this._formGroup.value as PreVehicle;
+    let maybe_businessTradeForm = this._localstorage.get('business_recording_trade_form');
+    if (maybe_businessTradeForm) {
+      let tmp = maybe_businessTradeForm as BusinessTradeForm;
+      this.businessTradeForm.preVehicle.preVehicle.filingInfo = tmp.preVehicle.preVehicle.filingInfo;
+      this.businessTradeForm.preVehicle.preVehicle.merchant = tmp.preVehicle.preVehicle.merchant;
+      this.businessTradeForm.preVehicle.preVehicle.plateNumber = tmp.preVehicle.preVehicle.plateNumber;
+    }
+    this._localstorage.set('business_recording_trade_form', this.businessTradeForm);
   }
 
   onSubmit() {
     // this.getFormValidationErrors(this._formGroup);
     this._router.navigateByUrl('/pages/business/prejudication/recording4');
+    // console.info('value', this._formGroup.value);
+    // this.businessTradeForm.preVehicle = this._formGroup.value as PreVehicle;
+    // let maybe_businessTradeForm = this._localstorage.get('business_recording_trade_form');
+    // if (maybe_businessTradeForm) {
+    //   let tmp = maybe_businessTradeForm as BusinessTradeForm;
+    //   this.businessTradeForm.preVehicle.preVehicle.filingInfo = tmp.preVehicle.preVehicle.filingInfo;
+    //   this.businessTradeForm.preVehicle.preVehicle.merchant = tmp.preVehicle.preVehicle.merchant;
+    //   this.businessTradeForm.preVehicle.preVehicle.plateNumber = tmp.preVehicle.preVehicle.plateNumber;
+    // }
+    // console.info('value', this.businessTradeForm);
   }
 }

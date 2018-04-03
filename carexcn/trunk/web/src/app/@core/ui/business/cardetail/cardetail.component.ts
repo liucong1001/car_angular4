@@ -19,7 +19,16 @@ export class CardetailComponent implements OnInit {
    */
   @Input() btn_show? = true;
   /**
-   * 车辆表单
+   * 车牌号只读
+   * @type {boolean}
+   */
+  @Input() plateNumberReadonly? = true;
+  /**
+   * 车辆对象，包含照片
+   */
+  @Input() vehicleObj: FormGroup;
+  /**
+   * 车辆表单，不包含照片，后期不再接收传入此字段
    */
   @Input() vehicle: FormGroup;
   /**
@@ -30,7 +39,7 @@ export class CardetailComponent implements OnInit {
    * 错误实例
    * @type {{error}}
    */
-  @Input() errors?: object = {
+  @Input() errors = {
     brandModel: [
       new ErrorMessage('required', '必须填写厂牌型号！'),
     ],
@@ -130,6 +139,15 @@ export class CardetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    /**
+     * 重新定义 狭义的 卖家，让照片产生在广义的卖家里，表单可直接使用
+     */
+    if (this.vehicleObj && !this.vehicle) {
+      // 这里暂时写了预审车辆，后期根据过户车辆的实际情况(暂时没做到那里)，灵活判断
+      this.vehicle = this.vehicleObj.get('preVehicle') as FormGroup;
+      console.info('vehicleObj.value', this.vehicleObj.value);
+      console.info('vehicle', this.vehicle.value);
+    }
     if (! this.useCharacter) {
       this._codeitem.list('useCharacter').then(res => this.useCharacter = res as Codeitem[]);
     }
@@ -152,7 +170,7 @@ export class CardetailComponent implements OnInit {
       this._codeitem.list('vehicleRange').then(res => this.vehicleRange = res as Codeitem[]);
     }
     console.info('车辆组件初始化时的表单', this.vehicle);
-    this.vehicle.addControl('_photos_', this.fb.group({}));
+    this.vehicle.addControl('photos', this.fb.group({}));
   }
   readVehicleCard() {
     console.info('读取行驶证');

@@ -29,6 +29,7 @@ export class Recording2Component implements OnInit, OnDestroy {
   merchant: MerchantModel = {name: ''};
   certificateFormConfig: Marketphotomap;
   public _formGroup: FormGroup = this._formBuilder.group({
+    photos: this._formBuilder.group({}),
     seller: this._businessFormGroup.seller,
   });
   constructor(
@@ -62,6 +63,7 @@ export class Recording2Component implements OnInit, OnDestroy {
      * 因为 businessTradeForm 注定有值
      */
     this._formGroup.patchValue(this.businessTradeForm.seller);
+    console.info('_formGroup.value', this._formGroup.value);
 
     /**
      * 卖家证件类型表单配置

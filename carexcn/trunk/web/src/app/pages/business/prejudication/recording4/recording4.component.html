@@ -21,44 +21,35 @@
     <div class="input-group">
       <div class="input-group">
         <span class="input-group-addon">车牌号</span>
-        <input class="form-control" placeholder="请输入车牌号" type="text" [(ngModel)]="vehicle.plateNumber"
-               [disabled]="true"/>
+        <input class="form-control" type="text" readonly [ngModel]="businessTradeForm.preVehicle.preVehicle.plateNumber"/>
       </div>
       <div class="input-group">
         <span class="input-group-addon">代办商户</span>
-        <ngx-ys-autoinput [results_resource_url]="autoinput_shanghu_source_url"
-                          (_value)="getSelectedDealer($event)"
-                          [showProperty]="'name'"
-                          [disabled]="true"
-                          [defaultValue]="dealer"
-        ></ngx-ys-autoinput>
+        <input class="form-control" readonly [ngModel]="businessTradeForm.preVehicle.preVehicle.merchant.name" />
       </div>
     </div>
     <div class="input-group">
       <div class="input-group">
         <span class="input-group-addon">代办人</span>
-        <select class="form-control" [disabled]="true" [(ngModel)]="linkman" (change)="linkmanSelecteFunc()" [compareWith]="linkmanCompareWithFunc">
-          <option value="">--请选择--</option>
-          <option *ngFor="let linkmanitem of linkManData" [ngValue]="linkmanitem">{{linkmanitem.name}}</option>
-        </select>
+        <input class="form-control" type="text" readonly [ngModel]="businessTradeForm.preVehicle.preVehicle.filingInfo.name" />
       </div>
       <div class="input-group">
         <span class="input-group-addon">代办人手机</span>
-        <input class="form-control" placeholder="请先选择商户和代办人" type="text"  [disabled]="true" [value]="linkmanSelected.phone || null "/>
+        <input class="form-control" type="text" readonly [ngModel]="businessTradeForm.preVehicle.preVehicle.filingInfo.phone"/>
       </div>
     </div>
   </nb-card-body>
 </nb-card>
 <ngx-ys-seller-info
-  [merchant]="dealer"
-  [seller]="_formGroup.controls.seller"
-  [certificateFormConfig]="sellerCertificateFormConfig"
+  [merchant]="businessTradeForm.preVehicle.preVehicle.merchant"
+  [sellerObj]="_formGroupSeller"
+  [certificateFormConfig]="{certificateCode: businessTradeForm.seller.seller.certType,formName: '预审录入卖家'}"
   [btn_show]="false"
 ></ngx-ys-seller-info>
 <ngx-ys-cardetail
-  [btn_show]="false"
-  [vehicle]="_formGroup.controls.vehicle"
-  [certificateFormConfig]="vehicleCertificateFormConfig"
+  [car_detail_title]="'车辆信息'"
+  [vehicleObj]="_formGroupVechile"
+  [certificateFormConfig]="{formName: '预审录入车辆'}"
 ></ngx-ys-cardetail>
 <div class="float-right">
   <button class="btn btn-primary btn-lg" (click)="onSubmit()">确认提交</button>
