@@ -68,7 +68,7 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
     private _localstorage: LocalstorageService,
   ) {}
   ngOnInit() {
-    // console.info('input data', this.data);
+    console.info('input data', this.data);
     this.setCertificateConfig();
   }
 

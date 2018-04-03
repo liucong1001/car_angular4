@@ -6,6 +6,8 @@ import {PreVehicleForm} from '../../model/business/trade/preVehicle.form';
 import {UserService} from '../users.service';
 import {MarketStaff} from '../../model/system/market-staff';
 import {RestService} from '../../utils/rest.service';
+import {BusinessTradeForm, PreVehicle, Seller} from '../../model/business/restruct/business.trade.form';
+import {FileSystemService} from '../system/file-system.service';
 
 @Injectable()
 export class PrejudicationService {
@@ -13,6 +15,7 @@ export class PrejudicationService {
   constructor(
     public userService: UserService,
     public rest: RestService,
+    private file: FileSystemService,
   ) {
     this.currentUser = this.userService.getCurrentLoginUser();
   }
@@ -24,12 +27,14 @@ export class PrejudicationService {
    * @param {PreVehicleForm} preVehicle
    * @returns {Promise<any>}
    */
-  public create(seller: SellerForm, preVehicle: PreVehicleForm): Promise<any> {
+  public create(seller: Seller, preVehicle: PreVehicle): Promise<any> {
+    seller.photos = this.file.filterPhotosValue(seller.photos);
+    preVehicle.photos = this.file.filterPhotosValue(preVehicle.photos);
     return this.rest.post(this.api_url_base, {
       cloudUser: this.currentUser.cloudUser,
       seller: seller,
       preVehicle: preVehicle,
-    } as TradeForm).toPromise();
+    } as BusinessTradeForm).toPromise();
   }
 
   /**
@@ -47,11 +52,11 @@ export class PrejudicationService {
    * @param {TradeForm} form  clouduser  PreVehicle对象实例
    * @returns {Promise<any>}
    */
-  public addCar(id: string, preVehicle: PreVehicleForm): Promise<any> {
+  public addCar(id: string, preVehicle: PreVehicle): Promise<any> {
     return this.rest.post(this.api_url_base + '/' + id, {
       cloudUser: this.currentUser.cloudUser,
       preVehicle: preVehicle,
-    } as TradeForm).toPromise();
+    } as BusinessTradeForm).toPromise();
   }
 
   /**
