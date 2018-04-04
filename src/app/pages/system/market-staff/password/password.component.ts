@@ -74,4 +74,8 @@ export class PasswordComponent implements OnInit {
       this.message.error('修改密码出现错误', err.message);
     });
   }
+
+  back() {
+    this.router.navigateByUrl('/pages/system/market/staff');
+  }
 }
