@@ -1,9 +1,10 @@
-<ngx-ys-archive-no
+<ngx-ys-batch-no
   [pageTitle]="'预审业务 - 预审录入 - 批量添加车辆'"
-  [archiveNo]="archiveNo"
+  [batchNo]="prejudicationBatchNo"
   (_tradeList)="getTradeListByArchiveNoComponent($event)"
   (_trade)="getTradeByArchiveNoComponent($event)"
-></ngx-ys-archive-no>
+></ngx-ys-batch-no>
+
 
 <ngx-ys-carlist
   *ngIf="tradeList"
@@ -12,12 +13,12 @@
   [listType]="'add'"
 ></ngx-ys-carlist>
 
-<ngx-ys-cardetail
-  *ngIf="tradeList"
-  [photos]="photos"
-  [certificateFormConfig]="certificateFormConfig"
-  [vehicle]="_formGroup.controls.vehicle"
-></ngx-ys-cardetail>
+<!--<ngx-ys-cardetail-->
+  <!--*ngIf="tradeList"-->
+  <!--[photos]="photos"-->
+  <!--[certificateFormConfig]="{formName: '预审录入车辆'}"-->
+  <!--[vehicleObj]="_formGroup.controls.vehicle"-->
+<!--&gt;</ngx-ys-cardetail>-->
 
 <div class="float-right">
   <button

@@ -6,13 +6,12 @@ import {LocalstorageService} from '../../../../@core/cache/localstorage.service'
 import {TradeForm} from '../../../../@core/model/business/trade/trade.form';
 import {PrejudicationService} from '../../../../@core/data/business/prejudication.service';
 import {FormBuilder, FormControl, FormGroup, ValidationErrors} from '@angular/forms';
-import {PreVehicleForm} from '../../../../@core/model/business/trade/preVehicle.form';
 import {PreVehicleModel} from '../../../../@core/model/business/trade/preVehicle/preVehicle.model';
 import {FilingInfoModel} from '../../../../@core/model/business/filing.info.model';
 import {Marketphotomap} from '../../../../@core/model/system/market-photo-map';
 import {FileSystemService} from '../../../../@core/data/system/file-system.service';
 import {BusinessFormGroup} from '../../business.form-group';
-import {PreVehicle} from '../../../../@core/model/business/restruct/business.trade.form';
+import {BusinessTradeForm} from '../../../../@core/model/business/restruct/business.trade.form';
 
 /**
  * 预审录入 继续录入/批量录入 --接口与页面的交互逻辑
@@ -32,30 +31,11 @@ import {PreVehicle} from '../../../../@core/model/business/restruct/business.tra
 })
 export class RecordingContinueComponent implements OnInit {
   certificateFormConfig: Marketphotomap;
-  /**
-   * 缓存服务的前缀
-   * 缓存前缀名以业务为单位，一个缓存前缀对应一个业务，一个缓存业务完成则删除该前缀的所有缓存
-   * @type {string}
-   * @private
-   */
-  private _cache_pre = 'business_prejudication_recording_';
-  photos: any[] = [{
-    title: '行驶证正本',
-    source: 'assets/images/camera1.jpg',
-  }, {
-    title: '行驶证副本',
-    source: 'assets/images/camera2.jpg',
-  }, {
-    title: '登记证书首页',
-    source: 'assets/images/camera3.jpg',
-  }, {
-    title: '登记证书末页',
-    source: 'assets/images/camera4.jpg',
-  }];
+  public prejudicationBatchNo = '';
   public archiveNo = '';
   public notNewCar = false;
-  public trade: TradeForm;
-  public tradeList: [TradeForm];
+  public trade: BusinessTradeForm;
+  public tradeList: [BusinessTradeForm];
   public _formGroup: FormGroup = this._formBuilder.group({
     vehicle: this._businessFormGroup.vehicle,
   });
@@ -72,57 +52,49 @@ export class RecordingContinueComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this._route.params.subscribe(param => {
-      // this.trade.prejudication.business.archiveNo
       if (param.batchNo) {
-        this.archiveNo = param.batchNo;
+        this.prejudicationBatchNo = param.batchNo;
       }
     });
-    /**
-     * 卖家证件类型表单配置
-     * @type {{}}
-     */
-    this.certificateFormConfig = {
-      // certificateCode: '00', // 证件类型代码集 // 只要符合表单就行
-      formName: '预审录入车辆', // 表单名称
-    } as Marketphotomap;
     /**
      * 可能的缓存
      * @type {any | any}
      */
-    if (!this.archiveNo) {
-      let maybe_vehicle = this._localstorage.get(this._cache_pre + 'continue_vehicle');
-      if (maybe_vehicle) {
-        this._formGroup.patchValue(maybe_vehicle);
-        let maybe_continue_archiveNo = this._localstorage.get(this._cache_pre + 'continue_archiveNo');
-        if (maybe_continue_archiveNo) {
-          this.archiveNo = maybe_continue_archiveNo;
-        }
-      } else {
-        console.info(maybe_vehicle);
-      }
-    }
+    // if (!this.archiveNo) {
+    //   let maybe_vehicle = this._localstorage.get(this._cache_pre + 'continue_vehicle');
+    //   if (maybe_vehicle) {
+    //     this._formGroup.patchValue(maybe_vehicle);
+    //     let maybe_continue_archiveNo = this._localstorage.get(this._cache_pre + 'continue_archiveNo');
+    //     if (maybe_continue_archiveNo) {
+    //       this.archiveNo = maybe_continue_archiveNo;
+    //     }
+    //   } else {
+    //     console.info(maybe_vehicle);
+    //   }
+    // }
   }
   onChangeSelectedCar(trade: TradeForm): void {
-    if (null === trade) {
-      this._formGroup.reset();
-      this.notNewCar = false;
-      this._message.info('添加车辆', '添加新车辆');
-    } else {
-      this.notNewCar = true;
-      console.info(trade.preVehicle.preVehicle);
-      this._formGroup.patchValue({vehicle: trade.preVehicle.preVehicle});
-      this._message.info('查看车辆', trade.preVehicle.preVehicle.plateNumber);
-    }
+    // if (null === trade) {
+    //   this._formGroup.reset();
+    //   this.notNewCar = false;
+    //   this._message.info('添加车辆', '添加新车辆');
+    // } else {
+    //   this.notNewCar = true;
+    //   console.info(trade.preVehicle.preVehicle);
+    //   this._formGroup.patchValue({vehicle: trade.preVehicle.preVehicle});
+    //   this._message.info('查看车辆', trade.preVehicle.preVehicle.plateNumber);
+    // }
   }
 
   onSubmit() {
-    console.info(this.trade.prejudication.business.archiveNo);
-    this._localstorage.set(this._cache_pre + 'continue_archiveNo', this.trade.prejudication.business.archiveNo);
-    this._localstorage.set(this._cache_pre + 'continue_vehicle', this._formGroup.value);
-    let preVehicle = this._formGroup.value.vehicle as PreVehicleModel;
-    preVehicle.filingInfo = this.trade.preVehicle.preVehicle.filingInfo as FilingInfoModel;
-    console.info(this._formGroup.get('vehicle').value);
-    console.info(this._formGroup.get('vehicle').get('_photos_').value);
+    console.info(this.trade);
+    // console.info(this.trade.prejudication.business.archiveNo);
+    // this._localstorage.set(this._cache_pre + 'continue_archiveNo', this.trade.prejudication.business.archiveNo);
+    // this._localstorage.set(this._cache_pre + 'continue_vehicle', this._formGroup.value);
+    // let preVehicle = this._formGroup.value.vehicle as PreVehicleModel;
+    // preVehicle.filingInfo = this.trade.preVehicle.preVehicle.filingInfo as FilingInfoModel;
+    // console.info(this._formGroup.get('vehicle').value);
+    // console.info(this._formGroup.get('vehicle').get('_photos_').value);
     // this._prejudicationService.addCar(
     //   this.trade.prejudication.id,
     //   this. as PreVehicle).then(res => {

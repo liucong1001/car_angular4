@@ -45,6 +45,7 @@ import {ImgComponent} from './img/img.component';
 import {ReportFormSearchComponent} from './report-form-search/report-form-search.component';
 import {NavStepComponent} from './business/nav-step/nav-step.component';
 import {CameraCarexcnComponent} from './camera-carexcn/camera-carexcn.component';
+import { BatchNoComponent } from './business/batch-no/batch-no.component';
 
 const COMPONENTS = [
   CameraComponent,
@@ -62,6 +63,7 @@ const COMPONENTS = [
   BuyerInfoComponent,
   TrusterInfoComponent,
   ArchiveNoComponent,
+  BatchNoComponent,
   FormFilterComponent,
   ErrorClassDirective,
   InputWithPhotoDirective,
