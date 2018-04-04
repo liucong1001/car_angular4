@@ -24,6 +24,7 @@ export class PayedCancelComponent implements OnInit {
 
   @ViewChild('createTimeCell') private createTimeCell: TemplateRef<any>;
   @ViewChild('arcNoCell') private arcNoCell: TemplateRef<any>;
+  @ViewChild('finishTypeCell') private finishTypeCell: TemplateRef<any>;
   // 列表搜索表单隐藏显示切换
   toggle() {
     this.showFilter = !this.showFilter;
@@ -42,6 +43,7 @@ export class PayedCancelComponent implements OnInit {
       {title: '卡号', titleClass: '', cell: new TextCell('area.name')} as Column,
       {title: '金额', titleClass: '', cell: new TextCell('area.name')} as Column,
       {title: '余额', titleClass: '', cell: new TextCell('area.name')} as Column,
+      {title: '状态', titleClass: '', cell: new CustomCell(this.finishTypeCell)} as Column,
       {title: '创建时间', titleClass: '', cell: new CustomCell(this.createTimeCell)} as Column ,
       {title: '操作', titleClass: 'w-25 text-center', cell: new MenuCell(
         [
@@ -59,6 +61,7 @@ export class PayedCancelComponent implements OnInit {
   // 列表菜单回调
   view(row: any, drop: any) {
   }
+
 
   /**
    * 发票退费

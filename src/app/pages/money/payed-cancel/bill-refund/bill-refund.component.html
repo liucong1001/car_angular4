@@ -6,34 +6,72 @@
     </div>
   </nb-card-header>
     <nb-card-body>
-     <div class="row">
-         <div class="col-md-2">流水号</div><div class="col-md-3">{{data?.businessObjectPayment[0].archiveNo}}</div>
+      <div class="row">
+          <div class="col-md-2">
+            <button type="button" class="btn btn-outline-success form-control" (click)="readIccard()">启用读卡器</button>
+          </div>
+      </div>
+     <div class="row bottom">
+         <div class="col-md-2">流水号:</div>
+         <div class="col-md-2">{{data?.businessObjectPayment[0].archiveNo}}</div>
      </div>
-      <div class="card-body">
-        <div class="feeList  float-left" *ngFor=" let item of feeList ">
-          <div class="feeLabel "><label> {{item.name}}: </label></div>
-          <!--固定-->
-          <div *ngIf="item.priceType=='01'" ng-init="item.shouldAmount=item.money" class="feeItem">
-            {{item.money}}
-          </div>
-          <!--可选-->
-          <div *ngIf="item.priceType=='02'" class="feeItem">
-            <!--{{item.money}}-->
-            <select name="" id="" [(ngModel)]="item.shouldAmount" class="custom-select "
-                    (ngModelChange)="feeSum($event)">
-              <option value="null" selected>--请选择费用--</option>
-              <option [value]="i" *ngFor=" let i of item.money ">{{i}}</option>
-            </select>
-          </div>
-          <!--计算-->
-          <div *ngIf="item.priceType=='03'" ng-init="item.shouldAmount=item.money" class="feeItem">
-            <u> {{item.money}}</u>
-          </div>
-          <!--手填-->
-          <div *ngIf="item.priceType=='04'" class="feeItem">
-            <input type="text" [(ngModel)]="item.shouldAmount" class=" form-control-sm">
+     <div class="row bottom">
+       <div class="col-md-2">退费方式</div>
+       <div class="col-md-2">
+         <select name=""  class="form-control" [(ngModel)]="payStatus">
+           <option value="0">IC卡退费</option>
+           <option value="1">现金退费</option>
+         </select>
+       </div>
+     </div>
+      <div class="row bottom" *ngIf="payStatus=='0'">
+           <div class="col-md-2">ic卡号：</div>
+           <div class="col-md-2">
+             {{icCardInfo.CardNumber}}
+           </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+         退费明细费用
+        </div>
+        <div class="card-body">
+          <div class="feeList  float-left" *ngFor=" let item of feeList ">
+            <div class="feeLabel "><label> {{item.name}}: </label></div>
+            <!--固定-->
+            <div *ngIf="item.priceType=='01'" ng-init="item.shouldAmount=item.money" class="feeItem">
+              {{item.money}}
+            </div>
+            <!--可选-->
+            <div *ngIf="item.priceType=='02'" class="feeItem">
+              <!--{{item.money}}-->
+              <select name="" id="" [(ngModel)]="item.shouldAmount" class="custom-select "
+                      (ngModelChange)="feeSum($event)">
+                <option value="null" selected>--请选择费用--</option>
+                <option [value]="i" *ngFor=" let i of item.money ">{{i}}</option>
+              </select>
+            </div>
+            <!--计算-->
+            <div *ngIf="item.priceType=='03'" ng-init="item.shouldAmount=item.money" class="feeItem">
+              <u> {{item.money}}</u>
+            </div>
+            <!--手填-->
+            <div *ngIf="item.priceType=='04'" class="feeItem">
+              <input type="text" [(ngModel)]="item.shouldAmount" class=" form-control" (ngModelChange)="feeSum($event)">
+            </div>
           </div>
         </div>
       </div>
+      <!--<div class="container">-->
+        <!--<div class="row form-inline form-group">-->
+          <!--<div class="col-md-6 text-center"> <b>ic卡信息</b>  </div>-->
+        <!--</div>-->
+        <!--<div class="row form-inline form-group">-->
+          <!--<div class="col-md-2"><label for="">卡号：</label> </div>-->
+          <!--<div class="col-md-4">{{icCardInfo.CardNumber}}</div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <p class=" center bottom" >
+           <button class="btn btn-danger" (click)="confirm()">确认退费</button>
+      </p>
     </nb-card-body>
 </nb-card>
