@@ -21,12 +21,10 @@ export class PrintSuccessComponent implements OnInit {
   }
 
   back(){
-    console.log('SaaS');
     this.router.navigate( ['/pages/bill/print']);
   }
 
   createOrder(){
-    console.log("创建订单");
     this.router.navigate( ['/pages/money/payment']);
   }
 

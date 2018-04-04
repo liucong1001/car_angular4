@@ -16,7 +16,6 @@ import {BillService} from "../../../@core/data/bill/bill.service";
 })
 export class ChangeComponent implements OnInit {
 
-
   businessType:string;
   needModify:boolean;
   archivesNo: string;
@@ -67,6 +66,15 @@ export class ChangeComponent implements OnInit {
     }
   }
 
+  /**
+   * 交易修改
+   */
+  transModify(){
+    // this.businessType = '16';
+    this.bill.createBill('16', this.archivesNo, null,true).then(res => {
+      this.message.success('交易修改成功！','');
+    })
+  }
 
   /**
    * 换票
@@ -74,6 +82,16 @@ export class ChangeComponent implements OnInit {
   changeBill(){
     this.bill.createBill(this.businessType, this.archivesNo, this.selectBillNo,this.needModify).then(res => {
       alert('换票成功！');
+    })
+  }
+
+  /**
+   * 重开票
+   */
+  rePrintBill(){
+    this.businessType = '12';
+    this.bill.createBill(this.businessType, this.archivesNo, null,this.needModify).then(res => {
+      this.message.success('重开票成功！','');
     })
   }
 

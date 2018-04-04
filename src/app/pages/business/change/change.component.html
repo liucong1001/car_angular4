@@ -18,40 +18,55 @@
      </div>
      <br><br>
      <hr>
-     <div class="row">
-       <div class="col-md-2">曾经使用过的发票号:</div>
-       <div class="col-md-8">
-            <span *ngFor=" let item of billList">
-               <label class="custom-control custom-radio">
-                  <input type="radio" class="custom-control-input" value="{{item.id}}" [(ngModel)]="selectBillNo" name="billNoList">
-                  <span class="custom-control-indicator"></span>
-                  <span class="custom-control-description">{{item.billNo}}</span>
-              </label>
-           </span>
-       </div>
-     </div>
-   </nb-card-body>
+    <div class="card">
+        <div class="card-header">交易修改业务</div>
+        <div class="card-body">
+           <button class="btn btn-success" (click)="transModify()">交易修改</button>
+        </div>
+    </div>
 
-    <nb-card-body>
-       <div class="row">
-          <div class="col-md-2">
-             <select name="" id="" class="form-control" [(ngModel)]="businessType">
-               <option value="0">--选择换票方式--</option>
-               <option value="14">收费换票</option>
-               <option value="13">免费换票</option>
-             </select>
+     <div class="card">
+          <div class="card-header">换票业务</div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-2">曾经使用过的发票号:</div>
+              <div class="col-md-8">
+              <span *ngFor=" let item of billList">
+                 <label class="custom-control custom-radio">
+                    <input type="radio" class="custom-control-input" value="{{item.id}}" [(ngModel)]="selectBillNo" name="billNoList">
+                    <span class="custom-control-indicator"></span>
+                    <span class="custom-control-description">{{item.billNo}}</span>
+                </label>
+             </span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-2">
+                <select name="" id="" class="form-control" [(ngModel)]="businessType">
+                  <option value="0">--选择换票方式--</option>
+                  <option value="14">收费换票</option>
+                  <option value="13">免费换票</option>
+                </select>
+              </div>
+              <div class="col-md-2">
+                <select name=""  [(ngModel)]="needModify" class="form-control">
+                  <option value="">是否修改资料</option>
+                  <option value="true">是</option>
+                  <option value="false">否</option>
+                </select>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-warning" (click)="changeBill()">确认换票</button>
+              </div>
+            </div>
           </div>
-         <div class="col-md-2">
-           <select name=""  [(ngModel)]="needModify" class="form-control">
-             <option value="">是否修改资料</option>
-              <option value="true">是</option>
-             <option value="false">否</option>
-           </select>
-         </div>
-         <div class="col-md-2">
-              <button class="btn btn-danger" (click)="changeBill()">确认换票</button>
-         </div>
-       </div>
-    </nb-card-body>
+     </div>
 
+    <div class="card">
+        <div class="card-header">重开业务</div>
+        <div class="card-body">
+             <button class="btn btn-danger" (click)="rePrintBill()" >重开票</button>
+        </div>
+    </div>
+   </nb-card-body>
 </nb-card>
