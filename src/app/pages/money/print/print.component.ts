@@ -53,6 +53,10 @@ export class PrintComponent implements OnInit {
       console.log('开票日期',val);
   }
 
+  /**
+   *提档退回 （businessType为22）买卖双方信息交换，提档地为空
+   */
+
   print(){
      // console.log('点击了开票',this.tradeBill);
      // this.printService.print(this.printId,this.tradeBill).then(res=>{

@@ -50,5 +50,5 @@ export class TradeForm {
 
   transferVehicle?: TransferVehicleForm;
 
-  business?:{id:string};
+  business?:{id:string,type:string};
 }

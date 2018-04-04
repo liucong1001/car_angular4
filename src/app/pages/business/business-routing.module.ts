@@ -18,6 +18,7 @@ import {MobileTestComponent} from './mobile-recording/mobile-test/mobile-test.co
 import {MobileReviewComponent} from './mobile-recording/mobile-review/mobile-review.component';
 import {MobileInputComponent} from './mobile-recording/mobile-input/mobile-input.component';
 import {ChangeComponent} from './change/change.component';
+import { FileBackComponent } from './file-back/file-back.component';
 
 const routes: Routes = [
   {
@@ -91,6 +92,10 @@ const routes: Routes = [
   {
     path: 'change',
     component: ChangeComponent,
+  },
+  {
+    path: 'fileBack',
+    component: FileBackComponent,
   },
   {
     path: '',
