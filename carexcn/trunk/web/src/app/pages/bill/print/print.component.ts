@@ -42,6 +42,14 @@ export class PrintComponent implements OnInit {
         this.trade = res;
         this.isGetDate = true;
         this.printId = res.business.id;
+        /*提档地退回交换买卖双方信息,提档地置空*/
+       if(this.trade.business.type=='22'){
+          var t = {};
+          t = this.trade.seller.seller;
+          this.trade.seller.seller = this.trade.buyer.buyer;
+          this.trade.buyer.buyer = t;
+          console.log('提档退回！',this.trade);
+        }
       });
       // this.printService.createBill(this.archivesNo).then(res=>{
       //   for(var i=0;i<res.length;i++){
