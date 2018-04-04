@@ -31,3 +31,4 @@
 </nb-card>
 <ng-template #createTimeCell  let-data let-cell="cell"><span >{{data.createTime | date:"yyyy-MM-dd HH:mm:ss"}}</span></ng-template>
 <ng-template #arcNoCell  let-data let-cell="cell"><span >{{data.businessObjectPayment[0]?.archiveNo}}</span></ng-template>
+<ng-template #finishTypeCell  let-data let-cell="cell"><span >{{data.businessObjectPayment[0]?.finishType | code_trans: 'finishType' | async}}</span></ng-template>

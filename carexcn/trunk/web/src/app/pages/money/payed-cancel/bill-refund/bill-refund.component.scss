@@ -1,0 +1,32 @@
+.multiSelect{
+  width: 100%;
+}
+ul.feeList{
+  list-style: none;
+  float: left;
+}
+.feeList{
+  //max-width: 900px;
+}
+.fee{
+  width: 1200px;
+  margin-bottom: 20px;
+}
+.feeLabel{
+  width: 100px;
+  //float: left;
+  display: inline-block;
+  text-align: right;
+}
+.feeItem{
+  width: 190px;
+  //float: left;
+  display: inline-block;
+  //text-align: left;
+}
+.delete{
+  cursor: pointer;
+}
+.bottom{
+  margin: 20px 0px;
+}
