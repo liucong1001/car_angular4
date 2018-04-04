@@ -7,8 +7,8 @@
       <span class="sucessPrint ">发票打印成功，发票号码是:{{billNo}}</span>
     </p>
     <p class="text-center">
-      <button ng-click="back()" class="btn btn-success">继续打票</button>
-      <button ng-click="createOrder()" class="btn btn-danger">创建订单</button>
+      <button (click)="back()"  class="btn btn-success">继续打票</button>
+      <button (click)="createOrder()" class="btn btn-danger">创建订单</button>
     </p>
     <div class="row">
         <div class="tipError card">
