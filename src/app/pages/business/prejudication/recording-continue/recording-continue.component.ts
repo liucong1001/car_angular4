@@ -33,11 +33,12 @@ export class RecordingContinueComponent implements OnInit {
   certificateFormConfig: Marketphotomap;
   public prejudicationBatchNo = '';
   public archiveNo = '';
-  public notNewCar = false;
+  public notNewCar = true;
   public trade: BusinessTradeForm;
   public tradeList: [BusinessTradeForm];
-  public _formGroup: FormGroup = this._formBuilder.group({
-    vehicle: this._businessFormGroup.vehicle,
+  public _vehicleFormGroup: FormGroup = this._formBuilder.group({
+    preVehicle: this._businessFormGroup.vehicleAndData,
+    photos: this._formBuilder.group({}),
   });
   constructor(
     private _trade: TradeService,
@@ -74,16 +75,15 @@ export class RecordingContinueComponent implements OnInit {
     // }
   }
   onChangeSelectedCar(trade: TradeForm): void {
-    // if (null === trade) {
-    //   this._formGroup.reset();
-    //   this.notNewCar = false;
-    //   this._message.info('添加车辆', '添加新车辆');
-    // } else {
-    //   this.notNewCar = true;
-    //   console.info(trade.preVehicle.preVehicle);
-    //   this._formGroup.patchValue({vehicle: trade.preVehicle.preVehicle});
-    //   this._message.info('查看车辆', trade.preVehicle.preVehicle.plateNumber);
-    // }
+    if (null === trade) {
+      this._vehicleFormGroup.reset();
+      this.notNewCar = false;
+      this._message.info('添加车辆', '添加新车辆');
+    } else {
+      this.notNewCar = true;
+      this._vehicleFormGroup.patchValue({vehicle: trade.preVehicle});
+      this._message.info('查看车辆', trade.preVehicle.preVehicle.plateNumber);
+    }
   }
 
   onSubmit() {
