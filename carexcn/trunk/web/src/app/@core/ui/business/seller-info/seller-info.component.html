@@ -46,7 +46,7 @@
     <ngx-ys-dynamic-photo-form
       [photos]="sellerObj.get('photos')"
       [certificateFormConfig]="certificateFormConfig"
-      [data]="businessTradeForm.seller ? businessTradeForm.seller.photos : null"
+      [data]="(businessTradeForm && businessTradeForm.seller) ? businessTradeForm.seller.photos : null"
       [btn_show]="btn_show"
     ></ngx-ys-dynamic-photo-form>
     <div class="input-group">

@@ -13,7 +13,7 @@ import {BusinessTradeForm} from '../../../../@core/model/business/restruct/busin
   styleUrls: ['./trecording.component.scss'],
 })
 export class TrecordingComponent implements OnInit {
-  public businessTradeForm: BusinessTradeForm = null;
+  public businessTradeForm: BusinessTradeForm = {preVehicle: {preVehicle: {}}};
   public notNewCar = true;
   public tradeList: [BusinessTradeForm];
   public _vehicleFormGroup: FormGroup = this._formBuilder.group({

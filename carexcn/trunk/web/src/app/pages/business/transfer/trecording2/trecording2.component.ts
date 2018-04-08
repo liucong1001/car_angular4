@@ -73,7 +73,7 @@ export class Trecording2Component implements OnInit {
     // transferVehicle.vehicleManagement = {};
     _transferVehicle.transferVehicle.filingInfo = this.businessTradeForm.preVehicle.preVehicle.filingInfo as FilingInfo;
     _transferVehicle.transferVehicle.merchant = this.businessTradeForm.preVehicle.preVehicle.merchant as Merchant;
-    delete _transferVehicle.vehicleManagement;
+    delete _transferVehicle.transferVehicle.vehicleManagement;
     this._transfer.create(
       this.businessTradeForm.archiveNo,
       _formGroupBuyer,
@@ -81,7 +81,7 @@ export class Trecording2Component implements OnInit {
     ).then(res => {
       console.info('res', res);
       this._localstorage.set( 'business_transfer_trecorded_trade', res);
-      // this._router.navigateByUrl('/pages/business/transfer/trecording-last');
+      this._router.navigateByUrl('/pages/business/transfer/trecording-last');
     }).catch(e => {
       console.info('e', e);
       this._message.error('错误', e.message);

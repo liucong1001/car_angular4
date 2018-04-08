@@ -111,6 +111,7 @@ export class SellerInfoComponent implements OnInit {
     if (maybe_businessTradeForm) {
       this.businessTradeForm = maybe_businessTradeForm as BusinessTradeForm;
     }
+    console.info('businessTradeForm', this.businessTradeForm);
     /**
      * 重新定义 狭义的 卖家，让照片产生在广义的卖家里，表单可直接使用
      */

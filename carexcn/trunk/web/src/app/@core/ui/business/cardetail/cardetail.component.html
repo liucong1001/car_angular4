@@ -8,7 +8,7 @@
     <ngx-ys-dynamic-photo-form *ngIf="certificateFormConfig"
       [photos]="vehicleObj.get('photos')"
       [certificateFormConfig]="certificateFormConfig"
-      [data]="businessTradeForm.preVehicle.photos"
+      [data]="(businessTradeForm && businessTradeForm.preVehicle) ? businessTradeForm.preVehicle.photos : null"
       [btn_show]="btn_show"
     ></ngx-ys-dynamic-photo-form>
     <div class="input-group">
