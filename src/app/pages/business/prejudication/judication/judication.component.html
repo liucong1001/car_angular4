@@ -5,6 +5,11 @@
 (_trade)="getTradeByArchiveNoComponent($event)"
 ></ngx-ys-batch-no>
 
+<ngx-ys-seller-info
+  [merchant]="businessTradeForm.preVehicle.preVehicle.merchant"
+  [sellerObj]="_sellerFormGroup"
+  [certificateFormConfig]="{certificateCode: '03',formName: '预审录入卖家'}"
+></ngx-ys-seller-info>
 <!--<ngx-ys-seller-info-->
   <!--[merchant]="dealer"-->
   <!--[seller]="_formGroup.controls.seller"-->
