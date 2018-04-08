@@ -48,21 +48,19 @@ export class PayAgainComponent implements OnInit {
       this.tradeService.get(this.archivesNo).then(res => {
         this.trade = res;
         this.isGetDate = true;
+      }).catch(err=>{
+        this.message.error('',err.message)
       });
-      this.printService.createBill(this.archivesNo).then(res => {
-        // for (var i = 0; i < res.length; i++) {
-        //   if (res[i].business.businessType == '11') {
-        //     this.printId = res[i].id;
-        //   }
-        // }
-      });
-      /**
-       *step2-
-       */
-      this.bill.findValidBill(this.archivesNo).then(res => {
-        this.billList = res;
-        console.log('列表', this.billList);
-      })
+
+      // this.printService.createBill(this.archivesNo).then(res => {
+      // });
+      // /**
+      //  *step2-
+      //  */
+      // this.bill.findValidBill(this.archivesNo).then(res => {
+      //   this.billList = res;
+      //   console.log('列表', this.billList);
+      // })
     }
   }
 
