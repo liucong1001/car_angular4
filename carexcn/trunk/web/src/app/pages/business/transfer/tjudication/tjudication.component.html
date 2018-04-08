@@ -1,3 +1,11 @@
+<ngx-ys-batch-no
+  [pageTitle]="'过户业务 - 过户审核'"
+  [batchNo]="tjudicationBatchNo"
+  [batchNoType]="'trans'"
+  (_tradeList)="getTradeListByArchiveNoComponent($event)"
+  (_trade)="getTradeByArchiveNoComponent($event)"
+></ngx-ys-batch-no>
+
 <!--<ngx-ys-archive-no-transfer-->
   <!--[pageTitle]="'过户业务 - 过户审核'"-->
   <!--[archiveNo]="archiveNo"-->
@@ -18,7 +26,7 @@
   <!--*ngIf="tradeList"-->
   <!--[btn_show]="false"-->
   <!--[vehicle]="_formGroup.controls.vehicle"-->
-  <!--[certificateFormConfig]="vehicleCertificateFormConfig"-->
+  <!--[certificateFormConfig]="{formName: '过户录入车辆'}"-->
 <!--&gt;</ngx-ys-cardetail>-->
 
 <!--<div class="float-right">-->

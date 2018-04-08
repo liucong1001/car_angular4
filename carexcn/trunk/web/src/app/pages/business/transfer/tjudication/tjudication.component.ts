@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {WebcamService} from '../../../../@core/device/webcam.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {MessageService} from '../../../../@core/utils/message.service';
 import {TradeForm} from '../../../../@core/model/business/trade/trade.form';
 import {LocalstorageService} from '../../../../@core/cache/localstorage.service';
@@ -15,11 +15,10 @@ import {Marketphotomap} from '../../../../@core/model/system/market-photo-map';
 })
 export class TjudicationComponent implements OnInit {
   private _cache_pre = 'business_transfer_judication_';
-  public archiveNo = '';
+  public tjudicationBatchNo = '';
   public trade: TradeForm;
   public tradeList: [TradeForm];
   public test= '';
-  vehicleCertificateFormConfig: Marketphotomap;
   public _formGroup: FormGroup = this._formBuilder.group({
     vehicle: this._businessFormGroup.vehicle,
   });
@@ -36,21 +35,19 @@ export class TjudicationComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private _businessFormGroup: BusinessFormGroup,
     private _router: Router,
+    private _route: ActivatedRoute,
   ) {}
   ngOnInit(): void {
-    let maybe_archiveNo = this._localstorage.get(this._cache_pre + 'archiveNo');
-    // console.info('maybe_archiveNo', maybe_archiveNo);
-    if (maybe_archiveNo) {
-      this.archiveNo = maybe_archiveNo;
-    }
-    /**
-     * 卖家证件类型表单配置
-     * @type {{}}
-     */
-    this.vehicleCertificateFormConfig = {
-      // certificateCode: '00', // 证件类型代码集 // 只要符合表单就行
-      formName: '过户录入车辆', // 表单名称
-    } as Marketphotomap;
+    this._route.params.subscribe(param => {
+      if (param.batchNo) {
+        this.tjudicationBatchNo = param.batchNo;
+      }
+    });
+    // let maybe_archiveNo = this._localstorage.get(this._cache_pre + 'archiveNo');
+    // // console.info('maybe_archiveNo', maybe_archiveNo);
+    // if (maybe_archiveNo) {
+    //   this.archiveNo = maybe_archiveNo;
+    // }
   }
   onChangeSelected(trade: TradeForm): void {
     if (null === trade) {

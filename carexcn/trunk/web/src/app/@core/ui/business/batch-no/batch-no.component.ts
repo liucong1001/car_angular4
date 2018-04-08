@@ -3,6 +3,7 @@ import {TransferService} from '../../../data/business/transfer.service';
 import {PrejudicationService} from '../../../data/business/prejudication.service';
 import {MessageService} from '../../../utils/message.service';
 import {BusinessTradeForm} from '../../../model/business/restruct/business.trade.form';
+import {TradeForm} from "../../../model/business/trade/trade.form";
 
 @Component({
   selector: 'ngx-ys-batch-no',
@@ -10,8 +11,18 @@ import {BusinessTradeForm} from '../../../model/business/restruct/business.trade
   styleUrls: ['./batch-no.component.scss'],
 })
 export class BatchNoComponent implements OnInit {
-
-  @Input() batchNo = '';
+  /**
+   * 批次号
+   * @type {string}
+   */
+  @Input() batchNo? = '';
+  /**
+   * 批次号类型
+   * pre (default)
+   * trans
+   * @type {string}
+   */
+  @Input() batchNoType? = '';
   @Input() pageTitle = '';
   @Input() canEdit = false;
   @Input() prompt? = '';
@@ -20,7 +31,7 @@ export class BatchNoComponent implements OnInit {
 
   public trade: BusinessTradeForm = {
     prejudication: {batchNo: ''},
-    // prejudication: {business: {archiveNo: ''}},
+    transfer: {batchNo: ''},
     preVehicle: {preVehicle: {
         filingInfo: {},
         merchant: {},
@@ -36,7 +47,9 @@ export class BatchNoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (this.batchNo) {
+    if ('trans' === this.batchNoType) {
+      this.getTradeByTransBatchNo(this.batchNo);
+    } else {
       this.getTradeByBatchNo(this.batchNo);
     }
   }
@@ -48,13 +61,33 @@ export class BatchNoComponent implements OnInit {
   getTradeByBatchNo(batchNo: string) {
     this._prejudicationService.carList(batchNo).then(res => {
       this.tradeList = res as [BusinessTradeForm];
-      this.trade = this.tradeList[0] as BusinessTradeForm;
-      this._tradeList.emit(this.tradeList);
-      this._trade.emit(this.trade);
+      if (this.tradeList) {
+        this.trade = this.tradeList[0] as BusinessTradeForm;
+        this._tradeList.emit(this.tradeList);
+        this._trade.emit(this.trade);
+      }
+      console.info('this.trade', this.trade);
     }).catch(e => {
       const error = e;
       this._message.info('操作提示', error.message);
     });
   }
 
+  /**
+   * 根据过户批次号获取过户业务对象(拿到车辆列表)
+   * @param archiveNo 过户业务流水号(过户批次号)
+   */
+  getTradeByTransBatchNo(tbatchNo: string) {
+    this._transferService.carList(tbatchNo).then(res => {
+      this.tradeList = res as [BusinessTradeForm];
+      if (this.tradeList) {
+        this.trade = this.tradeList[0] as BusinessTradeForm;
+        this._tradeList.emit(this.tradeList);
+        this._trade.emit(this.trade);
+      }
+    }).catch(e => {
+      const error = e;
+      this._message.info('操作提示', error.message);
+    });
+  }
 }
