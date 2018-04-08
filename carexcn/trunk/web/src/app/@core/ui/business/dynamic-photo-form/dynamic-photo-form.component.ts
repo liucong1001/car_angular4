@@ -194,7 +194,7 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
     let photo_name_tmp = {}; let photo_url_tmp = {};
     // 在循环开始之前的该处，要拿到缓存的数据，循环时使用
     let marketphotomap_cache = this.getMaybeMarketphotoMap();
-    console.info('表单缓存', marketphotomap_cache);
+    console.info('表单缓存数据', marketphotomap_cache);
     marketphotomap_arr.forEach(r => {
       console.info('-----------[' + r.name + ']');
       photo_name_tmp[r.photoType] = r.name;

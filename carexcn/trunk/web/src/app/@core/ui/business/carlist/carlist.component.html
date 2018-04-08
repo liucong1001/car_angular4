@@ -20,7 +20,7 @@
         <span class="custom-control-description">
           <button class="btn btn-primary btn-tn" (click)="selected(trade)">
             {{trade.preVehicle.preVehicle.plateNumber}}
-            <!--[{{statusArr[trade.prejudication.status]}}]-->
+            [{{statusArr[trade.prejudication.status]}}]
           </button>
         </span>
         </label>
@@ -36,7 +36,12 @@
         <button class="btn btn-info btn-tn margin_10" (click)="addNew()">添加车辆</button>
     </ng-template>
     <ng-template ngSwitchDefault>
-        <button class="btn btn-primary btn-tn margin_10" *ngFor="let trade of tradeList" (click)="selected(trade)">{{trade.preVehicle.preVehicle.plateNumber}}</button>
+        <button class="btn btn-primary btn-tn margin_10"
+                *ngFor="let trade of tradeList"
+                (click)="selected(trade)">
+          {{trade.preVehicle.preVehicle.plateNumber}}
+          [{{statusArr[trade.prejudication.status]}}]
+        </button>
     </ng-template>
   </ng-container>
   </nb-card-body>
