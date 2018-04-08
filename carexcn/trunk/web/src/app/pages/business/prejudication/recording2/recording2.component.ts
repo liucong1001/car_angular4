@@ -54,12 +54,6 @@ export class Recording2Component implements OnInit, OnDestroy {
       this.businessTradeForm = maybe_businessTradeForm as BusinessTradeForm;
     }
     /**
-     * 使身份证为默认自动选上;
-     */
-    if (!this.businessTradeForm.seller) {
-      this.businessTradeForm.seller = {seller: {certType: '03'}} as Seller;
-    }
-    /**
      * 因为 businessTradeForm 注定有值
      */
     this._formGroup.patchValue(this.businessTradeForm.seller);

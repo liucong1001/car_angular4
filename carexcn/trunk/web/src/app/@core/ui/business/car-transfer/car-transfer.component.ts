@@ -18,7 +18,8 @@ export class CarTransferComponent implements OnInit {
   /**
    * 车辆过户表单
    */
-  @Input() vehicleTransfer: FormGroup;
+  @Input() vehicleTransferObj: FormGroup;
+  vehicleTransfer: FormGroup;
   /**
    * 证件表单配置
    */
@@ -27,7 +28,7 @@ export class CarTransferComponent implements OnInit {
    * 错误实例
    * @type {{error}}
    */
-  @Input() errors?: object = {
+  @Input() errors = {
     vehicleManagement: [new ErrorMessage('required', '必须填写车管所')],
     billMemo: [new ErrorMessage('required', '必须填写')],
     evaluatePrice: [new ErrorMessage('required', '必须填写')],
@@ -37,6 +38,7 @@ export class CarTransferComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.vehicleTransfer = this.vehicleTransferObj.get('vehicleTransfer') as FormGroup;
   }
 
   /**

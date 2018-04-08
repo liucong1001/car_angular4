@@ -9,6 +9,8 @@ import {Codeitem} from '../../../model/system/codeitem';
 import {IdcardService} from '../../../device/idcard.service';
 import {FilingInfoModel} from '../../../model/business/filing.info.model';
 import {FilingService} from '../../../data/merchant/filing.service';
+import {BusinessTradeForm} from '../../../model/business/restruct/business.trade.form';
+import {LocalstorageService} from '../../../cache/localstorage.service';
 
 @Component({
   selector: 'ngx-ys-buyer-info',
@@ -40,14 +42,19 @@ export class BuyerInfoComponent implements OnInit {
    */
   @Input() certType?: Codeitem[];
   /**
-   * 买家表单
+   * 买家表单,包含照片等字段
+   */
+  @Input() buyerObj: FormGroup;
+  /**
+   * 买家表单,不包含照片
+   * 后期删除该属性，平滑过度属性
    */
   @Input() buyer: FormGroup;
   /**
    * 错误实例
    * @type {{}}
    */
-  @Input() errors?: object = {
+  @Input() errors = {
     certType: [
       new ErrorMessage('required', '必填'),
     ],
@@ -75,7 +82,6 @@ export class BuyerInfoComponent implements OnInit {
     ],
   };
   @Input() showCheshang = true;
-  public autoinput_cheshang_source_url = '/rest/merchant/filing/deal/';
 
   /**
    * 构造函数
@@ -88,6 +94,7 @@ export class BuyerInfoComponent implements OnInit {
     private _codeitem: CodeitemService,
     private _message: MessageService,
     private _filingService: FilingService,
+    private _localstorage: LocalstorageService,
   ) {}
 
   /**
@@ -102,14 +109,24 @@ export class BuyerInfoComponent implements OnInit {
       this.buyer.controls.Trustee.disable();
     }
   }
+  businessTradeForm: BusinessTradeForm;
 
   /**
    * 页面初始化事件
    */
   ngOnInit() {
-    // console.info('buyerinfo merchant', this.merchant);
-    // console.info('buyerinfo cheshang', this.cheshang);
-    this.autoinput_cheshang_source_url += this.merchant.id + '/';
+    console.info('certificateFormConfig', this.certificateFormConfig);
+    let maybe_businessTradeForm = this._localstorage.get('business_trecording_trade_form');
+    if (maybe_businessTradeForm) {
+      this.businessTradeForm = maybe_businessTradeForm as BusinessTradeForm;
+    }
+    /**
+     * 重新定义 狭义的 卖家，让照片产生在广义的卖家里，表单可直接使用
+     */
+    if (this.buyerObj && !this.buyer) {
+      this.buyer = this.buyerObj.get('buyer') as FormGroup;
+      console.info('buyerObj', this.buyerObj);
+    }
     /**
      * 默认不用填写委托人
      */
@@ -127,12 +144,13 @@ export class BuyerInfoComponent implements OnInit {
    * 初始化照片动态表单
    */
   certTypeSelecteFunc(event) {
+    console.info('初始化动态表单值event', event);
     this.certificateFormConfig.certificateCode = event;
-    let buyerPhotos = this.buyer.get('_photos_') as FormGroup;
+    let buyerPhotos = this.buyerObj.get('photos') as FormGroup;
     if (buyerPhotos) {
-      this.buyer.removeControl('_photos_');
+      this.buyerObj.removeControl('photos');
     }
-    this.buyer.addControl('_photos_', this.fb.group({}));
+    this.buyerObj.addControl('photos', this.fb.group({}));
   }
 
   /**
@@ -151,11 +169,6 @@ export class BuyerInfoComponent implements OnInit {
   linkmanSelected: FilingInfoModel = {};
   linkManData: FilingInfoModel[] = [];
   dealer: MerchantModel = {};
-  /**
-   * 商户搜索资源
-   * @type {string}
-   */
-  public autoinput_shanghu_source_url = '/rest/merchant/list/';
   /**
    * 选择好了商户的事件
    * @param value

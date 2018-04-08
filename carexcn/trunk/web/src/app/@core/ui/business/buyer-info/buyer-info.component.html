@@ -9,19 +9,19 @@
     <div class="input-group">
       <div class="input-group">
         <span class="input-group-addon">代办商户</span>
-        <ngx-ys-autoinput [results_resource_url]="autoinput_shanghu_source_url" (_value)="getSelectedDealer($event)" [showProperty]="'name'" [defaultValue]="merchant"></ngx-ys-autoinput>
+        <ngx-ys-autoinput [results_resource_url]="'/rest/merchant/list/'" (_value)="getSelectedDealer($event)" [showProperty]="'name'" [defaultValue]="merchant"></ngx-ys-autoinput>
       </div>
       <div class="input-group" *ngIf="showCheshang">
         <span class="input-group-addon">车商</span>
-        <ngx-ys-autoinput [results_resource_url]="autoinput_cheshang_source_url" (_value)="getSelectedCheshang($event)"
+        <ngx-ys-autoinput [results_resource_url]="'/rest/merchant/filing/deal/' + merchant.id + '/'" (_value)="getSelectedCheshang($event)"
                           [showProperty]="'name'" [defaultValue]="cheshang" [placeholder]="'不是车商'"></ngx-ys-autoinput>
       </div>
     </div>
     <!-- 修改此处，把选择证件类型之后，的动态组件相关操作都移动到动态组件当中去，由动态组件完成该操作 -->
     <ngx-ys-dynamic-photo-form
-      [photos]="buyer.get('_photos_')"
+      [photos]="buyerObj.get('photos')"
       [certificateFormConfig]="certificateFormConfig"
-      [data_localStrong_name]="'dynamic_photos_buyer_info'"
+      [data]=""
       [btn_show]="btn_show"
     ></ngx-ys-dynamic-photo-form>
     <div class="input-group">
@@ -51,7 +51,7 @@
         <input type="text" placeholder=""
                ngxInputWithPhoto
                [iwp_photoDetailTmp]="photoDetailTemplate"
-               [iwp_photos_url]="buyer.get('_photos_').value"
+               [iwp_photos_url]="buyerObj.get('photos').value"
                [iwp_certType]="buyer.value.certType"
                [iwp_formName]="'transfer.buyerForm'"
                class="form-control" formControlName="name"
@@ -72,7 +72,7 @@
         <input type="text" placeholder="" class="form-control" formControlName="certCode"
                ngxInputWithPhoto
                [iwp_photoDetailTmp]="photoDetailTemplate"
-               [iwp_photos_url]="buyer.get('_photos_').value"
+               [iwp_photos_url]="buyerObj.get('photos').value"
                [iwp_certType]="buyer.value.certType"
                [iwp_formName]="'transfer.buyerForm'"
                [ngClass]="{'form-control-danger':buyer.get('certCode').invalid && buyer.get('certCode').touched}"/>
@@ -83,7 +83,7 @@
         <input type="text" placeholder="" class="form-control" formControlName="endDate"
                ngxInputWithPhoto
                [iwp_photoDetailTmp]="photoDetailTemplate"
-               [iwp_photos_url]="buyer.get('_photos_').value"
+               [iwp_photos_url]="buyerObj.get('photos').value"
                [iwp_certType]="buyer.value.certType"
                [iwp_formName]="'transfer.buyerForm'"
                [ngClass]="{'form-control-danger':buyer.get('endDate').invalid && buyer.get('endDate').touched}"/>
@@ -96,7 +96,7 @@
         <input type="text" placeholder="" class="form-control" formControlName="buyerAddress"
                ngxInputWithPhoto
                [iwp_photoDetailTmp]="photoDetailTemplate"
-               [iwp_photos_url]="buyer.get('_photos_').value"
+               [iwp_photos_url]="buyerObj.get('photos').value"
                [iwp_certType]="buyer.value.certType"
                [iwp_formName]="'transfer.buyerForm'"
                [ngClass]="{'form-control-danger':buyer.get('buyerAddress').invalid && buyer.get('buyerAddress').touched}"/>

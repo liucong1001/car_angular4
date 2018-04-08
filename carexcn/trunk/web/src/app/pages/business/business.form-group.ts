@@ -24,7 +24,10 @@ export class BusinessFormGroup {
     address: ['', [Validators.required]],
   });
   public seller = this._formBuilder.group({
-    certType: ['', [Validators.required]],
+    /**
+     * 使身份证为默认自动选上;
+     */
+    certType: ['03', [Validators.required]],
     certCode: ['', [Validators.required]],
     name: ['', [Validators.required, Validators.maxLength(64)]],
     endDate: ['', [Validators.required]],
@@ -36,7 +39,10 @@ export class BusinessFormGroup {
     // flag: ['', [Validators.required]],
   });
   public buyer = this._formBuilder.group({
-    certType: ['', [Validators.required]],
+    /**
+     * 使身份证为默认自动选上;
+     */
+    certType: ['03', [Validators.required]],
     certCode: ['', [Validators.required]],
     name: ['', [Validators.required, Validators.maxLength(64)]],
     endDate: ['', [Validators.required]],

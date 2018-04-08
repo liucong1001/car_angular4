@@ -120,8 +120,10 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
    * 配置证件类型
    */
   setCertificateConfig() {
+    console.info('取照片证件的条件配置 certificateFormConfig', this.certificateFormConfig);
     this._market.getCertificateConfig(this.certificateFormConfig)
       .then(res => {
+        console.info('拿到照片证件数据', res);
         this.initPhotoMap(res as [Marketphotomap]);
       });
   }
@@ -184,6 +186,7 @@ export class DynamicPhotoFormComponent implements OnInit, OnChanges {
    * @param {[Marketphotomap]} marketphotomap_arr
    */
   initPhotoMap(marketphotomap_arr: [Marketphotomap]) {
+    console.info('拿到照片证件数据2', marketphotomap_arr);
     console.info('==========[' + this.certificateFormConfig.formName + ']动态表单');
     /**
      * 需要处理的事情：

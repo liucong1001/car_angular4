@@ -136,11 +136,11 @@ export class SellerInfoComponent implements OnInit {
   certTypeSelecteFunc(event) {
     console.info('照片动态表单', event);
     this.certificateFormConfig.certificateCode = event;
-    let sellerPhotos = this.seller.get('photos') as FormGroup;
+    let sellerPhotos = this.sellerObj.get('photos') as FormGroup;
     if (sellerPhotos) {
-      this.seller.removeControl('photos');
+      this.sellerObj.removeControl('photos');
     }
-    this.seller.addControl('photos', this.fb.group({}));
+    this.sellerObj.addControl('photos', this.fb.group({}));
   }
 
   /**
