@@ -66,14 +66,12 @@ export class JudicationComponent implements OnInit {
      * 如果有缓存，则从缓存中恢复数据
      * @type {any | any}
      */
-    let maybe_businessTradeForm = this._localstorage.get('business_recording_trade_form');
+    let maybe_businessTradeForm = this._localstorage.get('business_recorded_trade');
     if (maybe_businessTradeForm) {
       this.businessTradeForm = maybe_businessTradeForm as BusinessTradeForm;
     }
     this._sellerFormGroup.patchValue(this.businessTradeForm.seller);
-    console.info('_formGroup.value', this._sellerFormGroup.value);
     this._vehicleFormGroup.patchValue(this.businessTradeForm.preVehicle);
-    console.info('_formGroup.value', this._vehicleFormGroup.value);
   }
   onSubmit() {
     if (1 > this.judicationTrade.length) {
@@ -86,14 +84,26 @@ export class JudicationComponent implements OnInit {
           review_ids.push(trade.prejudication.id);
         }
       }
-      console.info('review_ids', review_ids);
-      this.currentMarket.getCurrentMarketConf().then(marketObj => {
+      this.currentMarket.getCurrentMarketInfo().then(marketObj => {
         let marketObject = marketObj as CurrentMarketConfModel;
         this._localstorage.set('business_recording_trade_view_form', {
           cloudUser: marketObject.market.cloudUser,
+          preBatchNo: this.businessTradeForm.preBatchNo,
           seller: {seller: this.businessTradeForm.seller.seller},
           tradeIds: review_ids,
         } as BusinessTradeViewForm);
+        console.info('business_recording_trade_view_form', {
+          cloudUser: marketObject.market.cloudUser,
+          preBatchNo: this.businessTradeForm.preBatchNo,
+          seller: {seller: this.businessTradeForm.seller.seller},
+          tradeIds: review_ids,
+        });
+        console.info('business_recording_trade_view_form2', {
+          cloudUser: marketObject.market.cloudUser,
+          preBatchNo: this.businessTradeForm.preBatchNo,
+          seller: {seller: this.businessTradeForm.seller.seller},
+          tradeIds: review_ids,
+        }as BusinessTradeViewForm);
         this._router.navigateByUrl('/pages/business/prejudication/judication-photo');
       }).catch(e => {
         console.info(e);
