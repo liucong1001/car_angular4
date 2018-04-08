@@ -73,7 +73,7 @@ export class UiExampleComponent implements OnInit {
   }
   currentMarketData;
   getCurrentMarket() {
-    this.currentMarket.getCurrentMarket().then(res => {
+    this.currentMarket.getCurrentMarketInfo().then(res => {
       console.info('当前市场相关信息:', res);
       this.currentMarketData = res;
     });

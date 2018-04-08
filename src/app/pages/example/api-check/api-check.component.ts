@@ -66,7 +66,7 @@ export class ApiCheckComponent implements OnInit {
 
   currentMarketData;
   getCurrentMarket() {
-    this._currentMarket.getCurrentMarket().then(res => {
+    this._currentMarket.getCurrentMarketInfo().then(res => {
       console.info('当前市场相关信息:', res);
       this.currentMarketData = res;
     });

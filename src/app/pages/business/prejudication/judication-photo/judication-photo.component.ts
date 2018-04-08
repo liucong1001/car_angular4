@@ -6,6 +6,7 @@ import {FingerService} from '../../../../@core/device/finger.service';
 import {FileSystemService} from '../../../../@core/data/system/file-system.service';
 import {TradeForm} from '../../../../@core/model/business/trade/trade.form';
 import {Marketphotomap} from '../../../../@core/model/system/market-photo-map';
+import {BusinessTradeViewForm} from "../../../../@core/model/business/restruct/business.trade.view.form";
 
 /**
  * 预审业务 - 预审审核 - 卖方拍照 --—接口与页面的交互逻辑
@@ -80,31 +81,14 @@ export class JudicationPhotoComponent implements OnInit {
    * 后台必须配置好对应的照片编号，前台又不可以动态处理指纹照片
    */
   onSubmit() {
-    let judication_trades = this._localstorage.get(this._cache_pre + 'judication_trade');
-    // console.info('fingerImgUrl', this.fingerImgUrl);
-    // console.info('fingerBase64', this.fingerBase64);
-    // console.info('judication_trades', judication_trades);
-    let review_id = (judication_trades[0] as TradeForm).prejudication.business.id;
-    let sellerinfo = (judication_trades[0] as TradeForm).seller.seller;
-    // console.info('review_id', review_id);
-    let review_ids = [];
-    for (let tmp in judication_trades) {
-      if (judication_trades[tmp]) {
-        let trade = judication_trades[tmp] as TradeForm;
-        review_ids.push(trade.prejudication.id);
-      }
-    }
-    this._prejudicationService.review(
-      review_id,
-      review_ids,
-      this._file.filterPhotosValue({
-        '31': [this.avatarPhotosToSubmit], // 卖家头像
-        '32': [this.fingerImgPhotosToSubmit], // 卖家指纹
-      }),
-      sellerinfo,
-    ).then(res => {
-      // console.info(res);
-      this._message.success('操作成功！', '有' + review_ids.length + '个车辆审核通过。');
+    let trades_view = this._localstorage.get('business_recording_trade_view_form') as BusinessTradeViewForm;
+    trades_view.seller.reviewPhotos = this._file.filterPhotosValue({
+      '31': [this.avatarPhotosToSubmit], // 卖家头像
+      '32': [this.fingerImgPhotosToSubmit], // 卖家指纹
+    });
+    this._prejudicationService.review(trades_view).then(res => {
+      console.info(res);
+      this._message.success('操作成功！', '有' + trades_view.tradeIds.length + '个车辆审核通过。');
     }).catch(err => {
       console.info(err);
       console.info(err);

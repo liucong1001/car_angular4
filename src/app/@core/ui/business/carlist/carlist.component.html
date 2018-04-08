@@ -1,5 +1,6 @@
+<!--*ngIf="!('checkbox' === listType && tradeList.length < 2)"-->
 <!--TODO：审核只有一辆车时不显示车辆列表-->
-<nb-card *ngIf="!('checkbox' === listType && tradeList.length < 2)">
+<nb-card>
   <nb-card-header>
     <div class="cameras-card-header">
       <span class="cameras-card-title">{{ car_list_title || '已添加车辆'}}</span>
@@ -13,8 +14,8 @@
         <input type="checkbox" class="custom-control-input"
                [name]="trade.preVehicle.preVehicle.plateNumber"
                (change)="checkboxChanged($event,trade)"
-               [checked]="checkedStatus.indexOf(trade.prejudicationStatus) > -1"
-               [disabled]="! (canCheckingStatus.indexOf(trade.prejudicationStatus) > -1)" />
+               [checked]="checkedStatus.indexOf(trade.prejudication.status) > -1"
+               [disabled]="! (canCheckingStatus.indexOf(trade.prejudication.status) > -1)" />
         <span class="custom-control-indicator"></span>
         <span class="custom-control-description">
           <button class="btn btn-primary btn-tn" (click)="selected(trade)">
@@ -30,7 +31,7 @@
                 *ngFor="let trade of tradeList"
                 (click)="selected(trade)">
           {{trade.preVehicle.preVehicle.plateNumber}}
-          [{{statusArr[trade.prejudicationStatus]}}]
+          [{{statusArr[trade.prejudication.status]}}]
         </button>
         <button class="btn btn-info btn-tn margin_10" (click)="addNew()">添加车辆</button>
     </ng-template>

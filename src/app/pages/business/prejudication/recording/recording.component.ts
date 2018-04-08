@@ -48,8 +48,6 @@ export class RecordingComponent implements OnInit, OnDestroy {
     private _prejudication: PrejudicationService,
     public _businessFormGroup: BusinessFormGroup,
   ) {
-    // let tmp = this._cm.getCurrentMarket();
-    // console.info('tmp', tmp);
   }
 
   // public vehicleLsnumWrong = true;

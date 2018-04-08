@@ -5,9 +5,10 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {TradeForm} from '../../../../@core/model/business/trade/trade.form';
 import {TradeService} from '../../../../@core/data/business/trade.service';
 import {LocalstorageService} from '../../../../@core/cache/localstorage.service';
-import {Marketphotomap} from '../../../../@core/model/system/market-photo-map';
 import {BusinessFormGroup} from '../../business.form-group';
 import {BusinessTradeForm} from '../../../../@core/model/business/restruct/business.trade.form';
+import {BusinessTradeViewForm} from '../../../../@core/model/business/restruct/business.trade.view.form';
+import {CurrentMarketConfModel, CurrentMarketService} from '../../../../@core/data/current-market.service';
 
 /**
  * 预审业务 - 预审审核 - 核对信息 --—接口与页面的交互逻辑
@@ -53,6 +54,7 @@ export class JudicationComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private _businessFormGroup: BusinessFormGroup,
     private _localstorage: LocalstorageService,
+    private currentMarket: CurrentMarketService,
   ) {}
   ngOnInit(): void {
     this._route.params.subscribe(param => {
@@ -74,15 +76,29 @@ export class JudicationComponent implements OnInit {
     console.info('_formGroup.value', this._vehicleFormGroup.value);
   }
   onSubmit() {
-    // console.info(this.judicationTrade.length);
-    // console.info(this.judicationTrade);
-    // this._localstorage.set(this._cache_pre + 'judication_archiveNo', this.trade.prejudication.business.archiveNo);
-    // if (1 > this.judicationTrade.length) {
-    //   this._message.warning('错误提示', '请选择至少一个车辆。');
-    // } else {
-    //   this._localstorage.set(this._cache_pre + 'judication_trade', this.judicationTrade);
-      this._router.navigateByUrl('/pages/business/prejudication/judication-photo');
-    // }
+    if (1 > this.judicationTrade.length) {
+      this._message.warning('错误提示', '请选择至少一个车辆。');
+    } else {
+      let review_ids = [];
+      for (let tmp in this.judicationTrade) {
+        if (this.judicationTrade[tmp]) {
+          let trade = this.judicationTrade[tmp] as TradeForm;
+          review_ids.push(trade.prejudication.id);
+        }
+      }
+      console.info('review_ids', review_ids);
+      this.currentMarket.getCurrentMarketConf().then(marketObj => {
+        let marketObject = marketObj as CurrentMarketConfModel;
+        this._localstorage.set('business_recording_trade_view_form', {
+          cloudUser: marketObject.market.cloudUser,
+          seller: {seller: this.businessTradeForm.seller.seller},
+          tradeIds: review_ids,
+        } as BusinessTradeViewForm);
+        this._router.navigateByUrl('/pages/business/prejudication/judication-photo');
+      }).catch(e => {
+        console.info(e);
+      });
+    }
   }
   reBack() {
     this._router.navigateByUrl('/pages/business/prejudication');

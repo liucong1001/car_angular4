@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {TradeForm} from '../../../model/business/trade/trade.form';
+import {BusinessTradeForm} from '../../../model/business/restruct/business.trade.form';
 
 /**
  * 需求描述与记录
@@ -14,7 +14,7 @@ import {TradeForm} from '../../../model/business/trade/trade.form';
   styleUrls: ['./carlist.component.scss'],
 })
 export class CarlistComponent implements OnInit {
-  @Input() tradeList: Array<TradeForm>;
+  @Input() tradeList: Array<BusinessTradeForm>;
   @Input() car_list_title;
   @Input() listType?;
   /**
@@ -71,7 +71,7 @@ export class CarlistComponent implements OnInit {
    * 单击某辆车以查看车辆详情
    * @param {TradeForm} trade
    */
-  selected(trade: TradeForm) {
+  selected(trade: BusinessTradeForm) {
     this._selected.emit(trade);
   }
 
@@ -86,14 +86,14 @@ export class CarlistComponent implements OnInit {
    * 勾选的车辆集合 （一般用于审核勾选）
    * @type {any[]}
    */
-  public checkCars: TradeForm[] = [];
+  public checkCars: BusinessTradeForm[] = [];
 
   /**
    * 勾选某辆车的操作
    * @param event
    * @param {TradeForm} trade
    */
-  checkboxChanged(event, trade?: TradeForm) {
+  checkboxChanged(event, trade?: BusinessTradeForm) {
     // console.info('event', event);
     // console.info('checked', event.checked);
     // console.info('target.checked', event.target.checked);
