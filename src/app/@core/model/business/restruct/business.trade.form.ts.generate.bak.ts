@@ -25,30 +25,34 @@ declare module namespace {
     preVehicleId: string;
   }
 
-export interface 032 {
+export interface
+  032
+  {
     cloudUser: string;
     id: string;
     objectType: string;
     objectId: string;
     fileType: string;
     fileExtName: string;
-    sortNumber?: any;
+    sortNumber ? : any;
     filePath: string;
     deleted: boolean;
-    rotate?: any;
+    rotate ? : any;
   }
 
-export interface 042 {
+export interface
+  042
+  {
     cloudUser: string;
     id: string;
     objectType: string;
     objectId: string;
     fileType: string;
     fileExtName: string;
-    sortNumber?: any;
+    sortNumber ? : any;
     filePath: string;
     deleted: boolean;
-    rotate?: any;
+    rotate ? : any;
   }
 
   export interface Photos {
@@ -88,30 +92,34 @@ export interface 042 {
     seller: Seller2;
   }
 
-export interface 172 {
+export interface
+  172
+  {
     cloudUser: string;
     id: string;
     objectType: string;
     objectId: string;
     fileType: string;
     fileExtName: string;
-    sortNumber?: any;
+    sortNumber ? : any;
     filePath: string;
     deleted: boolean;
-    rotate?: any;
+    rotate ? : any;
   }
 
-export interface 202 {
+export interface
+  202
+  {
     cloudUser: string;
     id: string;
     objectType: string;
     objectId: string;
     fileType: string;
     fileExtName: string;
-    sortNumber?: any;
+    sortNumber ? : any;
     filePath: string;
     deleted: boolean;
-    rotate?: any;
+    rotate ? : any;
   }
 
   export interface Photos2 {
