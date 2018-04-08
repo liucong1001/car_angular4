@@ -7,6 +7,7 @@ import {TradeService} from '../../../../@core/data/business/trade.service';
 import {LocalstorageService} from '../../../../@core/cache/localstorage.service';
 import {Marketphotomap} from '../../../../@core/model/system/market-photo-map';
 import {BusinessFormGroup} from '../../business.form-group';
+import {BusinessTradeForm} from '../../../../@core/model/business/restruct/business.trade.form';
 
 /**
  * 预审业务 - 预审审核 - 核对信息 --—接口与页面的交互逻辑
@@ -21,19 +22,17 @@ import {BusinessFormGroup} from '../../business.form-group';
   styleUrls: ['./judication.component.scss'],
 })
 export class JudicationComponent implements OnInit {
-  certificateFormConfig: Marketphotomap;
   public prejudicationBatchNo = '';
-  private _cache_pre = 'business_prejudication_recording_';
-  vehicleCertificateFormConfig: Marketphotomap;
-  public archiveNo = '';
+  public businessTradeForm: BusinessTradeForm = {preVehicle: {preVehicle: {}}};
   public trade: TradeForm;
   public tradeList: [TradeForm];
-  public _formGroup: FormGroup = this._formBuilder.group({
-    vehicle: this._businessFormGroup.vehicle,
-  });
   public _vehicleFormGroup: FormGroup = this._formBuilder.group({
     preVehicle: this._businessFormGroup.vehicleAndData,
     photos: this._formBuilder.group({}),
+  });
+  public _sellerFormGroup: FormGroup = this._formBuilder.group({
+    photos: this._formBuilder.group({}),
+    seller: this._businessFormGroup.seller,
   });
 
   /**
@@ -61,6 +60,18 @@ export class JudicationComponent implements OnInit {
         this.prejudicationBatchNo = param.batchNo;
       }
     });
+    /**
+     * 如果有缓存，则从缓存中恢复数据
+     * @type {any | any}
+     */
+    let maybe_businessTradeForm = this._localstorage.get('business_recording_trade_form');
+    if (maybe_businessTradeForm) {
+      this.businessTradeForm = maybe_businessTradeForm as BusinessTradeForm;
+    }
+    this._sellerFormGroup.patchValue(this.businessTradeForm.seller);
+    console.info('_formGroup.value', this._sellerFormGroup.value);
+    this._vehicleFormGroup.patchValue(this.businessTradeForm.preVehicle);
+    console.info('_formGroup.value', this._vehicleFormGroup.value);
     // this._route.params.subscribe(param => {
     //   if (param.batchNo) {
     //     this.archiveNo = param.batchNo;
@@ -76,21 +87,21 @@ export class JudicationComponent implements OnInit {
      * 卖家证件类型表单配置
      * @type {{}}
      */
-    this.vehicleCertificateFormConfig = {
-      // certificateCode: '00', // 证件类型代码集 // 只要符合表单就行
-      formName: '预审录入车辆', // 表单名称
-    } as Marketphotomap;
+    // this.vehicleCertificateFormConfig = {
+    //   // certificateCode: '00', // 证件类型代码集 // 只要符合表单就行
+    //   formName: '预审录入车辆', // 表单名称
+    // } as Marketphotomap;
   }
   onSubmit() {
-    console.info(this.judicationTrade.length);
-    console.info(this.judicationTrade);
-    this._localstorage.set(this._cache_pre + 'judication_archiveNo', this.trade.prejudication.business.archiveNo);
-    if (1 > this.judicationTrade.length) {
-      this._message.warning('错误提示', '请选择至少一个车辆。');
-    } else {
-      this._localstorage.set(this._cache_pre + 'judication_trade', this.judicationTrade);
-      this._router.navigateByUrl('/pages/business/prejudication/judication-photo');
-    }
+    // console.info(this.judicationTrade.length);
+    // console.info(this.judicationTrade);
+    // this._localstorage.set(this._cache_pre + 'judication_archiveNo', this.trade.prejudication.business.archiveNo);
+    // if (1 > this.judicationTrade.length) {
+    //   this._message.warning('错误提示', '请选择至少一个车辆。');
+    // } else {
+    //   this._localstorage.set(this._cache_pre + 'judication_trade', this.judicationTrade);
+    //   this._router.navigateByUrl('/pages/business/prejudication/judication-photo');
+    // }
   }
   reBack() {
     this._router.navigateByUrl('/pages/business/prejudication');
@@ -102,13 +113,13 @@ export class JudicationComponent implements OnInit {
     this.tradeList = tradeList;
   }
   onChangeSelected(trade: TradeForm): void {
-    if (null === trade) {
-      this._formGroup.reset();
-      this._message.info('添加车辆', '添加新车辆');
-    } else {
-      this._formGroup.patchValue({vehicle: trade.preVehicle.preVehicle});
-      this._message.info('查看车辆', trade.preVehicle.preVehicle.plateNumber);
-    }
+    // if (null === trade) {
+    //   this._formGroup.reset();
+    //   this._message.info('添加车辆', '添加新车辆');
+    // } else {
+    //   this._formGroup.patchValue({vehicle: trade.preVehicle.preVehicle});
+    //   this._message.info('查看车辆', trade.preVehicle.preVehicle.plateNumber);
+    // }
   }
   public judicationTrade: TradeForm[] = [];
   onChangeCheckCars(trades): void {
