@@ -1,22 +1,24 @@
 <ngx-archive-no-vehicle
-  [pageTitle]="'过户业务 - 预审过户 - 信息录入'"
+  [pageTitle]="'过户录入 - 买家'"
   [archiveNo]="businessTradeForm.archiveNo"
   (_tradeList)="getTradeListByArchiveNoComponent($event)"
   (_trade)="getTradeByArchiveNoComponent($event)"
 ></ngx-archive-no-vehicle>
 
-<!--<ngx-ys-buyer-info *ngIf="trade"-->
-  <!--[buyer]="_formGroup.controls.buyer"-->
-  <!--[certificateFormConfig]="buyerCertificateFormConfig"-->
-  <!--[merchant]="trade.preVehicle.preVehicle.merchant"-->
-  <!--[cheshang]="trade.preVehicle.preVehicle.filingInfo"-->
-<!--&gt;</ngx-ys-buyer-info>-->
+<ngx-ys-buyer-info
+  *ngIf="businessTradeForm"
+  [buyerObj]="_formGroupBuyer"
+  [certificateFormConfig]="{certificateCode: '03', formName: '过户录入买家'}"
+  [merchant]="businessTradeForm.preVehicle.preVehicle.merchant"
+  [cheshang]="businessTradeForm.preVehicle.preVehicle.filingInfo"
+></ngx-ys-buyer-info>
 
 <ngx-ys-car-transfer
-  [vehicleTransfer]="_formGroup.controls.vehicleTransfer"
-  [certificateFormConfig]="vehicleTransferCertificateFormConfig"
+  [vehicleTransferObj]="_formGroupTransferVehicle"
+  [certificateFormConfig]="{formName: '过户录入车辆'}"
 ></ngx-ys-car-transfer>
 
 <div class="float-right">
-  <button class="btn btn-primary btn-lg" (click)="onSubmit()" [disabled]="_formGroup.invalid">确认提交</button> &nbsp;
+  <!--[disabled]="_formGroup.invalid"-->
+  <button class="btn btn-primary btn-lg" (click)="onSubmit()">确认提交</button> &nbsp;
 </div>

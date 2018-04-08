@@ -22,11 +22,17 @@ import {BusinessTradeForm} from '../../../../@core/model/business/restruct/busin
 export class Trecording2Component implements OnInit {
   public businessTradeForm: BusinessTradeForm = null;
   public archiveNo = '';
-  public trade: TradeForm;
+  public trade: BusinessTradeForm;
   // public trade: TradeForm = {preVehicle: {preVehicle: {filingInfo: {}, merchant: {}}}};
-  public tradeList: [TradeForm];
-  public _formGroup: FormGroup = this._formBuilder.group({
+  public tradeList: [BusinessTradeForm];
+  public _formGroupBuyer: FormGroup = this._formBuilder.group({
+    // reviewPhotos: '',
+    photos: '',
+    trusteePhotos: '',
     buyer: this._businessFormGroup.buyer,
+  });
+  public _formGroupTransferVehicle: FormGroup = this._formBuilder.group({
+    photos: '',
     vehicleTransfer: this._businessFormGroup.vehicleTransfer,
   });
   constructor(
@@ -39,12 +45,12 @@ export class Trecording2Component implements OnInit {
     private _transfer: TransferService,
     private _file: FileSystemService,
   ) { }
-  getTradeByArchiveNoComponent(trade) {
+  getTradeByArchiveNoComponent(trade: BusinessTradeForm) {
     // console.info('trade', trade);
-    this.trade = trade;
+    this.businessTradeForm = trade;
     // this._formGroup.controls.seller.patchValue(this.trade.seller.seller);
   }
-  getTradeListByArchiveNoComponent(tradeList) {
+  getTradeListByArchiveNoComponent(tradeList: [BusinessTradeForm]) {
     // console.info('tradeList', tradeList);
     this.tradeList = tradeList;
     // this.onChangeSelectedCar(tradeList[0]);
@@ -57,6 +63,9 @@ export class Trecording2Component implements OnInit {
     }
   }
   onSubmit() {
+    console.info('business_trecording_trade_form', this.businessTradeForm);
+    console.info('_formGroupBuyer', this._formGroupBuyer.value);
+    console.info('_formGroupTransferVehicle', this._formGroupTransferVehicle.value);
     /**
      * 处理缓存数据
      */
