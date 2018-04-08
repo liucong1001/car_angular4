@@ -57,22 +57,6 @@ export class RecordingContinueComponent implements OnInit {
         this.prejudicationBatchNo = param.batchNo;
       }
     });
-    /**
-     * 可能的缓存
-     * @type {any | any}
-     */
-    // if (!this.archiveNo) {
-    //   let maybe_vehicle = this._localstorage.get(this._cache_pre + 'continue_vehicle');
-    //   if (maybe_vehicle) {
-    //     this._formGroup.patchValue(maybe_vehicle);
-    //     let maybe_continue_archiveNo = this._localstorage.get(this._cache_pre + 'continue_archiveNo');
-    //     if (maybe_continue_archiveNo) {
-    //       this.archiveNo = maybe_continue_archiveNo;
-    //     }
-    //   } else {
-    //     console.info(maybe_vehicle);
-    //   }
-    // }
   }
   onChangeSelectedCar(trade: TradeForm): void {
     if (null === trade) {

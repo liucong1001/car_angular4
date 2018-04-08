@@ -57,6 +57,7 @@ export class ArchiveNoVehicleComponent implements OnInit {
        * @type {TradeForm}
        */
       this.trade = this.tradeList[0] as TradeForm;
+      console.info('trade', this.trade);
       this._filingService.agency(trade.preVehicle.preVehicle.merchant.id).then(filingInfo => {
         /**
          * 标注商户已选好

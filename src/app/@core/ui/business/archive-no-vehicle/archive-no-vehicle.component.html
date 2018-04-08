@@ -53,14 +53,14 @@
       </div>
       <div class="input-group">
         <span class="input-group-addon">代办商户</span>
-        <!--<label class="form-control">{{trade.preVehicle.preVehicle.merchant.name || ''}}</label>-->
-        <ngx-ys-autoinput
-          [results_resource_url]="autoinput_shanghu_source_url"
-          (_value)="getSelectedMerchant($event)"
-          [showProperty]="'name'"
-          [disabled]="false"
-          [defaultValue]="trade.preVehicle.preVehicle.merchant"
-        ></ngx-ys-autoinput>
+        <label class="form-control">{{trade.preVehicle.preVehicle.merchant.name || ''}}</label>
+        <!--<ngx-ys-autoinput-->
+          <!--[results_resource_url]="autoinput_shanghu_source_url"-->
+          <!--(_value)="getSelectedMerchant($event)"-->
+          <!--[showProperty]="'name'"-->
+          <!--[disabled]="false"-->
+          <!--[defaultValue]="trade.preVehicle.preVehicle.merchant"-->
+        <!--&gt;</ngx-ys-autoinput>-->
       </div>
     </div>
     <div class="input-group" *ngIf="filingInfoData">
