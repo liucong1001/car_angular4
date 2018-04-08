@@ -4,9 +4,9 @@
       <span class="cameras-card-title">车辆过户信息</span>
     </div>
   </nb-card-header>
-  <nb-card-body [formGroup]="vehicleTransfer">
+  <nb-card-body [formGroup]="transferVehicle">
     <!--<ngx-ys-dynamic-photo-form *ngIf="certificateFormConfig"-->
-       <!--[photos]="vehicleTransfer.get('_photos_')"-->
+       <!--[photos]="transferVehicle.get('_photos_')"-->
        <!--[certificateFormConfig]="certificateFormConfig"-->
        <!--[data_localStrong_name]="'dynamic_photos_car-transfer'"-->
        <!--[btn_show]="btn_show"-->
@@ -19,37 +19,37 @@
           <!--[results_resource_url]="'/rest/manager/vehicle/management/list/'"-->
           <!--(_value)="getSelectedVehicleManagement($event)"-->
           <!--[showProperty]="'createTime'"-->
-          <!--[defaultValue]="vehicleTransfer.get('vehicleManagement').value"-->
+          <!--[defaultValue]="transferVehicle.get('vehicleManagement').value"-->
         <!--&gt;</ngx-ys-autoinput>-->
         <input type="text" placeholder="" class="form-control" formControlName="vehicleManagement"
-               [ngClass]="{'form-control-danger':vehicleTransfer.get('vehicleManagement').invalid && vehicleTransfer.get('vehicleManagement').touched}"/>
-        <ngx-valid-error [errors]="errors.vehicleManagement" [control]="vehicleTransfer.get('vehicleManagement')"></ngx-valid-error>
+               [ngClass]="{'form-control-danger':transferVehicle.get('vehicleManagement').invalid && transferVehicle.get('vehicleManagement').touched}"/>
+        <ngx-valid-error [errors]="errors.vehicleManagement" [control]="transferVehicle.get('vehicleManagement')"></ngx-valid-error>
       </div>
       <div class="input-group">
         <span class="input-group-addon">成交价格</span>
         <input type="text" placeholder="" class="form-control" formControlName="bargainPrice"
-               [ngClass]="{'form-control-danger':vehicleTransfer.get('bargainPrice').invalid && vehicleTransfer.get('bargainPrice').touched}"/>
-        <ngx-valid-error [errors]="errors.bargainPrice" [control]="vehicleTransfer.get('bargainPrice')"></ngx-valid-error>
+               [ngClass]="{'form-control-danger':transferVehicle.get('bargainPrice').invalid && transferVehicle.get('bargainPrice').touched}"/>
+        <ngx-valid-error [errors]="errors.bargainPrice" [control]="transferVehicle.get('bargainPrice')"></ngx-valid-error>
       </div>
     </div>
     <div class="input-group">
       <div class="input-group">
         <span class="input-group-addon">评估价格</span>
         <input type="text" placeholder="" class="form-control" formControlName="evaluatePrice"
-               [ngClass]="{'form-control-danger':vehicleTransfer.get('evaluatePrice').invalid && vehicleTransfer.get('evaluatePrice').touched}"/>
-        <ngx-valid-error [errors]="errors.evaluatePrice" [control]="vehicleTransfer.get('evaluatePrice')"></ngx-valid-error>
+               [ngClass]="{'form-control-danger':transferVehicle.get('evaluatePrice').invalid && transferVehicle.get('evaluatePrice').touched}"/>
+        <ngx-valid-error [errors]="errors.evaluatePrice" [control]="transferVehicle.get('evaluatePrice')"></ngx-valid-error>
       </div>
       <div class="input-group">
         <span class="input-group-addon">发票备注</span>
         <input type="text" placeholder="" class="form-control" formControlName="billMemo"
-               [ngClass]="{'form-control-danger':vehicleTransfer.get('billMemo').invalid && vehicleTransfer.get('billMemo').touched}"/>
-        <ngx-valid-error [errors]="errors.billMemo" [control]="vehicleTransfer.get('billMemo')"></ngx-valid-error>
+               [ngClass]="{'form-control-danger':transferVehicle.get('billMemo').invalid && transferVehicle.get('billMemo').touched}"/>
+        <ngx-valid-error [errors]="errors.billMemo" [control]="transferVehicle.get('billMemo')"></ngx-valid-error>
       </div>
       <div class="input-group">
         <span class="input-group-addon">手续费</span>
         <input type="text" placeholder="" class="form-control" formControlName="fee"
-               [ngClass]="{'form-control-danger':vehicleTransfer.get('fee').invalid && vehicleTransfer.get('fee').touched}"/>
-        <ngx-valid-error [errors]="errors.fee" [control]="vehicleTransfer.get('fee')"></ngx-valid-error>
+               [ngClass]="{'form-control-danger':transferVehicle.get('fee').invalid && transferVehicle.get('fee').touched}"/>
+        <ngx-valid-error [errors]="errors.fee" [control]="transferVehicle.get('fee')"></ngx-valid-error>
       </div>
     </div>
   </nb-card-body>

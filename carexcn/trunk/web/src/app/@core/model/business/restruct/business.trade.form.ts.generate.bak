@@ -25,44 +25,6 @@ declare module namespace {
     preVehicleId: string;
   }
 
-export interface
-  032
-  {
-    cloudUser: string;
-    id: string;
-    objectType: string;
-    objectId: string;
-    fileType: string;
-    fileExtName: string;
-    sortNumber ? : any;
-    filePath: string;
-    deleted: boolean;
-    rotate ? : any;
-  }
-
-export interface
-  042
-  {
-    cloudUser: string;
-    id: string;
-    objectType: string;
-    objectId: string;
-    fileType: string;
-    fileExtName: string;
-    sortNumber ? : any;
-    filePath: string;
-    deleted: boolean;
-    rotate ? : any;
-  }
-
-  export interface Photos {
-    03: 032[];
-    04: 042[];
-  }
-
-  export interface TrusteePhotos {
-  }
-
   export interface Seller2 {
     cloudUser: string;
     createUserId?: any;
@@ -80,52 +42,18 @@ export interface
     reviewType: string;
     trusteeType: string;
     address: string;
-    sellerTrustee?: any;
+    trustee?: any;
     flag?: any;
     type?: any;
   }
 
   export interface Seller {
-    reviewPhotos?: any;
+    reviewPhotos: ReviewPhotos;
     photos: Photos;
     trusteePhotos: TrusteePhotos;
     seller: Seller2;
   }
 
-export interface
-  172
-  {
-    cloudUser: string;
-    id: string;
-    objectType: string;
-    objectId: string;
-    fileType: string;
-    fileExtName: string;
-    sortNumber ? : any;
-    filePath: string;
-    deleted: boolean;
-    rotate ? : any;
-  }
-
-export interface
-  202
-  {
-    cloudUser: string;
-    id: string;
-    objectType: string;
-    objectId: string;
-    fileType: string;
-    fileExtName: string;
-    sortNumber ? : any;
-    filePath: string;
-    deleted: boolean;
-    rotate ? : any;
-  }
-
-  export interface Photos2 {
-    17: 172[];
-    20: 202[];
-  }
 
   export interface Vehicle {
     cloudUser: string;
@@ -197,8 +125,8 @@ export interface
     permissons: any[];
     initPwd?: any;
     certCode: string;
-    perms?: any;
     agency?: any;
+    perms?: any;
   }
 
   export interface FilingInfo {
@@ -291,9 +219,220 @@ export interface
 
   export interface PreVehicle {
     photos: Photos2;
-    targetPath: string;
+    targetPath?: any;
     preVehicle: PreVehicle2;
     newCarsPrice?: any;
+  }
+
+  export interface Transfer {
+    cloudUser: string;
+    createUserId: string;
+    createTime: number;
+    lastModifyTime?: any;
+    lastModifyUserId?: any;
+    id: string;
+    type: string;
+    sn: string;
+    fromFlag: string;
+    invalid: string;
+    version: number;
+    batchNo: string;
+    archiveNo: string;
+    status: string;
+    complete: string;
+    inputer: string;
+    inputTime: number;
+    reviewer?: any;
+    reviewTime?: any;
+    locker?: any;
+    prejudicationId: string;
+    buyerId: string;
+    transferVehicleId: string;
+    preBatchNo?: any;
+  }
+
+  export interface Photos3 {
+    03: 033[];
+    04: 043[];
+  }
+
+  export interface TrusteePhotos2 {
+  }
+
+  export interface Buyer2 {
+    cloudUser: string;
+    createUserId?: any;
+    createTime?: any;
+    lastModifyTime?: any;
+    lastModifyUserId?: any;
+    id: string;
+    tradeType: string;
+    certType: string;
+    certCode: string;
+    name: string;
+    endDate: string;
+    phone: string;
+    filingInfo?: any;
+    reviewType: string;
+    trusteeType: string;
+    address: string;
+    flag?: any;
+    trustee?: any;
+    type?: any;
+  }
+
+  export interface Buyer {
+    reviewPhotos?: any;
+    photos: Photos3;
+    trusteePhotos: TrusteePhotos2;
+    buyer: Buyer2;
+  }
+
+  export interface Photos4 {
+  }
+
+  export interface Account3 {
+    cloudUser: string;
+    createUserId: string;
+    createTime: number;
+    lastModifyTime?: any;
+    lastModifyUserId?: any;
+    id: string;
+    accountName: string;
+    accountNo: string;
+    flag: string;
+  }
+
+  export interface Merchant3 {
+    cloudUser: string;
+    createUserId: string;
+    createTime: number;
+    lastModifyTime?: any;
+    lastModifyUserId?: any;
+    id: string;
+    name: string;
+    code: string;
+    certCode: string;
+    address: string;
+    phone: string;
+    endDate: string;
+    discount: number;
+    isCarRental: string;
+    isDeal: string;
+    isPersonal: string;
+    disableSign: string;
+    invalid: string;
+    master?: any;
+    account: Account3;
+    flag: string;
+    codeAndName: string;
+  }
+
+  export interface FilingPerson2 {
+    cloudUser: string;
+    createUserId?: any;
+    createTime?: any;
+    lastModifyTime?: any;
+    lastModifyUserId?: any;
+    id: string;
+    loginName?: any;
+    userName?: any;
+    lastTime?: any;
+    lastIp?: any;
+    email?: any;
+    status?: any;
+    type: string;
+    roles?: any;
+    telephone?: any;
+    permissons: any[];
+    initPwd?: any;
+    certCode: string;
+    agency?: any;
+    perms?: any;
+  }
+
+  export interface FilingInfo2 {
+    cloudUser: string;
+    createUserId: string;
+    createTime: number;
+    lastModifyTime?: any;
+    lastModifyUserId?: any;
+    id: string;
+    name: string;
+    spell: string;
+    address: string;
+    phone: string;
+    endDate: string;
+    isAgency: string;
+    isDeal: string;
+    isApp: string;
+    disableSign: string;
+    invalid: string;
+    merchant: Merchant3;
+    filingPerson: FilingPerson2;
+  }
+
+  export interface Account4 {
+    cloudUser: string;
+    createUserId: string;
+    createTime: number;
+    lastModifyTime?: any;
+    lastModifyUserId?: any;
+    id: string;
+    accountName: string;
+    accountNo: string;
+    flag: string;
+  }
+
+  export interface Merchant4 {
+    cloudUser: string;
+    createUserId: string;
+    createTime: number;
+    lastModifyTime?: any;
+    lastModifyUserId?: any;
+    id: string;
+    name: string;
+    code: string;
+    certCode: string;
+    address: string;
+    phone: string;
+    endDate: string;
+    discount: number;
+    isCarRental: string;
+    isDeal: string;
+    isPersonal: string;
+    disableSign: string;
+    invalid: string;
+    master?: any;
+    account: Account4;
+    flag: string;
+    codeAndName: string;
+  }
+
+  export interface TransferVehicle2 {
+    cloudUser: string;
+    createUserId?: any;
+    createTime?: any;
+    lastModifyTime?: any;
+    lastModifyUserId?: any;
+    id: string;
+    filingInfo: FilingInfo2;
+    merchant: Merchant4;
+    vehicleManagement?: any;
+    managementFromMobile?: any;
+    billMemo: string;
+    evaluatePrice: number;
+    bargainPrice: number;
+    fee: number;
+    review: string;
+    invalid: string;
+  }
+
+  export interface TransferVehicle {
+    photos: Photos4;
+    targetPath: string;
+    transferVehicle: TransferVehicle2;
+    preVehicleId: string;
   }
 
   export interface RootObject {
@@ -302,10 +441,10 @@ export interface
     prejudication: Prejudication;
     seller: Seller;
     preVehicle: PreVehicle;
-    transfer?: any;
+    transfer: Transfer;
     preBatchNo?: any;
-    buyer?: any;
-    transferVehicle?: any;
+    buyer: Buyer;
+    transferVehicle: TransferVehicle;
     bills?: any;
     business?: any;
   }

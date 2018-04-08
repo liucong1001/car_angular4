@@ -18,8 +18,8 @@ export class CarTransferComponent implements OnInit {
   /**
    * 车辆过户表单
    */
-  @Input() vehicleTransferObj: FormGroup;
-  vehicleTransfer: FormGroup;
+  @Input() transferVehicleObj: FormGroup;
+  transferVehicle: FormGroup;
   /**
    * 证件表单配置
    */
@@ -38,7 +38,7 @@ export class CarTransferComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.vehicleTransfer = this.vehicleTransferObj.get('vehicleTransfer') as FormGroup;
+    this.transferVehicle = this.transferVehicleObj.get('transferVehicle') as FormGroup;
   }
 
   /**

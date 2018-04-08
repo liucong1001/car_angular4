@@ -7,6 +7,8 @@ import {UserService} from '../users.service';
 import {BuyerForm} from '../../model/business/trade/buyer.form';
 import {TransferVehicleModel} from '../../model/business/trade/transferVehicle/transferVehicle.model';
 import {BuyerModel} from '../../model/business/trade/buyer.model';
+import {FileSystemService} from "../system/file-system.service";
+import {TransferVehicleForm} from "../../model/business/trade/transferVehicle.form";
 
 @Injectable()
 export class TransferService {
@@ -14,6 +16,7 @@ export class TransferService {
   constructor(
     public userService: UserService,
     private rest: RestService,
+    private file: FileSystemService,
   ) {
     this.currentUser = this.userService.getCurrentLoginUser();
   }
@@ -25,26 +28,16 @@ export class TransferService {
    */
   public create(
     archiveNo: string,
-    buyerPhotos: object,
-    buyer: BuyerModel,
-    transferVehiclePhotos: object,
-    transferVehicle: TransferVehicleModel,
-    vehicleId: string,
+    buyer: BuyerForm,
+    transferVehicle: TransferVehicleForm,
   ): Promise<any> {
+    buyer.photos = this.file.filterPhotosValue(buyer.photos);
+    transferVehicle.photos = this.file.filterPhotosValue(transferVehicle.photos);
     return this.rest.post(this.api_url_base, {
       archiveNo: archiveNo,
       cloudUser: this.currentUser.cloudUser,
-      buyer: {
-        reviewPhotos: {},
-        photos: buyerPhotos,
-        trusteePhotos: {},
-        buyer: buyer,
-      } as BuyerForm,
-      transferVehicle: {
-        photos: transferVehiclePhotos,
-        transferVehicle: transferVehicle,
-        PreVehicleId: vehicleId,
-      }, // TODO: 过户车辆的实体应该要建立
+      buyer,
+      transferVehicle: transferVehicle, // TODO: 过户车辆的实体应该要建立
     } as TradeForm).toPromise();
   }
 
