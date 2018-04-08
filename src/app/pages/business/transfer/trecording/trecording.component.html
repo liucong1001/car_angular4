@@ -1,30 +1,32 @@
 <ngx-archive-no-vehicle
-  [pageTitle]="'预审过户'"
-  [archiveNo]="archiveNo"
+  [pageTitle]="'过户录入'"
+  [archiveNo]="businessTradeForm.archiveNo"
   [canEdit]="true"
   (_tradeList)="getTradeListByArchiveNoComponent($event)"
   (_trade)="getTradeByArchiveNoComponent($event)"
 ></ngx-archive-no-vehicle>
 
-<!--<ngx-ys-carlist-->
-  <!--*ngIf="tradeList"-->
-  <!--[tradeList]="tradeList"-->
-  <!--(_selected)='onChangeSelectedCar($event)'-->
-  <!--[listType]="'add'"-->
-<!--&gt;</ngx-ys-carlist>-->
+<ngx-ys-carlist
+  *ngIf="tradeList"
+  [tradeList]="tradeList"
+  (_selected)='onChangeSelectedCar($event)'
+  [listType]="'checkbox'"
+></ngx-ys-carlist>
 
-<!--<ngx-ys-seller-info-->
-  <!--[merchant]="businessTradeForm.preVehicle.preVehicle.merchant"-->
-  <!--[sellerObj]="_sellerFormGroup"-->
-  <!--[certificateFormConfig]="{certificateCode: '03',formName: '预审录入卖家'}"-->
-<!--&gt;</ngx-ys-seller-info>-->
+<ngx-ys-seller-info
+  *ngIf="businessTradeForm.seller"
+  [merchant]="businessTradeForm.preVehicle.preVehicle.merchant"
+  [sellerObj]="_sellerFormGroup"
+  [certificateFormConfig]="{certificateCode: '03',formName: '预审录入卖家'}"
+></ngx-ys-seller-info>
 
-<!--<ngx-ys-cardetail-->
-  <!--[car_detail_title]="'车辆信息'"-->
-  <!--[btn_show]="false"-->
-  <!--[vehicleObj]="_vehicleFormGroup"-->
-  <!--[certificateFormConfig]="{formName: '预审录入车辆'}"-->
-<!--&gt;</ngx-ys-cardetail>-->
+<ngx-ys-cardetail
+  *ngIf="businessTradeForm.preVehicle.preVehicle.plateNumber"
+  [car_detail_title]="'车辆信息'"
+  [btn_show]="false"
+  [vehicleObj]="_vehicleFormGroup"
+  [certificateFormConfig]="{formName: '预审录入车辆'}"
+></ngx-ys-cardetail>
 
 <!--<ngx-ys-seller-info-->
   <!--*ngIf="trade"-->
