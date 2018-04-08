@@ -21,6 +21,8 @@ import {BusinessFormGroup} from '../../business.form-group';
   styleUrls: ['./judication.component.scss'],
 })
 export class JudicationComponent implements OnInit {
+  certificateFormConfig: Marketphotomap;
+  public prejudicationBatchNo = '';
   private _cache_pre = 'business_prejudication_recording_';
   vehicleCertificateFormConfig: Marketphotomap;
   public archiveNo = '';
@@ -28,6 +30,10 @@ export class JudicationComponent implements OnInit {
   public tradeList: [TradeForm];
   public _formGroup: FormGroup = this._formBuilder.group({
     vehicle: this._businessFormGroup.vehicle,
+  });
+  public _vehicleFormGroup: FormGroup = this._formBuilder.group({
+    preVehicle: this._businessFormGroup.vehicleAndData,
+    photos: this._formBuilder.group({}),
   });
 
   /**
@@ -52,15 +58,20 @@ export class JudicationComponent implements OnInit {
   ngOnInit(): void {
     this._route.params.subscribe(param => {
       if (param.batchNo) {
-        this.archiveNo = param.batchNo;
+        this.prejudicationBatchNo = param.batchNo;
       }
     });
-    if (! this.archiveNo) {
-      let maybe_continue_archiveNo = this._localstorage.get(this._cache_pre + 'judication_archiveNo');
-      if (maybe_continue_archiveNo) {
-        this.archiveNo = maybe_continue_archiveNo;
-      }
-    }
+    // this._route.params.subscribe(param => {
+    //   if (param.batchNo) {
+    //     this.archiveNo = param.batchNo;
+    //   }
+    // });
+    // if (! this.archiveNo) {
+    //   let maybe_continue_archiveNo = this._localstorage.get(this._cache_pre + 'judication_archiveNo');
+    //   if (maybe_continue_archiveNo) {
+    //     this.archiveNo = maybe_continue_archiveNo;
+    //   }
+    // }
     /**
      * 卖家证件类型表单配置
      * @type {{}}
