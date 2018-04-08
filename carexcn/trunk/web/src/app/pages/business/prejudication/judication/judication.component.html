@@ -1,9 +1,9 @@
-<ngx-ys-archive-no
-  [pageTitle]="'预审业务 - 预审审核'"
-  [archiveNo]="archiveNo"
-  (_tradeList)="getTradeListByArchiveNoComponent($event)"
-  (_trade)="getTradeByArchiveNoComponent($event)"
-></ngx-ys-archive-no>
+<ngx-ys-batch-no
+[pageTitle]="'预审业务 - 预审审核'"
+[batchNo]="prejudicationBatchNo"
+(_tradeList)="getTradeListByArchiveNoComponent($event)"
+(_trade)="getTradeByArchiveNoComponent($event)"
+></ngx-ys-batch-no>
 
 <!--<ngx-ys-seller-info-->
   <!--[merchant]="dealer"-->
@@ -12,21 +12,27 @@
   <!--[btn_show]="false"-->
 <!--&gt;</ngx-ys-seller-info>-->
 
-<ngx-ys-carlist
-  *ngIf="tradeList"
-  [tradeList]="tradeList"
-  [car_list_title]="'审核车辆列表'"
-  (_selected)='onChangeSelected($event)'
-  (_checkCars)="onChangeCheckCars($event)"
-  [listType]="'checkbox'"
-></ngx-ys-carlist>
+<!--<ngx-ys-carlist-->
+  <!--*ngIf="tradeList"-->
+  <!--[tradeList]="tradeList"-->
+  <!--[car_list_title]="'审核车辆列表'"-->
+  <!--(_selected)='onChangeSelected($event)'-->
+  <!--(_checkCars)="onChangeCheckCars($event)"-->
+  <!--[listType]="'checkbox'"-->
+<!--&gt;</ngx-ys-carlist>-->
 
 <ngx-ys-cardetail
-  *ngIf="tradeList"
-  [btn_show]="false"
-  [vehicle]="_formGroup.controls.vehicle"
-  [certificateFormConfig]="vehicleCertificateFormConfig"
+  [car_detail_title]="'车辆信息'"
+  [vehicleObj]="_formGroup"
+  [certificateFormConfig]="{formName: '预审录入车辆'}"
 ></ngx-ys-cardetail>
+
+<!--<ngx-ys-cardetail-->
+  <!--*ngIf="tradeList"-->
+  <!--[btn_show]="false"-->
+  <!--[vehicle]="_formGroup.controls.vehicle"-->
+  <!--[certificateFormConfig]="vehicleCertificateFormConfig"-->
+<!--&gt;</ngx-ys-cardetail>-->
 
 <div class="float-right">
   <button class="btn btn-primary btn-lg" (click)="onSubmit()" *ngIf="tradeList">下一步</button> &nbsp;

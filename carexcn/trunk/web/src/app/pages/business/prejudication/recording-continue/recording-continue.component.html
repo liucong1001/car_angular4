@@ -1,32 +1,33 @@
-<ngx-ys-batch-no
-  [pageTitle]="'预审业务 - 预审录入 - 批量添加车辆'"
-  [batchNo]="prejudicationBatchNo"
-  (_tradeList)="getTradeListByArchiveNoComponent($event)"
-  (_trade)="getTradeByArchiveNoComponent($event)"
-></ngx-ys-batch-no>
+预审业务 - 批量添加车辆待续
+<!--<ngx-ys-batch-no-->
+  <!--[pageTitle]="'预审业务 - 预审录入 - 批量添加车辆'"-->
+  <!--[batchNo]="prejudicationBatchNo"-->
+  <!--(_tradeList)="getTradeListByArchiveNoComponent($event)"-->
+  <!--(_trade)="getTradeByArchiveNoComponent($event)"-->
+<!--&gt;</ngx-ys-batch-no>-->
 
 
-<ngx-ys-carlist
-  *ngIf="tradeList"
-  [tradeList]="tradeList"
-  (_selected)='onChangeSelectedCar($event)'
-  [listType]="'add'"
-></ngx-ys-carlist>
-
-<!--<ngx-ys-cardetail-->
+<!--<ngx-ys-carlist-->
   <!--*ngIf="tradeList"-->
-  <!--[photos]="photos"-->
-  <!--[certificateFormConfig]="{formName: '预审录入车辆'}"-->
-  <!--[vehicleObj]="_formGroup.controls.vehicle"-->
-<!--&gt;</ngx-ys-cardetail>-->
+  <!--[tradeList]="tradeList"-->
+  <!--(_selected)='onChangeSelectedCar($event)'-->
+  <!--[listType]="'add'"-->
+<!--&gt;</ngx-ys-carlist>-->
 
-<div class="float-right">
-  <button
-    class="btn btn-primary btn-lg"
-    (click)="onSubmit()"
-    *ngIf="tradeList"
-    [disabled]="_formGroup.invalid || notNewCar"
-  >保存</button> &nbsp;
-  <!--<button class="btn btn-primary btn-lg" (click)="reBack()">返回</button>-->
-</div>
+<!--&lt;!&ndash;<ngx-ys-cardetail&ndash;&gt;-->
+  <!--&lt;!&ndash;*ngIf="tradeList"&ndash;&gt;-->
+  <!--&lt;!&ndash;[photos]="photos"&ndash;&gt;-->
+  <!--&lt;!&ndash;[certificateFormConfig]="{formName: '预审录入车辆'}"&ndash;&gt;-->
+  <!--&lt;!&ndash;[vehicleObj]="_formGroup.controls.vehicle"&ndash;&gt;-->
+<!--&lt;!&ndash;&gt;</ngx-ys-cardetail>&ndash;&gt;-->
+
+<!--<div class="float-right">-->
+  <!--<button-->
+    <!--class="btn btn-primary btn-lg"-->
+    <!--(click)="onSubmit()"-->
+    <!--*ngIf="tradeList"-->
+    <!--[disabled]="_formGroup.invalid || notNewCar"-->
+  <!--&gt;保存</button> &nbsp;-->
+  <!--&lt;!&ndash;<button class="btn btn-primary btn-lg" (click)="reBack()">返回</button>&ndash;&gt;-->
+<!--</div>-->
 
