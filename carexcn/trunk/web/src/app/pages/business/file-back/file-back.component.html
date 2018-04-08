@@ -7,14 +7,11 @@
         <input type="text" class="form-control" [(ngModel)]="archivesNo" placeholder="请输入或扫描流水号" maxlength="16" (keyup)="argNoSearch($event)">
       </div>
       <div class="col-md-4">
-        <button class="btn btn-sm btn-success">查询</button>
+        <button class="btn btn-sm btn-success" (click)="confirm()">退回</button>
       </div>
     </div>
     <div class="container">
       <div class="row">
-        <div class="col-md-2">
-          <button class="btn btn-warning" (click)="confirm()">确认</button>
-        </div>
       </div>
     </div>
   </nb-card-body>
