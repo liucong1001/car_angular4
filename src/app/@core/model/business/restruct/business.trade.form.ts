@@ -271,35 +271,35 @@ export interface TransferVehicle {
 }
 
 export interface Transfer {
-  cloudUser: string;
-  createUserId: string;
-  createTime: number;
+  cloudUser?: string;
+  createUserId?: string;
+  createTime?: number;
   lastModifyTime?: any;
   lastModifyUserId?: any;
-  id: string;
-  type: string;
-  sn: string;
-  fromFlag: string;
-  invalid: string;
-  version: number;
-  batchNo: string;
-  archiveNo: string;
-  status: string;
-  complete: string;
-  inputer: string;
-  inputTime: number;
+  id?: string;
+  type?: string;
+  sn?: string;
+  fromFlag?: string;
+  invalid?: string;
+  version?: number;
+  batchNo?: string;
+  archiveNo?: string;
+  status?: string;
+  complete?: string;
+  inputer?: string;
+  inputTime?: number;
   reviewer?: any;
   reviewTime?: any;
   locker?: any;
-  prejudicationId: string;
-  buyerId: string;
-  transferVehicleId: string;
+  prejudicationId?: string;
+  buyerId?: string;
+  transferVehicleId?: string;
   preBatchNo?: any;
 }
 
 
 export interface Buyer2 {
-  cloudUser: string;
+  cloudUser?: string;
   createUserId?: any;
   createTime?: any;
   lastModifyTime?: any;
@@ -421,28 +421,28 @@ export interface Account4 {
 }
 
 export interface Merchant4 {
-  cloudUser: string;
-  createUserId: string;
-  createTime: number;
+  cloudUser?: string;
+  createUserId?: string;
+  createTime?: number;
   lastModifyTime?: any;
   lastModifyUserId?: any;
-  id: string;
-  name: string;
-  code: string;
-  certCode: string;
-  address: string;
-  phone: string;
-  endDate: string;
-  discount: number;
-  isCarRental: string;
-  isDeal: string;
-  isPersonal: string;
-  disableSign: string;
-  invalid: string;
+  id?: string;
+  name?: string;
+  code?: string;
+  certCode?: string;
+  address?: string;
+  phone?: string;
+  endDate?: string;
+  discount?: number;
+  isCarRental?: string;
+  isDeal?: string;
+  isPersonal?: string;
+  disableSign?: string;
+  invalid?: string;
   master?: any;
-  account: Account4;
-  flag: string;
-  codeAndName: string;
+  account?: Account4;
+  flag?: string;
+  codeAndName?: string;
 }
 
 export interface TransferVehicle2 {
@@ -451,24 +451,24 @@ export interface TransferVehicle2 {
   createTime?: any;
   lastModifyTime?: any;
   lastModifyUserId?: any;
-  id: string;
-  filingInfo: FilingInfo2;
-  merchant: Merchant4;
+  id?: string;
+  filingInfo?: FilingInfo2;
+  merchant?: Merchant4;
   vehicleManagement?: any;
   managementFromMobile?: any;
-  billMemo: string;
-  evaluatePrice: number;
-  bargainPrice: number;
-  fee: number;
-  review: string;
-  invalid: string;
+  billMemo?: string;
+  evaluatePrice?: number;
+  bargainPrice?: number;
+  fee?: number;
+  review?: string;
+  invalid?: string;
 }
 
 export interface TransferVehicle {
-  photos: Photos;
-  targetPath: string;
-  transferVehicle: TransferVehicle2;
-  preVehicleId: string;
+  photos?: Photos;
+  targetPath?: string;
+  transferVehicle?: TransferVehicle2;
+  preVehicleId?: string;
 }
 
 export interface BusinessTradeForm {

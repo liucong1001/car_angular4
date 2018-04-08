@@ -8,10 +8,24 @@
   <nb-card-body>
     <div class="input-group">
       <div class="input-group">
+        <!--*ngIf="'trans' !== this.batchNoType"-->
         <span class="input-group-addon">批次号</span>
-        <input class="form-control" type="text" placeholder="输入批次号以查询" [(ngModel)]="trade.prejudication.batchNo"/>
-        <button class="btn btn-primary btn-sm" (click)="getTradeByBatchNo(trade.prejudication.batchNo)" [disabled]="trade.prejudication.batchNo.length !== 18">查询</button>
+        <input class="form-control" type="text" placeholder="输入预审批次号"
+               [(ngModel)]="trade.prejudication.batchNo"/>
+        <button class="btn btn-primary btn-sm"
+                (click)="getTradeByBatchNo(trade.prejudication.batchNo)"
+                [disabled]="trade.prejudication.batchNo.length !== 18"
+        >查询</button>
       </div>
+      <!--<div class="input-group" *ngIf="'trans' === this.batchNoType">-->
+        <!--<span class="input-group-addon">批次号</span>-->
+        <!--<input class="form-control" type="text" placeholder="输入过户批次号"-->
+               <!--[(ngModel)]="trade.transfer.batchNo"/>-->
+        <!--<button class="btn btn-primary btn-sm"-->
+                <!--(click)="getTradeByTransBatchNo(trade.transfer.batchNo)"-->
+                <!--[disabled]="trade.transfer.batchNo.length !== 18"-->
+        <!--&gt;查询</button>-->
+      <!--</div>-->
       <div class="input-group">
         <span class="input-group-addon">代办商户</span>
         <label class="form-control">{{ trade.preVehicle.preVehicle.merchant.name }}</label>
