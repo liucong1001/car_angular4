@@ -6,7 +6,6 @@ import {MerchantModel} from '../../../../@core/model/business/merchant.model';
 import {LocalstorageService} from '../../../../@core/cache/localstorage.service';
 import {Codeitem} from '../../../../@core/model/system/codeitem';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {Marketphotomap} from '../../../../@core/model/system/market-photo-map';
 import {BusinessFormGroup} from '../../business.form-group';
 import {BusinessTradeForm, Seller} from '../../../../@core/model/business/restruct/business.trade.form';
 
@@ -27,7 +26,6 @@ export class Recording2Component implements OnInit, OnDestroy {
   public businessTradeForm: BusinessTradeForm = {preVehicle: {preVehicle: {}}};
   public certType: Codeitem[];
   merchant: MerchantModel = {name: ''};
-  certificateFormConfig: Marketphotomap;
   public _formGroup: FormGroup = this._formBuilder.group({
     photos: this._formBuilder.group({}),
     seller: this._businessFormGroup.seller,
@@ -58,15 +56,6 @@ export class Recording2Component implements OnInit, OnDestroy {
      */
     this._formGroup.patchValue(this.businessTradeForm.seller);
     console.info('_formGroup.value', this._formGroup.value);
-
-    /**
-     * 卖家证件类型表单配置
-     * @type {{}}
-     */
-    this.certificateFormConfig = {
-      certificateCode: '03', // 证件类型代码集
-      formName: '预审录入卖家', // 表单名称
-    } as Marketphotomap;
   }
 
   /**

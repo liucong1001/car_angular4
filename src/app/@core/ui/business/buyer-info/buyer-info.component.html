@@ -21,7 +21,7 @@
     <ngx-ys-dynamic-photo-form
       [photos]="buyerObj.get('photos')"
       [certificateFormConfig]="certificateFormConfig"
-      [data]=""
+      [data]="buyerObj.get('photos').value"
       [btn_show]="btn_show"
     ></ngx-ys-dynamic-photo-form>
     <div class="input-group">
