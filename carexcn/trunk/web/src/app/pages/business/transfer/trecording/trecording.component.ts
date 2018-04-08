@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {MessageService} from '../../../../@core/utils/message.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {TradeForm} from '../../../../@core/model/business/trade/trade.form';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {Marketphotomap} from '../../../../@core/model/system/market-photo-map';
 import {TradeService} from '../../../../@core/data/business/trade.service';
 import {LocalstorageService} from '../../../../@core/cache/localstorage.service';
 import {BusinessFormGroup} from '../../business.form-group';
@@ -15,17 +14,20 @@ import {BusinessFormGroup} from '../../business.form-group';
 })
 export class TrecordingComponent implements OnInit {
   private _cache_pre = 'business_transfer_recording_';
-  vehicleCertificateFormConfig: Marketphotomap;
-  sellerCertificateFormConfig: Marketphotomap;
   public archiveNo = '';
   public trade: TradeForm;
   public tradeList: [TradeForm];
-  public _formGroup: FormGroup = this._formBuilder.group({
+  public _vehicleFormGroup: FormGroup = this._formBuilder.group({
+    preVehicle: this._businessFormGroup.vehicleAndData,
+    photos: this._formBuilder.group({}),
+  });
+  public _sellerFormGroup: FormGroup = this._formBuilder.group({
+    photos: this._formBuilder.group({}),
     seller: this._businessFormGroup.seller,
-    vehicle: this._businessFormGroup.vehicle,
   });
   constructor(
     private _router: Router,
+    private _route: ActivatedRoute,
     private _trade: TradeService,
     private _message: MessageService,
     private _formBuilder: FormBuilder,
@@ -34,7 +36,7 @@ export class TrecordingComponent implements OnInit {
   ) {}
   getTradeByArchiveNoComponent(trade) {
     this.trade = trade;
-    this._formGroup.controls.seller.patchValue(this.trade.seller.seller);
+    this._sellerFormGroup.patchValue(this.trade.seller);
   }
   getTradeListByArchiveNoComponent(tradeList) {
     this.tradeList = tradeList;
@@ -45,32 +47,16 @@ export class TrecordingComponent implements OnInit {
     if (maybe_continue_archiveNo) {
       this.archiveNo = maybe_continue_archiveNo;
     }
-    /**
-     * 卖家证件类型表单配置
-     * @type {{}}
-     */
-    this.sellerCertificateFormConfig = {
-      certificateCode: '00', // 证件类型代码集
-      formName: '预审录入卖家', // 表单名称
-    } as Marketphotomap;
-    /**
-     * 车辆证件类型表单配置
-     * @type {Marketphotomap}
-     */
-    this.vehicleCertificateFormConfig = {
-      // certificateCode: '00', // 证件类型代码集 // 只要符合表单就行
-      formName: '预审录入车辆', // 表单名称
-    } as Marketphotomap;
   }
   onChangeSelectedCar(trade: TradeForm): void {
     if (null === trade) {
-      this._formGroup.reset();
+      this._vehicleFormGroup.reset();
       // this.notNewCar = false;
       this._message.info('添加车辆', '添加新车辆');
     } else {
       // this.notNewCar = true;
-      console.info(trade.preVehicle.preVehicle);
-      this._formGroup.patchValue({vehicle: trade.preVehicle.preVehicle});
+      console.info(trade.preVehicle);
+      this._vehicleFormGroup.patchValue({vehicle: trade.preVehicle});
       this._message.info('查看车辆', trade.preVehicle.preVehicle.plateNumber);
     }
   }

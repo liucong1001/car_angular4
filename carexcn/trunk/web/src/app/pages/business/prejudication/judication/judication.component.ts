@@ -88,7 +88,7 @@ export class JudicationComponent implements OnInit {
         let marketObject = marketObj as CurrentMarketConfModel;
         this._localstorage.set('business_recording_trade_view_form', {
           cloudUser: marketObject.market.cloudUser,
-          preBatchNo: this.businessTradeForm.preBatchNo,
+          preBatchNo: this.businessTradeForm.prejudication.batchNo,
           seller: {seller: this.businessTradeForm.seller.seller},
           tradeIds: review_ids,
         } as BusinessTradeViewForm);

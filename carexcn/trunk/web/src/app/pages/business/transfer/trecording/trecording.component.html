@@ -1,30 +1,45 @@
 <ngx-archive-no-vehicle
-  [pageTitle]="'过户业务 - 预审过户 - 车辆 商户 代办人'"
+  [pageTitle]="'预审过户'"
   [archiveNo]="archiveNo"
   [canEdit]="true"
   (_tradeList)="getTradeListByArchiveNoComponent($event)"
   (_trade)="getTradeByArchiveNoComponent($event)"
 ></ngx-archive-no-vehicle>
 
-<ngx-ys-carlist
-  *ngIf="tradeList"
-  [tradeList]="tradeList"
-></ngx-ys-carlist>
+<!--<ngx-ys-carlist-->
+  <!--*ngIf="tradeList"-->
+  <!--[tradeList]="tradeList"-->
+  <!--(_selected)='onChangeSelectedCar($event)'-->
+  <!--[listType]="'add'"-->
+<!--&gt;</ngx-ys-carlist>-->
 
-<ngx-ys-seller-info
-  *ngIf="trade"
-  [btn_show]="false"
-  [certificateFormConfig]="sellerCertificateFormConfig"
-  [merchant]="trade.preVehicle.preVehicle.filingInfo.merchant"
-  [seller]="_formGroup.controls.seller"
-></ngx-ys-seller-info>
+<!--<ngx-ys-seller-info-->
+  <!--[merchant]="businessTradeForm.preVehicle.preVehicle.merchant"-->
+  <!--[sellerObj]="_sellerFormGroup"-->
+  <!--[certificateFormConfig]="{certificateCode: '03',formName: '预审录入卖家'}"-->
+<!--&gt;</ngx-ys-seller-info>-->
 
-<ngx-ys-cardetail
-  *ngIf="tradeList"
-  [btn_show]="false"
-  [vehicle]="_formGroup.controls.vehicle"
-  [certificateFormConfig]="null"
-></ngx-ys-cardetail>
+<!--<ngx-ys-cardetail-->
+  <!--[car_detail_title]="'车辆信息'"-->
+  <!--[btn_show]="false"-->
+  <!--[vehicleObj]="_vehicleFormGroup"-->
+  <!--[certificateFormConfig]="{formName: '预审录入车辆'}"-->
+<!--&gt;</ngx-ys-cardetail>-->
+
+<!--<ngx-ys-seller-info-->
+  <!--*ngIf="trade"-->
+  <!--[btn_show]="false"-->
+  <!--[certificateFormConfig]="sellerCertificateFormConfig"-->
+  <!--[merchant]="trade.preVehicle.preVehicle.filingInfo.merchant"-->
+  <!--[seller]="_formGroup.controls.seller"-->
+<!--&gt;</ngx-ys-seller-info>-->
+
+<!--<ngx-ys-cardetail-->
+  <!--*ngIf="tradeList"-->
+  <!--[btn_show]="false"-->
+  <!--[vehicle]="_formGroup.controls.vehicle"-->
+  <!--[certificateFormConfig]="null"-->
+<!--&gt;</ngx-ys-cardetail>-->
 
 <div class="float-right">
   <button class="btn btn-primary btn-lg" (click)="onSubmit()" *ngIf="tradeList">下一步</button> &nbsp;

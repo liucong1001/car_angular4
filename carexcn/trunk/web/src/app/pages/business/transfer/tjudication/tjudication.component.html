@@ -1,26 +1,26 @@
-<ngx-ys-archive-no-transfer
-  [pageTitle]="'过户业务 - 过户审核'"
-  [archiveNo]="archiveNo"
-  (_tradeList)="getTradeListByArchiveNoComponent($event)"
-  (_trade)="getTradeByArchiveNoComponent($event)"
-></ngx-ys-archive-no-transfer>
+<!--<ngx-ys-archive-no-transfer-->
+  <!--[pageTitle]="'过户业务 - 过户审核'"-->
+  <!--[archiveNo]="archiveNo"-->
+  <!--(_tradeList)="getTradeListByArchiveNoComponent($event)"-->
+  <!--(_trade)="getTradeByArchiveNoComponent($event)"-->
+<!--&gt;</ngx-ys-archive-no-transfer>-->
 
-<ngx-ys-carlist-transfer
-  *ngIf="tradeList"
-  [tradeList]="tradeList"
-  [car_list_title]="'审核车辆列表'"
-  (_selected)='onChangeSelected($event)'
-  (_checkCars)="onChangeCheckCars($event)"
-  [listType]="'checkbox'"
-></ngx-ys-carlist-transfer>
+<!--<ngx-ys-carlist-transfer-->
+  <!--*ngIf="tradeList"-->
+  <!--[tradeList]="tradeList"-->
+  <!--[car_list_title]="'审核车辆列表'"-->
+  <!--(_selected)='onChangeSelected($event)'-->
+  <!--(_checkCars)="onChangeCheckCars($event)"-->
+  <!--[listType]="'checkbox'"-->
+<!--&gt;</ngx-ys-carlist-transfer>-->
 
-<ngx-ys-cardetail
-  *ngIf="tradeList"
-  [btn_show]="false"
-  [vehicle]="_formGroup.controls.vehicle"
-  [certificateFormConfig]="vehicleCertificateFormConfig"
-></ngx-ys-cardetail>
+<!--<ngx-ys-cardetail-->
+  <!--*ngIf="tradeList"-->
+  <!--[btn_show]="false"-->
+  <!--[vehicle]="_formGroup.controls.vehicle"-->
+  <!--[certificateFormConfig]="vehicleCertificateFormConfig"-->
+<!--&gt;</ngx-ys-cardetail>-->
 
-<div class="float-right">
-  <button class="btn btn-primary btn-lg" (click)="onSubmit()">审核</button>
-</div>
+<!--<div class="float-right">-->
+  <!--<button class="btn btn-primary btn-lg" (click)="onSubmit()">审核</button>-->
+<!--</div>-->

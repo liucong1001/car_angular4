@@ -26,7 +26,6 @@ import {CarlistComponent} from './business/carlist/carlist.component';
 import {CardetailComponent} from './business/cardetail/cardetail.component';
 import {SellerInfoComponent} from './business/seller-info/seller-info.component';
 import {TrusterInfoComponent} from './business/truster-info/truster-info.component';
-import {ArchiveNoComponent} from './business/archive-no/archive-no.component';
 import {ErrorClassDirective} from './form/error-class.directive';
 import {InputComponent} from './form/input/input.component';
 import {SelectComponent} from './form/select/select.component';
@@ -62,7 +61,6 @@ const COMPONENTS = [
   SellerInfoComponent,
   BuyerInfoComponent,
   TrusterInfoComponent,
-  ArchiveNoComponent,
   BatchNoComponent,
   FormFilterComponent,
   ErrorClassDirective,
