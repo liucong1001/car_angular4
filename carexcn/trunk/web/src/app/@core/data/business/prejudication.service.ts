@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {TradeForm} from '../../model/business/trade/trade.form';
-import {ReviewForm} from '../../model/business/review/review.form';
 import {SellerForm} from '../../model/business/trade/seller.form';
 import {PreVehicleForm} from '../../model/business/trade/preVehicle.form';
 import {UserService} from '../users.service';
@@ -8,6 +7,7 @@ import {MarketStaff} from '../../model/system/market-staff';
 import {RestService} from '../../utils/rest.service';
 import {BusinessTradeForm, PreVehicle, Seller} from '../../model/business/restruct/business.trade.form';
 import {FileSystemService} from '../system/file-system.service';
+import {BusinessTradeViewForm} from '../../model/business/restruct/business.trade.view.form';
 
 @Injectable()
 export class PrejudicationService {
@@ -77,17 +77,7 @@ export class PrejudicationService {
    * @param {object} sellerinfo
    * @returns {Promise<any>}
    */
-  public review(id: string, tradeIds: Array<string>, reviewPhotos: object, sellerInfo: SellerForm): Promise<any> {
-    return this.rest.put(this.api_url_base, {
-      prejudication: {
-        cloudUser: this.currentUser.cloudUser,
-        id: id,
-      },
-      seller: {
-        reviewPhotos: reviewPhotos,
-        seller: sellerInfo,
-      },
-      tradeIds: tradeIds,
-    } as ReviewForm).toPromise();
+  public review(tradeView: BusinessTradeViewForm): Promise<any> {
+    return this.rest.put(this.api_url_base, tradeView as BusinessTradeViewForm).toPromise();
   }
 }
