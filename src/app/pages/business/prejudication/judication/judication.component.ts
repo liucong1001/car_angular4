@@ -72,25 +72,6 @@ export class JudicationComponent implements OnInit {
     console.info('_formGroup.value', this._sellerFormGroup.value);
     this._vehicleFormGroup.patchValue(this.businessTradeForm.preVehicle);
     console.info('_formGroup.value', this._vehicleFormGroup.value);
-    // this._route.params.subscribe(param => {
-    //   if (param.batchNo) {
-    //     this.archiveNo = param.batchNo;
-    //   }
-    // });
-    // if (! this.archiveNo) {
-    //   let maybe_continue_archiveNo = this._localstorage.get(this._cache_pre + 'judication_archiveNo');
-    //   if (maybe_continue_archiveNo) {
-    //     this.archiveNo = maybe_continue_archiveNo;
-    //   }
-    // }
-    /**
-     * 卖家证件类型表单配置
-     * @type {{}}
-     */
-    // this.vehicleCertificateFormConfig = {
-    //   // certificateCode: '00', // 证件类型代码集 // 只要符合表单就行
-    //   formName: '预审录入车辆', // 表单名称
-    // } as Marketphotomap;
   }
   onSubmit() {
     // console.info(this.judicationTrade.length);
@@ -100,7 +81,7 @@ export class JudicationComponent implements OnInit {
     //   this._message.warning('错误提示', '请选择至少一个车辆。');
     // } else {
     //   this._localstorage.set(this._cache_pre + 'judication_trade', this.judicationTrade);
-    //   this._router.navigateByUrl('/pages/business/prejudication/judication-photo');
+      this._router.navigateByUrl('/pages/business/prejudication/judication-photo');
     // }
   }
   reBack() {
