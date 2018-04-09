@@ -1,3 +1,20 @@
-<p>
-  big-form works!
-</p>
+<nb-card>
+  <nb-card-header>
+    <div class="cameras-card-header">
+      <span class="cameras-card-title">大表单示例</span>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="input-group">
+      <div class="input-group">
+        <span class="input-group-addon">车辆流水号</span>
+        <input class="form-control" type="number" placeholder="输入车辆流水号" #archiveNoEle value="2018040900010001"/>
+        <button class="btn btn-primary btn-sm" [disabled]="archiveNoEle.value.length !== 16" (click)="getBigForm(archiveNoEle.value)">显示</button>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
+
+  <ngx-ys-trade-form-all
+    [archiveNo]="archiveNo"
+  ></ngx-ys-trade-form-all>

@@ -1,0 +1,25 @@
+ <ngx-ys-seller-info
+   *ngIf="businessTradeForm.seller"
+   [merchant]="businessTradeForm.preVehicle.preVehicle.merchant"
+   [sellerObj]="_formGroupSeller"
+   [certificateFormConfig]="{certificateCode: businessTradeForm.seller.seller.certType,formName: '预审录入卖家'}"
+ ></ngx-ys-seller-info>
+ <ngx-ys-cardetail
+   *ngIf="businessTradeForm.preVehicle"
+   [vehicleObj]="_formGroupVechile"
+   [certificateFormConfig]="{formName: '预审录入车辆'}"
+ ></ngx-ys-cardetail>
+
+ <ngx-ys-buyer-info
+   *ngIf="businessTradeForm.buyer"
+   [buyerObj]="_formGroupBuyer"
+   [certificateFormConfig]="{certificateCode: '03', formName: '过户录入买家'}"
+   [merchant]="businessTradeForm.preVehicle.preVehicle.merchant"
+   [cheshang]="businessTradeForm.preVehicle.preVehicle.filingInfo"
+ ></ngx-ys-buyer-info>
+
+ <ngx-ys-car-transfer
+   *ngIf="businessTradeForm.transferVehicle"
+   [transferVehicleObj]="_formGroupTransferVehicle"
+   [certificateFormConfig]="{formName: '过户录入车辆'}"
+ ></ngx-ys-car-transfer>

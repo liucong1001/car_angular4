@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {TradeForm} from '../../model/business/trade/trade.form';
 import {RestService} from '../../utils/rest.service';
+import {BusinessTradeForm} from '../../model/business/restruct/business.trade.form';
 
 @Injectable()
 export class TradeService {
@@ -14,6 +15,14 @@ export class TradeService {
    */
   public get(archiveNo: string): Promise<TradeForm> {
     return this.rest.get(this.api_url_base + '?archiveNo=' + archiveNo).toPromise().then((res) => res as TradeForm);
+  }
+  /**
+   * 同上，本函数为 过渡函数，终将删除
+   * @param {string} archiveNo   流水号
+   * @returns {Promise<any>}
+   */
+  public get2(archiveNo: string): Promise<BusinessTradeForm> {
+    return this.rest.get(this.api_url_base + '?archiveNo=' + archiveNo).toPromise().then((res) => res as BusinessTradeForm);
   }
 
   /**
