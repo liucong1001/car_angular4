@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
-import {Permissionmap} from '../../model/system/Permissionmap';
+import {Permissionmap} from '../../model/system/permissionmap';
 
 @Injectable()
 export class PermissionService {

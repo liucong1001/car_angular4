@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
-import {Areamap} from '../../model/system/Areamap';
+import {Areamap} from '../../model/system/areamap';
 
 @Injectable()
 export class AreaService {
