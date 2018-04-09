@@ -5,6 +5,7 @@ import {BillComponent} from "./bill.component";
 import { SearchComponent } from './search/search.component';
 import { PrintSuccessComponent } from './print/print-success/print-success.component';
 import { RefundComponent } from './refund/refund.component';
+import { TickComponent } from './print/tick/tick.component';
 
 const routes: Routes = [{
   path: '',
@@ -13,8 +14,8 @@ const routes: Routes = [{
     {path: 'print', component: PrintComponent},
     {path: 'search', component: SearchComponent},
     {path: 'print/success', component: PrintSuccessComponent},
+    {path: 'print/tick', component: TickComponent},
     {path: 'refund', component: RefundComponent},
-
   ],
 }];
 @NgModule({
@@ -28,5 +29,6 @@ export const routedComponents = [
   PrintComponent,
   SearchComponent,
   PrintSuccessComponent,
-  RefundComponent
+  RefundComponent,
+  TickComponent
 ];

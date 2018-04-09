@@ -1,0 +1,25 @@
+<nb-card>
+   <nb-card-header>打印小票示例</nb-card-header>
+   <nb-card-body>
+     <h2>ng2-print示例</h2>
+     <div id="print-section">
+       <div>
+         <div>ng2-print</div>
+         <div>流水号：2017090800020001</div>
+         <div>车牌号：鄂A88888</div>
+         <div>手续旨：￥200.00</div>
+         <div style="font-size: 20px;">开票人：李美丽</div>
+         <div>时间：2017-09-08 14:24:52</div>
+         <div>
+           <!--<img width="100" height="100" src="/common/qrcode2d/2017090800020001" />-->
+         </div>
+         <br/>
+         <br/>
+         <br/>
+         <div>　.</div>
+       </div>
+     </div>
+     <button (click)="print_ng()" class="btn btn-primary" type="button">ng2打印</button>
+   </nb-card-body>
+</nb-card>
+
