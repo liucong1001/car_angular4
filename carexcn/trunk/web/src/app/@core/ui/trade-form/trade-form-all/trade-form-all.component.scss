@@ -1,25 +1,26 @@
-@import '../../../@theme/styles/themes';
+@import '../../../../@theme/styles/themes';
 @import '~@nebular/theme/styles/global/bootstrap/breakpoints';
 @import '~bootstrap/scss/mixins/breakpoints';
-
+:host ::ng-deep ngx-valid-error{
+  p {
+    margin-top: 1rem;
+  }
+}
+:host ::ng-deep ngx-ys-codeitem-droplist{
+  p-dropdown {
+    div:first-child {
+      width: 100%!important;
+    }
+  }
+}
 @include nb-install-component() {
   nb-card-header {
     padding: 0;
     border: none;
   }
-  label {
-    padding: 10px;
-  }
-  .with .row {
-    margin: 0;
-  }
-  .prompt {
-    color: #d1d1ff;
-    font-size: 14px;
-    padding: 5px 20px;
-  }
 
   nb-card-body {
+    overflow: unset !important;
     padding: 0;
     position: relative;
     span {
@@ -86,6 +87,7 @@
     position: relative;
     background-position: center;
     background-size: cover;
+    //height: 50%;
     height: 300px;
     padding: 0;
 
