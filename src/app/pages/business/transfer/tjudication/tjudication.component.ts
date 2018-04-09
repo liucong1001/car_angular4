@@ -7,6 +7,9 @@ import {LocalstorageService} from '../../../../@core/cache/localstorage.service'
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {BusinessFormGroup} from '../../business.form-group';
 import {Marketphotomap} from '../../../../@core/model/system/market-photo-map';
+import {BusinessTradeViewForm} from "../../../../@core/model/business/restruct/business.trade.view.form";
+import {CurrentMarketConfModel, CurrentMarketService} from "../../../../@core/data/current-market.service";
+import {BusinessTradeForm} from "../../../../@core/model/business/restruct/business.trade.form";
 
 @Component({
   selector: 'ngx-tjudication',
@@ -14,13 +17,18 @@ import {Marketphotomap} from '../../../../@core/model/system/market-photo-map';
   styleUrls: ['./tjudication.component.scss'],
 })
 export class TjudicationComponent implements OnInit {
-  private _cache_pre = 'business_transfer_judication_';
-  public tjudicationBatchNo = '';
+  public batchNo = '';
+  public businessTradeForm: BusinessTradeForm = {preVehicle: {preVehicle: {}}};
   public trade: TradeForm;
   public tradeList: [TradeForm];
   public test= '';
-  public _formGroup: FormGroup = this._formBuilder.group({
-    vehicle: this._businessFormGroup.vehicle,
+  public _formGroupVehicle: FormGroup = this._formBuilder.group({
+    preVehicle: this._businessFormGroup.vehicleAndData,
+    photos: this._formBuilder.group({}),
+  });
+  public _formGroupTransferVehicle: FormGroup = this._formBuilder.group({
+    photos: {},
+    transferVehicle: this._businessFormGroup.vehicleTransfer,
   });
   /**
    * 数据初始化
@@ -36,25 +44,22 @@ export class TjudicationComponent implements OnInit {
     private _businessFormGroup: BusinessFormGroup,
     private _router: Router,
     private _route: ActivatedRoute,
+    private _currentMarket: CurrentMarketService,
   ) {}
   ngOnInit(): void {
     this._route.params.subscribe(param => {
       if (param.batchNo) {
-        this.tjudicationBatchNo = param.batchNo;
+        this.batchNo = param.batchNo;
       }
     });
-    // let maybe_archiveNo = this._localstorage.get(this._cache_pre + 'archiveNo');
-    // // console.info('maybe_archiveNo', maybe_archiveNo);
-    // if (maybe_archiveNo) {
-    //   this.archiveNo = maybe_archiveNo;
-    // }
   }
   onChangeSelected(trade: TradeForm): void {
     if (null === trade) {
-      this._formGroup.reset();
+      this._formGroupVehicle.reset();
       this._message.info('添加车辆', '添加新车辆');
     } else {
-      this._formGroup.patchValue({vehicle: trade.preVehicle.preVehicle});
+      this._formGroupVehicle.patchValue(trade.preVehicle);
+      this._formGroupTransferVehicle.patchValue(trade.transferVehicle);
       this._message.info('查看车辆', trade.preVehicle.preVehicle.plateNumber);
     }
   }
@@ -64,6 +69,7 @@ export class TjudicationComponent implements OnInit {
   }
   getTradeByArchiveNoComponent(trade) {
     this.trade = trade;
+    this.businessTradeForm = trade as BusinessTradeForm;
   }
   getTradeListByArchiveNoComponent(tradeList) {
     this.tradeList = tradeList;
@@ -74,15 +80,41 @@ export class TjudicationComponent implements OnInit {
     // this._router.navigateByUrl('/pages/business/transfer/trecording-last');
   }
   onSubmit() {
-    console.info('onSubmit');
-    console.info(this.judicationTrade.length);
-    console.info(this.judicationTrade);
-    this._localstorage.set(this._cache_pre + 'archiveNo', this.trade.transfer.business.archiveNo);
+    this._localstorage.set('business_tjudication_doing_trade_form', this.trade);
     if (1 > this.judicationTrade.length) {
       this._message.warning('错误提示', '请选择至少一个车辆。');
     } else {
-      this._localstorage.set(this._cache_pre + 'judication_trade', this.judicationTrade);
-      this._router.navigateByUrl('/pages/business/transfer/tjudication-photo');
+      let review_ids = [];
+      for (let tmp in this.judicationTrade) {
+        if (this.judicationTrade[tmp]) {
+          let trade = this.judicationTrade[tmp] as TradeForm;
+          review_ids.push(trade.transfer.id);
+        }
+      }
+      this._currentMarket.getCurrentMarketInfo().then(marketObj => {
+        let marketObject = marketObj as CurrentMarketConfModel;
+        this._localstorage.set('business_tjudication_doing_trade_view_form', {
+          cloudUser: marketObject.market.cloudUser,
+          transferBatchNo: this.businessTradeForm.transfer.batchNo,
+          buyer: {buyer: this.businessTradeForm.buyer.buyer},
+          tradeIds: review_ids,
+        } as BusinessTradeViewForm);
+        console.info('business_tjudication_doing_trade_view_form', {
+          cloudUser: marketObject.market.cloudUser,
+          transferBatchNo: this.businessTradeForm.transfer.batchNo,
+          buyer: {buyer: this.businessTradeForm.buyer.buyer},
+          tradeIds: review_ids,
+        });
+        console.info('business_tjudication_doing_trade_view_form2', {
+          cloudUser: marketObject.market.cloudUser,
+          transferBatchNo: this.businessTradeForm.transfer.batchNo,
+          buyer: {buyer: this.businessTradeForm.buyer.buyer},
+          tradeIds: review_ids,
+        }as BusinessTradeViewForm);
+        this._router.navigateByUrl('/pages/business/transfer/tjudication-photo');
+      }).catch(e => {
+        console.info(e);
+      });
     }
   }
 }

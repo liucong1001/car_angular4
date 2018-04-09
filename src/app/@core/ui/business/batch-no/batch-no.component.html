@@ -7,38 +7,42 @@
   <!--*ngIf="!canEdit"-->
   <nb-card-body>
     <div class="input-group">
-      <div class="input-group">
-        <!--*ngIf="'trans' !== this.batchNoType"-->
-        <span class="input-group-addon">批次号</span>
-        <input class="form-control" type="text" placeholder="输入预审批次号"
-               [(ngModel)]="trade.prejudication.batchNo"/>
-        <button class="btn btn-primary btn-sm"
-                (click)="getTradeByBatchNo(trade.prejudication.batchNo)"
-                [disabled]="trade.prejudication.batchNo.length !== 18"
-        >查询</button>
-      </div>
-      <!--<div class="input-group" *ngIf="'trans' === this.batchNoType">-->
-        <!--<span class="input-group-addon">批次号</span>-->
-        <!--<input class="form-control" type="text" placeholder="输入过户批次号"-->
-               <!--[(ngModel)]="trade.transfer.batchNo"/>-->
-        <!--<button class="btn btn-primary btn-sm"-->
-                <!--(click)="getTradeByTransBatchNo(trade.transfer.batchNo)"-->
-                <!--[disabled]="trade.transfer.batchNo.length !== 18"-->
-        <!--&gt;查询</button>-->
-      <!--</div>-->
+      <div *ngIf="'trans' === batchNoType; then transBatchNo else prejudicationBatchNo"></div>
+      <ng-template #transBatchNo>
+        <div class="input-group">
+          <span class="input-group-addon">批次号</span>
+          <input class="form-control" type="text" placeholder="输入过户批次号"
+                 [(ngModel)]="trade.transfer.batchNo"/>
+          <button class="btn btn-primary btn-sm"
+                  (click)="getTradeByTransBatchNo(trade.transfer.batchNo)"
+                  [disabled]="trade.transfer.batchNo.length !== 18"
+          >查询</button>
+        </div>
+      </ng-template>
+      <ng-template #prejudicationBatchNo>
+        <div class="input-group">
+          <span class="input-group-addon">批次号</span>
+          <input class="form-control" type="text" placeholder="输入预审批次号"
+                 [(ngModel)]="trade.prejudication.batchNo"/>
+          <button class="btn btn-primary btn-sm"
+                  (click)="getTradeByBatchNo(trade.prejudication.batchNo)"
+                  [disabled]="trade.prejudication.batchNo.length !== 18"
+          >查询</button>
+        </div>
+      </ng-template>
       <div class="input-group">
         <span class="input-group-addon">代办商户</span>
-        <label class="form-control">{{ trade.preVehicle.preVehicle.merchant.name }}</label>
+        <label class="form-control">{{ 'trans' === batchNoType ? trade.transferVehicle.transferVehicle.merchant.name : trade.preVehicle.preVehicle.merchant.name }}</label>
       </div>
     </div>
     <div class="input-group">
       <div class="input-group">
         <span class="input-group-addon">代办人</span>
-        <label class="form-control">{{trade.preVehicle.preVehicle.filingInfo.name || ''}}</label>
+        <label class="form-control">{{'trans' === batchNoType ? trade.transferVehicle.transferVehicle.filingInfo.name : trade.preVehicle.preVehicle.filingInfo.name}}</label>
       </div>
       <div class="input-group">
         <span class="input-group-addon">代办人手机</span>
-        <input class="form-control" type="text"  [disabled]="true" [value]="trade.preVehicle.preVehicle.filingInfo.phone || null "/>
+        <input class="form-control" type="text"  [disabled]="true" [value]="'trans' === batchNoType ? trade.transferVehicle.transferVehicle.filingInfo.phone : trade.preVehicle.preVehicle.filingInfo.phone "/>
       </div>
     </div>
     <div class="prompt">{{prompt}}</div>

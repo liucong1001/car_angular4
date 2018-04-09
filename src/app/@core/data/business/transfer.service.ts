@@ -9,6 +9,7 @@ import {TransferVehicleModel} from '../../model/business/trade/transferVehicle/t
 import {BuyerModel} from '../../model/business/trade/buyer.model';
 import {FileSystemService} from "../system/file-system.service";
 import {TransferVehicleForm} from "../../model/business/trade/transferVehicle.form";
+import {BusinessTradeViewForm} from "../../model/business/restruct/business.trade.view.form";
 
 @Injectable()
 export class TransferService {
@@ -77,18 +78,21 @@ export class TransferService {
    * @param {object} sellerinfo
    * @returns {Promise<any>}
    */
-  public review(id: string, tradeIds: Array<string>, reviewPhotos: object, buyerInfo: BuyerForm): Promise<any> {
-    console.info('this.currentUser', this.currentUser);
-    return this.rest.put(this.api_url_base, {
-      transfer: {
-        cloudUser: this.currentUser.cloudUser,
-        id: id,
-      },
-      buyer: {
-        reviewPhotos: reviewPhotos,
-        buyer: buyerInfo,
-      },
-      tradeIds: tradeIds,
-    } as ReviewForm).toPromise();
+  // public review(id: string, tradeIds: Array<string>, reviewPhotos: object, buyerInfo: BuyerForm): Promise<any> {
+  //   console.info('this.currentUser', this.currentUser);
+  //   return this.rest.put(this.api_url_base, {
+  //     transfer: {
+  //       cloudUser: this.currentUser.cloudUser,
+  //       id: id,
+  //     },
+  //     buyer: {
+  //       reviewPhotos: reviewPhotos,
+  //       buyer: buyerInfo,
+  //     },
+  //     tradeIds: tradeIds,
+  //   } as ReviewForm).toPromise();
+  // }
+  public review(tradeView: BusinessTradeViewForm): Promise<any> {
+    return this.rest.put(this.api_url_base, tradeView as BusinessTradeViewForm).toPromise();
   }
 }

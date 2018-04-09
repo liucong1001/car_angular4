@@ -60,24 +60,24 @@ export class Trecording2Component implements OnInit {
     /**
      * 发送提交请求
      */
-    let _formGroupBuyer = this._localstorage.get('_formGroupBuyer');
-    let _transferVehicle = this._localstorage.get('_transferVehicle');
-    if ( !_formGroupBuyer ) {
-      this._localstorage.set('_formGroupBuyer', this._formGroupBuyer.value);
+    let _trade_buyer = this._localstorage.get('business_transfer_trecorded_trade_buyer');
+    let _trade_transfer = this._localstorage.get('business_transfer_trecorded_trade_transfer');
+    if ( !_trade_buyer ) {
+      this._localstorage.set('business_transfer_trecorded_trade_buyer', this._formGroupBuyer.value);
     }
-    if (!_transferVehicle) {
-      this._localstorage.set('_transferVehicle', this._formGroupTransferVehicle.value);
+    if (!_trade_transfer) {
+      this._localstorage.set('business_transfer_trecorded_trade_transfer', this._formGroupTransferVehicle.value);
     }
-    _formGroupBuyer = this._localstorage.get('_formGroupBuyer');
-    _transferVehicle = this._localstorage.get('_transferVehicle');
+    _trade_buyer = this._localstorage.get('business_transfer_trecorded_trade_buyer');
+    _trade_transfer = this._localstorage.get('business_transfer_trecorded_trade_transfer');
     // transferVehicle.vehicleManagement = {};
-    _transferVehicle.transferVehicle.filingInfo = this.businessTradeForm.preVehicle.preVehicle.filingInfo as FilingInfo;
-    _transferVehicle.transferVehicle.merchant = this.businessTradeForm.preVehicle.preVehicle.merchant as Merchant;
-    delete _transferVehicle.transferVehicle.vehicleManagement;
+    _trade_transfer.transferVehicle.filingInfo = this.businessTradeForm.preVehicle.preVehicle.filingInfo as FilingInfo;
+    _trade_transfer.transferVehicle.merchant = this.businessTradeForm.preVehicle.preVehicle.merchant as Merchant;
+    delete _trade_transfer.transferVehicle.vehicleManagement;
     this._transfer.create(
       this.businessTradeForm.archiveNo,
-      _formGroupBuyer,
-      _transferVehicle,
+      _trade_buyer,
+      _trade_transfer,
     ).then(res => {
       console.info('res', res);
       this._localstorage.set( 'business_transfer_trecorded_trade', res);

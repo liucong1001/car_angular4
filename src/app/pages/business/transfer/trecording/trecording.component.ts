@@ -77,7 +77,6 @@ export class TrecordingComponent implements OnInit {
     if (1 > this.tradeList.length) {
       this._message.warning('错误提示', '请选择至少一个车辆。');
     } else {
-      // this._localstorage.set(this._cache_pre + 'trade', this.tradeList);
       this._router.navigateByUrl('/pages/business/transfer/trecording2');
     }
   }
