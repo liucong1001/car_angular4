@@ -8,7 +8,7 @@ import {RouterModule} from '@angular/router';
 import {CustomCellComponent} from './cell.custom.component';
 import {SystemModule} from '../../data/system/system.module';
 import {CheckboxCellComponent} from './cell.checkbox.component';
-import {PipesModule} from "../../pipes/pipes.module";
+import {PipesModule} from '../../pipes/pipes.module';
 
 const components = [
   TableComponent,
