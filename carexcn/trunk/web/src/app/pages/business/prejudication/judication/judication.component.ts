@@ -54,7 +54,7 @@ export class JudicationComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private _businessFormGroup: BusinessFormGroup,
     private _localstorage: LocalstorageService,
-    private currentMarket: CurrentMarketService,
+    private _currentMarket: CurrentMarketService,
   ) {}
   ngOnInit(): void {
     this._route.params.subscribe(param => {
@@ -84,7 +84,7 @@ export class JudicationComponent implements OnInit {
           review_ids.push(trade.prejudication.id);
         }
       }
-      this.currentMarket.getCurrentMarketInfo().then(marketObj => {
+      this._currentMarket.getCurrentMarketInfo().then(marketObj => {
         let marketObject = marketObj as CurrentMarketConfModel;
         this._localstorage.set('business_recording_trade_view_form', {
           cloudUser: marketObject.market.cloudUser,
@@ -115,6 +115,7 @@ export class JudicationComponent implements OnInit {
   }
   getTradeByArchiveNoComponent(trade) {
     this.trade = trade;
+    this.businessTradeForm = trade as BusinessTradeForm;
   }
   getTradeListByArchiveNoComponent(tradeList) {
     this.tradeList = tradeList;

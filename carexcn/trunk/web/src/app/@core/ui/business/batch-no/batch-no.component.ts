@@ -3,7 +3,6 @@ import {TransferService} from '../../../data/business/transfer.service';
 import {PrejudicationService} from '../../../data/business/prejudication.service';
 import {MessageService} from '../../../utils/message.service';
 import {BusinessTradeForm} from '../../../model/business/restruct/business.trade.form';
-import {TradeForm} from "../../../model/business/trade/trade.form";
 
 @Component({
   selector: 'ngx-ys-batch-no',
@@ -33,11 +32,15 @@ export class BatchNoComponent implements OnInit {
     prejudication: {batchNo: ''},
     transfer: {batchNo: ''},
     preVehicle: {preVehicle: {
-        filingInfo: {},
+        filingInfo: {phone: ''},
+        merchant: {},
+      }},
+    transferVehicle: {transferVehicle: {
+        filingInfo: {phone: ''},
         merchant: {},
       }},
     seller: {seller: {}},
-  };
+  } as BusinessTradeForm;
   public tradeList: [BusinessTradeForm];
 
   constructor(
@@ -47,10 +50,12 @@ export class BatchNoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if ('trans' === this.batchNoType) {
-      this.getTradeByTransBatchNo(this.batchNo);
-    } else {
-      this.getTradeByBatchNo(this.batchNo);
+    if (this.batchNo) {
+      if ('trans' === this.batchNoType) {
+        this.getTradeByTransBatchNo(this.batchNo);
+      } else {
+        this.getTradeByBatchNo(this.batchNo);
+      }
     }
   }
 
@@ -77,8 +82,8 @@ export class BatchNoComponent implements OnInit {
    * 根据过户批次号获取过户业务对象(拿到车辆列表)
    * @param archiveNo 过户业务流水号(过户批次号)
    */
-  getTradeByTransBatchNo(tbatchNo: string) {
-    this._transferService.carList(tbatchNo).then(res => {
+  getTradeByTransBatchNo(batchNo: string) {
+    this._transferService.carList(batchNo).then(res => {
       this.tradeList = res as [BusinessTradeForm];
       if (this.tradeList) {
         this.trade = this.tradeList[0] as BusinessTradeForm;

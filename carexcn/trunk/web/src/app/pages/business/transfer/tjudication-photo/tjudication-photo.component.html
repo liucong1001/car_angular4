@@ -5,14 +5,7 @@
     </div>
   </nb-card-header>
   <nb-card-body>
-    <!--指纹需要另外的按钮不适合在动态表单中处理-->
-    <!--<ngx-ys-dynamic-photo-form-->
-    <!--[photos]="vehicle.get('_photos_')"-->
-    <!--[certificateFormConfig]="buyerCertificateFormConfig"-->
-    <!--[data_localStrong_name]="'dynamic_photos_cardetail'"-->
-    <!--[btn_show]="btn_show"-->
-    <!--&gt;</ngx-ys-dynamic-photo-form>-->
-    <ngx-ys-camera [title]="avatar.title" [source]="avatar.source" (_changeSource)="changeAvatar($event)"></ngx-ys-camera>
+    <ngx-ys-camera [title]="'买家头像拍照'" [source]="'assets/images/camera1.jpg'" (_changeSource)="changeAvatar($event)"></ngx-ys-camera>
     <div class="input-group">
       <button class="btn btn-primary btn-sm" (click)="fingerRead()">指纹读取</button>
     </div>

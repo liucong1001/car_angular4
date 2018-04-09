@@ -6,7 +6,7 @@
   </nb-card-header>
   <nb-card-body class="text-center">
     <h1>恭喜！过户录入成功！</h1>
-    <h1>[{{ new_transfer_trade.transfer.business.archiveNo}}]</h1>
+    <h1>[{{ new_transfer_trade.transfer.archiveNo}}]</h1>
     <div>
       <select name="" class="form-control">
         <option value="">按批次打印（列表）</option>
@@ -20,7 +20,7 @@
 
     <div class="details">
       <div class="title">
-        过户流水/批次号:{{ new_transfer_trade.transfer.business.archiveNo}}<br />
+        过户流水/批次号:{{ new_transfer_trade.transfer.batchNo}}<br />
         过户车辆流水号:{{ new_transfer_trade.archiveNo }}
       </div>
       <button type="button" class="btn btn-primary" (click)="toPrint()">打印</button>

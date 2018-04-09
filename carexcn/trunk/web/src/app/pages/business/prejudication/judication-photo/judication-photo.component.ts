@@ -4,9 +4,8 @@ import {MessageService} from '../../../../@core/utils/message.service';
 import {LocalstorageService} from '../../../../@core/cache/localstorage.service';
 import {FingerService} from '../../../../@core/device/finger.service';
 import {FileSystemService} from '../../../../@core/data/system/file-system.service';
-import {TradeForm} from '../../../../@core/model/business/trade/trade.form';
 import {Marketphotomap} from '../../../../@core/model/system/market-photo-map';
-import {BusinessTradeViewForm} from "../../../../@core/model/business/restruct/business.trade.view.form";
+import {BusinessTradeViewForm} from '../../../../@core/model/business/restruct/business.trade.view.form';
 
 /**
  * 预审业务 - 预审审核 - 卖方拍照 --—接口与页面的交互逻辑
@@ -90,7 +89,6 @@ export class JudicationPhotoComponent implements OnInit {
       console.info(res);
       this._message.success('操作成功！', '有' + trades_view.tradeIds.length + '个车辆审核通过。');
     }).catch(err => {
-      console.info(err);
       console.info(err);
       console.info(err.message);
       this._message.error('操作失败!', err.message);

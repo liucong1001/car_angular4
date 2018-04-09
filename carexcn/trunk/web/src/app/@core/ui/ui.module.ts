@@ -39,7 +39,6 @@ import {ArchiveNoVehicleComponent} from './business/archive-no-vehicle/archive-n
 import {ArchiveNoTransferComponent} from './business/archive-no-transfer/archive-no-transfer.component';
 import {BuyerInfoComponent} from './business/buyer-info/buyer-info.component';
 import {CarTransferComponent} from './business/car-transfer/car-transfer.component';
-import {CarlistTransferComponent} from './business/carlist-transfer/carlist-transfer.component';
 import {ImgComponent} from './img/img.component';
 import {ReportFormSearchComponent} from './report-form-search/report-form-search.component';
 import {NavStepComponent} from './business/nav-step/nav-step.component';
@@ -74,7 +73,6 @@ const COMPONENTS = [
   ArchiveNoVehicleComponent,
   ArchiveNoTransferComponent,
   CarTransferComponent,
-  CarlistTransferComponent,
   ImgComponent,
   ReportFormSearchComponent,
   NavStepComponent,
