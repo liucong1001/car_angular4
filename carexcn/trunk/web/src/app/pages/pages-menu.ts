@@ -234,6 +234,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: '控件示例',
         link: '/pages/example/ui-example',
       },
+      {
+        title: '大表单',
+        link: '/pages/example/big-form',
+      },
     ],
   },
   // {

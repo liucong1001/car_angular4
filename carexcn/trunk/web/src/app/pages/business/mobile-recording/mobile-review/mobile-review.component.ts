@@ -8,6 +8,7 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {BusinessFormGroup} from '../../business.form-group';
 import {Marketphotomap} from '../../../../@core/model/system/market-photo-map';
 import {ChangeCheckedValueModel} from '../../../../@core/ui/business/dynamic-photo-form/dynamic-photo-form.component';
+import {BusinessTradeForm} from "../../../../@core/model/business/restruct/business.trade.form";
 
 
 @Component({
@@ -24,11 +25,11 @@ export class MobileReviewComponent implements OnInit {
   /**
    * 交易表单
    */
-  public trade: TradeForm;
+  public trade: BusinessTradeForm;
   /**
    * 交易表单的集合
    */
-  public tradeList: [TradeForm];
+  public tradeList: [BusinessTradeForm];
   public objectKeys = Object.keys;
   public _formGroup: FormGroup = this._formBuilder.group({
     // seller: this._businessFormGroup.seller,
@@ -102,7 +103,7 @@ export class MobileReviewComponent implements OnInit {
   }
 
   getTradeByArchiveNoComponent(trade) {
-    this.trade = trade as TradeForm;
+    this.trade = trade as BusinessTradeForm;
     console.info('trade', trade);
     if (('05' === trade.transferStatus || '05' === trade.prejudicationStatus) && !this.btn_show_check_false_just_view) {
       this.btn_show_check = true;

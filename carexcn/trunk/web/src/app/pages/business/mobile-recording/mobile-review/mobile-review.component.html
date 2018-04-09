@@ -18,7 +18,7 @@
       <!--*ngIf="trade.seller && objectKeys(trade.seller.photos).length !== 0"-->
       <ngx-ys-dynamic-photo-form
         [photos]="_formGroup.controls.seller_photos_"
-        [certificateFormConfig]="sellerCertConf"
+        [certificateFormConfig]="{formName: '预审录入卖家', certificateCode:trade.seller.seller.certType}"
         [data]="trade.seller ? trade.seller.photos : null"
         [btn_show]="false"
         [btn_show_check]="btn_show_check"
@@ -26,7 +26,8 @@
       ></ngx-ys-dynamic-photo-form>
     </nb-card-body>
   </nb-card>
-  <nb-card>
+  <!--如果没有委托人信息则允许不拍委托人照片-->
+  <nb-card *ngIf="trade.seller.seller.trustee">
     <nb-card-header>
       <div class="cameras-card-header">
         <span class="cameras-card-title">卖方委托人照片集</span>
@@ -36,7 +37,7 @@
       <!--*ngIf="trade.seller && objectKeys(trade.seller.trusteePhotos).length !== 0"-->
       <ngx-ys-dynamic-photo-form
         [photos]="_formGroup.controls.seller_photos_"
-        [certificateFormConfig]="sellerTrusteeCertConf"
+        [certificateFormConfig]="{formName: '预审录入卖家委托人'}"
         [data]="trade.seller ? trade.seller.trusteePhotos : null"
         [btn_show]="false"
         [btn_show_check]="btn_show_check"
@@ -55,7 +56,7 @@
       <!--*ngIf="trade.preVehicle && objectKeys(trade.preVehicle.photos).length !== 0"-->
       <ngx-ys-dynamic-photo-form
         [photos]="_formGroup.controls.preVehicle_photos_"
-        [certificateFormConfig]="preVehicleCertConf"
+        [certificateFormConfig]="{formName: '预审录入车辆'}"
         [data]="trade.preVehicle ? trade.preVehicle.photos : null"
         [btn_show]="false"
         [btn_show_check]="btn_show_check"
@@ -74,7 +75,7 @@
       <!--*ngIf="trade.buyer && trade.buyer.photos !== {}"-->
       <ngx-ys-dynamic-photo-form
         [photos]="_formGroup.controls.buyer_photos_"
-        [certificateFormConfig]="buyerCertConf"
+        [certificateFormConfig]="{formName: '预审录入买家', certificateCode:trade.buyer.buyer.certType}"
         [data]="trade.buyer ? trade.buyer.photos : null"
         [btn_show]="false"
         [btn_show_check]="btn_show_check"
@@ -83,7 +84,8 @@
     </nb-card-body>
   </nb-card>
 
-  <nb-card>
+  <!--如果没有委托人信息则允许不拍委托人照片-->
+  <nb-card *ngIf="trade.buyer.buyer.trustee">
     <nb-card-header>
       <div class="cameras-card-header">
         <span class="cameras-card-title">买方委托人照片集</span>
@@ -92,8 +94,8 @@
     <nb-card-body>
       <!--*ngIf="trade.buyer && objectKeys(trade.buyer.trusteePhotos).length !== 0"-->
       <ngx-ys-dynamic-photo-form
-        [photos]="_formGroup.controls.buyer_trusteePhotos_"
-        [certificateFormConfig]="buyerTrusteeCertConf"
+        [photos]="_formGroup.get('buyer_trusteePhotos_')"
+        [certificateFormConfig]="{formName: '预审录入买家委托人'}"
         [data]="trade.buyer ? trade.buyer.trusteePhotos : null"
         [btn_show]="false"
         [btn_show_check]="btn_show_check"
@@ -111,8 +113,8 @@
     </nb-card-header>
     <nb-card-body>
       <ngx-ys-dynamic-photo-form
-        [photos]="_formGroup.controls.transferVehicle_photos_"
-        [certificateFormConfig]="transferVehicleCertConf"
+        [photos]="_formGroup.get('transferVehicle_photos_')"
+        [certificateFormConfig]="{formName: '过户录入车辆'}"
         [data]="trade.transferVehicle ? trade.transferVehicle.photos : null"
         [btn_show]="false"
         [btn_show_check]="btn_show_check"

@@ -1,6 +1,6 @@
 <ngx-ys-batch-no
 [pageTitle]="'预审业务 - 预审审核'"
-[batchNo]="prejudicationBatchNo"
+[batchNo]="businessTradeForm.prejudication.batchNo"
 (_tradeList)="getTradeListByArchiveNoComponent($event)"
 (_trade)="getTradeByArchiveNoComponent($event)"
 ></ngx-ys-batch-no>
@@ -15,12 +15,14 @@
 ></ngx-ys-carlist>
 
 <ngx-ys-seller-info
+  *ngIf="tradeList"
   [merchant]="businessTradeForm.preVehicle.preVehicle.merchant"
   [sellerObj]="_sellerFormGroup"
   [certificateFormConfig]="{certificateCode: '03',formName: '预审录入卖家'}"
 ></ngx-ys-seller-info>
 
 <ngx-ys-cardetail
+  *ngIf="tradeList"
   [car_detail_title]="'车辆信息'"
   [btn_show]="false"
   [vehicleObj]="_vehicleFormGroup"

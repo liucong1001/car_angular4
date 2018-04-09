@@ -65,13 +65,12 @@ export class BatchNoComponent implements OnInit {
    */
   getTradeByBatchNo(batchNo: string) {
     this._prejudicationService.carList(batchNo).then(res => {
-      this.tradeList = res as [BusinessTradeForm];
-      if (this.tradeList) {
+      if (res.length) {
+        this.tradeList = res as [BusinessTradeForm];
         this.trade = this.tradeList[0] as BusinessTradeForm;
         this._tradeList.emit(this.tradeList);
         this._trade.emit(this.trade);
       }
-      console.info('this.trade', this.trade);
     }).catch(e => {
       const error = e;
       this._message.info('操作提示', error.message);
@@ -84,8 +83,8 @@ export class BatchNoComponent implements OnInit {
    */
   getTradeByTransBatchNo(batchNo: string) {
     this._transferService.carList(batchNo).then(res => {
-      this.tradeList = res as [BusinessTradeForm];
-      if (this.tradeList) {
+      if (res.length) {
+        this.tradeList = res as [BusinessTradeForm];
         this.trade = this.tradeList[0] as BusinessTradeForm;
         this._tradeList.emit(this.tradeList);
         this._trade.emit(this.trade);
