@@ -14,7 +14,7 @@
 ></ngx-ys-carlist>
 
 <ngx-ys-seller-info
-  *ngIf="businessTradeForm.seller"
+  *ngIf="tradeList && businessTradeForm.seller"
   [btn_show]="false"
   [merchant]="businessTradeForm.preVehicle.preVehicle.merchant"
   [sellerObj]="_sellerFormGroup"
@@ -22,7 +22,7 @@
 ></ngx-ys-seller-info>
 
 <ngx-ys-cardetail
-  *ngIf="businessTradeForm.preVehicle.preVehicle.plateNumber"
+  *ngIf="tradeList && businessTradeForm.preVehicle.preVehicle.plateNumber"
   [car_detail_title]="'车辆信息'"
   [btn_show]="false"
   [vehicleObj]="_vehicleFormGroup"

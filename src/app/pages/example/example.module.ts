@@ -5,6 +5,7 @@ import { ExampleRoutingModule, routedComponents } from './example-routing.module
 import {UiModule} from '../../@core/ui/ui.module';
 import {ThemeModule} from '../../@theme/theme.module';
 import {SystemModule} from '../../@core/data/system/system.module';
+import { BigFormComponent } from './big-form/big-form.component';
 
 @NgModule({
   imports: [

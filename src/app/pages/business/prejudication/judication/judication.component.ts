@@ -23,8 +23,7 @@ import {CurrentMarketConfModel, CurrentMarketService} from '../../../../@core/da
   styleUrls: ['./judication.component.scss'],
 })
 export class JudicationComponent implements OnInit {
-  public prejudicationBatchNo = '';
-  public businessTradeForm: BusinessTradeForm = {preVehicle: {preVehicle: {}}};
+  public businessTradeForm: BusinessTradeForm = {preVehicle: {preVehicle: {}}, prejudication: {}};
   public trade: TradeForm;
   public tradeList: [TradeForm];
   public _vehicleFormGroup: FormGroup = this._formBuilder.group({
@@ -59,7 +58,7 @@ export class JudicationComponent implements OnInit {
   ngOnInit(): void {
     this._route.params.subscribe(param => {
       if (param.batchNo) {
-        this.prejudicationBatchNo = param.batchNo;
+        this.businessTradeForm.prejudication.batchNo = param.batchNo;
       }
     });
     /**
@@ -70,10 +69,11 @@ export class JudicationComponent implements OnInit {
     if (maybe_businessTradeForm) {
       this.businessTradeForm = maybe_businessTradeForm as BusinessTradeForm;
     }
-    this._sellerFormGroup.patchValue(this.businessTradeForm.seller);
-    this._vehicleFormGroup.patchValue(this.businessTradeForm.preVehicle);
   }
   onSubmit() {
+    this.preJudicationData();
+  }
+  preJudicationData() {
     if (1 > this.judicationTrade.length) {
       this._message.warning('错误提示', '请选择至少一个车辆。');
     } else {
@@ -116,6 +116,8 @@ export class JudicationComponent implements OnInit {
   getTradeByArchiveNoComponent(trade) {
     this.trade = trade;
     this.businessTradeForm = trade as BusinessTradeForm;
+    this._sellerFormGroup.patchValue(this.businessTradeForm.seller);
+    this._vehicleFormGroup.patchValue(this.businessTradeForm.preVehicle);
   }
   getTradeListByArchiveNoComponent(tradeList) {
     this.tradeList = tradeList;

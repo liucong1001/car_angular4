@@ -20,7 +20,14 @@ export class ArchiveNoVehicleComponent implements OnInit {
   @Input() autoinput_shanghu_source_url = '/rest/merchant/list/';
   @Output('_tradeList') private _tradeList = new EventEmitter();
   @Output('_trade') private _trade = new EventEmitter();
-  public trade: TradeForm;
+  public trade: TradeForm = {
+    preVehicle: {
+      preVehicle: {
+        merchant: {},
+        filingInfo: {},
+      },
+    },
+  };
   public tradeList: [TradeForm];
   constructor(
     private _message: MessageService,
@@ -31,15 +38,6 @@ export class ArchiveNoVehicleComponent implements OnInit {
   ngOnInit() {
     if (this.archiveNo) {
       this.getTradeByArchiveNo(this.archiveNo);
-    } else {
-      this.trade = {
-        preVehicle: {
-          preVehicle: {
-            merchant: {},
-            filingInfo: {},
-          },
-        },
-      };
     }
   }
 
@@ -76,15 +74,17 @@ export class ArchiveNoVehicleComponent implements OnInit {
       this._message.info('操作提示', error.message);
     });
   }
-  /**
-   * 选择好了商户的事件
-   * @param value
-   */
+
   merchant: MerchantModel = {};
   merchantIsOk = false;
   filingInfoData: FilingInfoModel[] = [];
   filingInfo: FilingInfoModel = {};
   filingInfoSelected: FilingInfoModel = {};
+
+  /**
+   * 选择好了商户的事件
+   * @param merchant
+   */
   getSelectedMerchant(merchant) {
     this.merchant = merchant;
     this._message.info('获取商户', merchant.name);
