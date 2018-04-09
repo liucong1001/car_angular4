@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
-import { MarketBrandmap } from './../../model/system/marketbrand';
-import { Marketmap } from './../../model/system/Marketmap';
-import {Marketfeemap} from './../../model/system/market-fee-map';
-import {Marketphotomap} from './../../model/system/market-photo-map';
+import { MarketBrandmap } from '../../model/system/marketbrand';
+import { Marketmap } from '../../model/system/Marketmap';
+import {Marketfeemap} from '../../model/system/market-fee-map';
+import {Marketphotomap} from '../../model/system/market-photo-map';
 import {RestService} from '../../utils/rest.service';
 
 @Injectable()
