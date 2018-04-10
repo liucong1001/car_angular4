@@ -14,7 +14,7 @@ export class ReportManageService {
    * @param data
    * @param name
    */
- public  saveExcel(data: Response,name:string){
+  public  saveExcel(data: Response,name:string){
     var a = document.createElement('a');
     var blob = new Blob([data], {'type':"application/vnd.ms-excel"});
     a.href = URL.createObjectURL(blob);
@@ -30,4 +30,10 @@ export class ReportManageService {
       })
   }
 
+  public businessExport(startDate:String,endDate:String):Promise<any>{
+    const url= `rest/report/business/export?startDate=`+startDate+'&endDate='+endDate;
+    return this.http.get(url,{responseType: ResponseContentType.Blob}).toPromise().then(res=>{
+      return res.json() as any;
+    })
+  }
 }
