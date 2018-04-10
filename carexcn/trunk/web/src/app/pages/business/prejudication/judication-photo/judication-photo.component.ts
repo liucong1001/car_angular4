@@ -18,7 +18,6 @@ import {BusinessTradeViewForm} from '../../../../@core/model/business/restruct/b
   styleUrls: ['./judication-photo.component.scss'],
 })
 export class JudicationPhotoComponent implements OnInit {
-  private _cache_pre = 'business_prejudication_recording_';
   sellerCertificateFormConfig: Marketphotomap;
   avatar = {
     title: '卖家头像拍照',
@@ -80,13 +79,15 @@ export class JudicationPhotoComponent implements OnInit {
    * 后台必须配置好对应的照片编号，前台又不可以动态处理指纹照片
    */
   onSubmit() {
-    let trades_view = this._localstorage.get('business_recording_trade_view_form') as BusinessTradeViewForm;
+    let trades_view = this._localstorage.get('business_judication_doing_trade_form') as BusinessTradeViewForm;
     trades_view.seller.reviewPhotos = this._file.filterPhotosValue({
       '31': [this.avatarPhotosToSubmit], // 卖家头像
       '32': [this.fingerImgPhotosToSubmit], // 卖家指纹
     });
     this._prejudicationService.review(trades_view).then(res => {
       console.info(res);
+      this._localstorage.set('business_judication_done_trade_form', trades_view);
+      this._localstorage.del('business_judication_doing_trade_form');
       this._message.success('操作成功！', '有' + trades_view.tradeIds.length + '个车辆审核通过。');
     }).catch(err => {
       console.info(err);

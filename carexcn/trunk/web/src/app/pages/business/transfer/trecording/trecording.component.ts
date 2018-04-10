@@ -68,8 +68,8 @@ export class TrecordingComponent implements OnInit {
     }
   }
   onSubmit() {
-    console.info(this.tradeList.length);
-    console.info(this.tradeList);
+    // console.info(this.tradeList.length);
+    // console.info(this.tradeList);
     /**
      * 过户录入，所有车辆
      */

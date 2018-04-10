@@ -60,16 +60,18 @@ export class Trecording2Component implements OnInit {
     /**
      * 发送提交请求
      */
-    let _trade_buyer = this._localstorage.get('business_transfer_trecorded_trade_buyer');
-    let _trade_transfer = this._localstorage.get('business_transfer_trecorded_trade_transfer');
-    if ( !_trade_buyer ) {
-      this._localstorage.set('business_transfer_trecorded_trade_buyer', this._formGroupBuyer.value);
-    }
-    if (!_trade_transfer) {
-      this._localstorage.set('business_transfer_trecorded_trade_transfer', this._formGroupTransferVehicle.value);
-    }
-    _trade_buyer = this._localstorage.get('business_transfer_trecorded_trade_buyer');
-    _trade_transfer = this._localstorage.get('business_transfer_trecorded_trade_transfer');
+    // let _trade_buyer = this._localstorage.get('business_trecorded_trade_buyer');
+    // let _trade_transfer = this._localstorage.get('business_trecorded_trade_transfer');
+    // if ( !_trade_buyer ) {
+    //   this._localstorage.set('business_trecorded_trade_buyer', this._formGroupBuyer.value);
+    // }
+    // if (!_trade_transfer) {
+    //   this._localstorage.set('business_trecorded_trade_transfer', this._formGroupTransferVehicle.value);
+    // }
+    // _trade_buyer = this._localstorage.get('business_trecorded_trade_buyer');
+    // _trade_transfer = this._localstorage.get('business_trecorded_trade_transfer');
+    let _trade_buyer = this._formGroupBuyer.value;
+    let _trade_transfer = this._formGroupTransferVehicle.value;
     // transferVehicle.vehicleManagement = {};
     _trade_transfer.transferVehicle.filingInfo = this.businessTradeForm.preVehicle.preVehicle.filingInfo as FilingInfo;
     _trade_transfer.transferVehicle.merchant = this.businessTradeForm.preVehicle.preVehicle.merchant as Merchant;
@@ -80,7 +82,8 @@ export class Trecording2Component implements OnInit {
       _trade_transfer,
     ).then(res => {
       console.info('res', res);
-      this._localstorage.set( 'business_transfer_trecorded_trade', res);
+      this._localstorage.del('business_trecording_trade_form');
+      this._localstorage.set( 'business_trecorded_trade', res);
       this._router.navigateByUrl('/pages/business/transfer/trecording-last');
     }).catch(e => {
       console.info('e', e);
