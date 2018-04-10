@@ -1,3 +1,23 @@
-<p>
-  business-report works!
-</p>
+<nb-card xmlns="http://www.w3.org/1999/html">
+  <nb-card-header class="d-flex">
+    <div class="p-2 mr-auto">商务部报表导出</div>
+    <div class="p2">
+      <button type="button" class="btn btn-sm btn-outline-success" (click)="toggle(visibility)" [ngClass]="{'active':showFilter}" ><i class="ion-funnel"></i></button>
+    </div>
+  </nb-card-header>
+  <nb-card-body style="min-height: 600px;">
+    <form [@visibilityChanged]="visibility" >
+      <ngx-report-form-search  (btn_export)="export($event)" [startText]="'开始时间'" [endText]="'结束时间'" >
+      </ngx-report-form-search>
+    </form>
+  </nb-card-body>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-sm-5"></div>
+      <div class="col-sm-2">
+        <button type="submit" class="btn btn-primary" (click)="goBack()">返回</button>
+      </div>
+      <div class="col-sm-5"></div>
+    </div>
+  </nb-card-body>
+</nb-card>
