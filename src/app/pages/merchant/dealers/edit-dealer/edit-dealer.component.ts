@@ -101,7 +101,7 @@ export class EditDealerComponent implements OnInit {
   // _formPhotos: FormGroup = this._merchantFormGroup.photos; // 注意此处不可以使用公共定义的FormGroup
   _formPhotos: FormGroup = this._formBuilder.group({});
   merchantCertificateFormConfig = {
-    business: '19', //  01 预审  02 过户
+    business: '91', //  01 预审  02 过户
     formName: '商户管理照片集', // 表单名称
   } as Marketphotomap;
   save() {
