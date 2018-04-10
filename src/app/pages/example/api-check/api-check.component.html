@@ -39,6 +39,7 @@
         <select class="form-control" [(ngModel)]="getCertificateFormConfig_business">
           <option value="01">预审</option>
           <option value="02">过户</option>
+          <option value="19">商户管理</option>
         </select>
       </div>
       <div class="input-group">
@@ -49,8 +50,10 @@
         <span class="input-group-addon">表单名称</span>
         <select class="form-control" [(ngModel)]="getCertificateFormConfig_formName">
           <option value="预审录入卖家">预审录入卖家</option>
-          <option value="预审录入买家">预审录入买家</option>
           <option value="预审录入车辆">预审录入车辆</option>
+          <option value="过户录入买家">过户录入买家</option>
+          <option value="过户录入车辆">过户录入车辆</option>
+          <option value="商户管理照片集">商户管理照片集</option>
         </select>
       </div>
       <button class="btn btn-primary btn-sm" (click)="getCertificateFormConfig()">证件示例检查</button>
