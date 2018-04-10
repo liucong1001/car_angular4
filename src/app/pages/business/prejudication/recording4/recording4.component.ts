@@ -72,7 +72,7 @@ export class Recording4Component implements OnInit, OnDestroy {
       let trade = res as BusinessTradeForm;
       if ( trade.archiveNo ) {
         this._localstorage.set('business_recorded_trade', res);
-        // this._localstorage.del('business_recording_trade_form');
+        this._localstorage.del('business_recording_trade_form'); // 录入成功的删除缓存
         this._router.navigateByUrl('/pages/business/prejudication/recording-last');
       }
     }).catch(e => {

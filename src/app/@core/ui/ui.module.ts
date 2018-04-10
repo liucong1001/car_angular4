@@ -45,6 +45,7 @@ import {NavStepComponent} from './business/nav-step/nav-step.component';
 import {CameraCarexcnComponent} from './camera-carexcn/camera-carexcn.component';
 import { BatchNoComponent } from './business/batch-no/batch-no.component';
 import { TradeFormAllComponent } from './trade-form/trade-form-all/trade-form-all.component';
+import { FingerPhotoComponent } from './business/finger-photo/finger-photo.component';
 
 const COMPONENTS = [
   CameraComponent,
@@ -78,6 +79,7 @@ const COMPONENTS = [
   ReportFormSearchComponent,
   NavStepComponent,
   TradeFormAllComponent,
+  FingerPhotoComponent,
 ];
 
 @NgModule({

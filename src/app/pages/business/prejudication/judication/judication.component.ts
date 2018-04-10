@@ -65,10 +65,10 @@ export class JudicationComponent implements OnInit {
      * 如果有缓存，则从缓存中恢复数据
      * @type {any | any}
      */
-    let maybe_businessTradeForm = this._localstorage.get('business_recorded_trade');
-    if (maybe_businessTradeForm) {
-      this.businessTradeForm = maybe_businessTradeForm as BusinessTradeForm;
-    }
+    // let maybe_businessTradeForm = this._localstorage.get('business_recorded_trade');
+    // if (maybe_businessTradeForm) {
+    //   this.businessTradeForm = maybe_businessTradeForm as BusinessTradeForm;
+    // }
   }
   onSubmit() {
     this.preJudicationData();
@@ -86,19 +86,19 @@ export class JudicationComponent implements OnInit {
       }
       this._currentMarket.getCurrentMarketInfo().then(marketObj => {
         let marketObject = marketObj as CurrentMarketConfModel;
-        this._localstorage.set('business_recording_trade_view_form', {
+        this._localstorage.set('business_judication_doing_trade_form', {
           cloudUser: marketObject.market.cloudUser,
           preBatchNo: this.businessTradeForm.prejudication.batchNo,
           seller: {seller: this.businessTradeForm.seller.seller},
           tradeIds: review_ids,
         } as BusinessTradeViewForm);
-        console.info('business_recording_trade_view_form', {
+        console.info('business_judication_doing_trade_form', {
           cloudUser: marketObject.market.cloudUser,
           preBatchNo: this.businessTradeForm.preBatchNo,
           seller: {seller: this.businessTradeForm.seller.seller},
           tradeIds: review_ids,
         });
-        console.info('business_recording_trade_view_form2', {
+        console.info('business_judication_doing_trade_form2', {
           cloudUser: marketObject.market.cloudUser,
           preBatchNo: this.businessTradeForm.preBatchNo,
           seller: {seller: this.businessTradeForm.seller.seller},
