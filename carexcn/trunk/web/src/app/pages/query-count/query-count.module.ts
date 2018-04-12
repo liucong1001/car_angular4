@@ -7,6 +7,7 @@ import {RouterModule} from '@angular/router';
 import {UiTableModule} from '../../@core/ui/table/table.module';
 import {HttpModule} from '@angular/http';
 import {UiModule} from '../../@core/ui/ui.module';
+import {SystemModule as CoreSystemModule} from '../../@core/data/system/system.module';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import {UiModule} from '../../@core/ui/ui.module';
     HttpModule,
     RouterModule,
     UiModule, /*日历*/
+    CoreSystemModule,
   ],
   declarations: [...routedComponents],
 })

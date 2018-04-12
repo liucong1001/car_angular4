@@ -1,11 +1,14 @@
 import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {Location} from '@angular/common';
+import {ReportManageService} from "../../../../@core/data/query-count/report-manage.service";
+import { MessageService } from './../../../../@core/utils/message.service';
 
 @Component({
   selector: 'ngx-trade-list',
   templateUrl: './trade-list.component.html',
   styleUrls: ['./trade-list.component.scss'],
+  providers:[ReportManageService,MessageService],
   // 定义动画
   animations: [
     trigger('visibilityChanged', [
@@ -19,8 +22,10 @@ import {Location} from '@angular/common';
 })
 export class TradeListComponent implements OnInit, OnChanges {
 
-  constructor(private location: Location) {
-    // this.dat = this.time.years + '-' + this.time.months + '-' + this.time.days;
+  constructor(
+    private location: Location,
+    private reportService:ReportManageService,
+    private message: MessageService,) {
   }
 
   visibility = 'hidden';
@@ -38,41 +43,8 @@ export class TradeListComponent implements OnInit, OnChanges {
 
   // 组件初始华
   ngOnInit(): void {
-    this.time = {start: '', end: ''};
-    // this.dat = this.formatDate(new Date);
   }
-  time: {
-    start: string,
-    end: string,
-  };
-  /*time: {
-    years: string|number,
-    months: string|number,
-    days: string|number,
-  };
-  dat: string = this.time.years + '-' + this.time.months + '-' + this.time.days ;
-  formatDate(date: Date): string {
-    const dateNow = date;
-    const year: string|number = dateNow.getFullYear();
-    let month: string|number;
-    month = dateNow.getMonth() + 1;
-    let day: string|number;
-    day = dateNow.getDate();
-    let data: string|number;
-    // return new Date(year, month, day);
 
-    if (month < 10) {
-      month = '0' + month;
-    }
-    if (day < 10) {
-      day = '0' + day;
-    }
-
-    data = year +  '-' + month + '-' + day;
-    return data;
-    // return year
-  }
-*/
 // 列表搜索条件对象
   filter: any = {};
   /*返回*/
@@ -80,4 +52,17 @@ export class TradeListComponent implements OnInit, OnChanges {
     this.location.back();
   }
 
+  dataList:any = [];
+
+  /**
+   * 查询
+   */
+  search(result){
+    this.reportService.queryMerchant(result.startDate,result.endDate).then(res=>{
+      this.message.success('查询成功', `` );
+      this.dataList  = res;
+    }).catch(err => {
+      this.message.error('查询失败', err.message);
+    });
+  }
 }

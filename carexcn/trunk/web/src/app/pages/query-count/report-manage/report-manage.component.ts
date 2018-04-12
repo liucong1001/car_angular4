@@ -12,9 +12,4 @@ export class ReportManageComponent implements OnInit {
 
   ngOnInit() {
   }
-  /*跳转*/
-  banlance(report: string) {
-    this.router.navigate(['/pages/query-count/report-manage/'+report]);
-  }
-
 }
