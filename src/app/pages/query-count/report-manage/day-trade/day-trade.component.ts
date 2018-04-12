@@ -1,11 +1,14 @@
 import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {Location} from '@angular/common';
+import {ReportManageService} from "../../../../@core/data/query-count/report-manage.service";
+import { MessageService } from './../../../../@core/utils/message.service';
 
 @Component({
   selector: 'ngx-day-trade',
   templateUrl: './day-trade.component.html',
   styleUrls: ['./day-trade.component.scss'],
+  providers:[ReportManageService,MessageService],
   // 定义动画
   animations: [
     trigger('visibilityChanged', [
@@ -19,8 +22,11 @@ import {Location} from '@angular/common';
 })
 export class DayTradeComponent implements OnInit, OnChanges {
 
-  constructor(private location: Location) {
-    // this.dat = this.time.years + '-' + this.time.months + '-' + this.time.days;
+  constructor(
+    private location: Location,
+    private reportService:ReportManageService,
+    private message: MessageService,
+  ) {
   }
 
   visibility = 'hidden';
@@ -38,46 +44,35 @@ export class DayTradeComponent implements OnInit, OnChanges {
 
   // 组件初始华
   ngOnInit(): void {
-    this.time = {start: '', end: ''};
-    // this.dat = this.formatDate(new Date);
   }
-  time: {
-    start: string,
-    end: string,
-  };
-  /*time: {
-    years: string|number,
-    months: string|number,
-    days: string|number,
-  };
-  dat: string = this.time.years + '-' + this.time.months + '-' + this.time.days ;
-  formatDate(date: Date): string {
-    const dateNow = date;
-    const year: string|number = dateNow.getFullYear();
-    let month: string|number;
-    month = dateNow.getMonth() + 1;
-    let day: string|number;
-    day = dateNow.getDate();
-    let data: string|number;
-    // return new Date(year, month, day);
-
-    if (month < 10) {
-      month = '0' + month;
-    }
-    if (day < 10) {
-      day = '0' + day;
-    }
-
-    data = year +  '-' + month + '-' + day;
-    return data;
-    // return year
-  }
-*/
-// 列表搜索条件对象
-  filter: any = {};
   /*返回*/
   goBack() {
     this.location.back();
   }
 
+  dataList:any = [];
+  arcNoType = "1";
+
+  /**时间在result对象中取值即可得到开始时间，结束时间
+   * {startDate: "2018-03-06", endDate: "2018-03-22"}
+   * @param result
+   */
+  search(result){
+    this.reportService.queryDay(result.startDate,result.endDate,this.arcNoType).then(res=>{
+      this.message.success('查询成功', `` );
+      this.dataList  = res;
+    }).catch(err => {
+      this.message.error('查询失败', err.message);
+    });
+  }
+
+  /**
+   * 导出Excel表
+   * @param result
+   */
+  export(result){
+    this.reportService.down(result.startDate,result.endDate).then(res=>{
+      this.reportService.saveExcel(res,'二手车销售排行表');
+    })
+  }
 }

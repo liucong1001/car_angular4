@@ -2,32 +2,13 @@
   <nb-card-header class="d-flex">
     <div class="p-2 mr-auto">二手车业务日交易情况汇总表</div>
     <div class="p2">
-      <!--<a [routerLink]="'edit'" class="btn btn-primary btn-sm">新增</a>-->
       <button type="button" class="btn btn-sm btn-outline-success" (click)="toggle(visibility)" [ngClass]="{'active':showFilter}" ><i class="ion-funnel"></i></button>
     </div>
   </nb-card-header>
   <nb-card-body>
-    <form [@visibilityChanged]="visibility" (submit)="codeList.reload()">
-      <div class="row">
-        <div class="col-sm-4">
-          <div class="form-group form-group-sm">
-            <span>起始日期：</span>
-            <ngx-ys-calendar class="input-custom" [placeholder]="'起始日期'"></ngx-ys-calendar>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="form-group form-group-sm">
-            <span>截止日期：</span>
-            <ngx-ys-calendar class="input-custom" [placeholder]="'截止日期'"></ngx-ys-calendar>
-          </div>
-        </div>
-        <div class="col-sm-2 form-group">
-          <button type="submit" class="btn btn btn-primary"><i class="ion-search"></i>查询</button>
-        </div>
-        <div class="col-sm-2 form-group">
-          <button type="reset" class="btn btn-outline-primary" ><i class="ion-archive"></i>导出</button>
-        </div>
-      </div>
+    <form [@visibilityChanged]="visibility">
+      <ngx-report-form-search  (btn_search)="search($event)" (btn_export)="export($event)" [startText]="'开始时间'" [endText]="'结束时间'" >
+      </ngx-report-form-search>
     </form>
     <div class="height"></div>
     <div>
@@ -39,11 +20,24 @@
           <th>收费标准</th>
           <th>数量</th>
           <th>总额</th>
-          <th>金额三总额</th>
           <th>未支付额</th>
           <th>未支数量</th>
+          <th>已撤销额</th>
+          <th>已撤销数量</th>
+          <th>待撤销额</th>
+          <th>待撤销数量</th>
         </tr>
-        <tr>
+        <tr *ngFor="let item of dataList">
+          <th>{{item.businessType | code_trans: 'businessType' | async}}</th>
+          <th>{{item.shouldAmount}}</th>
+          <th>{{item.count}}</th>
+          <th>{{item.sum}}</th>
+          <th>{{item.noPayCount}}</th>
+          <th>{{item.noPaySum}}</th>
+          <th>{{item.repealCount}}</th>
+          <th>{{item.repealSum}}</th>
+          <th>{{item.waitCount}}</th>
+          <th>{{item.waitSum}}</th>
         </tr>
       </table>
     </div>

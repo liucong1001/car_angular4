@@ -2,33 +2,13 @@
   <nb-card-header class="d-flex">
     <div class="p-2 mr-auto">各交易单位交易明细表报表查看</div>
     <div class="p2">
-      <!--<a [routerLink]="'edit'" class="btn btn-primary btn-sm">新增</a>-->
       <button type="button" class="btn btn-sm btn-outline-success" (click)="toggle(visibility)" [ngClass]="{'active':showFilter}" ><i class="ion-funnel"></i></button>
     </div>
   </nb-card-header>
   <nb-card-body>
-    <form [@visibilityChanged]="visibility" (submit)="codeList.reload()">
-      <div class="row">
-        <div class="col-sm-4">
-          <div class="form-group form-group-sm">
-            <span>报表时间：</span>
-            <ngx-ys-calendar class="input-custom" [placeholder]="'起止日期'"></ngx-ys-calendar>
-            <!--<input class="form-control input-custom" name="years" [(ngModel)]="time.start" type="text" placeholder=""/>-->
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="form-group form-group-sm">
-            <ngx-ys-calendar class="input-custom" [placeholder]="'截止日期'"></ngx-ys-calendar>
-            <!--<input class="form-control input-custom" name="years" [(ngModel)]="time.end" type="text" placeholder=""/>-->
-          </div>
-        </div>
-        <div class="col-sm-2 form-group">
-          <button type="submit" class="btn btn btn-primary"><i class="ion-search"></i>查询</button>
-        </div>
-        <div class="col-sm-2 form-group">
-          <button type="reset" class="btn btn-outline-primary" ><i class="ion-archive"></i>导出</button>
-        </div>
-      </div>
+    <form [@visibilityChanged]="visibility">
+      <ngx-report-form-search  (btn_search)="search($event)" (btn_export)="export($event)" [startText]="'开始时间'" [endText]="'结束时间'" >
+      </ngx-report-form-search>
     </form>
     <div class="height"></div>
     <div class="padding">
@@ -43,18 +23,31 @@
           <th>预审量</th>
           <th>作废发票</th>
           <th>交易额</th>
-          <th>手续费</th>
-          <th>其他费用</th>
+          <th colspan="2">手续费</th>
+          <th colspan="2">充值</th>
         </tr>
         <tr>
-          <td>（辆）</td>
-          <td>（辆）</td>
-          <td>（张）</td>
-          <td>（万元）</td>
-          <td>（元）</td>
-          <td>（元）</td>
+           <td>(辆)</td>
+           <td>(辆)</td>
+           <td>(张)</td>
+           <td>(元)</td>
+           <td>二手车(元)</td>
+           <td>市场(元)</td>
+           <td>二手车(元)</td>
+           <td>市场(元)</td>
         </tr>
-        <tr>
+        <tr *ngFor="let item of dataList ; let i = index">
+          <th>{{i+1}}</th>
+          <th>{{item.code}}</th>
+          <th>{{item.name}}</th>
+          <th>{{item.count}}</th>
+          <th>{{item.plantCount}}</th>
+          <th>{{item.obs}}</th>
+          <th>{{item.bargainPrice}}</th>
+          <th>{{item.fee}}</th>
+          <th>{{item.marketFee}}</th>
+          <th>{{item.recharge}}</th>
+          <th>{{item.marketRecharge}}</th>
         </tr>
       </table>
     </div>

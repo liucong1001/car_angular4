@@ -36,4 +36,36 @@ export class ReportManageService {
       return res.json() as any;
     })
   }
+  /**
+   * 各单位交易报表查询
+   * @param startDate
+   * @param endDate
+   * @returns {any}
+     */
+  public queryMerchant(startDate:String,endDate:String):Promise<any>{
+    const url = `rest/report/merchant?startDate=`+startDate+'&endDate='+endDate;
+    return this.http.get(url).toPromise().then(function (res) {
+      return res.json() as any;
+    });
+  }
+
+  /**
+   * 二手车日交易报表查询
+   * @param startDate
+   * @param endDate
+   * @returns {any}
+     */
+  public queryDay(startDate:String,endDate:String,arcNoType:String):Promise<any>{
+    const url = `rest/report/day?startDate=`+startDate+'&endDate='+endDate+'&arcNoType='+arcNoType;
+    return this.http.get(url).toPromise().then(function (res) {
+      return res.json() as any;
+    });
+  }
+
+  public queryMonth(year:String):Promise<any>{
+    const url = `rest/report/month?year=`+year;
+    return this.http.get(url).toPromise().then(function (res) {
+      return res.json() as any;
+    });
+  }
 }
