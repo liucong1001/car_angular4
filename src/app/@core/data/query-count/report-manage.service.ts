@@ -62,8 +62,40 @@ export class ReportManageService {
     });
   }
 
+  /**
+   * 月交易报表
+   * @param year
+   * @returns {any}
+     */
   public queryMonth(year:String):Promise<any>{
     const url = `rest/report/month?year=`+year;
+    return this.http.get(url).toPromise().then(function (res) {
+      return res.json() as any;
+    });
+  }
+
+  /**
+   * 年交易报表
+   * @param year
+   * @returns {any}
+     */
+  public queryYear(year:String):Promise<any>{
+    const url = `rest/report/year?year=`+year;
+    return this.http.get(url).toPromise().then(function (res) {
+      return res.json() as any;
+    });
+  }
+
+  /**
+   * 销售排行
+   * @param startDate
+   * @param endDate
+   * @param arcNoType
+   * @param size
+     * @returns {any}
+     */
+  public salesRanking(startDate:String,endDate:String,size:String):Promise<any>{
+    const url = `rest/report/sales/ranking?startDate=`+startDate+'&endDate='+endDate+'&size='+size;
     return this.http.get(url).toPromise().then(function (res) {
       return res.json() as any;
     });

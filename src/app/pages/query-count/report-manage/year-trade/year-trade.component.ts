@@ -1,11 +1,14 @@
 import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {Location} from '@angular/common';
+import {ReportManageService} from "../../../../@core/data/query-count/report-manage.service";
+import { MessageService } from './../../../../@core/utils/message.service';
 
 @Component({
   selector: 'ngx-year-trade',
   templateUrl: './year-trade.component.html',
   styleUrls: ['./year-trade.component.scss'],
+  providers:[ReportManageService,MessageService],
   // 定义动画
   animations: [
     trigger('visibilityChanged', [
@@ -19,7 +22,11 @@ import {Location} from '@angular/common';
 })
 export class YearTradeComponent implements OnInit, OnChanges {
 
-  constructor(private location: Location) { }
+  constructor(
+    private location: Location,
+    private reportService:ReportManageService,
+    private message: MessageService,
+  ) { }
 
   visibility = 'hidden';
   showFilter = false;
@@ -35,20 +42,35 @@ export class YearTradeComponent implements OnInit, OnChanges {
   }
 
   // 组件初始华
-  ngOnInit(): void {
-    this.time = {years: this.year};
-  }
-  time: {
-    years: number,
-  };
-  /*获取当前年份*/
-  year = new Date().getFullYear();
+  ngOnInit(): void {}
 
-  // 列表搜索条件对象
-  filter: any = {};
   /*返回*/
   goBack() {
     this.location.back();
   }
 
+  dataList:any = [];
+
+  /**时间在result对象中取值即可得到开始时间，结束时间
+   * {startDate: "2018-03-06", endDate: "2018-03-22"}
+   * @param result
+   */
+  search(result){
+    this.reportService.queryYear("2018").then(res=>{
+      this.message.success('查询成功', `` );
+      this.dataList  = res;
+    }).catch(err => {
+      this.message.error('查询失败', err.message);
+    });
+  }
+
+  /**
+   * 导出Excel表
+   * @param result
+   */
+  export(result){
+    this.reportService.down(result.startDate,result.endDate).then(res=>{
+      this.reportService.saveExcel(res,'二手车销售排行表');
+    })
+  }
 }
