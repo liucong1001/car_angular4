@@ -2,7 +2,7 @@ import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {Location} from '@angular/common';
 import {ReportManageService} from "../../../../@core/data/query-count/report-manage.service";
-
+import { MessageService } from './../../../../@core/utils/message.service';
 
 @Component({
   selector: 'ngx-sales-rank',
@@ -18,11 +18,15 @@ import {ReportManageService} from "../../../../@core/data/query-count/report-man
       transition('shown <=> hidden', [animate('100ms ease-in-out'), animate('100ms')]),
     ]),
   ],
-  providers:[ReportManageService],
+  providers:[ReportManageService, MessageService],
 })
 export class SalesRankComponent implements OnInit, OnChanges {
 
-  constructor(private location: Location,private reportService:ReportManageService) { }
+  constructor(
+    private location: Location,
+    private reportService:ReportManageService,
+    private message: MessageService,
+  ) { }
 
   visibility = 'shown';
   showFilter = false;
@@ -41,19 +45,31 @@ export class SalesRankComponent implements OnInit, OnChanges {
   ngOnInit(): void {
   }
 
-  // 列表搜索条件对象
-  filter: any = {};
   /*返回*/
   goBack() {
     this.location.back();
   }
+
+  size: any = 5;
+  saloonCarList:any = [];
+  passengerCarList:any = [];
+  goodsCarList:any = [];
+  specialList:any = [];
 
   /**时间在result对象中取值即可得到开始时间，结束时间
    * {startDate: "2018-03-06", endDate: "2018-03-22"}
    * @param result
    */
   search(result){
-    console.info('表一search:',result)
+    this.reportService.salesRanking(result.startDate,result.endDate,this.size).then(res=>{
+      this.message.success('查询成功', `` );
+      this.saloonCarList  = res.saloonCarList;
+      this.passengerCarList  = res.passengerCarList;
+      this.goodsCarList  = res.goodsCarList;
+      this.specialList  = res.specialList;
+    }).catch(err => {
+      this.message.error('查询失败', err.message);
+    });
   }
 
   /**
