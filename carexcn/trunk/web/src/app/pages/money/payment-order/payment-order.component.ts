@@ -8,18 +8,23 @@ import { ActivatedRoute, Router,Params, ActivatedRouteSnapshot, RouterState, Rou
 import {PaymentOrderService} from "../../../@core/data/money/paymentOrder.service"
 import {paymentOrderModel,paymentOrderPayModel} from "../../../@core/model/money/paymentOrder.model"
 import {IcCardRechargemap,icCardData} from '../../../@core/model/icCard/recharge';
+import {CurrentMarketService} from '../../../@core/data/current-market.service';
+import {LocalstorageService} from "../../../@core/cache/localstorage.service";
+
+
 
 @Component({
   selector: 'ngx-payment-order',
   templateUrl: './payment-order.component.html',
   styleUrls: ['./payment-order.component.scss'],
-  providers:[IcCardOperationService,PaymentOrderService],
+  providers:[IcCardOperationService,PaymentOrderService,CurrentMarketService,LocalstorageService],
 })
 export class PaymentOrderComponent implements OnInit {
 
   constructor(private IcCardOperationService: IcCardOperationService,  public router: Router,
               private route: ActivatedRoute, private message: MessageService,private iccard: IccardService,
-              private paymentOrderService:PaymentOrderService,private location: Location) {
+              private paymentOrderService:PaymentOrderService,private location: Location,
+              private marketService:CurrentMarketService, private localstorageService:LocalstorageService) {
             this.route.params.subscribe((params: Params) => {
               if (params['id']) {
                 this.paymentOrderService.getOrderInfo(params['id']).then(res => {
@@ -36,11 +41,14 @@ export class PaymentOrderComponent implements OnInit {
   OrderInfo = new paymentOrderModel() ;
   public  payMoneyModel =  paymentOrderPayModel ['']= [];
 
-  public  icCardPayMoney :number;
-  public  cashPayMoney :number;
-
+  public  icCardPayMoney: number;
+  public  cashPayMoney: number;
+  printTime: Date = new Date();
+  user: any;
   ngOnInit() {
     this.iccardInit();
+    this.getCurrentMarket();
+    this.user = this.localstorageService.get('auth_app_token');
   }
 
   public iccardData = new IccardModel('云石科技', '0001', 18);
@@ -147,6 +155,35 @@ export class PaymentOrderComponent implements OnInit {
   }
   back(){
     this.location.back();
+  }
+
+  /**
+   *打印样式在ts里面写 和在html里面写都可以生效
+   */
+  print_ng(){
+    let printContents, popupWin;
+    printContents = document.getElementById('print-section').innerHTML;
+    popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
+    popupWin.document.open();
+    popupWin.document.write(`
+      <html>
+        <head>
+          <title></title>
+          <style>
+          </style>
+        </head>
+      <body onload="window.print();window.close()">${printContents}</body>
+      </html>`
+    );
+    popupWin.document.close();
+  }
+
+  marketData;
+  getCurrentMarket() {
+    this.marketService.getCurrentMarketInfo().then(res => {
+      console.info('当前市场相关信息:', res);
+      this.marketData = res;
+    });
   }
 
 }
