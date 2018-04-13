@@ -45,6 +45,7 @@ export class MarketEditComponent implements OnInit {
                     name: res.name,
                     cloudUser: res.cloudUser,
                     memo: res.memo,
+                    area: this.cityDefault,
                   });
                 });
               }
