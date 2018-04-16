@@ -94,15 +94,12 @@ export class CarlistComponent implements OnInit {
    * @param {TradeForm} trade
    */
   checkboxChanged(event, trade?: BusinessTradeForm) {
-    // console.info('event', event);
-    // console.info('checked', event.checked);
-    // console.info('target.checked', event.target.checked);
-    // console.info('returnValue', event.returnValue);
     if (event.target.checked) {
       this.checkCars.push(trade);
     } else {
       this.checkCars = this.checkCars.filter(t => t !== trade);
     }
+    this.checkCars = this.checkCars.filter((item, pos) => this.checkCars.indexOf(item) === pos);
     console.info(this.checkCars);
     this._checkCars.emit(this.checkCars);
   }
