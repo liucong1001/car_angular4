@@ -27,7 +27,7 @@ export class JudicationComponent implements OnInit {
   public trade: TradeForm;
   public tradeList: [TradeForm];
   public _vehicleFormGroup: FormGroup = this._formBuilder.group({
-    preVehicle: this._businessFormGroup.vehicleAndData,
+    preVehicle: this._businessFormGroup.vehicle,
     photos: this._formBuilder.group({}),
   });
   public _sellerFormGroup: FormGroup = this._formBuilder.group({

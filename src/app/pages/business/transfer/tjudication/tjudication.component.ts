@@ -7,9 +7,9 @@ import {LocalstorageService} from '../../../../@core/cache/localstorage.service'
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {BusinessFormGroup} from '../../business.form-group';
 import {Marketphotomap} from '../../../../@core/model/system/market-photo-map';
-import {BusinessTradeViewForm} from "../../../../@core/model/business/restruct/business.trade.view.form";
-import {CurrentMarketConfModel, CurrentMarketService} from "../../../../@core/data/current-market.service";
-import {BusinessTradeForm} from "../../../../@core/model/business/restruct/business.trade.form";
+import {BusinessTradeViewForm} from '../../../../@core/model/business/restruct/business.trade.view.form';
+import {CurrentMarketConfModel, CurrentMarketService} from '../../../../@core/data/current-market.service';
+import {BusinessTradeForm} from '../../../../@core/model/business/restruct/business.trade.form';
 
 @Component({
   selector: 'ngx-tjudication',
@@ -23,7 +23,7 @@ export class TjudicationComponent implements OnInit {
   public tradeList: [TradeForm];
   public test= '';
   public _formGroupVehicle: FormGroup = this._formBuilder.group({
-    preVehicle: this._businessFormGroup.vehicleAndData,
+    preVehicle: this._businessFormGroup.vehicle,
     photos: this._formBuilder.group({}),
   });
   public _formGroupTransferVehicle: FormGroup = this._formBuilder.group({
