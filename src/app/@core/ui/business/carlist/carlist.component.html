@@ -14,7 +14,7 @@
         <input type="checkbox" class="custom-control-input"
                [name]="trade.preVehicle.preVehicle.plateNumber"
                (change)="checkboxChanged($event,trade)"
-               [checked]="checkedStatus.indexOf(trade.prejudication.status) > -1"
+               [checked]="checkedStatus.indexOf(trade.prejudication.status) > -1 || 1 === this.tradeList.length"
                [disabled]="! (canCheckingStatus.indexOf(trade.prejudication.status) > -1)" />
         <span class="custom-control-indicator"></span>
         <span class="custom-control-description">
