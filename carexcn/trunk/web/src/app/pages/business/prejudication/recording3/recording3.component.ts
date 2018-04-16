@@ -20,7 +20,7 @@ import {BusinessTradeForm, PreVehicle} from '../../../../@core/model/business/re
 export class Recording3Component implements OnInit, OnDestroy {
   public businessTradeForm: BusinessTradeForm = {};
   public _formGroup: FormGroup = this._formBuilder.group({
-    preVehicle: this._businessFormGroup.vehicleAndData,
+    preVehicle: this._businessFormGroup.vehicle,
     photos: this._formBuilder.group({}),
   });
 

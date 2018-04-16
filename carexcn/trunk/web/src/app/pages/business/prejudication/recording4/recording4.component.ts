@@ -30,7 +30,7 @@ export class Recording4Component implements OnInit, OnDestroy {
     photos: this._formBuilder.group({}),
   });
   public _formGroupVechile: FormGroup = this._formBuilder.group({
-    preVehicle: this._businessFormGroup.vehicleAndData,
+    preVehicle: this._businessFormGroup.vehicle,
     photos: this._formBuilder.group({}),
   });
   /**
