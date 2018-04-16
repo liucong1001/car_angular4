@@ -16,7 +16,8 @@
 
     <div class="details">
       <div class="title">
-        预审流水单:{{trade.archiveNo}}
+        预审流水号:{{trade.archiveNo}} <br />
+        预审批次号:{{trade.prejudication.batchNo}}
       </div>
       <button type="button" class="btn btn-primary" (click)="toPrint()">打印</button>
       <button type="button" class="btn btn-primary" (click)="toContinue()">继续添加</button>
