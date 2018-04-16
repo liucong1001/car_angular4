@@ -7,9 +7,9 @@ import {UserService} from '../users.service';
 import {BuyerForm} from '../../model/business/trade/buyer.form';
 import {TransferVehicleModel} from '../../model/business/trade/transferVehicle/transferVehicle.model';
 import {BuyerModel} from '../../model/business/trade/buyer.model';
-import {FileSystemService} from "../system/file-system.service";
-import {TransferVehicleForm} from "../../model/business/trade/transferVehicle.form";
-import {BusinessTradeViewForm} from "../../model/business/restruct/business.trade.view.form";
+import {FileSystemService} from '../system/file-system.service';
+import {TransferVehicleForm} from '../../model/business/trade/transferVehicle.form';
+import {BusinessTradeViewForm} from '../../model/business/restruct/business.trade.view.form';
 
 @Injectable()
 export class TransferService {
