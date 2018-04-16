@@ -28,7 +28,7 @@
           <th>待撤销数量</th>
         </tr>
         <tr *ngFor="let item of dataList">
-          <th>{{item.businessType | code_trans: 'businessType' | async}}</th>
+          <th>{{item.businessType}}</th>
           <th>{{item.shouldAmount}}</th>
           <th>{{item.count}}</th>
           <th>{{item.sum}}</th>
