@@ -81,7 +81,9 @@ export class JudicationComponent implements OnInit {
       for (let tmp in this.judicationTrade) {
         if (this.judicationTrade[tmp]) {
           let trade = this.judicationTrade[tmp] as TradeForm;
-          review_ids.push(trade.prejudication.id);
+          if (!review_ids.some(x => x === trade.prejudication.id)) {
+            review_ids.push(trade.prejudication.id);
+          }
         }
       }
       this._currentMarket.getCurrentMarketInfo().then(marketObj => {
