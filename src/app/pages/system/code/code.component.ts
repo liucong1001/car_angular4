@@ -6,7 +6,7 @@ import {Menu, MenuCell} from '../../../@core/ui/table/cell.menu.component';
 import {Column} from '../../../@core/ui/table/table.component';
 import {TextCell} from '../../../@core/ui/table/cell.text.component';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import {visibilityToggle} from "../../../@core/ui/animations/toggle.animation";
+import {visibilityToggle} from '../../../@core/ui/animations/toggle.animation';
 
 @Component({
   selector: 'ngx-code',
