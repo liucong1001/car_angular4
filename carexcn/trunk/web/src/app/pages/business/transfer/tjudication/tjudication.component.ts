@@ -68,6 +68,7 @@ export class TjudicationComponent implements OnInit {
     this.judicationTrade = trades;
   }
   getTradeByArchiveNoComponent(trade) {
+    this._localstorage.set('business_trade_form', trade);
     this.trade = trade;
     this.businessTradeForm = trade as BusinessTradeForm;
   }

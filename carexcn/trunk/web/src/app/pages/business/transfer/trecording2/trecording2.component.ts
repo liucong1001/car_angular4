@@ -41,6 +41,7 @@ export class Trecording2Component implements OnInit {
   ) { }
   getTradeByArchiveNoComponent(trade: BusinessTradeForm) {
     // console.info('trade', trade);
+    this._localstorage.set('business_trade_form', trade);
     this.businessTradeForm = trade;
     // this._formGroup.controls.seller.patchValue(this.trade.seller.seller);
   }
@@ -53,7 +54,7 @@ export class Trecording2Component implements OnInit {
   ngOnInit() {
     let trecording_trade_form = this._localstorage.get('business_trecording_trade_form') as BusinessTradeForm;
     if (trecording_trade_form) {
-      this.businessTradeForm = trecording_trade_form;
+      this.getTradeByArchiveNoComponent(trecording_trade_form);
     }
   }
   onSubmit() {

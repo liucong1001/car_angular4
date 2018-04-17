@@ -34,6 +34,7 @@ export class TrecordingComponent implements OnInit {
     private _localstorage: LocalstorageService,
   ) {}
   getTradeByArchiveNoComponent(trade) {
+    this._localstorage.set('business_trade_form', trade);
     this.businessTradeForm = trade as BusinessTradeForm;
     this._sellerFormGroup.patchValue(this.businessTradeForm.seller);
     this._vehicleFormGroup.patchValue(this.businessTradeForm.preVehicle);
