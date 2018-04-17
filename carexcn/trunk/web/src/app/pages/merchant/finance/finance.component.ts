@@ -6,12 +6,11 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {CustomCell} from '../../../@core/ui/table/cell';
 import {IcCardOperationService} from '../../../@core/data/ic-card/card.service';
 import {MessageService} from '../../../@core/utils/message.service';
-
+import {visibilityToggle} from '../../../@core/ui/animations/toggle.animation';
 /**
  * 商户财务维护
  * 展示财务有关信息
  * 修改折扣，IC卡绑卡，，，，挂失，退卡
- *
  * 列表展示哪些信息，还没有定
  */
 @Component({
@@ -19,6 +18,10 @@ import {MessageService} from '../../../@core/utils/message.service';
   templateUrl: './finance.component.html',
   styleUrls: ['./finance.component.scss'],
   providers: [IcCardOperationService],
+  // 定义动画
+  animations: [
+    visibilityToggle,
+  ],
 })
 export class FinanceComponent implements OnInit, OnChanges {
 
