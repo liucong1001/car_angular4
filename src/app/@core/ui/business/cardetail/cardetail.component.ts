@@ -149,6 +149,11 @@ export class CardetailComponent implements OnInit {
     let maybe_businessTradeForm = this._localstorage.get('business_recording_trade_form');
     if (maybe_businessTradeForm) {
       this.businessTradeForm = maybe_businessTradeForm as BusinessTradeForm;
+    } else {
+      maybe_businessTradeForm = this._localstorage.get('business_trade_form');
+      if (maybe_businessTradeForm) {
+        this.businessTradeForm = maybe_businessTradeForm as BusinessTradeForm;
+      }
     }
     /**
      * 重新定义 狭义的 卖家，让照片产生在广义的卖家里，表单可直接使用
