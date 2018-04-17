@@ -54,8 +54,10 @@ export class Recording2Component implements OnInit, OnDestroy {
     /**
      * 因为 businessTradeForm 注定有值
      */
-    this._formGroup.patchValue(this.businessTradeForm.seller);
-    console.info('_formGroup.value', this._formGroup.value);
+    if (this.businessTradeForm.seller) {
+      this._formGroup.patchValue(this.businessTradeForm.seller);
+      console.info('_formGroup.value', this._formGroup.value);
+    }
   }
 
   /**
