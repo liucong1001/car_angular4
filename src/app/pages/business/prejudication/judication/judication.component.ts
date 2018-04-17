@@ -116,6 +116,7 @@ export class JudicationComponent implements OnInit {
     this._router.navigateByUrl('/pages/business/prejudication');
   }
   getTradeByArchiveNoComponent(trade) {
+    this._localstorage.set('business_trade_form', trade);
     this.trade = trade;
     this.businessTradeForm = trade as BusinessTradeForm;
     this._sellerFormGroup.patchValue(this.businessTradeForm.seller);
