@@ -19,7 +19,7 @@ export class TrecordingLastComponent implements OnInit {
      * 处理缓存数据
      * @type {any | any}
      */
-    let trade = this._localstorage.get('business_transfer_trecorded_trade');
+    let trade = this._localstorage.get('business_trecorded_trade');
     if (trade) {
       this.new_transfer_trade = trade as BusinessTradeForm;
     }
