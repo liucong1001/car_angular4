@@ -91,5 +91,4 @@ export class Trecording2Component implements OnInit {
       this._message.error('错误', e.message);
     });
   }
-
 }
