@@ -6,20 +6,20 @@
     </div>
   </nb-card-header>
   <nb-card-body>
-    <div>
-      <tr>
-        <td>条数</td>
-        <td>
-          <select [(ngModel)] = "size">
-            <option value="5">5</option>
-            <option value="20">20</option>
-          </select>
-        </td>
-      </tr>
-    </div>
     <form [@visibilityChanged]="visibility" >
-      <ngx-report-form-search  (btn_search)="search($event)" (btn_export)="export($event)" [startText]="'开始时间'" [endText]="'结束时间'" >
-      </ngx-report-form-search>
+       <div class="row">
+             <div class="col-md-10">
+               <ngx-report-form-search  (btn_search)="search($event)" (btn_export)="export($event)" [startText]="'开始时间'" [endText]="'结束时间'" >
+               </ngx-report-form-search>
+             </div>
+             <div class="col-md-2">
+               <select name="" id="" class="" [(ngModel)] = "size" class="form-control" name="size" >
+                 <option value="">选择条数</option>
+                 <option value="5">5</option>
+                 <option value="20">20</option>
+               </select>
+             </div>
+       </div>
     </form>
     <div class="height"></div>
     <div class="margin-top">
