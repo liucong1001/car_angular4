@@ -115,8 +115,12 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/pages/money/payment',
       },
       {
-        title: 'IC卡消费记录',
+        title: 'IC卡消费报表',
         link: '/pages/money/consume-record',
+      },
+      {
+        title: 'IC卡充值报表',
+        link: '/pages/money/recharge-record',
       },
       {
         title: '补缴',
