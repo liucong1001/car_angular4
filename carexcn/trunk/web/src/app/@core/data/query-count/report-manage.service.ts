@@ -100,4 +100,32 @@ export class ReportManageService {
       return res.json() as any;
     });
   }
+
+  /**
+   * 充值报表
+   * @param startDate
+   * @param endDate
+   * @param code
+   * @returns {any}
+     */
+  public rechargeReport(startDate:String,endDate:String,code:String):Promise<any>{
+    const url = `rest/report/recharge?startDate=`+startDate+'&endDate='+endDate+'&code='+code;
+    return this.http.get(url).toPromise().then(function (res) {
+      return res.json() as any;
+    });
+  }
+
+  /**
+   * 消费报表
+   * @param startDate
+   * @param endDate
+   * @param code
+   * @returns {any}
+     */
+  public receiveReport(startDate:String,endDate:String,code:String):Promise<any>{
+    const url = `rest/report/receive?startDate=`+startDate+'&endDate='+endDate+'&code='+code;
+    return this.http.get(url).toPromise().then(function (res) {
+      return res.json() as any;
+    });
+  }
 }

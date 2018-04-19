@@ -15,6 +15,7 @@ import { PayAgainComponent } from './pay-again/pay-again.component';
 import { OrderRefundComponent } from './order-cancel/order-refund/order-refund.component';
 import { PayedCancelComponent } from './payed-cancel/payed-cancel.component';
 import { BillRefundComponent } from './payed-cancel/bill-refund/bill-refund.component';
+import { RechargeRecordComponent } from './recharge-record/recharge-record.component';
 
 const routes: Routes = [{
   path: '',
@@ -23,6 +24,7 @@ const routes: Routes = [{
     // {path: '', redirectTo: '/order-manage', pathMatch: 'full'},
     {path: 'order-manage', component: OrderManageComponent},
     {path: 'consume-record', component: ConsumeRecordComponent},
+    {path: 'recharge-record', component: RechargeRecordComponent},
     {path: 'payment', component: PaymentComponent},
     {path: 'transfer-record', component: TransferRecordComponent},
     {path: 'payment-detail', component: PaymentDetailComponent},
@@ -58,5 +60,6 @@ export const routedComponents = [
   PayAgainComponent,
   OrderRefundComponent,
   PayedCancelComponent,
-  BillRefundComponent
+  BillRefundComponent,
+  RechargeRecordComponent
 ];

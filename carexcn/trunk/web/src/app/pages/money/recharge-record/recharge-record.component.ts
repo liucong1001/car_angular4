@@ -5,9 +5,9 @@ import {ReportManageService} from "../../../@core/data/query-count/report-manage
 import { MessageService } from '../../../@core/utils/message.service';
 
 @Component({
-  selector: 'ngx-consume-record',
-  templateUrl: './consume-record.component.html',
-  styleUrls: ['./consume-record.component.scss'],
+  selector: 'recharge-record',
+  templateUrl: './recharge-record.component.html',
+  styleUrls: ['./recharge-record.component.scss'],
   providers:[ReportManageService,MessageService],
   // 定义动画
   animations: [
@@ -20,7 +20,7 @@ import { MessageService } from '../../../@core/utils/message.service';
     ]),
   ],
 })
-export class ConsumeRecordComponent implements OnInit, OnChanges {
+export class RechargeRecordComponent implements OnInit, OnChanges {
 
   constructor(
     private location: Location,
@@ -58,7 +58,7 @@ export class ConsumeRecordComponent implements OnInit, OnChanges {
    * @param result
    */
   search(result){
-    this.reportService.receiveReport(result.startDate,result.endDate,this.code).then(res=>{
+    this.reportService.rechargeReport(result.startDate,result.endDate,this.code).then(res=>{
       this.message.success('查询成功', `` );
       this.dataList  = res;
     }).catch(err => {

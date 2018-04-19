@@ -1,6 +1,6 @@
 <nb-card>
   <nb-card-header class="d-flex">
-    <div class="p-2 mr-auto">IC卡消费记录</div>
+    <div class="p-2 mr-auto">IC卡充值报表</div>
     <div class="p2">
       <button type="button" class="btn btn-sm btn-outline-success" (click)="toggle()" [ngClass]="{'active':showFilter}" ><i class="ion-funnel"></i></button>
     </div>
@@ -21,12 +21,12 @@
     </form>
     <div class="height"></div>
     <table border="1">
-      <tr><th colspan="7">消费报表</th></tr>
+      <tr><th colspan="7">充值报表</th></tr>
       <tr>
         <td>商户编号</td>
         <td>商户名称</td>
-        <td>充值消费</td>
-        <td>赠送消费</td>
+        <td>充值金额</td>
+        <td>赠送金额</td>
         <td>撤销消费</td>
         <td>结算</td>
       </tr>
