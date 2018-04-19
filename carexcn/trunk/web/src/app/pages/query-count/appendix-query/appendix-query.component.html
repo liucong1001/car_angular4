@@ -219,7 +219,6 @@
 <!-- 卖方审核头像 -->
 <ng-template #seller_regPhotoi let-data  >
   <!-- {{ object( data.seller.reviewPhotos)?'无':data.seller.reviewPhotos['31'][0].id}} -->
-  {{data.seller?.reviewPhotos&& data.seller?.reviewPhotos['31']&&data.seller.reviewPhotos['31'][0].id}}
   <!-- [hidden]="data.seller?.reviewPhotos&& data.seller?.reviewPhotos['31']"  -->
  <ngx-img  [idValue]="data.seller?.reviewPhotos&& data.seller?.reviewPhotos['31']&&data.seller.reviewPhotos['31'][0].id"
 
@@ -228,7 +227,6 @@
 <!-- 卖家身份证正面 -->
 <ng-template #seller_idCardFronti let-data  >
   <!-- {{ object( data.seller.photos)?'无':data.seller.photos['03'][0].id}} -->
-  {{data.seller?.photos&& data.seller?.photos['03']&&data.seller.photos['03'][0].id}}
       <!-- [hidden]="data.seller?.photos&& data.seller?.photos['03']" -->
  <ngx-img  [idValue]="data.seller?.photos&& data.seller?.photos['03']&&data.seller.photos['03'][0].id"
 
@@ -239,7 +237,6 @@
 <ng-template #seller_idCardBgi let-data  >
   <!-- {{ object( data.seller.photos)?'无':data.seller.photos['04'][0].id}} -->
     <!-- [hidden]="data.seller?.photos&& data.seller?.photos['04']" -->
-  {{data.seller?.photos&& data.seller?.photos['03']&&data.seller.photos['04'][0].id}}
  <ngx-img  [idValue]="data.seller?.photos&& data.seller?.photos['04']&&data.seller.photos['04'][0].id"
 
            [height]="150"></ngx-img>
@@ -248,7 +245,6 @@
 <!-- 卖方审核指纹 -->
 <ng-template #seller_fingerprintImgi let-data  >
   <!-- {{ object( data.seller.reviewPhotos)?'无':data.seller.reviewPhotos['32'][0].id}} -->
-  {{data.seller?.reviewPhotos&& data.seller?.reviewPhotos['32']&&data.seller.reviewPhotos['32'][0].id}}
   <!-- [hidden]="data.seller?.reviewPhotos&& data.seller?.reviewPhotos['32']" -->
  <ngx-img [idValue]="data.seller?.reviewPhotos&& data.seller?.reviewPhotos['32']&&data.seller.reviewPhotos['32'][0].id"
 
@@ -258,7 +254,6 @@
 <!-- 组织机构代码证 未写 -->
 <ng-template #seller_businessCert let-data  >
   <!-- {{ object( data.seller.photos)?'无':data.seller.photos['02'][0].id}} -->
-  {{data.seller?.photos&& data.seller?.photos['02']&&data.seller.photos['02'][0].id}}
   <!-- [hidden]="data.seller?.photos&& data.seller?.photos['02']" -->
  <ngx-img  [idValue]="data.seller?.photos&& data.seller?.photos['02']&&data.seller.photos['02'][0].id"
 
@@ -269,7 +264,6 @@
 <!-- 卖方受托人图像  未写-->
 <ng-template #sellerTrustor_regPhoto let-data  >
   <!-- {{ object( data.seller.trusteePhotos)?'无':data.seller.trusteePhotos['31'][0].id}} -->
-  {{data.seller?.photos&& data.seller?.trusteePhotos['31']&&data.seller.trusteePhotos['31'][0].id}}
   <!-- [hidden]="data.seller?.trusteePhotos&& data.seller?.trusteePhotos['31']" -->
  <ngx-img  [idValue]="data.seller?.trusteePhotos&& data.seller?.trusteePhotos['31']&&data.seller.trusteePhotos['31'][0].id"
 
@@ -279,7 +273,6 @@
 <!-- 卖方受托人指纹  未写-->
 <ng-template #sellerTrustor_fingerprintImg let-data  >
   <!-- {{ object( data.seller.trusteePhotos)?'无':data.seller.trusteePhotos['32'][0].id}} -->
-  {{data.seller?.trusteePhotos&& data.seller?.trusteePhotos['32']&&data.seller.trusteePhotos['32'][0].id}}
   <!-- [hidden]="data.seller?.trusteePhotos&& data.seller?.trusteePhotos['31']" -->
  <ngx-img  [idValue]="data.seller?.trusteePhotos&& data.seller?.trusteePhotos['31']&&data.seller.trusteePhotos['32'][0].id"
 
@@ -289,7 +282,6 @@
 <!-- 卖方受托人身份证正面 -->
 <ng-template #sellerTrustor_idCardFront let-data  >
   <!-- {{ object( data.seller.trusteePhotos)?'无':data.seller.trusteePhotos['21'][0].id}} -->
-  {{data.seller?.trusteePhotos&& data.seller?.trusteePhotos['21']&&data.seller.trusteePhotos['21'][0].id}}
   <!-- [hidden]="data.seller?.trusteePhotos&& data.seller?.trusteePhotos['21']" -->
  <ngx-img  [idValue]="data.seller?.trusteePhotos&& data.seller?.trusteePhotos['21']&&data.seller.trusteePhotos['21'][0].id"
 
@@ -299,7 +291,6 @@
 <!-- 卖方受托人证件反面 -->
 <ng-template #sellerTrustor_idCardBg let-data  >
   <!-- {{ object( data.seller.trusteePhotos)?'无':data.seller.trusteePhotos['22'][0].id}} -->
-  {{data.seller?.photos&& data.seller?.trusteePhotos['22']&&data.seller.trusteePhotos['22'][0].id}}
   <!-- [hidden]="data.seller?.trusteePhotos&& data.seller?.trusteePhotos['22']" -->
  <ngx-img  [idValue]="data.seller?.trusteePhotos&& data.seller?.trusteePhotos['22']&&data.seller.trusteePhotos['22'][0].id"
 
@@ -309,7 +300,6 @@
 <!-- 卖方委托书 -->
  <ng-template #sellerTrustor_entrustBook let-data  >
   <!-- {{ object( data.seller.photos)?'无':data.seller.photos['27'][0].id}} -->
-  {{data.seller?.photos&& data.seller?.photos['27']&&data.seller.photos['27'][0].id}}
   <!-- [hidden]="data.seller?.photos&& data.seller?.photos['27']" -->
  <ngx-img  [idValue]="data.seller?.photos&& data.seller?.photos['27']&&data.seller.photos['27'][0].id"
 
@@ -319,7 +309,6 @@
 <!-- 买方审核头像  未写-->
 <ng-template #buyer_regPhoto let-data  >
   <!-- {{ object( data.buyer.reviewPhotos)?'无':data.buyer.reviewPhotos['33'][0].id}} -->
-  {{data.buyer?.reviewPhotos&& data.buyer?.reviewPhotos['33']&&data.buyer.reviewPhotos['33'][0].id}}
   <!-- [hidden]="data.buyer?.reviewPhotos&& data.buyer?.reviewPhotos['33']" -->
  <ngx-img  [idValue]="data.buyer?.reviewPhotos&& data.buyer?.reviewPhotos['33']&&data.buyer.reviewPhotos['33'][0].id"
 
@@ -329,7 +318,6 @@
 <!-- 买家身份证(正) -->
 <ng-template #buyer_idCardFront let-data  >
   <!-- {{ object( data.buyer.photos)?'无':data.buyer.photos['03'][0].id}} -->
-       {{data.buyer?.photos&& data.buyer?.photos['03']&&data.buyer.photos['03'][0].id}}
        <!-- [hidden]="data.buyer?.photos&& data.buyer?.photos['03']" -->
  <ngx-img  [idValue]="data.buyer?.photos&& data.buyer?.photos['03']&&data.buyer.photos['03'][0].id"
 
@@ -339,7 +327,6 @@
 <!-- 买家身份证(反) -->
 <ng-template #buyer_idCardBg let-data  >
   <!-- {{ object( data.buyer.photos)?'无':data.buyer.photos['04'][0].id}} -->
-  {{data.buyer?.photos&& data.buyer?.photos['04']&&data.buyer.photos['04'][0].id}}
   <!-- [hidden]="data.buyer?.photos&& data.buyer?.photos['04']" -->
  <ngx-img [idValue]="data.buyer?.photos&& data.buyer?.photos['04']&&data.buyer.photos['04'][0].id"
 
@@ -349,7 +336,6 @@
 <!-- 买家指纹  未写-->
 <ng-template #buyer_fingerprintImg let-data  >
   <!-- {{ object( data.buyer.reviewPhotos)?'无':data.buyer.reviewPhotos['34'][0].id}} -->
-  {{data.buyer?.reviewPhotos&& data.buyer?.reviewPhotos['34']&&data.buyer.reviewPhotos['34'][0].id}}
   <!-- [hidden]="data.buyer?.reviewPhotos&& data.buyer?.reviewPhotos['34']" -->
  <ngx-img  [idValue]="data.buyer?.reviewPhotos&& data.buyer?.reviewPhotos['34']&&data.buyer.reviewPhotos['34'][0].id"
 
@@ -359,7 +345,6 @@
 <!-- 组织机构证书(正) 未写 -->
 <ng-template #buyer_businessCert let-data  >
   <!-- {{ object( data.buyer.photos)?'无':data.buyer.photos['02'][0].id}} -->
-  {{data.buyer?.photos&& data.buyer?.photos['02']&&data.buyer.photos['02'][0].id}}
   <!--      [hidden]="data.buyer?.photos&& data.buyer?.photos['02']" -->
  <ngx-img [idValue]="data.buyer?.photos&& data.buyer?.photos['02']&&data.buyer.photos['02'][0].id"
 
@@ -369,7 +354,6 @@
 <!--  组织机构证书(反) 未写-->
 <ng-template #buyer_businessCertBg let-data  >
   <!-- {{ object( data.buyer.photos)?'无':data.buyer.photos['01'][0].id}} -->
-  {{data.buyer?.photos&& data.buyer?.photos['01']&&data.buyer.photos['01'][0].id}}
   <!-- [hidden]="data.buyer?.photos&& data.buyer?.photos['01']" -->
  <ngx-img  [idValue]="data.buyer?.photos&& data.buyer?.photos['01']&&data.buyer.photos['01'][0].id"
 
@@ -380,7 +364,6 @@
 <!-- 买方受托人图像 -->
 <ng-template #buyerTrustor_regPhoto let-data  >
   <!-- {{ object( data.buyer.trusteePhotos)?'无':data.buyer.trusteePhotos['33'][0].id}} -->
-  {{data.buyer?.trusteePhotos&& data.buyer?.trusteePhotos['33']&&data.buyer.trusteePhotos['33'][0].id}}
   <!-- [hidden]="data.buyer?.trusteePhotos&& data.buyer?.trusteePhotos['33']" -->
  <ngx-img [idValue]="data.buyer?.trusteePhotos&& data.buyer?.trusteePhotos['33']&&data.buyer.trusteePhotos['33'][0].id"
 
@@ -390,7 +373,6 @@
 <!-- 买方受托人指纹 未写-->
 <ng-template #buyerTrustor_fingerprintImg let-data  >
   <!-- {{ object( data.buyer.trusteePhotos)?'无':data.buyer.trusteePhotos['34'][0].id}} -->
-  {{data.buyer?.trusteePhotos&& data.buyer?.trusteePhotos['34']&&data.buyer.trusteePhotos['34'][0].id}}
   <!-- [hidden]="data.buyer?.trusteePhotos&& data.buyer?.trusteePhotos['34']" -->
  <ngx-img  [idValue]="data.buyer?.trusteePhotos&& data.buyer?.trusteePhotos['34']&&data.buyer.trusteePhotos['34'][0].id"
 
@@ -400,7 +382,6 @@
 <!-- 买方受托人证件正面  -->
 <ng-template #buyerTrustor_idCardFront let-data  >
   <!-- {{ object( data.buyer.trusteePhotos)?'无':data.buyer.trusteePhotos['21'][0].id}} -->
-  {{data.buyer?.trusteePhotos&& data.buyer?.trusteePhotos['21']&&data.buyer.trusteePhotos['21'][0].id}}
   <!-- [hidden]="data.buyer?.trusteePhotos&& data.buyer?.trusteePhotos['21']" -->
  <ngx-img [idValue]="data.buyer?.trusteePhotos&& data.buyer?.trusteePhotos['21']&&data.buyer.trusteePhotos['21'][0].id"
 
@@ -410,7 +391,6 @@
 <!-- 买方受托人证件反面 -->
 <ng-template #buyerTrustor_idCardBg let-data  >
   <!-- {{ object( data.buyer.trusteePhotos)?'无':data.buyer.trusteePhotos['22'][0].id}} -->
-  {{data.buyer?.trusteePhotos&& data.buyer?.trusteePhotos['22']&&data.buyer.trusteePhotos['22'][0].id}}
   <!-- [hidden]="data.buyer?.trusteePhotos&& data.buyer?.trusteePhotos['22']" -->
  <ngx-img [idValue]="data.buyer?.trusteePhotos&& data.buyer?.trusteePhotos['22']&&data.buyer.trusteePhotos['22'][0].id"
 
@@ -420,7 +400,6 @@
 <!--  买方委托书 -->
 <ng-template #buyerTrustor_entrustBook let-data  >
   <!-- {{ object( data.buyer.reviewPhotos)?'无':data.buyer.reviewPhotos['27'][0].id}} -->
-  {{data.buyer?.reviewPhotos&& data.buyer?.reviewPhotos['27']&&data.buyer.reviewPhotos['27'][0].id}}
   <!-- [hidden]="data.buyer?.reviewPhotos&& data.buyer?.reviewPhotos['27']" -->
  <ngx-img  [idValue]="data.buyer?.reviewPhotos&& data.buyer?.reviewPhotos['27']&&data.buyer.reviewPhotos['27'][0].id"
 
@@ -431,7 +410,6 @@
 <ng-template #vehicleCert let-data  >
   <!-- {{ object( data.preVehicle.photos)?'无':data.preVehicle.photos['17'][0].id}} -->
     <!-- [hidden]="data.preVehicle?.photos&& data.preVehicle?.photos['17']" -->
-  {{data.preVehicle?.photos&& data.preVehicle?.photos['17']&&data.preVehicle.photos['17'][0].id}}
  <ngx-img  [idValue]="data.preVehicle?.photos&& data.preVehicle?.photos['17']&&data.preVehicle.photos['17'][0].id"
 
            [height]="150"></ngx-img>
@@ -441,7 +419,6 @@
 <ng-template #vehicleCertBg let-data  >
   <!-- {{ object( data.preVehicle.photos)?'无':data.transferVehicle.photos['20'][0].id}} -->
   <!-- [hidden]="data.preVehicle?.photos&& data.preVehicle?.photos['20']" -->
-  {{data.preVehicle?.photos&& data.preVehicle?.photos['20']&&data.preVehicle.photos['20'][0].id}}
  <ngx-img  [idValue]="data.preVehicle?.photos&& data.preVehicle?.photos['20']&&data.preVehicle.photos['20'][0].id"
 
            [height]="150"></ngx-img>
@@ -451,7 +428,6 @@
 <ng-template #vehicle_registrationCert let-data  >
   <!-- {{ object( data.preVehicle.photos)?'无':data.preVehicle.photos['18'][0].id}} -->
   <!-- [hidden]="data.preVehicle?.photos&& data.preVehicle?.photos['18']" -->
-  {{data.preVehicle?.photos&& data.preVehicle?.photos['18']&&data.preVehicle.photos['18'][0].id}}
  <ngx-img [idValue]="data.preVehicle?.photos&& data.preVehicle?.photos['18']&&data.preVehicle.photos['18'][0].id"
 
            [height]="150"></ngx-img>
@@ -461,7 +437,6 @@
 <ng-template #vehicle_registrationCertBg let-data  >
   <!-- {{ object( data.preVehicle.photos)?'无':data.preVehicle.photos['19'][0].id}} -->
   <!-- [hidden]="data.preVehicle?.photos&& data.preVehicle?.photos['19']" -->
-  {{data.preVehicle?.photos&& data.preVehicle?.photos['19']&&data.preVehicle.photos['19'][0].id}}
  <ngx-img  [idValue]="data.preVehicle?.photos&& data.preVehicle?.photos['19']&&data.preVehicle.photos['19'][0].id"
 
            [height]="150"></ngx-img>
@@ -528,7 +503,6 @@
 <!-- 增值税发票第一张 -->
 <ng-template #vat1 let-data  >
   <!-- {{ object( data.preVehicle.photos)?'无':data.preVehicle.photos['23'][0].id}} -->
-  {{data.preVehicle?.photos&& data.preVehicle?.photos['23']&&data.preVehicle.photos['23'][0].id}}
   <!-- [hidden]="data.preVehicle?.photos&& data.preVehicle?.photos['23']" -->
  <ngx-img [idValue]="data.preVehicle?.photos&& data.preVehicle?.photos['23']&&data.preVehicle.photos['23'][0].id"
 
@@ -540,7 +514,6 @@
 <!-- 增值税发票第二张 -->
 <ng-template #vat2 let-data  >
   <!-- {{ object( data.preVehicle.photos)?'无':data.preVehicle.photos['23'][1].id}} -->
-  {{data.preVehicle?.photos&& data.preVehicle?.photos['23']&&data.preVehicle.photos['23'][0].id}}
   <!-- [hidden]="data.preVehicle?.photos&& data.preVehicle?.photos['23']" -->
  <ngx-img  [idValue]="data.preVehicle?.photos&& data.preVehicle?.photos['23']&&data.preVehicle.photos['23'][0].id"
 
@@ -552,7 +525,6 @@
 <!-- 增值税发票第三张 -->
 <ng-template #vat3 let-data  >
   <!-- {{ object( data.preVehicle.photos)?'无':data.preVehicle.photos['23'][2].id}} -->
-  {{data.preVehicle?.photos&& data.preVehicle?.photos['23']&&data.preVehicle.photos['23'][0].id}}
   <!-- [hidden]="data.preVehicle?.photos&& data.preVehicle?.photos['23']" -->
  <ngx-img  [idValue]="data.preVehicle?.photos&& data.preVehicle?.photos['23']&&data.preVehicle.photos['23'][0].id"
 
@@ -564,7 +536,6 @@
 <ng-template #vat4 let-data  >
   <!-- {{ object( data.preVehicle.photos)?'无':data.preVehicle.photos['23'][3].id}} -->
   <!-- object( data.preVehicle)?null: -->
-  {{data.preVehicle?.photos&& data.preVehicle?.photos['23']&&data.preVehicle.photos['23'][0].id}}
   <!-- [hidden]="data.preVehicle?.photos&& data.preVehicle?.photos['23']" -->
  <ngx-img  [idValue]="data.preVehicle?.photos&& data.preVehicle?.photos['23']&&data.preVehicle.photos['23'][0].id"
 
@@ -575,7 +546,6 @@
 <!-- 	增值税发票第五张 -->
 <ng-template #vat5 let-data  >
   <!-- {{ object( data.preVehicle.photos)?'无':data.preVehicle.photos['23'][4].id}} -->
-  {{data.preVehicle?.photos&& data.preVehicle?.photos['23']&&data.preVehicle.photos['23'][0].id}}
   <!-- [hidden]="data.preVehicle?.photos&& data.preVehicle?.photos['23']" -->
  <ngx-img  [idValue]="data.preVehicle?.photos&& data.preVehicle?.photos['23']&&data.preVehicle.photos['23'][0].id"
 
@@ -586,7 +556,7 @@
 <!-- 	增值税发票第六张 -->
 <ng-template #vat6 let-data  >
   <!-- {{ object( data.preVehicle.photos)?'无':data.preVehicle.photos['23'][5].id}} -->
-  {{data.preVehicle?.photos&& data.preVehicle?.photos['23']&&data.preVehicle.photos['23'][0].id}}
+  <!--{{data.preVehicle?.photos&& data.preVehicle?.photos['23']&&data.preVehicle.photos['23'][0].id}}-->
   <!-- [hidden]="data.preVehicle?.photos&& data.preVehicle?.photos['23']" -->
  <ngx-img  [idValue]="data.preVehicle?.photos&& data.preVehicle?.photos['23']&&data.preVehicle.photos['23'][0].id"
 
